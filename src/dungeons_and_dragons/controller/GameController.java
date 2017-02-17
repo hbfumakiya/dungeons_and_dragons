@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
+import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.GameView;
 
@@ -116,5 +119,13 @@ public class GameController implements ActionListener {
 	public static void main(String[] args) 
 	{
 		GameController game = new GameController();	
+		/*
+		try {
+			FileHelper.saveItem(new ItemModel(1, "Hee", 5, "ggg","ggg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 }

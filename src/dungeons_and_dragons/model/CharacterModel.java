@@ -28,16 +28,7 @@ public class CharacterModel extends Observable {
 	 */
 	private String character_name;
 	
-	
-	/**
-	 * Type of character.
-	 * 
-	 * @type CharacterType
-	 */
-	private CharacterTypeModel character_type;
-	
-	
-	
+
 	/**
 	 * Variable for strength of character
 	 * 
@@ -54,11 +45,10 @@ public class CharacterModel extends Observable {
 		
 	}
 	
-	public CharacterModel(int character_id, String character_name, CharacterTypeModel character_type, int strength) {
+	public CharacterModel(int character_id, String character_name, int strength) {
 		// TODO Auto-generated constructor stub
 		this.character_id=character_id;
 		this.character_name=character_name;
-		this.character_type=character_type;
 		this.strength=strength;
 
 	}
@@ -69,10 +59,6 @@ public class CharacterModel extends Observable {
 
 	public String getCharacter_name() {
 		return character_name;
-	}
-
-	public CharacterTypeModel getCharacter_type() {
-		return character_type;
 	}
 
 	public int getStrength() {
