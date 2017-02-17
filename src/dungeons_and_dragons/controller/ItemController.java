@@ -21,11 +21,19 @@ public class ItemController implements ActionListener {
 	ItemModel item_model;
 	
 	/**
-	 * This create item view
+	 * This create observer object
 	 * 
-	 * 
+	 * @type ItemView
 	 */
 	ItemView item_view;
+	
+	/**
+	 * Default constructor of item controller
+	 * <p>
+	 * Item model and view are initialized and also view is binded to observer.
+	 * <p>
+	 * all the events of view are registered in constructor
+	 */
 	public ItemController() {
 		// TODO Auto-generated constructor stub
 		//this.field_item = item_field;
@@ -36,6 +44,11 @@ public class ItemController implements ActionListener {
 		this.item_model.addObserver(item_view);
 		this.item_view.setListener(this);
 	}
+	
+	/**
+	 * Action event of all the events
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -49,6 +62,9 @@ public class ItemController implements ActionListener {
 			
 			item_model.itemTypeSelected(get_item_type);
 			
+		}else if(arg0.getSource().equals(item_view.save_item))
+		{
+			item_model.save();
 		}
 		
 	}
