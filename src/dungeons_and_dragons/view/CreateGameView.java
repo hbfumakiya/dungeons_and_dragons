@@ -214,11 +214,11 @@ public class CreateGameView extends JFrame implements ActionListener {
 	 */
 	private void showManageCharacterWindow() {
 		
-		// remove window
-		// this.dispose();
+		// show manage character view
+		new ManageCharacterView();
 		
-		// show new game window....
-		
+		// hide window
+		this.dispose();
 	}
 	
 	/**

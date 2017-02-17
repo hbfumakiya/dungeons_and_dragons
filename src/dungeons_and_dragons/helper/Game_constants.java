@@ -27,4 +27,3 @@ public class Game_constants {
 	public static final String WEAPON = "Weapon";
 	
 }
-
