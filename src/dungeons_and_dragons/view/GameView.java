@@ -3,7 +3,7 @@
  */
 package dungeons_and_dragons.view;
 
-package game.play;
+
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 
-public class GameWindow extends JFrame implements ActionListener {
+public class GameView extends JFrame implements ActionListener {
 
 	/**
 	 * this variable used to set window title
@@ -66,7 +66,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 *  constructor 
 	 * 
 	 */
-	public GameWindow() {
+	public GameView() {
 		
 		// initialize game window
 		this.initializeWindow();
@@ -232,4 +232,4 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 }
 
-}
+

@@ -3,8 +3,6 @@
  */
 package dungeons_and_dragons.view;
 
-package game.play;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,7 +27,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import game.helper.Game_constants;
+import dungeons_and_dragons.helper.Game_constants;
+
+//import game.helper.Game_constants;
 
 /**
  * This class is to open new Window
@@ -188,7 +188,7 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
     
     
     
-	public ItemWindow() {
+	public ItemView() {
 		// TODO Auto-generated constructor stub
 		
 		// set window title
