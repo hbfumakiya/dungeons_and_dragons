@@ -26,8 +26,14 @@ public class GameController implements ActionListener {
 	public GameController() {
 		
 		gameView = new GameView();
+		
+		// set listener
 		gameView.setActionListener(this);	
+		
+		// show game view 
 		gameView.setVisible(true);
+		
+		
 	}
 
 
