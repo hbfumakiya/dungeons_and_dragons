@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import dungeons_and_dragons.controller.ItemController;
+
 /**
  * @author Mihir Pujara
  *
@@ -242,7 +244,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		// this.dispose();
 		
 		// show Item game window....
-		new ItemView();
+		ItemController controller = new ItemController();
 		
 		this.dispose();
 		
