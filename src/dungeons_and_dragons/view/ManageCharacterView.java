@@ -5,9 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +22,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 
-public class ManageCharacterView extends JFrame implements ActionListener {
+public class ManageCharacterView extends JFrame implements Observer {
 
 	/**
 	 * this variable used to set window title
@@ -70,6 +73,13 @@ public class ManageCharacterView extends JFrame implements ActionListener {
 	 */
 	private JTextField charactername_textfield;
 	
+	/**
+	 * this variable used for item combobox
+	 * 
+	 * @type JComboBox
+	 */
+	private JComboBox<String> item_combobox;
+	
 	public ManageCharacterView() {
 		// TODO Auto-generated constructor stub
 		// initialize game window
@@ -89,10 +99,8 @@ public class ManageCharacterView extends JFrame implements ActionListener {
 		this.setTitle(this.window_title);
 		
 		main_panel = new JPanel();
-
 		main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.PAGE_AXIS));
 		main_panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
 		getContentPane().add(main_panel);
 		
 		sub_panel = new JPanel();
@@ -103,9 +111,7 @@ public class ManageCharacterView extends JFrame implements ActionListener {
 		main_panel.add(sub_panel);
 
 		list_panel = new JPanel();
-
 		list_panel.setLayout(new GridLayout(5, 2, 5, 5));
-		
 		list_panel.setMaximumSize(new Dimension(300, 150));
 
 		sub_panel.add(list_panel);
@@ -116,11 +122,17 @@ public class ManageCharacterView extends JFrame implements ActionListener {
 		charactername_textfield=new JTextField();
 		charactername_textfield.setPreferredSize(new Dimension(50, 40));
 		charactername_textfield.setAlignmentX(Component.LEFT_ALIGNMENT);
-
 		list_panel.add(charactername_textfield);
 		
+		additem_label=new JLabel("Add items");
+		list_panel.add(additem_label);
+		
+		item_combobox=new JComboBox<String>();
+		item_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
+		list_panel.add(item_combobox);
+		
 		// set minimum size of frame
-				this.setPreferredSize(new Dimension(320, 220));
+		this.setPreferredSize(new Dimension(320, 220));
 
 		// Display the window.
 		this.pack();
@@ -129,8 +141,16 @@ public class ManageCharacterView extends JFrame implements ActionListener {
 
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void setListener(ActionListener e) {
+		// TODO Auto-generated method stub
+		this.item_combobox.addActionListener(e);
 		
 	}
 
