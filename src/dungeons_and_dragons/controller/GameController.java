@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.GameView;
@@ -118,6 +119,6 @@ public class GameController implements ActionListener {
 	
 	public static void main(String[] args) 
 	{
-		GameController game = new GameController();		
+		GameController game = new GameController();	
 	}
 }
