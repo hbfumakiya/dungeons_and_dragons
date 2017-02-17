@@ -29,6 +29,8 @@ import javax.swing.border.EmptyBorder;
 
 import dungeons_and_dragons.controller.ItemController;
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.model.ItemModel;
+//import game.play.ItemWindowModel/
 
 //import game.helper.Game_constants;
 
@@ -345,7 +347,17 @@ public class ItemView extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		DefaultComboBoxModel x = ((ItemModel) o).getItemAbility();
+
+		if(!x.equals("Select Item Type"))
+		{ 
+			item_ability_field.setModel(x);
+			item_ability_field.setVisible(true);
+			item_ability.setVisible(true);
+			
+			item_score.setVisible(true);
+			item_score_field.setVisible(true);
+		}
 	}
 
 	public void setListener(ActionListener e) {

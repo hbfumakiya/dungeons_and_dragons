@@ -1,5 +1,6 @@
 package dungeons_and_dragons.model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.DefaultComboBoxModel;
@@ -17,7 +18,7 @@ import dungeons_and_dragons.view.ItemView;
  * 
  * 
  */
-public class ItemModel extends Observable{
+public class ItemModel extends Observable implements Model<ItemModel>{
 
 	/**
 	 * ID and Name of items
@@ -132,7 +133,7 @@ public class ItemModel extends Observable{
 	
 DefaultComboBoxModel get_item_ability = null;
 	
-	DefaultComboBoxModel getItemAbility()
+	public DefaultComboBoxModel getItemAbility()
 	{return get_item_ability;}
 	public void itemTypeSelected(String item_type){
 		
@@ -183,6 +184,26 @@ DefaultComboBoxModel get_item_ability = null;
 	    	// notify all attached Observers of a change
 	    	notifyObservers(get_item_ability);
 		}
+
+	
+
+	@Override
+	public ArrayList<ItemModel> getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(ItemModel t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(ItemModel t) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

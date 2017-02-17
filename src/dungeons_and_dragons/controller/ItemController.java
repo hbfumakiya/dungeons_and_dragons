@@ -14,18 +14,27 @@ import dungeons_and_dragons.view.ItemView;
  */
 public class ItemController implements ActionListener {
 	
-	JComboBox field_item;
-	ItemModel model;
-	ItemView view;
+	/**
+	 *	This creates new model
+	 *  @type ItemModel
+	 */
+	ItemModel item_model;
+	
+	/**
+	 * This create item view
+	 * 
+	 * 
+	 */
+	ItemView item_view;
 	public ItemController() {
 		// TODO Auto-generated constructor stub
 		//this.field_item = item_field;
 		System.out.println("Inside Controller constructor");
-		this.model = new ItemModel();
-		this.view = new ItemView();
+		this.item_model = new ItemModel();
+		this.item_view = new ItemView();
 		
-		this.model.addObserver(view);
-		this.view.setListener(this);
+		this.item_model.addObserver(item_view);
+		this.item_view.setListener(this);
 	}
 
 	@Override
@@ -33,12 +42,12 @@ public class ItemController implements ActionListener {
 		// TODO Auto-generated method stub
 		System.out.println("Inside Controller action performed");
 		System.out.println(arg0.getSource()+" "+arg0.getActionCommand());
-		if(arg0.getSource().equals(view.item_type_field))
+		if(arg0.getSource().equals(item_view.item_type_field))
 		{
-			String get_item_type = (String) view.item_type_field.getSelectedItem();
+			String get_item_type = (String) item_view.item_type_field.getSelectedItem();
 			System.out.println(get_item_type);
 			
-			model.itemTypeSelected(get_item_type);
+			item_model.itemTypeSelected(get_item_type);
 			
 		}
 		
