@@ -1,9 +1,16 @@
 package dungeons_and_dragons.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Observable;
 
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.LogHelper;
 
 /**
  * character class to store all character data
@@ -43,12 +50,14 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 	 * @param strength
 	 */
 	public CharacterModel() {
-		
+		this.character_id = 0;
+		this.character_name = "";
+		this.strength = 0;
 	}
 	
-	public CharacterModel(int character_id, String character_name, int strength) {
+	public CharacterModel(int character_id,String character_name, int strength) {
 		// TODO Auto-generated constructor stub
-		this.character_id=character_id;
+		this.character_id = character_id;
 		this.character_name=character_name;
 		this.strength=strength;
 
@@ -71,17 +80,66 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 		 // this variable created to get the item ability selected.
 		 
 	}
+	
+
+	/**
+	 * @param character_name the character_name to set
+	 */
+	public void setCharacter_name(String character_name) {
+		this.character_name = character_name;
+	}
+
+	/**
+	 * @param strength the strength to set
+	 */
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
 
 	@Override
-	public ArrayList<CharacterModel> getData() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CharacterModel> getData() throws JsonSyntaxException, IOException {
+		
+		return FileHelper.getCharcters();
+	}
+	
+	private void setCurrentId() throws JsonSyntaxException, IOException
+	{
+		
+		ArrayList<CharacterModel> alldata = this.getData();
+		
+		
+		if(alldata.size() < 1) {
+			this.character_id = 1;
+			return;
+		}
+		
+		CharacterModel lastData = Collections.max(alldata, new Comparator<CharacterModel>() {
+
+			@Override
+			public int compare(CharacterModel o1, CharacterModel o2) {
+				
+				if (o1.getCharacter_id() > o2.getCharacter_id())
+		            return -1; // highest value first
+				else if (o1.getCharacter_id() == o2.getCharacter_id())
+		            return 0;
+				else 
+					return 1;
+			}
+		});
+		
+		this.character_id = lastData.getCharacter_id() + 1;
 	}
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
 		
+		try {
+			this.setCurrentId();
+			FileHelper.saveCharacter(this);
+		} catch (JsonSyntaxException | IOException e1) {
+			// TODO Auto-generated catch block
+			LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
+		}
 	}
 
 	@Override

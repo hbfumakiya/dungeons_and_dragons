@@ -41,7 +41,7 @@ public class LogHelper {
 	 * @param log_message
 	 * @throws IOException 
 	 */
-	public static void Log(String log_type, String log_message) throws IOException {
+	public static void Log(String log_type, String log_message) {
 	
 		Path path = Paths.get(LOG_FILE);
 		Charset charset = StandardCharsets.UTF_8;
@@ -54,10 +54,15 @@ public class LogHelper {
 		
 		details.add(strDate+" "+log_message);
 		
-		if(Files.exists(path)) {
-			Files.write(path,  details, charset, StandardOpenOption.APPEND);
-		} else {
-			Files.write(path,  details, charset, StandardOpenOption.CREATE_NEW);
+		try {
+			if(Files.exists(path)) {
+				Files.write(path,  details, charset, StandardOpenOption.APPEND);	
+			} else {
+				Files.write(path,  details, charset, StandardOpenOption.CREATE_NEW);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			
 		}
 		
 	}

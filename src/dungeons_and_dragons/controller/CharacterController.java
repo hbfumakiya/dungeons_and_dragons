@@ -18,10 +18,9 @@ import dungeons_and_dragons.view.ManageCharacterView;
 
 
 public class CharacterController implements ActionListener{
-	
-	private ManageCharacterView managecharacterview;
-	CharacterModel model;
-	ManageCharacterView view;
+
+	private CharacterModel model;
+	private ManageCharacterView view;
 	
 	public CharacterController() {
 		this.model=new CharacterModel();
@@ -34,11 +33,13 @@ public class CharacterController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("save clicked fgf");
 		if(e.getSource().equals(view.save))
 		{
-			System.out.println("save clicked");
+			String character_name = this.view.charactername_textfield.getText();
+			model.setCharacter_name(character_name);
 			
+			
+			model.save();
 		}
 		else if(e.getSource().equals(view.back))
 		{
@@ -49,7 +50,7 @@ public class CharacterController implements ActionListener{
 	private void backToCreateGame() {
 		
 		new CreateGameController();
-		managecharacterview.dispose();
+		view.dispose();
 	}
 
 }
