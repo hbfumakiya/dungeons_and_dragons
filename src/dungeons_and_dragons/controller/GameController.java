@@ -113,7 +113,6 @@ public class GameController implements ActionListener {
 	
 	public static void main(String[] args) 
 	{
-		GameController game = new GameController();
-		
+		GameController game = new GameController();	
 	}
 }
