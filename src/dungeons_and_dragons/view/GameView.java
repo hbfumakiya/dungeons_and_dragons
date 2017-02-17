@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
@@ -25,7 +24,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 
-public class GameView extends JFrame implements ActionListener {
+public class GameView extends JFrame implements View {
 
 	/**
 	 * this variable used to set window title
@@ -39,28 +38,28 @@ public class GameView extends JFrame implements ActionListener {
 	 * 
 	 * @type JButton
 	 */
-	private JButton new_game_button;
+	public JButton new_game_button;
 	
 	/**
-	 * this variable used for laod game button
+	 * this variable used for load game button
 	 * 
 	 * @type JButton
 	 */
-	private JButton load_game_button;
+	public JButton load_game_button;
 	
 	/**
 	 * this variable used for create game button
 	 * 
 	 * @type JButton
 	 */
-	private JButton create_game_button;
+	public JButton create_game_button;
 	
 	/**
 	 * this variable used for exit game button
 	 * 
 	 * @type JButton
 	 */
-	private JButton exit_game_button;
+	public JButton exit_game_button;
 	
 	/**
 	 *  constructor 
@@ -95,9 +94,7 @@ public class GameView extends JFrame implements ActionListener {
 		new_game_button = new JButton("New Game");
 		new_game_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		new_game_button.addActionListener(this);
-		
+
 		// add button to panel
 		listPane.add(new_game_button);
 		
@@ -110,8 +107,7 @@ public class GameView extends JFrame implements ActionListener {
 		load_game_button = new JButton("Load Game");
 		load_game_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		load_game_button.addActionListener(this);
+		
 		
 		// add button to panel
 		listPane.add(load_game_button);
@@ -125,9 +121,6 @@ public class GameView extends JFrame implements ActionListener {
 		create_game_button = new JButton("Create Game");
 		create_game_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		create_game_button.addActionListener(this);
-		
 		// add button to panel
 		listPane.add(create_game_button);
 				
@@ -140,8 +133,6 @@ public class GameView extends JFrame implements ActionListener {
 		exit_game_button = new JButton("Exit");
 		exit_game_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		exit_game_button.addActionListener(this);
 		
 		// add button to panel
 		listPane.add(exit_game_button);
@@ -157,78 +148,26 @@ public class GameView extends JFrame implements ActionListener {
 		//Display the window.
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
 	}
-
+	
+	
+	/**
+	 * 
+	 */
 	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
-		
-		// check which button clicked by user 
-		if(actionEvent.getSource().equals(this.new_game_button)) {
-			
-			// open new game window			
-			this.showNewGameWindow();
-			
-		} else if(actionEvent.getSource().equals(this.load_game_button)) {
-			
-			// open load game window			
-			this.showLoadGameWindow();
-			
-		} else if(actionEvent.getSource().equals(this.create_game_button)) {
-			
-			// open create game window			
-			this.showCreateGameWindow();
-			
-		} else if(actionEvent.getSource().equals(this.exit_game_button)) {
-			
-			// exit game			
-			this.exitGame();
-		}
-	}
+	public void setActionListener(ActionListener actionListener) {
 	
-	
-	/**
-	 * method for show new game window
-	 */
-	private void showNewGameWindow() {
+		// set action listener for new game button
+		new_game_button.addActionListener(actionListener);
 		
-		// hide game window
-		// this.setVisible(false);
+		// set action listener for new game button
+		load_game_button.addActionListener(actionListener);
 		
-		// show new game window....
+		// set action listener for new game button
+		create_game_button.addActionListener(actionListener);
 		
-	}
-	
-	/**
-	 * method for show load game window
-	 */
-	private void showLoadGameWindow() {
-		
-		// hide game window
-		// this.setVisible(false);
-		
-		// show load game window....
-		
-	}
-	
-	/**
-	 * method for show create game window
-	 */
-	private void showCreateGameWindow() {
-		
-		// show create game window
-		new CreateGameView();
-		
-		// hide game window
-		this.dispose();
-	}
-	
-	/**
-	 * method for show exit game
-	 */
-	private void exitGame() {
-		
-		this.dispose();
+		// set action listener for new game button
+		exit_game_button.addActionListener(actionListener);
 	}
 }
 

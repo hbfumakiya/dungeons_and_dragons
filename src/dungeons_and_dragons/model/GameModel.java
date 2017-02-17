@@ -3,19 +3,18 @@
  */
 package dungeons_and_dragons.model;
 
+import java.util.ArrayList;
+
 /**
  * @author mihir
  *
  */
-public abstract class Game {
+public abstract class GameModel {
 
 	/**
 	 * 
 	 */
-	public Game() {
+	public GameModel() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public abstract void  save();
-
 }
