@@ -11,8 +11,9 @@ import java.util.ArrayList;
  */
 public interface Model<T> {
 
-	public void save();
+	public void save(T t);
 	
 	public ArrayList<T> getData();
 	
+	public void update(T t);
 }

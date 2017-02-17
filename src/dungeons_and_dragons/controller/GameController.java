@@ -22,7 +22,9 @@ public class GameController implements ActionListener {
 	 */
 	private GameView gameView;
 	
-	
+	/**
+	 *  constructore of game controller 
+	 */
 	public GameController() {
 		
 		gameView = new GameView();
@@ -32,11 +34,11 @@ public class GameController implements ActionListener {
 		
 		// show game view 
 		gameView.setVisible(true);
-		
-		
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		// TODO Auto-generated method stub
@@ -96,7 +98,7 @@ public class GameController implements ActionListener {
 	private void showCreateGameWindow() {
 		
 		// show create game window
-		new CreateGameView();
+		new CreateGameController();
 		
 		// hide game window
 		gameView.dispose();

@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
  * @author Mihir Pujara
  *
  */
-public class CreateGameView extends JFrame implements ActionListener {
+public class CreateGameView extends JFrame implements View {
 
 	/**
 	 * this variable used to set window title
@@ -32,35 +32,35 @@ public class CreateGameView extends JFrame implements ActionListener {
 	 * 
 	 * @type JButton
 	 */
-	private JButton manage_character_button;
+	public JButton manage_character_button;
 	
 	/**
 	 * this variable used for manage map button
 	 * 
 	 * @type JButton
 	 */
-	private JButton manage_map_button;
+	public JButton manage_map_button;
 	
 	/**
 	 * this variable used for manage campaign button
 	 * 
 	 * @type JButton
 	 */
-	private JButton manage_campaign_button;
+	public JButton manage_campaign_button;
 	
 	/**
 	 * this variable used for manage item button
 	 * 
 	 * @type JButton
 	 */
-	private JButton manage_item_button;
+	public JButton manage_item_button;
 	
 	/**
 	 * this variable used for back to game button
 	 * 
 	 * @type JButton
 	 */
-	private JButton back_button;
+	public JButton back_button;
 	
 	/**
 	 * 
@@ -95,9 +95,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		manage_character_button = new JButton("Manage Character");
 		manage_character_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		manage_character_button.addActionListener(this);
-		
+				
 		// add button to panel
 		listPane.add(manage_character_button);
 		
@@ -110,8 +108,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		manage_map_button = new JButton("Manage Map");
 		manage_map_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		manage_map_button.addActionListener(this);
+		
 		
 		// add button to panel
 		listPane.add(manage_map_button);
@@ -125,8 +122,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		manage_campaign_button = new JButton("Manage Campaign");
 		manage_campaign_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		manage_campaign_button.addActionListener(this);
+		
 		
 		// add button to panel
 		listPane.add(manage_campaign_button);
@@ -140,8 +136,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		manage_item_button = new JButton("Manage Item");
 		manage_item_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		manage_item_button.addActionListener(this);
+		
 		
 		// add button to panel
 		listPane.add(manage_item_button);
@@ -155,8 +150,7 @@ public class CreateGameView extends JFrame implements ActionListener {
 		back_button = new JButton("Back");
 		back_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// set action listener for new game button
-		back_button.addActionListener(this);
+		
 		
 		// add button to panel
 		listPane.add(back_button);
@@ -175,101 +169,23 @@ public class CreateGameView extends JFrame implements ActionListener {
         this.setVisible(true);
 	}
 
-
 	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
+	public void setActionListener(ActionListener actionListener) {
 		
-		
-		// check which button clicked by user
-		if(actionEvent.getSource().equals(this.manage_character_button)) {
-		
-			// open manage character window
-			this.showManageCharacterWindow();
-			
-		} else if(actionEvent.getSource().equals(this.manage_map_button)) {
+		// set action listener for new game button
+		manage_character_button.addActionListener(actionListener);
 
-			// open manage map window			
-			this.showManageMapWindow();
-			
-		} else if(actionEvent.getSource().equals(this.manage_campaign_button)) {
-			
-			// open manage campaign window			
-			this.showManageCampaignWindow();
-			
-		} else if(actionEvent.getSource().equals(this.manage_item_button)) {
-
-			// open manage item window			
-			this.showManageItemWindow();
-			
-		} else if(actionEvent.getSource().equals(this.back_button)) { 
-
-			// back to game and open main game window			
-			this.backToGame();
-		}
+		// set action listener for new game button
+		manage_map_button.addActionListener(actionListener);
+		
+		// set action listener for new game button
+		back_button.addActionListener(actionListener);
+		
+		// set action listener for new game button
+		manage_campaign_button.addActionListener(actionListener);
+		
+		// set action listener for new game button
+		manage_item_button.addActionListener(actionListener);
 	}
-	
-	
-	/**
-	 * method for show manage character window
-	 */
-	private void showManageCharacterWindow() {
-		
-		// show manage character view
-		new ManageCharacterView();
-		
-		// hide window
-		this.dispose();
-	}
-	
-	/**
-	 * method for show manage map window
-	 */
-	private void showManageMapWindow() {
-		
-		// hide game window
-		// this.dispose();
-		
-		// show load game window....
-		
-	}
-	
-	/**
-	 * method for show manage item window
-	 */
-	private void showManageItemWindow() {
-		
-		// hide game window
-		// this.dispose();
-		
-		// show Item game window....
-		new ItemView();
-		
-		this.dispose();
-		
-	}
-	
-	/**
-	 * method for show create game window
-	 */
-	private void showManageCampaignWindow() {
-		
-		// hide game window
-		// this.dispose();
-		
-		// show create game window....
-		
-	}
-		
-	/**
-	 * method for show exit game
-	 */
-	private void backToGame() {
-		
-		//open game window
-		new GameView();
-		
-		this.dispose();
-	}
-
 }
 
