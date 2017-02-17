@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import dungeons_and_dragons.controller.ItemController;
 import dungeons_and_dragons.helper.Game_constants;
 
 //import game.helper.Game_constants;
@@ -36,7 +37,7 @@ import dungeons_and_dragons.helper.Game_constants;
  * 
  * @author : Urmil Kansara
  */
-public class ItemView extends JFrame implements ActionListener, ItemListener, Observer {
+public class ItemView extends JFrame implements Observer {
 	
 	
 	/**
@@ -44,21 +45,21 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 * 
 	 * @type String
 	 */
-	private String item_window_title = "Manage Item";
+	public String item_window_title = "Manage Item";
 	
 	/**
 	 * this variable used to give Item name
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel item_name;
+	public JLabel item_name;
 	
 	/**
 	 * this variable used to input name
 	 * 
 	 * @type JTextField
 	 */
-	private JTextField item_name_field ;
+	public JTextField item_name_field ;
 
 	
 	/**
@@ -66,14 +67,14 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel item_type;
+	public JLabel item_type;
 	
 	/**
 	 * this variable used to get Item Type
 	 * 
 	 * @type JComboBox
 	 */
-	private JComboBox<String> item_type_field;
+	public JComboBox<String> item_type_field;
 		
 	
 	
@@ -82,14 +83,14 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel item_ability;
+	public JLabel item_ability;
 	
 	/**
 	 * this variable used to get Item Ability
 	 * 
 	 * @type JComboBox
 	 */
-	private JComboBox<String> item_ability_field;
+	public JComboBox<String> item_ability_field;
 	
 	
 	/**
@@ -97,14 +98,14 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel item_score;
+	public JLabel item_score;
 	
 	/**
 	 * this variable used to get item Score
 	 * 
 	 * @type JTextField
 	 */
-	private JTextField item_score_field ;
+	public JTextField item_score_field ;
 	
 	
 	/**
@@ -112,14 +113,14 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 * 
 	 * @type JButton
 	 */
-	private JButton back_button;
+	public JButton back_button;
 	
 	/**
 	 * this variable used to save item
 	 * 
 	 * @type JButton
 	 */
-	private JButton save_item;
+	public JButton save_item;
 	
 	/**
 	 * this variable is used for validating same item type click multiple types
@@ -127,64 +128,13 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 	 *  @type Integer
 	 */
 	
-    private	int item_type_validator;
+    public	int item_type_validator;
     
     
     
     
     
-	/**
-	 * model for loading data into item ability based on selection of item type helmet
-	 * @type :  DefaultComboBoxModel
-	 */
-     @SuppressWarnings({ "unchecked", "rawtypes" })
-    final DefaultComboBoxModel HELMET_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.INTELLIGENCE,Game_constants.WISDOM,Game_constants.ARMOR_CLASS});
-    
-    /**
-	 * model for loading data into item ability based on selection of item type armor
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    final DefaultComboBoxModel ARMOR_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.ARMOR_CLASS});
-    
-    /**
-	 * model for loading data into item ability based on selection of item type shield
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    final DefaultComboBoxModel SHIELD_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.ARMOR_CLASS});
-    
-    
-    /**
-	 * model for loading data into item ability based on selection of item type ring
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    final DefaultComboBoxModel RING_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.STRENGTH,Game_constants.WISDOM,Game_constants.ARMOR_CLASS,Game_constants.CONSTITUTION,Game_constants.CHARISMA});
-    
-    
-    /**
-	 * model for loading data into item ability based on selection of item type belt
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	final DefaultComboBoxModel BELT_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.STRENGTH,Game_constants.CONSTITUTION});
-    
-    /**
-	 * model for loading data into item ability based on selection of item type boots
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	final DefaultComboBoxModel BOOTS_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.DEXTERITY,Game_constants.WISDOM,Game_constants.ARMOR_CLASS});
-    
-    
-    /**
-	 * model for loading data into item ability based on selection of item type weapon
-	 * @type :  DefaultComboBoxModel
-	 */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	final DefaultComboBoxModel WEAPON_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.ATTACK_BONUS,Game_constants.DAMAGE_BONUS});
-    
+	
     
     
     
@@ -223,16 +173,16 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 				
 				
 				//adding name listener
-				item_name_field.addActionListener(this);
+				//item_name_field.addActionListener(this);
 				
 				//adding item type listener
-				item_type_field.addActionListener(this);
+				//item_type_field.addActionListener(this);
 				
 				//adding ability listener
-				item_ability_field.addActionListener(this);
+				//item_ability_field.addActionListener(this);
 				
 				//adding score listener
-				item_score_field.addActionListener(this);
+				//item_score_field.addActionListener(this);
 				
 				
 				//filling the details of type item type combobox
@@ -319,86 +269,93 @@ public class ItemView extends JFrame implements ActionListener, ItemListener, Ob
 				
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		
-		//this variable created to get the item type selected.
-//		if(e.getSource().equals(item_type_field)) {
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//		
+//		//this variable created to get the item type selected.
+////		if(e.getSource().equals(item_type_field)) {
+////			
+////		}
+//		String get_item_type = (String) item_type_field.getSelectedItem();
+//		System.out.println(get_item_type);
+//		
+//		
+//		 // this variable created to get the item ability selected.
+//		 
+//		String get_item_ability = null;
+//		
+//		if(!get_item_type.equals("Select Item Type"))
+//		{ 
+//			item_ability_field.setVisible(true);
+//			item_ability.setVisible(true);
+//			
+//			item_score.setVisible(true);
+//			item_score_field.setVisible(true);
+//			if(get_item_type.equals(Game_constants.HELMET))
+//			{
+//				item_ability_field.setModel(GameHELMET_MODEL);
+//
+//			}
+//			else if (get_item_type.equals(Game_constants.ARMOR))
+//			{
+//				
+//				item_ability_field.setModel(ARMOR_MODEL);
+//			}
+//			else if (get_item_type.equals(Game_constants.SHIELD))
+//			{
+//				
+//				item_ability_field.setModel(SHIELD_MODEL);
+//			}
+//			else if (get_item_type.equals(Game_constants.RING))
+//			{
+//				
+//				item_ability_field.setModel(RING_MODEL);
+//			}
+//			else if (get_item_type.equals(Game_constants.BELT))
+//			{
+//				
+//				item_ability_field.setModel(BELT_MODEL);
+//			}
+//			else if (get_item_type.equals(Game_constants.BOOTS))
+//			{
+//				
+//				item_ability_field.setModel(BOOTS_MODEL);
+//			}
+//			else if (get_item_type.equals(Game_constants.WEAPON))
+//			{
+//				
+//				item_ability_field.setModel(WEAPON_MODEL);
+//			}
+//		}
+//		else{
+//			item_ability_field.setVisible(false);
+//			item_ability.setVisible(false);
+//			
+//			item_score.setVisible(false);
+//			item_score_field.setVisible(false);
 //			
 //		}
-		String get_item_type = (String) item_type_field.getSelectedItem();
-		System.out.println(get_item_type);
-		
-		
-		 // this variable created to get the item ability selected.
-		 
-		String get_item_ability = null;
-		
-		if(!get_item_type.equals("Select Item Type"))
-		{ 
-			item_ability_field.setVisible(true);
-			item_ability.setVisible(true);
-			
-			item_score.setVisible(true);
-			item_score_field.setVisible(true);
-			if(get_item_type.equals(Game_constants.HELMET))
-			{
-				item_ability_field.setModel(HELMET_MODEL);
+//		
+//	}
 
-			}
-			else if (get_item_type.equals(Game_constants.ARMOR))
-			{
-				
-				item_ability_field.setModel(ARMOR_MODEL);
-			}
-			else if (get_item_type.equals(Game_constants.SHIELD))
-			{
-				
-				item_ability_field.setModel(SHIELD_MODEL);
-			}
-			else if (get_item_type.equals(Game_constants.RING))
-			{
-				
-				item_ability_field.setModel(RING_MODEL);
-			}
-			else if (get_item_type.equals(Game_constants.BELT))
-			{
-				
-				item_ability_field.setModel(BELT_MODEL);
-			}
-			else if (get_item_type.equals(Game_constants.BOOTS))
-			{
-				
-				item_ability_field.setModel(BOOTS_MODEL);
-			}
-			else if (get_item_type.equals(Game_constants.WEAPON))
-			{
-				
-				item_ability_field.setModel(WEAPON_MODEL);
-			}
-		}
-		else{
-			item_ability_field.setVisible(false);
-			item_ability.setVisible(false);
-			
-			item_score.setVisible(false);
-			item_score_field.setVisible(false);
-			
-		}
-		
-	}
-
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setListener(ActionListener e) {
+		// TODO Auto-generated method stub
+		this.item_type_field.addActionListener(e);
+		this.item_ability_field.addActionListener(e);
+		//this.item_score_field.addActionListener(e);
+		this.save_item.addActionListener(e);
+		this.back_button.addActionListener(e);
+		
 		
 	}
 

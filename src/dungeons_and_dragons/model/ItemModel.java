@@ -1,5 +1,15 @@
 package dungeons_and_dragons.model;
 
+import java.util.Observable;
+
+import javax.swing.DefaultComboBoxModel;
+
+import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.view.ItemView;
+
+//import .helper.Game_constants;
+//import game.play.ItemWindow;
+
 /**
  * Item class to store all items. eg Helmet,Ring
  * 
@@ -7,7 +17,7 @@ package dungeons_and_dragons.model;
  * 
  * 
  */
-public class ItemModel {
+public class ItemModel extends Observable{
 
 	/**
 	 * ID and Name of items
@@ -119,5 +129,61 @@ public class ItemModel {
 	public String getItem_ability() {
 		return item_ability;
 	}
+	
+DefaultComboBoxModel get_item_ability = null;
+	
+	DefaultComboBoxModel getItemAbility()
+	{return get_item_ability;}
+	public void itemTypeSelected(String item_type){
+		
+		
+		
+		 // this variable created to get the item ability selected.
+		 
+		
+		
+		 
+			
+			if(item_type.equals(Game_constants.HELMET))
+			{
+				get_item_ability = Game_constants.HELMET_MODEL;
+			}
+			else if (item_type.equals(Game_constants.ARMOR))
+			{
+				
+				get_item_ability = Game_constants.ARMOR_MODEL;
+			}
+			else if (item_type.equals(Game_constants.SHIELD))
+			{
+				
+				get_item_ability = Game_constants.SHIELD_MODEL;
+			}
+			else if (item_type.equals(Game_constants.RING))
+			{
+				
+				get_item_ability = Game_constants.RING_MODEL;
+			}
+			else if (item_type.equals(Game_constants.BELT))
+			{
+				
+				get_item_ability = Game_constants.BELT_MODEL;
+			}
+			else if (item_type.equals(Game_constants.BOOTS))
+			{
+				
+				get_item_ability = Game_constants.BOOTS_MODEL;
+			}
+			else if (item_type.equals(Game_constants.WEAPON))
+			{
+				
+				get_item_ability = Game_constants.WEAPON_MODEL;
+			}
+			//String get_item_ability = null;
+			setChanged();
+	    	// notify all attached Observers of a change
+	    	notifyObservers(get_item_ability);
+		}
+	
+	
 
 }

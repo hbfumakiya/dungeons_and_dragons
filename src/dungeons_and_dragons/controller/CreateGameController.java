@@ -83,7 +83,7 @@ public class CreateGameController implements ActionListener {
 	private void showManageMapWindow() {
 		
 		// hide game window
-		// this.dispose();
+		// createGameView.dispose();
 		
 		// show load game window....
 		
@@ -94,14 +94,10 @@ public class CreateGameController implements ActionListener {
 	 */
 	private void showManageItemWindow() {
 		
-		// hide game window
-		// this.dispose();
-		
 		// show Item game window....
-		new ItemView();
+		new ItemController();
 		
 		createGameView.dispose();
-		
 	}
 	
 	/**
@@ -110,7 +106,7 @@ public class CreateGameController implements ActionListener {
 	private void showManageCampaignWindow() {
 		
 		// hide game window
-		// this.dispose();
+		// createGameView.dispose();
 		
 		// show create game window....
 		
