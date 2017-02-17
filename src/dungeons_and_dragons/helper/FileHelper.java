@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -61,8 +64,21 @@ public class FileHelper {
 	 */
 	public static void saveCharacter(CharacterModel character) throws IOException {
 		
-		//fetch old data from file and store that into array list
-		ArrayList<CharacterModel> item_list = getCharcters();
+		Path path = Paths.get(CHARACTER_FILE);
+
+		ArrayList<CharacterModel> item_list;
+		
+		if (Files.exists(path)) {
+			// file exist
+			
+			//fetch old data from file and store that into array list
+			item_list = getCharcters();
+			
+		} else {
+			
+			item_list = new ArrayList<CharacterModel>();
+			
+		}
 		
 		//add new data to arraylist
 		item_list.add(character);
@@ -105,8 +121,22 @@ public class FileHelper {
 	 */
 	public static void saveItem(ItemModel item) throws IOException {
 		
-		//fetch old data from file and store that into array list
-		ArrayList<ItemModel> item_list = getItems();
+		Path path = Paths.get(ITEM_FILE);
+
+		ArrayList<ItemModel> item_list;
+		
+		if (Files.exists(path)) {
+			// file exist
+			
+			//fetch old data from file and store that into array list
+			item_list = getItems();
+			
+		} else {
+			
+			item_list = new ArrayList<ItemModel>();
+			
+		}
+		
 		
 		//add new data to arraylist
 		item_list.add(item);

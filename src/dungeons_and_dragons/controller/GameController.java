@@ -118,14 +118,6 @@ public class GameController implements ActionListener {
 	
 	public static void main(String[] args) 
 	{
-		GameController game = new GameController();	
-		/*
-		try {
-			FileHelper.saveItem(new ItemModel(1, "Hee", 5, "ggg","ggg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		GameController game = new GameController();		
 	}
 }
