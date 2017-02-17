@@ -73,19 +73,19 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 	}
 
 	@Override
-	public void save(CharacterModel t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<CharacterModel> getData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(CharacterModel t) {
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
