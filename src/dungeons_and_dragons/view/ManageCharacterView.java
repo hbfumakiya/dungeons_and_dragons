@@ -22,63 +22,105 @@ import javax.swing.border.EmptyBorder;
  *
  */
 
-public class ManageCharacterView extends JFrame implements Observer {
+public class ManageCharacterView extends JFrame implements Observer,View {
 
 	/**
 	 * this variable used to set window title
 	 * 
 	 * @type String
 	 */
-	private String window_title = "Create Character";
+	public String window_title = "Create Character";
 	
 	/**
 	 * this variable used for character name button
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel charactername_label;
+	public JLabel charactername_label;
 	
 	/**
 	 * this variable used for additem label
 	 * 
 	 * @type JLabel
 	 */
-	private JLabel additem_label;
+	public JLabel additem_label;
 
+	/**
+	 * this variable used for level label
+	 * 
+	 * @type JLabel
+	 */
+	public JLabel level_label;
+	
+	/**
+	 * this variable used for backpack label
+	 * 
+	 * @type JLabel
+	 */
+	public JLabel backpack_label;
+	
 	/**
 	 * this variable used for main panel
 	 * 
 	 * @type JPanel
 	 */
-	private JPanel main_panel;
+	public JPanel main_panel;
 	
 	/**
 	 * this variable used for sub panel
 	 * 
 	 * @type JPanel
 	 */
-	private JPanel sub_panel;
+	public JPanel sub_panel;
 	
 	/**
 	 * this variable used for list panel
 	 * 
 	 * @type JPanel
 	 */
-	private JPanel list_panel;
+	public JPanel list_panel;
 	
 	/**
 	 * this variable used for character name textfield
 	 * 
 	 * @type JTextField
 	 */
-	private JTextField charactername_textfield;
+	public JTextField charactername_textfield;
+	
+	/**
+	 * this variable used for level textfield
+	 * 
+	 * @type JTextField
+	 */
+	public JTextField level_textfield;
 	
 	/**
 	 * this variable used for item combobox
 	 * 
 	 * @type JComboBox
 	 */
-	private JComboBox<String> item_combobox;
+	public JComboBox<String> item_combobox;
+	
+	/**
+	 * this variable used for backpack combobox
+	 * 
+	 * @type JComboBox
+	 */
+	public JComboBox<String> backpack_combobox;
+	
+	/**
+	 * this variable used for save button
+	 * 
+	 * @type JButton
+	 */
+	public JButton save;
+	
+	/**
+	 * this variable used for back button
+	 * 
+	 * @type JButton
+	 */
+	public JButton back;
 	
 	public ManageCharacterView() {
 		// TODO Auto-generated constructor stub
@@ -131,27 +173,48 @@ public class ManageCharacterView extends JFrame implements Observer {
 		item_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(item_combobox);
 		
+		level_label=new JLabel("Enter Level");
+		list_panel.add(level_label);
+		
+		level_textfield=new JTextField();
+		level_textfield.setPreferredSize(new Dimension(50, 40));
+		level_textfield.setAlignmentY(LEFT_ALIGNMENT);
+		list_panel.add(level_textfield);
+		
+		backpack_label=new JLabel("BackPack");
+		list_panel.add(backpack_label);
+		
+		backpack_combobox = new JComboBox(new String[]{"1","2"});
+		backpack_combobox.setAlignmentX(LEFT_ALIGNMENT);
+		list_panel.add(backpack_combobox);
+		
+		save=new JButton("Save");
+		list_panel.add(save);
+		
+		back=new JButton("Back");
+		list_panel.add(back);
+		
 		// set minimum size of frame
 		this.setPreferredSize(new Dimension(320, 220));
 
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
 
 	}
 	
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
 		
 	}
-	
-	public void setListener(ActionListener e) {
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		this.item_combobox.addActionListener(e);
-		
+		this.item_combobox.addActionListener(actionListener);
+		this.save.addActionListener(actionListener);
+		this.back.addActionListener(actionListener);
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
+import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.ItemView;
 /**
  * This class call character controller 
@@ -18,6 +19,7 @@ import dungeons_and_dragons.view.ManageCharacterView;
 
 public class CharacterController implements ActionListener{
 	
+	private ManageCharacterView managecharacterview;
 	CharacterModel model;
 	ManageCharacterView view;
 	
@@ -26,13 +28,28 @@ public class CharacterController implements ActionListener{
 		this.view=new ManageCharacterView();
 		
 		this.model.addObserver(view);
-		this.view.setListener(this);
+		this.view.setActionListener(this);
+		this.view.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("save clicked fgf");
+		if(e.getSource().equals(view.save))
+		{
+			System.out.println("save clicked");
+			
+		}
+		else if(e.getSource().equals(view.back))
+		{
+			this.backToCreateGame();
+		}
+	}
+
+	private void backToCreateGame() {
 		
+		new CreateGameController();
+		managecharacterview.dispose();
 	}
 
 }

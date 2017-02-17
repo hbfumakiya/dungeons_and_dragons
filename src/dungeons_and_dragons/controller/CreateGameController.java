@@ -71,7 +71,8 @@ public class CreateGameController implements ActionListener {
 	private void showManageCharacterWindow() {
 		
 		// show manage character view
-		new ManageCharacterView();
+		
+		new CharacterController();
 		
 		// hide window
 		createGameView.dispose();

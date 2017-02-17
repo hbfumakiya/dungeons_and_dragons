@@ -1,5 +1,6 @@
 package dungeons_and_dragons.model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import dungeons_and_dragons.helper.Game_constants;
@@ -12,7 +13,7 @@ import dungeons_and_dragons.helper.Game_constants;
  * 
  */
 
-public class CharacterModel extends Observable {
+public class CharacterModel extends Observable implements Model<CharacterModel>{
 
 	/**
 	 * Variable for identity of character. Value of all these character must be unique.
@@ -83,6 +84,24 @@ public class CharacterModel extends Observable {
 		
 		 // this variable created to get the item ability selected.
 		 
+	}
+
+	@Override
+	public void save(CharacterModel t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<CharacterModel> getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(CharacterModel t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
