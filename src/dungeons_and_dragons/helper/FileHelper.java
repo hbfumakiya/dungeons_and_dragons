@@ -5,12 +5,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
 
@@ -58,10 +62,23 @@ public class FileHelper {
 	 * @param character
 	 * @throws IOException
 	 */
-	public static void saveCharacter(Character character) throws IOException {
+	public static void saveCharacter(CharacterModel character) throws IOException {
 		
-		//fetch old data from file and store that into array list
-		ArrayList<Character> item_list = getCharcters();
+		Path path = Paths.get(CHARACTER_FILE);
+
+		ArrayList<CharacterModel> item_list;
+		
+		if (Files.exists(path)) {
+			// file exist
+			
+			//fetch old data from file and store that into array list
+			item_list = getCharcters();
+			
+		} else {
+			
+			item_list = new ArrayList<CharacterModel>();
+			
+		}
 		
 		//add new data to arraylist
 		item_list.add(character);
@@ -81,18 +98,18 @@ public class FileHelper {
 	/**
 	 * this method gives the list of characters that saved in file
 	 * 
-	 * @return ArrayList<Character>
+	 * @return ArrayList<CharacterModel>
 	 * @throws IOException
 	 * @throws JsonSyntaxException
 	 */
-	public static ArrayList<Character> getCharcters() throws IOException,JsonSyntaxException {
+	public static ArrayList<CharacterModel> getCharcters() throws IOException,JsonSyntaxException {
 		
 		//create reader objecr to read data from item file
 		Reader reader = new FileReader(CHARACTER_FILE);
 		
 		// read data from json file convert it into arraylist and return it
 		Gson gson = new Gson();
-		return gson.fromJson(reader, new TypeToken<ArrayList<Character>>(){}.getType());	
+		return gson.fromJson(reader, new TypeToken<ArrayList<CharacterModel>>(){}.getType());	
 	}
 	
 	
@@ -104,8 +121,22 @@ public class FileHelper {
 	 */
 	public static void saveItem(ItemModel item) throws IOException {
 		
-		//fetch old data from file and store that into array list
-		ArrayList<ItemModel> item_list = getItems();
+		Path path = Paths.get(ITEM_FILE);
+
+		ArrayList<ItemModel> item_list;
+		
+		if (Files.exists(path)) {
+			// file exist
+			
+			//fetch old data from file and store that into array list
+			item_list = getItems();
+			
+		} else {
+			
+			item_list = new ArrayList<ItemModel>();
+			
+		}
+		
 		
 		//add new data to arraylist
 		item_list.add(item);
@@ -124,7 +155,7 @@ public class FileHelper {
 	/**
 	 * this method gives the list of items that saved in file
 	 * 
-	 * @return ArrayList<Character>
+	 * @return ArrayList<ItemModel>
 	 * @throws IOException
 	 * @throws JsonSyntaxException
 	 */

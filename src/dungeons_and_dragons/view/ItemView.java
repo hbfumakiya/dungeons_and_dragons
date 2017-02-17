@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dungeons_and_dragons.view;
 
 import java.awt.BorderLayout;
@@ -8,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -130,15 +128,10 @@ public class ItemView extends JFrame implements Observer {
 	 *  @type Integer
 	 */
 	
-    public	int item_type_validator;
-    
-    
-    
-    
-    
 	
-    
-    
+	private JPanel main_panel;
+	private JPanel sub_panel;
+
     
 	public ItemView() {
 		// TODO Auto-generated constructor stub
@@ -146,14 +139,32 @@ public class ItemView extends JFrame implements Observer {
 		// set window title
 				this.setTitle(this.item_window_title);
 				
+				//main panel
+				main_panel = new JPanel();
+				main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.PAGE_AXIS));
+				main_panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+				
+				
+				getContentPane().add(main_panel);
+				
+				//sub panel 
+				sub_panel = new JPanel();
+				sub_panel.setLayout(new BoxLayout(sub_panel, BoxLayout.LINE_AXIS));
+				sub_panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+				sub_panel.setMaximumSize(new Dimension(300, 1000));
+				
+				
+				main_panel.add(sub_panel);
 				//Lay out the label and scroll pane from top to bottom.
 				JPanel listPane = new JPanel();
 				
-				listPane.setLayout((new GridBagLayout()));
-				listPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				listPane.setLayout((new GridLayout(5,2,5,5)));
+				listPane.setMaximumSize(new Dimension(300,150));
 				
-				//initialize validator for item type
-				item_type_validator = 0;
+				sub_panel.add(listPane);
+				//listPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				
+				
 				
 				//Initializing all labels
 				item_name = new JLabel("Name");
@@ -174,21 +185,7 @@ public class ItemView extends JFrame implements Observer {
 				save_item = new JButton("Save");
 				
 				
-				//adding name listener
-				//item_name_field.addActionListener(this);
-				
-				//adding item type listener
-				//item_type_field.addActionListener(this);
-				
-				//adding ability listener
-				//item_ability_field.addActionListener(this);
-				
-				//adding score listener
-				//item_score_field.addActionListener(this);
-				
-				
 				//filling the details of type item type combobox
-				item_type_field.addItem("Select Item Type");
 				item_type_field.addItem(Game_constants.HELMET);
 				item_type_field.addItem(Game_constants.ARMOR);
 				item_type_field.addItem(Game_constants.SHIELD);
@@ -197,72 +194,35 @@ public class ItemView extends JFrame implements Observer {
 				item_type_field.addItem(Game_constants.BOOTS);
 				item_type_field.addItem(Game_constants.WEAPON);
 				
-				
-//				//filling details of item ability
-//				item_ability_field.addItem("Select your Ability");
-				
-				//sizes
-				item_name.setPreferredSize(new Dimension(50, 40));
-				item_type.setPreferredSize(new Dimension(70, 30));
-				item_ability.setPreferredSize(new Dimension(50, 40));
-				item_score.setPreferredSize(new Dimension(50, 30));
+				//filling the details of type item ability
+				item_ability_field.addItem(Game_constants.INTELLIGENCE);
+				item_ability_field.addItem(Game_constants.WISDOM);
+				item_ability_field.addItem(Game_constants.ARMOR_CLASS);
 				
 				
-				
-				//Container contentPane = getContentPane();
-				getContentPane().add(new JButton(),BorderLayout.WEST);
-				getContentPane().add(new JButton(),BorderLayout.EAST);
-				getContentPane().add(new JButton(),BorderLayout.NORTH);
-				getContentPane().add(new JButton(),BorderLayout.NORTH);
-				getContentPane().add(listPane, BorderLayout.CENTER);
-		        getContentPane().add(BorderLayout.SOUTH, back_button);
-		        getContentPane().add(BorderLayout.SOUTH, save_item);
-		        //getContentPane().add(BorderLayout.NORTH, title);
-
-		        //panel.setLayout);
-		        //panel.setBackground(Color.green);
-		       // getContentPane().add(listPane);
-		        GridBagConstraints left = new GridBagConstraints();
-		        left.anchor = GridBagConstraints.EAST;
-		        GridBagConstraints right = new GridBagConstraints();
-		        right.weightx = 2.0;
-		        right.anchor = GridBagConstraints.WEST;
-		       // right.fill = GridBagConstraints.HORIZONTAL;
-		        right.gridwidth = GridBagConstraints.REMAINDER;
+				//Adding necessary components into panel
+		        listPane.add(item_name);
+	
+		        listPane.add(item_name_field);
+		       
+		        listPane.add(item_type);
+		       
+		        listPane.add(item_type_field);
 		        
-		        //add item name
-		        listPane.add(item_name, left);
-		        listPane.add(Box.createHorizontalStrut(5));	
-		        listPane.add(item_name_field, right);
-		        //listPane.add(Box.createRigidArea(new Dimension(5,0)));
-		       //listPane.add(Box.createVerticalStrut(5));
+		        listPane.add(item_ability);
+		       
+		        listPane.add(item_ability_field);
 		        
-		        
-		        //add item type
-		        listPane.add(item_type, left);
-		        listPane.add(Box.createHorizontalStrut(5));
-		        listPane.add(item_type_field, right);
-		        
-		        //add item ability
-		        listPane.add(item_ability, left);
-		       listPane.add(Box.createHorizontalStrut(5));
-		        listPane.add(item_ability_field, right);
+		        listPane.add(item_score);
+		       
+		        listPane.add(item_score_field);
 		       
 		        
-		        //add score
-		        listPane.add(item_score, left);
-		       listPane.add(Box.createHorizontalStrut(5));
-		        listPane.add(item_score_field, right);
-		       //listPane.add(Box.createVerticalStrut(5));
-		        listPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		        listPane.add(back_button);
+		        listPane.add(save_item);
+
 		        
-		        item_ability_field.setVisible(false);
-		        item_ability.setVisible(false);
-		        
-		        item_score_field.setVisible(false);
-		        item_score.setVisible(false);
-		        
-		        this.setMinimumSize(new Dimension(300, 300));
+		        this.setPreferredSize(new Dimension(320, 220));
 				
 				//Display the window.
 		        this.pack();
@@ -271,76 +231,6 @@ public class ItemView extends JFrame implements Observer {
 				
 	}
 
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		//this variable created to get the item type selected.
-////		if(e.getSource().equals(item_type_field)) {
-////			
-////		}
-//		String get_item_type = (String) item_type_field.getSelectedItem();
-//		System.out.println(get_item_type);
-//		
-//		
-//		 // this variable created to get the item ability selected.
-//		 
-//		String get_item_ability = null;
-//		
-//		if(!get_item_type.equals("Select Item Type"))
-//		{ 
-//			item_ability_field.setVisible(true);
-//			item_ability.setVisible(true);
-//			
-//			item_score.setVisible(true);
-//			item_score_field.setVisible(true);
-//			if(get_item_type.equals(Game_constants.HELMET))
-//			{
-//				item_ability_field.setModel(GameHELMET_MODEL);
-//
-//			}
-//			else if (get_item_type.equals(Game_constants.ARMOR))
-//			{
-//				
-//				item_ability_field.setModel(ARMOR_MODEL);
-//			}
-//			else if (get_item_type.equals(Game_constants.SHIELD))
-//			{
-//				
-//				item_ability_field.setModel(SHIELD_MODEL);
-//			}
-//			else if (get_item_type.equals(Game_constants.RING))
-//			{
-//				
-//				item_ability_field.setModel(RING_MODEL);
-//			}
-//			else if (get_item_type.equals(Game_constants.BELT))
-//			{
-//				
-//				item_ability_field.setModel(BELT_MODEL);
-//			}
-//			else if (get_item_type.equals(Game_constants.BOOTS))
-//			{
-//				
-//				item_ability_field.setModel(BOOTS_MODEL);
-//			}
-//			else if (get_item_type.equals(Game_constants.WEAPON))
-//			{
-//				
-//				item_ability_field.setModel(WEAPON_MODEL);
-//			}
-//		}
-//		else{
-//			item_ability_field.setVisible(false);
-//			item_ability.setVisible(false);
-//			
-//			item_score.setVisible(false);
-//			item_score_field.setVisible(false);
-//			
-//		}
-//		
-//	}
 
 	
 
