@@ -38,7 +38,7 @@ public class MapFormController implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
-		if(arg0.getSource().equals(map_form_view.save_button))
+		if(arg0.getSource().equals(map_form_view.next_button))
 		{	
 			String map_name =	map_form_view.map_name_textfield.getText();
 			map_form_model.setMap_name(map_name);
@@ -48,7 +48,7 @@ public class MapFormController implements ActionListener{
 			store.x = Integer.parseInt(map_form_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(map_form_view.map_width_textfield.getText());
 			map_form_model.setMap_size(store);
-			map_form_model.save();
+			new MapGridController(map_form_model);
 		}
 		else if(arg0.getSource().equals(map_form_view.back_button))
 		{	

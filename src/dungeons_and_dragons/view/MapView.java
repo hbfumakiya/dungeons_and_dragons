@@ -5,12 +5,12 @@ package dungeons_and_dragons.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,24 +18,19 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dungeons_and_dragons.controller.MapFormController;
-import dungeons_and_dragons.helper.Game_constants;
 
 /**
- * 
- * Implemented project with pair programming efforts.
- * @author Tejas Sadrani & Urmil Kansara 
+ * @author User
  *
  */
-public class MapFormView extends JFrame implements Observer{
-		
-	
-	
+public class MapView extends JFrame implements Observer {
+
 	/**
 	 * this variable used to set window title
 	 * 
 	 * @type String
 	 */
-	public String map_window_title = "Manage Map";
+	public String map_window_title = "Creating Map";
 
 	/**
 	 * this variable used to give Item name
@@ -96,7 +91,7 @@ public class MapFormView extends JFrame implements Observer{
 	private JPanel main_panel;
 	private JPanel sub_panel;
 	
-	public MapFormView(){
+	public MapView(Point store){
 		this.setTitle(this.map_window_title);
 
 		// main panel
@@ -171,10 +166,14 @@ public class MapFormView extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+
 }
