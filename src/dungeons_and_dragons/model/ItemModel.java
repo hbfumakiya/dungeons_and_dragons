@@ -1,10 +1,14 @@
 package dungeons_and_dragons.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.DefaultComboBoxModel;
 
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.view.ItemView;
 
@@ -94,6 +98,41 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 		this.item_type = item_type;
 		this.item_ability = item_ability;
 
+	}
+
+	/**
+	 * @param item_id the item_id to set
+	 */
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+
+	/**
+	 * @param item_name the item_name to set
+	 */
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+	/**
+	 * @param item_point the item_point to set
+	 */
+	public void setItem_point(int item_point) {
+		this.item_point = item_point;
+	}
+
+	/**
+	 * @param item_type the item_type to set
+	 */
+	public void setItem_type(String item_type) {
+		this.item_type = item_type;
+	}
+
+	/**
+	 * @param item_ability the item_ability to set
+	 */
+	public void setItem_ability(String item_ability) {
+		this.item_ability = item_ability;
 	}
 
 	/**
@@ -188,9 +227,10 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	
 
 	@Override
-	public ArrayList<ItemModel> getData() {
+	public ArrayList<ItemModel> getData() throws JsonSyntaxException, IOException{
 		// TODO Auto-generated method stub
-		return null;
+		return FileHelper.getItems();
+		
 	}
 
 	@Override
@@ -203,7 +243,8 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	public void update() {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+
 	
 
 }

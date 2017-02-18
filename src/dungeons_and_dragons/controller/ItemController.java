@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 import dungeons_and_dragons.model.ItemModel;
+import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.ItemView;
 /**
  * This class call item controller 
@@ -63,8 +64,22 @@ public class ItemController implements ActionListener {
 			item_model.itemTypeSelected(get_item_type);
 			
 		}else if(arg0.getSource().equals(item_view.save_item))
-		{
+		{	
+			String item_name = item_view.item_name_field.getText();
+			item_model.setItem_name(item_name);
+			String item_type = (String) item_view.item_type_field.getSelectedItem();
+			item_model.setItem_type(item_type);
+			String item_ability = (String) item_view.item_ability_field.getSelectedItem();
+			item_model.setItem_ability(item_ability);
+			int item_point = Integer.parseInt(item_view.item_score_field.getText());
+			item_model.setItem_point(item_point);
 			item_model.save();
+		}
+		else if(arg0.getSource().equals(item_view.back_button))
+		{	
+			new CreateGameController();
+			
+			item_view.dispose();
 		}
 		
 	}
