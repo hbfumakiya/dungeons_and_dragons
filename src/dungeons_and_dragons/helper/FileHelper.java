@@ -130,6 +130,9 @@ public class FileHelper {
 			
 			//fetch old data from file and store that into array list
 			item_list = getItems();
+			if(item_list == null){
+				item_list = new ArrayList<ItemModel>();
+			}
 			
 		} else {
 			
@@ -146,6 +149,7 @@ public class FileHelper {
 		
 		// store object to json 
 		Gson gson = new Gson();
+	//	String ness = gson.toJson(item);
 		gson.toJson(item_list,file_writer);
 		
 		// close file

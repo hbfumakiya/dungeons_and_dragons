@@ -73,6 +73,7 @@ public class ItemController implements ActionListener {
 			item_model.setItem_ability(item_ability);
 			int item_point = Integer.parseInt(item_view.item_score_field.getText());
 			item_model.setItem_point(item_point);
+			//item_model.itemTypeSelected(item_type);
 			item_model.save();
 		}
 		else if(arg0.getSource().equals(item_view.back_button))
