@@ -10,6 +10,7 @@ import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.GameView;
 import dungeons_and_dragons.view.ItemView;
 import dungeons_and_dragons.view.ManageCharacterView;
+import sun.security.x509.CRLReasonCodeExtension;
 
 /**
  * @author mihir
@@ -85,9 +86,10 @@ public class CreateGameController implements ActionListener {
 		
 		// hide game window
 		// createGameView.dispose();
-		
+		new MapFormController();
 		// show load game window....
 		
+		createGameView.dispose();
 	}
 	
 	/**
