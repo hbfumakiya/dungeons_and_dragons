@@ -98,7 +98,7 @@ public class CreateGameController implements ActionListener {
 	private void showManageItemWindow() {
 		
 		// show Item game window....
-		new ItemController();
+		new ManageItemController();
 		
 		createGameView.dispose();
 	}

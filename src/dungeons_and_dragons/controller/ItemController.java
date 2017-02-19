@@ -10,7 +10,7 @@ import dungeons_and_dragons.view.ItemView;
 /**
  * This class call item controller 
  * 
- * @author Urmil Kansara
+ * @author Urmil Kansara 
  *
  */
 public class ItemController implements ActionListener {
@@ -38,12 +38,12 @@ public class ItemController implements ActionListener {
 	public ItemController() {
 		// TODO Auto-generated constructor stub
 		//this.field_item = item_field;
-		System.out.println("Inside Controller constructor");
 		this.item_model = new ItemModel();
 		this.item_view = new ItemView();
 		
 		this.item_model.addObserver(item_view);
 		this.item_view.setListener(this);
+		this.item_view.setVisible(true);
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class ItemController implements ActionListener {
 		}
 		else if(arg0.getSource().equals(item_view.back_button))
 		{	
-			new CreateGameController();
+			new ManageItemController();
 			
 			item_view.dispose();
 		}

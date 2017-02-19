@@ -204,8 +204,6 @@ public class ItemView extends JFrame implements Observer {
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
 	}
 	/**
 	 * This is overridden method of Observable superclass

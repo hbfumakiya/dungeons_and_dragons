@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
@@ -181,4 +182,44 @@ public class FileHelper {
                 .create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<ItemModel>>(){}.getType());		
 	}
+	
+	public static void update(ItemModel item) throws JsonSyntaxException, IOException, NotFoundException {
+		Path path = Paths.get(ITEM_FILE);
+
+		ArrayList<ItemModel> item_list;
+		
+		if (Files.exists(path)) {
+			// file exist
+			
+			//fetch old data from file and store that into array list
+			item_list = getItems();
+			if(item_list == null){
+				throw new NotFoundException();
+			}
+			
+		} else {
+			
+			item_list = new ArrayList<ItemModel>();
+			
+		}
+		
+		
+		//add new data to arraylist
+		item_list.add(item);
+		
+		//create writer object for item file
+		Writer file_writer = new FileWriter(ITEM_FILE);
+		
+		// store object to json 
+		Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+	//	String ness = gson.toJson(item);
+		gson.toJson(item_list,file_writer);
+		
+		// close file
+		file_writer.close();	
+	}
+	
+	
 }

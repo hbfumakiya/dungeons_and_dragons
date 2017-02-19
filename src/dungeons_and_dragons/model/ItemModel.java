@@ -20,7 +20,7 @@ import dungeons_and_dragons.view.ItemView;
 /**
  * Item class to store all items. eg Helmet,Ring
  * 
- * @author : Urmil Kansara
+ * @author : Urmil Kansara & Mihir Pujara
  * 
  * 
  */
@@ -275,8 +275,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }
