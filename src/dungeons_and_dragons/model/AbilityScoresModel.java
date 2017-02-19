@@ -1,4 +1,7 @@
 package dungeons_and_dragons.model;
+
+import com.google.gson.annotations.Expose;
+
 /**
  * @author Mihir Pujara
  */
@@ -11,6 +14,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int strength;
 	
 	/**
@@ -18,6 +22,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int dexterity;
 	
 	/**
@@ -25,6 +30,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int constitution;
 	
 	/**
@@ -32,6 +38,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int intelligence;
 	
 	/**
@@ -39,6 +46,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int wisdom;
 	
 	/**
@@ -46,6 +54,7 @@ public class AbilityScoresModel {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int charisma;
 	
 	/**

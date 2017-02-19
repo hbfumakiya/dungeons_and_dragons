@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.Expose;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
@@ -27,6 +28,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int character_id;
 	
 	/**
@@ -34,6 +36,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 	 * 
 	 * @type String
 	 */
+	@Expose
 	private String character_name;
 	
 
@@ -42,6 +45,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel>{
 	 * 
 	 * @type integer 
 	 */
+	@Expose
 	private int strength;
 	
 	/**

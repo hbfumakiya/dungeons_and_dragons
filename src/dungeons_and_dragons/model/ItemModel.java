@@ -7,6 +7,7 @@ import java.util.Observable;
 import javax.swing.DefaultComboBoxModel;
 
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.Expose;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
@@ -23,7 +24,7 @@ import dungeons_and_dragons.view.ItemView;
  * 
  * 
  */
-public class ItemModel extends Observable implements Model<ItemModel>{
+public class ItemModel extends Observable implements Model<ItemModel> {
 
 	/**
 	 * ID and Name of items
@@ -31,6 +32,7 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	 * @type : Integer
 	 * 
 	 */
+	@Expose
 	private int item_id;
 
 	/**
@@ -38,6 +40,7 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	 * 
 	 * @type :String
 	 */
+	@Expose
 	private String item_name;
 
 	/**
@@ -45,7 +48,7 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	 * 
 	 * @type : Integer
 	 */
-
+	@Expose
 	private int item_point;
 
 	/**
@@ -59,6 +62,7 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	 * 
 	 * type : String
 	 */
+	@Expose
 	private String item_type;
 
 	/**
@@ -66,8 +70,9 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	 * 
 	 * type : String
 	 */
+	@Expose
 	private String item_ability;
-	
+
 	/**
 	 * 
 	 * default Constructor
@@ -102,35 +107,40 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	}
 
 	/**
-	 * @param item_id the item_id to set
+	 * @param item_id
+	 *            the item_id to set
 	 */
 	public void setItem_id(int item_id) {
 		this.item_id = item_id;
 	}
 
 	/**
-	 * @param item_name the item_name to set
+	 * @param item_name
+	 *            the item_name to set
 	 */
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
 	}
 
 	/**
-	 * @param item_point the item_point to set
+	 * @param item_point
+	 *            the item_point to set
 	 */
 	public void setItem_point(int item_point) {
 		this.item_point = item_point;
 	}
 
 	/**
-	 * @param item_type the item_type to set
+	 * @param item_type
+	 *            the item_type to set
 	 */
 	public void setItem_type(String item_type) {
 		this.item_type = item_type;
 	}
 
 	/**
-	 * @param item_ability the item_ability to set
+	 * @param item_ability
+	 *            the item_ability to set
 	 */
 	public void setItem_ability(String item_ability) {
 		this.item_ability = item_ability;
@@ -170,134 +180,103 @@ public class ItemModel extends Observable implements Model<ItemModel>{
 	public String getItem_ability() {
 		return item_ability;
 	}
-	
-    private DefaultComboBoxModel set_item_ability = new DefaultComboBoxModel<>();
-	
-	public DefaultComboBoxModel getItemAbility()
-	{return set_item_ability;}
-	public void itemTypeSelected(String item_type){
-		
-		
-		
-		 // this variable created to get the item ability selected.
-		 
-		
-		
-		 
-			
-			if(item_type.equals(Game_constants.HELMET))
-			{
-				set_item_ability = Game_constants.HELMET_MODEL;
-			}
-			else if (item_type.equals(Game_constants.ARMOR))
-			{
-				
-				set_item_ability = Game_constants.ARMOR_MODEL;
-			}
-			else if (item_type.equals(Game_constants.SHIELD))
-			{
-				
-				set_item_ability = Game_constants.SHIELD_MODEL;
-			}
-			else if (item_type.equals(Game_constants.RING))
-			{
-				
-				set_item_ability = Game_constants.RING_MODEL;
-			}
-			else if (item_type.equals(Game_constants.BELT))
-			{
-				
-				set_item_ability = Game_constants.BELT_MODEL;
-			}
-			else if (item_type.equals(Game_constants.BOOTS))
-			{
-				
-				set_item_ability = Game_constants.BOOTS_MODEL;
-			}
-			else if (item_type.equals(Game_constants.WEAPON))
-			{
-				
-				set_item_ability = Game_constants.WEAPON_MODEL;
-			}
-			//String get_item_ability = null;
-			setChanged();
-	    	// notify all attached Observers of a change
-	    	notifyObservers(set_item_ability);
-		}
 
-	
+	private DefaultComboBoxModel set_item_ability = new DefaultComboBoxModel<>();
+
+	public DefaultComboBoxModel getItemAbility() {
+		return set_item_ability;
+	}
+
+	public void itemTypeSelected(String item_type) {
+
+		// this variable created to get the item ability selected.
+
+		if (item_type.equals(Game_constants.HELMET)) {
+			set_item_ability = Game_constants.HELMET_MODEL;
+		} else if (item_type.equals(Game_constants.ARMOR)) {
+
+			set_item_ability = Game_constants.ARMOR_MODEL;
+		} else if (item_type.equals(Game_constants.SHIELD)) {
+
+			set_item_ability = Game_constants.SHIELD_MODEL;
+		} else if (item_type.equals(Game_constants.RING)) {
+
+			set_item_ability = Game_constants.RING_MODEL;
+		} else if (item_type.equals(Game_constants.BELT)) {
+
+			set_item_ability = Game_constants.BELT_MODEL;
+		} else if (item_type.equals(Game_constants.BOOTS)) {
+
+			set_item_ability = Game_constants.BOOTS_MODEL;
+		} else if (item_type.equals(Game_constants.WEAPON)) {
+
+			set_item_ability = Game_constants.WEAPON_MODEL;
+		}
+		// String get_item_ability = null;
+		setChanged();
+		// notify all attached Observers of a change
+		notifyObservers(set_item_ability);
+	}
 
 	@Override
-	public ArrayList<ItemModel> getData() throws JsonSyntaxException, IOException{
+	public ArrayList<ItemModel> getData() throws JsonSyntaxException, IOException {
 		// TODO Auto-generated method stub
 		return FileHelper.getItems();
-		
+
 	}
 
 	@Override
 	public void save() {
 		// TODO Auto-generated method stub
-		
+
 		try {
-			 this.setCurrentId();
+			this.setCurrentId();
 			FileHelper.saveItem(this);
 		} catch (JsonSyntaxException | IOException e1) {
 			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("unused")
-	private void setCurrentId() throws JsonSyntaxException, IOException
-	{
-		
-		
+	private void setCurrentId() throws JsonSyntaxException, IOException {
+
 		ArrayList<ItemModel> alldata = this.getData();
-		if(null!= alldata){
-			System.out.println(alldata.get(alldata.size()-1).getItem_id() + 1);
-		this.item_id = alldata.get(alldata.size()-1).getItem_id() + 1;
-		}
-		else{
+		if (null != alldata) {
+			System.out.println(alldata.get(alldata.size() - 1).getItem_id() + 1);
+			this.item_id = alldata.get(alldata.size() - 1).getItem_id() + 1;
+		} else {
 			this.item_id = 1;
 		}
-		
-		
-		//return io;
-		
-		/*ArrayList<CharacterModel> alldata = this.getData();
-		
-		
-		if(alldata.size() < 1) {
-			this.character_id = 1;
-			return;
-		}
-		
-		
-		CharacterModel lastData = Collections.max(alldata, new Comparator<CharacterModel>() {
 
-			@Override
-			public int compare(CharacterModel o1, CharacterModel o2) {
-				
-				if (o1.getCharacter_id() > o2.getCharacter_id())
-		            return -1; // highest value first
-				else if (o1.getCharacter_id() == o2.getCharacter_id())
-		            return 0;
-				else 
-					return 1;
-			}
-		});
-		
-		this.character_id = lastData.getCharacter_id() + 1;*/
-		
+		// return io;
+
+		/*
+		 * ArrayList<CharacterModel> alldata = this.getData();
+		 * 
+		 * 
+		 * if(alldata.size() < 1) { this.character_id = 1; return; }
+		 * 
+		 * 
+		 * CharacterModel lastData = Collections.max(alldata, new
+		 * Comparator<CharacterModel>() {
+		 * 
+		 * @Override public int compare(CharacterModel o1, CharacterModel o2) {
+		 * 
+		 * if (o1.getCharacter_id() > o2.getCharacter_id()) return -1; //
+		 * highest value first else if (o1.getCharacter_id() ==
+		 * o2.getCharacter_id()) return 0; else return 1; } });
+		 * 
+		 * this.character_id = lastData.getCharacter_id() + 1;
+		 */
+
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
+	}
 
 }

@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -87,7 +88,9 @@ public class FileHelper {
 		Writer file_writer = new FileWriter(CHARACTER_FILE);
 		
 		// store object to json 
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
 		gson.toJson(item_list,file_writer);
 		
 		// close file
@@ -108,7 +111,9 @@ public class FileHelper {
 		Reader reader = new FileReader(CHARACTER_FILE);
 		
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CharacterModel>>(){}.getType());	
 	}
 	
@@ -148,7 +153,9 @@ public class FileHelper {
 		Writer file_writer = new FileWriter(ITEM_FILE);
 		
 		// store object to json 
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
 	//	String ness = gson.toJson(item);
 		gson.toJson(item_list,file_writer);
 		
@@ -169,7 +176,9 @@ public class FileHelper {
 		Reader reader = new FileReader(ITEM_FILE);
 		
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<ItemModel>>(){}.getType());		
 	}
 }
