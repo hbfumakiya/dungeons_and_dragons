@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -107,6 +108,7 @@ public class ManageCharacterView extends JFrame implements Observer, View {
 	 * @type JComboBox
 	 */
 	public JComboBox<String> item_combobox;
+	public JList<String> list;
 
 	/**
 	 * this variable used for backpack combobox
@@ -200,6 +202,7 @@ public class ManageCharacterView extends JFrame implements Observer, View {
 		item_combobox = new JComboBox<String>(names);
 		item_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(item_combobox);
+		
 
 		level_label = new JLabel("Enter Level");
 		list_panel.add(level_label);
