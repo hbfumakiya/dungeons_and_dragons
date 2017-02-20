@@ -48,7 +48,7 @@ public class MapFormController implements ActionListener{
 			store.x = Integer.parseInt(map_form_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(map_form_view.map_width_textfield.getText());
 			map_form_model.setMap_size(store);
-			new MapGridController(map_form_model);
+			//new MapGridController(map_form_model);
 		}
 		else if(arg0.getSource().equals(map_form_view.back_button))
 		{	

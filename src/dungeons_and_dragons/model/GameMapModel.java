@@ -93,7 +93,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 
 	public GameMapModel() {
-		// TODO Auto-generated constructor stub
+		this.map_size.setLocation(5,5);
 	}
 
 
