@@ -115,7 +115,7 @@ public class ManageItemView extends JFrame implements View {
 		this.setResizable(false);
 
 		// set minimum size of frame
-		this.setPreferredSize(new Dimension(500, 300));
+		this.setPreferredSize(new Dimension(400, 300));
 
 		// Display the window.
 		this.pack();
@@ -129,7 +129,7 @@ public class ManageItemView extends JFrame implements View {
 	public void paint(Graphics g) {
 		super.paint(g); // fixes the immediate problem.
 		Graphics2D g2 = (Graphics2D) g;
-		Line2D lin = new Line2D.Float(0, 62, 500, 62);
+		Line2D lin = new Line2D.Float(0, 62, 400, 62);
 		g2.draw(lin);
 	}
 	/**
@@ -145,8 +145,8 @@ public class ManageItemView extends JFrame implements View {
 			for (int i = 0; i < item.size(); i++) {
 
 				JPanel gridSubPanel = new JPanel();
-				gridSubPanel.setLayout((new GridLayout(1, 4, 5, 5)));
-				gridSubPanel.setMaximumSize(new Dimension(500, 30));
+				gridSubPanel.setLayout((new GridLayout(1, 3, 5, 5)));
+				gridSubPanel.setMaximumSize(new Dimension(400, 30));
 
 				int id = item.get(i).getItem_id();
 				JLabel itemName = new JLabel(item.get(i).getItem_name());
@@ -167,18 +167,18 @@ public class ManageItemView extends JFrame implements View {
 				editButton.setPreferredSize(new Dimension(50, 30));
 				this.editButtons.add(editButton);
 
-				GameButton deleteButton = new GameButton();
+/*				GameButton deleteButton = new GameButton();
 				deleteButton.setText("Delete");
 				deleteButton.setId(id);
 				deleteButton.setSource(item.get(i));
 				deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
 				deleteButton.addActionListener(actionListener);
 				this.deleteButtons.add(deleteButton);
-
+*/
 				gridSubPanel.add(itemName);
 				gridSubPanel.add(viewButton);
 				gridSubPanel.add(editButton);
-				gridSubPanel.add(deleteButton);
+				//gridSubPanel.add(deleteButton);
 
 				this.gridMainPanel.add(gridSubPanel);
 			}

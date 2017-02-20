@@ -46,6 +46,12 @@ public class ItemController implements ActionListener {
 		this.item_view.setVisible(true);
 	}
 	
+	public ItemController(ItemModel itemModel) {
+		
+		this.item_model = itemModel; 
+		this.item_view = new ItemView(itemModel);
+	}
+	
 	/**
 	 * Action event of all the events
 	 * 

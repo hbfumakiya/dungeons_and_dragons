@@ -184,7 +184,14 @@ public class FileHelper {
 		return gson.fromJson(reader, new TypeToken<ArrayList<ItemModel>>(){}.getType());		
 	}
 	
-	public static void update(ItemModel item) throws JsonSyntaxException, IOException, NotFoundException {
+	/**
+	 * 
+	 * @param item
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 * @throws NotFoundException
+	 */
+	public static void updateItem(ItemModel item) throws JsonSyntaxException, IOException, NotFoundException {
 		Path path = Paths.get(ITEM_FILE);
 
 		ArrayList<ItemModel> item_list;
@@ -209,25 +216,24 @@ public class FileHelper {
 					found = true;
 				}
 			}
+			
+			
+			if(found) {
+				//create writer object for item file
+				Writer file_writer = new FileWriter(ITEM_FILE);
+				
+				// store object to json 
+				Gson gson = new GsonBuilder()
+		                .excludeFieldsWithoutExposeAnnotation()
+		                .create();
+				
+				gson.toJson(item_list,file_writer);
+				
+				// close file
+				file_writer.close();
+			} else {
+				throw new NotFoundException();
+			}
 		}
-		
-		
-		/*//add new data to arraylist
-		item_list.add(item);
-		
-		//create writer object for item file
-		Writer file_writer = new FileWriter(ITEM_FILE);
-		
-		// store object to json 
-		Gson gson = new GsonBuilder()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
-		
-		gson.toJson(item_list,file_writer);
-		
-		// close file
-		file_writer.close();*/	
-	}
-	
-	
+	} 
 }

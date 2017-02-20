@@ -205,6 +205,13 @@ public class ItemView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
+	
+	public ItemView(ItemModel itemModel) 
+	{
+	
+	}
+	
+	
 	/**
 	 * This is overridden method of Observable superclass
 	 * 
