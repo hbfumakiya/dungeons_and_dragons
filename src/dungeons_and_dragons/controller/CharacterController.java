@@ -1,31 +1,29 @@
 package dungeons_and_dragons.controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JComboBox;
+import java.util.ArrayList;
 
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
-import dungeons_and_dragons.view.CreateGameView;
-import dungeons_and_dragons.view.ItemView;
+
+import dungeons_and_dragons.view.ManageCharacterView;
+
 /**
- * This class call character controller 
+ * This class call character controller
  * 
  * @author Hirangi Naik
  *
  */
-import dungeons_and_dragons.view.ManageCharacterView;
-
-
-public class CharacterController implements ActionListener{
+public class CharacterController implements ActionListener {
 
 	private CharacterModel model;
 	private ManageCharacterView view;
-	
+
 	public CharacterController() {
-		this.model=new CharacterModel();
-		this.view=new ManageCharacterView();
-		
+		this.model = new CharacterModel();
+		this.view = new ManageCharacterView();
+
 		this.model.addObserver(view);
 		this.view.setActionListener(this);
 		this.view.setVisible(true);
@@ -33,22 +31,19 @@ public class CharacterController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(view.save))
-		{
+		if (e.getSource().equals(view.save)) {
 			String character_name = this.view.charactername_textfield.getText();
 			model.setCharacter_name(character_name);
-			
-			
+			ArrayList<ItemModel> items = (ArrayList<ItemModel>) this.view.item_combobox.getSelectedItem();
+			model.setItems(items);
 			model.save();
-		}
-		else if(e.getSource().equals(view.back))
-		{
+		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
 		}
 	}
 
 	private void backToCreateGame() {
-		
+
 		new CreateGameController();
 		view.dispose();
 	}
