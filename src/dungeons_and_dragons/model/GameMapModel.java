@@ -37,7 +37,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
-	private Point map_size;
+	private Point map_size = new Point(0, 0);
 	
 	/**
 	 * Variable for character array. 

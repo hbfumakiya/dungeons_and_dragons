@@ -47,7 +47,7 @@ public class MapGridController implements ActionListener,DocumentListener {
 		
 		this.map_model.addObserver(map_view);
 		this.map_view.setListener(this);
-		/*this.map_view.setDocumentListener(this);*/
+		this.map_view.setDocumentListener(this);
 	}
 
 	/**
@@ -69,13 +69,36 @@ public class MapGridController implements ActionListener,DocumentListener {
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+		
+		Point p = new Point(5,5);
+		
+		if(e.getDocument().equals(map_view.map_height_textfield))
+		{	
+			p.setLocation((Integer.parseInt(map_view.map_height_textfield.getText())),5);
+			map_model.setMap_size(p);
+		}
+		else if(e.getDocument().equals(map_view.map_width_textfield))
+		{
+			p.setLocation(5,(Integer.parseInt(map_view.map_width_textfield.getText())));
+			map_model.setMap_size(p);
+		}
 		
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+		Point p = new Point(5,5);
+		
+		if(e.getDocument().equals(map_view.map_height_textfield))
+		{	
+			p.setLocation((Integer.parseInt(map_view.map_height_textfield.getText())),5);
+			map_model.setMap_size(p);
+		}
+		else if(e.getDocument().equals(map_view.map_width_textfield))
+		{
+			p.setLocation(5,(Integer.parseInt(map_view.map_width_textfield.getText())));
+			map_model.setMap_size(p);
+		}
 		
 	}
 

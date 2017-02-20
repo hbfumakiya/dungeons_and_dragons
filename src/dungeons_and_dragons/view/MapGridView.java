@@ -292,13 +292,9 @@ public class MapGridView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-
-	/*public void setListener(MapFormController mapFormController) {
-		// TODO Auto-generated method stub
-		
-	}*/
 	
 	
 	@Override
@@ -306,17 +302,24 @@ public class MapGridView extends JFrame implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
-/**
- * Configuring listeners to Controllers
- * @param mapGridController
- */
+
+	/**
+	* Configuring listeners to Controllers
+	* @param mapGridController
+	*/
 	public void setListener(ActionListener mapGridController) {
 			
 			this.save_button.addActionListener(mapGridController);
 			this.back_button.addActionListener(mapGridController);
-			this.map_height_textfield.getDocument().addDocumentListener((DocumentListener) mapGridController);
-			this.map_width_textfield.getDocument().addDocumentListener((DocumentListener) mapGridController);
-		
+			
+	}
+
+
+	public void setDocumentListener(DocumentListener mapGridController) {
+	
+		this.map_height_textfield.getDocument().addDocumentListener(mapGridController);
+		this.map_width_textfield.getDocument().addDocumentListener(mapGridController);
+			
 	}
 	
 	
