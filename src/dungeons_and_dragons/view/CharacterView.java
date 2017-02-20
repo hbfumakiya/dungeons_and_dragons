@@ -20,10 +20,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.ItemModel;
 
@@ -195,22 +197,23 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Add items");
 		list_panel.add(additem_label);
 
-		String[] names = new String[this.items.size()];
+/*		ItemModel[] names = new ItemM[this.items.size()];
 
 		for (int i = 0; i < this.items.size(); i++) {
 			names[i] = this.items.get(i).getItem_name();
-		}
+		}*/
 
-		item_combobox = new JComboBox<String>(names);
+		item_combobox = new JComboBox(this.items.stream().filter(p->p.getItem_type().equals(Game_constants.HELMET)).toArray());
+		item_combobox.setRenderer(new ItemRenderer());
 		item_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(item_combobox);
-		
-		//list= new JList<String>(names);
-		//list.setAlignmentX(Component.LEFT_ALIGNMENT);
-		//list.setPreferredSize(new Dimension(200, 200));
-		//list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		//list_panel.add(new JScrollPane(list));
-		
+
+		// list= new JList<String>(names);
+		// list.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// list.setPreferredSize(new Dimension(200, 200));
+		// list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		// list_panel.add(new JScrollPane(list));
+
 		level_label = new JLabel("Enter Level");
 		list_panel.add(level_label);
 
@@ -252,6 +255,18 @@ public class CharacterView extends JFrame implements Observer, View {
 		this.item_combobox.addActionListener(actionListener);
 		this.save.addActionListener(actionListener);
 		this.back.addActionListener(actionListener);
+	}
+
+	class ItemRenderer extends BasicComboBoxRenderer {
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+				boolean cellHasFocus) {
+			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+			ItemModel item = (ItemModel) value;
+			setText(item.getItem_name());
+
+			return this;
+		}
 	}
 
 }
