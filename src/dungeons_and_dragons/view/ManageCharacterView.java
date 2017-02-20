@@ -9,12 +9,12 @@ import javax.swing.JFrame;
  *
  */
 
-public class ManageCharacterView extends JFrame implements  View {
+public class ManageCharacterView extends JFrame implements View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
