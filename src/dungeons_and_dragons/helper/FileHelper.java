@@ -119,6 +119,59 @@ public class FileHelper {
 		return gson.fromJson(reader, new TypeToken<ArrayList<CharacterModel>>(){}.getType());	
 	}
 	
+	/**
+	 * 
+	 * @param character
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 * @throws NotFoundException
+	 */
+	public static void updateCharacter(CharacterModel character) throws JsonSyntaxException, IOException, NotFoundException 
+	{
+		Path path = Paths.get(ITEM_FILE);
+
+		ArrayList<CharacterModel> character_list;
+		
+		if (Files.exists(path)) {
+			
+			//fetch old data from file and store that into array list
+			character_list = getCharcters();
+			if(character_list == null){
+				throw new NotFoundException();
+			}
+			boolean found = false;
+			for(int i=0;i<character_list.size();i++) {
+				CharacterModel tempChatacter = character_list.get(i);
+				
+				if(tempChatacter.getCharacter_id() == character.getCharacter_id()) {
+					
+					
+					//tempChatacter.setCharacter_name(character_name);
+					
+					
+					found = true;
+				}
+			}
+			
+			if(found) {
+				//create writer object for item file
+				Writer file_writer = new FileWriter(CHARACTER_FILE);
+				
+				// store object to json 
+				Gson gson = new GsonBuilder()
+		                .excludeFieldsWithoutExposeAnnotation()
+		                .create();
+				
+				gson.toJson(character_list,file_writer);
+				
+				// close file
+				file_writer.close();
+			} else {
+				throw new NotFoundException();
+			}
+		}
+	}
+	
 	
 	/**
 	 * this method used to save item into item file
@@ -216,7 +269,6 @@ public class FileHelper {
 					found = true;
 				}
 			}
-			
 			
 			if(found) {
 				//create writer object for item file
