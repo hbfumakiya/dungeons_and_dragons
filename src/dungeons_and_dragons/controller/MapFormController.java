@@ -31,7 +31,7 @@ public class MapFormController implements ActionListener{
 		this.map_form_view = new MapFormView();
 		
 		this.map_form_model.addObserver(map_form_view);
-		this.map_form_view.setListener(this);
+		this.map_form_view.setActionListener(this);
 	}
 	
 	@Override

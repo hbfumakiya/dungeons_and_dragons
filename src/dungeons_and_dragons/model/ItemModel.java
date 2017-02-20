@@ -244,33 +244,10 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 		ArrayList<ItemModel> alldata = this.getData();
 		if (null != alldata) {
-			System.out.println(alldata.get(alldata.size() - 1).getItem_id() + 1);
 			this.item_id = alldata.get(alldata.size() - 1).getItem_id() + 1;
 		} else {
 			this.item_id = 1;
 		}
-
-		// return io;
-
-		/*
-		 * ArrayList<CharacterModel> alldata = this.getData();
-		 * 
-		 * 
-		 * if(alldata.size() < 1) { this.character_id = 1; return; }
-		 * 
-		 * 
-		 * CharacterModel lastData = Collections.max(alldata, new
-		 * Comparator<CharacterModel>() {
-		 * 
-		 * @Override public int compare(CharacterModel o1, CharacterModel o2) {
-		 * 
-		 * if (o1.getCharacter_id() > o2.getCharacter_id()) return -1; //
-		 * highest value first else if (o1.getCharacter_id() ==
-		 * o2.getCharacter_id()) return 0; else return 1; } });
-		 * 
-		 * this.character_id = lastData.getCharacter_id() + 1;
-		 */
-
 	}
 
 	@Override

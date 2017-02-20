@@ -5,6 +5,7 @@ package dungeons_and_dragons.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +27,7 @@ import dungeons_and_dragons.helper.Game_constants;
  * @author Tejas Sadrani & Urmil Kansara 
  *
  */
-public class MapFormView extends JFrame implements Observer{
+public class MapFormView extends JFrame implements Observer, View{
 		
 	
 	
@@ -167,13 +168,14 @@ public class MapFormView extends JFrame implements Observer{
 		
 	}
 
-	public void setListener(MapFormController mapFormController) {
+	@Override
+	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
 		
 	}
