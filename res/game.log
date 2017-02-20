@@ -1,3 +1,4 @@
 [ 16:48:56.696 17-02-2017  INFO ] sample error log
 [ 16:49:14.404 17-02-2017  ERROR ] sample error log
 [ 16:49:36.443 17-02-2017  INFO ] sample info log
+[ 23:36:27.557 20-02-2017  ERROR ] res\character.json (The system cannot find the file specified)

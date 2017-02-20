@@ -177,6 +177,7 @@ public class MapFormView extends JFrame implements Observer, View{
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		
+		this.next_button.addActionListener(actionListener);
+		this.back_button.addActionListener(actionListener);
 	}
 }

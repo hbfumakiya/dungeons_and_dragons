@@ -128,23 +128,23 @@ public class MapGridView extends JFrame implements Observer {
 		this.setTitle(this.map_window_title);
 		
 		try{
-		BufferedImage map_entry_color_image = ImageIO.read(new File("C:/Users/Tejas09/git/dungeons_and_dragons/res/yelllow.jpg"));
+		BufferedImage map_entry_color_image = ImageIO.read(new File("res/yelllow.jpg"));
 		map_entry_color = new JLabel(new ImageIcon(map_entry_color_image));
 		//map_entry_color.setMaximumSize(new Dimension(10,10));
 		
-		BufferedImage map_exit_color_image = ImageIO.read(new File("C:/Users/Tejas09/git/dungeons_and_dragons/res/green.png"));
+		BufferedImage map_exit_color_image = ImageIO.read(new File("res/green.png"));
 		map_exit_color = new JLabel(new ImageIcon(map_exit_color_image));
 		//map_exit_color.setMaximumSize(new Dimension(10,10));
 		
-		BufferedImage map_chest_color_image = ImageIO.read(new File("C:/Users/Tejas09/git/dungeons_and_dragons/res/blue.jpg"));
+		BufferedImage map_chest_color_image = ImageIO.read(new File("res/blue.jpg"));
 		map_chest_color = new JLabel(new ImageIcon(map_chest_color_image));
 		//map_chest_color.setMaximumSize(new Dimension(10,10));
 		
-		BufferedImage map_enemy_color_image = ImageIO.read(new File("C:/Users/Tejas09/git/dungeons_and_dragons/res/red.jpg"));
+		BufferedImage map_enemy_color_image = ImageIO.read(new File("res/red.jpg"));
 		map_enemy_color = new JLabel(new ImageIcon(map_enemy_color_image));
 		//map_enemy_color.setMaximumSize(new Dimension(10,10));
 		
-		BufferedImage map_wall_color_image = ImageIO.read(new File("C:/Users/Tejas09/git/dungeons_and_dragons/res/grey.jpg"));
+		BufferedImage map_wall_color_image = ImageIO.read(new File("res/grey.jpg"));
 		map_wall_color = new JLabel(new ImageIcon(map_wall_color_image));
 		//map_wall_color.setMaximumSize(new Dimension(10,10));
 		
