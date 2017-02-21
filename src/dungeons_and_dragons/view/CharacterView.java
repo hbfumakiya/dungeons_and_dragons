@@ -16,7 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 import com.google.gson.JsonSyntaxException;
@@ -178,7 +180,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		list_panel = new JPanel();
 		list_panel.setLayout(new GridLayout(5, 2, 5, 5));
-		list_panel.setMaximumSize(new Dimension(300, 150));
+		list_panel.setMaximumSize(new Dimension(300, 250));
 
 		sub_panel.add(list_panel);
 
@@ -203,7 +205,12 @@ public class CharacterView extends JFrame implements Observer, View {
 		item_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(item_combobox);
 		
-
+		//list= new JList<String>(names);
+		//list.setAlignmentX(Component.LEFT_ALIGNMENT);
+		//list.setPreferredSize(new Dimension(200, 200));
+		//list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		//list_panel.add(new JScrollPane(list));
+		
 		level_label = new JLabel("Enter Level");
 		list_panel.add(level_label);
 
@@ -226,7 +233,7 @@ public class CharacterView extends JFrame implements Observer, View {
 		list_panel.add(save);
 
 		// set minimum size of frame
-		this.setPreferredSize(new Dimension(320, 220));
+		this.setPreferredSize(new Dimension(300, 300));
 
 		// Display the window.
 		this.pack();

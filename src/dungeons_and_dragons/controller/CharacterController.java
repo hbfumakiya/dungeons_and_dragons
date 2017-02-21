@@ -31,8 +31,9 @@ public class CharacterController implements ActionListener {
 		if (e.getSource().equals(view.save)) {
 			String character_name = this.view.charactername_textfield.getText();
 			model.setCharacter_name(character_name);
-			//ArrayList<ItemModel> items = (ArrayList<ItemModel>) this.view.item_combobox.getSelectedItem();
-			//model.setItems(items);
+			// ArrayList<ItemModel> items = (ArrayList<ItemModel>)
+			// this.view.item_combobox.getSelectedItem();
+			// model.setItems(items);
 			model.save();
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
