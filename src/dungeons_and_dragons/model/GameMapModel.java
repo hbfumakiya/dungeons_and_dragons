@@ -302,6 +302,37 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		notifyObservers(this);
 	}
 
+
+	public void removeWall(Point position) {
+		// TODO Auto-generated method stub
+		this.map_walls.remove(position);
+		
+	}
+
+
+	public void removeEnemy(Point position) {
+		// TODO Auto-generated method stub
+		this.map_enemy_loc.remove(position);
+	}
+
+
+	public void removeChest(Point position) {
+		// TODO Auto-generated method stub
+		this.map_chest = new Point(-1,-1);
+	}
+
+
+	public void removeEntryDoor(Point position) {
+		// TODO Auto-generated method stub
+		this.map_entry_door =new Point(-1,-1);
+	}
+
+
+	public void removeExitDoor(Point position) {
+		// TODO Auto-generated method stub
+		this.map_exit_door = new Point(-1,-1);
+	}
+
 	
 	
 }

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.model.GameMapModel;
@@ -108,30 +110,100 @@ public class MapGridController implements ActionListener {
 			
 			if(this.map_model.getMap_object_color_type() == Game_constants.WALLS)
 				{
-					validateMapForExisting("wall",position);
+					if(validateMapForExisting("wall",position))
+					{
+						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+							this.map_model.removeEnemy(position);
+						else if(this.map_model.getMap_chest().equals(position))
+							this.map_model.removeChest(position);
+						else if(this.map_model.getMap_entry_door().equals(position))
+						this.map_model.removeEntryDoor(position);
+						else if(this.map_model.getMap_exit_door().equals(position))
+							this.map_model.removeExitDoor(position);
+								
+						
+						
 					this.map_model.setMap_wall(position);
+					}
 				}			
 			else if(this.map_model.getMap_object_color_type() == Game_constants.ENEMIES)
 				{
-					validateMapForExisting("Enemy",position);
+				
+					if(validateMapForExisting("Enemy",position))
+					{
+						
+						if(this.map_model.getMap_walls().contains(position))
+							this.map_model.removeWall(position);
+						else if(this.map_model.getMap_chest().equals(position))
+							this.map_model.removeChest(position);
+						else if(this.map_model.getMap_entry_door().equals(position))
+						this.map_model.removeEntryDoor(position);
+						else if(this.map_model.getMap_exit_door().equals(position))
+							this.map_model.removeExitDoor(position);
+								
+						
+						
 					this.map_model.setMap_enemy_loc(position,null);
+						
+//						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+//							this.map_model.removeEnemy(position);
+//							else
+//					this.map_model.setMap_enemy_loc(position,null);
+					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR)
 				{
-					validateMapForExisting("Entry Door",position);
-					this.map_model.entryFlag = 1;
-					this.map_model.setMap_entry_door(position);
+					if(validateMapForExisting("Entry Door",position)){
+						
+						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+							this.map_model.removeEnemy(position);
+						else if(this.map_model.getMap_chest().equals(position))
+							this.map_model.removeChest(position);
+						else if(this.map_model.getMap_walls().equals(position))
+							this.map_model.removeWall(position);
+						else if(this.map_model.getMap_exit_door().equals(position))
+							this.map_model.removeExitDoor(position);
+									
+						
+						
+							this.map_model.entryFlag = 1;
+							this.map_model.setMap_entry_door(position);
+						
+					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR)
 				{
-					validateMapForExisting("Exit Door",position);
+					if(validateMapForExisting("Exit Door",position)){
+						
+						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+							this.map_model.removeEnemy(position);
+						else if(this.map_model.getMap_chest().equals(position))
+							this.map_model.removeChest(position);
+						else if(this.map_model.getMap_walls().equals(position))
+							this.map_model.removeWall(position);
+						else if(this.map_model.getMap_entry_door().equals(position))
+							this.map_model.removeEntryDoor(position);
+						
 					this.map_model.exitFlag = 1;
 					this.map_model.setMap_exit_door(position);
+					
+					
+					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.CHEST)
 				{	
-					validateMapForExisting("Chest",position);
-					this.map_model.setMap_chest(position);
+					if(validateMapForExisting("Chest",position)){
+						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+							this.map_model.removeEnemy(position);
+						else if(this.map_model.getMap_entry_door().equals(position))
+							this.map_model.removeEntryDoor(position);
+						else if(this.map_model.getMap_walls().equals(position))
+							this.map_model.removeWall(position);
+						else if(this.map_model.getMap_entry_door().equals(position))
+							this.map_model.removeEntryDoor(position);	
+						
+							this.map_model.setMap_chest(position);
+					}
 				}
 			
 			this.map_view.setButtonListener(this);
@@ -144,34 +216,59 @@ public class MapGridController implements ActionListener {
 	 * @param object 
 	 * @param position
 	 */
-	private void validateMapForExisting(String object, Point position) {
-		
+	private boolean validateMapForExisting(String object, Point position) {
+		boolean validate = true;
 		if(this.map_model.getMap_chest().equals(position))
 		{
-			this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace chest with "+object);
+			if(confirm == 0)
+				validate = true;
+			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+			else
+				validate = false;
+			
+			
 		}
 		else if(this.map_model.getMap_entry_door().equals(position))
 		{
-			this.map_model.setErrorMessage("You cannot place a"+object+"here as entry door is already present");
+			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Entry Door with "+object);
+			if(confirm == 0)
+				validate = true;
+			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+			else
+				validate = false;
 		}
 		else if(this.map_model.getMap_exit_door().equals(position))
 		{
-			this.map_model.setErrorMessage("You cannot place a"+object+"here as exit door is already present");
+			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Exit Door with "+object);
+			if(confirm == 0)
+				validate = true;
+			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+			else
+				validate = false;
 		}
 		else
 		{
-			for(int i=0;i<this.map_model.getMap_walls().size();i++){
-				if(this.map_model.getMap_walls().get(i).equals(position)){
-					this.map_model.setErrorMessage("You cannot place a"+object+"here as wall is already present");
-				}
+				if(this.map_model.getMap_walls().contains(position)){
+					int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Wall with "+object);
+					if(confirm == 0)
+						validate = true;
+					//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+					else
+						validate = false;
+
 			}
-			for(int i=0;i<this.map_model.getMap_enemy_loc().size();i++){
 				if(this.map_model.getMap_enemy_loc().keySet().contains(position)){
-					this.map_model.setErrorMessage("You cannot place a"+object+"here as enemy is already present");
-				}
+					int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Enemy with "+object);
+					if(confirm == 0)
+						validate = true;
+					//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
+					else
+						validate = false;
+
 			}
 		}
-		
+		return validate;
 		
 	}
 
