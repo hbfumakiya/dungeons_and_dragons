@@ -16,9 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
@@ -204,26 +202,20 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Helmet");
 		list_panel.add(additem_label);
-		
-		Object[] helmet = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.HELMET)).toArray(); 
-
+		Object[] helmet = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.HELMET)).toArray();
 		helmet_combobox = new JComboBox(helmet);
-		if(helmet.length > 0)
+		if (helmet.length > 0)
 			helmet_combobox.setRenderer(new ItemRenderer());
 		helmet_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(helmet_combobox);
 
 		// armer
 
-		
-		
 		additem_label = new JLabel("Select Armer");
 		list_panel.add(additem_label);
-
 		Object[] armer = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.ARMOR)).toArray();
-		
 		armer_combobox = new JComboBox(armer);
-		if(armer.length > 0)
+		if (armer.length > 0)
 			armer_combobox.setRenderer(new ItemRenderer());
 		armer_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(armer_combobox);
@@ -232,9 +224,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Shield");
 		list_panel.add(additem_label);
-
 		Object[] shields = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.SHIELD)).toArray();
-
 		shield_combobox = new JComboBox(shields);
 		if (shields.length > 0)
 			shield_combobox.setRenderer(new ItemRenderer());
@@ -245,11 +235,9 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Ring");
 		list_panel.add(additem_label);
-
 		Object[] rings = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.RING)).toArray();
-
 		ring_combobox = new JComboBox(rings);
-		if(rings.length > 0)
+		if (rings.length > 0)
 			ring_combobox.setRenderer(new ItemRenderer());
 		ring_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(ring_combobox);
@@ -258,11 +246,9 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Belt");
 		list_panel.add(additem_label);
-
-		Object[] belts = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BELT)).toArray(); 
-		
+		Object[] belts = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BELT)).toArray();
 		belt_combobox = new JComboBox(belts);
-		if(belts.length > 0)
+		if (belts.length > 0)
 			belt_combobox.setRenderer(new ItemRenderer());
 		belt_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(belt_combobox);
@@ -271,11 +257,9 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Boot");
 		list_panel.add(additem_label);
-
 		Object[] boots = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BOOTS)).toArray();
-		
 		boot_combobox = new JComboBox(boots);
-		if(boots.length > 0)
+		if (boots.length > 0)
 			boot_combobox.setRenderer(new ItemRenderer());
 		boot_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(boot_combobox);
@@ -284,11 +268,9 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		additem_label = new JLabel("Select Weapon");
 		list_panel.add(additem_label);
-
 		Object[] weapon = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON)).toArray();
-		
 		weapon_combobox = new JComboBox(weapon);
-		if(weapon.length > 0)
+		if (weapon.length > 0)
 			weapon_combobox.setRenderer(new ItemRenderer());
 		weapon_combobox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		list_panel.add(weapon_combobox);
