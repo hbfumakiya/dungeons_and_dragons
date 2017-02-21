@@ -138,11 +138,10 @@ public class CharacterView extends JFrame implements Observer, View {
 	 */
 	public JButton back;
 
-	/**
-	 * 
-	 */
+	public JButton add;
 	private ArrayList<ItemModel> items;
-
+	private ArrayList<ItemModel> backpack;
+	
 	public CharacterView() {
 
 		this.items = new ArrayList<ItemModel>();
@@ -292,10 +291,17 @@ public class CharacterView extends JFrame implements Observer, View {
 		backpack_label = new JLabel("BackPack");
 		list_panel.add(backpack_label);
 
-		backpack_combobox = new JComboBox(new String[] { "1", "2" });
+		String[] backpack=new String[this.items.size()];
+		for(int i=0;i<this.items.size();i++){
+			backpack[i]=this.items.get(i).getItem_name();
+		}
+		backpack_combobox = new JComboBox<String>(backpack);
 		backpack_combobox.setAlignmentX(LEFT_ALIGNMENT);
 		list_panel.add(backpack_combobox);
 
+		add = new JButton("Add");
+		list_panel.add(add);
+		
 		back = new JButton("Back");
 		list_panel.add(back);
 
