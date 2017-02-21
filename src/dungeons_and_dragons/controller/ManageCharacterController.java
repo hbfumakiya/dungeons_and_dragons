@@ -13,6 +13,7 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.ManageCharacterView;
 
 /**
@@ -65,22 +66,12 @@ public class ManageCharacterController implements ActionListener {
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
 
 			GameButton button = (GameButton) actionEvent.getSource();
-			int characterId = button.getId();
-			CharacterModel item = (CharacterModel) button.getSource();
-
-			/*StringBuilder sb = new StringBuilder("");
-			sb.append(item.getItem_name());
-			sb.append("\n");
-			sb.append(item.getItem_type());
-			sb.append("\n");
-			sb.append(item.getItem_ability());
-			sb.append("\n");
-			sb.append(item.getItem_point());
-
-			JOptionPane.showMessageDialog(this.manageItemView, sb.toString());*/
-
+			CharacterModel character = (CharacterModel) button.getSource();
+			
+			if(character != null) {
+				new CharacterInventoryView(character);
+			}
 		}
-		
 	}
 
 }

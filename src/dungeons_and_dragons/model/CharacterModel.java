@@ -53,6 +53,15 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	@Expose
 	private ArrayList<ItemModel> items;
+	
+	/**
+	 * 
+	 * 
+	 */
+	@Expose
+	private ArrayList<ItemModel> backPackItems;
+	
+	
 
 	/**
 	 * Variable for level of character
@@ -81,7 +90,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_id = 0;
 		this.character_name = "";
 		this.strength = 0;
-
+		this.items = new ArrayList<ItemModel>();
+		this.backPackItems = new ArrayList<ItemModel>();
 	}
 
 	/**
@@ -94,7 +104,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_id = character_id;
 		this.character_name = character_name;
 		this.strength = strength;
-
+		this.items = new ArrayList<ItemModel>();
+		this.backPackItems = new ArrayList<ItemModel>();
 	}
 
 	/**
@@ -155,6 +166,22 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setStrength(int strength) {
 		this.strength = strength;
+	}
+	
+	
+
+	/**
+	 * @return the backPackItems
+	 */
+	public ArrayList<ItemModel> getBackPackItems() {
+		return backPackItems;
+	}
+
+	/**
+	 * @param backPackItems the backPackItems to set
+	 */
+	public void setBackPackItems(ArrayList<ItemModel> backPackItems) {
+		this.backPackItems = backPackItems;
 	}
 
 	@Override

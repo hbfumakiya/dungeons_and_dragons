@@ -19,7 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
@@ -142,7 +145,8 @@ public class CharacterView extends JFrame implements Observer, View {
 	 * @type JButton
 	 */
 	public JButton back;
-	public JFrame frame;
+	
+	public JList<ItemModel> backPackList;
 
 	public JButton add;
 	private ArrayList<ItemModel> items;
@@ -175,7 +179,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		// frame=new JFrame("Character window");
 		this.setTitle(this.window_title);
-		this.setPreferredSize(new Dimension(400, 600));
+		this.setPreferredSize(new Dimension(320, 510));
 		this.setResizable(false);
 		this.setLayout(null);
 
@@ -282,18 +286,29 @@ public class CharacterView extends JFrame implements Observer, View {
 		backpack_label.setBounds(10, 280, 100, 25);
 		this.add(backpack_label);
 
-		String[] backpack = new String[this.items.size()];
+		
+		
+		ItemModel[] backpack = new ItemModel[this.items.size()];
 		for (int i = 0; i < this.items.size(); i++) {
-			backpack[i] = this.items.get(i).getItem_name();
+			backpack[i] = this.items.get(i);
 		}
 		
+		backPackList = new JList<ItemModel>();
+		if(backpack.length > 0) {
+			backPackList.setListData(backpack);
+			backPackList.setCellRenderer(new ItemCellRenderer());
+		}
+		backPackList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		JScrollPane backPackPane = new JScrollPane(backPackList);
+		backPackPane.setBounds(150, 280, 150, 150);
+		this.add(backPackPane);
 		
 		back = new JButton("Back");
-		back.setBounds(20, 355, 80, 25);
+		back.setBounds(20, 445, 80, 25);
 		this.add(back);
 
 		save = new JButton("Save");
-		save.setBounds(110, 355, 80, 25);
+		save.setBounds(110, 445, 80, 25);
 		this.add(save);
 		
 		// Display the window.
@@ -321,6 +336,34 @@ public class CharacterView extends JFrame implements Observer, View {
 
 			ItemModel item = (ItemModel) value;
 			setText(item.getItem_name());
+
+			return this;
+		}
+	}
+	
+	class ItemCellRenderer extends JLabel implements ListCellRenderer<ItemModel> {
+
+		private static final long serialVersionUID = 1L;
+
+		public ItemCellRenderer() {
+			setOpaque(true);
+		}
+
+		@Override
+		public Component getListCellRendererComponent(JList<? extends ItemModel> arg0, ItemModel arg1, int arg2,
+				boolean arg3, boolean arg4) {
+
+			if (arg1 != null) {
+				setText(arg1.getItem_name());
+			}
+
+			if (arg3) {
+				setBackground(new Color(0, 0, 128));
+				setForeground(Color.white);
+			} else {
+				setBackground(Color.white);
+				setForeground(Color.black);
+			}
 
 			return this;
 		}
