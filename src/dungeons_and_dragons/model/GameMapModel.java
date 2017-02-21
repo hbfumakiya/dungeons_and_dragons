@@ -191,7 +191,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param map_walls the map_walls to set
 	 */
 	public void setMap_wall(Point wall) {
-		
+		if(!this.map_walls.contains(wall))
 		this.map_walls.add(wall);
 		setChanged();
 		notifyObservers(this);
@@ -228,6 +228,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param map_enemy_loc the map_enemy_loc to set
 	 */
 	public void setMap_enemy_loc(Point position,CharacterModel character) {
+		if(!this.map_enemy_loc.containsKey(position))
 		this.map_enemy_loc.put(position, character);
 		setChanged();
 		notifyObservers(this);
