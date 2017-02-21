@@ -319,7 +319,6 @@ public class CharacterView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		this.helmet_combobox.addActionListener(actionListener);
 		this.save.addActionListener(actionListener);
 		this.back.addActionListener(actionListener);
 	}

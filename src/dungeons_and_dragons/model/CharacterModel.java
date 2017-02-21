@@ -54,6 +54,29 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	@Expose
 	private ArrayList<ItemModel> items;
 
+	/**
+	 * Variable for level of character
+	 * 
+	 * @type integer
+	 */
+	@Expose
+	private int character_level;
+
+	
+	/**
+	 * @return the character_level
+	 */
+	public int getCharacter_level() {
+		return character_level;
+	}
+
+	/**
+	 * @param character_level the character_level to set
+	 */
+	public void setCharacter_level(int character_level) {
+		this.character_level = character_level;
+	}
+
 	public CharacterModel() {
 		this.character_id = 0;
 		this.character_name = "";
@@ -168,7 +191,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Override
 	public void save() {
-
+		
+		
 		try {
 			this.setCurrentId();
 			FileHelper.saveCharacter(this);
