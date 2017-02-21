@@ -167,7 +167,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 		ArrayList<CharacterModel> alldata = this.getData();
 
-		if (alldata.size() < 1) {
+		if ((alldata == null) || (alldata.size() < 1)) {
 			this.character_id = 1;
 			return;
 		}
@@ -191,8 +191,6 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Override
 	public void save() {
-		
-		
 		try {
 			this.setCurrentId();
 			FileHelper.saveCharacter(this);

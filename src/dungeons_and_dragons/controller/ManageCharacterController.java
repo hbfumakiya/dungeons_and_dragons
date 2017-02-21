@@ -8,14 +8,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
-import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ManageCharacterView;
 
 /**
