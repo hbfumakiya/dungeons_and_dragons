@@ -3,6 +3,9 @@ package dungeons_and_dragons.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.view.CharacterView;
 
@@ -31,9 +34,17 @@ public class CharacterController implements ActionListener {
 		if (e.getSource().equals(view.save)) {
 			String character_name = this.view.charactername_textfield.getText();
 			model.setCharacter_name(character_name);
-			// ArrayList<ItemModel> items = (ArrayList<ItemModel>)
-			// this.view.item_combobox.getSelectedItem();
-			// model.setItems(items);
+			String level=this.view.level_textfield.getText();
+			
+			try
+			{
+				int i=Integer.parseInt(level);
+				model.setCharacter_level(i);
+			}
+			catch (Exception ex) {
+			    JOptionPane.showMessageDialog(new JFrame(),"Please enter integer value in level");
+			}
+			
 			model.save();
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
