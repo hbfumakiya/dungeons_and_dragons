@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.Expose;
 
 /**
  * 
@@ -26,6 +27,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int map_id;
 	
 	/**
@@ -33,6 +35,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type String
 	 */
+	@Expose
 	private String map_name;
 	
 	/**
@@ -40,6 +43,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
+	@Expose
 	private Point map_size = new Point(1, 1);
 	
 	/**
@@ -47,6 +51,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
+	@Expose
 	private Point map_chest;
 	
 	/**
@@ -54,6 +59,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
+	@Expose
 	private ArrayList<Point> map_walls;
 	
 	/**
@@ -61,6 +67,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
+	@Expose
 	private Point map_entry_door;
 	
 	/**
@@ -68,6 +75,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type HashMap
 	 */
+	@Expose
 	private HashMap<Point,CharacterModel> map_enemy_loc ;
 	
 	/**
@@ -75,6 +83,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
+	@Expose
 	private Point map_exit_door;
 	
 	private Color map_object_color_type;
