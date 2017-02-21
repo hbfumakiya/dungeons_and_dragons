@@ -57,6 +57,10 @@ public class CharacterController implements ActionListener {
 				items.add(weapon);
 				items.add(shield);
 				model.setItems(items);
+				
+				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+				model.setBackPackItems(backPackList);
+
 				model.save();
 				new ManageCharacterController();
 				this.view.dispose();
