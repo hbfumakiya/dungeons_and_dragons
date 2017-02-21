@@ -37,7 +37,7 @@ public class CampaignView extends JFrame implements Observer, View {
 	private ArrayList<GameMapModel> maps;
 	public JButton add;
 	public LinkedList<GameMapModel> campaign;
-
+	
 	public CampaignView() {
 
 		this.maps = new ArrayList<GameMapModel>();
@@ -66,24 +66,20 @@ public class CampaignView extends JFrame implements Observer, View {
 		map_label.setBounds(10, 10, 100, 25);
 		this.add(map_label);
 
-		GameMapModel[] map_names = new GameMapModel[this.maps.size()];
+		GameMapModel[] maps = new GameMapModel[this.maps.size()];
 		//Object[] names = (Object[]) new Object();
+
 		Integer[] id=new Integer[this.maps.size()];
 		for (int i = 0; i < this.maps.size(); i++) {
-			map_names[i] = this.maps.get(i);
-			id[i]=map_names[i].getMap_id();
-			//names[i] = map_names[i].getMap_name();
+			maps[i] = this.maps.get(i);
+			id[i]=maps[i].getMap_id();
+			//names[i] = maps[i].getMap_name();
+			
 		}
 		map_combobox = new JComboBox<Integer>(id);
 		map_combobox.setBounds(150, 10, 150, 25);
 		this.add(map_combobox);
 
-		/*String[] names={"1","2"};
-		map_combobox = new JComboBox<String>(names);
-		map_combobox.setBounds(150, 10, 150, 25);
-		this.add(map_combobox);
-		// this.setMinimumSize(new Dimension(300, 300));
-*/
 		add=new JButton("Add to Campaign");
 		add.setBounds(50, 50, 150, 25);
 		this.add(add);
@@ -97,7 +93,7 @@ public class CampaignView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		//this.add.addActionListener(actionListener);
+		this.add.addActionListener(actionListener);
 	}
 
 	@Override

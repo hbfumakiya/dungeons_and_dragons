@@ -23,7 +23,10 @@ public class CampaignController implements ActionListener {
 	 */
 	public CampaignController() {
 
+		campaignModel = new CampaignModel();
 		campaignView = new CampaignView();
+		
+		campaignModel.addObserver(campaignView);
 
 		// set listener
 		campaignView.setActionListener(this);
@@ -35,9 +38,11 @@ public class CampaignController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(campaignView.add)){
-			GameMapModel name=(GameMapModel) this.campaignView.map_combobox.getSelectedItem();
-			this.campaignView.campaign.add(name);
-			System.out.println(campaignView.campaign);
+			Integer i=(Integer) this.campaignView.map_combobox.getSelectedItem();
+			
+			//this.campaignView.campaign.add(map);
+			
+			System.out.println(i);
 		}
 	}
 

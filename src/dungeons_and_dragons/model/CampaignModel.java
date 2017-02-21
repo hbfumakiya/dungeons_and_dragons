@@ -1,5 +1,6 @@
 package dungeons_and_dragons.model;
 import java.util.LinkedList;
+import java.util.Observable;
 
 /*
  * class for campaign
@@ -7,7 +8,7 @@ import java.util.LinkedList;
  * 
  */
 
-public class CampaignModel {
+public class CampaignModel extends Observable {
 	
 	/**
 	 * Variable for identity of campaign. Value of all these campaigns must be unique.
@@ -34,6 +35,10 @@ public class CampaignModel {
 		this.campaign_id=campaign_id;
 		this.campaign_name=campaign_name;
 		
+	}
+
+	public CampaignModel() {
+		// TODO Auto-generated constructor stub
 	}
 
 }
