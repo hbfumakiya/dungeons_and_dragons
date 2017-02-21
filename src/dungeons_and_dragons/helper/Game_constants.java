@@ -1,5 +1,7 @@
 package dungeons_and_dragons.helper;
 
+import java.awt.Color;
+
 import javax.swing.DefaultComboBoxModel;
 
 /*
@@ -26,6 +28,13 @@ public class Game_constants {
 	public static final String BELT = "Belt";
 	public static final String BOOTS = "Boots";
 	public static final String WEAPON = "Weapon";
+	
+	public static final Color ENTRY_DOOR = Color.YELLOW;
+	public static final Color EXIT_DOOR = Color.GREEN;
+	public static final Color WALLS = Color.GRAY;
+	public static final Color ENEMIES = Color.RED;
+	public static final Color CHEST = Color.BLUE;
+	
 	
 	/**
 	 * model for loading data into item ability based on selection of item type helmet

@@ -76,11 +76,52 @@ public class MapGridController implements ActionListener,DocumentListener {
 			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
 			this.map_model.setMap_size(store);
-		} else if(((MapButton)e.getSource()).getType().equals(Game_constants.GRID_BUTTON_TYPE)){
-
-		
-		
+			this.map_view.setButtonListener(this);
 		}
+		else if(e.getSource().equals(map_view.map_entry_door)){
+			this.map_model.setType(Game_constants.ENTRY_DOOR);
+			
+		}else if(e.getSource().equals(map_view.map_exit_door)){
+			this.map_model.setType(Game_constants.EXIT_DOOR);
+			
+		}
+		else if(e.getSource().equals(map_view.map_wall)){
+			this.map_model.setType(Game_constants.WALLS);
+			
+		}
+		else if(e.getSource().equals(map_view.map_enemy)){
+			this.map_model.setType(Game_constants.ENEMIES);
+			
+		}
+		else if(e.getSource().equals(map_view.map_chest)){
+			this.map_model.setType(Game_constants.CHEST);
+			
+		}
+		else if(((MapButton)e.getSource()).getType().equals(Game_constants.GRID_BUTTON_TYPE)){
+			Point position = new Point();
+			position.x =  ((MapButton)e.getSource()).getxPos();
+			position.y =  ((MapButton)e.getSource()).getyPos();
+			
+			
+			if(this.map_model.getType() == Game_constants.WALLS)
+			this.map_model.setMap_wall(position);
+			
+			else if(this.map_model.getType() == Game_constants.ENEMIES)
+				this.map_model.setMap_characters(position);
+			
+			else if(this.map_model.getType() == Game_constants.ENTRY_DOOR)
+				this.map_model.setMap_entry_door(position);
+			
+			else if(this.map_model.getType() == Game_constants.EXIT_DOOR)
+				this.map_model.setMap_exit_door(position);
+			
+			else if(this.map_model.getType() == Game_constants.CHEST)
+				this.map_model.setMap_chest(position);
+			
+			
+			this.map_view.setButtonListener(this);
+		}
+		
 	}
 
 	//-------------- Yet to be coded ! ----------------

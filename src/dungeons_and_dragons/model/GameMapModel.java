@@ -1,4 +1,5 @@
 package dungeons_and_dragons.model;
+import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,14 +38,14 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * 
 	 * @type Point
 	 */
-	private Point map_size = new Point(0, 0);
+	private Point map_size = new Point(1, 1);
 	
 	/**
 	 * Variable for character array. 
 	 * 
 	 * @type Character
 	 */
-	private ArrayList<Character> map_characters;
+	private ArrayList<Point> map_characters;
 	
 	/**
 	 * Variable for chest location in map. 
@@ -81,7 +82,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	private Point map_exit_door;
 	
-
+	private Color type;
+	
+	
 	
 	
 	/**
@@ -91,11 +94,29 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	public GameMapModel(int width,int height) {
 		this.map_size.setLocation(width, height);
+		this.map_walls = new ArrayList<Point>();
+		this.map_characters = new ArrayList<Point>();
+		this.map_chest = new Point(0,0);
+		this.map_entry_door =  new Point(0,0);
+		this.map_exit_door = new Point(0,0);
+		this.map_id = 0;
+		this.map_name = "";
+		this.map_enemy_loc = new HashMap<Point,Character>();
+		this.type = Color.GRAY;
 	}
 
 
 	public GameMapModel() {
 		this.map_size.setLocation(5,5);
+		this.map_walls = new ArrayList<Point>();
+		this.map_characters = new ArrayList<Point>();
+		this.map_chest = new Point(0,0);
+		this.map_entry_door =  new Point(0,0);
+		this.map_exit_door = new Point(0,0);
+		this.map_id = 0;
+		this.map_name = "";
+		this.map_enemy_loc = new HashMap<Point,Character>();
+		this.type = Color.YELLOW;
 	}
 
 
@@ -152,7 +173,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @return the map_characters
 	 */
-	public ArrayList<Character> getMap_characters() {
+	public ArrayList<Point> getMap_characters() {
 		return map_characters;
 	}
 
@@ -160,8 +181,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @param map_characters the map_characters to set
 	 */
-	public void setMap_characters(ArrayList<Character> map_characters) {
-		this.map_characters = map_characters;
+	public void setMap_characters(Point map_characters) {
+		this.map_characters.add(map_characters);
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -178,6 +201,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	public void setMap_chest(Point map_chest) {
 		this.map_chest = map_chest;
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -192,8 +217,11 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @param map_walls the map_walls to set
 	 */
-	public void setMap_walls(ArrayList<Point> map_walls) {
-		this.map_walls = map_walls;
+	public void setMap_wall(Point wall) {
+		
+		this.map_walls.add(wall);
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -210,6 +238,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	public void setMap_entry_door(Point map_entry_door) {
 		this.map_entry_door = map_entry_door;
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -242,6 +272,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	public void setMap_exit_door(Point map_exit_door) {
 		this.map_exit_door = map_exit_door;
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -271,6 +303,17 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		
 		
 		
+	}
+
+
+	public void setType(Color type) {
+		// TODO Auto-generated method stub
+		this.type = type;
+	}
+	
+	public Color getType() {
+		// TODO Auto-generated method stub
+		return type;
 	}
 	
 	

@@ -32,6 +32,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.model.GameMapModel;
 
@@ -115,11 +116,11 @@ public class MapGridView extends JFrame implements Observer {
 	 */
 	MapButton[][] maps;
 	
-	private JRadioButton map_entry_door;
-	private JRadioButton map_exit_door;
-	private JRadioButton map_chest;
-	private JRadioButton map_enemy;
-	private JRadioButton map_wall;
+	public JRadioButton map_entry_door;
+	public JRadioButton map_exit_door;
+	public JRadioButton map_chest;
+	public JRadioButton map_enemy;
+	public JRadioButton map_wall;
 	private JLabel map_entry_color;
 	private JLabel map_exit_color;
 	private JLabel map_chest_color;
@@ -132,7 +133,7 @@ public class MapGridView extends JFrame implements Observer {
 	
 	private GameMapModel model;
 	
-
+	private static int check = 0;
 	public MapGridView(Point width_height) {
 		this.setTitle(this.map_window_title);
 
@@ -230,7 +231,7 @@ public class MapGridView extends JFrame implements Observer {
 
 	}
 
-	private void updateMap(Point width_height) {
+	private void updateMap(Point width_height,ArrayList<Point> map_walls,ArrayList<Point> character,Point chest,Point entryDoor,Point exitDoor) {
 		// sub bottom panel consisting of map and info regarding map
 
 		main_panel.remove(sub_bottom_panel);
@@ -266,7 +267,26 @@ public class MapGridView extends JFrame implements Observer {
 				maps[i][j] = new MapButton();
 				maps[i][j].setxPos(i);
 				maps[i][j].setyPos(j);
+				Point p = new Point();
+				p.x = i;
+				p.y = j;
 				
+				if(map_walls != null && map_walls.contains(p))
+				{
+					maps[i][j].setBackground(Game_constants.WALLS);
+				}
+				else if(character != null && character.contains(p)){
+					maps[i][j].setBackground(Game_constants.ENEMIES);
+				}
+				else if(chest != null && chest.equals(p)){
+					maps[i][j].setBackground(Game_constants.CHEST);
+				}
+				else if(entryDoor != null && entryDoor.equals(p)){
+					maps[i][j].setBackground(Game_constants.ENTRY_DOOR);
+				}
+				else if(exitDoor != null && exitDoor.equals(p)){
+					maps[i][j].setBackground(Game_constants.EXIT_DOOR);
+				}
 				LeftGridMapPane.add(maps[i][j]);
 			}
 		}
@@ -294,6 +314,8 @@ public class MapGridView extends JFrame implements Observer {
 		map_chest = new JRadioButton("Chest");
 		map_enemy = new JRadioButton("Enemy");
 		map_wall = new JRadioButton("Wall");
+		
+		
 
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(map_entry_door);
@@ -328,10 +350,14 @@ public class MapGridView extends JFrame implements Observer {
 		// TODO Auto-generated method stub
 
 		Point width_height = ((GameMapModel) arg0).getMap_size();
-		
+		ArrayList<Point> map_walls = ((GameMapModel) arg0).getMap_walls();
+		ArrayList<Point> map_character = ((GameMapModel) arg0).getMap_characters();
+		Point Chest = ((GameMapModel) arg0).getMap_chest();
+		Point EntryDoor = ((GameMapModel) arg0).getMap_entry_door();
+		Point ExitDoor = ((GameMapModel) arg0).getMap_exit_door();
 		this.model = (GameMapModel) arg0;
-		
-		updateMap(width_height);
+		check = 1;
+		updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor);
 	}
 
 	/**
@@ -345,12 +371,8 @@ public class MapGridView extends JFrame implements Observer {
 		this.back_button.addActionListener(mapGridController);
 		this.submit.addActionListener(mapGridController);
 		
-		for (int i = 0; i < this.model.getMap_size().x; i++) {	
-			for(int j = 0;j<this.model.getMap_size().y;j++) {
-				this.maps[i][j].addActionListener(mapGridController);
-				}
-			}
-
+		
+		
 	}
 
 	public void setDocumentListener(DocumentListener mapGridController) {
@@ -359,5 +381,20 @@ public class MapGridView extends JFrame implements Observer {
 		this.map_width_textfield.getDocument().addDocumentListener(mapGridController);
 
 	}
+
+	public void setButtonListener(ActionListener mapGridController){
+		// TODO Auto-generated method stub
+	for (int i = 0; i < this.model.getMap_size().x; i++) {	
+		for(int j = 0;j<this.model.getMap_size().y;j++) {
+			this.maps[i][j].addActionListener(mapGridController);
+			}
+		}
+	this.map_entry_door.addActionListener(mapGridController);
+	this.map_exit_door.addActionListener(mapGridController);
+	this.map_chest.addActionListener(mapGridController);
+	this.map_wall.addActionListener(mapGridController);
+	this.map_enemy.addActionListener(mapGridController);
+	}
+	
 
 }
