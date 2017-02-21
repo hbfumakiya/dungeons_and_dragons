@@ -80,5 +80,7 @@ public class Game_constants {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static final DefaultComboBoxModel WEAPON_MODEL = new DefaultComboBoxModel(new String[]{Game_constants.ATTACK_BONUS,Game_constants.DAMAGE_BONUS});
     
+    
+    public static final String GRID_BUTTON_TYPE = "grid_button";
 	
 }

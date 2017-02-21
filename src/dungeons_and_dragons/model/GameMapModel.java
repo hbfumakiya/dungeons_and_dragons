@@ -81,6 +81,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	private Point map_exit_door;
 	
+
+	
 	
 	/**
 	 * constructor to initialize map object
@@ -142,6 +144,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	public void setMap_size(Point map_size) {
 		this.map_size = map_size;
+		setChanged();
+		notifyObservers(this);
 	}
 
 
@@ -258,6 +262,14 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setWidthHeight(Point store) {
+		// TODO Auto-generated method stub
+		
+		
 		
 	}
 	

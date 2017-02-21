@@ -3,6 +3,7 @@
  */
 package dungeons_and_dragons.controller;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapFormView;
 import dungeons_and_dragons.view.MapGridView;
@@ -41,9 +44,11 @@ public class MapGridController implements ActionListener,DocumentListener {
 	 * All the events of view are registered in constructor
 	 */
 	public MapGridController() {
-		
+		Point p = new Point();
+		p.x = 5;
+		p.y = 5;
 		this.map_model = new GameMapModel(5,5);
-		this.map_view = new MapGridView(map_model);
+		this.map_view = new MapGridView(p);
 		
 		this.map_model.addObserver(map_view);
 		this.map_view.setListener(this);
@@ -64,6 +69,17 @@ public class MapGridController implements ActionListener,DocumentListener {
 		}else if(e.getSource().equals(map_view.save_button))
 		{	
 			/*yet to be written*/
+		}
+		else if(e.getSource().equals(map_view.submit))
+		{	
+			Point store = new Point();
+			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
+			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
+			this.map_model.setMap_size(store);
+		} else if(((MapButton)e.getSource()).getType().equals(Game_constants.GRID_BUTTON_TYPE)){
+
+		
+		
 		}
 	}
 
