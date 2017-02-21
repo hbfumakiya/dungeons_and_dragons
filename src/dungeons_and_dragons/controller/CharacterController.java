@@ -35,17 +35,15 @@ public class CharacterController implements ActionListener {
 			String character_name = this.view.charactername_textfield.getText();
 			model.setCharacter_name(character_name);
 			String level=this.view.level_textfield.getText();
-			
 			try
 			{
 				int i=Integer.parseInt(level);
 				model.setCharacter_level(i);
+				model.save();
 			}
 			catch (Exception ex) {
 			    JOptionPane.showMessageDialog(new JFrame(),"Please enter integer value in level");
 			}
-			
-			model.save();
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
 		}
