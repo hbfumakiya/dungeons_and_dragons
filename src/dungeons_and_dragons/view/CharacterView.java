@@ -76,29 +76,6 @@ public class CharacterView extends JFrame implements Observer, View {
 	public JLabel backpack_label;
 
 	/**
-	 * this variable used for main panel
-	 * 
-	 * @type JPanel
-	 */
-	public JPanel main_panel;
-
-	/**
-	 * this variable used for sub panel
-	 * 
-	 * @type JPanel
-	 */
-	public JPanel sub_panel;
-	public JPanel button_panel;
-	public JPanel jlist_panel;
-
-	/**
-	 * this variable used for list panel
-	 * 
-	 * @type JPanel
-	 */
-	public JPanel list_panel;
-
-	/**
 	 * this variable used for character name textfield
 	 * 
 	 * @type JTextField
