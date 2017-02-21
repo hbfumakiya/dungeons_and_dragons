@@ -129,6 +129,7 @@ public class MapGridController implements ActionListener {
 						
 						
 					this.map_model.setMap_wall(position);
+					this.map_view.setButtonListener(this);
 					}
 				}			
 			else if(this.map_model.getMap_object_color_type() == Game_constants.ENEMIES)
@@ -149,7 +150,7 @@ public class MapGridController implements ActionListener {
 						
 						
 					this.map_model.setMap_enemy_loc(position,null);
-						
+					this.map_view.setButtonListener(this);
 //						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
 //							this.map_model.removeEnemy(position);
 //							else
@@ -164,7 +165,7 @@ public class MapGridController implements ActionListener {
 							this.map_model.removeEnemy(position);
 						else if(this.map_model.getMap_chest().equals(position))
 							this.map_model.removeChest(position);
-						else if(this.map_model.getMap_walls().equals(position))
+						else if(this.map_model.getMap_walls().contains(position))
 							this.map_model.removeWall(position);
 						else if(this.map_model.getMap_exit_door().equals(position))
 							this.map_model.removeExitDoor(position);
@@ -173,7 +174,7 @@ public class MapGridController implements ActionListener {
 						
 							this.map_model.entryFlag = 1;
 							this.map_model.setMap_entry_door(position);
-						
+							this.map_view.setButtonListener(this);
 					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR)
@@ -184,14 +185,14 @@ public class MapGridController implements ActionListener {
 							this.map_model.removeEnemy(position);
 						else if(this.map_model.getMap_chest().equals(position))
 							this.map_model.removeChest(position);
-						else if(this.map_model.getMap_walls().equals(position))
+						else if(this.map_model.getMap_walls().contains(position))
 							this.map_model.removeWall(position);
 						else if(this.map_model.getMap_entry_door().equals(position))
 							this.map_model.removeEntryDoor(position);
 						
 					this.map_model.exitFlag = 1;
 					this.map_model.setMap_exit_door(position);
-					
+					this.map_view.setButtonListener(this);
 					
 					}
 				}
@@ -202,12 +203,13 @@ public class MapGridController implements ActionListener {
 							this.map_model.removeEnemy(position);
 						else if(this.map_model.getMap_entry_door().equals(position))
 							this.map_model.removeEntryDoor(position);
-						else if(this.map_model.getMap_walls().equals(position))
+						else if(this.map_model.getMap_walls().contains(position))
 							this.map_model.removeWall(position);
 						else if(this.map_model.getMap_exit_door().equals(position))
 							this.map_model.removeExitDoor(position);	
 						
 							this.map_model.setMap_chest(position);
+							this.map_view.setButtonListener(this);
 					}
 				}
 			else if(this.map_model.getMap_object_color_type()==null){
@@ -216,32 +218,37 @@ public class MapGridController implements ActionListener {
 				{
 					this.map_model.removeEnemy(position);
 					this.map_model.callObservers();
+					this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_chest().equals(position))
 				{
 					this.map_model.removeChest(position);
 				this.map_model.callObservers();
+				this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_entry_door().equals(position))
 				{
 				this.map_model.removeEntryDoor(position);
 				this.map_model.callObservers();
+				this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_exit_door().equals(position))
 				{
 					this.map_model.removeExitDoor(position);
 				this.map_model.callObservers();
+				this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_walls().contains(position))
 				{
 					this.map_model.removeWall(position);
 				this.map_model.callObservers();
+				this.map_view.setButtonListener(this);
 				}
 				
 				
 			}
 			
-			this.map_view.setButtonListener(this);
+			
 		}
 		
 	}
