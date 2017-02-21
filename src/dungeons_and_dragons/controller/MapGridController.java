@@ -66,7 +66,9 @@ public class MapGridController implements ActionListener {
 		}
 		else if(e.getSource().equals(map_view.save_button))
 		{	
-			/*yet to be written*/
+			/*validation needs to be done*/
+			this.map_model.save();
+			
 		}
 		else if(e.getSource().equals(map_view.submit))
 		{	

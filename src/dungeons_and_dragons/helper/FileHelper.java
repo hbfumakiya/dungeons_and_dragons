@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.sun.xml.internal.ws.server.sei.EndpointArgumentsBuilder;
 
 import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.model.CharacterModel;
@@ -85,17 +86,23 @@ public class FileHelper {
 			map_list = new ArrayList<GameMapModel>();
 
 		}
+		
+		
+		
 
 		// add new data to arraylist
 		map_list.add(map);
 
 		// create writer object for item file
 		Writer file_writer = new FileWriter(MAP_FILE);
-
+	
+		
 		// store object to json
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		// String ness = gson.toJson(item);
-		gson.toJson(map_list, file_writer);
+		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
+		
+		file_writer.write(data);
 
 		// close file
 		file_writer.close();

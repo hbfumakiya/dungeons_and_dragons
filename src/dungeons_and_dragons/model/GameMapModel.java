@@ -9,6 +9,9 @@ import java.util.Observable;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.LogHelper;
+
 /**
  * 
  * @author mihir
@@ -266,14 +269,32 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	@Override
 	public void save() {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.setCurrentId();
+			System.out.println(this.map_name);
+			System.out.println(this.map_chest.getX());
+			FileHelper.saveMap(this);
+		} catch (JsonSyntaxException  | IOException e) {
+			// TODO Auto-generated catch block
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
 	}
+	
+	@SuppressWarnings("unused")
+	private void setCurrentId() throws JsonSyntaxException, IOException {
 
+		ArrayList<GameMapModel> alldata = this.getData();
+		if (null != alldata) {
+			this.map_id = alldata.get(alldata.size() - 1).getMap_id() + 1;
+		} else {
+			this.map_id = 1;
+		}
+	}
 
 	@Override
 	public ArrayList<GameMapModel> getData() throws JsonSyntaxException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		return FileHelper.getMaps();
 	}
 
 
