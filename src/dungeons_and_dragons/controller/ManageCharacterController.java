@@ -3,30 +3,87 @@
  */
 package dungeons_and_dragons.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.GameButton;
+import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ManageCharacterView;
 
 /**
  * @author mihir
  *
  */
-public class ManageCharacterController {
+public class ManageCharacterController implements ActionListener {
 
-	
 	private CharacterModel characterModel;
-	
+
 	private ManageCharacterView manageCharacterView;
-	
+
 	/**
 	 * 
 	 */
 	public ManageCharacterController() {
+
+		try {
+
+			characterModel = new CharacterModel();
+
+			ArrayList<CharacterModel> characters = characterModel.getData();
+
+			manageCharacterView = new ManageCharacterView(this, characters);
+
+			manageCharacterView.setVisible(true);
+
+			manageCharacterView.setActionListener(this);
+
+		} catch (JsonSyntaxException | IOException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
 		
-		characterModel = new CharacterModel();
+		if (actionEvent.getSource().equals(manageCharacterView.addCharacterButton)) {
+			new CharacterController();
+			
+			manageCharacterView.dispose();
+			
+		} else if (actionEvent.getSource().equals(manageCharacterView.backButton)) {
+			
+			new CreateGameController();
+			
+			manageCharacterView.dispose();
+
+		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
+
+			GameButton button = (GameButton) actionEvent.getSource();
+			int characterId = button.getId();
+			CharacterModel item = (CharacterModel) button.getSource();
+
+			/*StringBuilder sb = new StringBuilder("");
+			sb.append(item.getItem_name());
+			sb.append("\n");
+			sb.append(item.getItem_type());
+			sb.append("\n");
+			sb.append(item.getItem_ability());
+			sb.append("\n");
+			sb.append(item.getItem_point());
+
+			JOptionPane.showMessageDialog(this.manageItemView, sb.toString());*/
+
+		}
 		
-		manageCharacterView = new ManageCharacterView();
-		
-		manageCharacterView.setVisible(true);
 	}
 
 }

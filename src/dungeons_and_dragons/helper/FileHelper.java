@@ -109,6 +109,10 @@ public class FileHelper {
 	 */
 	public static ArrayList<CharacterModel> getCharcters() throws IOException,JsonSyntaxException {
 		
+		if(!Files.exists(Paths.get(CHARACTER_FILE))) {
+			return null;
+		}
+		
 		//create reader objecr to read data from item file
 		Reader reader = new FileReader(CHARACTER_FILE);
 		
