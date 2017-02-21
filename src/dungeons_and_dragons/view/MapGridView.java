@@ -123,6 +123,7 @@ public class MapGridView extends JFrame implements Observer {
 	public JRadioButton map_chest;
 	public JRadioButton map_enemy;
 	public JRadioButton map_wall;
+	public JRadioButton map_remove;
 	private JLabel map_entry_color;
 	private JLabel map_exit_color;
 	private JLabel map_chest_color;
@@ -290,7 +291,7 @@ public class MapGridView extends JFrame implements Observer {
 				else if(character != null && character.containsKey(p)){
 					maps[i][j].setBackground(Game_constants.ENEMIES);
 				}
-				else if(chest.x!=0 && chest.equals(p)){
+				else if(chest != null && chest.equals(p)){
 					maps[i][j].setBackground(Game_constants.CHEST);
 				}
 				else if(entryFlag==1 && entryDoor.equals(p)){																			/*t,l,b,r*/
@@ -316,7 +317,7 @@ public class MapGridView extends JFrame implements Observer {
 		// map embedded inside right info panel
 		JPanel RightInfoListPane = new JPanel();
 
-		RightInfoListPane.setLayout((new GridLayout(6, 2, 5, 5)));
+		RightInfoListPane.setLayout((new GridLayout(7, 2, 5, 5)));
 		RightInfoListPane.setMaximumSize(new Dimension(250, 300));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
@@ -326,6 +327,7 @@ public class MapGridView extends JFrame implements Observer {
 		map_chest = new JRadioButton("Chest");
 		map_enemy = new JRadioButton("Enemy");
 		map_wall = new JRadioButton("Wall");
+		map_remove = new JRadioButton("Remove");
 		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(map_entry_door);
@@ -333,6 +335,7 @@ public class MapGridView extends JFrame implements Observer {
 		bg.add(map_chest);
 		bg.add(map_enemy);
 		bg.add(map_wall);
+		bg.add(map_remove);
 
 		RightInfoListPane.add(map_entry_door);
 		RightInfoListPane.add(map_entry_color);
@@ -344,6 +347,8 @@ public class MapGridView extends JFrame implements Observer {
 		RightInfoListPane.add(map_enemy_color);
 		RightInfoListPane.add(map_wall);
 		RightInfoListPane.add(map_wall_color);
+		RightInfoListPane.add(map_remove);
+		RightInfoListPane.add(new JLabel());
 		RightInfoListPane.add(back_button);
 		RightInfoListPane.add(save_button);
 
@@ -409,6 +414,7 @@ public class MapGridView extends JFrame implements Observer {
 	this.map_chest.addActionListener(mapGridController);
 	this.map_wall.addActionListener(mapGridController);
 	this.map_enemy.addActionListener(mapGridController);
+	this.map_remove.addActionListener(mapGridController);
 	}
 	
 	

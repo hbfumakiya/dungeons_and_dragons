@@ -101,6 +101,11 @@ public class MapGridController implements ActionListener {
 			this.map_model.setMap_object_color_type(Game_constants.CHEST);
 			
 		}
+		else if(e.getSource().equals(map_view.map_remove))
+		{
+			this.map_model.removeMap_object_color_type();
+			
+		}
 		else if(((MapButton)e.getSource()).getButton_type().equals(Game_constants.GRID_BUTTON_TYPE))
 		{
 			Point position = new Point();
@@ -199,12 +204,42 @@ public class MapGridController implements ActionListener {
 							this.map_model.removeEntryDoor(position);
 						else if(this.map_model.getMap_walls().equals(position))
 							this.map_model.removeWall(position);
-						else if(this.map_model.getMap_entry_door().equals(position))
-							this.map_model.removeEntryDoor(position);	
+						else if(this.map_model.getMap_exit_door().equals(position))
+							this.map_model.removeExitDoor(position);	
 						
 							this.map_model.setMap_chest(position);
 					}
 				}
+			else if(this.map_model.getMap_object_color_type()==null){
+				
+				if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+				{
+					this.map_model.removeEnemy(position);
+					this.map_model.callObservers();
+				}
+				else if(this.map_model.getMap_chest().equals(position))
+				{
+					this.map_model.removeChest(position);
+				this.map_model.callObservers();
+				}
+				else if(this.map_model.getMap_entry_door().equals(position))
+				{
+				this.map_model.removeEntryDoor(position);
+				this.map_model.callObservers();
+				}
+				else if(this.map_model.getMap_exit_door().equals(position))
+				{
+					this.map_model.removeExitDoor(position);
+				this.map_model.callObservers();
+				}
+				else if(this.map_model.getMap_walls().contains(position))
+				{
+					this.map_model.removeWall(position);
+				this.map_model.callObservers();
+				}
+				
+				
+			}
 			
 			this.map_view.setButtonListener(this);
 		}

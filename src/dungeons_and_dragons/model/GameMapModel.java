@@ -333,6 +333,20 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		this.map_exit_door = new Point(-1,-1);
 	}
 
+
+	public void removeMap_object_color_type() {
+		// TODO Auto-generated method stub
+		this.map_object_color_type = null;
+	}
+
+
+	public void callObservers() {
+		// TODO Auto-generated method stub
+		setChanged();
+		notifyObservers(this);
+		
+	}
+
 	
 	
 }
