@@ -11,21 +11,7 @@ import javax.swing.JButton;
  */
 public class MapButton extends JButton {
 	
-	private String type = Game_constants.GRID_BUTTON_TYPE;
-	
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+	private String button_type = Game_constants.GRID_BUTTON_TYPE;
 
 	private int xPos;
 	
@@ -58,4 +44,12 @@ public class MapButton extends JButton {
 	public void setyPos(int yPos) {
 		this.yPos = yPos;
 	}	
+	
+	public String getButton_type() {
+		return button_type;
+	}
+
+	public void setButton_type(String button_type) {
+		this.button_type = button_type;
+	}
 }

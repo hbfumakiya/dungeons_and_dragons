@@ -18,7 +18,9 @@ import com.google.gson.JsonSyntaxException;
 public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	
-	
+	public int entryFlag=0;
+	public int exitFlag=0;
+	private String errorMessage;
 	/**
 	 * Variable for identity of map. Value of all these map must be unique.
 	 * 
@@ -39,13 +41,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @type Point
 	 */
 	private Point map_size = new Point(1, 1);
-	
-	/**
-	 * Variable for character array. 
-	 * 
-	 * @type Character
-	 */
-	private ArrayList<Point> map_characters;
 	
 	/**
 	 * Variable for chest location in map. 
@@ -69,11 +64,11 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	private Point map_entry_door;
 	
 	/**
-	 *Variable for enemy creation and location of enemy
+	 *Variable having point locations of enemies which will be defined later
 	 * 
 	 * @type HashMap
 	 */
-	private HashMap<Point,Character> map_enemy_loc ;
+	private HashMap<Point,CharacterModel> map_enemy_loc ;
 	
 	/**
 	 * Variable for exit wall location in map. 
@@ -82,8 +77,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	private Point map_exit_door;
 	
-	private Color type;
-	
+	private Color map_object_color_type;
 	
 	
 	
@@ -95,28 +89,24 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	public GameMapModel(int width,int height) {
 		this.map_size.setLocation(width, height);
 		this.map_walls = new ArrayList<Point>();
-		this.map_characters = new ArrayList<Point>();
-		this.map_chest = new Point(0,0);
-		this.map_entry_door =  new Point(0,0);
-		this.map_exit_door = new Point(0,0);
+		this.map_chest = new Point(-1,-1);
+		this.map_entry_door =  new Point(-1,-1);
+		this.map_exit_door = new Point(-1,-1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new HashMap<Point,Character>();
-		this.type = Color.GRAY;
+		this.map_enemy_loc = new HashMap<Point,CharacterModel>();
 	}
 
 
 	public GameMapModel() {
 		this.map_size.setLocation(5,5);
 		this.map_walls = new ArrayList<Point>();
-		this.map_characters = new ArrayList<Point>();
-		this.map_chest = new Point(0,0);
-		this.map_entry_door =  new Point(0,0);
-		this.map_exit_door = new Point(0,0);
+		this.map_chest = new Point(-1,-1);
+		this.map_entry_door =  new Point(-1,-1);
+		this.map_exit_door = new Point(-1,-1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new HashMap<Point,Character>();
-		this.type = Color.YELLOW;
+		this.map_enemy_loc = new HashMap<Point,CharacterModel>();
 	}
 
 
@@ -171,24 +161,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 
 	/**
-	 * @return the map_characters
-	 */
-	public ArrayList<Point> getMap_characters() {
-		return map_characters;
-	}
-
-
-	/**
-	 * @param map_characters the map_characters to set
-	 */
-	public void setMap_characters(Point map_characters) {
-		this.map_characters.add(map_characters);
-		setChanged();
-		notifyObservers(this);
-	}
-
-
-	/**
 	 * @return the map_chest
 	 */
 	public Point getMap_chest() {
@@ -197,6 +169,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 
 	/**
+	 * Used to invoke grid map view by notifying observers
 	 * @param map_chest the map_chest to set
 	 */
 	public void setMap_chest(Point map_chest) {
@@ -246,7 +219,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @return the map_enemy_loc
 	 */
-	public HashMap<Point, Character> getMap_enemy_loc() {
+	public HashMap<Point, CharacterModel> getMap_enemy_loc() {
 		return map_enemy_loc;
 	}
 
@@ -254,8 +227,11 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @param map_enemy_loc the map_enemy_loc to set
 	 */
-	public void setMap_enemy_loc(HashMap<Point, Character> map_enemy_loc) {
-		this.map_enemy_loc = map_enemy_loc;
+	public void setMap_enemy_loc(Point position,CharacterModel character) {
+		this.map_enemy_loc.put(position, character);
+		setChanged();
+		notifyObservers(this);
+		
 	}
 
 
@@ -306,15 +282,26 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 
-	public void setType(Color type) {
-		// TODO Auto-generated method stub
-		this.type = type;
+	public Color getMap_object_color_type() {
+		return map_object_color_type;
 	}
-	
-	public Color getType() {
-		// TODO Auto-generated method stub
-		return type;
+
+
+	public void setMap_object_color_type(Color map_object_color_type) {
+		this.map_object_color_type = map_object_color_type;
 	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+		setChanged();
+		notifyObservers(this);
+	}
+
 	
 	
 }

@@ -7,12 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -34,7 +34,9 @@ import javax.swing.event.DocumentListener;
 
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
+import javafx.scene.layout.Border;
 
 /**
  * @author User
@@ -231,7 +233,17 @@ public class MapGridView extends JFrame implements Observer {
 
 	}
 
-	private void updateMap(Point width_height,ArrayList<Point> map_walls,ArrayList<Point> character,Point chest,Point entryDoor,Point exitDoor) {
+	/**
+	 * Used to construct a grid map along with the right panel list
+	 * @param width_height
+	 * @param map_walls
+	 * @param character
+	 * @param chest
+	 * @param entryDoor
+	 * @param exitDoor
+	 * @param exitFlag 
+	 */
+	private void updateMap(Point width_height,ArrayList<Point> map_walls,HashMap<Point,CharacterModel> character,Point chest,Point entryDoor,Point exitDoor,int entryFlag, int exitFlag) {
 		// sub bottom panel consisting of map and info regarding map
 
 		main_panel.remove(sub_bottom_panel);
@@ -252,8 +264,8 @@ public class MapGridView extends JFrame implements Observer {
 
 		LeftGridMapPane.setLayout((new GridLayout(width_height.x, width_height.y, 1, 1)));
 		LeftGridMapPane.setMaximumSize(new Dimension(250, 300));
-		LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
+		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
 		/**
 		 * yet to be constructed on the basis of top information
 		 */
@@ -275,17 +287,17 @@ public class MapGridView extends JFrame implements Observer {
 				{
 					maps[i][j].setBackground(Game_constants.WALLS);
 				}
-				else if(character != null && character.contains(p)){
+				else if(character != null && character.containsKey(p)){
 					maps[i][j].setBackground(Game_constants.ENEMIES);
 				}
-				else if(chest != null && chest.equals(p)){
+				else if(chest.x!=0 && chest.equals(p)){
 					maps[i][j].setBackground(Game_constants.CHEST);
 				}
-				else if(entryDoor != null && entryDoor.equals(p)){
-					maps[i][j].setBackground(Game_constants.ENTRY_DOOR);
+				else if(entryFlag==1 && entryDoor.equals(p)){																			/*t,l,b,r*/
+					borderSelection(entryDoor, i, j, width_height, "Entry_door");
 				}
-				else if(exitDoor != null && exitDoor.equals(p)){
-					maps[i][j].setBackground(Game_constants.EXIT_DOOR);
+				else if(exitFlag==1 && exitDoor.equals(p)){
+					borderSelection(exitDoor, i, j, width_height, "Exit_door");
 				}
 				LeftGridMapPane.add(maps[i][j]);
 			}
@@ -315,8 +327,6 @@ public class MapGridView extends JFrame implements Observer {
 		map_enemy = new JRadioButton("Enemy");
 		map_wall = new JRadioButton("Wall");
 		
-		
-
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(map_entry_door);
 		bg.add(map_exit_door);
@@ -345,19 +355,29 @@ public class MapGridView extends JFrame implements Observer {
 
 	}
 
+	/**
+	 * Invoked upon by Game map Model(observer) object once the data in width and height of first game view is set
+	 */
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-		Point width_height = ((GameMapModel) arg0).getMap_size();
-		ArrayList<Point> map_walls = ((GameMapModel) arg0).getMap_walls();
-		ArrayList<Point> map_character = ((GameMapModel) arg0).getMap_characters();
-		Point Chest = ((GameMapModel) arg0).getMap_chest();
-		Point EntryDoor = ((GameMapModel) arg0).getMap_entry_door();
-		Point ExitDoor = ((GameMapModel) arg0).getMap_exit_door();
-		this.model = (GameMapModel) arg0;
-		check = 1;
-		updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor);
+	public void update(Observable obs, Object obj) {
+		
+		if(null==((GameMapModel)obs).getErrorMessage() || ((GameMapModel)obs).getErrorMessage().isEmpty() ){
+			Point width_height = ((GameMapModel) obs).getMap_size();
+			ArrayList<Point> map_walls = ((GameMapModel) obs).getMap_walls();
+			HashMap<Point,CharacterModel> map_character = ((GameMapModel) obs).getMap_enemy_loc();
+			Point Chest = ((GameMapModel) obs).getMap_chest();
+			Point EntryDoor = ((GameMapModel) obs).getMap_entry_door();
+			Point ExitDoor = ((GameMapModel) obs).getMap_exit_door();
+			this.model = (GameMapModel) obs;
+			int entryFlag = ((GameMapModel)obs).entryFlag;
+			int exitFlag = ((GameMapModel)obs).exitFlag;
+			check = 1;
+			updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor,entryFlag,exitFlag);
+		}
+		else{
+			JOptionPane.showMessageDialog(this,((GameMapModel)obs).getErrorMessage());
+			((GameMapModel)obs).setErrorMessage(null);
+		}
 	}
 
 	/**
@@ -371,17 +391,12 @@ public class MapGridView extends JFrame implements Observer {
 		this.back_button.addActionListener(mapGridController);
 		this.submit.addActionListener(mapGridController);
 		
-		
-		
 	}
-
-	public void setDocumentListener(DocumentListener mapGridController) {
-
-		this.map_height_textfield.getDocument().addDocumentListener(mapGridController);
-		this.map_width_textfield.getDocument().addDocumentListener(mapGridController);
-
-	}
-
+	
+	/**
+	 * Configuring buttons with listeners to Controllers
+	 * @param mapGridController
+	 */
 	public void setButtonListener(ActionListener mapGridController){
 		// TODO Auto-generated method stub
 	for (int i = 0; i < this.model.getMap_size().x; i++) {	
@@ -396,5 +411,50 @@ public class MapGridView extends JFrame implements Observer {
 	this.map_enemy.addActionListener(mapGridController);
 	}
 	
+	
+	/**
+	 * Used to set the border of doors based on the conditions
+	 * @param Door
+	 * @param i
+	 * @param j
+	 * @param width_height
+	 * @param door_type
+	 */
+	public void borderSelection(Point Door, int i, int j, Point width_height, String door_type){
+		
+		if(Door.x == 0 && Door.y == 0)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, ((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.x == width_height.x-1 && Door.y == 0)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.y == width_height.y-1 && Door.x == 0)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 0, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.x == width_height.x-1 && Door.y == width_height.y-1)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.x == 0)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.y == 0)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+		else if(Door.x == width_height.x-1)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			
+		}
+		else if(Door.y == width_height.y-1)
+		{
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+		}
+	}
 
 }
