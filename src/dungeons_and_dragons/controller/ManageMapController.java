@@ -3,6 +3,7 @@
  */
 package dungeons_and_dragons.controller;
 
+import java.awt.Point;
 /**
  * @author Urmil Kansara
  *
@@ -22,6 +23,7 @@ import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.ManageItemView;
 import dungeons_and_dragons.view.ManageMapView;
+import dungeons_and_dragons.view.MapView;
 
 /**
  * @author Urmil Kansara
@@ -70,8 +72,10 @@ public class ManageMapController implements ActionListener {
 
 			GameButton button = (GameButton) actionEvent.getSource();
 			int itemId = button.getId();
-			GameMapModel item = (GameMapModel) button.getSource();
+			GameMapModel map = (GameMapModel) button.getSource();
 
+			new MapView(map);
+			manageMapView.dispose();
 //			StringBuilder sb = new StringBuilder("");
 //			sb.append(item.getMap_name());
 //			sb.append("\n");

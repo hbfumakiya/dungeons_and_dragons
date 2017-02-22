@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,6 +33,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentListener;
 
+import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.model.CharacterModel;
@@ -42,7 +44,7 @@ import javafx.scene.layout.Border;
  * @author Urmil Kansara
  *
  */
-public class MapGridView extends JFrame implements Observer {
+public class MapView extends JFrame implements ActionListener{
 
 	/**
 	 * this variable used to set window title
@@ -61,9 +63,9 @@ public class MapGridView extends JFrame implements Observer {
 	/**
 	 * this variable used to input name
 	 * 
-	 * @type JTextField
+	 * @type JLabel
 	 */
-	public JTextField map_name_textfield;
+	public JLabel map_name_textfield;
 
 	/**
 	 * this variable used to give map width
@@ -75,9 +77,9 @@ public class MapGridView extends JFrame implements Observer {
 	/**
 	 * this variable used to input height
 	 * 
-	 * @type JTextField
+	 * @type JLabel
 	 */
-	public JTextField map_width_textfield;
+	public JLabel map_width_textfield;
 
 	/**
 	 * this variable used to give map height
@@ -89,9 +91,9 @@ public class MapGridView extends JFrame implements Observer {
 	/**
 	 * this variable used to input height
 	 * 
-	 * @type JTextField
+	 * @type JLabel
 	 */
-	public JTextField map_height_textfield;
+	public JLabel map_height_textfield;
 
 	/**
 	 * this variable used for going back to create map window
@@ -100,12 +102,6 @@ public class MapGridView extends JFrame implements Observer {
 	 */
 	public JButton back_button;
 
-	/**
-	 * this variable used to save map
-	 * 
-	 * @type JButton
-	 */
-	public JButton save_button;
 
 	private JPanel main_panel;
 	private JPanel sub_top_panel;
@@ -118,18 +114,16 @@ public class MapGridView extends JFrame implements Observer {
 	 */
 	public MapButton[][] maps;
 	
-	public JRadioButton map_entry_door;
-	public JRadioButton map_exit_door;
-	public JRadioButton map_chest;
-	public JRadioButton map_enemy;
-	public JRadioButton map_wall;
-	public JRadioButton map_remove;
+	public JLabel map_entry_door;
+	public JLabel map_exit_door;
+	public JLabel map_chest;
+	public JLabel map_enemy;
+	public JLabel map_wall;
 	private JLabel map_entry_color;
 	private JLabel map_exit_color;
 	private JLabel map_chest_color;
 	private JLabel map_enemy_color;
 	private JLabel map_wall_color;
-	public JButton submit;
 	private JLabel empty;
 	
 	private int index=0;
@@ -137,7 +131,7 @@ public class MapGridView extends JFrame implements Observer {
 	private GameMapModel model;
 	
 	private static int check = 0;
-	public MapGridView(Point width_height) {
+	public MapView(GameMapModel map) {
 		this.setTitle(this.map_window_title);
 
 		try {
@@ -195,14 +189,15 @@ public class MapGridView extends JFrame implements Observer {
 		// item_score = new JLabel("Point");
 
 		// Initializing label text field,dropdown of map height and width
-		map_name_textfield = new JTextField(1);
-		map_height_textfield = new JTextField(1);
-		map_width_textfield = new JTextField(1);
+		map_name_textfield = new JLabel(map.getMap_name());
+		map_height_textfield = new JLabel(String.valueOf(map.getMap_size().getX()));
+		map_width_textfield = new JLabel(String.valueOf(map.getMap_size().getY()));
 
 		// initializing back,next and submit buttons
 		back_button = new JButton("Back");
-		save_button = new JButton("Save");
-		submit = new JButton("Submit");
+		back_button.addActionListener(this);
+		//save_button = new JButton("Save");
+		//submit = new JButton("Submit");
 		// Adding necessary components into panel
 		listPane.add(map_name);
 
@@ -218,7 +213,7 @@ public class MapGridView extends JFrame implements Observer {
 
 		listPane.add(map_width_textfield);
 
-		listPane.add(submit);
+		listPane.add(back_button);
 
 		main_panel.add(sub_top_panel);
 
@@ -231,11 +226,11 @@ public class MapGridView extends JFrame implements Observer {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		update(map);
 	}
 
 	/**
-	 * Used to construct a grid map along with the right panel list
+	 * Used to show a grid map along with the right panel list
 	 * @param width_height
 	 * @param map_walls
 	 * @param character
@@ -251,20 +246,20 @@ public class MapGridView extends JFrame implements Observer {
 		sub_bottom_panel = new JPanel();
 		sub_bottom_panel.setLayout((new GridLayout(1, 2, 5, 5)));
 		sub_bottom_panel.setBorder(BorderFactory.createRaisedBevelBorder());
-		sub_bottom_panel.setMaximumSize(new Dimension(500, 500));
+		sub_bottom_panel.setMaximumSize(new Dimension(600, 500));
 
 		// info panel embedded inside sub bottom panel's right bottom corner
 		JPanel leftGridPanel = new JPanel();
 
 		leftGridPanel.setLayout(new BoxLayout(leftGridPanel, BoxLayout.Y_AXIS));
-		leftGridPanel.setMaximumSize(new Dimension(250, 300));
+		leftGridPanel.setMaximumSize(new Dimension(600, 500));
 		leftGridPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		// map panel embedded inside sub bottom panel's left bottom corner
 		JPanel LeftGridMapPane = new JPanel();
 
 		LeftGridMapPane.setLayout((new GridLayout(width_height.x, width_height.y, 1, 1)));
-		LeftGridMapPane.setMaximumSize(new Dimension(250, 300));
+		LeftGridMapPane.setMaximumSize(new Dimension(600, 300));
 		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
 		/**
@@ -315,32 +310,32 @@ public class MapGridView extends JFrame implements Observer {
 		JPanel RightInfoPanel = new JPanel();
 
 		RightInfoPanel.setLayout(new BoxLayout(RightInfoPanel, BoxLayout.Y_AXIS));
-		RightInfoPanel.setMaximumSize(new Dimension(250, 300));
+		RightInfoPanel.setMaximumSize(new Dimension(300, 300));
 		RightInfoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		// list panel consisting of information for map to display contents in
 		// map embedded inside right info panel
 		JPanel RightInfoListPane = new JPanel();
 
-		RightInfoListPane.setLayout((new GridLayout(7, 2, 5, 5)));
-		RightInfoListPane.setMaximumSize(new Dimension(250, 300));
+		RightInfoListPane.setLayout((new GridLayout(5, 2, 5, 5)));
+		RightInfoListPane.setMaximumSize(new Dimension(300, 300));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
 
-		map_entry_door = new JRadioButton("Entry Door");
-		map_exit_door = new JRadioButton("Exit Door");
-		map_chest = new JRadioButton("Chest");
-		map_enemy = new JRadioButton("Enemy");
-		map_wall = new JRadioButton("Wall");
-		map_remove = new JRadioButton("Remove");
+		map_entry_door = new JLabel("Entry Door");
+		map_exit_door = new JLabel("Exit Door");
+		map_chest = new JLabel("Chest");
+		map_enemy = new JLabel("Enemy");
+		map_wall = new JLabel("Wall");
+		//map_remove = new JLabel("Remove");
 		
-		ButtonGroup bg = new ButtonGroup();
-		bg.add(map_entry_door);
-		bg.add(map_exit_door);
-		bg.add(map_chest);
-		bg.add(map_enemy);
-		bg.add(map_wall);
-		bg.add(map_remove);
+//		ButtonGroup bg = new ButtonGroup();
+//		bg.add(map_entry_door);
+//		bg.add(map_exit_door);
+//		bg.add(map_chest);
+//		bg.add(map_enemy);
+//		bg.add(map_wall);
+//		bg.add(map_remove);
 
 		RightInfoListPane.add(map_entry_door);
 		RightInfoListPane.add(map_entry_color);
@@ -352,10 +347,10 @@ public class MapGridView extends JFrame implements Observer {
 		RightInfoListPane.add(map_enemy_color);
 		RightInfoListPane.add(map_wall);
 		RightInfoListPane.add(map_wall_color);
-		RightInfoListPane.add(map_remove);
-		RightInfoListPane.add(new JLabel());
-		RightInfoListPane.add(back_button);
-		RightInfoListPane.add(save_button);
+		//RightInfoListPane.add(map_remove);
+		//RightInfoListPane.add(new JLabel());
+		//RightInfoListPane.add(back_button);
+		//RightInfoListPane.add(save_button);
 
 		sub_bottom_panel.add(leftGridPanel);
 		sub_bottom_panel.add(RightInfoPanel);
@@ -368,59 +363,27 @@ public class MapGridView extends JFrame implements Observer {
 	/**
 	 * Invoked upon by Game map Model(observer) object once the data in width and height of first game view is set
 	 */
-	@Override
-	public void update(Observable obs, Object obj) {
+	
+	public void update(GameMapModel map) {
 		
-		if(null==((GameMapModel)obs).getErrorMessage() || ((GameMapModel)obs).getErrorMessage().isEmpty() ){
-			Point width_height = ((GameMapModel) obs).getMap_size();
-			ArrayList<Point> map_walls = ((GameMapModel) obs).getMap_walls();
-			ArrayList<Point> map_character = ((GameMapModel) obs).getMap_enemy_loc();
-			Point Chest = ((GameMapModel) obs).getMap_chest();
-			Point EntryDoor = ((GameMapModel) obs).getMap_entry_door();
-			Point ExitDoor = ((GameMapModel) obs).getMap_exit_door();
-			this.model = (GameMapModel) obs;
-			int entryFlag = ((GameMapModel)obs).entryFlag;
-			int exitFlag = ((GameMapModel)obs).exitFlag;
+		
+			Point width_height = map.getMap_size();
+			ArrayList<Point> map_walls = map.getMap_walls();
+			ArrayList<Point> map_character = map.getMap_enemy_loc();
+			Point Chest = map.getMap_chest();
+			Point EntryDoor = map.getMap_entry_door();
+			Point ExitDoor = map.getMap_exit_door();
+			this.model = map;
+			int entryFlag = 1;
+			int exitFlag = 1;//map.exitFlag;
 			check = 1;
 			updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor,entryFlag,exitFlag);
-		}
-		else{
-			JOptionPane.showMessageDialog(this,((GameMapModel)obs).getErrorMessage());
-			((GameMapModel)obs).setErrorMessage(null);
-		}
-	}
-
-	/**
-	 * Configuring listeners to Controllers
-	 * 
-	 * @param mapGridController
-	 */
-	public void setListener(ActionListener mapGridController) {
-
-		this.save_button.addActionListener(mapGridController);
-		this.back_button.addActionListener(mapGridController);
-		this.submit.addActionListener(mapGridController);
 		
 	}
+
 	
-	/**
-	 * Configuring buttons with listeners to Controllers
-	 * @param mapGridController
-	 */
-	public void setButtonListener(ActionListener mapGridController){
-		// TODO Auto-generated method stub
-	for (int i = 0; i < this.model.getMap_size().x; i++) {	
-		for(int j = 0;j<this.model.getMap_size().y;j++) {
-			this.maps[i][j].addActionListener(mapGridController);
-			}
-		}
-	this.map_entry_door.addActionListener(mapGridController);
-	this.map_exit_door.addActionListener(mapGridController);
-	this.map_chest.addActionListener(mapGridController);
-	this.map_wall.addActionListener(mapGridController);
-	this.map_enemy.addActionListener(mapGridController);
-	this.map_remove.addActionListener(mapGridController);
-	}
+	
+
 	
 	
 	/**
@@ -470,4 +433,15 @@ public class MapGridView extends JFrame implements Observer {
 		}
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(this.back_button))
+		{
+			new ManageMapController();
+			this.dispose();
+		}
+	}
+
 }
+
