@@ -69,7 +69,7 @@ public class ManageCharacterController implements ActionListener {
 			CharacterModel character = (CharacterModel) button.getSource();
 			
 			if(character != null) {
-				new CharacterInventoryView(character);
+				new CharacterInventoryController(character);
 			}
 		}
 	}

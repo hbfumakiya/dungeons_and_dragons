@@ -170,7 +170,7 @@ public class ItemView extends JFrame implements Observer {
 		// initializing back and save buttons
 		back_button = new JButton("Back");
 		save_item = new JButton("Save");
-		
+		update_item = new JButton("Uodate");
 
 		// filling the details of type item type combobox
 		item_type_field.addItem(Game_constants.HELMET);

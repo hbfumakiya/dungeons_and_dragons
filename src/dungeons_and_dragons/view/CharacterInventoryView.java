@@ -6,6 +6,7 @@ package dungeons_and_dragons.view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ import dungeons_and_dragons.model.ItemModel;
  * @author Mihir Pujara
  *
  */
-public class CharacterInventoryView extends JFrame {
+public class CharacterInventoryView extends JFrame implements View {
 
 	private JLabel label;
 
@@ -171,5 +172,14 @@ public class CharacterInventoryView extends JFrame {
 
 			return this;
 		}
+	}
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		
+		this.moveFromItemToBack.addActionListener(actionListener);
+		
+		this.moveFromBackToItem.addActionListener(actionListener);
+		
 	}
 }
