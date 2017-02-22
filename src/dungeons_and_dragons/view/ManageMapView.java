@@ -26,15 +26,16 @@ import javax.swing.border.EmptyBorder;
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.GameButton;
+import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
- * @author Mihir Pujara
+ * @author Urmil Kansara
  *
  */
-public class ManageItemView extends JFrame implements View {
+public class ManageMapView extends JFrame implements View {
 
-	private String title = "Manage Items";
+	private String title = "Manage Map";
 
 	private JPanel buttonPanel;
 
@@ -57,7 +58,7 @@ public class ManageItemView extends JFrame implements View {
 	 * @param actionListener
 	 * @param item
 	 */
-	public ManageItemView(ActionListener actionListener, ArrayList<ItemModel> item) {
+	public ManageMapView(ActionListener actionListener, ArrayList<GameMapModel> item) {
 
 		// initialize game window
 		this.initializeWindow(actionListener, item);
@@ -72,7 +73,7 @@ public class ManageItemView extends JFrame implements View {
 	 * @param actionListener
 	 * @param items
 	 */
-	public void initializeWindow(ActionListener actionListener, ArrayList<ItemModel> items) {
+	public void initializeWindow(ActionListener actionListener, ArrayList<GameMapModel> items) {
 
 		this.setTitle(this.title);
 
@@ -93,7 +94,7 @@ public class ManageItemView extends JFrame implements View {
 
 		this.buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-		this.addItemButton = new JButton("Add Map");
+		this.addItemButton = new JButton("Add Item");
 		this.buttonPanel.add(this.addItemButton);
 
 		// grid panel
@@ -138,7 +139,7 @@ public class ManageItemView extends JFrame implements View {
 	 * @param item
 	 */
 
-	public void refreshItemGrid(ActionListener actionListener, ArrayList<ItemModel> item) {
+	public void refreshItemGrid(ActionListener actionListener, ArrayList<GameMapModel> item) {
 		this.gridMainPanel.removeAll();
 
 		if (item != null) {
@@ -148,8 +149,8 @@ public class ManageItemView extends JFrame implements View {
 				gridSubPanel.setLayout((new GridLayout(1, 3, 5, 5)));
 				gridSubPanel.setMaximumSize(new Dimension(400, 30));
 
-				int id = item.get(i).getItem_id();
-				JLabel itemName = new JLabel(item.get(i).getItem_name());
+				int id = item.get(i).getMap_id();
+				JLabel itemName = new JLabel(item.get(i).getMap_name());
 				GameButton viewButton = new GameButton();
 				viewButton.setText("View");
 				viewButton.setId(id);
@@ -197,3 +198,4 @@ public class ManageItemView extends JFrame implements View {
 	}
 
 }
+

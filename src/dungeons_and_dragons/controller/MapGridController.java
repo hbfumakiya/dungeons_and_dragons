@@ -3,6 +3,8 @@ package dungeons_and_dragons.controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -77,7 +79,8 @@ public class MapGridController implements ActionListener {
 					// check if there are indeed enemies in the map of all that
 					// are defined
 					int count = 0;
-					Set mapSet = (Set) this.map_model.getMap_enemy_loc().keySet();
+					//ArrayList test = new ArrayList();
+					Set mapSet = new HashSet(this.map_model.getMap_enemy_loc());
 					Iterator mapIterator = mapSet.iterator();
 					System.out.println("check1");
 					while (mapIterator.hasNext()) {
@@ -88,13 +91,15 @@ public class MapGridController implements ActionListener {
 							System.out.println("check3");
 						}
 					}
-					if (count == this.map_model.getMap_enemy_loc().keySet().size()) {
+					if (count == this.map_model.getMap_enemy_loc().size()) {
 						System.out.println("check4");
 						System.out.println(
 								"In MapGridController.actionPerformed and ready for save button as map is valid");
 						
+						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
+						this.map_model.save();
 					}
-					this.map_model.save();
+					
 				}
 				// need to manipulate error message window
 				else {
@@ -144,7 +149,7 @@ public class MapGridController implements ActionListener {
 			if (this.map_model.getMap_object_color_type() == Game_constants.WALLS) {
 
 				if (validateMapForExisting("wall", position)) {
-					if (this.map_model.getMap_enemy_loc().keySet().contains(position))
+					if (this.map_model.getMap_enemy_loc().contains(position))
 						this.map_model.removeEnemy(position);
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
@@ -178,7 +183,7 @@ public class MapGridController implements ActionListener {
 
 				if (validateMapForExisting("Entry Door", position)) {
 
-					if (this.map_model.getMap_enemy_loc().keySet().contains(position))
+					if (this.map_model.getMap_enemy_loc().contains(position))
 						this.map_model.removeEnemy(position);
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
@@ -196,7 +201,7 @@ public class MapGridController implements ActionListener {
 
 				if (validateMapForExisting("Exit Door", position)) {
 
-					if (this.map_model.getMap_enemy_loc().keySet().contains(position))
+					if (this.map_model.getMap_enemy_loc().contains(position))
 						this.map_model.removeEnemy(position);
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
@@ -213,7 +218,7 @@ public class MapGridController implements ActionListener {
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.CHEST) {
 
 				if (validateMapForExisting("Chest", position)) {
-					if (this.map_model.getMap_enemy_loc().keySet().contains(position))
+					if (this.map_model.getMap_enemy_loc().contains(position))
 						this.map_model.removeEnemy(position);
 					else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
@@ -228,7 +233,7 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == null) {
 
-				if (this.map_model.getMap_enemy_loc().keySet().contains(position)) {
+				if (this.map_model.getMap_enemy_loc().contains(position)) {
 					this.map_model.removeEnemy(position);
 					this.map_model.callObservers();
 					this.map_view.setButtonListener(this);
@@ -304,7 +309,7 @@ public class MapGridController implements ActionListener {
 				else
 					validate = false;
 			}
-			if (this.map_model.getMap_enemy_loc().keySet().contains(position)) {
+			if (this.map_model.getMap_enemy_loc().contains(position)) {
 				int confirm = JOptionPane.showConfirmDialog(this.map_view,
 						"Do you want to replace Enemy with " + object);
 				if (confirm == 0)

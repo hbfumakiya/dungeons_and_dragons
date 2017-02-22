@@ -244,7 +244,7 @@ public class MapGridView extends JFrame implements Observer {
 	 * @param exitDoor
 	 * @param exitFlag 
 	 */
-	private void updateMap(Point width_height,ArrayList<Point> map_walls,HashMap<Point,CharacterModel> character,Point chest,Point entryDoor,Point exitDoor,int entryFlag, int exitFlag) {
+	private void updateMap(Point width_height,ArrayList<Point> map_walls,ArrayList<Point> character,Point chest,Point entryDoor,Point exitDoor,int entryFlag, int exitFlag) {
 		// sub bottom panel consisting of map and info regarding map
 
 		main_panel.remove(sub_bottom_panel);
@@ -290,7 +290,7 @@ public class MapGridView extends JFrame implements Observer {
 					maps[i][j].setBackground(Game_constants.WALLS);
 					maps[i][j].setPointValue(0);
 				}
-				else if(character != null && character.containsKey(p)){
+				else if(character != null && character.contains(p)){
 					maps[i][j].setBackground(Game_constants.ENEMIES);
 					maps[i][j].setPointValue(2);
 				}
@@ -374,7 +374,7 @@ public class MapGridView extends JFrame implements Observer {
 		if(null==((GameMapModel)obs).getErrorMessage() || ((GameMapModel)obs).getErrorMessage().isEmpty() ){
 			Point width_height = ((GameMapModel) obs).getMap_size();
 			ArrayList<Point> map_walls = ((GameMapModel) obs).getMap_walls();
-			HashMap<Point,CharacterModel> map_character = ((GameMapModel) obs).getMap_enemy_loc();
+			ArrayList<Point> map_character = ((GameMapModel) obs).getMap_enemy_loc();
 			Point Chest = ((GameMapModel) obs).getMap_chest();
 			Point EntryDoor = ((GameMapModel) obs).getMap_entry_door();
 			Point ExitDoor = ((GameMapModel) obs).getMap_exit_door();

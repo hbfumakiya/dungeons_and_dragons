@@ -86,7 +86,7 @@ public class CreateGameController implements ActionListener {
 		
 		// hide game window
 		// createGameView.dispose();
-		new MapGridController();
+		new ManageMapController();
 		// show load game window....
 		
 		createGameView.dispose();

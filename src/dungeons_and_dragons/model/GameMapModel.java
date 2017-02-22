@@ -90,10 +90,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 *Variable having point locations of enemies which will be defined later
 	 * 
-	 * @type HashMap
+	 * @type ArrayList
 	 */
 	@Expose
-	private HashMap<Point,CharacterModel> map_enemy_loc ;
+	private ArrayList<Point> map_enemy_loc ;
 	
 	/**
 	 * Variable for exit wall location in map. 
@@ -120,7 +120,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		this.map_exit_door = new Point(-1,-1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new HashMap<Point,CharacterModel>();
+		this.map_enemy_loc = new ArrayList<Point>();
 	}
 
 
@@ -132,7 +132,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		this.map_exit_door = new Point(-1,-1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new HashMap<Point,CharacterModel>();
+		this.map_enemy_loc = new ArrayList<Point>();
 	}
 
 
@@ -254,7 +254,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @return the map_enemy_loc
 	 */
-	public HashMap<Point, CharacterModel> getMap_enemy_loc() {
+	public ArrayList<Point> getMap_enemy_loc() {
 		return map_enemy_loc;
 	}
 
@@ -263,8 +263,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param map_enemy_loc the map_enemy_loc to set
 	 */
 	public void setMap_enemy_loc(Point position,CharacterModel character) {
-		if(!this.map_enemy_loc.containsKey(position))
-		this.map_enemy_loc.put(position, character);
+		if(!this.map_enemy_loc.contains(position))
+		this.map_enemy_loc.add(position);
 		setChanged();
 		notifyObservers(this);
 		
