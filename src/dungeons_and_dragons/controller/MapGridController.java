@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
@@ -191,6 +192,15 @@ public class MapGridController implements ActionListener {
 		}
 		
 		else if (e.getSource().equals(map_view.submit)) {
+			if(this.map_view.map_name_textfield.getText().equals(""))
+			{
+				JOptionPane.showOptionDialog(null,
+						"Please Enter Valid Name",
+						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+						null);
+				return;
+			}
+			try{
 			Point store = new Point();
 			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
@@ -211,6 +221,14 @@ public class MapGridController implements ActionListener {
 			
 			this.map_model.setMap_size(store);
 			this.map_view.setButtonListener(this);
+			}
+			catch(NumberFormatException ex){
+				JOptionPane.showOptionDialog(null,
+						"Please Enter Valid Height/Width",
+						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+						null);
+				
+			}
 		} else if (e.getSource().equals(map_view.map_entry_door)) {
 			this.map_model.setMap_object_color_type(Game_constants.ENTRY_DOOR);
 

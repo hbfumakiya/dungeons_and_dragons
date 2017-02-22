@@ -218,7 +218,7 @@ public class MapGridView extends JFrame implements Observer {
 
 		listPane.add(map_width);
 
-		listPane.add(empty);
+		listPane.add(back_button);
 
 		listPane.add(map_name_textfield);
 
@@ -319,7 +319,7 @@ public class MapGridView extends JFrame implements Observer {
 
 		listPane.add(map_width);
 
-		listPane.add(empty);
+		listPane.add(back_button);
 
 		listPane.add(map_name_textfield);
 
@@ -485,7 +485,7 @@ public class MapGridView extends JFrame implements Observer {
 		RightInfoListPane.add(map_wall_color);
 		RightInfoListPane.add(map_remove);
 		RightInfoListPane.add(new JLabel());
-		RightInfoListPane.add(back_button);
+		//RightInfoListPane.add(empty);
 		if(t ==0)
 		{
 		RightInfoListPane.add(save_button);
