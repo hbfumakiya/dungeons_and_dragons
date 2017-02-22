@@ -45,10 +45,11 @@ public class MapValidator {
 	 */
 	private boolean isSafe(MapButton maps[][], int x, int y) {
 		// if (x,y outside maze) return false
+		
 		try{
 			if(x >= 0 && x < this.map_model.getMap_size().x && y >= 0 && y < this.map_model.getMap_size().y){
-				if(maps[x][y].getPointValue() == obj_value || maps[x][y].getPointValue() == 1){
-					if(maps[x][y].getDirty_flag() == 0){
+				if(maps[x][y].getPointValue() == obj_value || maps[x][y].getPointValue() == 1 && maps[x][y].getDirty_flag() == 0){
+						{
 							return true;
 						}
 					}
@@ -59,10 +60,6 @@ public class MapValidator {
 			System.exit(0);
 		}
 		return false;
-		
-		/*
-		return (x >= 0 && x < this.map_model.getMap_size().x && y >= 0 && y < this.map_model.getMap_size().y
-				&& maps[x][y].getPointValue() == 1 && maps[x][y].getDirty_flag() == 0);*/
 	}
 
 	/**
@@ -80,16 +77,26 @@ public class MapValidator {
 	public boolean findPath(Point p, String object) {
 		MapButton maps[][] = this.map_view.maps;
 		
+		//should skip enemy object while traversing through to find exit door
 		if (object == "wall") {
 			obj_value = 2;
-		} else if (object == "enemy") {
-			obj_value = 8;
+		}
+		//should not skip wall objects as they are obstacles and help us find if there is enemy inscribed inside the path of the game or not
+		else if (object == "enemy") {
+			//any random number
+			obj_value = -1;
+		}
+		
+		for(int i = 0;i<this.map_model.getMap_size().x;i++){
+			for(int j=0;j<this.map_model.getMap_size().y;j++){
+				maps[i][j].setDirty_flag(0);
+			}
 		}
 
 		if (findPathUtil(maps, this.map_model.getMap_entry_door().x, this.map_model.getMap_entry_door().y,
 				p) == false) {
 			{
-				System.out.print("Solution doesn't exist");
+				System.out.println("Solution doesn't exist");
 				return false;
 			}
 

@@ -76,27 +76,29 @@ public class MapGridController implements ActionListener {
 			else{
 					if(new MapValidator(this.map_view,this.map_model).findPath(this.map_model.getMap_exit_door(),"wall"))
 					{
+						
+						//check if there are indeed enemies in the map of all that are defined
 						int count = 0;
 						Set mapSet = (Set)this.map_model.getMap_enemy_loc().keySet();
 						Iterator mapIterator = mapSet.iterator();
 						
-						/*while(mapIterator.hasNext())
+						while(mapIterator.hasNext())
 						{
-							if(new MapValidator(this.map_view,this.map_model).findPath((Point)mapIterator.next(),"enemy"))
+							Point p = (Point)mapIterator.next();
+							if(new MapValidator(this.map_view,this.map_model).findPath(p,"enemy"))
 							{
 								count++;
 							}
-						}*/
+						}
 						if(count == this.map_model.getMap_enemy_loc().keySet().size())
 						{
 							System.out.println("In MapGridController.actionPerformed and ready for save button as map is valid");
 							//this.map_model.save();
 						}
 					}
-					else
-					{
-						this.map_model.setErrorMessage("It is an invalid map as there should be one path defined to reach from entry to exit door");
-					}
+				//need to manipulate error message window	
+				this.map_model.setErrorMessage("It is an invalid map as there should be one path defined to reach from entry to exit door");
+					
 			}
 			
 		}
