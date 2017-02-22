@@ -435,36 +435,38 @@ public class MapGridView extends JFrame implements Observer {
 		
 		if(Door.x == 0 && Door.y == 0)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, ((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 6, 0, 0, ((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			//maps[i][j].setBorder(BorderFactory.createLineBorder);
 		}
 		else if(Door.x == width_height.x-1 && Door.y == 0)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 6, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 		else if(Door.y == width_height.y-1 && Door.x == 0)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 0, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 		else if(Door.x == width_height.x-1 && Door.y == width_height.y-1)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 		else if(Door.x == 0)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 		else if(Door.y == 0)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 		else if(Door.x == width_height.x-1)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 			
 		}
 		else if(Door.y == width_height.y-1)
 		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 	}
 
