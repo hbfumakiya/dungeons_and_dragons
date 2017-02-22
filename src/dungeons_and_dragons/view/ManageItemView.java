@@ -93,7 +93,7 @@ public class ManageItemView extends JFrame implements View {
 
 		this.buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-		this.addItemButton = new JButton("Add Map");
+		this.addItemButton = new JButton("Add Item");
 		this.buttonPanel.add(this.addItemButton);
 
 		// grid panel

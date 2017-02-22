@@ -9,6 +9,7 @@ import java.util.Observable;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
@@ -262,7 +263,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	/**
 	 * @param map_enemy_loc the map_enemy_loc to set
 	 */
-	public void setMap_enemy_loc(Point position,CharacterModel character) {
+	public void setMap_enemy_loc(Point position) {
 		if(!this.map_enemy_loc.contains(position))
 		this.map_enemy_loc.add(position);
 		setChanged();
@@ -330,6 +331,12 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		try {
+			FileHelper.updateMap(this);
+		} catch (IOException | NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -415,6 +422,31 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	public void setMaps(MapButton maps[][]) {
 		this.maps = maps;
+	}
+
+
+	public void resetAll() {
+		// TODO Auto-generated method stub
+		this.map_walls.removeAll(map_walls);
+		this.map_chest.setLocation(-1,-1);
+		this.map_entry_door.setLocation(-1,-1);
+		this.map_exit_door.setLocation(-1,-1);
+		//this.map_id = 0;
+		//this.map_name = ;
+		this.map_enemy_loc.removeAll(map_enemy_loc);
+	}
+
+	/**
+	 * This Variable id to check whether update or save should be there in view
+	 */
+	private int finder; //if finder = 0 save else if finder  = 1 then update
+
+	public void setFinder(int finder) {
+		// TODO Auto-generated method stub
+		this.finder = finder;
+	}
+	public int getFinder() {
+		return this.finder;
 	}
 
 	

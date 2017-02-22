@@ -42,7 +42,7 @@ public class MapGridController implements ActionListener {
 	 * All the events of view are registered in constructor
 	 */
 
-	public static int remover = 0;
+	public static int finder = 0;
 
 	public MapGridController() {
 		Point p = new Point();
@@ -54,6 +54,23 @@ public class MapGridController implements ActionListener {
 		this.map_model.addObserver(map_view);
 		this.map_view.setListener(this);
 	}
+	
+	public MapGridController(GameMapModel map) {
+		Point p = new Point();
+		p.x = 5;
+		p.y = 5;
+		this.map_model = map;
+		this.map_view = new MapGridView(map);
+
+		this.map_model.addObserver(map_view);
+		this.map_view.setListener(this);
+		this.map_view.setButtonListener(this);
+		this.map_model.entryFlag = 1;
+		this.map_model.exitFlag = 1;
+		
+		finder = 1;
+		this.map_model.setFinder(finder);
+	}
 
 	/**
 	 * Action event of all the events are handled here
@@ -62,8 +79,8 @@ public class MapGridController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(map_view.back_button)) {
-			new CreateGameController();
-			map_view.dispose();
+			new ManageMapController();
+			this.map_view.dispose();
 		} else if (e.getSource().equals(map_view.save_button)) {
 			/* validation needs to be done */
 			if (this.map_model.getMap_entry_door().x == -1 && this.map_model.getMap_entry_door().y == -1) {
@@ -116,10 +133,82 @@ public class MapGridController implements ActionListener {
 				}
 			}
 
-		} else if (e.getSource().equals(map_view.submit)) {
+		} else if(e.getSource().equals(map_view.update_button))
+		{
+			
+			if (this.map_model.getMap_entry_door().x == -1 && this.map_model.getMap_entry_door().y == -1) {
+				this.map_model.setErrorMessage("It is an invalid map as there should be one entry door in the map");
+			} else if (this.map_model.getMap_exit_door().x == -1 && this.map_model.getMap_exit_door().y == -1) {
+				this.map_model.setErrorMessage("It is an invalid map as there should be one exit door in the map");
+			}
+
+			else {
+				if (new MapValidator(this.map_view, this.map_model).findPath(this.map_model.getMap_exit_door(),
+						"wall")) {
+
+					// check if there are indeed enemies in the map of all that
+					// are defined
+					int count = 0;
+					//ArrayList test = new ArrayList();
+					Set mapSet = new HashSet(this.map_model.getMap_enemy_loc());
+					Iterator mapIterator = mapSet.iterator();
+					System.out.println("check1");
+					while (mapIterator.hasNext()) {
+						System.out.println("check2");
+						Point p = (Point) mapIterator.next();
+						if (new MapValidator(this.map_view, this.map_model).findPath(p, "enemy")) {
+							count++;
+							System.out.println("check3");
+						}
+					}
+					if (count == this.map_model.getMap_enemy_loc().size()) {
+						System.out.println("check4");
+						System.out.println(
+								"In MapGridController.actionPerformed and ready for update button as map is valid");
+						
+						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
+						this.map_model.update();
+						
+						new ManageMapController();
+						this.map_view.dispose();
+					}
+					
+				}
+				// need to manipulate error message window
+				else {
+					// this.map_view.setListener(this);
+					// this.map_view.setButtonListener(this);
+					// this.map_model.setErrorMessage("It is an invalid map as
+					// there should be one path defined to reach from entry to
+					// exit door");
+					JOptionPane.showOptionDialog(null,
+							"It is an invalid map as there should be one path defined to reach from entry to exit door",
+							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+							null);
+
+				}
+			}
+		}
+		
+		else if (e.getSource().equals(map_view.submit)) {
 			Point store = new Point();
 			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
+			
+			if(this.map_model.getMap_size().getX() != store.x || this.map_model.getMap_size().getY() != store.y)
+			{
+				//to reset the map grid if they have changed the height or width of map 
+			this.map_model.resetAll();
+			
+			}
+			{
+				//So that at time of loading same height and width all entry door and exit door remain in same place
+				this.map_model.entryFlag = 1;
+				this.map_model.exitFlag = 1;
+			}
+			
+			this.map_model.setFinder(finder);
+			
 			this.map_model.setMap_size(store);
 			this.map_view.setButtonListener(this);
 		} else if (e.getSource().equals(map_view.map_entry_door)) {
@@ -175,7 +264,7 @@ public class MapGridController implements ActionListener {
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
 
-					this.map_model.setMap_enemy_loc(position, null);
+					this.map_model.setMap_enemy_loc(position);
 					this.map_view.setButtonListener(this);
 				}
 

@@ -23,6 +23,7 @@ import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.ManageItemView;
 import dungeons_and_dragons.view.ManageMapView;
+import dungeons_and_dragons.view.MapGridView;
 import dungeons_and_dragons.view.MapView;
 
 /**
@@ -84,15 +85,16 @@ public class ManageMapController implements ActionListener {
 //			JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
 
 		}
-//		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
-//			GameButton button = (GameButton) actionEvent.getSource();
-//			int itemId = button.getId();	
-//			GameMapModel item = (GameMapModel) button.getSource();
-//		    
-//			
-//			//new ItemController(item);
-//			manageMapView.dispose();
-//		}
+		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+			GameButton button = (GameButton) actionEvent.getSource();
+			int itemId = button.getId();	
+			GameMapModel map = (GameMapModel) button.getSource();
+		    
+			
+			new MapGridController(map);
+			//x.setListener(this);
+			manageMapView.dispose();
+		}
 	}
 
 }

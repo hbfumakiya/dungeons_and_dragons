@@ -94,7 +94,7 @@ public class ManageMapView extends JFrame implements View {
 
 		this.buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-		this.addItemButton = new JButton("Add Item");
+		this.addItemButton = new JButton("Add Map");
 		this.buttonPanel.add(this.addItemButton);
 
 		// grid panel
