@@ -78,6 +78,15 @@ public class ManageItemController implements ActionListener {
 			JOptionPane.showMessageDialog(this.manageItemView, sb.toString());
 
 		}
+		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+			GameButton button = (GameButton) actionEvent.getSource();
+			int itemId = button.getId();	
+			ItemModel item = (ItemModel) button.getSource();
+		    
+			
+			new ItemController(item);
+			manageItemView.dispose();
+		}
 	}
 
 }

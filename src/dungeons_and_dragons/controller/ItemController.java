@@ -50,6 +50,9 @@ public class ItemController implements ActionListener {
 		
 		this.item_model = itemModel; 
 		this.item_view = new ItemView(itemModel);
+		this.item_model.addObserver(item_view);
+		this.item_view.setListener(this);
+		this.item_view.setVisible(true);
 	}
 	
 	/**
@@ -84,6 +87,22 @@ public class ItemController implements ActionListener {
 		}
 		else if(arg0.getSource().equals(item_view.back_button))
 		{	
+			new ManageItemController();
+			
+			item_view.dispose();
+		}
+		else if(arg0.getSource().equals(item_view.update_item))
+		{	
+			String item_name = item_view.item_name_field.getText();
+			item_model.setItem_name(item_name);
+			String item_type = (String) item_view.item_type_field.getSelectedItem();
+			item_model.setItem_type(item_type);
+			String item_ability = (String) item_view.item_ability_field.getSelectedItem();
+			item_model.setItem_ability(item_ability);
+			int item_point = Integer.parseInt(item_view.item_score_field.getText());
+			item_model.setItem_point(item_point);
+			item_model.update();
+			
 			new ManageItemController();
 			
 			item_view.dispose();

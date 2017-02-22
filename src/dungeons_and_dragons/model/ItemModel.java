@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
@@ -252,6 +253,22 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	@Override
 	public void update() {
+			
+		try {
+			
+			
+			
+			FileHelper.updateItem(this);
+		} catch (JsonSyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
