@@ -84,6 +84,8 @@ public class ItemController implements ActionListener {
 			item_model.setItem_point(item_point);
 			//item_model.itemTypeSelected(item_type);
 			item_model.save();
+			new ManageItemController();			
+			item_view.dispose();
 		}
 		else if(arg0.getSource().equals(item_view.back_button))
 		{	

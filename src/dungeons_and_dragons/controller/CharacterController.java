@@ -35,7 +35,14 @@ public class CharacterController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(view.save)) {
 			String character_name = this.view.charactername_textfield.getText();
-			model.setCharacter_name(character_name);
+			//model.setCharacter_name(character_name);
+			if(character_name.equals("")){
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
+			}
+			else
+			{
+				model.setCharacter_name(character_name);
+			}
 			String level = this.view.level_textfield.getText();
 			try {
 				int i = Integer.parseInt(level);
@@ -65,7 +72,7 @@ public class CharacterController implements ActionListener {
 				new ManageCharacterController();
 				this.view.dispose();
 			} catch (NumberFormatException ex) {
-				JOptionPane.showMessageDialog(new JFrame(), "Please enter integer value in level");
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
 			}
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
