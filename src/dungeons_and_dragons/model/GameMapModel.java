@@ -236,7 +236,16 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param map_entry_door the map_entry_door to set
 	 */
 	public void setMap_entry_door(Point map_entry_door) {
+		
+		if((map_entry_door.x == 0 && map_entry_door.y!=0) 
+				|| (map_entry_door.x != 0 && map_entry_door.y == 0) 
+				|| (map_entry_door.x == map_size.getX()-1 && map_entry_door.y!=map_size.getY()-1) 
+				|| (map_entry_door.x != map_size.getX()-1 && map_entry_door.y == map_size.getY()-1)
+				|| (map_entry_door.x == 0 && map_entry_door.y==0)
+				|| (map_entry_door.x == map_size.getX()-1 && map_entry_door.y==map_size.getY()-1))
+		{
 		this.map_entry_door = map_entry_door;
+		}
 		setChanged();
 		notifyObservers(this);
 	}
@@ -274,7 +283,15 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param map_exit_door the map_exit_door to set
 	 */
 	public void setMap_exit_door(Point map_exit_door) {
+		if((map_exit_door.x == 0 && map_exit_door.y!=0) 
+				|| (map_exit_door.x != 0 && map_exit_door.y == 0) 
+				|| (map_exit_door.x == map_size.getX()-1 && map_exit_door.y!=map_size.getY()-1) 
+				|| (map_exit_door.x != map_size.getX()-1 && map_exit_door.y == map_size.getY()-1)
+				|| (map_exit_door.x == 0 && map_exit_door.y==0)
+				|| (map_exit_door.x == map_size.getX()-1 && map_exit_door.y==map_size.getY()-1))
+		{
 		this.map_exit_door = map_exit_door;
+		}
 		setChanged();
 		notifyObservers(this);
 	}
