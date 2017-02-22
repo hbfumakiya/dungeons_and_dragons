@@ -11,20 +11,34 @@ import com.google.gson.annotations.Expose;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapButton;
 
 /**
  * 
- * @author mihir
+ * @author Mihir
  * @date 23-01-2017
  * 
  */
 
 public class GameMapModel extends Observable implements Model<GameMapModel>{
 
-	
+	/**
+	 * To restrict the map to be filled by default with entry door
+	 */
 	public int entryFlag=0;
+	/**
+	 * To restrict the map to be filled by default with exit door
+	 */
 	public int exitFlag=0;
+	
+	/**
+	 * Variable used to show a error message in case received
+	 */
 	private String errorMessage;
+	
+	//tejas
+	private MapButton maps[][] =null;
+	
 	/**
 	 * Variable for identity of map. Value of all these map must be unique.
 	 * 
@@ -376,6 +390,16 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		setChanged();
 		notifyObservers(this);
 		
+	}
+
+
+	public MapButton[][] getMaps() {
+		return maps;
+	}
+
+
+	public void setMaps(MapButton maps[][]) {
+		this.maps = maps;
 	}
 
 	

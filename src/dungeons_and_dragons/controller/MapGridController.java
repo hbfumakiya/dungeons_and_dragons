@@ -1,17 +1,15 @@
-/**
- * 
- */
 package dungeons_and_dragons.controller;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
-
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapValidator;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
@@ -40,7 +38,7 @@ public class MapGridController implements ActionListener {
 	 * Also view is binded to observer.
 	 * <p>
 	 * All the events of view are registered in constructor
-	 */
+	 */	
 	public MapGridController() {
 		Point p = new Point();
 		p.x = 5;
@@ -62,12 +60,44 @@ public class MapGridController implements ActionListener {
 		{
 			new CreateGameController();
 			map_view.dispose();
-			
 		}
 		else if(e.getSource().equals(map_view.save_button))
 		{	
 			/*validation needs to be done*/
-			this.map_model.save();
+			if(this.map_model.getMap_entry_door().x==-1 && this.map_model.getMap_entry_door().y==-1)
+			{
+				this.map_model.setErrorMessage("It is an invalid map as there should be one entry door in the map");
+			}
+			else if(this.map_model.getMap_exit_door().x==-1 && this.map_model.getMap_exit_door().y==-1)
+			{
+				this.map_model.setErrorMessage("It is an invalid map as there should be one exit door in the map");
+			}
+			
+			else{
+					if(new MapValidator(this.map_view,this.map_model).findPath(this.map_model.getMap_exit_door(),"wall"))
+					{
+						int count = 0;
+						Set mapSet = (Set)this.map_model.getMap_enemy_loc().keySet();
+						Iterator mapIterator = mapSet.iterator();
+						
+						/*while(mapIterator.hasNext())
+						{
+							if(new MapValidator(this.map_view,this.map_model).findPath((Point)mapIterator.next(),"enemy"))
+							{
+								count++;
+							}
+						}*/
+						if(count == this.map_model.getMap_enemy_loc().keySet().size())
+						{
+							System.out.println("In MapGridController.actionPerformed and ready for save button as map is valid");
+							//this.map_model.save();
+						}
+					}
+					else
+					{
+						this.map_model.setErrorMessage("It is an invalid map as there should be one path defined to reach from entry to exit door");
+					}
+			}
 			
 		}
 		else if(e.getSource().equals(map_view.submit))
@@ -113,11 +143,12 @@ public class MapGridController implements ActionListener {
 			Point position = new Point();
 			position.x =  ((MapButton)e.getSource()).getxPos();
 			position.y =  ((MapButton)e.getSource()).getyPos();
-			
+			String mes;
 			
 			if(this.map_model.getMap_object_color_type() == Game_constants.WALLS)
 				{
-					if(validateMapForExisting("wall",position))
+					mes = validateMapForExisting("wall",position);
+					if(mes==null)
 					{
 						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
 							this.map_model.removeEnemy(position);
@@ -129,15 +160,18 @@ public class MapGridController implements ActionListener {
 							this.map_model.removeExitDoor(position);
 								
 						
-						
 					this.map_model.setMap_wall(position);
 					this.map_view.setButtonListener(this);
+					}
+					else
+					{
+						confirmDialogue(mes);
 					}
 				}			
 			else if(this.map_model.getMap_object_color_type() == Game_constants.ENEMIES)
 				{
-				
-					if(validateMapForExisting("Enemy",position))
+					mes = validateMapForExisting("Enemy",position);
+					if(mes==null)
 					{
 						
 						if(this.map_model.getMap_walls().contains(position))
@@ -153,15 +187,17 @@ public class MapGridController implements ActionListener {
 						
 					this.map_model.setMap_enemy_loc(position,null);
 					this.map_view.setButtonListener(this);
-//						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
-//							this.map_model.removeEnemy(position);
-//							else
-//					this.map_model.setMap_enemy_loc(position,null);
+					}
+					else
+					{
+						confirmDialogue(mes);
 					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR)
 				{
-					if(validateMapForExisting("Entry Door",position)){
+					mes = validateMapForExisting("Entry Door",position);
+					if(mes==null)
+					{
 						
 						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
 							this.map_model.removeEnemy(position);
@@ -178,10 +214,15 @@ public class MapGridController implements ActionListener {
 							this.map_model.setMap_entry_door(position);
 							this.map_view.setButtonListener(this);
 					}
+					else
+					{
+						confirmDialogue(mes);
+					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR)
 				{
-					if(validateMapForExisting("Exit Door",position)){
+					mes = validateMapForExisting("Exit Door",position);
+					if(mes==null){
 						
 						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
 							this.map_model.removeEnemy(position);
@@ -195,12 +236,17 @@ public class MapGridController implements ActionListener {
 					this.map_model.exitFlag = 1;
 					this.map_model.setMap_exit_door(position);
 					this.map_view.setButtonListener(this);
-					
+					}
+					else
+					{
+						confirmDialogue(mes);
 					}
 				}
 			else if(this.map_model.getMap_object_color_type() == Game_constants.CHEST)
 				{	
-					if(validateMapForExisting("Chest",position)){
+					mes = validateMapForExisting("Chest",position);
+					if(mes==null)
+					{
 						if(this.map_model.getMap_enemy_loc().keySet().contains(position))
 							this.map_model.removeEnemy(position);
 						else if(this.map_model.getMap_entry_door().equals(position))
@@ -212,6 +258,10 @@ public class MapGridController implements ActionListener {
 						
 							this.map_model.setMap_chest(position);
 							this.map_view.setButtonListener(this);
+					}
+					else
+					{
+						confirmDialogue(mes);
 					}
 				}
 			else if(this.map_model.getMap_object_color_type()==null){
@@ -225,28 +275,27 @@ public class MapGridController implements ActionListener {
 				else if(this.map_model.getMap_chest().equals(position))
 				{
 					this.map_model.removeChest(position);
-				this.map_model.callObservers();
-				this.map_view.setButtonListener(this);
+					this.map_model.callObservers();
+					this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_entry_door().equals(position))
 				{
-				this.map_model.removeEntryDoor(position);
-				this.map_model.callObservers();
-				this.map_view.setButtonListener(this);
+					this.map_model.removeEntryDoor(position);
+					this.map_model.callObservers();
+					this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_exit_door().equals(position))
 				{
 					this.map_model.removeExitDoor(position);
-				this.map_model.callObservers();
-				this.map_view.setButtonListener(this);
+					this.map_model.callObservers();
+					this.map_view.setButtonListener(this);
 				}
 				else if(this.map_model.getMap_walls().contains(position))
 				{
 					this.map_model.removeWall(position);
-				this.map_model.callObservers();
-				this.map_view.setButtonListener(this);
+					this.map_model.callObservers();
+					this.map_view.setButtonListener(this);
 				}
-				
 				
 			}
 			
@@ -256,66 +305,63 @@ public class MapGridController implements ActionListener {
 	}
 
 	/**
-	 * Function used to check if there is any object already present in the position mentioned
-	 * @param object 
+	 * Function used to check if the object is already present in the position or not
+	 * 
+	 * @param object
 	 * @param position
+	 * @return String
 	 */
-	private boolean validateMapForExisting(String object, Point position) {
-		boolean validate = true;
+	private String validateMapForExisting(String object, Point position) {
+		
+		String message = null;
 		if(this.map_model.getMap_chest().equals(position))
 		{
-			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace chest with "+object);
-			if(confirm == 0)
-				validate = true;
-			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
-			else
-				validate = false;
-			
-			
+			message = "Do you want to replace chest with "+object;
 		}
 		else if(this.map_model.getMap_entry_door().equals(position))
 		{
-			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Entry Door with "+object);
-			if(confirm == 0)
-				validate = true;
-			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
-			else
-				validate = false;
+			message = "Do you want to replace Entry Door with "+object;
 		}
 		else if(this.map_model.getMap_exit_door().equals(position))
 		{
-			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Exit Door with "+object);
-			if(confirm == 0)
-				validate = true;
-			//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
-			else
-				validate = false;
+			message = "Do you want to replace Exit Door with "+object;
 		}
 		else
 		{
-				if(this.map_model.getMap_walls().contains(position)){
-					int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Wall with "+object);
-					if(confirm == 0)
-						validate = true;
-					//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
-					else
-						validate = false;
-
-			}
-				if(this.map_model.getMap_enemy_loc().keySet().contains(position)){
-					int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace Enemy with "+object);
-					if(confirm == 0)
-						validate = true;
-					//this.map_model.setErrorMessage("You cannot place a"+object+"here as chest is already present");
-					else
-						validate = false;
-
-			}
+				if(this.map_model.getMap_walls().contains(position))
+				{
+					message = "Do you want to replace Wall with "+object;
+				}
+				if(this.map_model.getMap_enemy_loc().keySet().contains(position))
+				{
+					message = "Do you want to replace Enemy with "+object;
+				}
 		}
-		return validate;
+		return message;
 		
 	}
-
+	
+	
+	/**
+	 * Used to show confirmation message
+	 * @param message
+	 * @return boolean
+	 */
+	private boolean confirmDialogue(String message){
+		boolean validate = true;
+		int confirm = JOptionPane.showConfirmDialog(this.map_view,message);
+		if(confirm == 0)
+			{
+				validate = true;
+			}
+		else
+			{
+				validate = false;
+			}
+		
+		return validate;
+	}
+	
 
 		
 	}

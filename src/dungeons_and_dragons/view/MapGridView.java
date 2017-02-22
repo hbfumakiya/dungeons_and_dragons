@@ -116,7 +116,7 @@ public class MapGridView extends JFrame implements Observer {
 	 * 
 	 * @type JButton
 	 */
-	MapButton[][] maps;
+	public MapButton[][] maps;
 	
 	public JRadioButton map_entry_door;
 	public JRadioButton map_exit_door;
@@ -278,6 +278,7 @@ public class MapGridView extends JFrame implements Observer {
 		for (int i = 0; i < width_height.x; i++) {	
 			for(int j = 0;j<width_height.y;j++) {
 				maps[i][j] = new MapButton();
+				maps[i][j].setPointValue(1);
 				maps[i][j].setxPos(i);
 				maps[i][j].setyPos(j);
 				Point p = new Point();
@@ -287,9 +288,11 @@ public class MapGridView extends JFrame implements Observer {
 				if(map_walls != null && map_walls.contains(p))
 				{
 					maps[i][j].setBackground(Game_constants.WALLS);
+					maps[i][j].setPointValue(0);
 				}
 				else if(character != null && character.containsKey(p)){
 					maps[i][j].setBackground(Game_constants.ENEMIES);
+					maps[i][j].setPointValue(2);
 				}
 				else if(chest != null && chest.equals(p)){
 					maps[i][j].setBackground(Game_constants.CHEST);
@@ -303,6 +306,8 @@ public class MapGridView extends JFrame implements Observer {
 				LeftGridMapPane.add(maps[i][j]);
 			}
 		}
+		
+		
 		leftGridPanel.add(LeftGridMapPane);
 		
 

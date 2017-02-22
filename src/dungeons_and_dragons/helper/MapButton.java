@@ -16,6 +16,13 @@ public class MapButton extends JButton {
 	private int xPos;
 	
 	private int yPos;
+	
+	//0 if it is wall and 2 if it is an enemy
+	private int pointValue = 1;
+	
+	private int dirty_flag = 0;
+	
+	
 
 	/**
 	 * @return the xPos
@@ -51,5 +58,21 @@ public class MapButton extends JButton {
 
 	public void setButton_type(String button_type) {
 		this.button_type = button_type;
+	}
+
+	public int getPointValue() {
+		return pointValue;
+	}
+
+	public void setPointValue(int pointValue) {
+		this.pointValue = pointValue;
+	}
+
+	public int getDirty_flag() {
+		return dirty_flag;
+	}
+
+	public void setDirty_flag(int dirty_flag) {
+		this.dirty_flag = dirty_flag;
 	}
 }
