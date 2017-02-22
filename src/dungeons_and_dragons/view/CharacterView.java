@@ -31,6 +31,7 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
@@ -122,7 +123,7 @@ public class CharacterView extends JFrame implements Observer, View {
 	 * @type JButton
 	 */
 	public JButton back;
-	
+	public JButton rolldice;
 	public JList<ItemModel> backPackList;
 
 	public JButton add;
@@ -148,6 +149,9 @@ public class CharacterView extends JFrame implements Observer, View {
 
 	}
 
+	public CharacterView(CharacterModel characterModel){
+		
+	}
 	/**
 	 * initialize character window
 	 * 
@@ -156,7 +160,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		// frame=new JFrame("Character window");
 		this.setTitle(this.window_title);
-		this.setPreferredSize(new Dimension(320, 510));
+		this.setPreferredSize(new Dimension(320, 580));
 		this.setResizable(false);
 		this.setLayout(null);
 
@@ -168,6 +172,7 @@ public class CharacterView extends JFrame implements Observer, View {
 		this.add(charactername_textfield);
 
 		// helmet
+		
 		additem_label = new JLabel("Select Helmet");
 		additem_label.setBounds(10, 40, 100, 25);
 		this.add(additem_label);
@@ -280,12 +285,16 @@ public class CharacterView extends JFrame implements Observer, View {
 		backPackPane.setBounds(150, 280, 150, 150);
 		this.add(backPackPane);
 		
+		rolldice = new JButton("Roll Dice");
+		rolldice.setBounds(110, 445, 100, 25);
+		this.add(rolldice);
+		
 		back = new JButton("Back");
-		back.setBounds(20, 445, 80, 25);
+		back.setBounds(20, 500, 80, 25);
 		this.add(back);
 
 		save = new JButton("Save");
-		save.setBounds(110, 445, 80, 25);
+		save.setBounds(110, 500, 80, 25);
 		this.add(save);
 		
 		// Display the window.
@@ -304,6 +313,7 @@ public class CharacterView extends JFrame implements Observer, View {
 		// TODO Auto-generated method stub
 		 this.save.addActionListener(actionListener);
 		 this.back.addActionListener(actionListener);
+		 this.rolldice.addActionListener(actionListener);
 	}
 
 	class ItemRenderer extends BasicComboBoxRenderer {
@@ -345,5 +355,6 @@ public class CharacterView extends JFrame implements Observer, View {
 			return this;
 		}
 	}
+	
 
 }

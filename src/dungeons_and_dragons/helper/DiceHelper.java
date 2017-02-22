@@ -11,8 +11,6 @@ public class DiceHelper {
 	public DiceHelper() {
 		// TODO Auto-generated constructor stub
 		
-		
-		
 	}
 	
 	private int rollD6(){

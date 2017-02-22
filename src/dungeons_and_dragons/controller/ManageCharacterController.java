@@ -13,6 +13,7 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.ManageCharacterView;
 
@@ -71,6 +72,14 @@ public class ManageCharacterController implements ActionListener {
 			if(character != null) {
 				new CharacterInventoryController(character);
 			}
+		}
+		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+			GameButton button = (GameButton) actionEvent.getSource();
+			int itemId = button.getId();	
+			CharacterModel item = (CharacterModel) button.getSource();		    
+			
+			new CharacterController(item);
+			manageCharacterView.dispose();
 		}
 	}
 

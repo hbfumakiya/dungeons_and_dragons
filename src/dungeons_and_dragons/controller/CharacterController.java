@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterView;
+import dungeons_and_dragons.view.ItemView;
 
 /**
  * This class call character controller
@@ -31,16 +32,23 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
+	public CharacterController(CharacterModel characterModel) {
+
+		this.model = characterModel;
+		this.view = new CharacterView(characterModel);
+		this.model.addObserver(view);
+		this.view.setActionListener(this);
+		this.view.setVisible(true);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(view.save)) {
 			String character_name = this.view.charactername_textfield.getText();
-			//model.setCharacter_name(character_name);
-			if(character_name.equals("")){
+			// model.setCharacter_name(character_name);
+			if (character_name.equals("")) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
-			}
-			else
-			{
+			} else {
 				model.setCharacter_name(character_name);
 			}
 			String level = this.view.level_textfield.getText();
@@ -64,18 +72,28 @@ public class CharacterController implements ActionListener {
 				items.add(weapon);
 				items.add(shield);
 				model.setItems(items);
-				
-				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
-				model.setBackPackItems(backPackList);
 
-				model.save();
-				new ManageCharacterController();
-				this.view.dispose();
+				if (this.view.backPackList.getSelectedIndices().length > 0) {
+					ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+					model.setBackPackItems(backPackList);
+					model.save();
+					new ManageCharacterController();
+					this.view.dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "Please select backpack items");
+				}
+				
+				
 			} catch (NumberFormatException ex) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
 			}
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
+		}
+		else if(e.getSource().equals(view.rolldice)){
+			
 		}
 	}
 
