@@ -1,7 +1,7 @@
 package dungeons_and_dragons.helper;
 
+import java.awt.Point;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,8 +15,11 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
-import com.sun.xml.internal.ws.server.sei.EndpointArgumentsBuilder;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
 
 import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.model.CharacterModel;
@@ -98,7 +101,10 @@ public class FileHelper {
 	
 		
 		// store object to json
-		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
 		
@@ -126,7 +132,10 @@ public class FileHelper {
 		Reader reader = new FileReader(MAP_FILE);
 
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -170,7 +179,9 @@ public class FileHelper {
 				Writer file_writer = new FileWriter(ITEM_FILE);
 
 				// store object to json
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
 				gson.toJson(map_list, file_writer);
 
@@ -399,4 +410,27 @@ public class FileHelper {
 			}
 		}
 	}
+	
+	
+	public static class PointAdapter extends TypeAdapter<Point> {
+	     public Point read(JsonReader reader) throws IOException {
+	       if (reader.peek() == JsonToken.NULL) {
+	         reader.nextNull();
+	         return null;
+	       }
+	       String xy = reader.nextString();
+	       String[] parts = xy.split(",");
+	       int x = Integer.parseInt(parts[0]);
+	       int y = Integer.parseInt(parts[1]);
+	       return new Point(x, y);
+	     }
+	     public void write(JsonWriter writer, Point value) throws IOException {
+	       if (value == null) {
+	         writer.nullValue();
+	         return;
+	       }
+	       String xy = (int)value.getX() + "," + (int)value.getY();
+	       writer.value(xy);
+	     }
+	   }
 }

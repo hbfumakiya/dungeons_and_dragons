@@ -10,3 +10,11 @@
 [ 02:31:32.274 21-02-2017  ERROR ] res\character.json (The system cannot find the file specified)
 [ 02:31:32.936 21-02-2017  ERROR ] res\character.json (The system cannot find the file specified)
 [ 02:31:32.936 21-02-2017  ERROR ] res\character.json (The system cannot find the file specified)
+[ 11:32:18.220 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:35:02.058 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:35:15.617 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:35:23.338 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:35:48.529 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:38:44.897 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:39:31.022 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
+[ 11:43:23.684 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size

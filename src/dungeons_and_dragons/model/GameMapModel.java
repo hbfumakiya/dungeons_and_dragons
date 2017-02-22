@@ -299,14 +299,12 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
 		try {
 			this.setCurrentId();
-			System.out.println(this.map_name);
-			System.out.println(this.map_chest.getX());
+			System.out.println("HGellaf"+this.getMap_name());
+			System.out.println("fsd "+this.map_chest.getX());
 			FileHelper.saveMap(this);
 		} catch (JsonSyntaxException  | IOException e) {
-			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
@@ -315,7 +313,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
 		ArrayList<GameMapModel> alldata = this.getData();
-		if (null != alldata) {
+		if (alldata != null) {
 			this.map_id = alldata.get(alldata.size() - 1).getMap_id() + 1;
 		} else {
 			this.map_id = 1;
