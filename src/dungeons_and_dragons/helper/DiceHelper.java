@@ -4,24 +4,24 @@ import java.util.Random;
 
 /**
  * 
- * @author Urmil Kansara
+ * @author Mihir Pujara
  *
  */
 public class DiceHelper {
 
-	public DiceHelper() {
-		// TODO Auto-generated constructor stub
-
-	}
-
-	private int rollD6() {
-
+	public static int rollD6() {
 		return roll(6);
 	}
+	
+	public static int rollD10() {
+		return roll(10);
+	}
 
-	private int roll(int max) {
-		// TODO Auto-generated method stub
-		return (int) Math.floor(Math.random() * max + 1);
+	private static int roll(int max) {
+		Random rand = new Random();
 
+		int randomNum = rand.nextInt((max - 1) + 1) + 1;
+
+		return randomNum;
 	}
 }

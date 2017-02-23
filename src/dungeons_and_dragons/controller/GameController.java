@@ -6,6 +6,7 @@ package dungeons_and_dragons.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.view.GameView;
 
 /**
