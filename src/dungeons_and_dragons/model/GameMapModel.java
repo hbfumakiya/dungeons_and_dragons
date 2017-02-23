@@ -37,9 +37,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	private String errorMessage;
 	
-	//tejas
-	private MapButton maps[][] =null;
-	
 	/**
 	 * Variable for identity of map. Value of all these map must be unique.
 	 * 
@@ -412,16 +409,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		setChanged();
 		notifyObservers(this);
 		
-	}
-
-
-	public MapButton[][] getMaps() {
-		return maps;
-	}
-
-
-	public void setMaps(MapButton maps[][]) {
-		this.maps = maps;
 	}
 
 

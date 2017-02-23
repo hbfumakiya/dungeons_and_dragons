@@ -19,8 +19,6 @@ public class MapValidator {
 	 */
 	MapGridView map_view;
 
-	int obj_value;
-
 	/**
 	 * Constructs a map validator with map_view and map_model objects
 	 * 
@@ -70,8 +68,6 @@ public class MapValidator {
 	 * @param p
 	 *            point for which one wants to reach from entry point of the
 	 *            grid
-	 * @param object
-	 *            to see until which object are we traversing
 	 * @return returns true if there is a path else returns false
 	 */
 	public boolean findPath(Point p) {

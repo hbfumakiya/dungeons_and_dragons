@@ -1,10 +1,10 @@
 package dungeons_and_dragons.model;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Observable;
 
-/*
+/**
  * class for campaign
- * @author : Hirangi Naik
+ * @author : Hirangi Naik and Tejas Sadrani
  * 
  */
 
@@ -27,18 +27,52 @@ public class CampaignModel extends Observable {
 	/**
 	 * linked list for traversing through maps
 	 * 
-	 * @type LinkedList
+	 * @type ArrayList
 	 */
-	private LinkedList<GameMapModel> map_list;
+	private ArrayList<GameMapModel> map_list;
 	
 	public CampaignModel(int campaign_id,String campaign_name) {
 		this.campaign_id=campaign_id;
 		this.campaign_name=campaign_name;
-		
+		this.map_list = new ArrayList<GameMapModel>();
 	}
 
 	public CampaignModel() {
-		// TODO Auto-generated constructor stub
+		this.map_list = new ArrayList<GameMapModel>();
 	}
 
+	public int getCampaign_id() {
+		return campaign_id;
+	}
+
+	public void setCampaign_id(int campaign_id) {
+		this.campaign_id = campaign_id;
+	}
+
+	public String getCampaign_name() {
+		return campaign_name;
+	}
+
+	public void setCampaign_name(String campaign_name) {
+		this.campaign_name = campaign_name;
+	}
+
+	public ArrayList<GameMapModel> getMap_list() {
+		return map_list;
+	}
+
+	public void setMap_list(ArrayList<GameMapModel> map_list) {
+		this.map_list = map_list;
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	public void callObservers() {
+		setChanged();
+		notifyObservers(this);
+		
+	}
+
+	
+	
 }
