@@ -94,52 +94,52 @@ public class CharacterController implements ActionListener {
 			this.backToCreateGame();
 		} else if (e.getSource().equals(view.rolldice)) {
 
-			this.performCalculation(1);
-
-			/*
-			 * this.view.save.setEnabled(true);
-			 * 
-			 * String level = this.view.level_textfield.getText(); try { int i =
-			 * Integer.parseInt(level); // int strength = (sum + modifier) * i;
-			 * //System.out.println("strength" + strength); } catch
-			 * (NumberFormatException ex) { JOptionPane.showMessageDialog(new
-			 * JFrame(), "Please enter level");
-			 * this.view.save.setEnabled(false); }
-			 */
+			this.view.save.setEnabled(true);
+			String level = this.view.level_textfield.getText(); 
+			try { 
+				int i =Integer.parseInt(level);
+			}
+			catch(NumberFormatException ex) { 
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter level");
+				this.view.save.setEnabled(false);
+				return;
+			}
+			this.generateAbilityScore(1);
+			this.generateHitpoints(1);
 			System.out.println("ok");
 		}
 	}
 
-	public void performCalculation(int level) {
+	public void generateAbilityScore(int level) {
 
 		AbilityScoresModel ability = this.model.getAbilityScores();
 		AbilityScoresModel modifiers = this.model.getModifiers();
 
-		int strength = this.model.calculate4D6();
-		int dexterity = this.model.calculate4D6();
-		int constitution = this.model.calculate4D6();
-		int intelligence = this.model.calculate4D6();
-		int wisdom = this.model.calculate4D6();
-		int charisma = this.model.calculate4D6();
+		int sum_strength = this.model.calculate4D6();
+		int sum_dexterity = this.model.calculate4D6();
+		int sum_constitution = this.model.calculate4D6();
+		int sum_intelligence = this.model.calculate4D6();
+		int sum_wisdom = this.model.calculate4D6();
+		int sum_charisma = this.model.calculate4D6();
 
 		// calculate ability modifiers
 
-		modifiers.setstrength(getModifiersFromScore(strength));
-		modifiers.setDexterity(getModifiersFromScore(dexterity));
-		modifiers.setConstitution(getModifiersFromScore(constitution));
-		modifiers.setIntelligence(getModifiersFromScore(intelligence));
-		modifiers.setWisdom(getModifiersFromScore(wisdom));
-		modifiers.setCharisma(getModifiersFromScore(charisma));
+		modifiers.setstrength(getModifiersFromScore(sum_strength));
+		modifiers.setDexterity(getModifiersFromScore(sum_dexterity));
+		modifiers.setConstitution(getModifiersFromScore(sum_constitution));
+		modifiers.setIntelligence(getModifiersFromScore(sum_intelligence));
+		modifiers.setWisdom(getModifiersFromScore(sum_wisdom));
+		modifiers.setCharisma(getModifiersFromScore(sum_charisma));
 
 		// calculate ability scores
 
-		ability.setstrength((strength + modifiers.getStraight()) * level);
-		ability.setDexterity((dexterity + modifiers.getDexterity()) * level);
-		ability.setConstitution((constitution + modifiers.getConstitution()) * level);
-		ability.setIntelligence((intelligence + modifiers.getIntelligence()) * level);
-		ability.setWisdom((wisdom + modifiers.getWisdom()) * level);
-		ability.setCharisma((charisma + modifiers.getCharisma()) * level);
-		
+		ability.setstrength((sum_strength + modifiers.getStraight()) * level);
+		ability.setDexterity((sum_dexterity + modifiers.getDexterity()) * level);
+		ability.setConstitution((sum_constitution + modifiers.getConstitution()) * level);
+		ability.setIntelligence((sum_intelligence + modifiers.getIntelligence()) * level);
+		ability.setWisdom((sum_wisdom + modifiers.getWisdom()) * level);
+		ability.setCharisma((sum_charisma + modifiers.getCharisma()) * level);
+
 		this.model.setAbilityScores(ability);
 		this.model.setModifiers(modifiers);
 
@@ -173,6 +173,10 @@ public class CharacterController implements ActionListener {
 		return modifier;
 	}
 
+	public void generateHitpoints(int level) {
+		
+	}
+	
 	private void backToCreateGame() {
 		new CreateGameController();
 		view.dispose();
