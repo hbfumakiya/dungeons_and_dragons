@@ -106,7 +106,6 @@ public class CharacterController implements ActionListener {
 			}
 			this.generateAbilityScore(1);
 			this.generateHitpoints(1);
-			System.out.println("ok");
 		}
 	}
 
@@ -142,6 +141,7 @@ public class CharacterController implements ActionListener {
 
 		this.model.setAbilityScores(ability);
 		this.model.setModifiers(modifiers);
+		
 	}
 
 	private int getModifiersFromScore(int score) {
@@ -173,7 +173,8 @@ public class CharacterController implements ActionListener {
 	}
 
 	public void generateHitpoints(int level) {
-		
+		AbilityScoresModel modifiers = this.model.getModifiers();
+		this.model.setHitpoints((modifiers.getConstitution()+DiceHelper.rollD10())*level);
 	}
 	
 	private void backToCreateGame() {

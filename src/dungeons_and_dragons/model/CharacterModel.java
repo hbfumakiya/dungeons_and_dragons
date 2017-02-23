@@ -77,6 +77,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	@Expose
 	private AbilityScoresModel modifiers;
 
+	@Expose
+	private int hitpoints;
 	
 	public CharacterModel() {
 		this.character_id = 0;
@@ -86,6 +88,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.backPackItems = new ArrayList<ItemModel>();
 		this.abilityScores = new AbilityScoresModel();
 		this.modifiers = new AbilityScoresModel();
+		this.hitpoints = 0;
 	}
 
 	/**
@@ -100,10 +103,22 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.strength = strength;
 		this.items = new ArrayList<ItemModel>();
 		this.backPackItems = new ArrayList<ItemModel>();
+	}	
+
+	/**
+	 * @return the hitpoints
+	 */
+	public int getHitpoints() {
+		return hitpoints;
 	}
 
-	
-	
+	/**
+	 * @param hitpoints the hitpoints to set
+	 */
+	public void setHitpoints(int hitpoints) {
+		this.hitpoints = hitpoints;
+		System.out.println("hit points : "+hitpoints);
+	}
 
 	/**
 	 * @return the character_id
