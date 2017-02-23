@@ -13,7 +13,6 @@ import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
-import dungeons_and_dragons.view.ItemView;
 
 //import .helper.Game_constants;
 //import game.play.ItemWindow;
@@ -253,11 +252,9 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	@Override
 	public void update() {
-			
+
 		try {
-			
-			
-			
+
 			FileHelper.updateItem(this);
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
@@ -269,7 +266,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

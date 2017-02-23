@@ -111,7 +111,7 @@ public class ItemView extends JFrame implements Observer {
 	 * 
 	 * @type Integer
 	 */
-	
+
 	/**
 	 * this variable used to save item
 	 * 
@@ -120,9 +120,10 @@ public class ItemView extends JFrame implements Observer {
 	public JButton update_item;
 	private JPanel main_panel;
 	private JPanel sub_panel;
-	
+
 	/**
-	 * Default constructor of item View which initializes combobox, button and labels.
+	 * Default constructor of item View which initializes combobox, button and
+	 * labels.
 	 * 
 	 */
 	public ItemView() {
@@ -212,9 +213,8 @@ public class ItemView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
-	public ItemView(ItemModel itemModel) 
-	{
+
+	public ItemView(ItemModel itemModel) {
 		this.setTitle(this.item_window_title);
 
 		// main panel
@@ -270,12 +270,12 @@ public class ItemView extends JFrame implements Observer {
 		item_ability_field.addItem(Game_constants.INTELLIGENCE);
 		item_ability_field.addItem(Game_constants.WISDOM);
 		item_ability_field.addItem(Game_constants.ARMOR_CLASS);
-		
+
 		item_name_field.setText(itemModel.getItem_name());
 		item_type_field.setSelectedItem(itemModel.getItem_type());
 		item_ability_field.setSelectedItem(itemModel.getItem_type());
 		item_score_field.setText(String.valueOf(itemModel.getItem_point()));
-		
+
 		// Adding necessary components into panel
 		listPane.add(item_name);
 
@@ -302,33 +302,33 @@ public class ItemView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
-	
+
 	/**
 	 * This is overridden method of Observable superclass
 	 * 
-	 * @param o  Observable object of model class
-	 * @param arg object of model Class
+	 * @param o
+	 *            Observable object of model class
+	 * @param arg
+	 *            object of model Class
 	 */
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+
 		DefaultComboBoxModel selected_model = ((ItemModel) o).getItemAbility();
 
-			item_ability_field.setModel(selected_model);
-			
-			
-		
+		item_ability_field.setModel(selected_model);
+
 	}
 
 	/**
 	 * Registering the listener method of actions
 	 * 
-	 * @param e it defines listening event of actions
+	 * @param e
+	 *            it defines listening event of actions
 	 */
 	public void setListener(ActionListener e) {
-		// TODO Auto-generated method stub
+
 		this.item_type_field.addActionListener(e);
 		this.item_ability_field.addActionListener(e);
 		// this.item_score_field.addActionListener(e);

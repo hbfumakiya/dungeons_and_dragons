@@ -19,3 +19,6 @@
 [ 11:39:31.022 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
 [ 11:43:23.684 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 40 path $[0].map_size
 [ 23:08:03.397 22-02-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 153 path $[0].map_enemy_loc
+[ 13:53:12.065 23-02-2017  ERROR ] res\item.json (The system cannot find the file specified)
+[ 13:53:19.590 23-02-2017  ERROR ] res\item.json (The system cannot find the file specified)
+[ 13:57:14.157 23-02-2017  ERROR ] res\item.json (The system cannot find the file specified)
