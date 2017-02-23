@@ -1,6 +1,7 @@
 package test;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -124,6 +125,32 @@ public class Maptest {
 				
 				//Then
 				Assert.assertEquals(mapexit.getMap_exit_door(),map_exit_door6);
+		
+		
+	}
+	
+	/**
+	 * wall test
+	 */
+	@Test 
+	public void test_setMap_wall()
+	{
+		//Given
+		GameMapModel setmap=new GameMapModel();
+		Point mapwall1=new Point(3,3);
+		Point mapwall2=new Point(3,3);
+		ArrayList<Point> p;
+		int c=2;
+		
+		
+		//When
+		setmap.setMap_wall(mapwall1);
+		setmap.setMap_wall(mapwall2);
+		p=setmap.getMap_walls();
+		
+		
+		//Then
+		Assert.assertNotSame(c,p.size());
 		
 		
 	}
