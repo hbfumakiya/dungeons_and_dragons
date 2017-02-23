@@ -19,9 +19,7 @@ public class DiceHelper {
 
 	private static int roll(int max) {
 		Random rand = new Random();
-
 		int randomNum = rand.nextInt((max - 1) + 1) + 1;
-
 		return randomNum;
 	}
 }
