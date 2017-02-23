@@ -138,21 +138,65 @@ public class Maptest {
 		//Given
 		GameMapModel setmap=new GameMapModel();
 		Point mapwall1=new Point(3,3);
-		Point mapwall2=new Point(3,3);
+		Point mapwall2=new Point(2,3);
+		Point mapwall3=new Point(4,3);
+		Point mapwall4=new Point(3,3);
+
+
 		ArrayList<Point> p;
-		int c=2;
+		int c=4;
 		
 		
 		//When
 		setmap.setMap_wall(mapwall1);
 		setmap.setMap_wall(mapwall2);
+		setmap.setMap_wall(mapwall3);
+		setmap.setMap_wall(mapwall4);
+
 		p=setmap.getMap_walls();
 		
-		
+		System.out.println(p.size());
 		//Then
 		Assert.assertNotSame(c,p.size());
 		
 		
 	}
+	
+	/**
+	 * enemy test
+	 */
+
+	@Test 
+	public void test_setMap_enemy_loc()
+	{
+		//Given
+		GameMapModel setmap_enemy=new GameMapModel();
+		Point map_enemy_loc1=new Point(3,3);
+		Point map_enemy_loc2=new Point(2,3);
+		Point map_enemy_loc3=new Point(4,3);
+		Point map_enemy_loc4=new Point(3,3);
+
+
+		ArrayList<Point> p;
+		int c=4;
+		
+		
+		//When
+		setmap_enemy.setMap_enemy_loc(map_enemy_loc1);
+		setmap_enemy.setMap_enemy_loc(map_enemy_loc2);
+		setmap_enemy.setMap_enemy_loc(map_enemy_loc3);
+		setmap_enemy.setMap_enemy_loc(map_enemy_loc4);
+
+		p=setmap_enemy.getMap_enemy_loc();
+		
+		System.out.println(p.size());
+		//Then
+		Assert.assertNotSame(c,p.size());
+		
+		
+	}
+	
+	
+	
 
 }
