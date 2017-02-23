@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
@@ -38,12 +39,13 @@ public class CharacterInventoryView extends JFrame implements View {
 
 	public JButton moveFromBackToItem;
 
+	public JButton okButton;
+
 	private CharacterModel character;
 
 	public JScrollPane backPackScrollPane;
 
 	public JScrollPane itemScrollPane;
-	
 
 	public CharacterInventoryView(CharacterModel character) {
 
@@ -63,7 +65,7 @@ public class CharacterInventoryView extends JFrame implements View {
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setPreferredSize(new Dimension(500, 360));
+		this.panel.setPreferredSize(new Dimension(500, 400));
 
 		// item list
 
@@ -100,7 +102,7 @@ public class CharacterInventoryView extends JFrame implements View {
 		// backpack list
 
 		this.backPackList = new JList<ItemModel>();
-
+		this.backPackList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		temp = this.character.getBackPackItems();
 
 		ArrayList<ItemModel> backPackItem = new ArrayList<ItemModel>();
@@ -137,12 +139,71 @@ public class CharacterInventoryView extends JFrame implements View {
 
 		// move to backpack to item <
 
-		this.moveFromItemToBack = new JButton("<");
-		this.moveFromItemToBack.setBounds(225, 280, 50, 50);
+		this.moveFromBackToItem = new JButton("<");
+		this.moveFromBackToItem.setBounds(225, 280, 50, 50);
 
-		this.panel.add(this.moveFromItemToBack);
+		this.panel.add(this.moveFromBackToItem);
+
+		// ok button
+
+		this.okButton = new JButton("OK");
+		this.okButton.setBounds(217, 360, 65, 30);
+
+		this.panel.add(this.okButton);
 
 		this.getContentPane().add(this.panel);
+	}
+
+	public void updateList(CharacterModel character) {
+
+		this.itemList.removeAll();
+		ArrayList<ItemModel> temp = character.getItems();
+		ArrayList<ItemModel> item = new ArrayList<ItemModel>();
+
+		if ((temp != null) && (temp.size() > 0)) {
+
+			for (int i = 0; i < temp.size(); i++) {
+				if (temp.get(i) != null)
+					item.add(temp.get(i));
+			}
+		}
+
+		if ((item != null) || (item.size() > 0)) {
+
+			ItemModel[] items = new ItemModel[item.size()];
+
+			for (int i = 0; i < item.size(); i++) {
+				if (item.get(i) != null)
+					items[i] = item.get(i);
+			}
+
+			this.itemList.setListData(items);
+		}
+
+		this.backPackList.removeAll();
+
+		temp = character.getBackPackItems();
+
+		ArrayList<ItemModel> backPackItem = new ArrayList<ItemModel>();
+		if ((temp != null) && (temp.size() > 0)) {
+			for (int i = 0; i < temp.size(); i++) {
+				if (temp.get(i) != null)
+					backPackItem.add(temp.get(i));
+			}
+		}
+
+		if ((backPackItem != null) || (backPackItem.size() > 0)) {
+
+			ItemModel[] items = new ItemModel[backPackItem.size()];
+
+			for (int i = 0; i < backPackItem.size(); i++) {
+				if (backPackItem.get(i) != null)
+					items[i] = backPackItem.get(i);
+			}
+
+			this.backPackList.setListData(items);
+		}
+
 	}
 
 	class ItemCellRenderer extends JLabel implements ListCellRenderer<ItemModel> {
@@ -176,10 +237,11 @@ public class CharacterInventoryView extends JFrame implements View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
-		
+
 		this.moveFromItemToBack.addActionListener(actionListener);
-		
+
 		this.moveFromBackToItem.addActionListener(actionListener);
-		
+
+		this.okButton.addActionListener(actionListener);
 	}
 }

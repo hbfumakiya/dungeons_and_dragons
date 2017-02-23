@@ -149,7 +149,7 @@ public class FileHelper {
 	 */
 	public static void updateMap(GameMapModel map) throws IOException, NotFoundException {
 		
-		Path path = Paths.get(ITEM_FILE);
+		Path path = Paths.get(MAP_FILE);
 
 		ArrayList<GameMapModel> map_list;
 
@@ -170,13 +170,12 @@ public class FileHelper {
 					tempItem.setItem_type(item.getItem_type());
 					tempItem.setItem_ability(item.getItem_ability());
 					tempItem.setItem_point(item.getItem_point());*/
-					found = true;
-				}
+					found = true;				}
 			}
 
 			if (found) {
 				// create writer object for item file
-				Writer file_writer = new FileWriter(ITEM_FILE);
+				Writer file_writer = new FileWriter(MAP_FILE);
 
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
@@ -261,7 +260,7 @@ public class FileHelper {
 	 */
 	public static void updateCharacter(CharacterModel character)
 			throws JsonSyntaxException, IOException, NotFoundException {
-		Path path = Paths.get(ITEM_FILE);
+		Path path = Paths.get(CHARACTER_FILE);
 
 		ArrayList<CharacterModel> character_list;
 
