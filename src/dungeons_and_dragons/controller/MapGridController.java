@@ -91,8 +91,7 @@ public class MapGridController implements ActionListener {
 			}
 
 			else {
-				if (new MapValidator(this.map_view, this.map_model).findPath(this.map_model.getMap_exit_door(),
-						"wall")) {
+				if (new MapValidator(this.map_view, this.map_model).findPath(this.map_model.getMap_exit_door())) {
 
 					// check if there are indeed enemies in the map of all that
 					// are defined
@@ -104,7 +103,7 @@ public class MapGridController implements ActionListener {
 					while (mapIterator.hasNext()) {
 						System.out.println("check2");
 						Point p = (Point) mapIterator.next();
-						if (new MapValidator(this.map_view, this.map_model).findPath(p, "enemy")) {
+						if (new MapValidator(this.map_view, this.map_model).findPath(p	)) {
 							count++;
 							System.out.println("check3");
 						}
@@ -144,8 +143,7 @@ public class MapGridController implements ActionListener {
 			}
 
 			else {
-				if (new MapValidator(this.map_view, this.map_model).findPath(this.map_model.getMap_exit_door(),
-						"wall")) {
+				if (new MapValidator(this.map_view, this.map_model).findPath(this.map_model.getMap_exit_door())) {
 
 					// check if there are indeed enemies in the map of all that
 					// are defined
@@ -157,7 +155,7 @@ public class MapGridController implements ActionListener {
 					while (mapIterator.hasNext()) {
 						System.out.println("check2");
 						Point p = (Point) mapIterator.next();
-						if (new MapValidator(this.map_view, this.map_model).findPath(p, "enemy")) {
+						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 							count++;
 							System.out.println("check3");
 						}

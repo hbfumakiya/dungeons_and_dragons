@@ -45,5 +45,90 @@
     "map_entry_door": "0,5",
     "map_enemy_loc": [],
     "map_exit_door": "1,0"
+  },
+  {
+    "map_id": 4,
+    "map_name": "test",
+    "map_size": "5,5",
+    "map_chest": "-1,-1",
+    "map_walls": [
+      "2,0",
+      "2,1",
+      "2,2",
+      "2,4"
+    ],
+    "map_entry_door": "0,1",
+    "map_enemy_loc": [
+      "3,2"
+    ],
+    "map_exit_door": "0,3"
+  },
+  {
+    "map_id": 5,
+    "map_name": "test",
+    "map_size": "5,5",
+    "map_chest": "-1,-1",
+    "map_walls": [
+      "2,0",
+      "2,1",
+      "2,2",
+      "2,4"
+    ],
+    "map_entry_door": "0,1",
+    "map_enemy_loc": [
+      "2,3"
+    ],
+    "map_exit_door": "0,3"
+  },
+  {
+    "map_id": 6,
+    "map_name": "test",
+    "map_size": "5,5",
+    "map_chest": "-1,-1",
+    "map_walls": [
+      "2,0",
+      "2,1",
+      "2,2",
+      "2,4"
+    ],
+    "map_entry_door": "0,1",
+    "map_enemy_loc": [
+      "2,3"
+    ],
+    "map_exit_door": "4,2"
+  },
+  {
+    "map_id": 7,
+    "map_name": "test",
+    "map_size": "5,5",
+    "map_chest": "-1,-1",
+    "map_walls": [
+      "2,0",
+      "2,1",
+      "2,2",
+      "2,4"
+    ],
+    "map_entry_door": "0,1",
+    "map_enemy_loc": [
+      "2,3"
+    ],
+    "map_exit_door": "4,2"
+  },
+  {
+    "map_id": 8,
+    "map_name": "test",
+    "map_size": "5,5",
+    "map_chest": "-1,-1",
+    "map_walls": [
+      "2,0",
+      "2,1",
+      "2,2",
+      "2,4"
+    ],
+    "map_entry_door": "0,1",
+    "map_enemy_loc": [
+      "3,3"
+    ],
+    "map_exit_door": "4,2"
   }
 ]

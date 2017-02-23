@@ -48,7 +48,7 @@ public class MapValidator {
 		
 		try{
 			if(x >= 0 && x < this.map_model.getMap_size().x && y >= 0 && y < this.map_model.getMap_size().y){
-				if(maps[x][y].getPointValue() == obj_value || maps[x][y].getPointValue() == 1 && maps[x][y].getDirty_flag() == 0){
+				if(maps[x][y].getPointValue() !=0  && maps[x][y].getDirty_flag() == 0){
 						{
 							return true;
 						}
@@ -74,19 +74,9 @@ public class MapValidator {
 	 *            to see until which object are we traversing
 	 * @return returns true if there is a path else returns false
 	 */
-	public boolean findPath(Point p, String object) {
+	public boolean findPath(Point p) {
 		MapButton maps[][] = this.map_view.maps;
-		
-		//should skip enemy object while traversing through to find exit door
-		if (object == "wall") {
-			obj_value = 2;
-		}
-		//should not skip wall objects as they are obstacles and help us find if there is enemy inscribed inside the path of the game or not
-		else if (object == "enemy") {
-			//any random number
-			obj_value = -1;
-		}
-		
+				
 		for(int i = 0;i<this.map_model.getMap_size().x;i++){
 			for(int j=0;j<this.map_model.getMap_size().y;j++){
 				maps[i][j].setDirty_flag(0);
