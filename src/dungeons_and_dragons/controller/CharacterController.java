@@ -142,7 +142,6 @@ public class CharacterController implements ActionListener {
 		
 		this.model.setAbilityScores(ability);
 		this.model.setModifiers(modifiers);
-
 	}
 
 	private int getModifiersFromScore(int score) {

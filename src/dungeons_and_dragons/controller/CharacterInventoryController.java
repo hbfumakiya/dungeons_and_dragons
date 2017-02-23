@@ -66,20 +66,17 @@ public class CharacterInventoryController implements ActionListener {
 				this.character.setItems(newItem);
 				this.characterInventoryView.updateList(this.character);
 			} else {
-				
-				System.out.println(this.character.getItems().stream().anyMatch(p->p.getItem_type().equals(item.getItem_type())));
-				
-				/*if () {
+
+				if (this.character.getItems().stream().anyMatch(p -> p.getItem_type().equals(item.getItem_type()))) {
 					JOptionPane.showMessageDialog(this.characterInventoryView,
-						    "This item type("+item.getItem_type()+") is already in Item List",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
-					
+							"This item type(" + item.getItem_type() + ") is already in Item List", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
 				} else {
 					this.character.getItems().add(item);
 					this.character.getBackPackItems().remove(item);
-					this.characterInventoryView.updateList(this.character);					
-				}*/
+					this.characterInventoryView.updateList(this.character);
+				}
 			}
 
 		} else if (actionEvent.getSource().equals(characterInventoryView.okButton)) {
