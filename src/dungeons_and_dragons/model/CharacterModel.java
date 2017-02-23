@@ -9,6 +9,7 @@ import java.util.Observable;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 
@@ -220,7 +221,6 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			this.setCurrentId();
 			FileHelper.saveCharacter(this);
 		} catch (JsonSyntaxException | IOException e1) {
-			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 		}
 	}

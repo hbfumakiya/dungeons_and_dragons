@@ -295,6 +295,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		save = new JButton("Save");
 		save.setBounds(110, 500, 80, 25);
+		save.setEnabled(false);
 		this.add(save);
 		
 		// Display the window.

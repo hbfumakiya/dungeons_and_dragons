@@ -1,12 +1,18 @@
 package dungeons_and_dragons.controller;
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.helper.DiceHelper;
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterView;
@@ -48,6 +54,7 @@ public class CharacterController implements ActionListener {
 			// model.setCharacter_name(character_name);
 			if (character_name.equals("")) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
+				return;
 			} else {
 				model.setCharacter_name(character_name);
 			}
@@ -74,31 +81,82 @@ public class CharacterController implements ActionListener {
 				model.setItems(items);
 
 				if (this.view.backPackList.getSelectedIndices().length > 0) {
-					ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+					ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList
+							.getSelectedValuesList();
 					model.setBackPackItems(backPackList);
 					model.save();
 					new ManageCharacterController();
 					this.view.dispose();
-				}
-				else
-				{
+				} else {
 					JOptionPane.showMessageDialog(new JFrame(), "Please select backpack items");
 				}
-				
-				
+
 			} catch (NumberFormatException ex) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
 			}
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
-		}
-		else if(e.getSource().equals(view.rolldice)){
-			
+		} else if (e.getSource().equals(view.rolldice)) {
+			this.view.save.setEnabled(true);
+			LinkedList<Integer> temp = new LinkedList<Integer>();
+			int sum = 0;
+			int modifier = 0;
+			for (int i = 0; i < 4; i++) {
+				Integer[] dice = new Integer[] { 1, 2, 3, 4, 5, 6 };
+				Random rand = new Random();
+				temp.add(dice[rand.nextInt(dice.length)]);
+				sum = sum + temp.get(i);
+				// temp[i] = dice[rand.nextInt(dice.length)];
+				// System.out.println("roll"+temp.get(i));
+			}
+			int min = temp.get(0);
+			for (int i = 0; i < temp.size(); i++) {
+				if (min > temp.get(i)) {
+					min = temp.get(i);
+				}
+			}
+			sum = sum - min;
+			// System.out.println("min"+min);
+			System.out.println("sum" + sum);
+			temp.remove(min);
+
+			if (sum == 1) {
+				modifier = -5;
+			} else if (sum == 2 || sum == 3) {
+				modifier = -4;
+			} else if (sum == 4 || sum == 5) {
+				modifier = -3;
+			} else if (sum == 6 || sum == 7) {
+				modifier = -2;
+			} else if (sum == 8 || sum == 9) {
+				modifier = -1;
+			} else if (sum == 10 || sum == 11) {
+				modifier = 0;
+			} else if (sum == 12 || sum == 13) {
+				modifier = 1;
+			} else if (sum == 14 || sum == 15) {
+				modifier = 2;
+			} else if (sum == 16 || sum == 17) {
+				modifier = 3;
+			} else if (sum == 18 || sum == 19) {
+				modifier = 4;
+			} else if (sum == 20 || sum == 21) {
+				modifier = 5;
+			}
+			System.out.println("modifier" + modifier);
+			String level = this.view.level_textfield.getText();
+			try {
+				int i = Integer.parseInt(level);
+				int strength = (sum + modifier) * i;
+				System.out.println("strength" + strength);
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter level");
+				this.view.save.setEnabled(false);
+			}
 		}
 	}
 
 	private void backToCreateGame() {
-
 		new CreateGameController();
 		view.dispose();
 	}

@@ -79,10 +79,10 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param straight the straight to set
+	 * @param strength the strength to set
 	 */
-	public void setStraight(int straight) {
-		this.strength = straight;
+	public void setstrength(int strength) {
+		this.strength = strength;
 	}
 
 	/**
