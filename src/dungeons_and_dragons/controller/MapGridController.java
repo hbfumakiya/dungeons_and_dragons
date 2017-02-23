@@ -54,6 +54,8 @@ public class MapGridController implements ActionListener {
 
 		this.map_model.addObserver(map_view);
 		this.map_view.setListener(this);
+		finder = 0;
+		this.map_model.setFinder(finder);
 	}
 	
 	public MapGridController(GameMapModel map) {
@@ -108,14 +110,22 @@ public class MapGridController implements ActionListener {
 							System.out.println("check3");
 						}
 					}
-					if (count == this.map_model.getMap_enemy_loc().size()) {
+					if (count == this.map_model.getMap_enemy_loc().size() && count >0) {
 						System.out.println("check4");
 						System.out.println(
 								"In MapGridController.actionPerformed and ready for save button as map is valid");
 						
 						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
 						this.map_model.save();
+						
+						new ManageMapController();
+						this.map_view.dispose();
 					}
+					else if(count == 0 )
+					{JOptionPane.showOptionDialog(null,
+							"It is an invalid map as there should be atleast one enemy",
+							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+							null);}
 					
 				}
 				// need to manipulate error message window
@@ -160,7 +170,7 @@ public class MapGridController implements ActionListener {
 							System.out.println("check3");
 						}
 					}
-					if (count == this.map_model.getMap_enemy_loc().size()) {
+					if (count == this.map_model.getMap_enemy_loc().size() && count > 0) {
 						System.out.println("check4");
 						System.out.println(
 								"In MapGridController.actionPerformed and ready for update button as map is valid");
@@ -171,6 +181,11 @@ public class MapGridController implements ActionListener {
 						new ManageMapController();
 						this.map_view.dispose();
 					}
+					else if(count == 0 )
+					{JOptionPane.showOptionDialog(null,
+							"It is an invalid map as there should be atleast one enemy",
+							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+							null);}
 					
 				}
 				// need to manipulate error message window
