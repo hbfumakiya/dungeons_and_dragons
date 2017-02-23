@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -219,7 +220,7 @@ public class MapView extends JFrame implements ActionListener{
 
 		sub_bottom_panel = new JPanel();
 
-		this.setPreferredSize(new Dimension(500, 500));
+		this.setPreferredSize(new Dimension(1000, 700));
 
 		// Display the window.
 		this.pack();
@@ -246,20 +247,20 @@ public class MapView extends JFrame implements ActionListener{
 		sub_bottom_panel = new JPanel();
 		sub_bottom_panel.setLayout((new GridLayout(1, 2, 5, 5)));
 		sub_bottom_panel.setBorder(BorderFactory.createRaisedBevelBorder());
-		sub_bottom_panel.setMaximumSize(new Dimension(600, 500));
+		sub_bottom_panel.setMaximumSize(new Dimension(1000, 700));
 
 		// info panel embedded inside sub bottom panel's right bottom corner
 		JPanel leftGridPanel = new JPanel();
 
 		leftGridPanel.setLayout(new BoxLayout(leftGridPanel, BoxLayout.Y_AXIS));
-		leftGridPanel.setMaximumSize(new Dimension(600, 500));
+		leftGridPanel.setMaximumSize(new Dimension(750, 500));
 		leftGridPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		// map panel embedded inside sub bottom panel's left bottom corner
 		JPanel LeftGridMapPane = new JPanel();
 
 		LeftGridMapPane.setLayout((new GridLayout(width_height.x, width_height.y, 1, 1)));
-		LeftGridMapPane.setMaximumSize(new Dimension(600, 300));
+		LeftGridMapPane.setMaximumSize(new Dimension(750, 500));
 		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
 		/**
@@ -310,7 +311,7 @@ public class MapView extends JFrame implements ActionListener{
 		JPanel RightInfoPanel = new JPanel();
 
 		RightInfoPanel.setLayout(new BoxLayout(RightInfoPanel, BoxLayout.Y_AXIS));
-		RightInfoPanel.setMaximumSize(new Dimension(300, 300));
+		RightInfoPanel.setMaximumSize(new Dimension(250, 300));
 		RightInfoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		// list panel consisting of information for map to display contents in
@@ -318,7 +319,7 @@ public class MapView extends JFrame implements ActionListener{
 		JPanel RightInfoListPane = new JPanel();
 
 		RightInfoListPane.setLayout((new GridLayout(5, 2, 5, 5)));
-		RightInfoListPane.setMaximumSize(new Dimension(300, 300));
+		RightInfoListPane.setMaximumSize(new Dimension(250, 300));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
 
@@ -352,8 +353,10 @@ public class MapView extends JFrame implements ActionListener{
 		//RightInfoListPane.add(back_button);
 		//RightInfoListPane.add(save_button);
 
-		sub_bottom_panel.add(leftGridPanel);
-		sub_bottom_panel.add(RightInfoPanel);
+		JSplitPane spane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftGridPanel, RightInfoPanel);
+		spane.setOneTouchExpandable(true);
+		spane.setDividerLocation(650);
+		sub_bottom_panel.add(spane);
 		main_panel.add(sub_bottom_panel);
 
 		this.pack();

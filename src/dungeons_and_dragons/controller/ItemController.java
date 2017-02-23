@@ -1,33 +1,35 @@
 package dungeons_and_dragons.controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import dungeons_and_dragons.model.ItemModel;
-import dungeons_and_dragons.view.CreateGameView;
 import dungeons_and_dragons.view.ItemView;
+
 /**
- * This class call item controller 
+ * This class call item controller
  * 
- * @author Urmil Kansara 
+ * @author Urmil Kansara
  *
  */
 public class ItemController implements ActionListener {
-	
+
 	/**
-	 *	This creates new model
-	 *  @type ItemModel
+	 * This creates new model
+	 * 
+	 * @type ItemModel
 	 */
 	ItemModel item_model;
-	
+
 	/**
 	 * This create observer object
 	 * 
 	 * @type ItemView
 	 */
 	ItemView item_view;
-	
+
 	/**
 	 * Default constructor of item controller
 	 * <p>
@@ -37,24 +39,24 @@ public class ItemController implements ActionListener {
 	 */
 	public ItemController() {
 		// TODO Auto-generated constructor stub
-		//this.field_item = item_field;
+		// this.field_item = item_field;
 		this.item_model = new ItemModel();
 		this.item_view = new ItemView();
-		
+
 		this.item_model.addObserver(item_view);
 		this.item_view.setListener(this);
 		this.item_view.setVisible(true);
 	}
-	
+
 	public ItemController(ItemModel itemModel) {
-		
-		this.item_model = itemModel; 
+
+		this.item_model = itemModel;
 		this.item_view = new ItemView(itemModel);
 		this.item_model.addObserver(item_view);
 		this.item_view.setListener(this);
 		this.item_view.setVisible(true);
 	}
-	
+
 	/**
 	 * Action event of all the events
 	 * 
@@ -74,6 +76,15 @@ public class ItemController implements ActionListener {
 			
 		}else if(arg0.getSource().equals(item_view.save_item))
 		{	
+			if(item_view.item_name_field.getText().equals(""))
+			{
+				JOptionPane.showOptionDialog(null,
+						"Please Enter Valid name",
+						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+						null);
+				return;
+			}
+			try{
 			String item_name = item_view.item_name_field.getText();
 			item_model.setItem_name(item_name);
 			String item_type = (String) item_view.item_type_field.getSelectedItem();
@@ -82,10 +93,23 @@ public class ItemController implements ActionListener {
 			item_model.setItem_ability(item_ability);
 			int item_point = Integer.parseInt(item_view.item_score_field.getText());
 			item_model.setItem_point(item_point);
+			if(item_point <= 0 || item_point >= 6 )
+			{
+				
+				throw new NumberFormatException();
+			}
 			//item_model.itemTypeSelected(item_type);
 			item_model.save();
 			new ManageItemController();			
 			item_view.dispose();
+			}
+			catch (NumberFormatException e) 
+			{
+				JOptionPane.showOptionDialog(null,
+						"Please Enter valid points between 1 and 5",
+						"Invalid Points", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+						null);
+			}
 		}
 		else if(arg0.getSource().equals(item_view.back_button))
 		{	
@@ -95,6 +119,15 @@ public class ItemController implements ActionListener {
 		}
 		else if(arg0.getSource().equals(item_view.update_item))
 		{	
+			if(item_view.item_name_field.getText().equals(""))
+			{
+				JOptionPane.showOptionDialog(null,
+						"Please Enter Valid name",
+						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+						null);
+				return;
+			}
+			try{
 			String item_name = item_view.item_name_field.getText();
 			item_model.setItem_name(item_name);
 			String item_type = (String) item_view.item_type_field.getSelectedItem();
@@ -103,15 +136,29 @@ public class ItemController implements ActionListener {
 			item_model.setItem_ability(item_ability);
 			int item_point = Integer.parseInt(item_view.item_score_field.getText());
 			item_model.setItem_point(item_point);
+			
+            if(item_point <= 0 || item_point >= 6 )
+            {
+				
+				throw new NumberFormatException();
+			}
 			item_model.update();
 			
 			new ManageItemController();
 			
 			item_view.dispose();
-		}
+			}
+			catch (NumberFormatException e) 
+			{
+				JOptionPane.showOptionDialog(null,
+						"Please Enter valid points between 1 and 5",
+						"Invalid Points", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+						null);
+			}
 		
-	}
+		}
 	
 	
 
+	}
 }

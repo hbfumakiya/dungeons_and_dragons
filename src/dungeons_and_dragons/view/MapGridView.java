@@ -3,8 +3,10 @@
  */
 package dungeons_and_dragons.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -202,9 +205,9 @@ public class MapGridView extends JFrame implements Observer {
 		// item_score = new JLabel("Point");
 
 		// Initializing label text field,dropdown of map height and width
-		map_name_textfield = new JTextField(1);
-		map_height_textfield = new JTextField(1);
-		map_width_textfield = new JTextField(1);
+		map_name_textfield = new JTextField(10);
+		map_height_textfield = new JTextField(2);
+		map_width_textfield = new JTextField(2);
 
 		// initializing back,next and submit buttons
 		back_button = new JButton("Back");
@@ -232,7 +235,7 @@ public class MapGridView extends JFrame implements Observer {
 
 		sub_bottom_panel = new JPanel();
 
-		this.setPreferredSize(new Dimension(500, 500));
+		this.setPreferredSize(new Dimension(1000, 700));
 
 		// Display the window.
 		this.pack();
@@ -333,7 +336,7 @@ public class MapGridView extends JFrame implements Observer {
 
 		sub_bottom_panel = new JPanel();
 
-		this.setPreferredSize(new Dimension(500, 500));
+		this.setPreferredSize(new Dimension(1000, 700));
 
 		// Display the window.
 		this.pack();
@@ -380,22 +383,25 @@ public class MapGridView extends JFrame implements Observer {
 
 		main_panel.remove(sub_bottom_panel);
 		sub_bottom_panel = new JPanel();
-		sub_bottom_panel.setLayout((new GridLayout(1, 2, 5, 5)));
+		//sub_bottom_panel.setLayout((new GridLayout(1, 2, 5, 5)));
+		sub_bottom_panel.setLayout(new BorderLayout());
 		sub_bottom_panel.setBorder(BorderFactory.createRaisedBevelBorder());
-		sub_bottom_panel.setMaximumSize(new Dimension(500, 500));
+		sub_bottom_panel.setMaximumSize(new Dimension(1000, 500));
+		
+		
 
 		// info panel embedded inside sub bottom panel's right bottom corner
 		JPanel leftGridPanel = new JPanel();
 
 		leftGridPanel.setLayout(new BoxLayout(leftGridPanel, BoxLayout.Y_AXIS));
-		leftGridPanel.setMaximumSize(new Dimension(250, 300));
+		leftGridPanel.setMaximumSize(new Dimension(750, 500));
 		leftGridPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		// map panel embedded inside sub bottom panel's left bottom corner
 		JPanel LeftGridMapPane = new JPanel();
 
 		LeftGridMapPane.setLayout((new GridLayout(width_height.x, width_height.y, 1, 1)));
-		LeftGridMapPane.setMaximumSize(new Dimension(250, 300));
+		LeftGridMapPane.setMaximumSize(new Dimension(750, 500));
 		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
 		/**
@@ -494,9 +500,14 @@ public class MapGridView extends JFrame implements Observer {
 		{
 		RightInfoListPane.add(update_button);
 		}
-
-		sub_bottom_panel.add(leftGridPanel);
-		sub_bottom_panel.add(RightInfoPanel);
+		
+		
+		JSplitPane spane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftGridPanel, RightInfoPanel);
+		spane.setOneTouchExpandable(true);
+		spane.setDividerLocation(650);
+		sub_bottom_panel.add(spane);
+//		sub_bottom_panel.add(leftGridPanel,BorderLayout.WEST);
+//		sub_bottom_panel.add(RightInfoPanel,BorderLayout.EAST);
 		main_panel.add(sub_bottom_panel);
 
 		this.pack();

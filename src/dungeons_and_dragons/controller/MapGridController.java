@@ -214,6 +214,11 @@ public class MapGridController implements ActionListener {
 				return;
 			}
 			try{
+				
+				if(Integer.parseInt(this.map_view.map_height_textfield.getText())<3 || Integer.parseInt(this.map_view.map_width_textfield.getText())<3)
+				{
+					throw new NumberFormatException();
+				}
 			Point store = new Point();
 			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
@@ -237,7 +242,7 @@ public class MapGridController implements ActionListener {
 			}
 			catch(NumberFormatException ex){
 				JOptionPane.showOptionDialog(null,
-						"Please Enter Valid Height/Width",
+						"Please Enter Valid Height/Width between 3 and 20",
 						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
 						null);
 				
