@@ -60,7 +60,18 @@ public class CampaignView extends JFrame implements Observer, View {
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		campaign_add=new JButton("Add map to Campaign");
+		campaign_add.setBounds(50, 50, 200, 25);
+		this.add(campaign_add);
+		campaign_array = this.maps.toArray();
+		campaign_combobox = new JComboBox(campaign_array);
 		
+		if (campaign_array.length > 0)
+		{
+			campaign_combobox.setRenderer(new CampaignViewRenderer());
+		}
+	campaign_combobox.setBounds(150, 10, 150, 25);
+	this.add(campaign_combobox);
 	}
 
 	private void updateWindow() {
@@ -71,8 +82,8 @@ public class CampaignView extends JFrame implements Observer, View {
 		main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.PAGE_AXIS));
 		main_panel.setBorder(new EmptyBorder(5, 5, 5, 5));*/
 
-		campaign_array = this.maps.toArray();
-		campaign_combobox = new JComboBox(campaign_array);
+		
+		
 		try{
 			arrow_image = ImageIO.read(new File("res/ArrowDown04-128.png"));
 			campaign_arrow = new JLabel(new ImageIcon(arrow_image));
@@ -85,16 +96,11 @@ public class CampaignView extends JFrame implements Observer, View {
 		campaign_label.setBounds(10, 10, 100, 25);
 		this.add(campaign_label);
 		
-		if (campaign_array.length > 0)
-			{
-				campaign_combobox.setRenderer(new CampaignViewRenderer());
-			}
-		campaign_combobox.setBounds(150, 10, 150, 25);
-		this.add(campaign_combobox);
 		
-		campaign_add=new JButton("Add map to Campaign");
-		campaign_add.setBounds(50, 50, 200, 25);
-		this.add(campaign_add);
+		
+		
+
+		
 		
 		campaign_maps_label = new JLabel[campaign_map_list.size()];
 		

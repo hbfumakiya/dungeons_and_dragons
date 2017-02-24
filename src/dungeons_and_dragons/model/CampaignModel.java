@@ -66,8 +66,10 @@ public class CampaignModel extends Observable {
 		return map_list;
 	}
 
-	public void setMap_list(ArrayList<GameMapModel> map_list) {
-		this.map_list = map_list;
+	public void setMap_list(GameMapModel map_list) {
+		
+		if(!this.map_list.contains(map_list))
+		this.map_list.add(map_list);
 		setChanged();
 		notifyObservers(this);
 	}

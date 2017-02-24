@@ -54,19 +54,23 @@ public class CampaignController implements ActionListener {
 		
 
 		map_list = this.campaignModel.getMap_list();
+		//this.campaignView.setActionListener(this);
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getSource());
-		System.out.println(this.campaignView.campaign_add);
-		System.out.println(e.getSource().equals(this.campaignView.campaign_add));
+		System.out.println(campaignView.campaign_add);
+		System.out.println(e.getSource().equals(campaignView.campaign_add));
 		
-		if(e.getSource().equals(this.campaignView.campaign_add)){
+		if(e.getSource().equals(campaignView.campaign_add)){
 			map_model = (GameMapModel)this.campaignView.campaign_combobox.getSelectedItem();
-			map_list.add(map_model);
-			this.campaignModel.setMap_list(map_list);
-			this.campaignView.setActionListener(this);
+			
+			this.campaignModel.setMap_list(map_model);
+		//	this.campaignView.setActionListener(this);
+		//	return;
+			//this.campaignView.dispose();
 		}
 	}
 
