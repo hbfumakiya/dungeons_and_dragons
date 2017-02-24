@@ -159,6 +159,7 @@ public class CampaignView extends JFrame implements Observer, View {
 			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
 			GameMapModel map_model = (GameMapModel) value;
+			if(map_model != null)
 			setText(map_model.getMap_name());
 
 			return this;
