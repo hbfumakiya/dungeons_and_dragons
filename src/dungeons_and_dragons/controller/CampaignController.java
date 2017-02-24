@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.FileHelper;
@@ -66,8 +68,18 @@ public class CampaignController implements ActionListener {
 		
 		if(e.getSource().equals(campaignView.campaign_add)){
 			map_model = (GameMapModel)this.campaignView.campaign_combobox.getSelectedItem();
-			
+			if(map_model != null)
+			{
 			this.campaignModel.setMap_list(map_model);
+			}
+			else 
+			{
+				JOptionPane.showOptionDialog(null,
+						"There are no more maps",
+						"Invalid", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+						null);
+				return;
+			}
 		//	this.campaignView.setActionListener(this);
 		//	return;
 			//this.campaignView.dispose();

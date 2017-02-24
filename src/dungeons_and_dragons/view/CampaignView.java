@@ -105,7 +105,7 @@ public class CampaignView extends JFrame implements Observer, View {
 		campaign_maps_label = new JLabel[campaign_map_list.size()];
 		
 		for(int i=0;i<campaign_map_list.size();i++){
-			
+			if(!campaign_map_list.isEmpty()){
 			campaign_maps_label[i] = new JLabel((campaign_map_list.get(i).getMap_name()));
 			//campaign_maps_label[i+1] = new JLabel((new ImageIcon(arrow_image)));
 
@@ -117,6 +117,7 @@ public class CampaignView extends JFrame implements Observer, View {
 			if(i!=0){
 				campaign_arrow.setBounds(150,100*(i+1)-50, 150, 25);
 				this.add(campaign_arrow);
+			}
 			}
 			
 		}
