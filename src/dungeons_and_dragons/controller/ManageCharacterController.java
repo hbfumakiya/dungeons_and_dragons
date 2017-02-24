@@ -75,10 +75,10 @@ public class ManageCharacterController implements ActionListener {
 		}
 		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();	
-			CharacterModel item = (CharacterModel) button.getSource();		    
+			int characterId = button.getId();	
+			CharacterModel character = (CharacterModel) button.getSource();		    
 			
-			new CharacterController(item);
+			new CharacterController(character);
 			manageCharacterView.dispose();
 		}
 	}

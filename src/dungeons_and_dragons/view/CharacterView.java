@@ -141,7 +141,7 @@ public class CharacterView extends JFrame implements Observer, View {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 
-		// initialize game window
+		// initialize game windowra
 		this.initializeWindow();
 
 		// close frame while user click on close
@@ -150,7 +150,25 @@ public class CharacterView extends JFrame implements Observer, View {
 	}
 
 	public CharacterView(CharacterModel characterModel){
+		this.items = new ArrayList<ItemModel>();
+
+		try {
+			this.items = FileHelper.getItems();
+		} catch (JsonSyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+
+		// initialize game window
+		this.initializeWindow();
+
+		this.charactername_textfield.setText(characterModel.getCharacter_name());
+		this.level_textfield.setText(characterModel.getCharacter_level()+"");
 		
+		
+		// close frame while user click on close
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 	/**
 	 * initialize character window
@@ -311,7 +329,6 @@ public class CharacterView extends JFrame implements Observer, View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
 		 this.save.addActionListener(actionListener);
 		 this.back.addActionListener(actionListener);
 		 this.rolldice.addActionListener(actionListener);
