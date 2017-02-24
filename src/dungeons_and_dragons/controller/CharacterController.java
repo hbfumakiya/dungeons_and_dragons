@@ -92,22 +92,21 @@ public class CharacterController implements ActionListener {
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
 		} else if (e.getSource().equals(view.rolldice)) {
-
 			this.view.save.setEnabled(true);
-			String level = this.view.level_textfield.getText(); 
+			int level = 1;
 			try { 
-				Integer.parseInt(level);
+				level = Integer.parseInt(this.view.level_textfield.getText());
 			}
 			catch(NumberFormatException ex) { 
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter level");
 				this.view.save.setEnabled(false);
 				return;
 			}
-			this.generateAbilityScore(1);
-			this.generateHitpoints(1);
-			this.generateAttackBonus(1);
-			this.generateDamageBonus(1);
-			this.generateArmorClass(1);
+			this.generateAbilityScore(level);
+			this.generateHitpoints(level);
+			this.generateAttackBonus(level);
+			this.generateDamageBonus(level);
+			this.generateArmorClass(level);
 		}
 	}
 
@@ -123,7 +122,7 @@ public class CharacterController implements ActionListener {
 
 	private void generateAttackBonus(int level) {
 		AbilityScoresModel ability = this.model.getAbilityScores();
-		this.model.setAttackBonus(((level*2)+this.model.getStrength())*level);
+		this.model.setAttackBonus(((level*2)+ability.getStraight())*level);
 	}
 
 	public void generateAbilityScore(int level) {

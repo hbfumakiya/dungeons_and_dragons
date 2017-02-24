@@ -211,37 +211,37 @@ public class CharacterInventoryView extends JFrame implements View {
 		// name
 		
 		nameLabel = new JLabel("Name: " + character.getCharacter_name());
-		nameLabel.setBounds(10, 5, 100, 20);
+		nameLabel.setBounds(10, 5, 120, 20);
 		this.panel.add(nameLabel);
 
 		// level
 		
 		levelLabel = new JLabel("Level: " + character.getCharacter_level());
-		levelLabel.setBounds(10, 25, 100, 20);
+		levelLabel.setBounds(10, 25, 120, 20);
 		this.panel.add(levelLabel);
 		
 		// hit points
 		
 		hitPointsLabel = new JLabel("Hit Points: " + character.getHitpoints());
-		hitPointsLabel.setBounds(10, 45, 100, 20);
+		hitPointsLabel.setBounds(10, 45, 120, 20);in
 		this.panel.add(hitPointsLabel);
 		
 		// armor class
 		
 		armorClassLabel = new JLabel("Armor Class: "+ character.getArmorClass());
-		armorClassLabel.setBounds(10, 65, 100, 20);
-		this.panel.add(armorClassLabel);
+		armorClassLabel.setBounds(10, 65, 120, 20);
+		this.panel.add(armorClassLabel); 
 		
 		// attack bonus
 		
 		attackBonusLabel = new JLabel("Attack Bonus: "+ character.getAttackBonus());
-		attackBonusLabel.setBounds(10, 85, 100, 20);
+		attackBonusLabel.setBounds(10, 85, 120, 20);
 		this.panel.add(attackBonusLabel);
 		
 		// damage bonus
 		
 		damageBonusLabel = new JLabel("Damage Bonus: "+ character.getDamageBonus());
-		damageBonusLabel.setBounds(10, 105, 100, 20);
+		damageBonusLabel.setBounds(10, 105, 120, 20);
 		this.panel.add(damageBonusLabel);
 		
 		

@@ -83,7 +83,6 @@ public class AbilityScoresModel {
 	 */
 	public void setstrength(int strength) {
 		this.strength = strength;
-		System.out.println("strength"+strength);
 	}
 
 	/**
