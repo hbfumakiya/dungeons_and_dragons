@@ -32,7 +32,7 @@ public class CampaignController implements ActionListener {
 	public CampaignController() {
 		
 		//creating campaign model
-		campaignModel = new CampaignModel();
+		this.campaignModel = new CampaignModel();
 		
 		this.maps = new ArrayList<GameMapModel>();
 		try {
@@ -42,15 +42,15 @@ public class CampaignController implements ActionListener {
 		}
 		
 		//creating campaign view
-		campaignView = new CampaignView(maps);
+		this.campaignView = new CampaignView(maps);
 		
-		campaignModel.addObserver(campaignView);
+		this.campaignModel.addObserver(campaignView);
 
 		// set listener
-		campaignView.setActionListener(this);
+		this.campaignView.setActionListener(this);
 
 		// show game view
-		campaignView.setVisible(true);
+		this.campaignView.setVisible(true);
 		
 
 		map_list = this.campaignModel.getMap_list();
@@ -58,11 +58,15 @@ public class CampaignController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getSource());
+		System.out.println(this.campaignView.campaign_add);
+		System.out.println(e.getSource().equals(this.campaignView.campaign_add));
 		
-		if(e.getSource().equals(campaignView.campaign_add)){
+		if(e.getSource().equals(this.campaignView.campaign_add)){
 			map_model = (GameMapModel)this.campaignView.campaign_combobox.getSelectedItem();
 			map_list.add(map_model);
 			this.campaignModel.setMap_list(map_list);
+			this.campaignView.setActionListener(this);
 		}
 	}
 

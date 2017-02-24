@@ -2,11 +2,9 @@ package dungeons_and_dragons.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import dungeons_and_dragons.model.CampaignModel;
@@ -39,6 +37,7 @@ public class CampaignView extends JFrame implements Observer, View {
 	private String window_title = "Create Campaign";
 	public JLabel campaign_label;
 	private JLabel[] campaign_maps_label;
+	private JLabel campaign_arrow;
 	public JComboBox campaign_combobox;
 	private ArrayList<GameMapModel> maps;
 	private Object[] campaign_array;
@@ -56,25 +55,32 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.setPreferredSize(new Dimension(320, 510));
 		this.setResizable(false);
 		this.setLayout(null);
-		campaign_array = this.maps.toArray();
-		campaign_combobox = new JComboBox(campaign_array);
-		
-		
 		this.updateWindow();
 		
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		try{
-			arrow_image = ImageIO.read(new File("res/ArrowDown04-128.png"));
-		}catch(Exception e){
-			
-		}
 		
 	}
 
 	private void updateWindow() {
 
+		
+		// main panel covering body
+		/*main_panel = new JPanel();
+		main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.PAGE_AXIS));
+		main_panel.setBorder(new EmptyBorder(5, 5, 5, 5));*/
+
+		campaign_array = this.maps.toArray();
+		campaign_combobox = new JComboBox(campaign_array);
+		try{
+			arrow_image = ImageIO.read(new File("res/ArrowDown04-128.png"));
+			campaign_arrow = new JLabel(new ImageIcon(arrow_image));
+		}catch(Exception e){
+			
+		}
+		
+		
 		campaign_label = new JLabel("Select Map");
 		campaign_label.setBounds(10, 10, 100, 25);
 		this.add(campaign_label);
@@ -87,22 +93,30 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.add(campaign_combobox);
 		
 		campaign_add=new JButton("Add map to Campaign");
-		campaign_add.setBounds(50, 50, 150, 25);
+		campaign_add.setBounds(50, 50, 200, 25);
 		this.add(campaign_add);
 		
-		campaign_maps_label = new JLabel[campaign_map_list.size()*2];
+		campaign_maps_label = new JLabel[campaign_map_list.size()];
 		
 		for(int i=0;i<campaign_map_list.size();i++){
 			
 			campaign_maps_label[i] = new JLabel((campaign_map_list.get(i).getMap_name()));
-			//campaign_maps_label[i].setText((campaign_map_list.get(i).getMap_name()));
-			campaign_maps_label[i+1] = new JLabel((new ImageIcon(arrow_image)));
+			//campaign_maps_label[i+1] = new JLabel((new ImageIcon(arrow_image)));
+
+			
+			campaign_maps_label[i].setBounds(150,100*(i+1), 150, 25);
+			
 			this.add(campaign_maps_label[i]);
-			this.add(campaign_maps_label[i+1]);
-			i = i+1;
+			
+			if(i!=0){
+				campaign_arrow.setBounds(150,100*(i+1)-50, 150, 25);
+				this.add(campaign_arrow);
+			}
+			
 		}
 		
 		// Display the window.
+		this.repaint();
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
