@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import dungeons_and_dragons.exception.NotFoundException;
+import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.ItemModel;
@@ -62,8 +63,7 @@ public class FileHelper {
 	 * @type String
 	 */
 	private static final String ITEM_FILE = "res/item.json";
-	
-	
+
 	/**
 	 * 
 	 * @param map
@@ -89,25 +89,22 @@ public class FileHelper {
 			map_list = new ArrayList<GameMapModel>();
 
 		}
-		
-		
-		
 
 		// add new data to arraylist
 		map_list.add(map);
 
 		// create writer object for item file
 		Writer file_writer = new FileWriter(MAP_FILE);
-	
-		
+
 		// store object to json
-		
+
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+				.excludeFieldsWithoutExposeAnnotation().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
-		
+
 		file_writer.write(data);
 
 		// close file
@@ -132,10 +129,11 @@ public class FileHelper {
 		Reader reader = new FileReader(MAP_FILE);
 
 		// read data from json file convert it into arraylist and return it
-		
+
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+				.excludeFieldsWithoutExposeAnnotation().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -148,7 +146,7 @@ public class FileHelper {
 	 * @throws NotFoundException
 	 */
 	public static void updateMap(GameMapModel map) throws IOException, NotFoundException {
-		
+
 		Path path = Paths.get(MAP_FILE);
 
 		ArrayList<GameMapModel> map_list;
@@ -166,11 +164,14 @@ public class FileHelper {
 
 				if (tempItem.getMap_id() == map.getMap_id()) {
 
-					/*tempItem.setItem_name(item.getItem_name());
-					tempItem.setItem_type(item.getItem_type());
-					tempItem.setItem_ability(item.getItem_ability());
-					tempItem.setItem_point(item.getItem_point());*/
-					found = true;				}
+					/*
+					 * tempItem.setItem_name(item.getItem_name());
+					 * tempItem.setItem_type(item.getItem_type());
+					 * tempItem.setItem_ability(item.getItem_ability());
+					 * tempItem.setItem_point(item.getItem_point());
+					 */
+					found = true;
+				}
 			}
 
 			if (found) {
@@ -180,7 +181,8 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+						.excludeFieldsWithoutExposeAnnotation().create();
 
 				gson.toJson(map_list, file_writer);
 
@@ -353,8 +355,8 @@ public class FileHelper {
 
 		if (!Files.exists(Paths.get(ITEM_FILE))) {
 			return null;
-		}		
-		
+		}
+
 		// create reader objecr to read data from item file
 		Reader reader = new FileReader(ITEM_FILE);
 
@@ -413,27 +415,157 @@ public class FileHelper {
 			}
 		}
 	}
-	
-	
+
+	/**
+	 * 
+	 * @param map
+	 * @throws IOException
+	 */
+	public static void saveCampaign(CampaignModel campaign) throws IOException {
+
+		Path path = Paths.get(CAMPAIGN_FILE);
+
+		ArrayList<CampaignModel> campaign_list;
+
+		if (Files.exists(path)) {
+			// file exist
+
+			// fetch old data from file and store that into array list
+			campaign_list = getCampaigns();
+			if (campaign_list == null) {
+				campaign_list = new ArrayList<CampaignModel>();
+			}
+
+		} else {
+
+			campaign_list = new ArrayList<CampaignModel>();
+
+		}
+
+		// add new data to arraylist
+		campaign_list.add(campaign);
+
+		// create writer object for item file
+		Writer file_writer = new FileWriter(CAMPAIGN_FILE);
+
+		// store object to json
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+				.excludeFieldsWithoutExposeAnnotation().create();
+		// String ness = gson.toJson(item);
+		String data = gson.toJsonTree(campaign_list).getAsJsonArray().toString();
+
+		file_writer.write(data);
+
+		// close file
+		file_writer.close();
+
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
+	public static ArrayList<CampaignModel> getCampaigns() throws IOException {
+
+		File campaignFile = new File(CAMPAIGN_FILE);
+
+		if (!campaignFile.exists()) {
+			campaignFile.createNewFile();
+		}
+
+		// create reader objecr to read data from item file
+		Reader reader = new FileReader(CAMPAIGN_FILE);
+
+		// read data from json file convert it into arraylist and return it
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+				.excludeFieldsWithoutExposeAnnotation().create();
+		return gson.fromJson(reader, new TypeToken<ArrayList<CampaignModel>>() {
+		}.getType());
+
+	}
+
+	/**
+	 * 
+	 * @param campaign
+	 * @throws IOException
+	 * @throws NotFoundException
+	 */
+	public static void updateCampaign(CampaignModel campaign) throws IOException, NotFoundException {
+		Path path = Paths.get(CAMPAIGN_FILE);
+
+		ArrayList<CampaignModel> campaign_list;
+
+		if (Files.exists(path)) {
+
+			// fetch old data from file and store that into array list
+			campaign_list = getCampaigns();
+			if (campaign_list == null) {
+				throw new NotFoundException();
+			}
+			boolean found = false;
+			for (int i = 0; i < campaign_list.size(); i++) {
+				CampaignModel tempItem = campaign_list.get(i);
+
+				if (tempItem.getCampaign_id() == campaign.getCampaign_id()) {
+
+					/*
+					 * tempItem.setItem_name(item.getItem_name());
+					 * tempItem.setItem_type(item.getItem_type());
+					 * tempItem.setItem_ability(item.getItem_ability());
+					 * tempItem.setItem_point(item.getItem_point());
+					 */
+					found = true;
+				}
+			}
+
+			if (found) {
+				// create writer object for item file
+				Writer file_writer = new FileWriter(CAMPAIGN_FILE);
+
+				// store object to json
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
+						.excludeFieldsWithoutExposeAnnotation().create();
+
+				gson.toJson(campaign_list, file_writer);
+
+				// close file
+				file_writer.close();
+			} else {
+				throw new NotFoundException();
+			}
+		}
+
+	}
+
 	public static class PointAdapter extends TypeAdapter<Point> {
-	     public Point read(JsonReader reader) throws IOException {
-	       if (reader.peek() == JsonToken.NULL) {
-	         reader.nextNull();
-	         return null;
-	       }
-	       String xy = reader.nextString();
-	       String[] parts = xy.split(",");
-	       int x = Integer.parseInt(parts[0]);
-	       int y = Integer.parseInt(parts[1]);
-	       return new Point(x, y);
-	     }
-	     public void write(JsonWriter writer, Point value) throws IOException {
-	       if (value == null) {
-	         writer.nullValue();
-	         return;
-	       }
-	       String xy = (int)value.getX() + "," + (int)value.getY();
-	       writer.value(xy);
-	     }
-	   }
+		public Point read(JsonReader reader) throws IOException {
+			if (reader.peek() == JsonToken.NULL) {
+				reader.nextNull();
+				return null;
+			}
+			String xy = reader.nextString();
+			String[] parts = xy.split(",");
+			int x = Integer.parseInt(parts[0]);
+			int y = Integer.parseInt(parts[1]);
+			return new Point(x, y);
+		}
+
+		public void write(JsonWriter writer, Point value) throws IOException {
+			if (value == null) {
+				writer.nullValue();
+				return;
+			}
+			String xy = (int) value.getX() + "," + (int) value.getY();
+			writer.value(xy);
+		}
+	}
 }

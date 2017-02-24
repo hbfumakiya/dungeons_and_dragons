@@ -9,10 +9,18 @@ import java.util.Random;
  */
 public class DiceHelper {
 
+	/**
+	 * 
+	 * @return value of dice 6
+	 */
 	public static int rollD6() {
 		return roll(6);
 	}
 	
+	/**
+	 * 
+	 * @return value of dice 10
+	 */
 	public static int rollD10() {
 		return roll(10);
 	}
