@@ -327,8 +327,6 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	}
 	
-	
-	
 	public int calculate4D6()  {
 		
 		ArrayList<Integer> data = new ArrayList<Integer>();
@@ -342,7 +340,6 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		data.remove(min);
 
 		int sum = data.stream().mapToInt(Integer::intValue).sum();
-
 		return sum;
 	}
 }
