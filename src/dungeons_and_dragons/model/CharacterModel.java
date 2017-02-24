@@ -79,7 +79,39 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Expose
 	private int hitpoints;
+	private int attackBonus;
+	private int damageBonus;
+	private int armorClass;
 	
+	/**
+	 * @return the damageBonus
+	 */
+	public int getDamageBonus() {
+		return damageBonus;
+	}
+
+	/**
+	 * @param damageBonus the damageBonus to set
+	 */
+	public void setDamageBonus(int damageBonus) {
+		this.damageBonus = damageBonus;
+		System.out.println("damage bonus "+damageBonus);
+	}
+
+	/**
+	 * @return the armorClass
+	 */
+	public int getArmorClass() {
+		return armorClass;
+	}
+
+	/**
+	 * @param armorClass the armorClass to set
+	 */
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
+	}
+
 	public CharacterModel() {
 		this.character_id = 0;
 		this.character_name = "";
@@ -89,6 +121,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.abilityScores = new AbilityScoresModel();
 		this.modifiers = new AbilityScoresModel();
 		this.hitpoints = 0;
+		this.attackBonus = 0;
 	}
 
 	/**
@@ -110,6 +143,21 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public int getHitpoints() {
 		return hitpoints;
+	}
+
+	/**
+	 * @return the attackBonus
+	 */
+	public int getAttackBonus() {
+		return attackBonus;
+	}
+
+	/**
+	 * @param attackBonus the attackBonus to set
+	 */
+	public void setAttackBonus(int attackBonus) {
+		this.attackBonus = attackBonus;
+		System.out.println("atack bonus "+attackBonus);
 	}
 
 	/**

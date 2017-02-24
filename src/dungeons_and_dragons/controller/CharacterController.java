@@ -106,7 +106,25 @@ public class CharacterController implements ActionListener {
 			}
 			this.generateAbilityScore(1);
 			this.generateHitpoints(1);
+			this.generateAttackBonus(1);
+			this.generateDamageBonus(1);
+			this.generateArmorClass(1);
 		}
+	}
+
+	private void generateArmorClass(int level) {
+		
+		
+	}
+
+	private void generateDamageBonus(int level) {
+		AbilityScoresModel ability = this.model.getAbilityScores();
+		this.model.setDamageBonus(ability.getStraight()*level);
+	}
+
+	private void generateAttackBonus(int level) {
+		AbilityScoresModel ability = this.model.getAbilityScores();
+		this.model.setAttackBonus(((level*2)+this.model.getStrength())*level);
 	}
 
 	public void generateAbilityScore(int level) {
