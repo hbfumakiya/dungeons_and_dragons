@@ -223,7 +223,7 @@ public class CharacterInventoryView extends JFrame implements View {
 		// hit points
 		
 		hitPointsLabel = new JLabel("Hit Points: " + character.getHitpoints());
-		hitPointsLabel.setBounds(10, 45, 120, 20);in
+		hitPointsLabel.setBounds(10, 45, 120, 20);
 		this.panel.add(hitPointsLabel);
 		
 		// armor class
