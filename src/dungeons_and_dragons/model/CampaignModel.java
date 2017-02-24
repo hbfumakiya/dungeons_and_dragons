@@ -2,6 +2,8 @@ package dungeons_and_dragons.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * class for campaign
  * @author : Hirangi Naik and Tejas Sadrani
@@ -15,6 +17,7 @@ public class CampaignModel extends Observable {
 	 * 
 	 * @type integer
 	 */
+	@Expose
 	private int campaign_id;
 	
 	/**
@@ -22,6 +25,7 @@ public class CampaignModel extends Observable {
 	 * 
 	 * @type string
 	 */
+	@Expose
 	private String campaign_name;
 	
 	/**
@@ -29,6 +33,7 @@ public class CampaignModel extends Observable {
 	 * 
 	 * @type ArrayList
 	 */
+	@Expose
 	private ArrayList<GameMapModel> map_list;
 	
 	public CampaignModel(int campaign_id,String campaign_name) {
