@@ -73,8 +73,6 @@ public class CharacterInventoryView extends JFrame implements View {
 	
 	private JLabel charismaLabel;
 	
-	private JLabel modifierASLabel;
-	
 	private JLabel strengthASLabel;
 
 	private JLabel dexterityASLabel;
@@ -86,8 +84,6 @@ public class CharacterInventoryView extends JFrame implements View {
 	private JLabel wisdomASLabel;
 	
 	private JLabel charismaASLabel;
-	
-	private JLabel modifierMLabel;
 	
 	private JLabel strengthMLabel;
 
@@ -226,25 +222,25 @@ public class CharacterInventoryView extends JFrame implements View {
 		
 		// hit points
 		
-		hitPointsLabel = new JLabel("Hit Points: 0");
+		hitPointsLabel = new JLabel("Hit Points: " + character.getHitpoints());
 		hitPointsLabel.setBounds(10, 45, 100, 20);
 		this.panel.add(hitPointsLabel);
 		
 		// armor class
 		
-		armorClassLabel = new JLabel("Armor Class: 0");
+		armorClassLabel = new JLabel("Armor Class: "+ character.getArmorClass());
 		armorClassLabel.setBounds(10, 65, 100, 20);
 		this.panel.add(armorClassLabel);
 		
 		// attack bonus
 		
-		attackBonusLabel = new JLabel("Attack Bonus: 0");
+		attackBonusLabel = new JLabel("Attack Bonus: "+ character.getAttackBonus());
 		attackBonusLabel.setBounds(10, 85, 100, 20);
 		this.panel.add(attackBonusLabel);
 		
 		// damage bonus
 		
-		damageBonusLabel = new JLabel("Damage Bonus: 0");
+		damageBonusLabel = new JLabel("Damage Bonus: "+ character.getDamageBonus());
 		damageBonusLabel.setBounds(10, 105, 100, 20);
 		this.panel.add(damageBonusLabel);
 		
@@ -282,52 +278,52 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.panel.add(charismaLabel);
 		
 		
-		strengthASLabel = new JLabel("00");
+		strengthASLabel = new JLabel(character.getAbilityScores().getStraight()+"");
 		strengthASLabel.setBounds(330, 20, 100, 20);
 		this.panel.add(strengthASLabel);
 
-		dexterityASLabel = new JLabel("00");
+		dexterityASLabel = new JLabel(character.getAbilityScores().getDexterity()+"");
 		dexterityASLabel.setBounds(330, 40, 100, 20);
 		this.panel.add(dexterityASLabel);
 		
-		constitutionASLabel = new JLabel("00");
+		constitutionASLabel = new JLabel(character.getAbilityScores().getConstitution()+"");
 		constitutionASLabel.setBounds(330, 60, 100, 20);
 		this.panel.add(constitutionASLabel);
 		
-		intelligenceASLabel = new JLabel("00");
+		intelligenceASLabel = new JLabel(character.getAbilityScores().getIntelligence()+"");
 		intelligenceASLabel.setBounds(330, 80, 100, 20);
 		this.panel.add(intelligenceASLabel);
 		
-		wisdomASLabel = new JLabel("00");
+		wisdomASLabel = new JLabel(character.getAbilityScores().getWisdom()+"");
 		wisdomASLabel.setBounds(330, 100, 100, 20);
 		this.panel.add(wisdomASLabel);
 		
-		charismaASLabel = new JLabel("00");
+		charismaASLabel = new JLabel(character.getAbilityScores().getCharisma()+"");
 		charismaASLabel.setBounds(330, 120, 120, 20);
 		this.panel.add(charismaASLabel);
 		
 		
-		strengthMLabel = new JLabel("-1");
+		strengthMLabel = new JLabel(character.getModifiers().getStraight()+"");
 		strengthMLabel.setBounds(420, 20, 100, 20);
 		this.panel.add(strengthMLabel);
 
-		dexterityMLabel = new JLabel("-1");
+		dexterityMLabel = new JLabel(character.getModifiers().getDexterity()+"");
 		dexterityMLabel.setBounds(420, 40, 100, 20);
 		this.panel.add(dexterityMLabel);
 		
-		constitutionMLabel = new JLabel("-1");
+		constitutionMLabel = new JLabel(character.getModifiers().getConstitution()+"");
 		constitutionMLabel.setBounds(420, 60, 100, 20);
 		this.panel.add(constitutionMLabel);
 		
-		intelligenceMLabel = new JLabel("-1");
+		intelligenceMLabel = new JLabel(character.getModifiers().getIntelligence()+"");
 		intelligenceMLabel.setBounds(420, 80, 100, 20);
 		this.panel.add(intelligenceMLabel);
 		
-		wisdomMLabel = new JLabel("-1");
+		wisdomMLabel = new JLabel(character.getModifiers().getWisdom()+"");
 		wisdomMLabel.setBounds(420, 100, 100, 20);
 		this.panel.add(wisdomMLabel);
 		
-		charismaMLabel = new JLabel("-1");
+		charismaMLabel = new JLabel(character.getModifiers().getCharisma()+"");
 		charismaMLabel.setBounds(420, 120, 100, 20);
 		this.panel.add(charismaMLabel);
 	}

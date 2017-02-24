@@ -163,13 +163,15 @@ public class FileHelper {
 				GameMapModel tempItem = map_list.get(i);
 
 				if (tempItem.getMap_id() == map.getMap_id()) {
-
-					/*
-					 * tempItem.setItem_name(item.getItem_name());
-					 * tempItem.setItem_type(item.getItem_type());
-					 * tempItem.setItem_ability(item.getItem_ability());
-					 * tempItem.setItem_point(item.getItem_point());
-					 */
+					
+					tempItem.setMap_chest(map.getMap_chest());
+					//tempItem.setMap_enemy_loc();
+					tempItem.setMap_entry_door(map.getMap_entry_door());
+					tempItem.setMap_exit_door(map.getMap_exit_door());
+					tempItem.setMap_name(map.getMap_name());
+					tempItem.setMap_object_color_type(map.getMap_object_color_type());
+					tempItem.setMap_size(map.getMap_size());
+					//tempItem.setMap_wall(map.getMap_walls());
 					found = true;
 				}
 			}
@@ -279,7 +281,17 @@ public class FileHelper {
 
 				if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
 
-					// tempChatacter.setCharacter_name(character_name);
+					tempChatacter.setAbilityScores(character.getAbilityScores());
+					tempChatacter.setArmorClass(character.getArmorClass());
+					tempChatacter.setAttackBonus(character.getAttackBonus());
+					tempChatacter.setBackPackItems(character.getBackPackItems());
+					tempChatacter.setCharacter_level(character.getCharacter_level());
+					tempChatacter.setCharacter_name(character.getCharacter_name());
+					tempChatacter.setDamageBonus(character.getDamageBonus());
+					tempChatacter.setHitpoints(character.getHitpoints());
+					tempChatacter.setItems(character.getItems());
+					tempChatacter.setModifiers(character.getModifiers());
+					tempChatacter.setStrength(character.getStrength());
 
 					found = true;
 				}

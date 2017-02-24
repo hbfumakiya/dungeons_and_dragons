@@ -79,39 +79,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Expose
 	private int hitpoints;
+	
+	@Expose
 	private int attackBonus;
+	
+	@Expose
 	private int damageBonus;
+	
+	@Expose
 	private int armorClass;
 	
-	/**
-	 * @return the damageBonus
-	 */
-	public int getDamageBonus() {
-		return damageBonus;
-	}
-
-	/**
-	 * @param damageBonus the damageBonus to set
-	 */
-	public void setDamageBonus(int damageBonus) {
-		this.damageBonus = damageBonus;
-		System.out.println("damage bonus "+damageBonus);
-	}
-
-	/**
-	 * @return the armorClass
-	 */
-	public int getArmorClass() {
-		return armorClass;
-	}
-
-	/**
-	 * @param armorClass the armorClass to set
-	 */
-	public void setArmorClass(int armorClass) {
-		this.armorClass = armorClass;
-	}
-
 	public CharacterModel() {
 		this.character_id = 0;
 		this.character_name = "";
@@ -122,58 +99,20 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers = new AbilityScoresModel();
 		this.hitpoints = 0;
 		this.attackBonus = 0;
+		this.damageBonus = 0;
+		this.armorClass = 0;
 	}
 
-	/**
-	 * 
-	 * @param charecterType
-	 * @param strength
-	 */
-	public CharacterModel(int character_id, String character_name, int strength) {
-		// TODO Auto-generated constructor stub
-		this.character_id = character_id;
-		this.character_name = character_name;
-		this.strength = strength;
-		this.items = new ArrayList<ItemModel>();
-		this.backPackItems = new ArrayList<ItemModel>();
-	}	
-
-	/**
-	 * @return the hitpoints
-	 */
-	public int getHitpoints() {
-		return hitpoints;
-	}
-
-	/**
-	 * @return the attackBonus
-	 */
-	public int getAttackBonus() {
-		return attackBonus;
-	}
-
-	/**
-	 * @param attackBonus the attackBonus to set
-	 */
-	public void setAttackBonus(int attackBonus) {
-		this.attackBonus = attackBonus;
-		System.out.println("atack bonus "+attackBonus);
-	}
-
-	/**
-	 * @param hitpoints the hitpoints to set
-	 */
-	public void setHitpoints(int hitpoints) {
-		this.hitpoints = hitpoints;
-		System.out.println("hit points : "+hitpoints);
-	}
-
+	
+	
 	/**
 	 * @return the character_id
 	 */
 	public int getCharacter_id() {
 		return character_id;
 	}
+
+
 
 	/**
 	 * @param character_id the character_id to set
@@ -182,12 +121,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_id = character_id;
 	}
 
+
+
 	/**
 	 * @return the character_name
 	 */
 	public String getCharacter_name() {
 		return character_name;
 	}
+
+
 
 	/**
 	 * @param character_name the character_name to set
@@ -196,12 +139,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_name = character_name;
 	}
 
+
+
 	/**
 	 * @return the strength
 	 */
 	public int getStrength() {
 		return strength;
 	}
+
+
 
 	/**
 	 * @param strength the strength to set
@@ -210,12 +157,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.strength = strength;
 	}
 
+
+
 	/**
 	 * @return the items
 	 */
 	public ArrayList<ItemModel> getItems() {
 		return items;
 	}
+
+
 
 	/**
 	 * @param items the items to set
@@ -224,12 +175,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.items = items;
 	}
 
+
+
 	/**
 	 * @return the backPackItems
 	 */
 	public ArrayList<ItemModel> getBackPackItems() {
 		return backPackItems;
 	}
+
+
 
 	/**
 	 * @param backPackItems the backPackItems to set
@@ -238,12 +193,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.backPackItems = backPackItems;
 	}
 
+
+
 	/**
 	 * @return the character_level
 	 */
 	public int getCharacter_level() {
 		return character_level;
 	}
+
+
 
 	/**
 	 * @param character_level the character_level to set
@@ -252,12 +211,16 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_level = character_level;
 	}
 
+
+
 	/**
 	 * @return the abilityScores
 	 */
 	public AbilityScoresModel getAbilityScores() {
 		return abilityScores;
 	}
+
+
 
 	/**
 	 * @param abilityScores the abilityScores to set
@@ -266,6 +229,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.abilityScores = abilityScores;
 	}
 
+
+
 	/**
 	 * @return the modifiers
 	 */
@@ -273,12 +238,88 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		return modifiers;
 	}
 
+
+
 	/**
 	 * @param modifiers the modifiers to set
 	 */
 	public void setModifiers(AbilityScoresModel modifiers) {
 		this.modifiers = modifiers;
 	}
+
+
+
+	/**
+	 * @return the hitpoints
+	 */
+	public int getHitpoints() {
+		return hitpoints;
+	}
+
+
+
+	/**
+	 * @param hitpoints the hitpoints to set
+	 */
+	public void setHitpoints(int hitpoints) {
+		this.hitpoints = hitpoints;
+	}
+
+
+
+	/**
+	 * @return the attackBonus
+	 */
+	public int getAttackBonus() {
+		return attackBonus;
+	}
+
+
+
+	/**
+	 * @param attackBonus the attackBonus to set
+	 */
+	public void setAttackBonus(int attackBonus) {
+		this.attackBonus = attackBonus;
+	}
+
+
+
+	/**
+	 * @return the damageBonus
+	 */
+	public int getDamageBonus() {
+		return damageBonus;
+	}
+
+
+
+	/**
+	 * @param damageBonus the damageBonus to set
+	 */
+	public void setDamageBonus(int damageBonus) {
+		this.damageBonus = damageBonus;
+	}
+
+
+
+	/**
+	 * @return the armorClass
+	 */
+	public int getArmorClass() {
+		return armorClass;
+	}
+
+
+
+	/**
+	 * @param armorClass the armorClass to set
+	 */
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
+	}
+
+
 
 	@Override
 	public ArrayList<CharacterModel> getData() throws JsonSyntaxException, IOException {

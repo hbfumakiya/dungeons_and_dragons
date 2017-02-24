@@ -3,7 +3,6 @@ package dungeons_and_dragons.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -97,7 +96,7 @@ public class CharacterController implements ActionListener {
 			this.view.save.setEnabled(true);
 			String level = this.view.level_textfield.getText(); 
 			try { 
-				int i =Integer.parseInt(level);
+				Integer.parseInt(level);
 			}
 			catch(NumberFormatException ex) { 
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter level");
