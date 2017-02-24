@@ -80,7 +80,7 @@ public class CharacterInventoryController implements ActionListener {
 			}
 
 		} else if (actionEvent.getSource().equals(characterInventoryView.okButton)) {
-
+			
 		}
 	}
 
