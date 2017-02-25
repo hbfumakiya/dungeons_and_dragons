@@ -105,7 +105,7 @@ public class CreateGameController implements ActionListener {
 	 */
 	private void showManageCampaignWindow() {
 
-		new CampaignController();
+		new ManageCampaignController();
 
 		createGameView.dispose();
 	}

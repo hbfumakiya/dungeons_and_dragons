@@ -1,7 +1,9 @@
 package dungeons_and_dragons.model;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
 /**
@@ -10,7 +12,7 @@ import com.google.gson.annotations.Expose;
  * 
  */
 
-public class CampaignModel extends Observable {
+public class CampaignModel extends Observable implements Model<CampaignModel>{
 	
 	/**
 	 * Variable for identity of campaign. Value of all these campaigns must be unique.
@@ -95,6 +97,24 @@ public class CampaignModel extends Observable {
 	public void callObservers() {
 		setChanged();
 		notifyObservers(this);
+		
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<CampaignModel> getData() throws JsonSyntaxException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 
