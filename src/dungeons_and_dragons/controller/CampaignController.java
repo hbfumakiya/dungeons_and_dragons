@@ -18,7 +18,7 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CampaignView;
 
 /**
- * @author Hirangi Naik and Tejas Sadrani
+ * @author Tejas Sadrani
  *
  */
 
@@ -87,29 +87,54 @@ public class CampaignController implements ActionListener {
 						null);
 				return;
 			}
-		} else if (e.getSource().equals(this.campaignView.moveMapUP)) {
+		}else if (e.getSource().equals(this.campaignView.moveMapUP)) {
 
-			/*List<GameMapModel> GameMapModel = this.campaignView.output_map_list.getSelectedValuesList();
-			if ((GameMapModel == null) || (GameMapModel.size() < 1))
-				return;*/
-
-			/*this.character.getItems().removeAll(GameMapModel);
-			while (this.character.getItems().remove(null)) {
+			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
+                //not already at top
+                swap(moveMe, moveMe - 1);
+		}else if(e.getSource().equals(this.campaignView.moveMapDown)){
+			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
+                //not already at top
+                swap(moveMe, moveMe + 1);
+		}else if(e.getSource().equals(this.campaignView.removeMap)){
+			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
+                //remove a map
+               this.output_map_list.remove(moveMe);
+               this.input_map_list.add(this.campaignView.output_map_list.getSelectedValue());
+               this.campaignModel.setInput_map_list(this.input_map_list);
+               this.campaignModel.setOutput_map_list(this.output_map_list);
+		}
+		else if(e.getSource().equals(this.campaignView.back_button)){
+				new ManageCampaignController();
+				this.campaignView.dispose();
+		}
+		else if(e.getSource().equals(this.campaignView.save_button)){
+			//first lets validate for a map name
+			if(this.campaignView.campaign_name_text.getText()!=null && !this.campaignView.campaign_name_text.getText().equals("")){
+				this.campaignModel.setCampaign_name(this.campaignView.campaign_name_text.getText());
+				this.campaignModel.save();
+				JOptionPane.showMessageDialog(this.campaignView,"Campaign "+this.campaignView.campaign_name_text.getText()+" has been saved succesfully");
+				new ManageCampaignController();
+				this.campaignView.dispose();
 			}
-			this.character.getBackPackItems().addAll(GameMapModel);
-			this.characterInventoryView.updateList(this.character);*/
-			
-			/*List<ItemModel> items = this.characterInventoryView.itemList.getSelectedValuesList();
-			if ((items == null) || (items.size() < 1))
+			else{
+				JOptionPane.showOptionDialog(null,
+						"Please provide a campaign name",
+						"Invalid", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+						null);
 				return;
-
-			this.character.getItems().removeAll(items);
-			while (this.character.getItems().remove(null)) {
 			}
-			this.character.getBackPackItems().addAll(items);
-			this.characterInventoryView.updateList(this.character);*/
-
+			
 		}
 	}
+	
+	//Swap two elements in the list.
+    private void swap(int a, int b) {
+        GameMapModel objectA = this.campaignModel.getOutput_map_list().get(a);
+        GameMapModel objectB = this.campaignModel.getOutput_map_list().get(b);
+        this.output_map_list.set(b, objectA);
+        this.output_map_list.set(a, objectB);
+        this.campaignModel.setOutput_map_list(this.output_map_list);
+    }
 
 }

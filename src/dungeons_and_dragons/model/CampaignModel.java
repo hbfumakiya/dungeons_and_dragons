@@ -6,6 +6,9 @@ import java.util.Observable;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.LogHelper;
+
 /**
  * Campaign model class
  * @author : Tejas Sadrani
@@ -102,14 +105,18 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
+		try {
+			this.setCurrentId();
+			FileHelper.saveCampaign(this);
+		} catch (JsonSyntaxException  | IOException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
 		
 	}
 
 	@Override
 	public ArrayList<CampaignModel> getData() throws JsonSyntaxException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		return FileHelper.getCampaigns();
 	}
 
 	@Override
@@ -118,6 +125,15 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 		
 	}
 
-	
+	@SuppressWarnings("unused")
+	private void setCurrentId() throws JsonSyntaxException, IOException {
+
+		ArrayList<CampaignModel> alldata = this.getData();
+		if (alldata != null) {
+			this.campaign_id = alldata.get(alldata.size() - 1).getCampaign_id() + 1;
+		} else {
+			this.campaign_id = 1;
+		}
+	}
 	
 }

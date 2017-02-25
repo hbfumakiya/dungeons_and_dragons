@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.GameMapModel;
@@ -54,14 +55,16 @@ public class CampaignView extends JFrame implements Observer, View {
 	//map J list for game map model
 	public JList<GameMapModel> output_map_list;
 	public JScrollPane mapScrollPane;
-	private JButton save_button;
 	private CampaignViewRenderer campaign_view_renderer;
 	ArrayList<GameMapModel> map;
 	public JButton moveMapUP;
 	public JButton moveMapDown;
+	public JButton removeMap;
+	public JButton save_button;
 	public JLabel campaign_name_label;
 	public JTextField campaign_name_text;
 	public JButton back_button;
+	public int restrict_renderer = 0;
 	
 	/**
 	 * Constructor of Campaign View class
@@ -137,6 +140,13 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.moveMapUP.setBounds(350, 170, 50,30);
 
 		this.main_panel.add(this.moveMapUP);
+		
+		// move selected map down
+		
+		this.removeMap = new JButton("X"); //\u2193 unicode for down key
+		this.removeMap.setBounds(350,225,50,30);
+
+		this.main_panel.add(this.removeMap);
 
 		// move selected map down
 		
@@ -159,15 +169,30 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.save_button.setBounds(250, 360, 65, 30);
 		this.main_panel.add(this.save_button);
 		
+
+		this.mapScrollPane = new JScrollPane(this.output_map_list);
+		this.mapScrollPane.setBounds(142, 140, 200, 200);
+		this.main_panel.add(this.mapScrollPane);
+		
 	}
 	
 	
 	private void updateWindow(ArrayList<GameMapModel> temp) {
 		
+		
 		for(int i=0;i<temp.size();i++){
 			campaign_combobox.removeItem(temp.get(i));
 		}
 		
+		
+		if(this.removeMap.isEnabled())
+		{
+			campaign_array = this.gameMapModel_map_list.toArray();
+			campaign_combobox.removeAllItems();
+			for(int i=0;i<this.campaign_array.length;i++){
+				campaign_combobox.addItem(this.campaign_array[i]);
+			}
+		}
 		this.output_map_list.removeAll();
 		
 		this.map = new ArrayList<GameMapModel>();
@@ -190,13 +215,10 @@ public class CampaignView extends JFrame implements Observer, View {
 			}
 
 			this.output_map_list.setListData(maps);
-			System.out.println();
 			this.output_map_list.setCellRenderer(new CampaignCellRenderer());
+			this.output_map_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			
 		}
-		
-		this.mapScrollPane = new JScrollPane(this.output_map_list);
-		this.mapScrollPane.setBounds(142, 140, 200, 200);
-		this.main_panel.add(this.mapScrollPane);
 		
 		
 	}
@@ -218,6 +240,11 @@ public class CampaignView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.campaign_add.addActionListener(actionListener);
+		this.moveMapUP.addActionListener(actionListener);
+		this.moveMapDown.addActionListener(actionListener);
+		this.removeMap.addActionListener(actionListener);
+		this.back_button.addActionListener(actionListener);
+		this.save_button.addActionListener(actionListener);
 	}
 	
 	public class CampaignViewRenderer extends BasicComboBoxRenderer {
