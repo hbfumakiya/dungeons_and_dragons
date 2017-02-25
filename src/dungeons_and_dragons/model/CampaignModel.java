@@ -5,8 +5,8 @@ import java.util.Observable;
 import com.google.gson.annotations.Expose;
 
 /**
- * class for campaign
- * @author : Hirangi Naik and Tejas Sadrani
+ * Campaign model class
+ * @author : Tejas Sadrani
  * 
  */
 
@@ -29,21 +29,33 @@ public class CampaignModel extends Observable {
 	private String campaign_name;
 	
 	/**
-	 * linked list for traversing through maps
+	 * array list of existing maps that are already defined in file
 	 * 
 	 * @type ArrayList
 	 */
 	@Expose
-	private ArrayList<GameMapModel> map_list;
+	private ArrayList<GameMapModel> input_map_list;
+	
+	/**
+	 * array list of maps present in one campaign
+	 * 
+	 * @type ArrayList
+	 */
+	@Expose
+	private ArrayList<GameMapModel> output_map_list;
+	
+	
 	
 	public CampaignModel(int campaign_id,String campaign_name) {
 		this.campaign_id=campaign_id;
 		this.campaign_name=campaign_name;
-		this.map_list = new ArrayList<GameMapModel>();
+		this.input_map_list = new ArrayList<GameMapModel>();
+		this.output_map_list = new ArrayList<GameMapModel>();
 	}
 
 	public CampaignModel() {
-		this.map_list = new ArrayList<GameMapModel>();
+		this.input_map_list = new ArrayList<GameMapModel>();
+		this.output_map_list = new ArrayList<GameMapModel>();
 	}
 
 	public int getCampaign_id() {
@@ -62,14 +74,20 @@ public class CampaignModel extends Observable {
 		this.campaign_name = campaign_name;
 	}
 
-	public ArrayList<GameMapModel> getMap_list() {
-		return map_list;
+	public ArrayList<GameMapModel> getInput_map_list() {
+		return input_map_list;
 	}
 
-	public void setMap_list(GameMapModel map_list) {
-		
-		if(!this.map_list.contains(map_list))
-		this.map_list.add(map_list);
+	public void setInput_map_list(ArrayList<GameMapModel> input_map_list) {
+		this.input_map_list = input_map_list;
+	}
+
+	public ArrayList<GameMapModel> getOutput_map_list() {
+		return output_map_list;
+	}
+
+	public void setOutput_map_list(ArrayList<GameMapModel> output_map_list) {
+		this.output_map_list = output_map_list;
 		setChanged();
 		notifyObservers(this);
 	}

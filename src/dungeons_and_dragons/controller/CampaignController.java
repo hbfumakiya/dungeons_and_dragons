@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -13,6 +14,7 @@ import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.GameMapModel;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CampaignView;
 
 /**
@@ -24,9 +26,9 @@ public class CampaignController implements ActionListener {
 
 	private CampaignModel campaignModel;
 	private CampaignView campaignView;
-	private ArrayList<GameMapModel> maps;
 	private GameMapModel map_model = new GameMapModel();
-	private ArrayList<GameMapModel> map_list;
+	private ArrayList<GameMapModel> input_map_list;
+	private ArrayList<GameMapModel> output_map_list;
 
 	/**
 	 * Constructor of Campaign Controller used to construct campaign models and campaign views
@@ -36,15 +38,19 @@ public class CampaignController implements ActionListener {
 		//creating campaign model
 		this.campaignModel = new CampaignModel();
 		
-		this.maps = new ArrayList<GameMapModel>();
+		this.input_map_list = new ArrayList<GameMapModel>();
+		this.output_map_list = new ArrayList<GameMapModel>();
+		
 		try {
-			this.maps = FileHelper.getMaps();
+			this.input_map_list = FileHelper.getMaps();
 		} catch (JsonSyntaxException | IOException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 		
+		this.campaignModel.setInput_map_list(input_map_list);
+
 		//creating campaign view
-		this.campaignView = new CampaignView(maps);
+		this.campaignView = new CampaignView(input_map_list);
 		
 		this.campaignModel.addObserver(campaignView);
 
@@ -54,23 +60,24 @@ public class CampaignController implements ActionListener {
 		// show game view
 		this.campaignView.setVisible(true);
 		
-
-		map_list = this.campaignModel.getMap_list();
-		//this.campaignView.setActionListener(this);
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getSource());
-		System.out.println(campaignView.campaign_add);
+		System.out.println(this.campaignView.campaign_add);
 		System.out.println(e.getSource().equals(campaignView.campaign_add));
 		
-		if(e.getSource().equals(campaignView.campaign_add)){
-			map_model = (GameMapModel)this.campaignView.campaign_combobox.getSelectedItem();
+		if(e.getSource().equals(this.campaignView.campaign_add)){
+			
+			this.map_model = (GameMapModel)this.campaignView.campaign_combobox.getSelectedItem();
+			this.output_map_list.add(map_model);
+			this.input_map_list.remove(map_model);
+			
 			if(map_model != null)
 			{
-			this.campaignModel.setMap_list(map_model);
+				this.campaignModel.setInput_map_list(this.input_map_list);
+				this.campaignModel.setOutput_map_list(this.output_map_list);
 			}
 			else 
 			{
@@ -80,9 +87,28 @@ public class CampaignController implements ActionListener {
 						null);
 				return;
 			}
-		//	this.campaignView.setActionListener(this);
-		//	return;
-			//this.campaignView.dispose();
+		} else if (e.getSource().equals(this.campaignView.moveMapUP)) {
+
+			/*List<GameMapModel> GameMapModel = this.campaignView.output_map_list.getSelectedValuesList();
+			if ((GameMapModel == null) || (GameMapModel.size() < 1))
+				return;*/
+
+			/*this.character.getItems().removeAll(GameMapModel);
+			while (this.character.getItems().remove(null)) {
+			}
+			this.character.getBackPackItems().addAll(GameMapModel);
+			this.characterInventoryView.updateList(this.character);*/
+			
+			/*List<ItemModel> items = this.characterInventoryView.itemList.getSelectedValuesList();
+			if ((items == null) || (items.size() < 1))
+				return;
+
+			this.character.getItems().removeAll(items);
+			while (this.character.getItems().remove(null)) {
+			}
+			this.character.getBackPackItems().addAll(items);
+			this.characterInventoryView.updateList(this.character);*/
+
 		}
 	}
 
