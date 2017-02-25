@@ -1,5 +1,8 @@
 package dungeons_and_dragons.controller;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -58,8 +61,92 @@ public class CampaignController implements ActionListener {
 		this.campaignView.setActionListener(this);
 
 		// show game view
+
+		this.campaignView.update_button.setVisible(false);
 		this.campaignView.setVisible(true);
 		
+	}
+	
+
+	/**
+	 * Constructor used for viewing and editing the contents of a campaign in a manage campaign controller
+	 * @param campaign
+	 * @param string
+	 */
+	public CampaignController(CampaignModel campaign, String screen_type) {
+	
+		if(screen_type == "view"){
+			
+			//creating campaign model
+			this.campaignModel = campaign;
+			
+			this.input_map_list = this.campaignModel.getInput_map_list();
+			this.output_map_list = this.campaignModel.getOutput_map_list();
+			
+			//Creating campaign view and initializing the variables
+			this.campaignView = new CampaignView(this.input_map_list);
+
+			//Set the name of the campaign in campaign name label
+			this.campaignView.campaign_name_label.setText( this.campaignModel.getCampaign_name());
+			this.campaignView.campaign_name_label.setBounds(225, 10, 100, 25);
+			this.campaignView.campaign_name_label.setForeground(Color.BLACK);
+			this.campaignView.campaign_name_label.setFont(new Font("Serif", Font.BOLD, 15));
+			
+			//Setting all contents that are not required as invisible
+			this.campaignView.output_map_list.setVisible(false);
+			this.campaignView.campaign_add.setVisible(false);
+			this.campaignView.campaign_combobox.setVisible(false);
+			this.campaignView.campaign_name_text.setVisible(false);
+			this.campaignView.moveMapDown.setVisible(false);
+			this.campaignView.moveMapUP.setVisible(false);
+			this.campaignView.removeMap.setVisible(false);
+			this.campaignView.mapScrollPane.setVisible(false);
+			this.campaignView.save_button.setVisible(false);
+			this.campaignView.update_button.setVisible(false);
+			this.campaignView.campaign_label.setVisible(false);
+			
+			//Aligning back button at the center
+			this.campaignView.back_button.setBounds(200, 360, 65, 30);
+			
+			//Setting the view type as true so that different view can be rendered
+			this.campaignView.isView = true;
+			
+			//generating a view list
+			this.campaignView.updateWindow(this.campaignModel.getOutput_map_list());
+			
+			//Setting observers that can be notified
+			this.campaignModel.addObserver(campaignView);
+
+			//Set listener for any action
+			this.campaignView.setActionListener(this);
+
+			//Show game view
+			this.campaignView.setVisible(true);
+			
+			
+		}else if(screen_type == "edit"){
+			
+			//creating campaign model
+			this.campaignModel = campaign;
+			
+			this.input_map_list = this.campaignModel.getInput_map_list();
+			this.output_map_list = this.campaignModel.getOutput_map_list();
+			
+			//creating campaign view
+			this.campaignView = new CampaignView(this.input_map_list);
+			this.campaignView.campaign_name_text.setText( this.campaignModel.getCampaign_name());
+			this.campaignView.updateWindow(this.campaignModel.getOutput_map_list());
+			
+			this.campaignModel.addObserver(campaignView);
+
+			// set listener
+			this.campaignView.setActionListener(this);
+
+			// show game view
+			this.campaignView.save_button.setVisible(false);
+			this.campaignView.setVisible(true);
+		}
+	
 	}
 
 	@Override
@@ -113,6 +200,24 @@ public class CampaignController implements ActionListener {
 			if(this.campaignView.campaign_name_text.getText()!=null && !this.campaignView.campaign_name_text.getText().equals("")){
 				this.campaignModel.setCampaign_name(this.campaignView.campaign_name_text.getText());
 				this.campaignModel.save();
+				JOptionPane.showMessageDialog(this.campaignView,"Campaign "+this.campaignView.campaign_name_text.getText()+" has been saved succesfully");
+				new ManageCampaignController();
+				this.campaignView.dispose();
+			}
+			else{
+				JOptionPane.showOptionDialog(null,
+						"Please provide a campaign name",
+						"Invalid", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+						null);
+				return;
+			}
+			
+		}
+		else if(e.getSource().equals(this.campaignView.update_button)){
+			//first lets validate for a map name
+			if(this.campaignView.campaign_name_text.getText()!=null && !this.campaignView.campaign_name_text.getText().equals("")){
+				this.campaignModel.setCampaign_name(this.campaignView.campaign_name_text.getText());
+				this.campaignModel.update();
 				JOptionPane.showMessageDialog(this.campaignView,"Campaign "+this.campaignView.campaign_name_text.getText()+" has been saved succesfully");
 				new ManageCampaignController();
 				this.campaignView.dispose();

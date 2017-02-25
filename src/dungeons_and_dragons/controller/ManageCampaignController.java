@@ -70,6 +70,7 @@ public class ManageCampaignController implements ActionListener {
 			CampaignModel map = (CampaignModel) button.getSource();
 
 			//new MapView(map);
+			new CampaignController(map,"view");
 			manageCampaignView.dispose();
 //			StringBuilder sb = new StringBuilder("");
 //			sb.append(item.getMap_name());
@@ -85,7 +86,7 @@ public class ManageCampaignController implements ActionListener {
 			CampaignModel map = (CampaignModel) button.getSource();
 		    
 			
-			//new MapGridController(map);
+			new CampaignController(map,"edit");
 			//x.setListener(this);
 			manageCampaignView.dispose();
 		}

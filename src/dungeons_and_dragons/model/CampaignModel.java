@@ -1,4 +1,5 @@
 package dungeons_and_dragons.model;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -11,20 +12,22 @@ import dungeons_and_dragons.helper.LogHelper;
 
 /**
  * Campaign model class
+ * 
  * @author : Tejas Sadrani
  * 
  */
 
-public class CampaignModel extends Observable implements Model<CampaignModel>{
-	
+public class CampaignModel extends Observable implements Model<CampaignModel> {
+
 	/**
-	 * Variable for identity of campaign. Value of all these campaigns must be unique.
+	 * Variable for identity of campaign. Value of all these campaigns must be
+	 * unique.
 	 * 
 	 * @type integer
 	 */
 	@Expose
 	private int campaign_id;
-	
+
 	/**
 	 * Variable for campaign name.
 	 * 
@@ -32,7 +35,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 	 */
 	@Expose
 	private String campaign_name;
-	
+
 	/**
 	 * array list of existing maps that are already defined in file
 	 * 
@@ -40,7 +43,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 	 */
 	@Expose
 	private ArrayList<GameMapModel> input_map_list;
-	
+
 	/**
 	 * array list of maps present in one campaign
 	 * 
@@ -48,12 +51,10 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 	 */
 	@Expose
 	private ArrayList<GameMapModel> output_map_list;
-	
-	
-	
-	public CampaignModel(int campaign_id,String campaign_name) {
-		this.campaign_id=campaign_id;
-		this.campaign_name=campaign_name;
+
+	public CampaignModel(int campaign_id, String campaign_name) {
+		this.campaign_id = campaign_id;
+		this.campaign_name = campaign_name;
 		this.input_map_list = new ArrayList<GameMapModel>();
 		this.output_map_list = new ArrayList<GameMapModel>();
 	}
@@ -96,11 +97,11 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 		setChanged();
 		notifyObservers(this);
 	}
-	
+
 	public void callObservers() {
 		setChanged();
 		notifyObservers(this);
-		
+
 	}
 
 	@Override
@@ -108,10 +109,10 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 		try {
 			this.setCurrentId();
 			FileHelper.saveCampaign(this);
-		} catch (JsonSyntaxException  | IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
-		
+
 	}
 
 	@Override
@@ -121,8 +122,12 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		try {
+			FileHelper.updateCampaign(this);
+		} catch (Exception e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+
 	}
 
 	@SuppressWarnings("unused")
@@ -135,5 +140,5 @@ public class CampaignModel extends Observable implements Model<CampaignModel>{
 			this.campaign_id = 1;
 		}
 	}
-	
+
 }

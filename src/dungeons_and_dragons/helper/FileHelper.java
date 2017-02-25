@@ -523,16 +523,14 @@ public class FileHelper {
 			}
 			boolean found = false;
 			for (int i = 0; i < campaign_list.size(); i++) {
-				CampaignModel tempItem = campaign_list.get(i);
+				CampaignModel tempCampaign = campaign_list.get(i);
 
-				if (tempItem.getCampaign_id() == campaign.getCampaign_id()) {
+				if (tempCampaign.getCampaign_id() == campaign.getCampaign_id()) {
 
-					/*
-					 * tempItem.setItem_name(item.getItem_name());
-					 * tempItem.setItem_type(item.getItem_type());
-					 * tempItem.setItem_ability(item.getItem_ability());
-					 * tempItem.setItem_point(item.getItem_point());
-					 */
+					 tempCampaign.setCampaign_name(campaign.getCampaign_name());
+					 tempCampaign.setInput_map_list(campaign.getInput_map_list());
+					 tempCampaign.setOutput_map_list(campaign.getOutput_map_list());
+					 
 					found = true;
 				}
 			}
