@@ -24,7 +24,7 @@ public class basictest {
 		int strength=10;
 		
 		//When
-		CharacterModel newcharacter=new CharacterModel(character_id,character_name,strength);
+		CharacterModel newcharacter=new CharacterModel();
 		
 		//Then
 		assertEquals(newcharacter.getCharacter_name(),character_name);
