@@ -3,27 +3,22 @@ package dungeons_and_dragons.view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.stream.Stream;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import com.google.gson.JsonSyntaxException;
@@ -95,7 +90,7 @@ public class CharacterView extends JFrame implements Observer, View {
 	 * 
 	 * @type JComboBox
 	 */
-	public JComboBox helmet_combobox;
+	public JComboBox<String> helmet_combobox;
 	public JComboBox armer_combobox;
 	public JComboBox shield_combobox;
 	public JComboBox belt_combobox;
@@ -194,7 +189,10 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Helmet");
 		additem_label.setBounds(10, 40, 100, 25);
 		this.add(additem_label);
-		Object[] helmet = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.HELMET)).toArray();
+		Object[] ob1 = new Object[] { null };
+		Object[] helmetTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.HELMET)).toArray();		
+		Object[] helmet = Stream.of(ob1, helmetTemp).flatMap(Stream::of)
+                .toArray();
 		helmet_combobox = new JComboBox(helmet);
 		if (helmet.length > 0)
 			helmet_combobox.setRenderer(new ItemRenderer());
@@ -206,7 +204,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Armer");
 		additem_label.setBounds(10, 70, 100, 25);
 		this.add(additem_label);
-		Object[] armer = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.ARMOR)).toArray();
+		Object[] armerTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.ARMOR)).toArray();
+		Object[] armer = Stream.of(ob1, armerTemp).flatMap(Stream::of)
+                .toArray();
 		armer_combobox = new JComboBox(armer);
 		if (armer.length > 0)
 			armer_combobox.setRenderer(new ItemRenderer());
@@ -218,7 +218,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Shield");
 		additem_label.setBounds(10, 100, 100, 25);
 		this.add(additem_label);
-		Object[] shields = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.SHIELD)).toArray();
+		Object[] shieldsTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.SHIELD)).toArray();
+		Object[] shields = Stream.of(ob1, shieldsTemp).flatMap(Stream::of)
+                .toArray();
 		shield_combobox = new JComboBox(shields);
 		if (shields.length > 0)
 			shield_combobox.setRenderer(new ItemRenderer());
@@ -230,7 +232,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Ring");
 		additem_label.setBounds(10, 130, 100, 25);
 		this.add(additem_label);
-		Object[] rings = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.RING)).toArray();
+		Object[] ringsTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.RING)).toArray();
+		Object[] rings = Stream.of(ob1, ringsTemp).flatMap(Stream::of)
+                .toArray();
 		ring_combobox = new JComboBox(rings);
 		if (rings.length > 0)
 			ring_combobox.setRenderer(new ItemRenderer());
@@ -242,7 +246,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Belt");
 		additem_label.setBounds(10, 160, 100, 25);
 		this.add(additem_label);
-		Object[] belts = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BELT)).toArray();
+		Object[] beltsTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BELT)).toArray();
+		Object[] belts = Stream.of(ob1, beltsTemp).flatMap(Stream::of)
+                .toArray();
 		belt_combobox = new JComboBox(belts);
 		if (belts.length > 0)
 			belt_combobox.setRenderer(new ItemRenderer());
@@ -254,7 +260,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Boot");
 		additem_label.setBounds(10, 190, 100, 25);
 		this.add(additem_label);
-		Object[] boots = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BOOTS)).toArray();
+		Object[] bootsTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.BOOTS)).toArray();
+		Object[] boots = Stream.of(ob1, bootsTemp).flatMap(Stream::of)
+                .toArray();
 		boot_combobox = new JComboBox(boots);
 		if (boots.length > 0)
 			boot_combobox.setRenderer(new ItemRenderer());
@@ -266,7 +274,9 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Weapon");
 		additem_label.setBounds(10, 220, 100, 25);
 		this.add(additem_label);
-		Object[] weapon = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON)).toArray();
+		Object[] weaponTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON)).toArray();
+		Object[] weapon = Stream.of(ob1, weaponTemp).flatMap(Stream::of)
+                .toArray();
 		weapon_combobox = new JComboBox(weapon);
 		if (weapon.length > 0)
 			weapon_combobox.setRenderer(new ItemRenderer());
@@ -339,8 +349,12 @@ public class CharacterView extends JFrame implements Observer, View {
 				boolean cellHasFocus) {
 			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-			ItemModel item = (ItemModel) value;
-			setText(item.getItem_name());
+			if(value != null) {
+				ItemModel item = (ItemModel) value;
+				setText(item.getItem_name());
+			} else {
+				setText("");
+			}
 
 			return this;
 		}

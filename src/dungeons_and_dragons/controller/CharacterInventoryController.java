@@ -5,11 +5,17 @@ package dungeons_and_dragons.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.exception.NotFoundException;
+import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
@@ -80,6 +86,15 @@ public class CharacterInventoryController implements ActionListener {
 			}
 
 		} else if (actionEvent.getSource().equals(characterInventoryView.okButton)) {
+			
+			
+			try {
+				FileHelper.updateCharacter(this.character);
+				this.characterInventoryView.dispose();
+			} catch (JsonSyntaxException | IOException | NotFoundException e) {
+				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+			}
+			
 			
 		}
 	}
