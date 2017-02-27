@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -24,7 +26,6 @@ import dungeons_and_dragons.view.CampaignView;
  * @author Tejas Sadrani
  *
  */
-
 public class CampaignController implements ActionListener {
 
 	private CampaignModel campaignModel;
@@ -129,8 +130,28 @@ public class CampaignController implements ActionListener {
 			//creating campaign model
 			this.campaignModel = campaign;
 			
-			this.input_map_list = this.campaignModel.getInput_map_list();
+			try {
+				this.input_map_list = FileHelper.getMaps();
+			} catch (JsonSyntaxException | IOException e) {
+				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+			}
+			
 			this.output_map_list = this.campaignModel.getOutput_map_list();
+			
+			
+			ArrayList<GameMapModel> temp = this.output_map_list;
+			
+			for(int j=0;j<this.input_map_list.size();j++)
+			{
+				for(int i =0;i<temp.size();i++){
+				
+				if(this.input_map_list.get(j).getMap_id() == temp.get(i).getMap_id()){
+						System.out.println(this.input_map_list.get(j).getMap_id());
+						this.input_map_list.remove(this.input_map_list.get(j));
+					}
+				}
+			}
+			
 			
 			//creating campaign view
 			this.campaignView = new CampaignView(this.input_map_list);
@@ -138,6 +159,7 @@ public class CampaignController implements ActionListener {
 			this.campaignView.updateWindow(this.campaignModel.getOutput_map_list());
 			
 			this.campaignModel.addObserver(campaignView);
+			this.campaignView.isEdit = true;
 
 			// set listener
 			this.campaignView.setActionListener(this);

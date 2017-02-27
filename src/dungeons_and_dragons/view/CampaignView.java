@@ -67,6 +67,7 @@ public class CampaignView extends JFrame implements Observer, View {
 	public JLabel campaign_arrow;
 
 	public boolean isView = false;
+	public boolean isEdit = false;
 
 	/**
 	 * Constructor of Campaign View class
@@ -217,10 +218,14 @@ public class CampaignView extends JFrame implements Observer, View {
 			this.main_panel.add(view_panel);
 		}else{
 			
+			//remove items already present in the bottom list
 			for (int i = 0; i < temp.size(); i++) {
+				System.out.println(temp.get(i));
+				System.out.println(campaign_combobox.equals(temp.get(i)));
 				campaign_combobox.removeItem(temp.get(i));
 			}
 
+			//when pressed upon remove map
 			if (this.removeMap.isEnabled()) {
 				campaign_array = this.gameMapModel_map_list.toArray();
 				campaign_combobox.removeAllItems();
@@ -228,6 +233,8 @@ public class CampaignView extends JFrame implements Observer, View {
 					campaign_combobox.addItem(this.campaign_array[i]);
 				}
 			}
+			
+			//generating new list of maps to be viewed
 			this.output_map_list.removeAll();
 
 			this.map = new ArrayList<GameMapModel>();
