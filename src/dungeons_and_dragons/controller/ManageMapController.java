@@ -1,5 +1,6 @@
 /**
- * 
+ * This file is created to mange View,Edit and creating of new Maps
+ *   
  */
 package dungeons_and_dragons.controller;
 
@@ -27,6 +28,9 @@ import dungeons_and_dragons.view.MapGridView;
 import dungeons_and_dragons.view.MapView;
 
 /**
+ * 
+ * This class is created to mange View,Edit and creating of new Maps by implementing ActionListener
+ *   
  * @author Urmil Kansara
  *
  */
@@ -36,15 +40,19 @@ public class ManageMapController implements ActionListener {
 
 	private ManageMapView manageMapView;
 
+	/**
+	 * Default constructor to initialize model and view of managing maps
+	 * 
+	 */
 	public ManageMapController() {
 
 		try {
 
 			mapModel = new GameMapModel();
 
-			ArrayList<GameMapModel> items = mapModel.getData();
+			ArrayList<GameMapModel> maps = mapModel.getData();
 
-			manageMapView = new ManageMapView(this, items);
+			manageMapView = new ManageMapView(this, maps);
 
 			manageMapView.setVisible(true);
 
@@ -54,7 +62,11 @@ public class ManageMapController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-
+	/**
+	 * This method will listen all the events of buttons(Edit,View,Back and Add Map)
+	 * 
+	 * @param actionEvent event of actions performed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
@@ -72,7 +84,7 @@ public class ManageMapController implements ActionListener {
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
 
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();
+			int mapId = button.getId();
 			GameMapModel map = (GameMapModel) button.getSource();
 
 			new MapView(map);
@@ -87,7 +99,7 @@ public class ManageMapController implements ActionListener {
 		}
 		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();	
+			int mapId = button.getId();	
 			GameMapModel map = (GameMapModel) button.getSource();
 		    
 			

@@ -18,6 +18,8 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ManageItemView;
 
 /**
+ * This class implements ActionListener where Item's addition,view and editing funtions are handled.
+ * 
  * @author mihir
  *
  */
@@ -26,7 +28,10 @@ public class ManageItemController implements ActionListener {
 	private ItemModel itemModel;
 
 	private ManageItemView manageItemView;
-
+	/**
+	 * Default constructor to initialize model and view of managing Items
+	 * 
+	 */
 	public ManageItemController() {
 
 		try {
@@ -45,7 +50,11 @@ public class ManageItemController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-
+	/**
+	 * This method will listen all the events of buttons(Edit,View,Back and Add Item)
+	 * 
+	 * @param actionEvent event of actions performed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
