@@ -18,7 +18,8 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ManageItemView;
 
 /**
- * This class implements ActionListener where Item's addition,view and editing funtions are handled.
+ * This class implements ActionListener where Item's addition,view and editing
+ * funtions are handled.
  * 
  * @author mihir
  *
@@ -28,6 +29,7 @@ public class ManageItemController implements ActionListener {
 	private ItemModel itemModel;
 
 	private ManageItemView manageItemView;
+
 	/**
 	 * Default constructor to initialize model and view of managing Items
 	 * 
@@ -50,29 +52,31 @@ public class ManageItemController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
+
 	/**
-	 * This method will listen all the events of buttons(Edit,View,Back and Add Item)
+	 * This method will listen all the events of buttons(Edit,View,Back and Add
+	 * Item)
 	 * 
-	 * @param actionEvent event of actions performed
+	 * @param actionEvent
+	 *            event of actions performed
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
 		if (actionEvent.getSource().equals(manageItemView.addItemButton)) {
 			new ItemController();
-			
+
 			manageItemView.dispose();
-			
+
 		} else if (actionEvent.getSource().equals(manageItemView.backButton)) {
-			
+
 			new CreateGameController();
-			
+
 			manageItemView.dispose();
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
 
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();
 			ItemModel item = (ItemModel) button.getSource();
 
 			StringBuilder sb = new StringBuilder("");
@@ -86,13 +90,10 @@ public class ManageItemController implements ActionListener {
 
 			JOptionPane.showMessageDialog(this.manageItemView, sb.toString());
 
-		}
-		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();	
 			ItemModel item = (ItemModel) button.getSource();
-		    
-			
+
 			new ItemController(item);
 			manageItemView.dispose();
 		}

@@ -100,8 +100,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-				.excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
+				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
 
@@ -132,8 +132,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-				.excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
+				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -183,8 +183,8 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-						.excludeFieldsWithoutExposeAnnotation().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization()
+						.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 				gson.toJson(map_list, file_writer);
 
@@ -226,7 +226,7 @@ public class FileHelper {
 		Writer file_writer = new FileWriter(CHARACTER_FILE);
 
 		// store object to json
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		gson.toJson(item_list, file_writer);
 
 		// close file
@@ -250,7 +250,7 @@ public class FileHelper {
 		Reader reader = new FileReader(CHARACTER_FILE);
 
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CharacterModel>>() {
 		}.getType());
 	}
@@ -292,6 +292,7 @@ public class FileHelper {
 					tempChatacter.setItems(character.getItems());
 					tempChatacter.setModifiers(character.getModifiers());
 					tempChatacter.setStrength(character.getStrength());
+					tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
 
 					found = true;
 				}
@@ -302,7 +303,7 @@ public class FileHelper {
 				Writer file_writer = new FileWriter(CHARACTER_FILE);
 
 				// store object to json
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 				gson.toJson(character_list, file_writer);
 
@@ -348,7 +349,7 @@ public class FileHelper {
 		Writer file_writer = new FileWriter(ITEM_FILE);
 
 		// store object to json
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		gson.toJson(item_list, file_writer);
 
@@ -373,7 +374,7 @@ public class FileHelper {
 		Reader reader = new FileReader(ITEM_FILE);
 
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<ItemModel>>() {
 		}.getType());
 	}
@@ -416,7 +417,7 @@ public class FileHelper {
 				Writer file_writer = new FileWriter(ITEM_FILE);
 
 				// store object to json
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 				gson.toJson(item_list, file_writer);
 
@@ -464,8 +465,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-				.excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
+				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(campaign_list).getAsJsonArray().toString();
 
@@ -496,8 +497,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-				.excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
+				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CampaignModel>>() {
 		}.getType());
 
@@ -542,8 +543,7 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting()
-						.excludeFieldsWithoutExposeAnnotation().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 				gson.toJson(campaign_list, file_writer);
 

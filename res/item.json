@@ -1,1 +1,58 @@
-[{"item_id":1,"item_name":"Head1","item_point":5,"item_type":"Ring","item_ability":"Strength"},{"item_id":2,"item_name":"armer1","item_point":4,"item_type":"Armor","item_ability":"Armor class"},{"item_id":3,"item_name":"shield1","item_point":4,"item_type":"Shield","item_ability":"Armor class"},{"item_id":4,"item_name":"ring1","item_point":3,"item_type":"Ring","item_ability":"Strength"},{"item_id":5,"item_name":"belt","item_point":7,"item_type":"Belt","item_ability":"Constitution"},{"item_id":6,"item_name":"helmet3","item_point":1,"item_type":"Helmet","item_ability":"Intelligence"},{"item_id":7,"item_name":"weapon1","item_point":3,"item_type":"Weapon","item_ability":"Damage bonus"},{"item_id":8,"item_name":"mna","item_point":1,"item_type":"Helmet","item_ability":"Wisdom"}]
+[
+  {
+    "item_id": 1,
+    "item_name": "Ring5",
+    "item_point": 5,
+    "item_type": "Ring",
+    "item_ability": "Intelligence"
+  },
+  {
+    "item_id": 2,
+    "item_name": "armer1",
+    "item_point": 4,
+    "item_type": "Armor",
+    "item_ability": "Armor class"
+  },
+  {
+    "item_id": 3,
+    "item_name": "shield1",
+    "item_point": 4,
+    "item_type": "Shield",
+    "item_ability": "Armor class"
+  },
+  {
+    "item_id": 4,
+    "item_name": "ring1",
+    "item_point": 3,
+    "item_type": "Ring",
+    "item_ability": "Strength"
+  },
+  {
+    "item_id": 5,
+    "item_name": "belt",
+    "item_point": 7,
+    "item_type": "Belt",
+    "item_ability": "Constitution"
+  },
+  {
+    "item_id": 6,
+    "item_name": "helmet3",
+    "item_point": 1,
+    "item_type": "Helmet",
+    "item_ability": "Intelligence"
+  },
+  {
+    "item_id": 7,
+    "item_name": "weapon1",
+    "item_point": 3,
+    "item_type": "Weapon",
+    "item_ability": "Damage bonus"
+  },
+  {
+    "item_id": 8,
+    "item_name": "mna",
+    "item_point": 1,
+    "item_type": "Helmet",
+    "item_ability": "Wisdom"
+  }
+]
