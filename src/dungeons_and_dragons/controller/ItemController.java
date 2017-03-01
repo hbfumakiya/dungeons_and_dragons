@@ -157,8 +157,6 @@ public class ItemController implements ActionListener {
 			}
 		
 		}
-	
-	
 
 	}
 }

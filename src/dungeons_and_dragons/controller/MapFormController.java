@@ -25,6 +25,11 @@ public class MapFormController implements ActionListener{
 	MapFormView map_form_view;
 	GameMapModel map_form_model;
 	
+	/**
+	 * Default constructor of mapform controller
+	 * <p>
+	 * mapform model and view are initialized and also view is binded to observer.
+	 */
 	public MapFormController() {
 		// TODO Auto-generated constructor stub
 		this.map_form_model = new GameMapModel();
@@ -34,6 +39,9 @@ public class MapFormController implements ActionListener{
 		this.map_form_view.setActionListener(this);
 	}
 	
+	/**
+	 * Action events of all buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

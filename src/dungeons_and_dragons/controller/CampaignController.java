@@ -36,6 +36,7 @@ public class CampaignController implements ActionListener {
 
 	/**
 	 * Constructor of Campaign Controller used to construct campaign models and campaign views
+	 * view is binded to observer
 	 */
 	public CampaignController() {
 		
@@ -170,6 +171,10 @@ public class CampaignController implements ActionListener {
 		}
 	
 	}
+	
+	/**
+	 * Action events of all the events
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

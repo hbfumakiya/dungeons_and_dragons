@@ -31,7 +31,8 @@ public class CharacterInventoryController implements ActionListener {
 	private CharacterInventoryView characterInventoryView;
 
 	/**
-	 * 
+	 * Parameterized constructor for inventory
+	 * @param character
 	 */
 	public CharacterInventoryController(CharacterModel character) {
 
@@ -44,6 +45,9 @@ public class CharacterInventoryController implements ActionListener {
 		characterInventoryView.setVisible(true);
 	}
 
+	/**
+	 * Action event of all events
+	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
@@ -94,9 +98,7 @@ public class CharacterInventoryController implements ActionListener {
 			} catch (JsonSyntaxException | IOException | NotFoundException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
-			
-			
+						
 		}
 	}
-
 }

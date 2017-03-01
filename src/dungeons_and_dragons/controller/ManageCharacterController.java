@@ -28,7 +28,8 @@ public class ManageCharacterController implements ActionListener {
 	private ManageCharacterView manageCharacterView;
 
 	/**
-	 * 
+	 * Default constructor for manage character 
+	 * initialize model and view
 	 */
 	public ManageCharacterController() {
 
@@ -50,6 +51,9 @@ public class ManageCharacterController implements ActionListener {
 
 	}
 
+	/**
+	 * Action events for all the events
+	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		

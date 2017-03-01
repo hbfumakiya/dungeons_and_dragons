@@ -42,7 +42,7 @@ public class ManageMapController implements ActionListener {
 
 	/**
 	 * Default constructor to initialize model and view of managing maps
-	 * 
+	 * initialize model and view
 	 */
 	public ManageMapController() {
 

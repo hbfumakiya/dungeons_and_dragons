@@ -45,6 +45,10 @@ public class MapGridController implements ActionListener {
 
 	public static int finder = 0;
 
+	/**
+	 * Default constructor for mapgrid
+	 * initialize view and model. 
+	 */
 	public MapGridController() {
 		Point p = new Point();
 		p.x = 5;
