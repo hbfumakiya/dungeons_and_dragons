@@ -498,7 +498,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.armorClass = armorClass;
 	}
 
-	public void calculateAttachBonus() {
+	public void calculateAttackBonus() {
 
 	}
 
@@ -522,7 +522,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		return sum;
 	}
 
-	private int getModifiersFromScore(int score) {
+	public int getModifiersFromScore(int score) {
 		int modifier = -5;
 		if (score == 1) {
 			modifier = -5;

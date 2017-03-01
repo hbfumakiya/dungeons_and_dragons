@@ -21,7 +21,9 @@ public class GameController implements ActionListener {
 	private GameView gameView;
 
 	/**
-	 * constructore of game controller
+	 * Default constructor of game controller
+	 * <p>
+	 * Gameview is initialize
 	 */
 	public GameController() {
 
@@ -35,7 +37,7 @@ public class GameController implements ActionListener {
 	}
 
 	/**
-	 * 
+	 * Action event of all events
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

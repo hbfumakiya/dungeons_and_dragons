@@ -20,6 +20,10 @@ public class CreateGameController implements ActionListener {
 
 	private CreateGameView createGameView;
 
+	/**
+	 * Default constructor for game controller
+	 * initialize game view
+	 */
 	public CreateGameController() {
 
 		createGameView = new CreateGameView();
@@ -30,6 +34,7 @@ public class CreateGameController implements ActionListener {
 	}
 
 	/**
+	 * All action events
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override

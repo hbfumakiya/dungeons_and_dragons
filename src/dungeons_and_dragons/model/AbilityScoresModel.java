@@ -15,7 +15,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int strength;
+	private static int strength;
 	
 	/**
 	 * Variable for dexterity.
@@ -23,7 +23,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int dexterity;
+	private static int dexterity;
 	
 	/**
 	 * Variable for constitution.
@@ -31,7 +31,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int constitution;
+	private static int constitution;
 	
 	/**
 	 * Variable for intelligence.
@@ -39,7 +39,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int intelligence;
+	private static int intelligence;
 	
 	/**
 	 * Variable for wisdom.
@@ -47,7 +47,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int wisdom;
+	private static int wisdom;
 	
 	/**
 	 * Variable for charisma.
@@ -55,7 +55,7 @@ public class AbilityScoresModel {
 	 * @type integer
 	 */
 	@Expose
-	private int charisma;
+	private static int charisma;
 	
 	/**
 	 * constructor for ability scores

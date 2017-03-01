@@ -30,6 +30,10 @@ public class ManageCampaignController implements ActionListener {
 
 	private ManageCampaignView manageCampaignView;
 
+	/**
+	 * Default constructor for campaign model
+	 * campaign model and view is initialized
+	 */
 	public ManageCampaignController() {
 
 		try {
@@ -48,6 +52,10 @@ public class ManageCampaignController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
+	
+	/**
+	 * Action events for all the events
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

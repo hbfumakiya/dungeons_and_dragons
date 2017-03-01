@@ -24,6 +24,13 @@ public class CharacterController implements ActionListener {
 	private CharacterModel model;
 	private CharacterView view;
 
+	/**
+	 * Default constructor of character controller
+	 * <p>
+	 * Character model and view are initialized and also view is binded to observer.
+	 * <p>
+	 * all the events of view are registered in constructor
+	 */
 	public CharacterController() {
 		this.model = new CharacterModel();
 		this.view = new CharacterView();
@@ -33,6 +40,7 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
+	
 	public CharacterController(CharacterModel characterModel) {
 
 		this.model = characterModel;
@@ -42,6 +50,10 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
+	/**
+	 * Action event of all the events
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(view.save)) {
@@ -101,7 +113,7 @@ public class CharacterController implements ActionListener {
 			this.model.calculateAbilityScores();
 			this.model.calculateHitPoints(level);
 			this.model.calculateArmorClass();
-			this.model.calculateAttachBonus();
+			this.model.calculateAttackBonus();
 			this.model.calculateDamageBonus();
 		}
 	}
