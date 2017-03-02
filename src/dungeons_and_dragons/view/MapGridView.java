@@ -147,6 +147,11 @@ public class MapGridView extends JFrame implements Observer {
 	private GameMapModel model;
 	
 	private static int check = 0;
+	
+	/**
+	 * 
+	 * @param width_height
+	 */
 	public MapGridView(Point width_height) {
 		this.setTitle(this.map_window_title);
 
@@ -245,6 +250,10 @@ public class MapGridView extends JFrame implements Observer {
 
 	}
 
+	/**
+	 * 
+	 * @param map
+	 */
 	public MapGridView(GameMapModel map) {
 		this.setTitle(this.map_window_title);
 
@@ -352,7 +361,6 @@ public class MapGridView extends JFrame implements Observer {
 	 * @param map
 	 */
 	public void update(GameMapModel map) {
-		
 		
 		Point width_height = map.getMap_size();
 		ArrayList<Point> map_walls = map.getMap_walls();

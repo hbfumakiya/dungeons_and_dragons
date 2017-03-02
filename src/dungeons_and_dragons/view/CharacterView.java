@@ -125,6 +125,11 @@ public class CharacterView extends JFrame implements Observer, View {
 	private ArrayList<ItemModel> items;
 	private ArrayList<ItemModel> backpack;
 
+	/**
+	 * Default constructor of character view
+	 * <p>
+	 * get items and initialize window
+	 */
 	public CharacterView() {
 
 		this.items = new ArrayList<ItemModel>();
@@ -144,6 +149,10 @@ public class CharacterView extends JFrame implements Observer, View {
 
 	}
 
+	/**
+	 * 
+	 * @param characterModel
+	 */
 	public CharacterView(CharacterModel characterModel){
 		this.items = new ArrayList<ItemModel>();
 
@@ -344,6 +353,11 @@ public class CharacterView extends JFrame implements Observer, View {
 		 this.rolldice.addActionListener(actionListener);
 	}
 
+	/**
+	 * 
+	 * @author Hirangi
+	 *
+	 */
 	class ItemRenderer extends BasicComboBoxRenderer {
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
@@ -360,6 +374,11 @@ public class CharacterView extends JFrame implements Observer, View {
 		}
 	}
 	
+	/**
+	 * 
+	 * @author Hirangi
+	 *
+	 */
 	class ItemCellRenderer extends JLabel implements ListCellRenderer<ItemModel> {
 
 		private static final long serialVersionUID = 1L;

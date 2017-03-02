@@ -97,6 +97,10 @@ public class CharacterInventoryView extends JFrame implements View {
 	
 	private JLabel charismaMLabel;
 
+	/**
+	 * 
+	 * @param character
+	 */
 	public CharacterInventoryView(CharacterModel character) {
 
 		this.character = character;
@@ -111,6 +115,9 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.setLocationRelativeTo(null);
 	}
 
+	/**
+	 * method to initialize inventory view
+	 */
 	public void initilizeView() {
 
 		this.panel = new JPanel();
@@ -206,6 +213,10 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.getContentPane().add(this.panel);
 	}
 
+	/**
+	 * mathod for showing details of character
+	 * @param character
+	 */
 	public void showDetails(CharacterModel character) {
 
 		// name
@@ -328,6 +339,10 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.panel.add(charismaMLabel);
 	}
 
+	/**
+	 * method to update backpack and item
+	 * @param character
+	 */
 	public void updateList(CharacterModel character) {
 
 		this.itemList.removeAll();

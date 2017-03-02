@@ -68,7 +68,7 @@ public class ManageItemView extends JFrame implements View {
 	}
 
 	/**
-	 * 
+	 * method to initialize window
 	 * @param actionListener
 	 * @param items
 	 */

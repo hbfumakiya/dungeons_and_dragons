@@ -132,6 +132,11 @@ public class MapView extends JFrame implements ActionListener{
 	private GameMapModel model;
 	
 	private static int check = 0;
+	
+	/**
+	 * Constructor to view the map
+	 * @param map
+	 */
 	public MapView(GameMapModel map) {
 		this.setTitle(this.map_window_title);
 
@@ -365,6 +370,7 @@ public class MapView extends JFrame implements ActionListener{
 
 	/**
 	 * Invoked upon by Game map Model(observer) object once the data in width and height of first game view is set
+	 * @param map
 	 */
 	
 	public void update(GameMapModel map) {
@@ -384,10 +390,6 @@ public class MapView extends JFrame implements ActionListener{
 		
 	}
 
-	
-	
-
-	
 	
 	/**
 	 * Used to set the border of doors based on the conditions

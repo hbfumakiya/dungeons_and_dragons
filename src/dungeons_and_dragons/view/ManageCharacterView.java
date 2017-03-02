@@ -48,7 +48,7 @@ public class ManageCharacterView extends JFrame implements View {
 	private ArrayList<GameButton> deleteButtons;
 
 	/**
-	 * 
+	 * Constructor to initialize window
 	 * @param actionListener
 	 * @param item
 	 */
@@ -63,7 +63,7 @@ public class ManageCharacterView extends JFrame implements View {
 	}
 
 	/**
-	 * 
+	 * Method to initialize window
 	 * @param actionListener
 	 * @param items
 	 */
