@@ -187,6 +187,10 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		return set_item_ability;
 	}
 
+	/**
+	 * method to set item ability
+	 * @param item_type
+	 */
 	public void itemTypeSelected(String item_type) {
 
 		// this variable created to get the item ability selected.
@@ -218,6 +222,11 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		notifyObservers(set_item_ability);
 	}
 
+	/**
+	 * method to get items
+	 * @throws JsonSyntaxException,IOException
+	 * @return ArrayList
+	 */
 	@Override
 	public ArrayList<ItemModel> getData() throws JsonSyntaxException, IOException {
 		// TODO Auto-generated method stub
@@ -225,6 +234,9 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	}
 
+	/**
+	 * method to save items
+	 */
 	@Override
 	public void save() {
 		// TODO Auto-generated method stub
@@ -239,6 +251,11 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	}
 
+	/**
+	 * method to set current id of item
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unused")
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
@@ -250,6 +267,9 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		}
 	}
 
+	/**
+	 * method to update item
+	 */
 	@Override
 	public void update() {
 

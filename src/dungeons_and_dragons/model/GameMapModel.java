@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
+import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
 
 import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
@@ -121,7 +122,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		this.map_enemy_loc = new ArrayList<Point>();
 	}
 
-
+	/**
+	 * default constructor to set map features
+	 */
 	public GameMapModel() {
 		this.map_size.setLocation(5,5);
 		this.map_walls = new ArrayList<Point>();
@@ -268,14 +271,12 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		
 	}
 
-
 	/**
 	 * @return the map_exit_door
 	 */
 	public Point getMap_exit_door() {
 		return map_exit_door;
 	}
-
 
 	/**
 	 * @param map_exit_door the map_exit_door to set
@@ -294,7 +295,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		notifyObservers(this);
 	}
 
-
+	/**
+	 * method to save map
+	 */
 	@Override
 	public void save() {
 		try {
@@ -307,6 +310,11 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		}
 	}
 	
+	/**
+	 * method to set current id
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unused")
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
@@ -318,13 +326,19 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		}
 	}
 
+	/**
+	 * @throws JsonSyntaxException
+	 * @throws IOException 
+	 */
 	@Override
 	public ArrayList<GameMapModel> getData() throws JsonSyntaxException, IOException {
 		// TODO Auto-generated method stub
 		return FileHelper.getMaps();
 	}
 
-
+	/**
+	 * method to update map
+	 */
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
@@ -338,6 +352,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 
+	/**
+	 * 
+	 * @param store
+	 */
 	public void setWidthHeight(Point store) {
 		// TODO Auto-generated method stub
 		
@@ -345,64 +363,90 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		
 	}
 
-
+	/**
+	 * 
+	 * @return Color
+	 */
 	public Color getMap_object_color_type() {
 		return map_object_color_type;
 	}
 
-
+	/**
+	 * 
+	 * @param map_object_color_type
+	 */
 	public void setMap_object_color_type(Color map_object_color_type) {
 		this.map_object_color_type = map_object_color_type;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getErrorMessage() {
 		return errorMessage;
 	}
 
-
+	/**
+	 * 
+	 * @param errorMessage
+	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 		setChanged();
 		notifyObservers(this);
 	}
 
-
+	/**
+	 * 
+	 * @param position
+	 */
 	public void removeWall(Point position) {
 		// TODO Auto-generated method stub
 		this.map_walls.remove(position);
 		
 	}
 
-
+	/**
+	 * 
+	 * @param position
+	 */
 	public void removeEnemy(Point position) {
 		// TODO Auto-generated method stub
 		this.map_enemy_loc.remove(position);
 	}
 
-
+	/**
+	 * 
+	 * @param position
+	 */
 	public void removeChest(Point position) {
 		// TODO Auto-generated method stub
 		this.map_chest = new Point(-1,-1);
 	}
 
-
+	/**
+	 * 
+	 * @param position
+	 */
 	public void removeEntryDoor(Point position) {
 		// TODO Auto-generated method stub
 		this.map_entry_door =new Point(-1,-1);
 	}
 
-
+	/**
+	 * 
+	 * @param position
+	 */
 	public void removeExitDoor(Point position) {
 		// TODO Auto-generated method stub
 		this.map_exit_door = new Point(-1,-1);
 	}
 
-
 	public void removeMap_object_color_type() {
 		// TODO Auto-generated method stub
 		this.map_object_color_type = null;
 	}
-
 
 	public void callObservers() {
 		// TODO Auto-generated method stub
@@ -411,7 +455,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		
 	}
 
-
+	/**
+	 * method to reset map features
+	 */
 	public void resetAll() {
 		// TODO Auto-generated method stub
 		this.map_walls.removeAll(map_walls);
@@ -428,10 +474,15 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	private int finder; //if finder = 0 save else if finder  = 1 then update
 
+	/**
+	 * 
+	 * @param finder
+	 */
 	public void setFinder(int finder) {
 		// TODO Auto-generated method stub
 		this.finder = finder;
 	}
+	
 	public int getFinder() {
 		return this.finder;
 	}

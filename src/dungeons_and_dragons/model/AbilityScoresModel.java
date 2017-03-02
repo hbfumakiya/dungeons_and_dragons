@@ -59,6 +59,8 @@ public class AbilityScoresModel {
 	
 	/**
 	 * constructor for ability scores
+	 * <p>
+	 * initialize all abilities
 	 */
 	public AbilityScoresModel() {
 		
@@ -154,7 +156,5 @@ public class AbilityScoresModel {
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
 	}
-	
-	
 
 }

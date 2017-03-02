@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
+import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
@@ -52,6 +53,11 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	@Expose
 	private ArrayList<GameMapModel> output_map_list;
 
+	/**
+	 * Parameterized constructor to set id, name
+	 * @param campaign_id
+	 * @param campaign_name
+	 */
 	public CampaignModel(int campaign_id, String campaign_name) {
 		this.campaign_id = campaign_id;
 		this.campaign_name = campaign_name;
@@ -104,6 +110,9 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 
 	}
 
+	/**
+	 * method to save campaign
+	 */
 	@Override
 	public void save() {
 		try {
@@ -115,11 +124,19 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 
 	}
 
+	/**
+	 * @return ArrayList
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 */
 	@Override
 	public ArrayList<CampaignModel> getData() throws JsonSyntaxException, IOException {
 		return FileHelper.getCampaigns();
 	}
 
+	/**
+	 * method to update campaign
+	 */
 	@Override
 	public void update() {
 		try {
@@ -130,6 +147,11 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 
 	}
 
+	/**
+	 * 
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unused")
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
