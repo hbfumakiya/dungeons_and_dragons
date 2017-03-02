@@ -265,15 +265,43 @@ public class ItemView extends JFrame implements Observer {
 		item_type_field.addItem(Game_constants.BELT);
 		item_type_field.addItem(Game_constants.BOOTS);
 		item_type_field.addItem(Game_constants.WEAPON);
+		
 
-		// filling the details of type item ability
-		item_ability_field.addItem(Game_constants.INTELLIGENCE);
-		item_ability_field.addItem(Game_constants.WISDOM);
-		item_ability_field.addItem(Game_constants.ARMOR_CLASS);
+		
+		
+		
 
 		item_name_field.setText(itemModel.getItem_name());
 		item_type_field.setSelectedItem(itemModel.getItem_type());
-		item_ability_field.setSelectedItem(itemModel.getItem_type());
+		if(item_type_field.getSelectedItem().equals(Game_constants.HELMET)){
+			item_ability_field.setModel(Game_constants.HELMET_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.ARMOR)){
+			item_ability_field.setModel(Game_constants.ARMOR_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.SHIELD)){
+			item_ability_field.setModel(Game_constants.SHIELD_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.RING)){
+			item_ability_field.setModel(Game_constants.RING_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.BELT)){
+			item_ability_field.setModel(Game_constants.BELT_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.BOOTS)){
+			item_ability_field.setModel(Game_constants.BOOTS_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON)){
+			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
+			
+		}
+		item_ability_field.setSelectedItem(itemModel.getItem_ability());
 		item_score_field.setText(String.valueOf(itemModel.getItem_point()));
 
 		// Adding necessary components into panel
