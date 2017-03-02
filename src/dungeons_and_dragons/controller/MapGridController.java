@@ -223,6 +223,10 @@ public class MapGridController implements ActionListener {
 				{
 					throw new NumberFormatException();
 				}
+				if(Integer.parseInt(this.map_view.map_height_textfield.getText())>20 || Integer.parseInt(this.map_view.map_width_textfield.getText())>20)
+				{
+					throw new NumberFormatException();
+				}
 			Point store = new Point();
 			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
 			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
