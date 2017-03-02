@@ -231,6 +231,7 @@ public class MapView extends JFrame implements ActionListener{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		update(map);
 	}
@@ -361,6 +362,7 @@ public class MapView extends JFrame implements ActionListener{
 		JSplitPane spane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftGridPanel, RightInfoPanel);
 		spane.setOneTouchExpandable(true);
 		spane.setDividerLocation(650);
+		spane.setOneTouchExpandable(false);
 		sub_bottom_panel.add(spane);
 		main_panel.add(sub_bottom_panel);
 

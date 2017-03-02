@@ -5,6 +5,7 @@ package dungeons_and_dragons.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -245,6 +246,7 @@ public class MapGridView extends JFrame implements Observer {
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -346,11 +348,12 @@ public class MapGridView extends JFrame implements Observer {
 		sub_bottom_panel = new JPanel();
 
 		this.setPreferredSize(new Dimension(1000, 700));
-
+	
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		update(map);
@@ -371,6 +374,7 @@ public class MapGridView extends JFrame implements Observer {
 		this.model = map;
 		int entryFlag = 1;
 		int exitFlag = 1;//map.exitFlag;
+	    
 		check = 1;
 		updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor,entryFlag,exitFlag,1);
 	
@@ -412,11 +416,6 @@ public class MapGridView extends JFrame implements Observer {
 		LeftGridMapPane.setMaximumSize(new Dimension(750, 500));
 		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
-		/**
-		 * yet to be constructed on the basis of top information
-		 */
-
-		//JButton[][] maps = new JButton[width_height.x][width_height.y];
 		
 		maps = new MapButton[width_height.x][width_height.y];
 		
@@ -451,7 +450,7 @@ public class MapGridView extends JFrame implements Observer {
 				LeftGridMapPane.add(maps[i][j]);
 			}
 		}
-		
+		//map_remove.setSelected(true);
 		
 		leftGridPanel.add(LeftGridMapPane);
 		
@@ -479,6 +478,34 @@ public class MapGridView extends JFrame implements Observer {
 		map_wall = new JRadioButton("Wall");
 		map_remove = new JRadioButton("Remove");
 		
+		Color color ;
+		 color =  this.model.getMap_object_color_type();
+		 if(color == null)
+		    {
+		    	map_remove.setSelected(true);
+		    }
+		 
+		 else if(color.equals(Game_constants.ENTRY_DOOR))
+	    {
+	    	map_entry_door.setSelected(true);
+	    }
+	    else if(color.equals(Game_constants.EXIT_DOOR))
+	    {
+	    	map_exit_door.setSelected(true);
+	    }
+	    else if(color.equals(Game_constants.CHEST))
+	    {
+	    	map_chest.setSelected(true);
+	    }
+	    else if(color.equals(Game_constants.ENEMIES))
+	    {
+	    	map_enemy.setSelected(true);
+	    }
+	    else if(color.equals(Game_constants.WALLS))
+	    {
+	    	map_wall.setSelected(true);
+	    }
+		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(map_entry_door);
 		bg.add(map_exit_door);
@@ -486,7 +513,9 @@ public class MapGridView extends JFrame implements Observer {
 		bg.add(map_enemy);
 		bg.add(map_wall);
 		bg.add(map_remove);
-
+		
+		
+		
 		RightInfoListPane.add(map_entry_door);
 		RightInfoListPane.add(map_entry_color);
 		RightInfoListPane.add(map_exit_door);
@@ -513,6 +542,9 @@ public class MapGridView extends JFrame implements Observer {
 		JSplitPane spane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftGridPanel, RightInfoPanel);
 		spane.setOneTouchExpandable(true);
 		spane.setDividerLocation(650);
+		spane.setOneTouchExpandable(false);
+		spane.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
 		sub_bottom_panel.add(spane);
 //		sub_bottom_panel.add(leftGridPanel,BorderLayout.WEST);
 //		sub_bottom_panel.add(RightInfoPanel,BorderLayout.EAST);
@@ -539,6 +571,8 @@ public class MapGridView extends JFrame implements Observer {
 			int entryFlag = ((GameMapModel)obs).entryFlag;
 			int exitFlag = ((GameMapModel)obs).exitFlag;
 			check = 1;
+			
+		    
 			updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor,entryFlag,exitFlag,this.model.getFinder());
 		}
 		else{
