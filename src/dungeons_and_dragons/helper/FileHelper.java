@@ -100,8 +100,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
 
@@ -132,8 +132,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -163,15 +163,15 @@ public class FileHelper {
 				GameMapModel tempItem = map_list.get(i);
 
 				if (tempItem.getMap_id() == map.getMap_id()) {
-					
+
 					tempItem.setMap_chest(map.getMap_chest());
-					//tempItem.setMap_enemy_loc();
+					tempItem.setMap_enemy_loc(map.getMap_enemy_loc());
 					tempItem.setMap_entry_door(map.getMap_entry_door());
 					tempItem.setMap_exit_door(map.getMap_exit_door());
 					tempItem.setMap_name(map.getMap_name());
 					tempItem.setMap_object_color_type(map.getMap_object_color_type());
 					tempItem.setMap_size(map.getMap_size());
-					//tempItem.setMap_wall(map.getMap_walls());
+					tempItem.setMap_walls(map.getMap_walls());
 					found = true;
 				}
 			}
@@ -183,13 +183,72 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-						.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+						.setPrettyPrinting().create();
 
 				gson.toJson(map_list, file_writer);
 
 				// close file
 				file_writer.close();
+
+				ArrayList<CampaignModel> campaigns = getCampaigns();
+
+				if (campaigns != null) {
+
+					for (int i = 0; i < campaigns.size(); i++) {
+						CampaignModel campaign = campaigns.get(i);
+
+						ArrayList<GameMapModel> maps = campaign.getOutput_map_list();
+
+						if (maps != null) {
+							for (int j = 0; j < maps.size(); j++) {
+								GameMapModel tempItem = maps.get(j);
+
+								if (tempItem.getMap_id() == map.getMap_id()) {
+
+									tempItem.setMap_chest(map.getMap_chest());
+									tempItem.setMap_enemy_loc(map.getMap_enemy_loc());
+									tempItem.setMap_entry_door(map.getMap_entry_door());
+									tempItem.setMap_exit_door(map.getMap_exit_door());
+									tempItem.setMap_name(map.getMap_name());
+									tempItem.setMap_object_color_type(map.getMap_object_color_type());
+									tempItem.setMap_size(map.getMap_size());
+									tempItem.setMap_walls(map.getMap_walls());
+
+								}
+							}
+						}
+
+						maps = campaign.getInput_map_list();
+
+						if (maps != null) {
+							for (int j = 0; j < maps.size(); j++) {
+								GameMapModel tempItem = maps.get(j);
+
+								if (tempItem.getMap_id() == map.getMap_id()) {
+
+									tempItem.setMap_chest(map.getMap_chest());
+									tempItem.setMap_enemy_loc(map.getMap_enemy_loc());
+									tempItem.setMap_entry_door(map.getMap_entry_door());
+									tempItem.setMap_exit_door(map.getMap_exit_door());
+									tempItem.setMap_name(map.getMap_name());
+									tempItem.setMap_object_color_type(map.getMap_object_color_type());
+									tempItem.setMap_size(map.getMap_size());
+									tempItem.setMap_walls(map.getMap_walls());
+
+								}
+							}
+						}
+					}
+
+					file_writer = new FileWriter(CAMPAIGN_FILE);
+
+					gson.toJson(campaigns, file_writer);
+
+					// close file
+					file_writer.close();
+				}
+
 			} else {
 				throw new NotFoundException();
 			}
@@ -465,8 +524,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(campaign_list).getAsJsonArray().toString();
 
@@ -497,8 +556,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CampaignModel>>() {
 		}.getType());
 
@@ -528,10 +587,10 @@ public class FileHelper {
 
 				if (tempCampaign.getCampaign_id() == campaign.getCampaign_id()) {
 
-					 tempCampaign.setCampaign_name(campaign.getCampaign_name());
-					 tempCampaign.setInput_map_list(campaign.getInput_map_list());
-					 tempCampaign.setOutput_map_list(campaign.getOutput_map_list());
-					 
+					tempCampaign.setCampaign_name(campaign.getCampaign_name());
+					tempCampaign.setInput_map_list(campaign.getInput_map_list());
+					tempCampaign.setOutput_map_list(campaign.getOutput_map_list());
+
 					found = true;
 				}
 			}
@@ -543,7 +602,8 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+						.setPrettyPrinting().create();
 
 				gson.toJson(campaign_list, file_writer);
 
