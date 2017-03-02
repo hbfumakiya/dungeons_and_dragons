@@ -100,8 +100,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
 
@@ -132,8 +132,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -163,15 +163,15 @@ public class FileHelper {
 				GameMapModel tempItem = map_list.get(i);
 
 				if (tempItem.getMap_id() == map.getMap_id()) {
-					
+
 					tempItem.setMap_chest(map.getMap_chest());
-					//tempItem.setMap_enemy_loc();
+					// tempItem.setMap_enemy_loc();
 					tempItem.setMap_entry_door(map.getMap_entry_door());
 					tempItem.setMap_exit_door(map.getMap_exit_door());
 					tempItem.setMap_name(map.getMap_name());
 					tempItem.setMap_object_color_type(map.getMap_object_color_type());
 					tempItem.setMap_size(map.getMap_size());
-					//tempItem.setMap_wall(map.getMap_walls());
+					// tempItem.setMap_wall(map.getMap_walls());
 					found = true;
 				}
 			}
@@ -183,8 +183,8 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-						.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+						.setPrettyPrinting().create();
 
 				gson.toJson(map_list, file_writer);
 
@@ -420,6 +420,55 @@ public class FileHelper {
 				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 				gson.toJson(item_list, file_writer);
+				
+				file_writer.close();
+
+				ArrayList<CharacterModel> characters = getCharcters();
+
+				for (int i = 0; i < characters.size(); i++) {
+					CharacterModel character = characters.get(i);
+
+					ArrayList<ItemModel> items = character.getItems();
+					if (items != null) {
+						while (items.remove(null)) {
+						}
+						for (int j = 0; j < items.size(); j++) {
+							ItemModel tempItem = items.get(j);
+
+							if (tempItem.getItem_id() == item.getItem_id()) {
+
+								tempItem.setItem_name(item.getItem_name());
+								tempItem.setItem_type(item.getItem_type());
+								tempItem.setItem_ability(item.getItem_ability());
+								tempItem.setItem_point(item.getItem_point());
+							}
+						}
+					}
+
+					ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+
+					if (backPackItems != null) {
+						while (backPackItems.remove(null)) {
+						}
+						for (int j = 0; j < backPackItems.size(); j++) {
+							ItemModel tempItem = backPackItems.get(j);
+
+							if (tempItem.getItem_id() == item.getItem_id()) {
+
+								tempItem.setItem_name(item.getItem_name());
+								tempItem.setItem_type(item.getItem_type());
+								tempItem.setItem_ability(item.getItem_ability());
+								tempItem.setItem_point(item.getItem_point());
+							}
+						}
+					}
+				}
+				
+				
+				
+				file_writer = new FileWriter(CHARACTER_FILE);
+				
+				gson.toJson(characters, file_writer);
 
 				// close file
 				file_writer.close();
@@ -465,8 +514,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
 		String data = gson.toJsonTree(campaign_list).getAsJsonArray().toString();
 
@@ -497,8 +546,8 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization()
-				.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CampaignModel>>() {
 		}.getType());
 
@@ -528,10 +577,10 @@ public class FileHelper {
 
 				if (tempCampaign.getCampaign_id() == campaign.getCampaign_id()) {
 
-					 tempCampaign.setCampaign_name(campaign.getCampaign_name());
-					 tempCampaign.setInput_map_list(campaign.getInput_map_list());
-					 tempCampaign.setOutput_map_list(campaign.getOutput_map_list());
-					 
+					tempCampaign.setCampaign_name(campaign.getCampaign_name());
+					tempCampaign.setInput_map_list(campaign.getInput_map_list());
+					tempCampaign.setOutput_map_list(campaign.getOutput_map_list());
+
 					found = true;
 				}
 			}
@@ -543,7 +592,8 @@ public class FileHelper {
 				// store object to json
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+						.setPrettyPrinting().create();
 
 				gson.toJson(campaign_list, file_writer);
 

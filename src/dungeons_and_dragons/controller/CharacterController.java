@@ -27,7 +27,8 @@ public class CharacterController implements ActionListener {
 	/**
 	 * Default constructor of character controller
 	 * <p>
-	 * Character model and view are initialized and also view is binded to observer.
+	 * Character model and view are initialized and also view is binded to
+	 * observer.
 	 * <p>
 	 * all the events of view are registered in constructor
 	 */
@@ -40,7 +41,6 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
-	
 	public CharacterController(CharacterModel characterModel) {
 
 		this.model = characterModel;
@@ -87,8 +87,10 @@ public class CharacterController implements ActionListener {
 				items.add(shield);
 				model.setItems(items);
 
-				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList
-						.getSelectedValuesList();
+				ArrayList<ItemModel> backPackList = new ArrayList<ItemModel>();
+				if (this.view.backPackList.getSelectedValuesList().size() > 0)
+					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+
 				model.setBackPackItems(backPackList);
 				model.save();
 				new ManageCharacterController();
