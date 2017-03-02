@@ -118,7 +118,7 @@ public class CharacterView extends JFrame implements Observer, View {
 	 * @type JButton
 	 */
 	public JButton back;
-	public JButton rolldice;
+	public JButton rolldice_save;
 	public JList<ItemModel> backPackList;
 
 	public JButton add;
@@ -321,21 +321,21 @@ public class CharacterView extends JFrame implements Observer, View {
 		this.add(backPackPane);
 
 		if (this.i == 0) {
-			rolldice = new JButton("Roll Dice");
-			rolldice.setBounds(110, 445, 100, 25);
-			this.add(rolldice);
+			rolldice_save = new JButton("Roll Dice & Save");
+			rolldice_save.setBounds(110, 445, 200, 25);
+			this.add(rolldice_save);
 		}
 
 		back = new JButton("Back");
 		back.setBounds(20, 500, 80, 25);
 		this.add(back);
 
-		if (this.i == 0) {
-			save = new JButton("Save");
-			save.setBounds(110, 500, 80, 25);
-			save.setEnabled(false);
-			this.add(save);
-		}
+		//if (this.i == 0) {
+			//save = new JButton("Save");
+			//save.setBounds(110, 500, 80, 25);
+			//save.setEnabled(false);
+			//this.add(save);
+		//}
 
 		if (this.i == 1) {
 			update = new JButton("Update");
@@ -345,7 +345,6 @@ public class CharacterView extends JFrame implements Observer, View {
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-
 	}
 
 	@Override
@@ -356,8 +355,8 @@ public class CharacterView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		if (this.i == 0) {
-			this.save.addActionListener(actionListener);
-			this.rolldice.addActionListener(actionListener);
+			//this.save.addActionListener(actionListener);
+			this.rolldice_save.addActionListener(actionListener);
 		}
 		else
 			this.update.addActionListener(actionListener);

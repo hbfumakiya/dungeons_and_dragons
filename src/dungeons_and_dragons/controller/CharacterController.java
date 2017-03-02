@@ -27,7 +27,8 @@ public class CharacterController implements ActionListener {
 	/**
 	 * Default constructor of character controller
 	 * <p>
-	 * Character model and view are initialized and also view is binded to observer.
+	 * Character model and view are initialized and also view is binded to
+	 * observer.
 	 * <p>
 	 * all the events of view are registered in constructor
 	 */
@@ -40,7 +41,6 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
-	
 	public CharacterController(CharacterModel characterModel) {
 
 		this.model = characterModel;
@@ -56,8 +56,8 @@ public class CharacterController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(view.save)) {
-			String character_name = this.view.charactername_textfield.getText();
+//		if (e.getSource().equals(view.save)) {
+			/*String character_name = this.view.charactername_textfield.getText();
 			// model.setCharacter_name(character_name);
 			if (character_name.equals("")) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
@@ -95,9 +95,9 @@ public class CharacterController implements ActionListener {
 				this.view.dispose();
 
 			} catch (NumberFormatException ex) {
-				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
-			}
-		} else if (e.getSource().equals(view.back)) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");*/
+	//		}
+		if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
 		} else if(e.getSource().equals(view.update)){
 			if (this.view.charactername_textfield.getText().equals("")) {
@@ -140,22 +140,62 @@ public class CharacterController implements ActionListener {
 			}
 			
 		}
-		else if (e.getSource().equals(view.rolldice)) {
-			this.view.save.setEnabled(true);
-			int level = 1;
+		else if (e.getSource().equals(view.rolldice_save)) {
+			String character_name = this.view.charactername_textfield.getText();
+			// model.setCharacter_name(character_name);
+			if (character_name.equals("")) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
+				return;
+			} else {
+				model.setCharacter_name(character_name);
+			}
+			String level = this.view.level_textfield.getText();
 			try {
-				level = Integer.parseInt(this.view.level_textfield.getText());
+				int i = Integer.parseInt(level);
+				model.setCharacter_level(i);
+				ItemModel armer = (ItemModel) this.view.armer_combobox.getSelectedItem();
+				ItemModel belt = (ItemModel) this.view.belt_combobox.getSelectedItem();
+				ItemModel boot = (ItemModel) this.view.boot_combobox.getSelectedItem();
+				ItemModel helmet = (ItemModel) this.view.helmet_combobox.getSelectedItem();
+				ItemModel ring = (ItemModel) this.view.ring_combobox.getSelectedItem();
+				ItemModel weapon = (ItemModel) this.view.weapon_combobox.getSelectedItem();
+				ItemModel shield = (ItemModel) this.view.shield_combobox.getSelectedItem();
+
+				ArrayList<ItemModel> items = new ArrayList<ItemModel>();
+				items.add(armer);
+				items.add(belt);
+				items.add(boot);
+				items.add(helmet);
+				items.add(ring);
+				items.add(weapon);
+				items.add(shield);
+				model.setItems(items);
+
+				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList
+						.getSelectedValuesList();
+				model.setBackPackItems(backPackList);
+				model.save();
+				new ManageCharacterController();
+				this.view.dispose();
+
 			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
+			this.view.save.setEnabled(true);
+			int level1 = 1;
+			try {
+				level1 = Integer.parseInt(this.view.level_textfield.getText());
+			} catch (NumberFormatException err) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter level");
 				this.view.save.setEnabled(false);
 				return;
 			}
 
 			this.model.calculateAbilityScores();
-			this.model.calculateHitPoints(level);
+			this.model.calculateHitPoints(level1);
 			this.model.calculateArmorClass();
 			this.model.calculateAttackBonus();
 			this.model.calculateDamageBonus();
+		}
 		}
 	}
 
