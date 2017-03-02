@@ -99,7 +99,48 @@ public class CharacterController implements ActionListener {
 			}
 		} else if (e.getSource().equals(view.back)) {
 			this.backToCreateGame();
-		} else if (e.getSource().equals(view.rolldice)) {
+		} else if(e.getSource().equals(view.update)){
+			if (this.view.charactername_textfield.getText().equals("")) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
+				return;
+			} else {
+				model.setCharacter_name(this.view.charactername_textfield.getText());
+			}
+			String level = this.view.level_textfield.getText();
+			try {
+				int i = Integer.parseInt(level);
+				model.setCharacter_level(i);
+				ItemModel armer = (ItemModel) this.view.armer_combobox.getSelectedItem();
+				ItemModel belt = (ItemModel) this.view.belt_combobox.getSelectedItem();
+				ItemModel boot = (ItemModel) this.view.boot_combobox.getSelectedItem();
+				ItemModel helmet = (ItemModel) this.view.helmet_combobox.getSelectedItem();
+				ItemModel ring = (ItemModel) this.view.ring_combobox.getSelectedItem();
+				ItemModel weapon = (ItemModel) this.view.weapon_combobox.getSelectedItem();
+				ItemModel shield = (ItemModel) this.view.shield_combobox.getSelectedItem();
+
+				ArrayList<ItemModel> items = new ArrayList<ItemModel>();
+				items.add(armer);
+				items.add(belt);
+				items.add(boot);
+				items.add(helmet);
+				items.add(ring);
+				items.add(weapon);
+				items.add(shield);
+				model.setItems(items);
+
+				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList
+						.getSelectedValuesList();
+				model.setBackPackItems(backPackList);
+				model.update();
+				new ManageCharacterController();
+				this.view.dispose();
+
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
+			}
+			
+		}
+		else if (e.getSource().equals(view.rolldice)) {
 			this.view.save.setEnabled(true);
 			int level = 1;
 			try {

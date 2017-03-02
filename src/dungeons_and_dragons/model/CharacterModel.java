@@ -9,6 +9,7 @@ import java.util.Observable;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
@@ -346,7 +347,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Override
 	public void update() {
-
+		try {
+			FileHelper.updateCharacter(this);
+		} catch (JsonSyntaxException | IOException | NotFoundException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
 	}
 
 	public void calculateAbilityScores() {

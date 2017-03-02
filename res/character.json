@@ -1,301 +1,7 @@
 [
   {
     "character_id": 1,
-    "character_name": "BOB",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 1,
-        "item_name": "Head1",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Head1",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Armor class"
-      }
-    ],
-    "character_level": 2,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 0,
-    "damageBonus": 0,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "EMMA",
-    "strength": 0,
-    "items": [],
-    "backPackItems": [
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 7,
-        "item_name": "weapon1",
-        "item_point": 3,
-        "item_type": "Weapon",
-        "item_ability": "Damage bonus"
-      }
-    ],
-    "character_level": 4,
-    "abilityScores": {},
-    "rawAbilityScores": {},
-    "modifiers": {},
-    "hitpoints": 0,
-    "attackBonus": 256,
-    "damageBonus": 224,
-    "armorClass": 0
-  },
-  {
-    "character_id": 2,
-    "character_name": "BOB",
+    "character_name": "Bob the builder",
     "strength": 0,
     "items": [
       null,
@@ -309,25 +15,68 @@
         "item_ability": "Intelligence"
       },
       null,
-      null,
+      {
+        "item_id": 7,
+        "item_name": "weapon1",
+        "item_point": 3,
+        "item_type": "Weapon",
+        "item_ability": "Damage bonus"
+      },
       null
     ],
     "backPackItems": [
       {
-        "item_id": 4,
-        "item_name": "ring1",
-        "item_point": 3,
-        "item_type": "Ring",
-        "item_ability": "Strength"
+        "item_id": 8,
+        "item_name": "mna",
+        "item_point": 1,
+        "item_type": "Helmet",
+        "item_ability": "Wisdom"
       }
     ],
     "character_level": 2,
     "abilityScores": {},
     "rawAbilityScores": {},
     "modifiers": {},
-    "hitpoints": 17,
+    "hitpoints": 0,
     "attackBonus": 0,
     "damageBonus": 0,
-    "armorClass": 21
+    "armorClass": 23
+  },
+  {
+    "character_id": 2,
+    "character_name": "Tom Cruise",
+    "strength": 0,
+    "items": [
+      null,
+      {
+        "item_id": 5,
+        "item_name": "belt",
+        "item_point": 7,
+        "item_type": "Belt",
+        "item_ability": "Constitution"
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "backPackItems": [
+      {
+        "item_id": 8,
+        "item_name": "mna",
+        "item_point": 1,
+        "item_type": "Helmet",
+        "item_ability": "Wisdom"
+      }
+    ],
+    "character_level": 2,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 96,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 17
   }
 ]
