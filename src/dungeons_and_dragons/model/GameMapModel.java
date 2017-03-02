@@ -223,6 +223,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		setChanged();
 		notifyObservers(this);
 	}
+	
+	/**
+	 * 
+	 */
 
 
 	/**
@@ -232,6 +236,20 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_entry_door;
 	}
 
+
+	/**
+	 * @param map_walls the map_walls to set
+	 */
+	public void setMap_walls(ArrayList<Point> map_walls) {
+		this.map_walls = map_walls;
+	}
+
+	/**
+	 * @param map_enemy_loc the map_enemy_loc to set
+	 */
+	public void setMap_enemy_loc(ArrayList<Point> map_enemy_loc) {
+		this.map_enemy_loc = map_enemy_loc;
+	}
 
 	/**
 	 * @param map_entry_door the map_entry_door to set
