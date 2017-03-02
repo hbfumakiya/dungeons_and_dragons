@@ -44,76 +44,249 @@
   },
   {
     "character_id": 2,
-    "character_name": "Emma Watson",
+    "character_name": "er",
     "strength": 0,
     "items": [
       {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
     ],
     "backPackItems": [
       {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
+        "item_id": 2,
+        "item_name": "uyg",
+        "item_point": 4,
         "item_type": "Helmet",
-        "item_ability": "Wisdom"
+        "item_ability": "Intelligence"
       }
     ],
     "character_level": 4,
     "abilityScores": {},
     "rawAbilityScores": {},
     "modifiers": {},
-    "hitpoints": 0,
+    "hitpoints": 39,
     "attackBonus": 0,
     "damageBonus": 0,
-    "armorClass": 0
+    "armorClass": 10
   },
   {
     "character_id": 2,
-    "character_name": "Emma Watson",
+    "character_name": "er",
     "strength": 0,
     "items": [
       {
-        "item_id": 2,
-        "item_name": "armer1",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
     ],
     "backPackItems": [
       {
-        "item_id": 8,
-        "item_name": "mna",
-        "item_point": 1,
+        "item_id": 2,
+        "item_name": "uyg",
+        "item_point": 4,
         "item_type": "Helmet",
-        "item_ability": "Wisdom"
+        "item_ability": "Intelligence"
       }
     ],
     "character_level": 4,
     "abilityScores": {},
     "rawAbilityScores": {},
     "modifiers": {},
+    "hitpoints": 39,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 10
+  },
+  {
+    "character_id": 2,
+    "character_name": "er",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [
+      {
+        "item_id": 2,
+        "item_name": "uyg",
+        "item_point": 4,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "character_level": 4,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 39,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 10
+  },
+  {
+    "character_id": 2,
+    "character_name": "er",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [
+      {
+        "item_id": 2,
+        "item_name": "uyg",
+        "item_point": 4,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "character_level": 4,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 39,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 10
+  },
+  {
+    "character_id": 2,
+    "character_name": "er",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [
+      {
+        "item_id": 2,
+        "item_name": "uyg",
+        "item_point": 4,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "character_level": 4,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 39,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 10
+  },
+  {
+    "character_id": 2,
+    "character_name": "o",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 8,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 77,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 12
+  },
+  {
+    "character_id": 2,
+    "character_name": "d",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 1,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
     "hitpoints": 0,
     "attackBonus": 0,
     "damageBonus": 0,
-    "armorClass": 0
+    "armorClass": 8
+  },
+  {
+    "character_id": 2,
+    "character_name": "s",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 2,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 14,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 10
+  },
+  {
+    "character_id": 2,
+    "character_name": "sq",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "tfhjgv",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 1,
+    "abilityScores": {},
+    "rawAbilityScores": {},
+    "modifiers": {},
+    "hitpoints": 0,
+    "attackBonus": 0,
+    "damageBonus": 0,
+    "armorClass": 9
   }
 ]
