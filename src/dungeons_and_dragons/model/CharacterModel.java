@@ -368,8 +368,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.rawAbilityScores.setDexterity(this.abilityScores.getDexterity());
 		this.rawAbilityScores.setIntelligence(this.abilityScores.getIntelligence());
 		this.rawAbilityScores.setWisdom(this.abilityScores.getWisdom());
-		
-		
+
 	}
 
 	public void calculateModifires() {
@@ -381,12 +380,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			if (item != null) {
 				if (item.getItem_type().equals(Game_constants.HELMET)) {
 
-					if (item.getItemAbility().equals(Game_constants.INTELLIGENCE)) {
+					if (item.getItem_ability().equals(Game_constants.INTELLIGENCE)) {
 
-						this.abilityScores
-								.setIntelligence(this.rawAbilityScores.getIntelligence() + item.getItem_point());
+						this.abilityScores.setIntelligence(this.rawAbilityScores.getIntelligence() + item.getItem_point());
 
-					} else if (item.getItemAbility().equals(Game_constants.WISDOM)) {
+					} else if (item.getItem_ability().equals(Game_constants.WISDOM)) {
 
 						this.abilityScores.setWisdom(this.rawAbilityScores.getWisdom() + item.getItem_point());
 
@@ -394,20 +392,20 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 				} else if (item.getItem_type().equals(Game_constants.RING)) {
 
-					if (item.getItemAbility().equals(Game_constants.STRENGTH)) {
+					if (item.getItem_ability().equals(Game_constants.STRENGTH)) {
 
 						this.abilityScores.setstrength(this.rawAbilityScores.getStraight() + item.getItem_point());
 
-					} else if (item.getItemAbility().equals(Game_constants.CONSTITUTION)) {
+					} else if (item.getItem_ability().equals(Game_constants.CONSTITUTION)) {
 
 						this.abilityScores
 								.setConstitution(this.rawAbilityScores.getConstitution() + item.getItem_point());
 
-					} else if (item.getItemAbility().equals(Game_constants.WISDOM)) {
+					} else if (item.getItem_ability().equals(Game_constants.WISDOM)) {
 
 						this.abilityScores.setWisdom(this.rawAbilityScores.getWisdom() + item.getItem_point());
 
-					} else if (item.getItemAbility().equals(Game_constants.CHARISMA)) {
+					} else if (item.getItem_ability().equals(Game_constants.CHARISMA)) {
 
 						this.abilityScores.setCharisma(this.rawAbilityScores.getCharisma() + item.getItem_point());
 
@@ -415,20 +413,19 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 				} else if (item.getItem_type().equals(Game_constants.BELT)) {
 
-					if (item.getItemAbility().equals(Game_constants.STRENGTH)) {
+					if (item.getItem_ability().equals(Game_constants.STRENGTH)) {
 
 						this.abilityScores.setstrength(this.rawAbilityScores.getStraight() + item.getItem_point());
 
-					} else if (item.getItemAbility().equals(Game_constants.CONSTITUTION)) {
+					} else if (item.getItem_ability().equals(Game_constants.CONSTITUTION)) {
 
-						this.abilityScores
-								.setConstitution(this.rawAbilityScores.getConstitution() + item.getItem_point());
+						this.abilityScores.setConstitution(this.rawAbilityScores.getConstitution() + item.getItem_point());
 
 					}
 
 				} else if (item.getItem_type().equals(Game_constants.BOOTS)) {
 
-					if (item.getItemAbility().equals(Game_constants.DEXTERITY)) {
+					if (item.getItem_ability().equals(Game_constants.DEXTERITY)) {
 
 						this.abilityScores.setDexterity(this.rawAbilityScores.getDexterity() + item.getItem_point());
 
@@ -445,14 +442,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers.setIntelligence(getModifiersFromScore(this.abilityScores.getIntelligence()));
 		this.modifiers.setWisdom(getModifiersFromScore(this.abilityScores.getWisdom()));
 		this.modifiers.setCharisma(getModifiersFromScore(this.abilityScores.getCharisma()));
-		
-		
-		System.out.println("HHH " + this.abilityScores.getStraight());
-		System.out.println("HHH " + this.abilityScores.getCharisma());
-		System.out.println("HHH " + this.abilityScores.getConstitution());
-		System.out.println("HHH " + this.abilityScores.getDexterity());
-		System.out.println("HHH " + this.abilityScores.getIntelligence());
-		System.out.println("HHH " + this.abilityScores.getWisdom());
+
 	}
 
 	public void calculateHitPoints(int level) {
@@ -479,35 +469,35 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			if (item != null) {
 				if (item.getItem_type().equals(Game_constants.HELMET)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 
 				} else if (item.getItem_type().equals(Game_constants.ARMOR)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 
 				} else if (item.getItem_type().equals(Game_constants.SHIELD)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 
 				} else if (item.getItem_type().equals(Game_constants.RING)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 				} else if (item.getItem_type().equals(Game_constants.RING)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 				} else if (item.getItem_type().equals(Game_constants.BOOTS)) {
 
-					if (item.getItemAbility().equals(Game_constants.ARMOR_CLASS)) {
+					if (item.getItem_ability().equals(Game_constants.ARMOR_CLASS)) {
 						armorClass += item.getItem_point();
 					}
 				}
