@@ -72,9 +72,9 @@ public class CharacterController implements ActionListener {
 			} else {
 				model.setCharacter_name(this.view.charactername_textfield.getText());
 			}
-			String level = this.view.level_textfield.getText();
+			int level = 0;
 			try {
-				int i = Integer.parseInt(level);
+				int i = Integer.parseInt(this.view.level_textfield.getText());
 				model.setCharacter_level(i);
 				ItemModel armer = (ItemModel) this.view.armer_combobox.getSelectedItem();
 				ItemModel belt = (ItemModel) this.view.belt_combobox.getSelectedItem();
@@ -85,14 +85,21 @@ public class CharacterController implements ActionListener {
 				ItemModel shield = (ItemModel) this.view.shield_combobox.getSelectedItem();
 
 				ArrayList<ItemModel> items = new ArrayList<ItemModel>();
-				items.add(armer);
-				items.add(belt);
-				items.add(boot);
-				items.add(helmet);
-				items.add(ring);
-				items.add(weapon);
-				items.add(shield);
-				model.setItems(items);
+				if (armer != null)
+					items.add(armer);
+				if (belt != null)
+					items.add(belt);
+				if (boot != null)
+					items.add(boot);
+				if (helmet != null)
+					items.add(helmet);
+				if (ring != null)
+					items.add(ring);
+				if (weapon != null)
+					items.add(weapon);
+				if (shield != null)
+					items.add(shield);
+				this.model.setItems(items);
 
 				ArrayList<ItemModel> backPackList = new ArrayList<ItemModel>();
 
@@ -100,7 +107,14 @@ public class CharacterController implements ActionListener {
 
 					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
 				}
-				model.setBackPackItems(backPackList);
+				this.model.setBackPackItems(backPackList);
+
+				this.model.calculateModifires();
+				this.model.calculateHitPoints(level);
+				this.model.calculateArmorClass();
+				this.model.calculateAttackBonus(level);
+				this.model.calculateDamageBonus();
+
 				model.update();
 				new ManageCharacterController();
 				this.view.dispose();
@@ -148,8 +162,10 @@ public class CharacterController implements ActionListener {
 
 				ArrayList<ItemModel> backPackList = new ArrayList<ItemModel>();
 
-				if (this.view.backPackList.getSelectedValuesList().size() > 0)
+				if (this.view.backPackList.getSelectedValuesList().size() > 0) {
+
 					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+				}
 
 				this.model.setBackPackItems(backPackList);
 
@@ -167,7 +183,6 @@ public class CharacterController implements ActionListener {
 
 			} catch (NumberFormatException ex) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter valid level");
-
 			}
 		}
 	}
