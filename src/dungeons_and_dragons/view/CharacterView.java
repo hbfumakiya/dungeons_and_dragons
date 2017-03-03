@@ -139,7 +139,6 @@ public class CharacterView extends JFrame implements Observer, View {
 		try {
 			this.items = FileHelper.getItems();
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 
@@ -163,7 +162,6 @@ public class CharacterView extends JFrame implements Observer, View {
 		try {
 			this.items = FileHelper.getItems();
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 

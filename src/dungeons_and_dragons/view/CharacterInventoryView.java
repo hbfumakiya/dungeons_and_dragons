@@ -22,7 +22,7 @@ import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
- * Shows character details and allow to equip and unequip items 
+ * Shows character details and allow to equip and unequip items
  * 
  * @author Mihir Pujara
  *
@@ -50,53 +50,53 @@ public class CharacterInventoryView extends JFrame implements View {
 	private JLabel nameLabel;
 
 	private JLabel levelLabel;
-	
-	private JLabel hitPointsLabel; 
-	
-	private JLabel armorClassLabel; 
-	
-	private JLabel attackBonusLabel; 
-	
+
+	private JLabel hitPointsLabel;
+
+	private JLabel armorClassLabel;
+
+	private JLabel attackBonusLabel;
+
 	private JLabel damageBonusLabel;
-	
+
 	private JLabel abilityScoreLabel;
-	
+
 	private JLabel modifierLabel;
-	
+
 	private JLabel strengthLabel;
 
 	private JLabel dexterityLabel;
-	
+
 	private JLabel constitutionLabel;
-	
+
 	private JLabel intelligenceLabel;
-	
+
 	private JLabel wisdomLabel;
-	
+
 	private JLabel charismaLabel;
-	
+
 	private JLabel strengthASLabel;
 
 	private JLabel dexterityASLabel;
-	
+
 	private JLabel constitutionASLabel;
-	
+
 	private JLabel intelligenceASLabel;
-	
+
 	private JLabel wisdomASLabel;
-	
+
 	private JLabel charismaASLabel;
-	
+
 	private JLabel strengthMLabel;
 
 	private JLabel dexterityMLabel;
-	
+
 	private JLabel constitutionMLabel;
-	
+
 	private JLabel intelligenceMLabel;
-	
+
 	private JLabel wisdomMLabel;
-	
+
 	private JLabel charismaMLabel;
 
 	/**
@@ -217,61 +217,61 @@ public class CharacterInventoryView extends JFrame implements View {
 
 	/**
 	 * mathod for showing details of character
+	 * 
 	 * @param character
 	 */
 	public void showDetails(CharacterModel character) {
 
 		// name
-		
+
 		nameLabel = new JLabel("Name: " + character.getCharacter_name());
 		nameLabel.setBounds(10, 5, 120, 20);
 		this.panel.add(nameLabel);
 
 		// level
-		
+
 		levelLabel = new JLabel("Level: " + character.getCharacter_level());
 		levelLabel.setBounds(10, 25, 120, 20);
 		this.panel.add(levelLabel);
-		
+
 		// hit points
-		
+
 		hitPointsLabel = new JLabel("Hit Points: " + character.getHitpoints());
 		hitPointsLabel.setBounds(10, 45, 120, 20);
 		this.panel.add(hitPointsLabel);
-		
+
 		// armor class
-		
-		armorClassLabel = new JLabel("Armor Class: "+ character.getArmorClass());
+
+		armorClassLabel = new JLabel("Armor Class: " + character.getArmorClass());
 		armorClassLabel.setBounds(10, 65, 120, 20);
-		this.panel.add(armorClassLabel); 
-		
+		this.panel.add(armorClassLabel);
+
 		// attack bonus
 		String attachBonus = "";
 		int temp = character.getAttackBonus();
-		
-		for(int i = temp;i>0;i-=5) {
-			attachBonus += i+"/";
+
+		for (int i = temp; i > 0; i -= 5) {
+			attachBonus += i + "/";
 		}
-		attachBonus = attachBonus.substring(0, attachBonus.length() -1);
-		attackBonusLabel = new JLabel("Attack Bonus: "+ attachBonus);
+		attachBonus = attachBonus.substring(0, attachBonus.length() - 1);
+		attackBonusLabel = new JLabel("Attack Bonus: " + attachBonus);
 		attackBonusLabel.setBounds(10, 85, 120, 20);
 		this.panel.add(attackBonusLabel);
-		
+
 		// damage bonus
-		
-		damageBonusLabel = new JLabel("Damage Bonus: "+ character.getDamageBonus());
+
+		damageBonusLabel = new JLabel("Damage Bonus: " + character.getDamageBonus());
 		damageBonusLabel.setBounds(10, 105, 120, 20);
 		this.panel.add(damageBonusLabel);
-		
-		
+
 		abilityScoreLabel = new JLabel("Ability Score");
 		abilityScoreLabel.setBounds(300, 5, 100, 20);
 		this.panel.add(abilityScoreLabel);
-		
+
 		modifierLabel = new JLabel("Modifiers");
 		modifierLabel.setBounds(400, 5, 100, 20);
 		this.panel.add(modifierLabel);
-		
+
 		strengthLabel = new JLabel("Strength");
 		strengthLabel.setBounds(210, 20, 100, 20);
 		this.panel.add(strengthLabel);
@@ -279,70 +279,68 @@ public class CharacterInventoryView extends JFrame implements View {
 		dexterityLabel = new JLabel("Dexterity");
 		dexterityLabel.setBounds(210, 40, 100, 20);
 		this.panel.add(dexterityLabel);
-		
+
 		constitutionLabel = new JLabel("Constitution");
 		constitutionLabel.setBounds(210, 60, 100, 20);
 		this.panel.add(constitutionLabel);
-		
+
 		intelligenceLabel = new JLabel("Intelligence");
 		intelligenceLabel.setBounds(210, 80, 100, 20);
 		this.panel.add(intelligenceLabel);
-		
+
 		wisdomLabel = new JLabel("Wisdom");
 		wisdomLabel.setBounds(210, 100, 100, 20);
 		this.panel.add(wisdomLabel);
-		
+
 		charismaLabel = new JLabel("Charisma");
 		charismaLabel.setBounds(210, 120, 100, 20);
 		this.panel.add(charismaLabel);
-		
-		
-		strengthASLabel = new JLabel(character.getAbilityScores().getStraight()+"");
+
+		strengthASLabel = new JLabel(character.getAbilityScores().getStraight() + "");
 		strengthASLabel.setBounds(330, 20, 100, 20);
 		this.panel.add(strengthASLabel);
 
-		dexterityASLabel = new JLabel(character.getAbilityScores().getDexterity()+"");
+		dexterityASLabel = new JLabel(character.getAbilityScores().getDexterity() + "");
 		dexterityASLabel.setBounds(330, 40, 100, 20);
 		this.panel.add(dexterityASLabel);
-		
-		constitutionASLabel = new JLabel(character.getAbilityScores().getConstitution()+"");
+
+		constitutionASLabel = new JLabel(character.getAbilityScores().getConstitution() + "");
 		constitutionASLabel.setBounds(330, 60, 100, 20);
 		this.panel.add(constitutionASLabel);
-		
-		intelligenceASLabel = new JLabel(character.getAbilityScores().getIntelligence()+"");
+
+		intelligenceASLabel = new JLabel(character.getAbilityScores().getIntelligence() + "");
 		intelligenceASLabel.setBounds(330, 80, 100, 20);
 		this.panel.add(intelligenceASLabel);
-		
-		wisdomASLabel = new JLabel(character.getAbilityScores().getWisdom()+"");
+
+		wisdomASLabel = new JLabel(character.getAbilityScores().getWisdom() + "");
 		wisdomASLabel.setBounds(330, 100, 100, 20);
 		this.panel.add(wisdomASLabel);
-		
-		charismaASLabel = new JLabel(character.getAbilityScores().getCharisma()+"");
+
+		charismaASLabel = new JLabel(character.getAbilityScores().getCharisma() + "");
 		charismaASLabel.setBounds(330, 120, 120, 20);
 		this.panel.add(charismaASLabel);
-		
-		
-		strengthMLabel = new JLabel(character.getModifiers().getStraight()+"");
+
+		strengthMLabel = new JLabel(character.getModifiers().getStraight() + "");
 		strengthMLabel.setBounds(420, 20, 100, 20);
 		this.panel.add(strengthMLabel);
 
-		dexterityMLabel = new JLabel(character.getModifiers().getDexterity()+"");
+		dexterityMLabel = new JLabel(character.getModifiers().getDexterity() + "");
 		dexterityMLabel.setBounds(420, 40, 100, 20);
 		this.panel.add(dexterityMLabel);
-		
-		constitutionMLabel = new JLabel(character.getModifiers().getConstitution()+"");
+
+		constitutionMLabel = new JLabel(character.getModifiers().getConstitution() + "");
 		constitutionMLabel.setBounds(420, 60, 100, 20);
 		this.panel.add(constitutionMLabel);
-		
-		intelligenceMLabel = new JLabel(character.getModifiers().getIntelligence()+"");
+
+		intelligenceMLabel = new JLabel(character.getModifiers().getIntelligence() + "");
 		intelligenceMLabel.setBounds(420, 80, 100, 20);
 		this.panel.add(intelligenceMLabel);
-		
-		wisdomMLabel = new JLabel(character.getModifiers().getWisdom()+"");
+
+		wisdomMLabel = new JLabel(character.getModifiers().getWisdom() + "");
 		wisdomMLabel.setBounds(420, 100, 100, 20);
 		this.panel.add(wisdomMLabel);
-		
-		charismaMLabel = new JLabel(character.getModifiers().getCharisma()+"");
+
+		charismaMLabel = new JLabel(character.getModifiers().getCharisma() + "");
 		charismaMLabel.setBounds(420, 120, 100, 20);
 		this.panel.add(charismaMLabel);
 	}
@@ -403,7 +401,7 @@ public class CharacterInventoryView extends JFrame implements View {
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * class for custom items in JList

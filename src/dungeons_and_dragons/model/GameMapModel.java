@@ -1,43 +1,42 @@
 package dungeons_and_dragons.model;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
-import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
 
 import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
-import dungeons_and_dragons.helper.MapButton;
 
 /**
- * This class is created to manage map data,store all the points of map walls,enemies,entry door, exit door and chest.
+ * This class is created to manage map data,store all the points of map
+ * walls,enemies,entry door, exit door and chest.
  * 
  * @author Mihir and Urmil Kansara
  * 
  */
 
-public class GameMapModel extends Observable implements Model<GameMapModel>{
+public class GameMapModel extends Observable implements Model<GameMapModel> {
 
 	/**
 	 * To restrict the map to be filled by default with entry door
 	 */
-	public int entryFlag=0;
+	public int entryFlag = 0;
 	/**
 	 * To restrict the map to be filled by default with exit door
 	 */
-	public int exitFlag=0;
-	
+	public int exitFlag = 0;
+
 	/**
 	 * Variable used to show a error message in case received
 	 */
 	private String errorMessage;
-	
+
 	/**
 	 * Variable for identity of map. Value of all these map must be unique.
 	 * 
@@ -45,82 +44,84 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	@Expose
 	private int map_id;
-	
+
 	/**
-	 * Variable for map name. 
+	 * Variable for map name.
 	 * 
 	 * @type String
 	 */
 	@Expose
 	private String map_name;
-	
+
 	/**
-	 * Variable for map size. 
+	 * Variable for map size.
 	 * 
 	 * @type Point
 	 */
 	@Expose
 	private Point map_size = new Point(1, 1);
-	
+
 	/**
-	 * Variable for chest location in map. 
+	 * Variable for chest location in map.
 	 * 
 	 * @type Point
 	 */
 	@Expose
 	private Point map_chest;
-	
+
 	/**
-	 * Variable for walls and their locations stored in an array. 
+	 * Variable for walls and their locations stored in an array.
 	 * 
 	 * @type Point
 	 */
 	@Expose
 	private ArrayList<Point> map_walls;
-	
+
 	/**
-	 * Variable for entry wall location in map. 
+	 * Variable for entry wall location in map.
 	 * 
 	 * @type Point
 	 */
 	@Expose
 	private Point map_entry_door;
-	
+
 	/**
-	 *Variable having point locations of enemies which will be defined later
+	 * Variable having point locations of enemies which will be defined later
 	 * 
 	 * @type ArrayList
 	 */
 	@Expose
-	private ArrayList<Point> map_enemy_loc ;
-	
+	private ArrayList<Point> map_enemy_loc;
+
 	/**
-	 * Variable for exit wall location in map. 
+	 * Variable for exit wall location in map.
 	 * 
 	 * @type Point
 	 */
 	@Expose
 	private Point map_exit_door;
-	
+
 	/**
 	 * defines colot of map object type.
+	 * 
 	 * @type Color
 	 */
 	private Color map_object_color_type;
-	
-	
-	
+
 	/**
 	 * constructor to initialize map object
-	 * @param width of map
-	 * @param height of map
+	 * 
+	 * @param width
+	 *            of map
+	 * @param height
+	 *            of map
 	 */
-	public GameMapModel(int width,int height) {
+	public GameMapModel(int width, int height) {
 		this.map_size.setLocation(width, height);
 		this.map_walls = new ArrayList<Point>();
-		this.map_chest = new Point(-1,-1);
-		this.map_entry_door =  new Point(-1,-1);
-		this.map_exit_door = new Point(-1,-1);
+		this.map_chest = new Point(-1, -1);
+		this.map_entry_door = new Point(-1, -1);
+		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
 		this.map_name = "";
 		this.map_enemy_loc = new ArrayList<Point>();
@@ -130,16 +131,15 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * default constructor to set map features
 	 */
 	public GameMapModel() {
-		this.map_size.setLocation(5,5);
+		this.map_size.setLocation(5, 5);
 		this.map_walls = new ArrayList<Point>();
-		this.map_chest = new Point(-1,-1);
-		this.map_entry_door =  new Point(-1,-1);
-		this.map_exit_door = new Point(-1,-1);
+		this.map_chest = new Point(-1, -1);
+		this.map_entry_door = new Point(-1, -1);
+		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
 		this.map_name = "";
 		this.map_enemy_loc = new ArrayList<Point>();
 	}
-
 
 	/**
 	 * @return the map_id
@@ -148,14 +148,13 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_id;
 	}
 
-
 	/**
-	 * @param map_id the map_id to set
+	 * @param map_id
+	 *            the map_id to set
 	 */
 	public void setMap_id(int map_id) {
 		this.map_id = map_id;
 	}
-
 
 	/**
 	 * @return the map_name
@@ -164,14 +163,13 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_name;
 	}
 
-
 	/**
-	 * @param map_name the map_name to set
+	 * @param map_name
+	 *            the map_name to set
 	 */
 	public void setMap_name(String map_name) {
 		this.map_name = map_name;
 	}
-
 
 	/**
 	 * @return the map_size
@@ -180,16 +178,15 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_size;
 	}
 
-
 	/**
-	 * @param map_size the map_size to set
+	 * @param map_size
+	 *            the map_size to set
 	 */
 	public void setMap_size(Point map_size) {
 		this.map_size = map_size;
 		setChanged();
 		notifyObservers(this);
 	}
-
 
 	/**
 	 * @return the map_chest
@@ -198,17 +195,17 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_chest;
 	}
 
-
 	/**
 	 * Used to invoke grid map view by notifying observers
-	 * @param map_chest the map_chest to set
+	 * 
+	 * @param map_chest
+	 *            the map_chest to set
 	 */
 	public void setMap_chest(Point map_chest) {
 		this.map_chest = map_chest;
 		setChanged();
 		notifyObservers(this);
 	}
-
 
 	/**
 	 * @return the map_walls
@@ -217,20 +214,19 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_walls;
 	}
 
-
 	/**
-	 * This function checks whether point already present in arraylist.
-	 * If it is not present in arraylist then add into arraylist else ignore.
+	 * This function checks whether point already present in arraylist. If it is
+	 * not present in arraylist then add into arraylist else ignore.
 	 * 
-	 * @param map_walls the map_walls to set
+	 * @param map_walls
+	 *            the map_walls to set
 	 */
 	public void setMap_wall(Point wall) {
-		if(!this.map_walls.contains(wall))
-		this.map_walls.add(wall);
+		if (!this.map_walls.contains(wall))
+			this.map_walls.add(wall);
 		setChanged();
 		notifyObservers(this);
 	}
-	
 
 	/**
 	 * @return the map_entry_door
@@ -239,39 +235,38 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_entry_door;
 	}
 
-
 	/**
-	 * @param map_walls the map_walls to set
+	 * @param map_walls
+	 *            the map_walls to set
 	 */
 	public void setMap_walls(ArrayList<Point> map_walls) {
 		this.map_walls = map_walls;
 	}
 
 	/**
-	 * @param map_enemy_loc the map_enemy_loc to set
+	 * @param map_enemy_loc
+	 *            the map_enemy_loc to set
 	 */
 	public void setMap_enemy_loc(ArrayList<Point> map_enemy_loc) {
 		this.map_enemy_loc = map_enemy_loc;
 	}
 
 	/**
-	 * @param map_entry_door the map_entry_door to set
+	 * @param map_entry_door
+	 *            the map_entry_door to set
 	 */
 	public void setMap_entry_door(Point map_entry_door) {
-		
-		if((map_entry_door.x == 0 && map_entry_door.y!=0) 
-				|| (map_entry_door.x != 0 && map_entry_door.y == 0) 
-				|| (map_entry_door.x == map_size.getX()-1 && map_entry_door.y!=map_size.getY()-1) 
-				|| (map_entry_door.x != map_size.getX()-1 && map_entry_door.y == map_size.getY()-1)
-				|| (map_entry_door.x == 0 && map_entry_door.y==0)
-				|| (map_entry_door.x == map_size.getX()-1 && map_entry_door.y==map_size.getY()-1))
-		{
-		this.map_entry_door = map_entry_door;
+
+		if ((map_entry_door.x == 0 && map_entry_door.y != 0) || (map_entry_door.x != 0 && map_entry_door.y == 0)
+				|| (map_entry_door.x == map_size.getX() - 1 && map_entry_door.y != map_size.getY() - 1)
+				|| (map_entry_door.x != map_size.getX() - 1 && map_entry_door.y == map_size.getY() - 1)
+				|| (map_entry_door.x == 0 && map_entry_door.y == 0)
+				|| (map_entry_door.x == map_size.getX() - 1 && map_entry_door.y == map_size.getY() - 1)) {
+			this.map_entry_door = map_entry_door;
 		}
 		setChanged();
 		notifyObservers(this);
 	}
-
 
 	/**
 	 * @return the map_enemy_loc
@@ -280,16 +275,16 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return map_enemy_loc;
 	}
 
-
 	/**
-	 * @param map_enemy_loc the map_enemy_loc to set
+	 * @param map_enemy_loc
+	 *            the map_enemy_loc to set
 	 */
 	public void setMap_enemy_loc(Point position) {
-		if(!this.map_enemy_loc.contains(position))
-		this.map_enemy_loc.add(position);
+		if (!this.map_enemy_loc.contains(position))
+			this.map_enemy_loc.add(position);
 		setChanged();
 		notifyObservers(this);
-		
+
 	}
 
 	/**
@@ -300,17 +295,16 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * @param map_exit_door the map_exit_door to set
+	 * @param map_exit_door
+	 *            the map_exit_door to set
 	 */
 	public void setMap_exit_door(Point map_exit_door) {
-		if((map_exit_door.x == 0 && map_exit_door.y!=0) 
-				|| (map_exit_door.x != 0 && map_exit_door.y == 0) 
-				|| (map_exit_door.x == map_size.getX()-1 && map_exit_door.y!=map_size.getY()-1) 
-				|| (map_exit_door.x != map_size.getX()-1 && map_exit_door.y == map_size.getY()-1)
-				|| (map_exit_door.x == 0 && map_exit_door.y==0)
-				|| (map_exit_door.x == map_size.getX()-1 && map_exit_door.y==map_size.getY()-1))
-		{
-		this.map_exit_door = map_exit_door;
+		if ((map_exit_door.x == 0 && map_exit_door.y != 0) || (map_exit_door.x != 0 && map_exit_door.y == 0)
+				|| (map_exit_door.x == map_size.getX() - 1 && map_exit_door.y != map_size.getY() - 1)
+				|| (map_exit_door.x != map_size.getX() - 1 && map_exit_door.y == map_size.getY() - 1)
+				|| (map_exit_door.x == 0 && map_exit_door.y == 0)
+				|| (map_exit_door.x == map_size.getX() - 1 && map_exit_door.y == map_size.getY() - 1)) {
+			this.map_exit_door = map_exit_door;
 		}
 		setChanged();
 		notifyObservers(this);
@@ -323,16 +317,15 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	public void save() {
 		try {
 			this.setCurrentId();
-			System.out.println("HGellaf"+this.getMap_name());
-			System.out.println("fsd "+this.map_chest.getX());
 			FileHelper.saveMap(this);
-		} catch (JsonSyntaxException  | IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * method to set current id
+	 * 
 	 * @throws JsonSyntaxException
 	 * @throws IOException
 	 */
@@ -351,11 +344,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * This method is used to get all data of map from files
 	 * 
 	 * @throws JsonSyntaxException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@Override
 	public ArrayList<GameMapModel> getData() throws JsonSyntaxException, IOException {
-		// TODO Auto-generated method stub
 		return FileHelper.getMaps();
 	}
 
@@ -364,18 +356,17 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 */
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		try {
 			FileHelper.updateMap(this);
 		} catch (IOException | NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
 	 * This method is used to detect which radio button is selected.
+	 * 
 	 * @return Color
 	 */
 	public Color getMap_object_color_type() {
@@ -383,7 +374,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 *  This method is used to set which radio button is selected.
+	 * This method is used to set which radio button is selected.
+	 * 
 	 * @param map_object_color_type
 	 */
 	public void setMap_object_color_type(Color map_object_color_type) {
@@ -392,6 +384,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	/**
 	 * This method is used to return error message
+	 * 
 	 * @return String
 	 */
 	public String getErrorMessage() {
@@ -400,6 +393,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	/**
 	 * This method is used to set error message
+	 * 
 	 * @param errorMessage
 	 */
 	public void setErrorMessage(String errorMessage) {
@@ -410,90 +404,93 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 	/**
 	 * This method is used to remove wall if radio button map_remove is selected
-	 *  
-	 * @param position point to be removed from arraylist
+	 * 
+	 * @param position
+	 *            point to be removed from arraylist
 	 */
 	public void removeWall(Point position) {
-		// TODO Auto-generated method stub
 		this.map_walls.remove(position);
-		
+
 	}
 
 	/**
-	 This method is used to remove enemy from arraylist if radio button map_remove is selected
-	 *  
-	 * @param position point to be removed from arraylist
+	 * This method is used to remove enemy from arraylist if radio button
+	 * map_remove is selected
+	 * 
+	 * @param position
+	 *            point to be removed from arraylist
 	 */
 	public void removeEnemy(Point position) {
-		// TODO Auto-generated method stub
 		this.map_enemy_loc.remove(position);
 	}
 
 	/**
-	 * This method is used to remove chest if radio button map_remove is selected and then clicked on point containing chest
-	 *  
-	 * @param position point to be removed for chest
+	 * This method is used to remove chest if radio button map_remove is
+	 * selected and then clicked on point containing chest
+	 * 
+	 * @param position
+	 *            point to be removed for chest
 	 */
 	public void removeChest(Point position) {
-		// TODO Auto-generated method stub
-		this.map_chest = new Point(-1,-1);
+		this.map_chest = new Point(-1, -1);
 	}
 
 	/**
-	 * This method is used to remove entry door if radio button map_remove is selected
-	 *  
-	 * @param position point to be removed for entry door
+	 * This method is used to remove entry door if radio button map_remove is
+	 * selected
+	 * 
+	 * @param position
+	 *            point to be removed for entry door
 	 */
 	public void removeEntryDoor(Point position) {
-		// TODO Auto-generated method stub
-		this.map_entry_door =new Point(-1,-1);
+		this.map_entry_door = new Point(-1, -1);
 	}
 
 	/**
-	 * This method is used to remove exit door if radio button map_remove is selected
-	 *  
-	 * @param position point to be removed for exit door
+	 * This method is used to remove exit door if radio button map_remove is
+	 * selected
+	 * 
+	 * @param position
+	 *            point to be removed for exit door
 	 */
 	public void removeExitDoor(Point position) {
-		// TODO Auto-generated method stub
-		this.map_exit_door = new Point(-1,-1);
+		this.map_exit_door = new Point(-1, -1);
 	}
-	
+
 	/**
-	 * This method is used to remove color if radio button map_remove is selected
-	 *  
-	 * @param position point to be removed for color
+	 * This method is used to remove color if radio button map_remove is
+	 * selected
+	 * 
+	 * @param position
+	 *            point to be removed for color
 	 */
 	public void removeMap_object_color_type() {
-		// TODO Auto-generated method stub
 		this.map_object_color_type = null;
 	}
 
 	public void callObservers() {
-		// TODO Auto-generated method stub
 		setChanged();
 		notifyObservers(this);
-		
+
 	}
 
 	/**
 	 * method to reset map features
 	 */
 	public void resetAll() {
-		// TODO Auto-generated method stub
 		this.map_walls.removeAll(map_walls);
-		this.map_chest.setLocation(-1,-1);
-		this.map_entry_door.setLocation(-1,-1);
-		this.map_exit_door.setLocation(-1,-1);
-		//this.map_id = 0;
-		//this.map_name = ;
+		this.map_chest.setLocation(-1, -1);
+		this.map_entry_door.setLocation(-1, -1);
+		this.map_exit_door.setLocation(-1, -1);
+		// this.map_id = 0;
+		// this.map_name = ;
 		this.map_enemy_loc.removeAll(map_enemy_loc);
 	}
 
 	/**
 	 * This Variable id to check whether update or save should be there in view
 	 */
-	private int finder; //if finder = 0 save else if finder  = 1 then update
+	private int finder; // if finder = 0 save else if finder = 1 then update
 
 	/**
 	 * This method sets finder.
@@ -501,9 +498,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	 * @param finder
 	 */
 	public void setFinder(int finder) {
-		// TODO Auto-generated method stub
 		this.finder = finder;
 	}
+
 	/**
 	 * 
 	 * @return int
@@ -512,6 +509,4 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		return this.finder;
 	}
 
-	
-	
 }

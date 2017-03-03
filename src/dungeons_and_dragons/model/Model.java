@@ -15,8 +15,8 @@ import com.google.gson.JsonSyntaxException;
 public interface Model<T> {
 
 	public void save();
-	
+
 	public ArrayList<T> getData() throws JsonSyntaxException, IOException;
-	
+
 	public void update();
 }

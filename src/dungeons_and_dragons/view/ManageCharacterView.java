@@ -49,6 +49,7 @@ public class ManageCharacterView extends JFrame implements View {
 
 	/**
 	 * Constructor to initialize window
+	 * 
 	 * @param actionListener
 	 * @param item
 	 */
@@ -64,6 +65,7 @@ public class ManageCharacterView extends JFrame implements View {
 
 	/**
 	 * Method to initialize window
+	 * 
 	 * @param actionListener
 	 * @param items
 	 */
@@ -116,10 +118,11 @@ public class ManageCharacterView extends JFrame implements View {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	/**
 	 * 
-	 * @param Grapphics g
+	 * @param Grapphics
+	 *            g
 	 */
 	public void paint(Graphics g) {
 		super.paint(g); // fixes the immediate problem.
@@ -127,6 +130,7 @@ public class ManageCharacterView extends JFrame implements View {
 		Line2D lin = new Line2D.Float(0, 62, 400, 62);
 		g2.draw(lin);
 	}
+
 	/**
 	 * 
 	 * @param actionListener
@@ -162,18 +166,18 @@ public class ManageCharacterView extends JFrame implements View {
 				editButton.setPreferredSize(new Dimension(50, 30));
 				this.editButtons.add(editButton);
 
-/*				GameButton deleteButton = new GameButton();
-				deleteButton.setText("Delete");
-				deleteButton.setId(id);
-				deleteButton.setSource(item.get(i));
-				deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
-				deleteButton.addActionListener(actionListener);
-				this.deleteButtons.add(deleteButton);
-*/
+				/*
+				 * GameButton deleteButton = new GameButton();
+				 * deleteButton.setText("Delete"); deleteButton.setId(id);
+				 * deleteButton.setSource(item.get(i));
+				 * deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
+				 * deleteButton.addActionListener(actionListener);
+				 * this.deleteButtons.add(deleteButton);
+				 */
 				gridSubPanel.add(itemName);
 				gridSubPanel.add(viewButton);
 				gridSubPanel.add(editButton);
-				//gridSubPanel.add(deleteButton);
+				// gridSubPanel.add(deleteButton);
 
 				this.gridMainPanel.add(gridSubPanel);
 			}
@@ -190,6 +194,5 @@ public class ManageCharacterView extends JFrame implements View {
 
 		this.addCharacterButton.addActionListener(actionListener);
 	}
-
 
 }

@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.model.CampaignModel;
-import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This class is created to show the view for managing campaign.
@@ -54,6 +53,7 @@ public class ManageCampaignView extends JFrame implements View {
 
 	/**
 	 * This is constructor to initialize campaign view
+	 * 
 	 * @param actionListener
 	 * @param Campaign
 	 */
@@ -69,6 +69,7 @@ public class ManageCampaignView extends JFrame implements View {
 
 	/**
 	 * Initialize Game window
+	 * 
 	 * @param actionListener
 	 * @param Campaigns
 	 */
@@ -121,10 +122,11 @@ public class ManageCampaignView extends JFrame implements View {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	/**
 	 * 
-	 * @param Grapphics g
+	 * @param Grapphics
+	 *            g
 	 */
 	public void paint(Graphics g) {
 		super.paint(g); // fixes the immediate problem.
@@ -132,6 +134,7 @@ public class ManageCampaignView extends JFrame implements View {
 		Line2D lin = new Line2D.Float(0, 62, 400, 62);
 		g2.draw(lin);
 	}
+
 	/**
 	 * Refreshing the campaign
 	 * 
@@ -168,18 +171,18 @@ public class ManageCampaignView extends JFrame implements View {
 				editButton.setPreferredSize(new Dimension(50, 30));
 				this.editButtons.add(editButton);
 
-/*				GameButton deleteButton = new GameButton();
-				deleteButton.setText("Delete");
-				deleteButton.setId(id);
-				deleteButton.setSource(campaign.get(i));
-				deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
-				deleteButton.addActionListener(actionListener);
-				this.deleteButtons.add(deleteButton);
-*/
+				/*
+				 * GameButton deleteButton = new GameButton();
+				 * deleteButton.setText("Delete"); deleteButton.setId(id);
+				 * deleteButton.setSource(campaign.get(i));
+				 * deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
+				 * deleteButton.addActionListener(actionListener);
+				 * this.deleteButtons.add(deleteButton);
+				 */
 				gridSubPanel.add(campaignName);
 				gridSubPanel.add(viewButton);
 				gridSubPanel.add(editButton);
-				//gridSubPanel.add(deleteButton);
+				// gridSubPanel.add(deleteButton);
 
 				this.gridMainPanel.add(gridSubPanel);
 			}
@@ -189,7 +192,8 @@ public class ManageCampaignView extends JFrame implements View {
 	/**
 	 * This method handles listener for back and add button
 	 * 
-	 * @param actionListener listens to buttons
+	 * @param actionListener
+	 *            listens to buttons
 	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {

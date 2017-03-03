@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.model.ItemModel;
 
-
 /**
  * This class is show view for creating item
  * 
@@ -122,7 +121,7 @@ public class ItemView extends JFrame implements Observer {
 	 * @type JPanel
 	 */
 	private JPanel main_panel;
-	
+
 	/**
 	 * this is sub panel where all the components are added.
 	 * 
@@ -222,7 +221,7 @@ public class ItemView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	/**
 	 * This constructor is called when user wants to edit some item.
 	 * 
@@ -282,45 +281,33 @@ public class ItemView extends JFrame implements Observer {
 		item_type_field.addItem(Game_constants.BOOTS);
 		item_type_field.addItem(Game_constants.WEAPON_MELEE);
 		item_type_field.addItem(Game_constants.WEAPON_RANGE);
-		
-
-		
-		
-		
 
 		item_name_field.setText(itemModel.getItem_name());
 		item_type_field.setSelectedItem(itemModel.getItem_type());
-		if(item_type_field.getSelectedItem().equals(Game_constants.HELMET)){
+		if (item_type_field.getSelectedItem().equals(Game_constants.HELMET)) {
 			item_ability_field.setModel(Game_constants.HELMET_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.ARMOR)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.ARMOR)) {
 			item_ability_field.setModel(Game_constants.ARMOR_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.SHIELD)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.SHIELD)) {
 			item_ability_field.setModel(Game_constants.SHIELD_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.RING)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.RING)) {
 			item_ability_field.setModel(Game_constants.RING_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.BELT)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.BELT)) {
 			item_ability_field.setModel(Game_constants.BELT_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.BOOTS)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.BOOTS)) {
 			item_ability_field.setModel(Game_constants.BOOTS_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON_MELEE)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.WEAPON_MELEE)) {
 			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
-			
-		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON_RANGE)){
+
+		} else if (item_type_field.getSelectedItem().equals(Game_constants.WEAPON_RANGE)) {
 			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
-			
+
 		}
 		item_ability_field.setSelectedItem(itemModel.getItem_ability());
 		item_score_field.setText(String.valueOf(itemModel.getItem_point()));

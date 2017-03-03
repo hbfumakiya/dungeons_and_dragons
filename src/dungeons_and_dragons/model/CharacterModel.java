@@ -300,6 +300,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	/**
 	 * Method to get all created characters
+	 * 
 	 * @return ArrayList characters
 	 */
 	@Override
@@ -310,6 +311,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	/**
 	 * method to set current id of character
+	 * 
 	 * @throws JsonSyntaxException
 	 * @throws IOException
 	 */
@@ -462,9 +464,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers.setCharisma(getModifiersFromScore(this.abilityScores.getCharisma()));
 
 	}
-	
+
 	/**
 	 * method to calculate hit points based on level
+	 * 
 	 * @param level
 	 */
 	public void calculateHitPoints(int level) {
@@ -533,6 +536,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	/**
 	 * method to calculate attack bonus based on level
+	 * 
 	 * @param level
 	 */
 	public void calculateAttackBonus(int level) {
@@ -580,16 +584,17 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 					if (item.getItem_ability().equals(Game_constants.DAMAGE_BONUS)) {
 						damageBonus += item.getItem_point();
 					}
-				} 
+				}
 			}
 		}
 
 		this.damageBonus = damageBonus;
 
 	}
-	
+
 	/**
 	 * method to calculate 4D6 roll dice
+	 * 
 	 * @return
 	 */
 	public int calculate4D6() {
@@ -610,6 +615,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	/**
 	 * method to get modifier from the calculated score
+	 * 
 	 * @param score
 	 * @return modifier
 	 */
