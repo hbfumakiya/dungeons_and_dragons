@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+/**
+ * this class is for creating logs during game playing time
+ * @author Hirangi
+ *
+ */
 public class LogHelper {
 
 	/**

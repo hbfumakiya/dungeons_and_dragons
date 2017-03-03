@@ -6,6 +6,7 @@ package dungeons_and_dragons.helper;
 import javax.swing.JButton;
 
 /**
+ * this class is to create buttons that are used in project
  * @author Mihir Pujara
  *
  */

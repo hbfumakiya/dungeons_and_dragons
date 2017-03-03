@@ -4,6 +4,11 @@ import java.awt.Point;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
+/**
+ * this class is for different validation of maps
+ * @author Hirangi
+ *
+ */
 public class MapValidator {
 
 	/**

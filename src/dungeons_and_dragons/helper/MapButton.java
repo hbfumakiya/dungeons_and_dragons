@@ -6,6 +6,7 @@ package dungeons_and_dragons.helper;
 import javax.swing.JButton;
 
 /**
+ * this class is for creating buttons that are used in map
  * @author User
  *
  */
@@ -52,26 +53,50 @@ public class MapButton extends JButton {
 		this.yPos = yPos;
 	}	
 	
+	/**
+	 * 
+	 * @return button_type
+	 */
 	public String getButton_type() {
 		return button_type;
 	}
 
+	/**
+	 * 
+	 * @param button_type
+	 */
 	public void setButton_type(String button_type) {
 		this.button_type = button_type;
 	}
 
+	/**
+	 * 
+	 * @return pointValue
+	 */
 	public int getPointValue() {
 		return pointValue;
 	}
 
+	/**
+	 * 
+	 * @param pointValue
+	 */
 	public void setPointValue(int pointValue) {
 		this.pointValue = pointValue;
 	}
 
+	/**
+	 * 
+	 * @return dirty_flag
+	 */
 	public int getDirty_flag() {
 		return dirty_flag;
 	}
 
+	/**
+	 * 
+	 * @param dirty_flag
+	 */
 	public void setDirty_flag(int dirty_flag) {
 		this.dirty_flag = dirty_flag;
 	}
