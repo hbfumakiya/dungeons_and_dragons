@@ -374,8 +374,6 @@ public class CampaignView extends JFrame implements Observer, View {
 
 			// remove items already present in the bottom list
 			for (int i = 0; i < temp.size(); i++) {
-				System.out.println(temp.get(i));
-				System.out.println(campaign_combobox.equals(temp.get(i)));
 				campaign_combobox.removeItem(temp.get(i));
 			}
 

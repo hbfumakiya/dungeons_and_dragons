@@ -94,7 +94,6 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	 */
 
 	public ItemModel(int item_id, String item_name, int item_point, String item_type, String item_ability) {
-		// TODO Auto-generated constructor stub
 		this.item_id = item_id;
 		this.item_name = item_name;
 		this.item_point = item_point;
@@ -177,12 +176,12 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	public String getItem_ability() {
 		return item_ability;
 	}
-	
+
 	/**
 	 * sets item ability combobox model
 	 */
 	private DefaultComboBoxModel set_item_ability = new DefaultComboBoxModel<>();
-	
+
 	/**
 	 * 
 	 * @return DefaultComboBoxModel
@@ -193,6 +192,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	/**
 	 * method to set item ability
+	 * 
 	 * @param item_type
 	 */
 	public void itemTypeSelected(String item_type) {
@@ -219,8 +219,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		} else if (item_type.equals(Game_constants.WEAPON_MELEE)) {
 
 			set_item_ability = Game_constants.WEAPON_MODEL;
-		}
-		else if (item_type.equals(Game_constants.WEAPON_RANGE)) {
+		} else if (item_type.equals(Game_constants.WEAPON_RANGE)) {
 
 			set_item_ability = Game_constants.WEAPON_MODEL;
 		}
@@ -232,12 +231,12 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	/**
 	 * method to get items
+	 * 
 	 * @throws JsonSyntaxException,IOException
 	 * @return ArrayList
 	 */
 	@Override
 	public ArrayList<ItemModel> getData() throws JsonSyntaxException, IOException {
-		// TODO Auto-generated method stub
 		return FileHelper.getItems();
 
 	}
@@ -247,13 +246,10 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	 */
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
-
 		try {
 			this.setCurrentId();
 			FileHelper.saveItem(this);
 		} catch (JsonSyntaxException | IOException e1) {
-			// TODO Auto-generated catch block
 			LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 		}
 
@@ -261,6 +257,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 	/**
 	 * method to set current id of item
+	 * 
 	 * @throws JsonSyntaxException
 	 * @throws IOException
 	 */
@@ -285,13 +282,10 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 			FileHelper.updateItem(this);
 		} catch (JsonSyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

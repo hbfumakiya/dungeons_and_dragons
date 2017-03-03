@@ -65,6 +65,7 @@ public class FileHelper {
 	private static final String ITEM_FILE = "res/item.json";
 
 	/**
+	 * method to save map in MAP_FILE
 	 * 
 	 * @param map
 	 * @throws IOException
@@ -113,6 +114,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * method to get created maps from MAP_FILE
 	 * 
 	 * @return
 	 * @throws IOException
@@ -140,6 +142,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * method to update map in MAP_FILE
 	 * 
 	 * @param map
 	 * @throws IOException
@@ -315,6 +318,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * Method to update character in CHARACTER_FILE
 	 * 
 	 * @param character
 	 * @throws JsonSyntaxException
@@ -439,6 +443,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * Method to update item in ITEM_FILE
 	 * 
 	 * @param item
 	 * @throws JsonSyntaxException
@@ -543,6 +548,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * method to save campaign in CAMPAIGN_FILE
 	 * 
 	 * @param map
 	 * @throws IOException
@@ -591,6 +597,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * Method to get created campaign from CAMPAIGN_FILE
 	 * 
 	 * @return
 	 * @throws IOException
@@ -618,6 +625,7 @@ public class FileHelper {
 	}
 
 	/**
+	 * Method to update campaign in CAMPAIGN_FILE
 	 * 
 	 * @param campaign
 	 * @throws IOException
@@ -670,6 +678,12 @@ public class FileHelper {
 
 	}
 
+	/**
+	 * Method to convert point to string
+	 * 
+	 * @author Hirangi
+	 *
+	 */
 	public static class PointAdapter extends TypeAdapter<Point> {
 		public Point read(JsonReader reader) throws IOException {
 			if (reader.peek() == JsonToken.NULL) {

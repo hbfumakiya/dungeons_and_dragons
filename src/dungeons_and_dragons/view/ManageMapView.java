@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -23,14 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import com.google.gson.JsonSyntaxException;
-
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.model.GameMapModel;
-import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This class is created to show the view for managing Map.
+ * 
  * @author Urmil Kansara
  *
  */
@@ -71,6 +68,7 @@ public class ManageMapView extends JFrame implements View {
 
 	/**
 	 * This is constructor to initialize map view
+	 * 
 	 * @param actionListener
 	 * @param items
 	 */
@@ -123,10 +121,11 @@ public class ManageMapView extends JFrame implements View {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	/**
 	 * 
-	 * @param Grapphics g
+	 * @param Grapphics
+	 *            g
 	 */
 	public void paint(Graphics g) {
 		super.paint(g); // fixes the immediate problem.
@@ -134,8 +133,10 @@ public class ManageMapView extends JFrame implements View {
 		Line2D lin = new Line2D.Float(0, 62, 400, 62);
 		g2.draw(lin);
 	}
+
 	/**
 	 * Refreshing map
+	 * 
 	 * @param actionListener
 	 * @param item
 	 */
@@ -169,18 +170,18 @@ public class ManageMapView extends JFrame implements View {
 				editButton.setPreferredSize(new Dimension(50, 30));
 				this.editButtons.add(editButton);
 
-/*				GameButton deleteButton = new GameButton();
-				deleteButton.setText("Delete");
-				deleteButton.setId(id);
-				deleteButton.setSource(item.get(i));
-				deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
-				deleteButton.addActionListener(actionListener);
-				this.deleteButtons.add(deleteButton);
-*/
+				/*
+				 * GameButton deleteButton = new GameButton();
+				 * deleteButton.setText("Delete"); deleteButton.setId(id);
+				 * deleteButton.setSource(item.get(i));
+				 * deleteButton.setButtonType(GameButton.BUTTON_TYPE_DELETE);
+				 * deleteButton.addActionListener(actionListener);
+				 * this.deleteButtons.add(deleteButton);
+				 */
 				gridSubPanel.add(itemName);
 				gridSubPanel.add(viewButton);
 				gridSubPanel.add(editButton);
-				//gridSubPanel.add(deleteButton);
+				// gridSubPanel.add(deleteButton);
 
 				this.gridMainPanel.add(gridSubPanel);
 			}
@@ -190,7 +191,8 @@ public class ManageMapView extends JFrame implements View {
 	/**
 	 * This method handles listener for back and add button
 	 * 
-	 * @param actionListener listens to button
+	 * @param actionListener
+	 *            listens to button
 	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {
@@ -201,4 +203,3 @@ public class ManageMapView extends JFrame implements View {
 	}
 
 }
-

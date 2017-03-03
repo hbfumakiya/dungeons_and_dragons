@@ -11,26 +11,21 @@ import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import dungeons_and_dragons.controller.MapFormController;
-import dungeons_and_dragons.helper.Game_constants;
-
 /**
  * 
  * Implemented project with pair programming efforts.
- * @author Tejas Sadrani & Urmil Kansara 
+ * 
+ * @author Tejas Sadrani & Urmil Kansara
  *
  */
-public class MapFormView extends JFrame implements Observer, View{
-		
-	
-	
+public class MapFormView extends JFrame implements Observer, View {
+
 	/**
 	 * this variable used to set window title
 	 * 
@@ -51,7 +46,7 @@ public class MapFormView extends JFrame implements Observer, View{
 	 * @type JTextField
 	 */
 	public JTextField map_name_textfield;
-	
+
 	/**
 	 * this variable used to give map width
 	 * 
@@ -65,7 +60,7 @@ public class MapFormView extends JFrame implements Observer, View{
 	 * @type JTextField
 	 */
 	public JTextField map_width_textfield;
-	
+
 	/**
 	 * this variable used to give map height
 	 * 
@@ -79,7 +74,7 @@ public class MapFormView extends JFrame implements Observer, View{
 	 * @type JTextField
 	 */
 	public JTextField map_height_textfield;
-	
+
 	/**
 	 * this variable used for going back to create map window
 	 * 
@@ -93,11 +88,11 @@ public class MapFormView extends JFrame implements Observer, View{
 	 * @type JButton
 	 */
 	public JButton next_button;
-	
+
 	private JPanel main_panel;
 	private JPanel sub_panel;
-	
-	public MapFormView(){
+
+	public MapFormView() {
 		this.setTitle(this.map_window_title);
 
 		// main panel
@@ -127,19 +122,16 @@ public class MapFormView extends JFrame implements Observer, View{
 		map_name = new JLabel("Name");
 		map_height = new JLabel("Height");
 		map_width = new JLabel("Width");
-		//item_score = new JLabel("Point");
+		// item_score = new JLabel("Point");
 
-		// Initializing label text field,dropdown of map height and width		
+		// Initializing label text field,dropdown of map height and width
 		map_name_textfield = new JTextField(1);
 		map_height_textfield = new JTextField(1);
 		map_width_textfield = new JTextField(1);
 
-
 		// initializing back and next buttons
 		back_button = new JButton("Back");
 		next_button = new JButton("Save");
-
-	
 
 		// Adding necessary components into panel
 		listPane.add(map_name);
@@ -154,8 +146,6 @@ public class MapFormView extends JFrame implements Observer, View{
 
 		listPane.add(map_width_textfield);
 
-		
-
 		listPane.add(back_button);
 		listPane.add(next_button);
 
@@ -165,18 +155,16 @@ public class MapFormView extends JFrame implements Observer, View{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
+
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
 		this.next_button.addActionListener(actionListener);
 		this.back_button.addActionListener(actionListener);
 	}

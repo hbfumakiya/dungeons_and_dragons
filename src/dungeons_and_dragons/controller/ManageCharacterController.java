@@ -13,14 +13,13 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CharacterModel;
-import dungeons_and_dragons.model.ItemModel;
-import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.ManageCharacterView;
 
 /**
  * The ManageCharacterController translates the user's interactions with the
- * ManageCharacterView into actions that the ManageCharacterModel will perform that may use
- * some additional/changed data gathered in a user-interactive view.
+ * ManageCharacterView into actions that the ManageCharacterModel will perform
+ * that may use some additional/changed data gathered in a user-interactive
+ * view.
  * 
  * @author Mihir pujara
  */
@@ -31,8 +30,7 @@ public class ManageCharacterController implements ActionListener {
 	private ManageCharacterView manageCharacterView;
 
 	/**
-	 * Default constructor for manage character 
-	 * initialize model and view
+	 * Default constructor for manage character initialize model and view
 	 */
 	public ManageCharacterController() {
 
@@ -56,36 +54,36 @@ public class ManageCharacterController implements ActionListener {
 
 	/**
 	 * Action events for all the events
+	 * 
 	 * @param actionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		
+
 		if (actionEvent.getSource().equals(manageCharacterView.addCharacterButton)) {
 			new CharacterController();
-			
+
 			manageCharacterView.dispose();
-			
+
 		} else if (actionEvent.getSource().equals(manageCharacterView.backButton)) {
-			
+
 			new CreateGameController();
-			
+
 			manageCharacterView.dispose();
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
 
 			GameButton button = (GameButton) actionEvent.getSource();
 			CharacterModel character = (CharacterModel) button.getSource();
-			
-			if(character != null) {
+
+			if (character != null) {
 				new CharacterInventoryController(character);
 			}
-		}
-		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int characterId = button.getId();	
-			CharacterModel character = (CharacterModel) button.getSource();		    
-			
+			int characterId = button.getId();
+			CharacterModel character = (CharacterModel) button.getSource();
+
 			new CharacterController(character);
 			manageCharacterView.dispose();
 		}

@@ -3,7 +3,6 @@
  */
 package dungeons_and_dragons.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -13,40 +12,31 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentListener;
 
 import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
-import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
-import javafx.scene.layout.Border;
 
 /**
  * This class is created to show the view for map.
+ * 
  * @author Urmil Kansara
  *
  */
-public class MapView extends JFrame implements ActionListener{
+public class MapView extends JFrame implements ActionListener {
 
 	/**
 	 * this variable used to set window title
@@ -104,7 +94,6 @@ public class MapView extends JFrame implements ActionListener{
 	 */
 	public JButton back_button;
 
-
 	private JPanel main_panel;
 	private JPanel sub_top_panel;
 	private JPanel sub_bottom_panel;
@@ -115,7 +104,7 @@ public class MapView extends JFrame implements ActionListener{
 	 * @type JButton
 	 */
 	public MapButton[][] maps;
-	
+
 	public JLabel map_entry_door;
 	public JLabel map_exit_door;
 	public JLabel map_chest;
@@ -127,15 +116,16 @@ public class MapView extends JFrame implements ActionListener{
 	private JLabel map_enemy_color;
 	private JLabel map_wall_color;
 	private JLabel empty;
-	
-	private int index=0;
-	
+
+	private int index = 0;
+
 	private GameMapModel model;
-	
+
 	private static int check = 0;
-	
+
 	/**
 	 * Constructor to view the map
+	 * 
 	 * @param map
 	 */
 	public MapView(GameMapModel map) {
@@ -163,7 +153,6 @@ public class MapView extends JFrame implements ActionListener{
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
 
 		} catch (IOException e) {
-			System.out.println(e);
 		}
 
 		// main panel covering body
@@ -203,8 +192,8 @@ public class MapView extends JFrame implements ActionListener{
 		// initializing back,next and submit buttons
 		back_button = new JButton("Back");
 		back_button.addActionListener(this);
-		//save_button = new JButton("Save");
-		//submit = new JButton("Submit");
+		// save_button = new JButton("Save");
+		// submit = new JButton("Submit");
 		// Adding necessary components into panel
 		listPane.add(map_name);
 
@@ -239,15 +228,17 @@ public class MapView extends JFrame implements ActionListener{
 
 	/**
 	 * Used to show a grid map along with the right panel list
+	 * 
 	 * @param width_height
 	 * @param map_walls
 	 * @param character
 	 * @param chest
 	 * @param entryDoor
 	 * @param exitDoor
-	 * @param exitFlag 
+	 * @param exitFlag
 	 */
-	private void updateMap(Point width_height,ArrayList<Point> map_walls,ArrayList<Point> character,Point chest,Point entryDoor,Point exitDoor,int entryFlag, int exitFlag) {
+	private void updateMap(Point width_height, ArrayList<Point> map_walls, ArrayList<Point> character, Point chest,
+			Point entryDoor, Point exitDoor, int entryFlag, int exitFlag) {
 		// sub bottom panel consisting of map and info regarding map
 
 		main_panel.remove(sub_bottom_panel);
@@ -268,18 +259,19 @@ public class MapView extends JFrame implements ActionListener{
 
 		LeftGridMapPane.setLayout((new GridLayout(width_height.x, width_height.y, 1, 1)));
 		LeftGridMapPane.setMaximumSize(new Dimension(750, 500));
-		//LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		// LeftGridMapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK,
+		// 2));
 		LeftGridMapPane.setBorder(BorderFactory.createEmptyBorder());
 		/**
 		 * yet to be constructed on the basis of top information
 		 */
 
-		//JButton[][] maps = new JButton[width_height.x][width_height.y];
-		
+		// JButton[][] maps = new JButton[width_height.x][width_height.y];
+
 		maps = new MapButton[width_height.x][width_height.y];
-		
-		for (int i = 0; i < width_height.x; i++) {	
-			for(int j = 0;j<width_height.y;j++) {
+
+		for (int i = 0; i < width_height.x; i++) {
+			for (int j = 0; j < width_height.y; j++) {
 				maps[i][j] = new MapButton();
 				maps[i][j].setPointValue(1);
 				maps[i][j].setxPos(i);
@@ -287,32 +279,26 @@ public class MapView extends JFrame implements ActionListener{
 				Point p = new Point();
 				p.x = i;
 				p.y = j;
-				
-				if(map_walls != null && map_walls.contains(p))
-				{
+
+				if (map_walls != null && map_walls.contains(p)) {
 					maps[i][j].setBackground(Game_constants.WALLS);
 					maps[i][j].setPointValue(0);
-				}
-				else if(character != null && character.contains(p)){
+				} else if (character != null && character.contains(p)) {
 					maps[i][j].setBackground(Game_constants.ENEMIES);
 					maps[i][j].setPointValue(2);
-				}
-				else if(chest != null && chest.equals(p)){
+				} else if (chest != null && chest.equals(p)) {
 					maps[i][j].setBackground(Game_constants.CHEST);
-				}
-				else if(entryFlag==1 && entryDoor.equals(p)){																			/*t,l,b,r*/
+				} else if (entryFlag == 1
+						&& entryDoor.equals(p)) { /* t,l,b,r */
 					borderSelection(entryDoor, i, j, width_height, "Entry_door");
-				}
-				else if(exitFlag==1 && exitDoor.equals(p)){
+				} else if (exitFlag == 1 && exitDoor.equals(p)) {
 					borderSelection(exitDoor, i, j, width_height, "Exit_door");
 				}
 				LeftGridMapPane.add(maps[i][j]);
 			}
 		}
-		
-		
+
 		leftGridPanel.add(LeftGridMapPane);
-		
 
 		// info panel embedded inside sub bottom panel's right bottom corner
 		JPanel RightInfoPanel = new JPanel();
@@ -335,15 +321,15 @@ public class MapView extends JFrame implements ActionListener{
 		map_chest = new JLabel("Chest");
 		map_enemy = new JLabel("Enemy");
 		map_wall = new JLabel("Wall");
-		//map_remove = new JLabel("Remove");
-		
-//		ButtonGroup bg = new ButtonGroup();
-//		bg.add(map_entry_door);
-//		bg.add(map_exit_door);
-//		bg.add(map_chest);
-//		bg.add(map_enemy);
-//		bg.add(map_wall);
-//		bg.add(map_remove);
+		// map_remove = new JLabel("Remove");
+
+		// ButtonGroup bg = new ButtonGroup();
+		// bg.add(map_entry_door);
+		// bg.add(map_exit_door);
+		// bg.add(map_chest);
+		// bg.add(map_enemy);
+		// bg.add(map_wall);
+		// bg.add(map_remove);
 
 		RightInfoListPane.add(map_entry_door);
 		RightInfoListPane.add(map_entry_color);
@@ -355,10 +341,10 @@ public class MapView extends JFrame implements ActionListener{
 		RightInfoListPane.add(map_enemy_color);
 		RightInfoListPane.add(map_wall);
 		RightInfoListPane.add(map_wall_color);
-		//RightInfoListPane.add(map_remove);
-		//RightInfoListPane.add(new JLabel());
-		//RightInfoListPane.add(back_button);
-		//RightInfoListPane.add(save_button);
+		// RightInfoListPane.add(map_remove);
+		// RightInfoListPane.add(new JLabel());
+		// RightInfoListPane.add(back_button);
+		// RightInfoListPane.add(save_button);
 
 		JSplitPane spane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftGridPanel, RightInfoPanel);
 		spane.setOneTouchExpandable(true);
@@ -372,89 +358,81 @@ public class MapView extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Invoked upon by Game map Model(observer) object once the data in width and height of first game view is set
+	 * Invoked upon by Game map Model(observer) object once the data in width
+	 * and height of first game view is set
+	 * 
 	 * @param map
 	 */
-	
+
 	public void edit(GameMapModel map) {
-		
-		
-			Point width_height = map.getMap_size();
-			ArrayList<Point> map_walls = map.getMap_walls();
-			ArrayList<Point> map_character = map.getMap_enemy_loc();
-			Point Chest = map.getMap_chest();
-			Point EntryDoor = map.getMap_entry_door();
-			Point ExitDoor = map.getMap_exit_door();
-			this.model = map;
-			int entryFlag = 1;
-			int exitFlag = 1;//map.exitFlag;
-			check = 1;
-			updateMap(width_height,map_walls,map_character,Chest,EntryDoor,ExitDoor,entryFlag,exitFlag);
-		
+
+		Point width_height = map.getMap_size();
+		ArrayList<Point> map_walls = map.getMap_walls();
+		ArrayList<Point> map_character = map.getMap_enemy_loc();
+		Point Chest = map.getMap_chest();
+		Point EntryDoor = map.getMap_entry_door();
+		Point ExitDoor = map.getMap_exit_door();
+		this.model = map;
+		int entryFlag = 1;
+		int exitFlag = 1;// map.exitFlag;
+		check = 1;
+		updateMap(width_height, map_walls, map_character, Chest, EntryDoor, ExitDoor, entryFlag, exitFlag);
+
 	}
 
-	
 	/**
 	 * Used to set the border of doors based on the conditions
+	 * 
 	 * @param Door
 	 * @param i
 	 * @param j
 	 * @param width_height
 	 * @param door_type
 	 */
-	public void borderSelection(Point Door, int i, int j, Point width_height, String door_type){
-		
-		if(Door.x == 0 && Door.y == 0)
-		{
-			
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 6, 0, 0, ((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-			//maps[i][j].setBorder(BorderFactory.createLineBorder);
-		}
-		else if(Door.x == width_height.x-1 && Door.y == 0)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 6, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-		}
-		else if(Door.y == width_height.y-1 && Door.x == 0)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-		}
-		else if(Door.x == width_height.x-1 && Door.y == width_height.y-1)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-		}
-		else if(Door.x == 0)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-		}
-		else if(Door.y == 0)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 0, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-		}
-		else if(Door.x == width_height.x-1)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 0,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
-			
-		}
-		else if(Door.y == width_height.y-1)
-		{
-			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
+	public void borderSelection(Point Door, int i, int j, Point width_height, String door_type) {
+
+		if (Door.x == 0 && Door.y == 0) {
+
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 6, 0, 0,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+			// maps[i][j].setBorder(BorderFactory.createLineBorder);
+		} else if (Door.x == width_height.x - 1 && Door.y == 0) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 6, 0,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+		} else if (Door.y == width_height.y - 1 && Door.x == 0) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 6,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+		} else if (Door.x == width_height.x - 1 && Door.y == width_height.y - 1) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 6,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+		} else if (Door.x == 0) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(6, 0, 0, 0,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+		} else if (Door.y == 0) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 6, 0, 0,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+		} else if (Door.x == width_height.x - 1) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 6, 0,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
+
+		} else if (Door.y == width_height.y - 1) {
+			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6,
+					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
 		}
 	}
-	
+
 	/**
-	 *This method handles event for back button
+	 * This method handles event for back button
 	 *
-	 * @param e action event for buttons
+	 * @param e
+	 *            action event for buttons
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource().equals(this.back_button))
-		{
+		if (e.getSource().equals(this.back_button)) {
 			new ManageMapController();
 			this.dispose();
 		}
 	}
 
 }
-

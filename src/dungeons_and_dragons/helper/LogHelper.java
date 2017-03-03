@@ -9,9 +9,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
+/**
+ * this class is for creating logs during game playing time
+ * 
+ * @author Hirangi
+ *
+ */
 public class LogHelper {
 
 	/**
@@ -36,34 +41,34 @@ public class LogHelper {
 	public static final String TYPE_ERROR = "ERROR";
 
 	/**
-	 * this method used to store log 
+	 * this method used to store log
+	 * 
 	 * @param log_type
 	 * @param log_message
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static void Log(String log_type, String log_message) {
-	
+
 		Path path = Paths.get(LOG_FILE);
 		Charset charset = StandardCharsets.UTF_8;
 		ArrayList<String> details = new ArrayList<String>();
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS dd-MM-yyyy ");
-		
+
 		Date now = new Date();
-	    String strDate = "[ "+sdf.format(now)+" "+log_type+" ]";
-		
-		details.add(strDate+" "+log_message);
-		
+		String strDate = "[ " + sdf.format(now) + " " + log_type + " ]";
+
+		details.add(strDate + " " + log_message);
+
 		try {
-			if(Files.exists(path)) {
-				Files.write(path,  details, charset, StandardOpenOption.APPEND);	
+			if (Files.exists(path)) {
+				Files.write(path, details, charset, StandardOpenOption.APPEND);
 			} else {
-				Files.write(path,  details, charset, StandardOpenOption.CREATE_NEW);
+				Files.write(path, details, charset, StandardOpenOption.CREATE_NEW);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			
+
 		}
-		
+
 	}
 }
