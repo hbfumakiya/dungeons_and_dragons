@@ -93,7 +93,16 @@ public class CharacterInventoryController implements ActionListener {
 			
 			
 			try {
+				
+				this.character.calculateAbilityScores();
+				this.character.calculateModifires();
+				this.character.calculateHitPoints(this.character.getCharacter_level());
+				this.character.calculateArmorClass();
+				this.character.calculateAttackBonus(this.character.getCharacter_level());
+				this.character.calculateDamageBonus();
+				
 				FileHelper.updateCharacter(this.character);
+				
 				this.characterInventoryView.dispose();
 			} catch (JsonSyntaxException | IOException | NotFoundException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());

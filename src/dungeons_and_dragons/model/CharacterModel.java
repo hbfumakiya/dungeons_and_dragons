@@ -382,7 +382,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 					if (item.getItem_ability().equals(Game_constants.INTELLIGENCE)) {
 
-						this.abilityScores.setIntelligence(this.rawAbilityScores.getIntelligence() + item.getItem_point());
+						this.abilityScores
+								.setIntelligence(this.rawAbilityScores.getIntelligence() + item.getItem_point());
 
 					} else if (item.getItem_ability().equals(Game_constants.WISDOM)) {
 
@@ -419,7 +420,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 					} else if (item.getItem_ability().equals(Game_constants.CONSTITUTION)) {
 
-						this.abilityScores.setConstitution(this.rawAbilityScores.getConstitution() + item.getItem_point());
+						this.abilityScores
+								.setConstitution(this.rawAbilityScores.getConstitution() + item.getItem_point());
 
 					}
 
@@ -449,8 +451,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 		int hitPoints = 0;
 		if (level > 0) {
-			for (int i = 1; i < level; i++) {
-				if (level > 1) {
+			for (int i = 1; i <= level; i++) {
+				if (i == 1) {
 					hitPoints += 10 + this.modifiers.getConstitution();
 				} else {
 					hitPoints += DiceHelper.rollD10() + this.modifiers.getConstitution();

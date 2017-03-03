@@ -7,70 +7,69 @@ import com.google.gson.annotations.Expose;
  */
 
 public class AbilityScoresModel {
-	
-	
+
 	/**
 	 * Variable for straight
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int strength;
-	
+	private int strength;
+
 	/**
 	 * Variable for dexterity.
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int dexterity;
-	
+	private int dexterity;
+
 	/**
 	 * Variable for constitution.
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int constitution;
-	
+	private int constitution;
+
 	/**
 	 * Variable for intelligence.
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int intelligence;
-	
+	private int intelligence;
+
 	/**
 	 * Variable for wisdom.
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int wisdom;
-	
+	private int wisdom;
+
 	/**
 	 * Variable for charisma.
 	 * 
 	 * @type integer
 	 */
 	@Expose
-	private static int charisma;
-	
+	private int charisma;
+
 	/**
 	 * constructor for ability scores
 	 * <p>
 	 * initialize all abilities
 	 */
 	public AbilityScoresModel() {
-		
+
 		this.strength = 0;
 		this.dexterity = 0;
 		this.constitution = 0;
 		this.intelligence = 0;
 		this.wisdom = 0;
 		this.charisma = 0;
-		
+
 	}
 
 	/**
@@ -81,7 +80,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param strength the strength to set
+	 * @param strength
+	 *            the strength to set
 	 */
 	public void setstrength(int strength) {
 		this.strength = strength;
@@ -95,7 +95,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param dexterity the dexterity to set
+	 * @param dexterity
+	 *            the dexterity to set
 	 */
 	public void setDexterity(int dexterity) {
 		this.dexterity = dexterity;
@@ -109,7 +110,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param constitution the constitution to set
+	 * @param constitution
+	 *            the constitution to set
 	 */
 	public void setConstitution(int constitution) {
 		this.constitution = constitution;
@@ -123,7 +125,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param intelligence the intelligence to set
+	 * @param intelligence
+	 *            the intelligence to set
 	 */
 	public void setIntelligence(int intelligence) {
 		this.intelligence = intelligence;
@@ -137,7 +140,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param wisdom the wisdom to set
+	 * @param wisdom
+	 *            the wisdom to set
 	 */
 	public void setWisdom(int wisdom) {
 		this.wisdom = wisdom;
@@ -151,7 +155,8 @@ public class AbilityScoresModel {
 	}
 
 	/**
-	 * @param charisma the charisma to set
+	 * @param charisma
+	 *            the charisma to set
 	 */
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
