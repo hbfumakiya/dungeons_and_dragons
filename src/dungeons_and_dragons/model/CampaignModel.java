@@ -6,18 +6,17 @@ import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
-import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 
 /**
- * Campaign model class
+ * Once CampaignModel gets a change state query request from any view they
+ * respond to instructions to change the state from CampaignController
  * 
  * @author : Tejas Sadrani
  * 
  */
-
 public class CampaignModel extends Observable implements Model<CampaignModel> {
 
 	/**
@@ -38,7 +37,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	private String campaign_name;
 
 	/**
-	 * array list of existing maps that are already defined in file
+	 * Array list of existing maps that are already defined in file
 	 * 
 	 * @type ArrayList
 	 */
@@ -46,7 +45,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	private ArrayList<GameMapModel> input_map_list;
 
 	/**
-	 * array list of maps present in one campaign
+	 * Array list of maps present in one particular campaign
 	 * 
 	 * @type ArrayList
 	 */
@@ -54,7 +53,8 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	private ArrayList<GameMapModel> output_map_list;
 
 	/**
-	 * Parameterized constructor to set id, name
+	 * Parameterized constructor to set id, name and campaign map lists
+	 * 
 	 * @param campaign_id
 	 * @param campaign_name
 	 */
@@ -65,53 +65,25 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 		this.output_map_list = new ArrayList<GameMapModel>();
 	}
 
+	/**
+	 * Default constructor used to set the campaign map lists
+	 */
 	public CampaignModel() {
 		this.input_map_list = new ArrayList<GameMapModel>();
 		this.output_map_list = new ArrayList<GameMapModel>();
 	}
 
-	public int getCampaign_id() {
-		return campaign_id;
-	}
-
-	public void setCampaign_id(int campaign_id) {
-		this.campaign_id = campaign_id;
-	}
-
-	public String getCampaign_name() {
-		return campaign_name;
-	}
-
-	public void setCampaign_name(String campaign_name) {
-		this.campaign_name = campaign_name;
-	}
-
-	public ArrayList<GameMapModel> getInput_map_list() {
-		return input_map_list;
-	}
-
-	public void setInput_map_list(ArrayList<GameMapModel> input_map_list) {
-		this.input_map_list = input_map_list;
-	}
-
-	public ArrayList<GameMapModel> getOutput_map_list() {
-		return output_map_list;
-	}
-
-	public void setOutput_map_list(ArrayList<GameMapModel> output_map_list) {
-		this.output_map_list = output_map_list;
-		setChanged();
-		notifyObservers(this);
-	}
-
+	/**
+	 * Method used to notify state change whenever any change is reflected by
+	 * CampaignController via CampaignView
+	 */
 	public void callObservers() {
 		setChanged();
 		notifyObservers(this);
-
 	}
 
 	/**
-	 * method to save campaign
+	 * Method used to save campaign
 	 */
 	@Override
 	public void save() {
@@ -125,6 +97,8 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	}
 
 	/**
+	 * Method used to get the stored ArrayList consisting of campaigns
+	 * 
 	 * @return ArrayList
 	 * @throws JsonSyntaxException
 	 * @throws IOException
@@ -135,7 +109,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	}
 
 	/**
-	 * method to update campaign
+	 * method used to update a campaign
 	 */
 	@Override
 	public void update() {
@@ -148,6 +122,7 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	}
 
 	/**
+	 * Method used to set the campaign_id for every insert operation
 	 * 
 	 * @throws JsonSyntaxException
 	 * @throws IOException
@@ -163,4 +138,62 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 		}
 	}
 
+	/**
+	 * @return the campaign_id
+	 */
+	public int getCampaign_id() {
+		return campaign_id;
+	}
+
+	/**
+	 * @param campaign_id the campaign_id to set
+	 */
+	public void setCampaign_id(int campaign_id) {
+		this.campaign_id = campaign_id;
+	}
+
+	/**
+	 * @return the campaign_name
+	 */
+	public String getCampaign_name() {
+		return campaign_name;
+	}
+
+	/**
+	 * @param campaign_name the campaign_name to set
+	 */
+	public void setCampaign_name(String campaign_name) {
+		this.campaign_name = campaign_name;
+	}
+
+	/**
+	 * @return the input_map_list
+	 */
+	public ArrayList<GameMapModel> getInput_map_list() {
+		return input_map_list;
+	}
+
+	/**
+	 * @param input_map_list the input_map_list to set
+	 */
+	public void setInput_map_list(ArrayList<GameMapModel> input_map_list) {
+		this.input_map_list = input_map_list;
+	}
+
+	/**
+	 * @return the output_map_list
+	 */
+	public ArrayList<GameMapModel> getOutput_map_list() {
+		return output_map_list;
+	}
+
+	/**
+	 * @param output_map_list the output_map_list to set
+	 */
+	public void setOutput_map_list(ArrayList<GameMapModel> output_map_list) {
+		this.output_map_list = output_map_list;
+	}
+
+	
+	
 }

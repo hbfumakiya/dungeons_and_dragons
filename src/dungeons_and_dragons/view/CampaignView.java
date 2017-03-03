@@ -28,10 +28,12 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView.ItemCellRenderer;
 
 /**
- * @author Hirangi Naik and Tejas Sadrani
+ * Renders the CampaignModel into a form suitable for visualization or interaction, typically 
+ * a user interface element. 
+ * 
+ * @author Tejas Sadrani
  *
- */
-
+*/
 public class CampaignView extends JFrame implements Observer, View {
 
 	/**
@@ -40,12 +42,44 @@ public class CampaignView extends JFrame implements Observer, View {
 	 * @type String
 	 */
 	private String window_title = "Create Campaign";
+	
+	/**
+	 * this variable used to set campaign label
+	 * 
+	 * @type JLabel
+	 */
 	public JLabel campaign_label;
+	
+	/**
+	 * this variable used to set campaign comboBox
+	 * 
+	 * @type JComboBox
+	 */
 	public JComboBox campaign_combobox;
+	
+	/**
+	 * this variable used to generate an ArrayList of GameMapModels
+	 * 
+	 * @type ArrayList<GameMapModel>
+	 */
 	private ArrayList<GameMapModel> gameMapModel_map_list;
+	
+	/**
+	 * this variable used to generate an object array for campaign arrays
+	 * 
+	 * @type Object[]
+	 */
 	private Object[] campaign_array;
+	
+	/**
+	 * this variable used to generate JButton named campaign_add
+	 * 
+	 * @type JButton
+	 */
 	public JButton campaign_add;
+	
 	public ArrayList<GameMapModel> campaign_map_list = new ArrayList<>();
+	
 	public BufferedImage arrow_image;
 	private JPanel main_panel;
 
