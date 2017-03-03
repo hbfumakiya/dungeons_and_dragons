@@ -3,7 +3,11 @@ package dungeons_and_dragons.model;
 import com.google.gson.annotations.Expose;
 
 /**
- * @author Mihir Pujara
+ * Once AbilityScoresModel gets a change state query request from any view they
+ * respond to instructions to change the state from AbilityScoresController
+ * 
+ * @author : Mihir Pujara
+ * 
  */
 
 public class AbilityScoresModel {

@@ -13,8 +13,11 @@ import dungeons_and_dragons.view.ManageCharacterView;
 import sun.security.x509.CRLReasonCodeExtension;
 
 /**
- * @author mihir
- *
+ * The CreateGameController translates the user's interactions with the
+ * CreateGameView into actions that the CreateGameModel will perform that may use
+ * some additional/changed data gathered in a user-interactive view.
+ * 
+ * @author Mihir pujara
  */
 public class CreateGameController implements ActionListener {
 

@@ -10,8 +10,11 @@ import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.view.GameView;
 
 /**
- * @author mihir
- *
+ * The GameController translates the user's interactions with the
+ * GameView into actions that the GameModel will perform that may use
+ * some additional/changed data gathered in a user-interactive view.
+ * 
+ * @author Mihir Pujara
  */
 public class GameController implements ActionListener {
 
@@ -38,6 +41,7 @@ public class GameController implements ActionListener {
 
 	/**
 	 * Action event of all events
+	 * @param actionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

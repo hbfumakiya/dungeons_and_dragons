@@ -50,17 +50,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	@Expose
 	private int strength;
 
-	/**
-	 * 
-	 * 
-	 */
 	@Expose
 	private ArrayList<ItemModel> items;
 
-	/**
-	 * 
-	 * 
-	 */
 	@Expose
 	private ArrayList<ItemModel> backPackItems;
 
@@ -93,6 +85,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	@Expose
 	private int armorClass;
 
+	/**
+	 * Default constructor used to initialize character features
+	 */
 	public CharacterModel() {
 		this.character_id = 0;
 		this.character_name = "";
@@ -303,12 +298,21 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.rawAbilityScores = rawAbilityScores;
 	}
 
+	/**
+	 * Method to get all created characters
+	 * @return ArrayList characters
+	 */
 	@Override
 	public ArrayList<CharacterModel> getData() throws JsonSyntaxException, IOException {
 
 		return FileHelper.getCharcters();
 	}
 
+	/**
+	 * method to set current id of character
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 */
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
 		ArrayList<CharacterModel> alldata = this.getData();
@@ -335,6 +339,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.character_id = lastData.getCharacter_id() + 1;
 	}
 
+	/**
+	 * method to save character
+	 */
 	@Override
 	public void save() {
 		try {
@@ -345,6 +352,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 	}
 
+	/**
+	 * method to update character
+	 */
 	@Override
 	public void update() {
 		try {
@@ -354,6 +364,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 	}
 
+	/**
+	 * method to calculate all 6 ability scores
+	 */
 	public void calculateAbilityScores() {
 		this.abilityScores.setstrength(this.calculate4D6());
 		this.abilityScores.setCharisma(this.calculate4D6());
@@ -371,6 +384,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	}
 
+	/**
+	 * method that calculate modifiers based on items selected
+	 */
 	public void calculateModifires() {
 
 		ItemModel item;
@@ -446,7 +462,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers.setCharisma(getModifiersFromScore(this.abilityScores.getCharisma()));
 
 	}
-
+	
+	/**
+	 * method to calculate hit points based on level
+	 * @param level
+	 */
 	public void calculateHitPoints(int level) {
 
 		int hitPoints = 0;
@@ -463,6 +483,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.hitpoints = hitPoints;
 	}
 
+	/**
+	 * method to calculate armor class
+	 */
 	public void calculateArmorClass() {
 		int armorClass = 10 + this.modifiers.getDexterity();
 		ItemModel item;
@@ -508,6 +531,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.armorClass = armorClass;
 	}
 
+	/**
+	 * method to calculate attack bonus based on level
+	 * @param level
+	 */
 	public void calculateAttackBonus(int level) {
 
 		int attackBonus = level;
@@ -533,6 +560,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.attackBonus = attackBonus;
 	}
 
+	/**
+	 * method to calculate damage bonus
+	 */
 	public void calculateDamageBonus() {
 
 		int damageBonus = DiceHelper.rollD6();
@@ -557,7 +587,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.damageBonus = damageBonus;
 
 	}
-
+	
+	/**
+	 * method to calculate 4D6 roll dice
+	 * @return
+	 */
 	public int calculate4D6() {
 
 		ArrayList<Integer> data = new ArrayList<Integer>();
@@ -574,6 +608,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		return sum;
 	}
 
+	/**
+	 * method to get modifier from the calculated score
+	 * @param score
+	 * @return modifier
+	 */
 	public int getModifiersFromScore(int score) {
 		int modifier = -5;
 		if (score == 1) {

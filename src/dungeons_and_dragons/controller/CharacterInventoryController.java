@@ -21,6 +21,8 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
 
 /**
+ * This class is to show all created characters, add new character,
+ * edit and view character
  * @author mihir
  *
  */
@@ -47,6 +49,7 @@ public class CharacterInventoryController implements ActionListener {
 
 	/**
 	 * Action event of all events
+	 * @param actionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

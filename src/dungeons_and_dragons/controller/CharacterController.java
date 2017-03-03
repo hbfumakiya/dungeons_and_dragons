@@ -12,10 +12,11 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterView;
 
 /**
- * This class call character controller
+ * The CharacterController translates the user's interactions with the
+ * CharacterView into actions that the CharcaterModel will perform that may use
+ * some additional/changed data gathered in a user-interactive view.
  * 
  * @author Hirangi Naik
- *
  */
 public class CharacterController implements ActionListener {
 
@@ -31,6 +32,7 @@ public class CharacterController implements ActionListener {
 	 * all the events of view are registered in constructor
 	 */
 	public CharacterController() {
+		// create character Model object
 		this.model = new CharacterModel();
 		this.view = new CharacterView();
 
@@ -39,6 +41,11 @@ public class CharacterController implements ActionListener {
 		this.view.setVisible(true);
 	}
 
+	/**
+	 * Parameterized constructor used for updating the character
+	 * 
+	 * @param characterModel
+	 */
 	public CharacterController(CharacterModel characterModel) {
 
 		this.model = characterModel;
@@ -51,6 +58,7 @@ public class CharacterController implements ActionListener {
 	/**
 	 * Action event of all the events
 	 * 
+	 * @param e
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -164,6 +172,9 @@ public class CharacterController implements ActionListener {
 		}
 	}
 
+	/**
+	 * method to dispose current view and go back to previous view
+	 */
 	private void backToCreateGame() {
 		new CreateGameController();
 		view.dispose();

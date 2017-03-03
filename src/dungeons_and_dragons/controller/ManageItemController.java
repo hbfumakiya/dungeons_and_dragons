@@ -19,9 +19,9 @@ import dungeons_and_dragons.view.ManageItemView;
 
 /**
  * This class implements ActionListener where Item's addition,view and editing
- * funtions are handled.
+ * functions are handled.
  * 
- * @author mihir
+ * @author Mihir Pujara
  *
  */
 public class ManageItemController implements ActionListener {

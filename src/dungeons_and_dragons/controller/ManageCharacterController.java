@@ -18,8 +18,11 @@ import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.ManageCharacterView;
 
 /**
- * @author mihir
- *
+ * The ManageCharacterController translates the user's interactions with the
+ * ManageCharacterView into actions that the ManageCharacterModel will perform that may use
+ * some additional/changed data gathered in a user-interactive view.
+ * 
+ * @author Mihir pujara
  */
 public class ManageCharacterController implements ActionListener {
 
@@ -53,6 +56,7 @@ public class ManageCharacterController implements ActionListener {
 
 	/**
 	 * Action events for all the events
+	 * @param actionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

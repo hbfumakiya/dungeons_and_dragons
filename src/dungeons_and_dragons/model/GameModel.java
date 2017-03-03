@@ -6,7 +6,7 @@ package dungeons_and_dragons.model;
 import java.util.ArrayList;
 
 /**
- * @author mihir
+ * @author Mihir Pujara
  *
  */
 public abstract class GameModel {

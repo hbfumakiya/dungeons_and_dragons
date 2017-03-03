@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * @author mihir
- *
+ * @author Mihir Pujara
+ * 
  */
 public interface Model<T> {
 

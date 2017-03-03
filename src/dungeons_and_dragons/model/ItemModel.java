@@ -14,9 +14,6 @@ import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
 
-//import .helper.Game_constants;
-//import game.play.ItemWindow;
-
 /**
  * Item class to store all items. eg Helmet,Ring
  * 
