@@ -167,7 +167,7 @@ public class CampaignController implements ActionListener {
 			}
 
 			this.output_map_list = this.campaignModel.getOutput_map_list();
-
+			
 			ArrayList<GameMapModel> temp = this.output_map_list;
 
 			for (int j = 0; j < this.input_map_list.size(); j++) {
@@ -175,6 +175,7 @@ public class CampaignController implements ActionListener {
 
 					if (this.input_map_list.get(j).getMap_id() == temp.get(i).getMap_id()) {
 						this.input_map_list.remove(this.input_map_list.get(j));
+						j=0;
 					}
 				}
 			}
@@ -223,52 +224,105 @@ public class CampaignController implements ActionListener {
 		} else if (e.getSource().equals(this.campaignView.moveMapUP)) {
 
 			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
-			// not already at top
-			swap(moveMe, moveMe - 1);
+			
+			if(moveMe==-1)
+			{
+				JOptionPane.showOptionDialog(null, "Please select a map to move the map up the campaign list", "Invalid", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+			}
+			else if(moveMe==0){
+				JOptionPane.showOptionDialog(null, "Selected Map is already at the beginning of the campaign", "Invalid", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+			}else{
+				// not already at top
+				swap(moveMe, moveMe - 1);
+			}
 		} else if (e.getSource().equals(this.campaignView.moveMapDown)) {
 			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
-			// not already at top
-			swap(moveMe, moveMe + 1);
+			
+			if(moveMe==-1)
+			{
+				JOptionPane.showOptionDialog(null, "Please select a map to move the map down the campaign list", "Invalid", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+			}
+			else if(moveMe==campaignModel.getOutput_map_list().size()-1){
+				JOptionPane.showOptionDialog(null, "Selected Map is already at the last spot in the campaign", "Invalid", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+			}else{
+				// not already at down
+				swap(moveMe, moveMe + 1);
+			}
 		} else if (e.getSource().equals(this.campaignView.removeMap)) {
 			int moveMe = this.campaignView.output_map_list.getSelectedIndex();
-			// remove a map
-			this.output_map_list.remove(moveMe);
-			this.input_map_list.add(this.campaignView.output_map_list.getSelectedValue());
-			this.campaignModel.setInput_map_list(this.input_map_list);
-			this.campaignModel.setOutput_map_list(this.output_map_list);
+			
+			if(moveMe==-1)
+			{
+				JOptionPane.showOptionDialog(null, "Please select a map to remove from the campaign list", "Invalid", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+			}
+			else{
+				// remove a map
+				this.output_map_list.remove(moveMe);
+				this.input_map_list.add(this.campaignView.output_map_list.getSelectedValue());
+				this.campaignModel.setInput_map_list(this.input_map_list);
+				this.campaignModel.setOutput_map_list(this.output_map_list);
+			}
+			
 		} else if (e.getSource().equals(this.campaignView.back_button)) {
 			new ManageCampaignController();
 			this.campaignView.dispose();
 		} else if (e.getSource().equals(this.campaignView.save_button)) {
+			
 			// first lets validate for a map name
-			if (this.campaignView.campaign_name_text.getText() != null
-					&& !this.campaignView.campaign_name_text.getText().equals("")) {
+			if (this.campaignView.campaign_name_text.getText() == null
+					|| this.campaignView.campaign_name_text.getText().equals("")) {
+				JOptionPane.showOptionDialog(null, "Please provide a campaign name", "Invalid",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+				
+			} else if(this.campaignModel.getOutput_map_list().isEmpty()){
+				JOptionPane.showOptionDialog(null, "Please provide at least one map to create a Campaign", "Invalid",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;				
+			} else {
+
 				this.campaignModel.setCampaign_name(this.campaignView.campaign_name_text.getText());
 				this.campaignModel.save();
 				JOptionPane.showMessageDialog(this.campaignView,
 						"Campaign " + this.campaignView.campaign_name_text.getText() + " has been saved succesfully");
 				new ManageCampaignController();
 				this.campaignView.dispose();
-			} else {
-				JOptionPane.showOptionDialog(null, "Please provide a campaign name", "Invalid",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
-				return;
 			}
 
 		} else if (e.getSource().equals(this.campaignView.update_button)) {
+			
 			// first lets validate for a map name
-			if (this.campaignView.campaign_name_text.getText() != null
-					&& !this.campaignView.campaign_name_text.getText().equals("")) {
+			System.out.println(this.campaignView.campaign_name_text.getText());
+			if (this.campaignView.campaign_name_text.getText() == null
+					|| this.campaignView.campaign_name_text.getText().equals("")) {
+				JOptionPane.showOptionDialog(null, "Please provide a campaign name", "Invalid",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;
+				
+				
+			} else if(this.campaignModel.getOutput_map_list().isEmpty()){
+				JOptionPane.showOptionDialog(null, "Please provide at least one map for a Campaign", "Invalid",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				return;				
+			}
+			else {
+
 				this.campaignModel.setCampaign_name(this.campaignView.campaign_name_text.getText());
 				this.campaignModel.update();
 				JOptionPane.showMessageDialog(this.campaignView,
 						"Campaign " + this.campaignView.campaign_name_text.getText() + " has been saved succesfully");
 				new ManageCampaignController();
 				this.campaignView.dispose();
-			} else {
-				JOptionPane.showOptionDialog(null, "Please provide a campaign name", "Invalid",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
-				return;
 			}
 
 		}
