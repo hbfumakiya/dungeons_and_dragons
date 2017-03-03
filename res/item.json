@@ -12,5 +12,12 @@
     "item_point": 4,
     "item_type": "Helmet",
     "item_ability": "Intelligence"
+  },
+  {
+    "item_id": 3,
+    "item_name": "test1",
+    "item_point": 2,
+    "item_type": "Weapon Range",
+    "item_ability": "Damage bonus"
   }
 ]

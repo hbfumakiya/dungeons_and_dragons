@@ -212,7 +212,11 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		} else if (item_type.equals(Game_constants.BOOTS)) {
 
 			set_item_ability = Game_constants.BOOTS_MODEL;
-		} else if (item_type.equals(Game_constants.WEAPON)) {
+		} else if (item_type.equals(Game_constants.WEAPON_MELEE)) {
+
+			set_item_ability = Game_constants.WEAPON_MODEL;
+		}
+		else if (item_type.equals(Game_constants.WEAPON_RANGE)) {
 
 			set_item_ability = Game_constants.WEAPON_MODEL;
 		}
