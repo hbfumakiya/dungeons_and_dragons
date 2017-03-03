@@ -16,7 +16,7 @@ import dungeons_and_dragons.view.CharacterView;
  * CharacterView into actions that the CharcaterModel will perform that may use
  * some additional/changed data gathered in a user-interactive view.
  * 
- * @author Hirangi Naik
+ * @author Hirangi Naik & Mihir Pujara
  */
 public class CharacterController implements ActionListener {
 

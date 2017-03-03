@@ -1,18 +1,16 @@
 [
   {
     "character_id": 1,
-    "character_name": "MMMM",
+    "character_name": "character 1",
     "strength": 0,
     "items": [
       {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      }
-    ],
-    "backPackItems": [
+        "item_id": 5,
+        "item_name": "tejas",
+        "item_point": 1,
+        "item_type": "Armor",
+        "item_ability": "Armor class"
+      },
       {
         "item_id": 2,
         "item_name": "Test2",
@@ -21,6 +19,15 @@
         "item_ability": "Wisdom"
       },
       {
+        "item_id": 7,
+        "item_name": "Range_attack",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus"
+      }
+    ],
+    "backPackItems": [
+      {
         "item_id": 3,
         "item_name": "Test3",
         "item_point": 1,
@@ -28,71 +35,69 @@
         "item_ability": "Intelligence"
       },
       {
-        "item_id": 1,
-        "item_name": "Test",
+        "item_id": 4,
+        "item_name": "kkk",
         "item_point": 5,
         "item_type": "Helmet",
         "item_ability": "Intelligence"
+      },
+      {
+        "item_id": 5,
+        "item_name": "tejas",
+        "item_point": 1,
+        "item_type": "Armor",
+        "item_ability": "Armor class"
+      },
+      {
+        "item_id": 6,
+        "item_name": "Mele_Attack",
+        "item_point": 5,
+        "item_type": "Weapon Melee",
+        "item_ability": "Attack bonus"
+      },
+      {
+        "item_id": 7,
+        "item_name": "Range_attack",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus"
       }
     ],
     "character_level": 1,
     "abilityScores": {
-      "strength": 7,
-      "dexterity": 13,
-      "constitution": 10,
-      "intelligence": 20,
-      "wisdom": 17,
-      "charisma": 10
+      "strength": 13,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 14,
+      "wisdom": 10,
+      "charisma": 15
     },
     "rawAbilityScores": {
-      "strength": 7,
-      "dexterity": 13,
-      "constitution": 10,
-      "intelligence": 15,
-      "wisdom": 15,
-      "charisma": 10
+      "strength": 13,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 14,
+      "wisdom": 8,
+      "charisma": 15
     },
     "modifiers": {
-      "strength": -2,
-      "dexterity": 1,
-      "constitution": 0,
-      "intelligence": 5,
-      "wisdom": 3,
-      "charisma": 0
+      "strength": 1,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": 2,
+      "wisdom": 0,
+      "charisma": 2
     },
-    "hitpoints": 10,
-    "attackBonus": 0,
-    "damageBonus": 0,
+    "hitpoints": 12,
+    "attackBonus": 6,
+    "damageBonus": 5,
     "armorClass": 11
   },
   {
     "character_id": 2,
-    "character_name": "chara",
+    "character_name": "character 2",
     "strength": 0,
     "items": [
-      {
-        "item_id": 5,
-        "item_name": "tejas",
-        "item_point": 1,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
       {
         "item_id": 2,
         "item_name": "Test2",
@@ -101,67 +106,55 @@
         "item_ability": "Wisdom"
       },
       {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
+        "item_id": 8,
+        "item_name": "melee_damage",
+        "item_point": 3,
+        "item_type": "Weapon Melee",
+        "item_ability": "Damage bonus"
+      }
+    ],
+    "backPackItems": [
       {
         "item_id": 4,
         "item_name": "kkk",
         "item_point": 5,
         "item_type": "Helmet",
         "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Range_attack",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
       }
     ],
-    "character_level": 1,
+    "character_level": 3,
     "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
+      "strength": 15,
+      "dexterity": 14,
+      "constitution": 14,
+      "intelligence": 15,
+      "wisdom": 19,
+      "charisma": 12
     },
     "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
+      "strength": 15,
+      "dexterity": 14,
+      "constitution": 14,
+      "intelligence": 10,
+      "wisdom": 17,
+      "charisma": 12
     },
     "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
-      "wisdom": 3,
-      "charisma": -2
+      "strength": 2,
+      "dexterity": 2,
+      "constitution": 2,
+      "intelligence": 2,
+      "wisdom": 4,
+      "charisma": 1
     },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
+    "hitpoints": 0,
+    "attackBonus": 2,
+    "damageBonus": 6,
+    "armorClass": 12
   },
   {
-    "character_id": 2,
-    "character_name": "chara",
+    "character_id": 3,
+    "character_name": "sdfsdf",
     "strength": 0,
     "items": [
       {
@@ -172,48 +165,11 @@
         "item_ability": "Armor class"
       },
       {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
-      {
         "item_id": 2,
         "item_name": "Test2",
         "item_point": 2,
         "item_type": "Helmet",
         "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
       },
       {
         "item_id": 7,
@@ -223,410 +179,35 @@
         "item_ability": "Attack bonus"
       }
     ],
-    "character_level": 1,
+    "backPackItems": [],
+    "character_level": 3,
     "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
+      "strength": 11,
+      "dexterity": 11,
+      "constitution": 14,
+      "intelligence": 12,
+      "wisdom": 17,
+      "charisma": 16
     },
     "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
+      "strength": 11,
+      "dexterity": 11,
+      "constitution": 14,
       "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
+      "wisdom": 15,
+      "charisma": 16
     },
     "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
+      "strength": 0,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": 1,
       "wisdom": 3,
-      "charisma": -2
+      "charisma": 3
     },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
-  },
-  {
-    "character_id": 2,
-    "character_name": "chara",
-    "strength": 0,
-    "items": [
-      {
-        "item_id": 5,
-        "item_name": "tejas",
-        "item_point": 1,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
-      {
-        "item_id": 2,
-        "item_name": "Test2",
-        "item_point": 2,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Range_attack",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "character_level": 1,
-    "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
-      "wisdom": 3,
-      "charisma": -2
-    },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
-  },
-  {
-    "character_id": 2,
-    "character_name": "chara",
-    "strength": 0,
-    "items": [
-      {
-        "item_id": 5,
-        "item_name": "tejas",
-        "item_point": 1,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
-      {
-        "item_id": 2,
-        "item_name": "Test2",
-        "item_point": 2,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Range_attack",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "character_level": 1,
-    "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
-      "wisdom": 3,
-      "charisma": -2
-    },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
-  },
-  {
-    "character_id": 2,
-    "character_name": "chara",
-    "strength": 0,
-    "items": [
-      {
-        "item_id": 5,
-        "item_name": "tejas",
-        "item_point": 1,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
-      {
-        "item_id": 2,
-        "item_name": "Test2",
-        "item_point": 2,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Range_attack",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "character_level": 1,
-    "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
-      "wisdom": 3,
-      "charisma": -2
-    },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
-  },
-  {
-    "character_id": 2,
-    "character_name": "chara",
-    "strength": 0,
-    "items": [
-      {
-        "item_id": 5,
-        "item_name": "tejas",
-        "item_point": 1,
-        "item_type": "Armor",
-        "item_ability": "Armor class"
-      },
-      {
-        "item_id": 1,
-        "item_name": "Test",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 6,
-        "item_name": "Mele_Attack",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "backPackItems": [
-      {
-        "item_id": 2,
-        "item_name": "Test2",
-        "item_point": 2,
-        "item_type": "Helmet",
-        "item_ability": "Wisdom"
-      },
-      {
-        "item_id": 3,
-        "item_name": "Test3",
-        "item_point": 1,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 4,
-        "item_name": "kkk",
-        "item_point": 5,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 8,
-        "item_name": "melee_damage",
-        "item_point": 3,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Range_attack",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
-      }
-    ],
-    "character_level": 1,
-    "abilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 17,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 12,
-      "intelligence": 12,
-      "wisdom": 16,
-      "charisma": 7
-    },
-    "modifiers": {
-      "strength": 1,
-      "dexterity": -1,
-      "constitution": 1,
-      "intelligence": 3,
-      "wisdom": 3,
-      "charisma": -2
-    },
-    "hitpoints": 11,
-    "attackBonus": 7,
-    "damageBonus": 5,
-    "armorClass": 10
+    "hitpoints": 33,
+    "attackBonus": 8,
+    "damageBonus": 6,
+    "armorClass": 11
   }
 ]

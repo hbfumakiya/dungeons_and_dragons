@@ -18,7 +18,7 @@ import dungeons_and_dragons.helper.LogHelper;
 /**
  * character class to store all character data
  * 
- * @author : Hirangi Naik
+ * @author : Hirangi Naik & Mihir Pujara
  * 
  * 
  */
@@ -318,27 +318,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	private void setCurrentId() throws JsonSyntaxException, IOException {
 
 		ArrayList<CharacterModel> alldata = this.getData();
-
-		if ((alldata == null) || (alldata.size() < 1)) {
+		if (null != alldata) {
+			this.character_id = alldata.get(alldata.size() - 1).getCharacter_id() + 1;
+		} else {
 			this.character_id = 1;
-			return;
 		}
-
-		CharacterModel lastData = Collections.max(alldata, new Comparator<CharacterModel>() {
-
-			@Override
-			public int compare(CharacterModel o1, CharacterModel o2) {
-
-				if (o1.getCharacter_id() > o2.getCharacter_id())
-					return -1; // highest value first
-				else if (o1.getCharacter_id() == o2.getCharacter_id())
-					return 0;
-				else
-					return 1;
-			}
-		});
-
-		this.character_id = lastData.getCharacter_id() + 1;
 	}
 
 	/**
