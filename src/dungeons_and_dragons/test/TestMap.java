@@ -13,7 +13,7 @@ import dungeons_and_dragons.view.MapGridView;
 
 /**
  * 
- * @author Shahida Map validation
+ * @author Shahida, Urmil & Tejas
  *
  */
 

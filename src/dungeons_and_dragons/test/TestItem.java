@@ -8,7 +8,7 @@ import dungeons_and_dragons.model.ItemModel;
 /**
  * Check item values of character
  * 
- * @author : Shahida Chauhan
+ * @author : Shahida Chauhan & Urmil Kansara
  * 
  * 
  */

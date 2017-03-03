@@ -11,7 +11,7 @@ import dungeons_and_dragons.model.ItemModel;
 /**
  * Character Test
  * 
- * @author : Shahida Chauhan
+ * @author : Shahida Chauhan, Hirangi Naik & Mihir Pujara
  */
 
 
