@@ -27,7 +27,8 @@ public class Game_constants {
 	public static final String RING = "Ring";
 	public static final String BELT = "Belt";
 	public static final String BOOTS = "Boots";
-	public static final String WEAPON = "Weapon";
+	public static final String WEAPON_MELEE = "Weapon Melee";
+	public static final String WEAPON_RANGE = "Weapon Range";
 	
 	public static final Color ENTRY_DOOR = Color.YELLOW;
 	public static final Color EXIT_DOOR = Color.GREEN;

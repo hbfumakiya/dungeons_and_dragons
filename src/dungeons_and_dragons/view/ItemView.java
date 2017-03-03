@@ -180,7 +180,8 @@ public class ItemView extends JFrame implements Observer {
 		item_type_field.addItem(Game_constants.RING);
 		item_type_field.addItem(Game_constants.BELT);
 		item_type_field.addItem(Game_constants.BOOTS);
-		item_type_field.addItem(Game_constants.WEAPON);
+		item_type_field.addItem(Game_constants.WEAPON_MELEE);
+		item_type_field.addItem(Game_constants.WEAPON_RANGE);
 
 		// filling the details of type item ability
 		item_ability_field.addItem(Game_constants.INTELLIGENCE);
@@ -264,7 +265,8 @@ public class ItemView extends JFrame implements Observer {
 		item_type_field.addItem(Game_constants.RING);
 		item_type_field.addItem(Game_constants.BELT);
 		item_type_field.addItem(Game_constants.BOOTS);
-		item_type_field.addItem(Game_constants.WEAPON);
+		item_type_field.addItem(Game_constants.WEAPON_MELEE);
+		item_type_field.addItem(Game_constants.WEAPON_RANGE);
 		
 
 		
@@ -297,7 +299,11 @@ public class ItemView extends JFrame implements Observer {
 			item_ability_field.setModel(Game_constants.BOOTS_MODEL);
 			
 		}
-		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON)){
+		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON_MELEE)){
+			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
+			
+		}
+		else if(item_type_field.getSelectedItem().equals(Game_constants.WEAPON_RANGE)){
 			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
 			
 		}
