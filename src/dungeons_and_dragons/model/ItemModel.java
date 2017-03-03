@@ -180,9 +180,16 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	public String getItem_ability() {
 		return item_ability;
 	}
-
+	
+	/**
+	 * sets item ability combobox model
+	 */
 	private DefaultComboBoxModel set_item_ability = new DefaultComboBoxModel<>();
-
+	
+	/**
+	 * 
+	 * @return DefaultComboBoxModel
+	 */
 	public DefaultComboBoxModel getItemAbility() {
 		return set_item_ability;
 	}

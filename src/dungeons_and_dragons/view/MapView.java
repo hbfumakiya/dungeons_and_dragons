@@ -42,6 +42,7 @@ import dungeons_and_dragons.model.GameMapModel;
 import javafx.scene.layout.Border;
 
 /**
+ * This class is created to show the view for map.
  * @author Urmil Kansara
  *
  */
@@ -233,7 +234,7 @@ public class MapView extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		update(map);
+		edit(map);
 	}
 
 	/**
@@ -375,7 +376,7 @@ public class MapView extends JFrame implements ActionListener{
 	 * @param map
 	 */
 	
-	public void update(GameMapModel map) {
+	public void edit(GameMapModel map) {
 		
 		
 			Point width_height = map.getMap_size();
@@ -439,7 +440,12 @@ public class MapView extends JFrame implements ActionListener{
 			maps[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6,((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR :Game_constants.EXIT_DOOR)));
 		}
 	}
-
+	
+	/**
+	 *This method handles event for back button
+	 *
+	 * @param e action event for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

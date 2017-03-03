@@ -27,6 +27,8 @@ import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This class is created to show the view for managing campaign.
+ * 
  * @author Urmil Kansara
  *
  */
@@ -51,7 +53,7 @@ public class ManageCampaignView extends JFrame implements View {
 	private ArrayList<GameButton> deleteButtons;
 
 	/**
-	 * 
+	 * This is constructor to initialize campaign view
 	 * @param actionListener
 	 * @param Campaign
 	 */
@@ -66,7 +68,7 @@ public class ManageCampaignView extends JFrame implements View {
 	}
 
 	/**
-	 * 
+	 * Initialize Game window
 	 * @param actionListener
 	 * @param Campaigns
 	 */
@@ -131,6 +133,7 @@ public class ManageCampaignView extends JFrame implements View {
 		g2.draw(lin);
 	}
 	/**
+	 * Refreshing the campaign
 	 * 
 	 * @param actionListener
 	 * @param Campaign
@@ -184,7 +187,9 @@ public class ManageCampaignView extends JFrame implements View {
 	}
 
 	/**
+	 * This method handles listener for back and add button
 	 * 
+	 * @param actionListener listens to buttons
 	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {

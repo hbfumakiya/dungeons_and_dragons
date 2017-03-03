@@ -30,6 +30,7 @@ import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This class is created to show the view for managing Map.
  * @author Urmil Kansara
  *
  */
@@ -69,7 +70,7 @@ public class ManageMapView extends JFrame implements View {
 	}
 
 	/**
-	 * 
+	 * This is constructor to initialize map view
 	 * @param actionListener
 	 * @param items
 	 */
@@ -134,7 +135,7 @@ public class ManageMapView extends JFrame implements View {
 		g2.draw(lin);
 	}
 	/**
-	 * 
+	 * Refreshing map
 	 * @param actionListener
 	 * @param item
 	 */
@@ -187,7 +188,9 @@ public class ManageMapView extends JFrame implements View {
 	}
 
 	/**
+	 * This method handles listener for back and add button
 	 * 
+	 * @param actionListener listens to button
 	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {

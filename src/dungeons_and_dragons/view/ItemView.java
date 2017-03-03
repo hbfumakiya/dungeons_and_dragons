@@ -18,12 +18,10 @@ import javax.swing.border.EmptyBorder;
 
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.model.ItemModel;
-//import game.play.ItemWindowModel/
 
-//import game.helper.Game_constants;
 
 /**
- * This class is to open new Window
+ * This class is show view for creating item
  * 
  * @author : Urmil Kansara
  */
@@ -118,7 +116,18 @@ public class ItemView extends JFrame implements Observer {
 	 * @type JButton
 	 */
 	public JButton update_item;
+	/**
+	 * this is main panel where all the sub panels are added.
+	 * 
+	 * @type JPanel
+	 */
 	private JPanel main_panel;
+	
+	/**
+	 * this is sub panel where all the components are added.
+	 * 
+	 * @type JPanel
+	 */
 	private JPanel sub_panel;
 
 	/**
@@ -127,7 +136,6 @@ public class ItemView extends JFrame implements Observer {
 	 * 
 	 */
 	public ItemView() {
-		// TODO Auto-generated constructor stub
 
 		// set window title
 		this.setTitle(this.item_window_title);
@@ -214,7 +222,14 @@ public class ItemView extends JFrame implements Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-
+	
+	/**
+	 * This constructor is called when user wants to edit some item.
+	 * 
+	 * <p>
+	 * 
+	 * @param itemModel
+	 */
 	public ItemView(ItemModel itemModel) {
 		this.setTitle(this.item_window_title);
 

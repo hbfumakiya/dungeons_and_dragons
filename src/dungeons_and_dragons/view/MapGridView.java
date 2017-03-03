@@ -43,6 +43,7 @@ import dungeons_and_dragons.model.GameMapModel;
 import javafx.scene.layout.Border;
 
 /**
+ * This class is created to show the view for maps
  * @author Urmil Kansara
  *
  */
@@ -150,8 +151,9 @@ public class MapGridView extends JFrame implements Observer {
 	private static int check = 0;
 	
 	/**
+	 * This Constructor initialized view of maps
 	 * 
-	 * @param width_height
+	 * @param width_height hieght and width of maps
 	 */
 	public MapGridView(Point width_height) {
 		this.setTitle(this.map_window_title);
@@ -253,7 +255,9 @@ public class MapGridView extends JFrame implements Observer {
 	}
 
 	/**
+	 * This constructor is called when user wants to edit some map
 	 * 
+	 * This is used for editing of map.
 	 * @param map
 	 */
 	public MapGridView(GameMapModel map) {
@@ -356,14 +360,15 @@ public class MapGridView extends JFrame implements Observer {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		update(map);
+		edit(map);
 	}
 	
 	/**
+	 * this function is used to set points during initializing of constructor
 	 * 
 	 * @param map
 	 */
-	public void update(GameMapModel map) {
+	public void edit(GameMapModel map) {
 		
 		Point width_height = map.getMap_size();
 		ArrayList<Point> map_walls = map.getMap_walls();
