@@ -186,8 +186,8 @@ public class MapView extends JFrame implements ActionListener {
 
 		// Initializing label text field,dropdown of map height and width
 		map_name_textfield = new JLabel(map.getMap_name());
-		map_height_textfield = new JLabel(String.valueOf(map.getMap_size().getX()));
-		map_width_textfield = new JLabel(String.valueOf(map.getMap_size().getY()));
+		map_height_textfield = new JLabel(String.valueOf((int)map.getMap_size().getX()));
+		map_width_textfield = new JLabel(String.valueOf((int)map.getMap_size().getY()));
 
 		// initializing back,next and submit buttons
 		back_button = new JButton("Back");

@@ -138,6 +138,11 @@ public class MapGridController implements ActionListener {
 								"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null,
 								new Object[] {}, null);
 					}
+					else if(count != this.map_model.getMap_enemy_loc().size())
+					{JOptionPane.showOptionDialog(null,
+							"It is an invalid map as all the enemies that are defined should be in the defined path",
+							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
+							null);}
 
 				}
 				// need to manipulate error message window
@@ -216,17 +221,17 @@ public class MapGridController implements ActionListener {
 			}
 			try {
 
-				if (Integer.parseInt(this.map_view.map_height_textfield.getText()) < 3
-						|| Integer.parseInt(this.map_view.map_width_textfield.getText()) < 3) {
+				if (Integer.parseInt(this.map_view.map_height_textfield.getText().trim()) < 3
+						|| Integer.parseInt(this.map_view.map_width_textfield.getText().trim()) < 3) {
 					throw new NumberFormatException();
 				}
-				if (Integer.parseInt(this.map_view.map_height_textfield.getText()) > 20
-						|| Integer.parseInt(this.map_view.map_width_textfield.getText()) > 20) {
+				if (Integer.parseInt(this.map_view.map_height_textfield.getText().trim()) > 20
+						|| Integer.parseInt(this.map_view.map_width_textfield.getText().trim()) > 20) {
 					throw new NumberFormatException();
 				}
 				Point store = new Point();
-				store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
-				store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
+				store.x = Integer.parseInt(this.map_view.map_height_textfield.getText().trim());
+				store.y = Integer.parseInt(this.map_view.map_width_textfield.getText().trim());
 
 				if (this.map_model.getMap_size().getX() != store.x || this.map_model.getMap_size().getY() != store.y) {
 					// to reset the map grid if they have changed the height or
