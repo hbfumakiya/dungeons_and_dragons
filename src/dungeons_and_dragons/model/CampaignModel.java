@@ -14,7 +14,7 @@ import dungeons_and_dragons.helper.LogHelper;
  * Once CampaignModel gets a change state query request from any view they
  * respond to instructions to change the state from CampaignController
  * 
- * @author : Tejas Sadrani
+ * @author Tejas Sadrani
  * 
  */
 public class CampaignModel extends Observable implements Model<CampaignModel> {
@@ -192,6 +192,8 @@ public class CampaignModel extends Observable implements Model<CampaignModel> {
 	 */
 	public void setOutput_map_list(ArrayList<GameMapModel> output_map_list) {
 		this.output_map_list = output_map_list;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	
