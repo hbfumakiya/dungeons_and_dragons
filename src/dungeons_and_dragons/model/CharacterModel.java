@@ -510,9 +510,51 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	public void calculateAttackBonus(int level) {
 
+		int attackBonus = level;
+
+		ItemModel item;
+		for (int i = 0; i < this.items.size(); i++) {
+			item = this.items.get(i);
+			if (item != null) {
+				if (item.getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+					attackBonus += this.modifiers.getStraight();
+					if (item.getItem_ability().equals(Game_constants.ATTACK_BONUS)) {
+						attackBonus += item.getItem_point();
+					}
+				} else if (item.getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+					attackBonus += this.modifiers.getDexterity();
+					if (item.getItem_ability().equals(Game_constants.ATTACK_BONUS)) {
+						attackBonus += item.getItem_point();
+					}
+				}
+			}
+		}
+
+		this.attackBonus = attackBonus;
 	}
 
 	public void calculateDamageBonus() {
+
+		int damageBonus = DiceHelper.rollD6();
+
+		ItemModel item;
+		for (int i = 0; i < this.items.size(); i++) {
+			item = this.items.get(i);
+			if (item != null) {
+				if (item.getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+					damageBonus += this.modifiers.getStraight();
+					if (item.getItem_ability().equals(Game_constants.DAMAGE_BONUS)) {
+						damageBonus += item.getItem_point();
+					}
+				} else if (item.getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+					if (item.getItem_ability().equals(Game_constants.DAMAGE_BONUS)) {
+						damageBonus += item.getItem_point();
+					}
+				} 
+			}
+		}
+
+		this.damageBonus = damageBonus;
 
 	}
 

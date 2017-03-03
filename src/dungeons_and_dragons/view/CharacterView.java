@@ -316,6 +316,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		backPackList = new JList<ItemModel>();
 		if (backpack.length > 0) {
+
 			backPackList.setListData(backpack);
 			backPackList.setCellRenderer(new ItemCellRenderer());
 		}

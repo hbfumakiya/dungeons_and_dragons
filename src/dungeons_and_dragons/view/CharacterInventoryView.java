@@ -22,6 +22,8 @@ import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * Shows character details and allow to equip and unequip items 
+ * 
  * @author Mihir Pujara
  *
  */
@@ -244,8 +246,14 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.panel.add(armorClassLabel); 
 		
 		// attack bonus
+		String attachBonus = "";
+		int temp = character.getAttackBonus();
 		
-		attackBonusLabel = new JLabel("Attack Bonus: "+ character.getAttackBonus());
+		for(int i = temp;i>0;i-=5) {
+			attachBonus += i+"/";
+		}
+		attachBonus = attachBonus.substring(0, attachBonus.length() -1);
+		attackBonusLabel = new JLabel("Attack Bonus: "+ attachBonus);
 		attackBonusLabel.setBounds(10, 85, 120, 20);
 		this.panel.add(attackBonusLabel);
 		
@@ -341,6 +349,7 @@ public class CharacterInventoryView extends JFrame implements View {
 
 	/**
 	 * method to update backpack and item
+	 * 
 	 * @param character
 	 */
 	public void updateList(CharacterModel character) {
@@ -394,7 +403,14 @@ public class CharacterInventoryView extends JFrame implements View {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * class for custom items in JList
+	 * 
+	 * @author Mihir Pujara
+	 *
+	 */
 	class ItemCellRenderer extends JLabel implements ListCellRenderer<ItemModel> {
 
 		private static final long serialVersionUID = 1L;
