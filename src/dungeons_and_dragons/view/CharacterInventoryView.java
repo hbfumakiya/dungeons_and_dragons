@@ -98,6 +98,10 @@ public class CharacterInventoryView extends JFrame implements View {
 	private JLabel wisdomMLabel;
 
 	private JLabel charismaMLabel;
+	
+	private JLabel itemLabel;
+	
+	private JLabel backPackLabel;
 
 	/**
 	 * 
@@ -124,7 +128,7 @@ public class CharacterInventoryView extends JFrame implements View {
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setPreferredSize(new Dimension(500, 400));
+		this.panel.setPreferredSize(new Dimension(500, 420));
 
 		this.showDetails(this.character);
 
@@ -157,8 +161,13 @@ public class CharacterInventoryView extends JFrame implements View {
 		}
 
 		this.itemScrollPane = new JScrollPane(this.itemList);
-		this.itemScrollPane.setBounds(10, 150, 200, 200);
+		this.itemScrollPane.setBounds(10, 160, 200, 200);
 		this.panel.add(this.itemScrollPane);
+		
+		// back pack Label 
+		this.itemLabel = new JLabel("Items");
+		this.itemLabel.setBounds(10, 140, 200, 20);
+		this.panel.add(this.itemLabel);
 
 		// backpack list
 
@@ -188,8 +197,14 @@ public class CharacterInventoryView extends JFrame implements View {
 		}
 
 		this.backPackScrollPane = new JScrollPane(this.backPackList);
-		this.backPackScrollPane.setBounds(290, 150, 200, 200);
+		this.backPackScrollPane.setBounds(290, 160, 200, 200);
 		this.panel.add(this.backPackScrollPane);
+		
+		
+		// back pack Label 
+		this.backPackLabel = new JLabel("Backpack Items");
+		this.backPackLabel.setBounds(290, 140, 200, 20);
+		this.panel.add(this.backPackLabel);
 
 		// move to item to backpack >
 
@@ -425,7 +440,7 @@ public class CharacterInventoryView extends JFrame implements View {
 				boolean arg3, boolean arg4) {
 
 			if (arg1 != null) {
-				setText(arg1.getItem_name());
+				setText(arg1.getItem_name() + "("+arg1.getItem_type()+" - "+arg1.getItem_ability()+")");
 				setSize(200, 30);
 			}
 

@@ -11,7 +11,7 @@ import dungeons_and_dragons.view.ItemView;
 /**
  * This class call item controller where it handles model and view
  * 
- * @author Urmil Kansara
+ * @author Urmil Kansara & Shahida Chauhan
  *
  */
 public class ItemController implements ActionListener {

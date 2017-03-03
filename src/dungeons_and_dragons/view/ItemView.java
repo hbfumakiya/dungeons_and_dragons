@@ -22,7 +22,7 @@ import dungeons_and_dragons.model.ItemModel;
 /**
  * This class is show view for creating item
  * 
- * @author : Urmil Kansara
+ * @author : Urmil Kansara & Shahida Chauhan
  */
 public class ItemView extends JFrame implements Observer {
 
