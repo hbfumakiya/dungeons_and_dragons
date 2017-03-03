@@ -21,8 +21,9 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
 
 /**
- * This class is to show all created characters, add new character,
- * edit and view character
+ * This class is to show all created characters, add new character, edit and
+ * view character
+ * 
  * @author mihir
  *
  */
@@ -34,6 +35,7 @@ public class CharacterInventoryController implements ActionListener {
 
 	/**
 	 * Parameterized constructor for inventory
+	 * 
 	 * @param character
 	 */
 	public CharacterInventoryController(CharacterModel character) {
@@ -49,6 +51,7 @@ public class CharacterInventoryController implements ActionListener {
 
 	/**
 	 * Action event of all events
+	 * 
 	 * @param actionEvent
 	 */
 	@Override
@@ -93,22 +96,21 @@ public class CharacterInventoryController implements ActionListener {
 			}
 
 		} else if (actionEvent.getSource().equals(characterInventoryView.okButton)) {
-			
-			
+
 			try {
 				this.character.calculateModifires();
 				this.character.calculateHitPoints(this.character.getCharacter_level());
 				this.character.calculateArmorClass();
 				this.character.calculateAttackBonus(this.character.getCharacter_level());
 				this.character.calculateDamageBonus();
-				
+
 				FileHelper.updateCharacter(this.character);
-				
+
 				this.characterInventoryView.dispose();
 			} catch (JsonSyntaxException | IOException | NotFoundException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
-						
+
 		}
 	}
 }

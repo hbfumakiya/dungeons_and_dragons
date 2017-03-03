@@ -4,7 +4,6 @@
  */
 package dungeons_and_dragons.controller;
 
-import java.awt.Point;
 /**
  * @author Urmil Kansara
  *
@@ -14,23 +13,19 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.GameMapModel;
-import dungeons_and_dragons.model.GameMapModel;
-import dungeons_and_dragons.view.ManageItemView;
 import dungeons_and_dragons.view.ManageMapView;
-import dungeons_and_dragons.view.MapGridView;
 import dungeons_and_dragons.view.MapView;
 
 /**
  * 
- * This class is created to mange View,Edit and creating of new Maps by implementing ActionListener
- *   
+ * This class is created to mange View,Edit and creating of new Maps by
+ * implementing ActionListener
+ * 
  * @author Urmil Kansara
  *
  */
@@ -62,23 +57,26 @@ public class ManageMapController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
+
 	/**
-	 * This method will listen all the events of buttons(Edit,View,Back and Add Map)
+	 * This method will listen all the events of buttons(Edit,View,Back and Add
+	 * Map)
 	 * 
-	 * @param actionEvent event of actions performed
+	 * @param actionEvent
+	 *            event of actions performed
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
 		if (actionEvent.getSource().equals(manageMapView.addItemButton)) {
 			new MapGridController();
-			
+
 			manageMapView.dispose();
-			
+
 		} else if (actionEvent.getSource().equals(manageMapView.backButton)) {
-			
+
 			new CreateGameController();
-			
+
 			manageMapView.dispose();
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
@@ -89,22 +87,19 @@ public class ManageMapController implements ActionListener {
 
 			new MapView(map);
 			manageMapView.dispose();
-//			StringBuilder sb = new StringBuilder("");
-//			sb.append(item.getMap_name());
-//			sb.append("\n");
-			
+			// StringBuilder sb = new StringBuilder("");
+			// sb.append(item.getMap_name());
+			// sb.append("\n");
 
-//			JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
+			// JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
 
-		}
-		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int mapId = button.getId();	
+			int mapId = button.getId();
 			GameMapModel map = (GameMapModel) button.getSource();
-		    
-			
+
 			new MapGridController(map);
-			//x.setListener(this);
+			// x.setListener(this);
 			manageMapView.dispose();
 		}
 	}

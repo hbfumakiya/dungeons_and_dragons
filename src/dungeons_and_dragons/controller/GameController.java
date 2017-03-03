@@ -6,13 +6,12 @@ package dungeons_and_dragons.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.view.GameView;
 
 /**
- * The GameController translates the user's interactions with the
- * GameView into actions that the GameModel will perform that may use
- * some additional/changed data gathered in a user-interactive view.
+ * The GameController translates the user's interactions with the GameView into
+ * actions that the GameModel will perform that may use some additional/changed
+ * data gathered in a user-interactive view.
  * 
  * @author Mihir Pujara
  */
@@ -41,12 +40,11 @@ public class GameController implements ActionListener {
 
 	/**
 	 * Action event of all events
+	 * 
 	 * @param actionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		// TODO Auto-generated method stub
-
 		// check which button clicked by user
 		if (actionEvent.getSource().equals(gameView.new_game_button)) {
 

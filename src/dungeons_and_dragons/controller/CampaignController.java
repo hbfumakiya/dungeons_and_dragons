@@ -174,7 +174,6 @@ public class CampaignController implements ActionListener {
 				for (int i = 0; i < temp.size(); i++) {
 
 					if (this.input_map_list.get(j).getMap_id() == temp.get(i).getMap_id()) {
-						System.out.println(this.input_map_list.get(j).getMap_id());
 						this.input_map_list.remove(this.input_map_list.get(j));
 					}
 				}
@@ -206,9 +205,6 @@ public class CampaignController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getSource());
-		System.out.println(this.campaignView.campaign_add);
-		System.out.println(e.getSource().equals(campaignView.campaign_add));
 
 		if (e.getSource().equals(this.campaignView.campaign_add)) {
 

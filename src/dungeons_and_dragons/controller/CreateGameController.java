@@ -7,15 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import dungeons_and_dragons.view.CreateGameView;
-import dungeons_and_dragons.view.GameView;
-import dungeons_and_dragons.view.ItemView;
-import dungeons_and_dragons.view.ManageCharacterView;
-import sun.security.x509.CRLReasonCodeExtension;
 
 /**
  * The CreateGameController translates the user's interactions with the
- * CreateGameView into actions that the CreateGameModel will perform that may use
- * some additional/changed data gathered in a user-interactive view.
+ * CreateGameView into actions that the CreateGameModel will perform that may
+ * use some additional/changed data gathered in a user-interactive view.
  * 
  * @author Mihir pujara
  */
@@ -24,8 +20,7 @@ public class CreateGameController implements ActionListener {
 	private CreateGameView createGameView;
 
 	/**
-	 * Default constructor for game controller
-	 * initialize game view
+	 * Default constructor for game controller initialize game view
 	 */
 	public CreateGameController() {
 
@@ -38,6 +33,7 @@ public class CreateGameController implements ActionListener {
 
 	/**
 	 * All action events
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override

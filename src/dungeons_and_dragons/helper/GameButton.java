@@ -7,21 +7,22 @@ import javax.swing.JButton;
 
 /**
  * this class is to create buttons that are used in project
+ * 
  * @author Mihir Pujara
  *
  */
 public class GameButton extends JButton {
 
 	public static final int BUTTON_TYPE_EDIT = 1;
-	
+
 	public static final int BUTTON_TYPE_DELETE = 2;
-	
+
 	public static final int BUTTON_TYPE_VIEW = 3;
-	
+
 	private int id;
-	
+
 	private int buttonType;
-	
+
 	private Object source;
 
 	/**
@@ -32,7 +33,8 @@ public class GameButton extends JButton {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -46,7 +48,8 @@ public class GameButton extends JButton {
 	}
 
 	/**
-	 * @param buttonType the buttonType to set
+	 * @param buttonType
+	 *            the buttonType to set
 	 */
 	public void setButtonType(int buttonType) {
 		this.buttonType = buttonType;
@@ -60,11 +63,11 @@ public class GameButton extends JButton {
 	}
 
 	/**
-	 * @param source the source to set
+	 * @param source
+	 *            the source to set
 	 */
 	public void setSource(Object source) {
 		this.source = source;
 	}
-	
-	
+
 }

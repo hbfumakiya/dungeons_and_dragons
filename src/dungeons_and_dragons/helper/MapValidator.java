@@ -1,11 +1,13 @@
 package dungeons_and_dragons.helper;
 
 import java.awt.Point;
+
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
 /**
  * this class is for different validation of maps
+ * 
  * @author Hirangi
  *
  */
@@ -48,18 +50,16 @@ public class MapValidator {
 	 */
 	private boolean isSafe(MapButton maps[][], int x, int y) {
 		// if (x,y outside maze) return false
-		
-		try{
-			if(x >= 0 && x < this.map_model.getMap_size().x && y >= 0 && y < this.map_model.getMap_size().y){
-				if(maps[x][y].getPointValue() !=0  && maps[x][y].getDirty_flag() == 0){
-						{
-							return true;
-						}
+
+		try {
+			if (x >= 0 && x < this.map_model.getMap_size().x && y >= 0 && y < this.map_model.getMap_size().y) {
+				if (maps[x][y].getPointValue() != 0 && maps[x][y].getDirty_flag() == 0) {
+					{
+						return true;
 					}
 				}
 			}
-		catch(Exception e){
-			System.out.println("array index out of bound at --> "+x+" and "+y);
+		} catch (Exception e) {
 			System.exit(0);
 		}
 		return false;
@@ -77,9 +77,9 @@ public class MapValidator {
 	 */
 	public boolean findPath(Point p) {
 		MapButton maps[][] = this.map_view.maps;
-				
-		for(int i = 0;i<this.map_model.getMap_size().x;i++){
-			for(int j=0;j<this.map_model.getMap_size().y;j++){
+
+		for (int i = 0; i < this.map_model.getMap_size().x; i++) {
+			for (int j = 0; j < this.map_model.getMap_size().y; j++) {
 				maps[i][j].setDirty_flag(0);
 			}
 		}
@@ -87,7 +87,6 @@ public class MapValidator {
 		if (findPathUtil(maps, this.map_model.getMap_entry_door().x, this.map_model.getMap_entry_door().y,
 				p) == false) {
 			{
-				System.out.println("Solution doesn't exist");
 				return false;
 			}
 

@@ -3,13 +3,12 @@ package dungeons_and_dragons.controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapValidator;
@@ -48,8 +47,7 @@ public class MapGridController implements ActionListener {
 	public static int finder = 0;
 
 	/**
-	 * Default constructor for mapgrid
-	 * initialize view and model. 
+	 * Default constructor for mapgrid initialize view and model.
 	 */
 	public MapGridController() {
 		Point p = new Point();
@@ -63,13 +61,14 @@ public class MapGridController implements ActionListener {
 		finder = 0;
 		this.map_model.setFinder(finder);
 	}
+
 	/**
-	 * Constructor for mapgrid for updation of map.
-	 * initialize view and model.
+	 * Constructor for mapgrid for updation of map. initialize view and model.
 	 * 
 	 * <p>
 	 * Called for editing of map
 	 * <p>
+	 * 
 	 * @param map
 	 */
 	public MapGridController(GameMapModel map) {
@@ -84,14 +83,17 @@ public class MapGridController implements ActionListener {
 		this.map_view.setButtonListener(this);
 		this.map_model.entryFlag = 1;
 		this.map_model.exitFlag = 1;
-		
+
 		finder = 1;
 		this.map_model.setFinder(finder);
 	}
 
 	/**
-	 * Action event for saving of map,submitting of size for map,updation for map and going back to previous screen.
-	 * @param e action Event 
+	 * Action event for saving of map,submitting of size for map,updation for
+	 * map and going back to previous screen.
+	 * 
+	 * @param e
+	 *            action Event
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -112,35 +114,31 @@ public class MapGridController implements ActionListener {
 					// check if there are indeed enemies in the map of all that
 					// are defined
 					int count = 0;
-					//ArrayList test = new ArrayList();
+					// ArrayList test = new ArrayList();
 					Set mapSet = new HashSet(this.map_model.getMap_enemy_loc());
 					Iterator mapIterator = mapSet.iterator();
-					System.out.println("check1");
+
 					while (mapIterator.hasNext()) {
-						System.out.println("check2");
+
 						Point p = (Point) mapIterator.next();
-						if (new MapValidator(this.map_view, this.map_model).findPath(p	)) {
+						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 							count++;
-							System.out.println("check3");
+
 						}
 					}
-					if (count == this.map_model.getMap_enemy_loc().size() && count >0) {
-						System.out.println("check4");
-						System.out.println(
-								"In MapGridController.actionPerformed and ready for save button as map is valid");
-						
+					if (count == this.map_model.getMap_enemy_loc().size() && count > 0) {
+
 						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
 						this.map_model.save();
-						
+
 						new ManageMapController();
 						this.map_view.dispose();
+					} else if (count == 0) {
+						JOptionPane.showOptionDialog(null, "It is an invalid map as there should be atleast one enemy",
+								"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null,
+								new Object[] {}, null);
 					}
-					else if(count == 0 )
-					{JOptionPane.showOptionDialog(null,
-							"It is an invalid map as there should be atleast one enemy",
-							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
-							null);}
-					
+
 				}
 				// need to manipulate error message window
 				else {
@@ -157,9 +155,8 @@ public class MapGridController implements ActionListener {
 				}
 			}
 
-		} else if(e.getSource().equals(map_view.update_button))
-		{
-			
+		} else if (e.getSource().equals(map_view.update_button)) {
+
 			if (this.map_model.getMap_entry_door().x == -1 && this.map_model.getMap_entry_door().y == -1) {
 				this.map_model.setErrorMessage("It is an invalid map as there should be one entry door in the map");
 			} else if (this.map_model.getMap_exit_door().x == -1 && this.map_model.getMap_exit_door().y == -1) {
@@ -172,35 +169,28 @@ public class MapGridController implements ActionListener {
 					// check if there are indeed enemies in the map of all that
 					// are defined
 					int count = 0;
-					//ArrayList test = new ArrayList();
+					// ArrayList test = new ArrayList();
 					Set mapSet = new HashSet(this.map_model.getMap_enemy_loc());
 					Iterator mapIterator = mapSet.iterator();
-					System.out.println("check1");
 					while (mapIterator.hasNext()) {
-						System.out.println("check2");
 						Point p = (Point) mapIterator.next();
 						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 							count++;
-							System.out.println("check3");
 						}
 					}
 					if (count == this.map_model.getMap_enemy_loc().size() && count > 0) {
-						System.out.println("check4");
-						System.out.println(
-								"In MapGridController.actionPerformed and ready for update button as map is valid");
-						
+
 						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
 						this.map_model.update();
-						
+
 						new ManageMapController();
 						this.map_view.dispose();
+					} else if (count == 0) {
+						JOptionPane.showOptionDialog(null, "It is an invalid map as there should be atleast one enemy",
+								"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null,
+								new Object[] {}, null);
 					}
-					else if(count == 0 )
-					{JOptionPane.showOptionDialog(null,
-							"It is an invalid map as there should be atleast one enemy",
-							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
-							null);}
-					
+
 				}
 				// need to manipulate error message window
 				else {
@@ -217,53 +207,48 @@ public class MapGridController implements ActionListener {
 				}
 			}
 		}
-		
+
 		else if (e.getSource().equals(map_view.submit)) {
-			if(this.map_view.map_name_textfield.getText().equals(""))
-			{
-				JOptionPane.showOptionDialog(null,
-						"Please Enter Valid Name",
-						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
-						null);
+			if (this.map_view.map_name_textfield.getText().equals("")) {
+				JOptionPane.showOptionDialog(null, "Please Enter Valid Name", "Invalid Name",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
 				return;
 			}
-			try{
-				
-				if(Integer.parseInt(this.map_view.map_height_textfield.getText())<3 || Integer.parseInt(this.map_view.map_width_textfield.getText())<3)
-				{
+			try {
+
+				if (Integer.parseInt(this.map_view.map_height_textfield.getText()) < 3
+						|| Integer.parseInt(this.map_view.map_width_textfield.getText()) < 3) {
 					throw new NumberFormatException();
 				}
-				if(Integer.parseInt(this.map_view.map_height_textfield.getText())>20 || Integer.parseInt(this.map_view.map_width_textfield.getText())>20)
-				{
+				if (Integer.parseInt(this.map_view.map_height_textfield.getText()) > 20
+						|| Integer.parseInt(this.map_view.map_width_textfield.getText()) > 20) {
 					throw new NumberFormatException();
 				}
-			Point store = new Point();
-			store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
-			store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
-			
-			if(this.map_model.getMap_size().getX() != store.x || this.map_model.getMap_size().getY() != store.y)
-			{
-				//to reset the map grid if they have changed the height or width of map 
-			this.map_model.resetAll();
-			
-			}
-			{
-				//So that at time of loading same height and width all entry door and exit door remain in same place
-				this.map_model.entryFlag = 1;
-				this.map_model.exitFlag = 1;
-			}
-			
-			this.map_model.setFinder(finder);
-			
-			this.map_model.setMap_size(store);
-			this.map_view.setButtonListener(this);
-			}
-			catch(NumberFormatException ex){
-				JOptionPane.showOptionDialog(null,
-						"Please Enter Valid Height/Width between 3 and 20",
-						"Invalid Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
-						null);
-				
+				Point store = new Point();
+				store.x = Integer.parseInt(this.map_view.map_height_textfield.getText());
+				store.y = Integer.parseInt(this.map_view.map_width_textfield.getText());
+
+				if (this.map_model.getMap_size().getX() != store.x || this.map_model.getMap_size().getY() != store.y) {
+					// to reset the map grid if they have changed the height or
+					// width of map
+					this.map_model.resetAll();
+
+				}
+				{
+					// So that at time of loading same height and width all
+					// entry door and exit door remain in same place
+					this.map_model.entryFlag = 1;
+					this.map_model.exitFlag = 1;
+				}
+
+				this.map_model.setFinder(finder);
+
+				this.map_model.setMap_size(store);
+				this.map_view.setButtonListener(this);
+			} catch (NumberFormatException ex) {
+				JOptionPane.showOptionDialog(null, "Please Enter Valid Height/Width between 3 and 20", "Invalid Name",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+
 			}
 		} else if (e.getSource().equals(map_view.map_entry_door)) {
 			this.map_model.setMap_object_color_type(Game_constants.ENTRY_DOOR);

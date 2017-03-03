@@ -66,6 +66,7 @@ public class FileHelper {
 
 	/**
 	 * method to save map in MAP_FILE
+	 * 
 	 * @param map
 	 * @throws IOException
 	 */
@@ -114,6 +115,7 @@ public class FileHelper {
 
 	/**
 	 * method to get created maps from MAP_FILE
+	 * 
 	 * @return
 	 * @throws IOException
 	 */
@@ -141,6 +143,7 @@ public class FileHelper {
 
 	/**
 	 * method to update map in MAP_FILE
+	 * 
 	 * @param map
 	 * @throws IOException
 	 * @throws NotFoundException
@@ -316,6 +319,7 @@ public class FileHelper {
 
 	/**
 	 * Method to update character in CHARACTER_FILE
+	 * 
 	 * @param character
 	 * @throws JsonSyntaxException
 	 * @throws IOException
@@ -440,6 +444,7 @@ public class FileHelper {
 
 	/**
 	 * Method to update item in ITEM_FILE
+	 * 
 	 * @param item
 	 * @throws JsonSyntaxException
 	 * @throws IOException
@@ -544,6 +549,7 @@ public class FileHelper {
 
 	/**
 	 * method to save campaign in CAMPAIGN_FILE
+	 * 
 	 * @param map
 	 * @throws IOException
 	 */
@@ -592,6 +598,7 @@ public class FileHelper {
 
 	/**
 	 * Method to get created campaign from CAMPAIGN_FILE
+	 * 
 	 * @return
 	 * @throws IOException
 	 */
@@ -619,6 +626,7 @@ public class FileHelper {
 
 	/**
 	 * Method to update campaign in CAMPAIGN_FILE
+	 * 
 	 * @param campaign
 	 * @throws IOException
 	 * @throws NotFoundException
@@ -672,6 +680,7 @@ public class FileHelper {
 
 	/**
 	 * Method to convert point to string
+	 * 
 	 * @author Hirangi
 	 *
 	 */

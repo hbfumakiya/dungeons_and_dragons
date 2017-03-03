@@ -13,13 +13,11 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CampaignModel;
-import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.ManageCampaignView;
-import dungeons_and_dragons.view.ManageMapView;
-import dungeons_and_dragons.view.MapView;
 
 /**
- * This class is created to handle all the task of viewing,saving and editing of campaign.
+ * This class is created to handle all the task of viewing,saving and editing of
+ * campaign.
  * 
  * @author Urmil Kansara
  * 
@@ -32,8 +30,8 @@ public class ManageCampaignController implements ActionListener {
 	private ManageCampaignView manageCampaignView;
 
 	/**
-	 * Default constructor for campaign model
-	 * campaign model and view is initialized
+	 * Default constructor for campaign model campaign model and view is
+	 * initialized
 	 */
 	public ManageCampaignController() {
 
@@ -53,11 +51,13 @@ public class ManageCampaignController implements ActionListener {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-	
+
 	/**
-	 * Action event to handle viewing,going back to previous screen,adding of campaign and  update of campaign.
+	 * Action event to handle viewing,going back to previous screen,adding of
+	 * campaign and update of campaign.
 	 * 
-	 *@param actionevent Actionevent argument to control event 
+	 * @param actionevent
+	 *            Actionevent argument to control event
 	 */
 
 	@Override
@@ -65,13 +65,13 @@ public class ManageCampaignController implements ActionListener {
 
 		if (actionEvent.getSource().equals(manageCampaignView.addCampaignButton)) {
 			new CampaignController();
-			
+
 			manageCampaignView.dispose();
-			
+
 		} else if (actionEvent.getSource().equals(manageCampaignView.backButton)) {
-			
+
 			new CreateGameController();
-			
+
 			manageCampaignView.dispose();
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_VIEW) {
@@ -80,25 +80,22 @@ public class ManageCampaignController implements ActionListener {
 			int itemId = button.getId();
 			CampaignModel map = (CampaignModel) button.getSource();
 
-			//new MapView(map);
-			new CampaignController(map,"view");
+			// new MapView(map);
+			new CampaignController(map, "view");
 			manageCampaignView.dispose();
-//			StringBuilder sb = new StringBuilder("");
-//			sb.append(item.getMap_name());
-//			sb.append("\n");
-			
+			// StringBuilder sb = new StringBuilder("");
+			// sb.append(item.getMap_name());
+			// sb.append("\n");
 
-//			JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
+			// JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
 
-		}
-		else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
+		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
-			int itemId = button.getId();	
+			int itemId = button.getId();
 			CampaignModel map = (CampaignModel) button.getSource();
-		    
-			
-			new CampaignController(map,"edit");
-			//x.setListener(this);
+
+			new CampaignController(map, "edit");
+			// x.setListener(this);
 			manageCampaignView.dispose();
 		}
 	}

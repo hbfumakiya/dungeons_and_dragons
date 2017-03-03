@@ -7,23 +7,22 @@ import javax.swing.JButton;
 
 /**
  * this class is for creating buttons that are used in map
+ * 
  * @author User
  *
  */
 public class MapButton extends JButton {
-	
+
 	private String button_type = Game_constants.GRID_BUTTON_TYPE;
 
 	private int xPos;
-	
+
 	private int yPos;
-	
-	//0 if it is wall and 2 if it is an enemy
+
+	// 0 if it is wall and 2 if it is an enemy
 	private int pointValue = 1;
-	
+
 	private int dirty_flag = 0;
-	
-	
 
 	/**
 	 * @return the xPos
@@ -33,7 +32,8 @@ public class MapButton extends JButton {
 	}
 
 	/**
-	 * @param xPos the xPos to set
+	 * @param xPos
+	 *            the xPos to set
 	 */
 	public void setxPos(int xPos) {
 		this.xPos = xPos;
@@ -47,12 +47,13 @@ public class MapButton extends JButton {
 	}
 
 	/**
-	 * @param yPos the yPos to set
+	 * @param yPos
+	 *            the yPos to set
 	 */
 	public void setyPos(int yPos) {
 		this.yPos = yPos;
-	}	
-	
+	}
+
 	/**
 	 * 
 	 * @return button_type
