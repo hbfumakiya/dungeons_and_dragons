@@ -1,10 +1,14 @@
 package dungeons_and_dragons.test;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.controller.MapGridController;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapValidator;
@@ -210,6 +214,15 @@ public class TestMap {
 			map_walls.add(new Point(2,1));
 			//map_walls.add(new Point(3,1));
 			
+		/*	Point map_size1 = new Point(5,5);
+			Point map_entry_door = new Point(1,0);
+			Point map_exit_door = new Point(2,5);
+			//map_enemy_loc.add(new Point(1,0));
+			map_walls.add(new Point(0,1));
+			map_walls.add(new Point(1,1));
+			map_walls.add(new Point(2,1));
+			//map_walls.add(new Point(3,1));
+*/			
 			//MapGridController mapGridController = new MapGridController();
 			gameMapModel.setMap_enemy_loc(map_enemy_loc);
 			gameMapModel.setMap_entry_door(map_entry_door);
@@ -244,6 +257,89 @@ public class TestMap {
 			
 			
 			assertEquals(expectedResult, true);
+			
+
+		}
+		
+		/**
+		 * checks whether the enemies are present in the defined path or not
+		 */
+		@Test
+		public void testEnenmyExists() {
+			
+			
+			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<Point> map_walls = new ArrayList<Point>();
+			GameMapModel gameMapModel = new GameMapModel();
+			int count = 0;
+			boolean expectedResult = false;
+			
+			//Given Data
+			/*Point map_size1 = new Point(4,4);
+			Point map_entry_door = new Point(0,0);
+			Point map_exit_door = new Point(2,4);
+			map_enemy_loc.add(new Point(1,0));
+			map_enemy_loc.add(new Point(3,0));
+			map_walls.add(new Point(0,1));
+			map_walls.add(new Point(1,1));
+			map_walls.add(new Point(2,1));*/
+			
+			
+			Point map_size1 = new Point(5,5);
+			Point map_entry_door = new Point(1,0);
+			Point map_exit_door = new Point(4,0);			
+			map_enemy_loc.add(new Point(4,4));
+			map_walls.add(new Point(0,1));
+			map_walls.add(new Point(1,1));
+			map_walls.add(new Point(2,1));
+			map_walls.add(new Point(3,1));
+			map_walls.add(new Point(4,1));
+			
+			//MapGridController mapGridController = new MapGridController();
+			gameMapModel.setMap_enemy_loc(map_enemy_loc);
+			gameMapModel.setMap_entry_door(map_entry_door);
+			gameMapModel.setMap_exit_door(map_exit_door);
+			gameMapModel.setMap_walls(map_walls);
+			gameMapModel.setMap_size(map_size1);
+
+			MapButton[][] maps = new MapButton[map_size1.x][map_size1.y];
+			Point p = new Point();
+			
+			for (int i = 0; i < gameMapModel.getMap_size().x; i++) {
+				for (int j = 0; j < gameMapModel.getMap_size().y; j++) {
+					
+					maps[i][j] = new MapButton();
+					p.x = i;
+					p.y = j;
+					
+					if(gameMapModel.getMap_walls().contains(p)){
+						maps[i][j].setPointValue(0);
+					} else if(gameMapModel.getMap_enemy_loc().contains(p)){
+						maps[i][j].setPointValue(2);
+					}
+				}
+			}
+			
+			MapGridView mapGridView = new MapGridView(gameMapModel);
+			mapGridView.maps = maps;
+			
+			MapValidator mapValidator = new  MapValidator(mapGridView, gameMapModel);
+			
+			// functions to check if the enemies are in the defined path or not
+			Set mapSet = new HashSet(gameMapModel.getMap_enemy_loc());
+			Iterator mapIterator = mapSet.iterator();
+			
+			while (mapIterator.hasNext()) {
+				Point x = (Point) mapIterator.next();
+				if (new MapValidator(mapGridView, gameMapModel).findPath(x)) {
+					count++;
+				}
+			}
+			if(count == gameMapModel.getMap_enemy_loc().size() && count > 0){
+				expectedResult = true;
+			}			
+			//assertEquals(expectedResult, true);
+			assertNotEquals(expectedResult, true);
 			
 
 		}
