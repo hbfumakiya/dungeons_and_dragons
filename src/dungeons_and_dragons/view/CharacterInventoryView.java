@@ -247,15 +247,18 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.panel.add(armorClassLabel);
 
 		// attack bonus
-		String attachBonus = "";
+		String attackBonus = "";
 		int temp = character.getAttackBonus();
 
 		for (int i = temp; i > 0; i -= 5) {
-			attachBonus += i + "/";
+			attackBonus += i + "/";
 		}
-		attachBonus = attachBonus.substring(0, attachBonus.length() - 1);
-		attackBonusLabel = new JLabel("Attack Bonus: " + attachBonus);
-		attackBonusLabel.setBounds(10, 85, 120, 20);
+
+		if (attackBonus.length() > 0)
+			attackBonus = attackBonus.substring(0, attackBonus.length() - 1);
+
+		attackBonusLabel = new JLabel("Attack Bonus: " + attackBonus);
+		attackBonusLabel.setBounds(10, 85, 200, 20);
 		this.panel.add(attackBonusLabel);
 
 		// damage bonus

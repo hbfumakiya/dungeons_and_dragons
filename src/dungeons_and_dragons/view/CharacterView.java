@@ -213,7 +213,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		// armer
 
-		additem_label = new JLabel("Select Armer");
+		additem_label = new JLabel("Select Armor");
 		additem_label.setBounds(10, 70, 100, 25);
 		this.add(additem_label);
 		Object[] armerTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.ARMOR)).toArray();
