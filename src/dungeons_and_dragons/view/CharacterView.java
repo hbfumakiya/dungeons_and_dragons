@@ -284,8 +284,12 @@ public class CharacterView extends JFrame implements Observer, View {
 		additem_label = new JLabel("Select Weapon");
 		additem_label.setBounds(10, 220, 100, 25);
 		this.add(additem_label);
-		Object[] weaponTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON)).toArray();
-		Object[] weapon = Stream.of(ob1, weaponTemp).flatMap(Stream::of).toArray();
+		Object[] weaponRangeTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON_RANGE))
+				.toArray();
+		Object[] weaponMeleeTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.WEAPON_MELEE))
+				.toArray();
+		Object[] weapon = Stream.of(ob1, weaponRangeTemp).flatMap(Stream::of).toArray();
+		weapon = Stream.of(weapon, weaponMeleeTemp).flatMap(Stream::of).toArray();
 		weapon_combobox = new JComboBox(weapon);
 		if (weapon.length > 0)
 			weapon_combobox.setRenderer(new ItemRenderer());
@@ -330,12 +334,12 @@ public class CharacterView extends JFrame implements Observer, View {
 		back.setBounds(20, 500, 80, 25);
 		this.add(back);
 
-		//if (this.i == 0) {
-			//save = new JButton("Save");
-			//save.setBounds(110, 500, 80, 25);
-			//save.setEnabled(false);
-			//this.add(save);
-		//}
+		// if (this.i == 0) {
+		// save = new JButton("Save");
+		// save.setBounds(110, 500, 80, 25);
+		// save.setEnabled(false);
+		// this.add(save);
+		// }
 
 		if (this.i == 1) {
 			update = new JButton("Update");
@@ -355,10 +359,9 @@ public class CharacterView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		if (this.i == 0) {
-			//this.save.addActionListener(actionListener);
+			// this.save.addActionListener(actionListener);
 			this.rolldice_save.addActionListener(actionListener);
-		}
-		else
+		} else
 			this.update.addActionListener(actionListener);
 		this.back.addActionListener(actionListener);
 	}

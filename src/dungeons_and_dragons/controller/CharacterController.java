@@ -2,14 +2,11 @@ package dungeons_and_dragons.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import dungeons_and_dragons.helper.DiceHelper;
-import dungeons_and_dragons.model.AbilityScoresModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterView;
@@ -89,8 +86,12 @@ public class CharacterController implements ActionListener {
 				items.add(shield);
 				model.setItems(items);
 
-				ArrayList<ItemModel> backPackList = (ArrayList<ItemModel>) this.view.backPackList
-						.getSelectedValuesList();
+				ArrayList<ItemModel> backPackList = new ArrayList<ItemModel>();
+
+				if (this.view.backPackList.getSelectedValuesList().size() > 0) {
+
+					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
+				}
 				model.setBackPackItems(backPackList);
 				model.update();
 				new ManageCharacterController();
@@ -141,7 +142,7 @@ public class CharacterController implements ActionListener {
 
 				if (this.view.backPackList.getSelectedValuesList().size() > 0)
 					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
-				
+
 				this.model.setBackPackItems(backPackList);
 
 				this.model.calculateAbilityScores();

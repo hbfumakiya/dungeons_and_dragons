@@ -1,23 +1,30 @@
 [
   {
     "item_id": 1,
-    "item_name": "tfhjgv",
-    "item_point": 5,
+    "item_name": "Test",
+    "item_point": 1,
     "item_type": "Helmet",
     "item_ability": "Intelligence"
   },
   {
     "item_id": 2,
-    "item_name": "uyg",
-    "item_point": 4,
+    "item_name": "Test2",
+    "item_point": 2,
+    "item_type": "Helmet",
+    "item_ability": "Wisdom"
+  },
+  {
+    "item_id": 3,
+    "item_name": "Test3",
+    "item_point": 1,
     "item_type": "Helmet",
     "item_ability": "Intelligence"
   },
   {
-    "item_id": 3,
-    "item_name": "test1",
-    "item_point": 2,
-    "item_type": "Weapon Range",
-    "item_ability": "Damage bonus"
+    "item_id": 4,
+    "item_name": "kkk",
+    "item_point": 5,
+    "item_type": "Helmet",
+    "item_ability": "Intelligence"
   }
 ]

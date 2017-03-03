@@ -480,8 +480,62 @@ public class FileHelper {
 
 				gson.toJson(item_list, file_writer);
 
+				file_writer.close();
+
+				ArrayList<CharacterModel> characters = getCharcters();
+
+				for (int i = 0; i < characters.size(); i++) {
+					CharacterModel character = characters.get(i);
+
+					ArrayList<ItemModel> items = character.getItems();
+					if (items != null) {
+						while (items.remove(null)) {
+						}
+						for (int j = 0; j < items.size(); j++) {
+							ItemModel tempItem = items.get(j);
+
+							if (tempItem.getItem_id() == item.getItem_id()) {
+
+								tempItem.setItem_name(item.getItem_name());
+								tempItem.setItem_type(item.getItem_type());
+								tempItem.setItem_ability(item.getItem_ability());
+								tempItem.setItem_point(item.getItem_point());
+
+								character.calculateModifires();
+								character.calculateHitPoints(character.getCharacter_level());
+								character.calculateArmorClass();
+								character.calculateAttackBonus(character.getCharacter_level());
+								character.calculateDamageBonus();
+							}
+						}
+					}
+
+					ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+
+					if (backPackItems != null) {
+						while (backPackItems.remove(null)) {
+						}
+						for (int j = 0; j < backPackItems.size(); j++) {
+							ItemModel tempItem = backPackItems.get(j);
+
+							if (tempItem.getItem_id() == item.getItem_id()) {
+
+								tempItem.setItem_name(item.getItem_name());
+								tempItem.setItem_type(item.getItem_type());
+								tempItem.setItem_ability(item.getItem_ability());
+								tempItem.setItem_point(item.getItem_point());
+							}
+						}
+					}
+				}
+
+				file_writer = new FileWriter(CHARACTER_FILE);
+
+				gson.toJson(characters, file_writer);
+
 				// close file
 				file_writer.close();
+
 			} else {
 				throw new NotFoundException();
 			}

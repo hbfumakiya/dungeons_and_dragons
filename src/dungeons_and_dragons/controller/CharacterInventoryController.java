@@ -93,8 +93,6 @@ public class CharacterInventoryController implements ActionListener {
 			
 			
 			try {
-				
-				this.character.calculateAbilityScores();
 				this.character.calculateModifires();
 				this.character.calculateHitPoints(this.character.getCharacter_level());
 				this.character.calculateArmorClass();
