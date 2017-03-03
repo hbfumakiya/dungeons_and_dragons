@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dungeons_and_dragons.controller.MapGridController;
+import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapValidator;
 import dungeons_and_dragons.model.GameMapModel;
+import dungeons_and_dragons.view.MapGridView;
 
 /**
  * 
@@ -20,6 +24,7 @@ public class TestMap {
 		/**
 		 * entry door validation considering all six cases
 		 */
+	
 		Point map_size = new Point(5, 5);
 
 		@Test
@@ -179,6 +184,65 @@ public class TestMap {
 			System.out.println(p.size());
 			// Then
 			Assert.assertNotSame(c, p.size());
+
+		}
+		
+		/**
+		 * entry - exit path validation
+		 */
+		@Test
+		public void testEntryToExitDoor() {
+			
+			
+			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<Point> map_walls = new ArrayList<Point>();
+			GameMapModel gameMapModel = new GameMapModel();
+			
+			//Given Data
+			Point map_size1 = new Point(4,4);
+			Point map_entry_door = new Point(0,0);
+			Point map_exit_door = new Point(2,4);
+			//map_enemy_loc.add(new Point(1,0));
+			map_walls.add(new Point(0,1));
+			map_walls.add(new Point(1,1));
+			map_walls.add(new Point(2,1));
+			//map_walls.add(new Point(3,1));
+			
+			//MapGridController mapGridController = new MapGridController();
+			gameMapModel.setMap_enemy_loc(map_enemy_loc);
+			gameMapModel.setMap_entry_door(map_entry_door);
+			gameMapModel.setMap_exit_door(map_exit_door);
+			gameMapModel.setMap_walls(map_walls);
+			gameMapModel.setMap_size(map_size1);
+
+			MapButton[][] maps = new MapButton[map_size1.x][map_size1.y];
+			Point p = new Point();
+			
+			for (int i = 0; i < gameMapModel.getMap_size().x; i++) {
+				for (int j = 0; j < gameMapModel.getMap_size().y; j++) {
+					
+					maps[i][j] = new MapButton();
+					p.x = i;
+					p.y = j;
+					
+					if(gameMapModel.getMap_walls().contains(p)){
+						maps[i][j].setPointValue(0);
+					} else if(gameMapModel.getMap_enemy_loc().contains(p)){
+						maps[i][j].setPointValue(2);
+					}
+				}
+			}
+			
+			MapGridView mapGridView = new MapGridView(gameMapModel);
+			mapGridView.maps = maps;
+			
+			MapValidator mapValidator = new  MapValidator(mapGridView, gameMapModel);
+			boolean expectedResult = mapValidator.findPath(gameMapModel.getMap_exit_door());
+			
+			
+			
+			Assert.assertEquals(expectedResult, true);
+			
 
 		}
 
