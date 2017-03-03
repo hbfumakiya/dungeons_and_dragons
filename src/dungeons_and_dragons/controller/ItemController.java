@@ -9,7 +9,7 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ItemView;
 
 /**
- * This class call item controller
+ * This class call item controller where it handles model and view
  * 
  * @author Urmil Kansara
  *
@@ -47,6 +47,13 @@ public class ItemController implements ActionListener {
 		this.item_view.setListener(this);
 		this.item_view.setVisible(true);
 	}
+	
+	/**
+	 * This constructor is used for initializing of update task for items.
+	 * 
+	 * 
+	 * @param itemModel Item object to update item
+	 */
 
 	public ItemController(ItemModel itemModel) {
 
@@ -58,15 +65,14 @@ public class ItemController implements ActionListener {
 	}
 
 	/**
-	 * Action event of all the events
+	 * Action event to handle saving of item,change in combobox,going back to previous screen and updation of item
 	 * 
+	 *@param arg0 actionevent argument to control event 
 	 */
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("Inside Controller action performed");
-		System.out.println(arg0.getSource()+" "+arg0.getActionCommand());
+		
 		if(arg0.getSource().equals(item_view.item_type_field))
 		{
 			String get_item_type = (String) item_view.item_type_field.getSelectedItem();

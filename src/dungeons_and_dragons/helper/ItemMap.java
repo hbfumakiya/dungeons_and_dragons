@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/*
+/**
  * This class is to create a map for items and their possible set of abilities provided in requirement
  * 
  * @author : Tejas Sadrani
@@ -108,7 +108,8 @@ public class ItemMap {
 	item_map.put(Game_constants.RING, ring_abilities);
 	item_map.put(Game_constants.BELT, belt_abilities);
 	item_map.put(Game_constants.BOOTS, boots_abilities);
-	item_map.put(Game_constants.WEAPON, weapon_abilities);
+	item_map.put(Game_constants.WEAPON_MELEE, weapon_abilities);
+	item_map.put(Game_constants.WEAPON_RANGE, weapon_abilities);
 	
 	
 	return item_map;

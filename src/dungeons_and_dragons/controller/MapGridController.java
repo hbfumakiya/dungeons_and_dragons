@@ -17,6 +17,8 @@ import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
 /**
+ * This class is a controller where it handles all the actions performed in map
+ * 
  * @author Urmil Kansara & Tejas Sadrani
  *
  */
@@ -61,7 +63,15 @@ public class MapGridController implements ActionListener {
 		finder = 0;
 		this.map_model.setFinder(finder);
 	}
-	
+	/**
+	 * Constructor for mapgrid for updation of map.
+	 * initialize view and model.
+	 * 
+	 * <p>
+	 * Called for editing of map
+	 * <p>
+	 * @param map
+	 */
 	public MapGridController(GameMapModel map) {
 		Point p = new Point();
 		p.x = 5;
@@ -80,8 +90,8 @@ public class MapGridController implements ActionListener {
 	}
 
 	/**
-	 * Action event of all the events are handled here
-	 * 
+	 * Action event for saving of map,submitting of size for map,updation for map and going back to previous screen.
+	 * @param e action Event 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
