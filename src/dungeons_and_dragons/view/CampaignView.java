@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -22,18 +22,17 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.GameMapModel;
-import dungeons_and_dragons.model.ItemModel;
-import dungeons_and_dragons.view.CharacterInventoryView.ItemCellRenderer;
 
 /**
- * Renders the CampaignModel into a form suitable for visualization or interaction, typically 
- * a user interface element. 
+ * Renders the CampaignModel into a form suitable for visualization or
+ * interaction, typically a user interface element.
  * 
  * @author Tejas Sadrani
  *
-*/
+ */
 public class CampaignView extends JFrame implements Observer, View {
 
 	/**
@@ -42,81 +41,190 @@ public class CampaignView extends JFrame implements Observer, View {
 	 * @type String
 	 */
 	private String window_title = "Create Campaign";
-	
+
 	/**
 	 * this variable used to set campaign label
 	 * 
 	 * @type JLabel
 	 */
 	public JLabel campaign_label;
-	
+
 	/**
 	 * this variable used to set campaign comboBox
 	 * 
 	 * @type JComboBox
 	 */
 	public JComboBox campaign_combobox;
-	
+
 	/**
 	 * this variable used to generate an ArrayList of GameMapModels
 	 * 
 	 * @type ArrayList<GameMapModel>
 	 */
 	private ArrayList<GameMapModel> gameMapModel_map_list;
-	
+
 	/**
 	 * this variable used to generate an object array for campaign arrays
 	 * 
 	 * @type Object[]
 	 */
 	private Object[] campaign_array;
-	
+
 	/**
 	 * this variable used to generate JButton named campaign_add
 	 * 
 	 * @type JButton
 	 */
 	public JButton campaign_add;
-	
+
+	/**
+	 * this variable used to generate ArrayList<GameMapModel> that gives the
+	 * campaigns containing the maps
+	 * 
+	 * @type ArrayList<GameMapModel>
+	 */
 	public ArrayList<GameMapModel> campaign_map_list = new ArrayList<>();
-	
+
+	/**
+	 * this variable used to generate BufferedImage
+	 * 
+	 * @type BufferedImage
+	 */
 	public BufferedImage arrow_image;
+
+	/**
+	 * this variable used to generate main panel
+	 * 
+	 * @type JPanel
+	 */
 	private JPanel main_panel;
 
-	// map J list for game map model
+	/**
+	 * this variable used to generate output maps list in one campaign
+	 * 
+	 * @type JPanel
+	 */
 	public JList<GameMapModel> output_map_list;
+
+	/**
+	 * this variable used to generate output scroll plane
+	 * 
+	 * @type JScrollPane
+	 */
 	public JScrollPane mapScrollPane;
+
+	/**
+	 * this variable used to generate a campaignViewRenderer
+	 * 
+	 * @type CampaignViewRenderer
+	 */
 	private CampaignViewRenderer campaign_view_renderer;
+
+	/**
+	 * this variable used to generate a ArrayList<GameMapModel>
+	 * 
+	 * @type ArrayList<GameMapModel>
+	 */
 	ArrayList<GameMapModel> map;
+
+	/**
+	 * this variable used to generate a JButton to move a map up
+	 * 
+	 * @type JButton
+	 */
 	public JButton moveMapUP;
+
+	/**
+	 * this variable used to generate a JButton to move a map down
+	 * 
+	 * @type JButton
+	 */
 	public JButton moveMapDown;
+
+	/**
+	 * this variable used to generate a JButton to remove map
+	 * 
+	 * @type JButton
+	 */
 	public JButton removeMap;
+
+	/**
+	 * this variable used to generate a JButton to save the campaign
+	 * 
+	 * @type JButton
+	 */
 	public JButton save_button;
+
+	/**
+	 * this variable used to generate a JButton to update the campaign
+	 * 
+	 * @type JButton
+	 */
 	public JButton update_button;
+
+	/**
+	 * this variable used to generate a JLabel for campaign name label
+	 * 
+	 * @type JLabel
+	 */
 	public JLabel campaign_name_label;
+
+	/**
+	 * this variable used to generate a JTextField for inputing campaign name
+	 * from user
+	 * 
+	 * @type JTextField
+	 */
 	public JTextField campaign_name_text;
+
+	/**
+	 * this variable used to generate a JButton for traversing back the order to
+	 * a different view
+	 * 
+	 * @type JButton
+	 */
 	public JButton back_button;
-	public int restrict_renderer = 0;
+
+	/**
+	 * this variable used to generate a JLabel[] to input all the maps in a
+	 * map_list
+	 * 
+	 * @type JLabel[]
+	 */
 	public JLabel[] campaign_maps_label;
+
+	/**
+	 * this variable used to generate a JLabel for showing campaign arrow
+	 * 
+	 * @type JLabel
+	 */
 	public JLabel campaign_arrow;
 
+	/**
+	 * this variable used to manipulate between views
+	 * 
+	 * @type boolean
+	 */
 	public boolean isView = false;
+
+	/**
+	 * this variable used to know if campaign edit function should be enabled or
+	 * not
+	 * 
+	 * @type boolean
+	 */
 	public boolean isEdit = false;
 
 	/**
-	 * Constructor of Campaign View class
+	 * Constructor used to construct the Campaign View class
 	 * 
 	 * @param map_list
-	 *            returns list of maps that are already defined in map view
 	 */
 	public CampaignView(ArrayList<GameMapModel> map_list) {
 
 		this.gameMapModel_map_list = map_list;
-
-		// Initialize Campaign window
 		this.setTitle(this.window_title);
 		this.initializeView();
-
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -149,8 +257,10 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.main_panel.add(campaign_label);
 
 		campaign_view_renderer = new CampaignViewRenderer();
-		// Combo-box for selecting a particular map from list of maps available
-		// in the gameMapModel
+		/*
+		 * Combo-box for selecting a particular map from list of maps available
+		 * in the gameMapModel
+		 */
 		campaign_array = this.gameMapModel_map_list.toArray();
 		campaign_combobox = new JComboBox(campaign_array);
 
@@ -215,15 +325,24 @@ public class CampaignView extends JFrame implements Observer, View {
 
 	}
 
+	/**
+	 * Method to update the campaign view according to the actions that
+	 * correspond to any state changed
+	 * 
+	 * @param temp
+	 *            an ArrayList consisting of maps that are to be displayed
+	 *            inside the map_list
+	 */
 	public void updateWindow(ArrayList<GameMapModel> temp) {
 
 		if (this.isView) {
-			
-			// Need to implement a scroll for future -- >> JScrollPane scrollPanel = new JScrollPane(t);
+
+			// Need to implement a scroll for future -- >> JScrollPane
+			// scrollPanel = new JScrollPane(t);
 			JPanel view_panel = new JPanel();
 			view_panel.setBounds(200, 10, 400, 400);
 			view_panel.setLayout(null);
-			
+
 			campaign_maps_label = new JLabel[temp.size() * 2];
 			campaign_maps_label = new JLabel[temp.size()];
 
@@ -236,30 +355,31 @@ public class CampaignView extends JFrame implements Observer, View {
 			for (int i = 0; i < temp.size(); i++) {
 
 				campaign_maps_label[i] = new JLabel((temp.get(i).getMap_name()));
-				campaign_maps_label[i].setBounds(10, 50*(i+1) , 100, 20);
-				
+				campaign_maps_label[i].setBounds(10, 50 * (i + 1), 100, 20);
+
 				campaign_maps_label[i].setForeground(Color.BLUE);
 
 				view_panel.add(campaign_maps_label[i]);
 
 				if (i != 0) {
-					campaign_arrow = new JLabel("\u2193");		//new ImageIcon(arrow_image)
-					campaign_arrow.setBounds(25, 50*(i+1)-25, 50, 30);
+					campaign_arrow = new JLabel("\u2193"); // new
+															// ImageIcon(arrow_image)
+					campaign_arrow.setBounds(25, 50 * (i + 1) - 25, 50, 30);
 					view_panel.add(campaign_arrow);
 				}
 
 			}
 			this.main_panel.add(view_panel);
-		}else{
-			
-			//remove items already present in the bottom list
+		} else {
+
+			// remove items already present in the bottom list
 			for (int i = 0; i < temp.size(); i++) {
 				System.out.println(temp.get(i));
 				System.out.println(campaign_combobox.equals(temp.get(i)));
 				campaign_combobox.removeItem(temp.get(i));
 			}
 
-			//when pressed upon remove map
+			// when pressed upon remove map
 			if (this.removeMap.isEnabled()) {
 				campaign_array = this.gameMapModel_map_list.toArray();
 				campaign_combobox.removeAllItems();
@@ -267,8 +387,8 @@ public class CampaignView extends JFrame implements Observer, View {
 					campaign_combobox.addItem(this.campaign_array[i]);
 				}
 			}
-			
-			//generating new list of maps to be viewed
+
+			// generating new list of maps to be viewed
 			this.output_map_list.removeAll();
 
 			this.map = new ArrayList<GameMapModel>();
@@ -298,9 +418,11 @@ public class CampaignView extends JFrame implements Observer, View {
 		}
 	}
 
-	/**
+	/*
 	 * Invoked upon by Game map Model(observer) object once the data in width
 	 * and height of first game view is set
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	@Override
 	public void update(Observable obs, Object obj) {
@@ -312,6 +434,13 @@ public class CampaignView extends JFrame implements Observer, View {
 
 	}
 
+	/*
+	 * Method used to add action listeners to particular java swing objects as
+	 * per the requirements
+	 * 
+	 * @see dungeons_and_dragons.view.View#setActionListener(java.awt.event.
+	 * ActionListener)
+	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.campaign_add.addActionListener(actionListener);
@@ -323,7 +452,20 @@ public class CampaignView extends JFrame implements Observer, View {
 		this.update_button.addActionListener(actionListener);
 	}
 
+	/*
+	 * Inner Class Campaign View Renderer class that is used to generate a
+	 * dynamic combobox
+	 */
 	public class CampaignViewRenderer extends BasicComboBoxRenderer {
+
+		/*
+		 * Getter method that provides us a map model corresponding to a map
+		 * name
+		 * 
+		 * @see javax.swing.plaf.basic.BasicComboBoxRenderer#
+		 * getListCellRendererComponent(javax.swing.JList, java.lang.Object,
+		 * int, boolean, boolean)
+		 */
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
 			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -336,14 +478,32 @@ public class CampaignView extends JFrame implements Observer, View {
 		}
 	}
 
+	/*
+	 * Inner class Campaign cell renderer that is used to render the Jlist
+	 * dynamically
+	 */
 	class CampaignCellRenderer extends JLabel implements ListCellRenderer<GameMapModel> {
 
+		/*
+		 * Static final variable used to identify serialVersionUID
+		 */
 		private static final long serialVersionUID = 1L;
 
+		/*
+		 * Default constructor used to construct Campaign cell Renderer
+		 */
 		public CampaignCellRenderer() {
 			setOpaque(true);
 		}
 
+		/*
+		 * Method used to get map object from the list, for the map name that
+		 * has been selected
+		 * 
+		 * @see
+		 * javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing
+		 * .JList, java.lang.Object, int, boolean, boolean)
+		 */
 		@Override
 		public Component getListCellRendererComponent(JList<? extends GameMapModel> arg0, GameMapModel arg1, int arg2,
 				boolean arg3, boolean arg4) {
