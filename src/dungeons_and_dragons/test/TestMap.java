@@ -11,6 +11,8 @@ import dungeons_and_dragons.helper.MapValidator;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
+import static org.junit.Assert.*;
+
 /**
  * 
  * @author Shahida, Urmil & Tejas
@@ -45,34 +47,34 @@ public class TestMap {
 			mapentry.setMap_entry_door(map_entry_door1);
 
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door1);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door1);
 
 			// When
 			mapentry.setMap_entry_door(map_entry_door2);
 
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door2);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door2);
 
 			// When
 			mapentry.setMap_entry_door(map_entry_door3);
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door3);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door3);
 
 			// When
 			mapentry.setMap_entry_door(map_entry_door4);
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door4);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door4);
 
 			// When
 			mapentry.setMap_entry_door(map_entry_door5);
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door5);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door5);
 
 			// When
 			mapentry.setMap_entry_door(map_entry_door6);
 
 			// Then
-			Assert.assertEquals(mapentry.getMap_entry_door(), map_entry_door6);
+			assertEquals(mapentry.getMap_entry_door(), map_entry_door6);
 
 		}
 
@@ -96,35 +98,35 @@ public class TestMap {
 			mapexit.setMap_exit_door(map_exit_door1);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door1);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door1);
 
 			// When
 			mapexit.setMap_exit_door(map_exit_door2);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door2);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door2);
 
 			// When
 			mapexit.setMap_exit_door(map_exit_door3);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door3);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door3);
 
 			// When
 			mapexit.setMap_exit_door(map_exit_door4);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door4);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door4);
 			// When
 			mapexit.setMap_exit_door(map_exit_door5);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door5);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door5);
 			// When
 			mapexit.setMap_exit_door(map_exit_door6);
 
 			// Then
-			Assert.assertEquals(mapexit.getMap_exit_door(), map_exit_door6);
+			assertEquals(mapexit.getMap_exit_door(), map_exit_door6);
 
 		}
 
@@ -153,7 +155,7 @@ public class TestMap {
 
 			System.out.println(p.size());
 			// Then
-			Assert.assertNotSame(c, p.size());
+			assertNotSame(c, p.size());
 
 		}
 
@@ -183,7 +185,7 @@ public class TestMap {
 
 			System.out.println(p.size());
 			// Then
-			Assert.assertNotSame(c, p.size());
+			assertNotSame(c, p.size());
 
 		}
 		
@@ -241,9 +243,47 @@ public class TestMap {
 			
 			
 			
-			Assert.assertEquals(expectedResult, true);
+			assertEquals(expectedResult, true);
 			
 
+		}
+		
+		@Test
+		public void testResetAll()
+		{
+			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<Point> map_walls = new ArrayList<Point>();
+			GameMapModel gameMapModel = new GameMapModel();
+			
+			//Given Data
+			Point map_size1 = new Point(4,4);
+			Point map_entry_door = new Point(0,0);
+			Point map_exit_door = new Point(2,4);
+			//map_enemy_loc.add(new Point(1,0));
+			map_walls.add(new Point(0,1));
+			map_walls.add(new Point(1,1));
+			map_walls.add(new Point(2,1));
+			//map_walls.add(new Point(3,1));
+			
+			//MapGridController mapGridController = new MapGridController();
+			gameMapModel.setMap_enemy_loc(map_enemy_loc);
+			gameMapModel.setMap_entry_door(map_entry_door);
+			gameMapModel.setMap_exit_door(map_exit_door);
+			gameMapModel.setMap_walls(map_walls);
+			gameMapModel.setMap_size(map_size1);
+			Point p = new Point(-1,-1);
+			gameMapModel.resetAll();
+			
+			ArrayList<Point> check_walls = new ArrayList<Point>();
+			
+			ArrayList<Point> check_enemy = new ArrayList<Point>();
+			
+			assertEquals(p,gameMapModel.getMap_chest());
+			assertEquals(p,gameMapModel.getMap_entry_door());
+			assertEquals(p,gameMapModel.getMap_exit_door());
+			assertEquals(check_walls,gameMapModel.getMap_walls());
+			assertEquals(check_enemy,gameMapModel.getMap_walls());
+			
 		}
 
 	}

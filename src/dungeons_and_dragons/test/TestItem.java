@@ -1,8 +1,14 @@
 package dungeons_and_dragons.test;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
@@ -33,6 +39,27 @@ public class TestItem {
 			item.itemTypeSelected(item_type);
 			assertEquals(item.getItem_ability(), item_ability);
 
+		}
+		
+		@Test
+		public void testSetCurrentId(){
+			int var = 0;
+			int check = var +1;
+			ArrayList<ItemModel> alldata = new ArrayList<ItemModel>();
+			try {
+				alldata = FileHelper.getItems();
+			} catch (JsonSyntaxException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (null != alldata) {
+				var = alldata.get(alldata.size() - 1).getItem_id() + 1;
+				check = var;
+			} else {
+				var = 1;
+			}
+			
+			assertEquals(check,var);
 		}
 
 	

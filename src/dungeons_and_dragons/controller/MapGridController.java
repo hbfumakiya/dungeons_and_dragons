@@ -398,8 +398,8 @@ public class MapGridController implements ActionListener {
 	 * Function used to check if the object is already present in the position
 	 * or not
 	 * 
-	 * @param object
-	 * @param position
+	 * @param object name of object
+	 * @param position position of object
 	 * @return String
 	 */
 	private boolean validateMapForExisting(String object, Point position) {
