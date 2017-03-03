@@ -29,6 +29,7 @@ import dungeons_and_dragons.helper.GameButton;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This class is created to show the view for managing Item.
  * @author Mihir Pujara
  *
  */
@@ -53,7 +54,7 @@ public class ManageItemView extends JFrame implements View {
 	private ArrayList<GameButton> deleteButtons;
 
 	/**
-	 * 
+	 * This is constructor to initialize Item view
 	 * @param actionListener
 	 * @param item
 	 */
@@ -133,7 +134,7 @@ public class ManageItemView extends JFrame implements View {
 		g2.draw(lin);
 	}
 	/**
-	 * 
+	 * Refreshing items
 	 * @param actionListener
 	 * @param item
 	 */
@@ -186,7 +187,9 @@ public class ManageItemView extends JFrame implements View {
 	}
 
 	/**
+	 * This method handles listener for back and add button
 	 * 
+	 * @param actionListener listens to button
 	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {

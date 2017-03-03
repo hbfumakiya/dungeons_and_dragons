@@ -19,8 +19,9 @@ import dungeons_and_dragons.view.ManageMapView;
 import dungeons_and_dragons.view.MapView;
 
 /**
- * @author Urmil Kansara
+ * This class is created to handle all the task of viewing,saving and editing of campaign.
  * 
+ * @author Urmil Kansara
  * 
  */
 
@@ -54,7 +55,9 @@ public class ManageCampaignController implements ActionListener {
 	}
 	
 	/**
-	 * Action events for all the events
+	 * Action event to handle viewing,going back to previous screen,adding of campaign and  update of campaign.
+	 * 
+	 *@param actionevent Actionevent argument to control event 
 	 */
 
 	@Override
