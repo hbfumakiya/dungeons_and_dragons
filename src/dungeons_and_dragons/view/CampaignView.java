@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import dungeons_and_dragons.model.CampaignModel;
@@ -337,13 +338,10 @@ public class CampaignView extends JFrame implements Observer, View {
 
 		if (this.isView) {
 
-			// Need to implement a scroll for future -- >> JScrollPane
-			// scrollPanel = new JScrollPane(t);
 			JPanel view_panel = new JPanel();
-			view_panel.setBounds(200, 10, 400, 400);
 			view_panel.setLayout(null);
+			view_panel.setPreferredSize(new Dimension(600, 600));
 
-			campaign_maps_label = new JLabel[temp.size() * 2];
 			campaign_maps_label = new JLabel[temp.size()];
 
 			try {
@@ -354,22 +352,30 @@ public class CampaignView extends JFrame implements Observer, View {
 
 			for (int i = 0; i < temp.size(); i++) {
 
-				campaign_maps_label[i] = new JLabel((temp.get(i).getMap_name()));
-				campaign_maps_label[i].setBounds(10, 50 * (i + 1), 100, 20);
+				campaign_maps_label[i] = new JLabel((temp.get(i).getMap_name()),SwingConstants.CENTER);
+				
+				campaign_maps_label[i].setBounds(210, 50 * (i + 1), 100, 20);
 
 				campaign_maps_label[i].setForeground(Color.BLUE);
 
 				view_panel.add(campaign_maps_label[i]);
 
 				if (i != 0) {
-					campaign_arrow = new JLabel("\u2193"); // new
+					campaign_arrow = new JLabel("\u2193",SwingConstants.RIGHT); // new
 															// ImageIcon(arrow_image)
-					campaign_arrow.setBounds(25, 50 * (i + 1) - 25, 50, 30);
+					campaign_arrow.setBounds(225, 50 * (i + 1) - 25, 40, 30);
 					view_panel.add(campaign_arrow);
 				}
 
 			}
-			this.main_panel.add(view_panel);
+
+			int height = campaign_maps_label.length * 50;
+
+			view_panel.setPreferredSize(new Dimension(450, height+100));
+
+			JScrollPane scrollPanel = new JScrollPane(view_panel);
+			scrollPanel.setBounds(10, 50, 490, 300);
+			this.main_panel.add(scrollPanel);
 		} else {
 
 			// remove items already present in the bottom list
