@@ -16,9 +16,9 @@ import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 
 /**
+ * This class is created to manage map data,store all the points of map walls,enemies,entry door, exit door and chest.
  * 
- * @author Mihir
- * @date 23-01-2017
+ * @author Mihir and Urmil Kansara
  * 
  */
 
@@ -102,6 +102,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	@Expose
 	private Point map_exit_door;
 	
+	/**
+	 * defines colot of map object type.
+	 * @type Color
+	 */
 	private Color map_object_color_type;
 	
 	
@@ -215,6 +219,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 
 
 	/**
+	 * This function checks whether point already present in arraylist.
+	 * If it is not present in arraylist then add into arraylist else ignore.
+	 * 
 	 * @param map_walls the map_walls to set
 	 */
 	public void setMap_wall(Point wall) {
@@ -224,10 +231,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		notifyObservers(this);
 	}
 	
-	/**
-	 * 
-	 */
-
 
 	/**
 	 * @return the map_entry_door
@@ -345,6 +348,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
+	 * This method is used to get all data of map from files
+	 * 
 	 * @throws JsonSyntaxException
 	 * @throws IOException 
 	 */
@@ -369,20 +374,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		
 	}
 
-
 	/**
-	 * 
-	 * @param store
-	 */
-	public void setWidthHeight(Point store) {
-		// TODO Auto-generated method stub
-		
-		
-		
-	}
-
-	/**
-	 * 
+	 * This method is used to detect which radio button is selected.
 	 * @return Color
 	 */
 	public Color getMap_object_color_type() {
@@ -390,7 +383,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
+	 *  This method is used to set which radio button is selected.
 	 * @param map_object_color_type
 	 */
 	public void setMap_object_color_type(Color map_object_color_type) {
@@ -398,7 +391,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
+	 * This method is used to return error message
 	 * @return String
 	 */
 	public String getErrorMessage() {
@@ -406,7 +399,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
+	 * This method is used to set error message
 	 * @param errorMessage
 	 */
 	public void setErrorMessage(String errorMessage) {
@@ -416,8 +409,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
-	 * @param position
+	 * This method is used to remove wall if radio button map_remove is selected
+	 *  
+	 * @param position point to be removed from arraylist
 	 */
 	public void removeWall(Point position) {
 		// TODO Auto-generated method stub
@@ -426,8 +420,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
-	 * @param position
+	 This method is used to remove enemy from arraylist if radio button map_remove is selected
+	 *  
+	 * @param position point to be removed from arraylist
 	 */
 	public void removeEnemy(Point position) {
 		// TODO Auto-generated method stub
@@ -435,8 +430,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
-	 * @param position
+	 * This method is used to remove chest if radio button map_remove is selected and then clicked on point containing chest
+	 *  
+	 * @param position point to be removed for chest
 	 */
 	public void removeChest(Point position) {
 		// TODO Auto-generated method stub
@@ -444,8 +440,9 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
-	 * @param position
+	 * This method is used to remove entry door if radio button map_remove is selected
+	 *  
+	 * @param position point to be removed for entry door
 	 */
 	public void removeEntryDoor(Point position) {
 		// TODO Auto-generated method stub
@@ -453,14 +450,20 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	}
 
 	/**
-	 * 
-	 * @param position
+	 * This method is used to remove exit door if radio button map_remove is selected
+	 *  
+	 * @param position point to be removed for exit door
 	 */
 	public void removeExitDoor(Point position) {
 		// TODO Auto-generated method stub
 		this.map_exit_door = new Point(-1,-1);
 	}
-
+	
+	/**
+	 * This method is used to remove color if radio button map_remove is selected
+	 *  
+	 * @param position point to be removed for color
+	 */
 	public void removeMap_object_color_type() {
 		// TODO Auto-generated method stub
 		this.map_object_color_type = null;
@@ -493,6 +496,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 	private int finder; //if finder = 0 save else if finder  = 1 then update
 
 	/**
+	 * This method sets finder.
 	 * 
 	 * @param finder
 	 */
@@ -500,7 +504,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel>{
 		// TODO Auto-generated method stub
 		this.finder = finder;
 	}
-	
+	/**
+	 * 
+	 * @return int
+	 */
 	public int getFinder() {
 		return this.finder;
 	}
