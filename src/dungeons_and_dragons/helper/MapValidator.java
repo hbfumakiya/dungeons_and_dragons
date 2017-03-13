@@ -8,7 +8,7 @@ import dungeons_and_dragons.view.MapGridView;
 /**
  * this class is for different validation of maps
  * 
- * @author Hirangi
+ * @author Tejas Sadrani
  *
  */
 public class MapValidator {
