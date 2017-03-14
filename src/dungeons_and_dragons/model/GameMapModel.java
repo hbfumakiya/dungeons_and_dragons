@@ -424,7 +424,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @param position
 	 *            point to be removed from arraylist
 	 */
-	public void removeEnemy(MapCharacter character) {
+	public void removeNPC(MapCharacter character) {
 		this.map_enemy_loc.remove(character);
 	}
 

@@ -287,7 +287,12 @@ public class MapGridController implements ActionListener {
 		} else if (e.getSource().equals(map_view.map_remove)) {
 			this.map_model.removeMap_object_color_type();
 
-		} else if (((MapButton) e.getSource()).getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
+		} else if (e.getSource().equals(map_view.map_friend)) {
+			this.map_model.setMap_object_color_type(Game_constants.FRIENDS);
+
+		} 
+		
+		else if (((MapButton) e.getSource()).getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
 			Point position = new Point();
 			position.x = ((MapButton) e.getSource()).getxPos();
 			position.y = ((MapButton) e.getSource()).getyPos();
@@ -302,7 +307,14 @@ public class MapGridController implements ActionListener {
 			{
 				if(m.get(x).getX() == position.x && m.get(x).getY() == position.y)
 				{
-					t = 1;
+					if(m.get(x).getCharacterType() == MapCharacter.ENEMY)
+					{
+						t = 1;
+					}
+					else if(m.get(x).getCharacterType() == MapCharacter.FRIENDLY)
+					{
+						t = 2;
+					}
 					npc = m.get(x).getCharacter();
 					mc = m.get(x);
 				}
@@ -313,8 +325,8 @@ public class MapGridController implements ActionListener {
 			if (this.map_model.getMap_object_color_type() == Game_constants.WALLS) {
 
 				if (validateMapForExisting("wall", position,t)) {
-					if (t == 1){
-						this.map_model.removeEnemy(mc);
+					if (t == 1 || t == 2){
+						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
 					}
 					
@@ -344,8 +356,11 @@ public class MapGridController implements ActionListener {
 					mapCharacters.setCharacter((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
 					mapCharacters.setCharacterType(MapCharacter.ENEMY);
 					
-					
-					if (this.map_model.getMap_walls().contains(position))
+					if (t == 2){
+						this.map_model.removeNPC(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
+					else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
@@ -360,14 +375,52 @@ public class MapGridController implements ActionListener {
 					this.map_model.setMap_enemy_loc(mapCharacters);
 					this.map_view.setButtonListener(this);
 				}
+				
 
-			} else if (this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR) {
+			}
+			else if (this.map_model.getMap_object_color_type() == Game_constants.FRIENDS) {
+
+				if (validateMapForExisting("Friend", position,t)) {
+					MapCharacter mapCharacters = new MapCharacter();
+					mapCharacters.setX(position.x);
+					mapCharacters.setY(position.y);
+					if(this.map_view.map_dropdown_enemy_friend.getSelectedItem()==  null)
+					{
+						JOptionPane.showOptionDialog(null, "No Character present in dropdown", "Invalid Character",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+						return;
+					}
+					mapCharacters.setCharacter((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					mapCharacters.setCharacterType(MapCharacter.FRIENDLY);
+					
+					if (t == 1){
+						this.map_model.removeNPC(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
+					else if (this.map_model.getMap_walls().contains(position))
+						this.map_model.removeWall(position);
+					else if (this.map_model.getMap_chest().equals(position))
+						this.map_model.removeChest(position);
+					else if (this.map_model.getMap_entry_door().equals(position))
+						this.map_model.removeEntryDoor(position);
+					else if (this.map_model.getMap_exit_door().equals(position))
+						this.map_model.removeExitDoor(position);
+					
+					
+					this.map_model.removeNPCFromComboBox((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					
+					this.map_model.setMap_enemy_loc(mapCharacters);
+					this.map_view.setButtonListener(this);
+				}
+			
+			
+			}else if (this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR) {
 
 				if (validateMapForExisting("Entry Door", position,t)) {
-
-					if (t == 1)
+					
+					if (t == 1 || t == 2)
 					{
-						this.map_model.removeEnemy(mc);
+						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
 					}
 					else if (this.map_model.getMap_chest().equals(position))
@@ -386,9 +439,9 @@ public class MapGridController implements ActionListener {
 
 				if (validateMapForExisting("Exit Door", position,t)) {
 
-					if (t == 1)
+					if (t == 1 || t == 2 )
 					{
-						this.map_model.removeEnemy(mc);
+						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
 					}
 					else if (this.map_model.getMap_chest().equals(position))
@@ -406,9 +459,9 @@ public class MapGridController implements ActionListener {
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.CHEST) {
 
 				if (validateMapForExisting("Chest", position,t)) {
-					if (t == 1)
+					if (t == 1 || t == 2)
 					{
-						this.map_model.removeEnemy(mc);
+						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
 					}
 					else if (this.map_model.getMap_entry_door().equals(position))
@@ -425,9 +478,9 @@ public class MapGridController implements ActionListener {
 			} else if (this.map_model.getMap_object_color_type() == null) {
 				
 
-				if (t == 1) {
+				if (t == 1 || t == 2) {
 					
-					this.map_model.removeEnemy(mc);
+					this.map_model.removeNPC(mc);
 					this.map_model.addNPCToComboBox(npc);
 					this.map_model.callObservers();
 					this.map_view.setButtonListener(this);
@@ -506,6 +559,16 @@ public class MapGridController implements ActionListener {
 			if (check_npc == 1) {
 				int confirm = JOptionPane.showConfirmDialog(this.map_view,
 						"Do you want to replace Enemy with " + object);
+				if (confirm == 0)
+					validate = true;
+				// this.map_model.setErrorMessage("You cannot place
+				// a"+object+"here as chest is already present");
+				else
+					validate = false;
+			}
+			if (check_npc == 2) {
+				int confirm = JOptionPane.showConfirmDialog(this.map_view,
+						"Do you want to replace Friend with " + object);
 				if (confirm == 0)
 					validate = true;
 				// this.map_model.setErrorMessage("You cannot place

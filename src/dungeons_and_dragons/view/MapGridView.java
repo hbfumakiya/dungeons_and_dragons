@@ -142,11 +142,13 @@ public class MapGridView extends JFrame implements Observer {
 	public JRadioButton map_chest;
 	public JRadioButton map_enemy;
 	public JRadioButton map_wall;
+	public JRadioButton map_friend;
 	public JRadioButton map_remove;
 	private JLabel map_entry_color;
 	private JLabel map_exit_color;
 	private JLabel map_chest_color;
 	private JLabel map_enemy_color;
+	private JLabel map_friend_color;
 	private JLabel map_wall_color;
 	public JButton submit;
 	private JLabel empty;
@@ -202,6 +204,10 @@ public class MapGridView extends JFrame implements Observer {
 
 			BufferedImage map_wall_color_image = ImageIO.read(new File("res/grey.jpg"));
 			map_wall_color = new JLabel(new ImageIcon(map_wall_color_image));
+			// map_wall_color.setMaximumSize(new Dimension(10,10));
+			
+			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
+			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
 
 		} catch (IOException e) {
@@ -325,7 +331,10 @@ public class MapGridView extends JFrame implements Observer {
 			BufferedImage map_wall_color_image = ImageIO.read(new File("res/grey.jpg"));
 			map_wall_color = new JLabel(new ImageIcon(map_wall_color_image));
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
-
+			
+			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
+			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
+			// map_wall_color.setMaximumSize(new Dimension(10,10));
 		} catch (IOException e) {
 		}
 
@@ -482,8 +491,11 @@ public class MapGridView extends JFrame implements Observer {
 						MapCharacter c = character.get(x);
 						if(c.getX() == i && c.getY() == j)
 						{
-							
+							if(c.getCharacterType() == MapCharacter.ENEMY)
 							check = 1;
+							else if(c.getCharacterType() == MapCharacter.FRIENDLY)
+							check = 2;
+							
 						}
 					}
 				}
@@ -503,7 +515,14 @@ public class MapGridView extends JFrame implements Observer {
 				}
 				else if(check == 1)
 				{
+					
 					maps[i][j].setBackground(Game_constants.ENEMIES);
+					maps[i][j].setPointValue(2);
+				}
+				else if(check == 2)
+				{
+					
+					maps[i][j].setBackground(Game_constants.FRIENDS);
 					maps[i][j].setPointValue(2);
 				}
 				LeftGridMapPane.add(maps[i][j]);
@@ -524,7 +543,7 @@ public class MapGridView extends JFrame implements Observer {
 		// map embedded inside right info panel
 		JPanel RightInfoListPane = new JPanel();
 
-		RightInfoListPane.setLayout((new GridLayout(8, 2, 5, 5)));
+		RightInfoListPane.setLayout((new GridLayout(9, 2, 5, 5)));
 		RightInfoListPane.setMaximumSize(new Dimension(400, 450));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
@@ -533,6 +552,7 @@ public class MapGridView extends JFrame implements Observer {
 		map_exit_door = new JRadioButton("Exit Door");
 		map_chest = new JRadioButton("Chest");
 		map_enemy = new JRadioButton("Enemy");
+		map_friend = new JRadioButton("Friend");
 		map_wall = new JRadioButton("Wall");
 		map_remove = new JRadioButton("Remove");
 		
@@ -552,6 +572,8 @@ public class MapGridView extends JFrame implements Observer {
 			map_chest.setSelected(true);
 		} else if (color.equals(Game_constants.ENEMIES)) {
 			map_enemy.setSelected(true);
+		} else if (color.equals(Game_constants.FRIENDS)) {
+			map_friend.setSelected(true);
 		} else if (color.equals(Game_constants.WALLS)) {
 			map_wall.setSelected(true);
 		}
@@ -572,6 +594,7 @@ public class MapGridView extends JFrame implements Observer {
 		bg.add(map_exit_door);
 		bg.add(map_chest);
 		bg.add(map_enemy);
+		bg.add(map_friend);
 		bg.add(map_wall);
 		bg.add(map_remove);
 
@@ -583,6 +606,8 @@ public class MapGridView extends JFrame implements Observer {
 		RightInfoListPane.add(map_chest_color);
 		RightInfoListPane.add(map_enemy);
 		RightInfoListPane.add(map_enemy_color);
+		RightInfoListPane.add(map_friend);
+		RightInfoListPane.add(map_friend_color);
 		RightInfoListPane.add(map_wall);
 		RightInfoListPane.add(map_wall_color);
 		RightInfoListPane.add(map_remove);
@@ -669,6 +694,7 @@ public class MapGridView extends JFrame implements Observer {
 		this.map_chest.addActionListener(mapGridController);
 		this.map_wall.addActionListener(mapGridController);
 		this.map_enemy.addActionListener(mapGridController);
+		this.map_friend.addActionListener(mapGridController);
 		this.map_remove.addActionListener(mapGridController);
 	}
 

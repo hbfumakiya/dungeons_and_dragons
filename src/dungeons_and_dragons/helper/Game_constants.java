@@ -34,6 +34,7 @@ public class Game_constants {
 	public static final Color EXIT_DOOR = Color.GREEN;
 	public static final Color WALLS = Color.GRAY;
 	public static final Color ENEMIES = Color.RED;
+	public static final Color FRIENDS = Color.ORANGE;
 	public static final Color CHEST = Color.BLUE;
 
 	/**
