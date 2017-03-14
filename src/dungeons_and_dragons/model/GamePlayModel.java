@@ -1,7 +1,6 @@
 package dungeons_and_dragons.model;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
@@ -32,15 +31,35 @@ public class GamePlayModel extends Observable{
 	private CampaignModel campaignModel;
 	
 	/**
+	 * @return the currentMapIndex
+	 */
+	public int getCurrentMapIndex() {
+		return currentMapIndex;
+	}
+
+	/**
+	 * @param currentMapIndex the currentMapIndex to set
+	 */
+	public void setCurrentMapIndex(int currentMapIndex) {
+		this.currentMapIndex = currentMapIndex;
+	}
+
+
+	/**
 	 * Creates an object of character
 	 */
 	@Expose
 	private CharacterModel characterModel;
 	
+	@Expose
+	private int currentMapIndex;
+	
 	/**
 	 * constructor to initialize map object
 	 */
 	public GamePlayModel(){
+		
+		this.currentMapIndex = 0;
 		
 		/*
 		 * Hard-coded values need to be embedded with Hirangi's code

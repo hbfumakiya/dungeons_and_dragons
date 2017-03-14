@@ -94,7 +94,7 @@ public class NewGameController implements ActionListener {
 
 			this.gamePlayModel.save("res/game.json");
 
-			GamePlayController gamePlayController = new GamePlayController();
+			new GamePlayController(this.gamePlayModel);
 
 			this.newGameView.dispose();
 		}

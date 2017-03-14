@@ -148,8 +148,6 @@ public class NewGameView extends JFrame implements View {
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
 	}
 
 	private void fillCampaigns(JComboBox<CampaignModel> campaignList2) {

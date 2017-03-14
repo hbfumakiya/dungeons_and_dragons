@@ -1,7 +1,6 @@
 package dungeons_and_dragons.controller;
 
-import dungeons_and_dragons.model.CampaignModel;
-import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.view.GamePlayView;
 
@@ -40,10 +39,13 @@ public class GamePlayController {
 		
 		this.gamePlayModel = gamePlayModel;
 		
+		//GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex());
+		
 		this.gamePlayView = new GamePlayView(this.gamePlayModel);
-
-		this.gamePlayModel.addObserver(gamePlayView);
-		this.gamePlayView.setListener(this);
+	
+		//this.gamePlayModel.addObserver(gamePlayView);
+		
+		this.gamePlayView.setVisible(true);
 	}
 	
 	
