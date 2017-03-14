@@ -74,10 +74,11 @@ public class GameController implements ActionListener {
 	 */
 	private void showNewGameWindow() {
 
-		// hide game window
-		// this.setVisible(false);
+				// show game play window
+				new GamePlayController();
 
-		// show new game window....
+				// hide game window
+				gameView.dispose();
 
 	}
 

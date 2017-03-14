@@ -141,7 +141,6 @@ public class ManageCampaignView extends JFrame implements View {
 	 * @param actionListener
 	 * @param Campaign
 	 */
-
 	public void refreshCampaignGrid(ActionListener actionListener, ArrayList<CampaignModel> campaign) {
 		this.gridMainPanel.removeAll();
 

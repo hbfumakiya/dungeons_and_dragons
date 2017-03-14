@@ -43,18 +43,14 @@ public class MapGridController implements ActionListener {
 	 */
 	MapGridView map_view;
 
+	public static int finder = 0;
+
 	/**
 	 * Default constructor of Map Grid controller
 	 * <p>
 	 * MapGrid model and view are initialized Also view is binded to observer.
 	 * <p>
 	 * All the events of view are registered in constructor
-	 */
-
-	public static int finder = 0;
-
-	/**
-	 * Default constructor for mapgrid initialize view and model.
 	 */
 	public MapGridController() {
 		Point p = new Point();
@@ -136,7 +132,9 @@ public class MapGridController implements ActionListener {
 
 					while (mapIterator.hasNext()) {
 
-						Point p = (Point) mapIterator.next();
+						MapCharacter mapCharacter = (MapCharacter) mapIterator.next();
+						Point p = new Point(mapCharacter.getX(),mapCharacter.getY());
+						
 						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 							count++;
 

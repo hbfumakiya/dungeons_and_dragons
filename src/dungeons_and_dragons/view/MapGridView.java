@@ -51,7 +51,7 @@ import dungeons_and_dragons.view.CampaignView.CampaignViewRenderer;
 /**
  * This class is created to show the view for maps
  * 
- * @author Urmil Kansara
+ * @author Urmil Kansara & Tejas Sadrani
  *
  */
 public class MapGridView extends JFrame implements Observer {

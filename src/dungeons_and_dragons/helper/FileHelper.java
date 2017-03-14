@@ -610,7 +610,7 @@ public class FileHelper {
 			campaignFile.createNewFile();
 		}
 
-		// create reader objecr to read data from item file
+		// create reader object to read data from item file
 		Reader reader = new FileReader(CAMPAIGN_FILE);
 
 		// read data from json file convert it into arraylist and return it
