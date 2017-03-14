@@ -3,6 +3,8 @@
  */
 package dungeons_and_dragons.helper;
 
+import com.google.gson.annotations.Expose;
+
 import dungeons_and_dragons.model.ItemModel;
 
 /**
@@ -11,10 +13,13 @@ import dungeons_and_dragons.model.ItemModel;
  */
 public class MapItem {
 	
+	@Expose
 	private int x;
 	
+	@Expose
 	private int y;
 	
+	@Expose
 	private ItemModel item;
 
 	/**

@@ -3,6 +3,8 @@
  */
 package dungeons_and_dragons.helper;
 
+import com.google.gson.annotations.Expose;
+
 import dungeons_and_dragons.model.CharacterModel;
 
 /**
@@ -17,12 +19,16 @@ public class MapCharacter {
 	
 	public static final String ENEMY = "Enemy";
 	
+	@Expose
 	private int x;
 	
+	@Expose
 	private int y;
 	
+	@Expose
 	private CharacterModel character;
 	
+	@Expose
 	private String characterType;
 	
 	/**

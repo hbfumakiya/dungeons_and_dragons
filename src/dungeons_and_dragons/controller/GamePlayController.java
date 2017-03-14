@@ -28,20 +28,6 @@ public class GamePlayController {
 	 * @type MapGridView
 	 */
 	GamePlayView gamePlayView;
-	
-	/**
-	 * This creates new campaign model which is being observed
-	 * 
-	 * @type GameMapModel
-	 */
-	CampaignModel campaignModel;
-	
-	/**
-	 * This create a new character model object which is an observer
-	 * 
-	 * @type MapGridView
-	 */
-	CharacterModel charachterModel;
 
 	/**
 	 * Default constructor of Map Grid controller
@@ -50,13 +36,11 @@ public class GamePlayController {
 	 * <p>
 	 * All the events of view are registered in constructor
 	 */
-	public GamePlayController() {
+	public GamePlayController(GamePlayModel gamePlayModel) {
 		
-		this.gamePlayModel = new GamePlayModel();
-		this.campaignModel = gamePlayModel.getCampaignModel();
-		this.charachterModel = gamePlayModel.getCharacterModel();
+		this.gamePlayModel = gamePlayModel;
 		
-		this.gamePlayView = new GamePlayView(this.campaignModel,this.charachterModel);
+		this.gamePlayView = new GamePlayView(this.gamePlayModel);
 
 		this.gamePlayModel.addObserver(gamePlayView);
 		this.gamePlayView.setListener(this);

@@ -1,9 +1,14 @@
 package dungeons_and_dragons.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.Expose;
+
+import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.LogHelper;
 
 /**
  * Once GamePlayModel gets a change state query request from any view they
@@ -17,16 +22,19 @@ public class GamePlayModel extends Observable{
 	/**
 	 * Sets id to the game play instance
 	 */
+	@Expose
 	private int gamePlayId;
 	
 	/**
 	 * Creates an object of campaign
 	 */
+	@Expose
 	private CampaignModel campaignModel;
 	
 	/**
 	 * Creates an object of character
 	 */
+	@Expose
 	private CharacterModel characterModel;
 	
 	/**
@@ -88,6 +96,19 @@ public class GamePlayModel extends Observable{
 	public void setCharacterModel(CharacterModel characterModel) {
 		this.characterModel = characterModel;
 	}
+
+
+	public void save(String path) {
+		
+		try {
+			FileHelper.saveGame(path, this);
+		} catch (IOException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+		
+	}
+
+
 	
 	
 }

@@ -17,12 +17,15 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import com.google.gson.JsonSyntaxException;
 
+import dungeons_and_dragons.controller.CampaignController;
+import dungeons_and_dragons.controller.CharacterController;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
@@ -224,9 +227,9 @@ public class NewGameView extends JFrame implements View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
-		
+
 		this.playButton.addActionListener(actionListener);
-		
+
 		this.backButton.addActionListener(actionListener);
 
 	}

@@ -25,6 +25,7 @@ import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
+import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
@@ -101,12 +102,10 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
-				.setPrettyPrinting().create();
+		Gson gson = gsonBuilder.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		// String ness = gson.toJson(item);
-		String data = gson.toJsonTree(map_list).getAsJsonArray().toString();
 
-		file_writer.write(data);
+		gson.toJson(map_list, file_writer);
 
 		// close file
 		file_writer.close();
@@ -134,8 +133,7 @@ public class FileHelper {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
-		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
-				.setPrettyPrinting().create();
+		Gson gson = gsonBuilder.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<GameMapModel>>() {
 		}.getType());
 
@@ -678,10 +676,28 @@ public class FileHelper {
 
 	}
 
+	
+	public static void saveGame(String path,GamePlayModel game) throws IOException
+	{		
+		// create writer object for item file
+		Writer file_writer = new FileWriter(path);
+
+		// store object to json
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+
+		gson.toJson(game, file_writer);
+
+		// close file
+		file_writer.close();
+	}
+	
+	
 	/**
 	 * Method to convert point to string
 	 * 
-	 * @author Hirangi
+	 * @author Mihir Pujara
 	 *
 	 */
 	public static class PointAdapter extends TypeAdapter<Point> {
