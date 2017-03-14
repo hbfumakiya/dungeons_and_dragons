@@ -12,6 +12,7 @@ import com.google.gson.annotations.Expose;
 import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapCharacter;
 
 /**
  * This class is created to manage map data,store all the points of map
@@ -91,7 +92,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @type ArrayList
 	 */
 	@Expose
-	private ArrayList<Point> map_enemy_loc;
+	private ArrayList<MapCharacter> map_enemy_loc;
 
 	/**
 	 * Variable for exit wall location in map.
@@ -124,7 +125,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new ArrayList<Point>();
+		this.map_enemy_loc = new ArrayList<MapCharacter>();
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
 		this.map_name = "";
-		this.map_enemy_loc = new ArrayList<Point>();
+		this.map_enemy_loc = new ArrayList<MapCharacter>();
 	}
 
 	/**
@@ -247,7 +248,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @param map_enemy_loc
 	 *            the map_enemy_loc to set
 	 */
-	public void setMap_enemy_loc(ArrayList<Point> map_enemy_loc) {
+	public void setMap_enemy_loc(ArrayList<MapCharacter> map_enemy_loc) {
 		this.map_enemy_loc = map_enemy_loc;
 	}
 
@@ -271,7 +272,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	/**
 	 * @return the map_enemy_loc
 	 */
-	public ArrayList<Point> getMap_enemy_loc() {
+	public ArrayList<MapCharacter> getMap_enemy_loc() {
 		return map_enemy_loc;
 	}
 
@@ -279,13 +280,16 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @param map_enemy_loc
 	 *            the map_enemy_loc to set
 	 */
-	public void setMap_enemy_loc(Point position) {
-		if (!this.map_enemy_loc.contains(position))
-			this.map_enemy_loc.add(position);
+	public void setMap_enemy_loc(MapCharacter pos_char) {
+		if (!this.map_enemy_loc.contains(pos_char))
+			this.map_enemy_loc.add(pos_char);
 		setChanged();
 		notifyObservers(this);
 
 	}
+	
+	
+	
 
 	/**
 	 * @return the map_exit_door
@@ -420,8 +424,8 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @param position
 	 *            point to be removed from arraylist
 	 */
-	public void removeEnemy(Point position) {
-		this.map_enemy_loc.remove(position);
+	public void removeEnemy(MapCharacter character) {
+		this.map_enemy_loc.remove(character);
 	}
 
 	/**
@@ -507,6 +511,41 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 */
 	public int getFinder() {
 		return this.finder;
+	}
+
+	
+	private ArrayList<CharacterModel> input_character_list;
+	private ArrayList<CharacterModel> output_character_list;
+	
+	public void removeNPCFromComboBox(CharacterModel m_char){
+			input_character_list.remove(m_char);
+			setChanged();
+			notifyObservers(this);
+	}
+
+	/**
+	 * @return the input_character_list
+	 */
+	public ArrayList<CharacterModel> getInput_character_list() {
+		return input_character_list;
+	}
+
+	
+
+	/**
+	 * @param input_character_list the input_character_list to set
+	 */
+	public void setInput_character_list(ArrayList<CharacterModel> input_character_list) {
+		this.input_character_list = input_character_list;
+	}
+	
+	public void addNPCToComboBox(CharacterModel mc) {
+		// TODO Auto-generated method stub
+		if(!input_character_list.contains(mc)){
+		input_character_list.add(mc);
+		setChanged();
+		notifyObservers(this);
+		}
 	}
 
 }

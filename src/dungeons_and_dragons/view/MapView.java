@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.GameMapModel;
 
 /**
@@ -237,7 +238,7 @@ public class MapView extends JFrame implements ActionListener {
 	 * @param exitDoor
 	 * @param exitFlag
 	 */
-	private void updateMap(Point width_height, ArrayList<Point> map_walls, ArrayList<Point> character, Point chest,
+	private void updateMap(Point width_height, ArrayList<Point> map_walls, ArrayList<MapCharacter> character, Point chest,
 			Point entryDoor, Point exitDoor, int entryFlag, int exitFlag) {
 		// sub bottom panel consisting of map and info regarding map
 
@@ -368,7 +369,7 @@ public class MapView extends JFrame implements ActionListener {
 
 		Point width_height = map.getMap_size();
 		ArrayList<Point> map_walls = map.getMap_walls();
-		ArrayList<Point> map_character = map.getMap_enemy_loc();
+		ArrayList<MapCharacter> map_character = map.getMap_enemy_loc();
 		Point Chest = map.getMap_chest();
 		Point EntryDoor = map.getMap_entry_door();
 		Point ExitDoor = map.getMap_exit_door();

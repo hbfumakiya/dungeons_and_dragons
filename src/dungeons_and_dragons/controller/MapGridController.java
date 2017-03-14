@@ -3,15 +3,22 @@ package dungeons_and_dragons.controller;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapValidator;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
@@ -60,6 +67,15 @@ public class MapGridController implements ActionListener {
 		this.map_view.setListener(this);
 		finder = 0;
 		this.map_model.setFinder(finder);
+		
+		ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
+		try {
+			m = FileHelper.getCharcters();
+		} catch (JsonSyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.map_model.setInput_character_list(m);
 	}
 
 	/**
@@ -278,12 +294,32 @@ public class MapGridController implements ActionListener {
 			position.x = ((MapButton) e.getSource()).getxPos();
 			position.y = ((MapButton) e.getSource()).getyPos();
 			String mes;
+			
+			ArrayList<MapCharacter> m = new ArrayList<MapCharacter>();
+			m = this.map_model.getMap_enemy_loc();
+			CharacterModel npc = new CharacterModel();
+			MapCharacter mc = new MapCharacter();
+			int t = 0;
+			for(int x =0;x<m.size();x++)
+			{
+				if(m.get(x).getX() == position.x && m.get(x).getY() == position.y)
+				{
+					t = 1;
+					npc = m.get(x).getCharacter();
+					mc = m.get(x);
+				}
+			}
+			
+			
 
 			if (this.map_model.getMap_object_color_type() == Game_constants.WALLS) {
 
-				if (validateMapForExisting("wall", position)) {
-					if (this.map_model.getMap_enemy_loc().contains(position))
-						this.map_model.removeEnemy(position);
+				if (validateMapForExisting("wall", position,t)) {
+					if (t == 1){
+						this.map_model.removeEnemy(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
+					
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
 					else if (this.map_model.getMap_entry_door().equals(position))
@@ -297,8 +333,20 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.ENEMIES) {
 
-				if (validateMapForExisting("Enemy", position)) {
-
+				if (validateMapForExisting("Enemy", position,t)) {
+					MapCharacter mapCharacters = new MapCharacter();
+					mapCharacters.setX(position.x);
+					mapCharacters.setY(position.y);
+					if(this.map_view.map_dropdown_enemy_friend.getSelectedItem()==  null)
+					{
+						JOptionPane.showOptionDialog(null, "No Character present in dropdown", "Invalid Character",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+						return;
+					}
+					mapCharacters.setCharacter((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					mapCharacters.setCharacterType(MapCharacter.ENEMY);
+					
+					
 					if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
 					else if (this.map_model.getMap_chest().equals(position))
@@ -307,17 +355,23 @@ public class MapGridController implements ActionListener {
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
-
-					this.map_model.setMap_enemy_loc(position);
+					
+					
+					this.map_model.removeNPCFromComboBox((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					
+					this.map_model.setMap_enemy_loc(mapCharacters);
 					this.map_view.setButtonListener(this);
 				}
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR) {
 
-				if (validateMapForExisting("Entry Door", position)) {
+				if (validateMapForExisting("Entry Door", position,t)) {
 
-					if (this.map_model.getMap_enemy_loc().contains(position))
-						this.map_model.removeEnemy(position);
+					if (t == 1)
+					{
+						this.map_model.removeEnemy(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
 					else if (this.map_model.getMap_walls().contains(position))
@@ -332,10 +386,13 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR) {
 
-				if (validateMapForExisting("Exit Door", position)) {
+				if (validateMapForExisting("Exit Door", position,t)) {
 
-					if (this.map_model.getMap_enemy_loc().contains(position))
-						this.map_model.removeEnemy(position);
+					if (t == 1)
+					{
+						this.map_model.removeEnemy(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
 					else if (this.map_model.getMap_chest().equals(position))
 						this.map_model.removeChest(position);
 					else if (this.map_model.getMap_walls().contains(position))
@@ -350,9 +407,12 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.CHEST) {
 
-				if (validateMapForExisting("Chest", position)) {
-					if (this.map_model.getMap_enemy_loc().contains(position))
-						this.map_model.removeEnemy(position);
+				if (validateMapForExisting("Chest", position,t)) {
+					if (t == 1)
+					{
+						this.map_model.removeEnemy(mc);
+						this.map_model.addNPCToComboBox(npc);
+					}
 					else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_walls().contains(position))
@@ -365,9 +425,12 @@ public class MapGridController implements ActionListener {
 				}
 
 			} else if (this.map_model.getMap_object_color_type() == null) {
+				
 
-				if (this.map_model.getMap_enemy_loc().contains(position)) {
-					this.map_model.removeEnemy(position);
+				if (t == 1) {
+					
+					this.map_model.removeEnemy(mc);
+					this.map_model.addNPCToComboBox(npc);
 					this.map_model.callObservers();
 					this.map_view.setButtonListener(this);
 				} else if (this.map_model.getMap_chest().equals(position)) {
@@ -402,7 +465,7 @@ public class MapGridController implements ActionListener {
 	 * @param position position of object
 	 * @return String
 	 */
-	private boolean validateMapForExisting(String object, Point position) {
+	private boolean validateMapForExisting(String object, Point position,int check_npc) {
 
 		boolean validate = true;
 		if (this.map_model.getMap_chest().equals(position)) {
@@ -442,7 +505,7 @@ public class MapGridController implements ActionListener {
 				else
 					validate = false;
 			}
-			if (this.map_model.getMap_enemy_loc().contains(position)) {
+			if (check_npc == 1) {
 				int confirm = JOptionPane.showConfirmDialog(this.map_view,
 						"Do you want to replace Enemy with " + object);
 				if (confirm == 0)
