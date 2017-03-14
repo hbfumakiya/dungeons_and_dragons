@@ -418,6 +418,14 @@ public class MapGridController implements ActionListener {
 
 				if (validateMapForExisting("Entry Door", position,t)) {
 					
+					if (!((position.x == 0 && position.y != 0) || (position.x != 0 && position.y == 0)
+							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y != this.map_model.getMap_size().getY() - 1)
+							|| (position.x != this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1)
+							|| (position.x == 0 && position.y == 0)
+							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1))) {
+						return;
+					}
+					
 					if (t == 1 || t == 2)
 					{
 						this.map_model.removeNPC(mc);
@@ -438,7 +446,15 @@ public class MapGridController implements ActionListener {
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR) {
 
 				if (validateMapForExisting("Exit Door", position,t)) {
-
+					
+					if (!((position.x == 0 && position.y != 0) || (position.x != 0 && position.y == 0)
+							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y != this.map_model.getMap_size().getY() - 1)
+							|| (position.x != this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1)
+							|| (position.x == 0 && position.y == 0)
+							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1))) {
+						return;
+					}
+					
 					if (t == 1 || t == 2 )
 					{
 						this.map_model.removeNPC(mc);
