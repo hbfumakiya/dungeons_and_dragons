@@ -8,6 +8,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +29,7 @@ import dungeons_and_dragons.model.ItemModel;
  * @author Mihir Pujara
  *
  */
-public class CharacterInventoryView extends JFrame implements View {
+public class CharacterInventoryView extends JFrame implements View,Observer {
 
 	private JPanel panel;
 
@@ -464,5 +466,13 @@ public class CharacterInventoryView extends JFrame implements View {
 		this.moveFromBackToItem.addActionListener(actionListener);
 
 		this.okButton.addActionListener(actionListener);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
+		showDetails((CharacterModel) o);
+		updateList((CharacterModel) o);
+		
 	}
 }
