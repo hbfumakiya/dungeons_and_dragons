@@ -846,5 +846,100 @@
       }
     ],
     "map_exit_door": "2,4"
+  },
+  {
+    "map_id": 6,
+    "map_name": "hello",
+    "map_size": "7,7",
+    "map_chest": {
+      "x": -1,
+      "y": -1
+    },
+    "map_walls": [
+      "2,6",
+      "3,6"
+    ],
+    "map_entry_door": "0,6",
+    "map_enemy_loc": [
+      {
+        "x": 3,
+        "y": 5,
+        "character": {
+          "character_id": 1,
+          "character_name": "Character5",
+          "strength": 0,
+          "items": [
+            {
+              "item_id": 3,
+              "item_name": "Armor",
+              "item_point": 5,
+              "item_type": "Armor",
+              "item_ability": "Armor class"
+            },
+            {
+              "item_id": 2,
+              "item_name": "Helmet2",
+              "item_point": 5,
+              "item_type": "Helmet",
+              "item_ability": "Wisdom"
+            },
+            {
+              "item_id": 4,
+              "item_name": "Shield",
+              "item_point": 4,
+              "item_type": "Shield",
+              "item_ability": "Armor class"
+            }
+          ],
+          "backPackItems": [
+            {
+              "item_id": 6,
+              "item_name": "Ring2",
+              "item_point": 3,
+              "item_type": "Ring",
+              "item_ability": "Constitution"
+            },
+            {
+              "item_id": 8,
+              "item_name": "Range",
+              "item_point": 5,
+              "item_type": "Weapon Range",
+              "item_ability": "Attack bonus"
+            }
+          ],
+          "character_level": 1,
+          "abilityScores": {
+            "strength": 10,
+            "dexterity": 11,
+            "constitution": 11,
+            "intelligence": 11,
+            "wisdom": 18,
+            "charisma": 16
+          },
+          "rawAbilityScores": {
+            "strength": 10,
+            "dexterity": 11,
+            "constitution": 11,
+            "intelligence": 10,
+            "wisdom": 13,
+            "charisma": 16
+          },
+          "modifiers": {
+            "strength": 0,
+            "dexterity": 0,
+            "constitution": 0,
+            "intelligence": 0,
+            "wisdom": 4,
+            "charisma": 3
+          },
+          "hitpoints": 10,
+          "attackBonus": 1,
+          "damageBonus": 3,
+          "armorClass": 19
+        },
+        "characterType": "Enemy"
+      }
+    ],
+    "map_exit_door": "1,6"
   }
 ]

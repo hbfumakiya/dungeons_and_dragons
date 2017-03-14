@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,7 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dungeons_and_dragons.helper.GameLabel;
+import dungeons_and_dragons.controller.GamePlayController;
+import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 
@@ -69,7 +73,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		Container contentPane = getContentPane();
 		contentPane.add(this.mapPanel);
 		contentPane.add(this.infoPanel);
-		
+
 		// set minimum size of frame
 		this.setMinimumSize(new Dimension(1000, 700));
 
@@ -84,63 +88,28 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		int x = (int) currentMap.getMap_size().getX();
 		int y = (int) currentMap.getMap_size().getY();
-		
-		
-		panel.setLayout(new GridLayout(x,y));
 
-		GameLabel[][] grid = new GameLabel[x][y];
+		panel.setLayout(new GridLayout(x, y));
+
+		MapButton[][] maps = new MapButton[x][y];
+
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				grid[i][j] = new  GameLabel();
-				grid[i][j].setOpaque(true);
-				grid[i][j].setxPosition(i);
-				grid[i][j].setyPosition(j);
-				grid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-				panel.add(grid[i][j]);
-				showEntryDoor(i,j,grid[i][j]);
-				showExitDoor(i,j,grid[i][j]);
-				showChest(i,j,grid[i][j]);
-				showEnemy(i,j,grid[i][j]);
-				showPlayer(i,j,grid[i][j]);
-				showFriendlyPlayer(i,j,grid[i][j]);
-				showWall(i,j,grid[i][j]);
+				maps[i][j] = new MapButton();
+				maps[i][j].setPointValue(1);
+				maps[i][j].setxPos(i);
+				maps[i][j].setyPos(j);
+				Point p = new Point();
+				p.x = i;
+				p.y = j;
+				panel.add(maps[i][j]);
+
+				if (currentMap.getMap_walls().contains(p)) {
+					maps[i][j].setBackground(Game_constants.WALLS);
+				}
+				panel.add(maps[i][j]);
 			}
 		}
-	}
-
-	private void showWall(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showFriendlyPlayer(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showPlayer(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showEnemy(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showChest(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showExitDoor(int i, int j, GameLabel label) {
-		//label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.RED));
-		
-	}
-
-	private void showEntryDoor(int i, int j, GameLabel label) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -151,7 +120,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
+	}
 
+	public void setListener(GamePlayController gamePlayController) {
+		this.addKeyListener(gamePlayController);
 	}
 
 }
