@@ -38,9 +38,9 @@ public class GamePlayModel extends Observable{
 		 * Hard-coded values need to be embedded with Hirangi's code
 		 */
 		try {
-			this.campaignModel = new CampaignModel().getData().get(0);
-			this.characterModel = new CharacterModel().getData().get(0);
-		} catch (JsonSyntaxException | IOException e) {
+			//this.campaignModel = new CampaignModel().getData().get(0);
+			//this.characterModel = new CharacterModel().getData().get(0);
+		} catch (JsonSyntaxException e) {
 			//need to be changed
 			e.printStackTrace();
 		}
