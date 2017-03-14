@@ -526,9 +526,9 @@ public class MapGridView extends JFrame implements Observer {
 						MapCharacter c = character.get(x);
 						if(c.getX() == i && c.getY() == j)
 						{
-							if(c.getCharacterType() == MapCharacter.ENEMY)
+							if(c.getCharacterType().equals(MapCharacter.ENEMY))
 							check = 1;
-							else if(c.getCharacterType() == MapCharacter.FRIENDLY)
+							else if(c.getCharacterType().equals(MapCharacter.FRIENDLY))
 							check = 2;
 							
 						}
@@ -618,7 +618,7 @@ public class MapGridView extends JFrame implements Observer {
         map_char = new ArrayList<CharacterModel>();
         map_char = forComboBoxNPC;
         map_view_renderer = new MapViewRenderer();
-        
+       
         map_char_array = map_char.toArray();
 		map_dropdown_enemy_friend = new JComboBox(map_char_array);
 

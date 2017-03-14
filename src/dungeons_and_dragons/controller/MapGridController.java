@@ -99,6 +99,78 @@ public class MapGridController implements ActionListener {
 		p.x = 5;
 		p.y = 5;
 		this.map_model = map;
+		ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
+		try {
+			m = FileHelper.getCharcters();
+			
+		} catch (JsonSyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//to check whether character is present in map or not if present then remove it from character file list.
+		ArrayList<CharacterModel> cm =new ArrayList<CharacterModel>();
+		ArrayList<CharacterModel> rm = new ArrayList<CharacterModel>();
+		
+		for(int i = 0; i<this.map_model.getMap_enemy_loc().size();i++){
+			CharacterModel char_m = this.map_model.getMap_enemy_loc().get(i).getCharacter();
+			for(int j = 0;j<m.size();j++)
+			{
+				
+			if(char_m.getCharacter_id() == m.get(j).getCharacter_id()){
+				if(!rm.contains(m.get(j)))
+				{
+					rm.add(m.get(j));
+				}
+			}
+			else
+				if(!cm.contains(m.get(j)))
+				cm.add(m.get(j));
+			}
+			
+//			this.map_model.removeNPCFromComboBox(char_m);
+		}
+		
+		cm.removeAll(rm);
+		this.map_model.setInput_character_list(cm);
+		
+		
+		
+		ArrayList<ItemModel> im = new ArrayList<ItemModel>();
+		try {
+			im = FileHelper.getItems();
+		} catch (JsonSyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//list to check if items are present in map if there then remove it from dropdown.
+		ArrayList<ItemModel> check_items  = new ArrayList<ItemModel>();
+		for(int i = 0;i<1;i++)
+		{
+			
+			ItemModel item = this.map_model.getMap_chest().getItem();
+			
+			for(int j = 0;j<im.size();j++){
+				if(item!=null && item.getItem_id() == im.get(j).getItem_id()){
+					
+				}
+				else
+				{
+					if(!check_items.contains(im.get(j)))
+					{
+						check_items.add(im.get(j));
+					}
+				}
+					
+			}
+			
+			
+		}
+			//ItemModel item_m = this.map_model.getMap_chest().getItem();
+			//if (map.getMap_enemy_loc().get(i).getCharacterType() == MapCharacter.ENEMY)
+			//if(item_m != null)
+			//im.remove(check_items);
+		
+		this.map_model.setInput_item_list(check_items);
 		this.map_view = new MapGridView(map);
 
 		this.map_model.addObserver(map_view);
@@ -109,6 +181,8 @@ public class MapGridController implements ActionListener {
 
 		finder = 1;
 		this.map_model.setFinder(finder);
+		
+		
 	}
 
 	/**
@@ -326,11 +400,11 @@ public class MapGridController implements ActionListener {
 			{
 				if(m.get(x).getX() == position.x && m.get(x).getY() == position.y)
 				{
-					if(m.get(x).getCharacterType() == MapCharacter.ENEMY)
+					if(m.get(x).getCharacterType().equals(MapCharacter.ENEMY))
 					{
 						t = 1;
 					}
-					else if(m.get(x).getCharacterType() == MapCharacter.FRIENDLY)
+					else if(m.get(x).getCharacterType().equals(MapCharacter.FRIENDLY))
 					{
 						t = 2;
 					}
@@ -541,6 +615,8 @@ public class MapGridController implements ActionListener {
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
 					
+					if(this.map_model.getMap_chest().getItem()!=null)
+					this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 					this.map_model.removeItemFromComboBox(chest.getItem());
 					this.map_model.setMap_chest(chest);
 					this.map_view.setButtonListener(this);
@@ -556,6 +632,7 @@ public class MapGridController implements ActionListener {
 					this.map_model.callObservers();
 					this.map_view.setButtonListener(this);
 				} else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) {
+					
 					this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 					this.map_model.removeChest(position);
 					this.map_model.callObservers();
