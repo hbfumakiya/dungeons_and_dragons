@@ -367,6 +367,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.rawAbilityScores.setDexterity(this.abilityScores.getDexterity());
 		this.rawAbilityScores.setIntelligence(this.abilityScores.getIntelligence());
 		this.rawAbilityScores.setWisdom(this.abilityScores.getWisdom());
+		
+		setChanged();
+		
+		notifyObservers();
 
 	}
 
@@ -446,6 +450,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers.setIntelligence(getModifiersFromScore(this.abilityScores.getIntelligence()));
 		this.modifiers.setWisdom(getModifiersFromScore(this.abilityScores.getWisdom()));
 		this.modifiers.setCharisma(getModifiersFromScore(this.abilityScores.getCharisma()));
+		
+		setChanged();
+		
+		notifyObservers();
 
 	}
 
@@ -468,6 +476,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.hitpoints = hitPoints;
+		
+		setChanged();
+		
+		notifyObservers();
 	}
 
 	/**
@@ -516,6 +528,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			}
 		}
 		this.armorClass = armorClass;
+		
+		setChanged();
+		
+		notifyObservers();
 	}
 
 	/**
@@ -546,6 +562,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.attackBonus = attackBonus;
+		
+		
+		setChanged();
+		
+		notifyObservers();
 	}
 
 	/**
@@ -573,6 +594,10 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.damageBonus = damageBonus;
+		
+		setChanged();
+		
+		notifyObservers();
 
 	}
 
