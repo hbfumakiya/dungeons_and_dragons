@@ -74,11 +74,11 @@ public class GameController implements ActionListener {
 	 */
 	private void showNewGameWindow() {
 
-				// show game play window
-				new GamePlayController();
+		// show new game window
+		new NewGameController();
 
-				// hide game window
-				gameView.dispose();
+		// hide game window
+		this.gameView.dispose();
 
 	}
 
@@ -103,7 +103,7 @@ public class GameController implements ActionListener {
 		new CreateGameController();
 
 		// hide game window
-		gameView.dispose();
+		this.gameView.dispose();
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class GameController implements ActionListener {
 	 */
 	private void exitGame() {
 
-		gameView.dispose();
+		this.gameView.dispose();
 	}
 
 	public static void main(String[] args) {
