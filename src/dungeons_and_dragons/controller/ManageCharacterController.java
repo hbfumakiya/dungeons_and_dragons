@@ -45,6 +45,7 @@ public class ManageCharacterController implements ActionListener {
 			manageCharacterView.setVisible(true);
 
 			manageCharacterView.setActionListener(this);
+			
 
 		} catch (JsonSyntaxException | IOException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
@@ -78,6 +79,7 @@ public class ManageCharacterController implements ActionListener {
 
 			if (character != null) {
 				new CharacterInventoryController(character);
+			
 			}
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();

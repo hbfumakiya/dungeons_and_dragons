@@ -1,18 +1,14 @@
 package dungeons_and_dragons.view;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dungeons_and_dragons.controller.GamePlayController;
@@ -42,6 +38,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JPanel mapPanel;
 
 	public JPanel infoPanel;
+	Container contentPane;
 
 	public GamePlayView(GamePlayModel gamePlayModel) {
 
@@ -51,7 +48,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		// initialize game window
 		this.initializeWindow();
-
+		
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -70,7 +67,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.infoPanel = new JPanel();
 		this.infoPanel.setBounds(710, 50, 285, 445);
 
-		Container contentPane = getContentPane();
+		contentPane = getContentPane();
 		contentPane.add(this.mapPanel);
 		contentPane.add(this.infoPanel);
 
@@ -84,12 +81,11 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.setLocationRelativeTo(null);
 	}
 
-	private void showMap(GameMapModel currentMap, JPanel panel) {
-
+	private void showMap(GameMapModel currentMap, JPanel mapPanel) {
 		int x = (int) currentMap.getMap_size().getX();
 		int y = (int) currentMap.getMap_size().getY();
 
-		panel.setLayout(new GridLayout(x, y));
+		mapPanel.setLayout(new GridLayout(x, y));
 
 		MapButton[][] maps = new MapButton[x][y];
 
@@ -99,17 +95,22 @@ public class GamePlayView extends JFrame implements Observer, View {
 				maps[i][j].setPointValue(1);
 				maps[i][j].setxPos(i);
 				maps[i][j].setyPos(j);
-				Point p = new Point();
-				p.x = i;
-				p.y = j;
-				panel.add(maps[i][j]);
-
-				if (currentMap.getMap_walls().contains(p)) {
-					maps[i][j].setBackground(Game_constants.WALLS);
-				}
-				panel.add(maps[i][j]);
+				
+				maps[i][j].setFocusable(false);
+				showWalls(i,j, maps[i][j]);
+				
+				mapPanel.add(maps[i][j]);
 			}
+		}		
+	}
+
+	public void showWalls(int i, int j, MapButton mapButton) {
+		
+		/*if() {
+			
 		}
+		*/
+		
 	}
 
 	@Override
@@ -118,12 +119,14 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	}
 
-	@Override
-	public void setActionListener(ActionListener actionListener) {
-	}
-
 	public void setListener(GamePlayController gamePlayController) {
 		this.addKeyListener(gamePlayController);
+	}
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

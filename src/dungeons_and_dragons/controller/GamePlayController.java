@@ -3,7 +3,6 @@ package dungeons_and_dragons.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.view.GamePlayView;
 
@@ -14,7 +13,7 @@ import dungeons_and_dragons.view.GamePlayView;
  * 
  * @author Tejas Sadrani & Urmil Kansara
  */
-public class GamePlayController implements KeyListener {
+public class GamePlayController implements KeyListener{
 
 	
 	/**
@@ -47,9 +46,9 @@ public class GamePlayController implements KeyListener {
 		this.gamePlayView = new GamePlayView(this.gamePlayModel);
 	
 		//this.gamePlayModel.addObserver(gamePlayView);
-		
-		this.gamePlayView.setVisible(true);
+
 		this.gamePlayView.setListener(this);
+		this.gamePlayView.setVisible(true);
 	}
 
 	@Override
@@ -77,13 +76,14 @@ public class GamePlayController implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("heeyyy sup");
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("heeyyy superb");
 	}
 	
 	

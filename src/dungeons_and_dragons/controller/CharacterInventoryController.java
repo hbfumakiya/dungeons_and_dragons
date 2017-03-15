@@ -47,6 +47,8 @@ public class CharacterInventoryController implements ActionListener {
 		characterInventoryView.setActionListener(this);
 
 		characterInventoryView.setVisible(true);
+		
+		this.character.addObserver(this.characterInventoryView);
 	}
 
 	/**
