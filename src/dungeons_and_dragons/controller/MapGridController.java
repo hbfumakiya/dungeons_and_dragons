@@ -276,13 +276,21 @@ public class MapGridController implements ActionListener {
 					// ArrayList test = new ArrayList();
 					Set mapSet = new HashSet(this.map_model.getMap_enemy_loc());
 					Iterator mapIterator = mapSet.iterator();
+					int enemyCounter = 0;
 					while (mapIterator.hasNext()) {
-						Point p = (Point) mapIterator.next();
-						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
-							count++;
+						MapCharacter mapCharacter = (MapCharacter) mapIterator.next();
+						
+						if(mapCharacter.getCharacterType().equals(MapCharacter.ENEMY))
+						{
+							enemyCounter++;
+							Point p = new Point(mapCharacter.getX(),mapCharacter.getY());
+							if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
+								count++;
+							}
 						}
+						
 					}
-					if (count == this.map_model.getMap_enemy_loc().size() && count > 0) {
+					if (count == enemyCounter && count > 0) {
 
 						this.map_model.setMap_name(this.map_view.map_name_textfield.getText());
 						this.map_model.update();

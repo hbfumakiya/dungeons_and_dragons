@@ -559,7 +559,7 @@ public class MapGridView extends JFrame implements Observer {
 				{
 					
 					maps[i][j].setBackground(Game_constants.FRIENDS);
-					maps[i][j].setPointValue(2);
+					//maps[i][j].setPointValue(99);
 				}
 				LeftGridMapPane.add(maps[i][j]);
 			}
