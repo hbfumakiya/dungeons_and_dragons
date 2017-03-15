@@ -207,6 +207,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 	 */
 	public void displayPlayer(MapButton mapButton) {
 		mapButton.setText("P");
+		mapButton.setCharacterType(MapButton.PLAYER);
+		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
+		mapButton.addActionListener(this.gamePlayController);
 		//mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
 	
@@ -309,6 +312,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 		
 		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel)obs).getGameCharacterPosition().y]);
 		eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
+		maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
+		maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+		
 		
 	}
 

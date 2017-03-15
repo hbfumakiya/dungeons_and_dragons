@@ -14,6 +14,7 @@ import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
@@ -82,19 +83,34 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			character.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level());
 			ArrayList<ItemModel> items = character.getItems();
 			for (int j = 0; j < items.size(); j++) {
-				//getItemScoreByLevel()
+				items.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
 			}
-			
+
 			ArrayList<ItemModel> backPackItems = character.getBackPackItems();
 			for (int j = 0; j < backPackItems.size(); j++) {
-
+				backPackItems.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
 			}
-
+			character.calculateModifires();
+			character.calculateArmorClass();
+			character.calculateAttackBonus(character.getCharacter_level());
+			character.calculateHitPoints(character.getCharacter_level());
+			character.calculateDamageBonus();
 		}
 	}
-	
+
 	private int getItemScoreByLevel(int level) {
-		return 0;
+		if (level >= 1 && level <= 4) {
+			return 1;
+		} else if (level >= 5 && level <= 8) {
+			return 2;
+		} else if (level >= 9 && level <= 12) {
+			return 3;
+		} else if (level >= 13 && level <= 16) {
+			return 4;
+		} else if (level >= 17) {
+			return 5;
+		}
+		return 1;
 	}
 
 	@Override
@@ -152,6 +168,17 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				updatePostion(tempPoint, oldPoint);
 
 			} else if (this.gamePlayView.showChest(tempPoint)) {
+
+				GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+						.get(this.gamePlayModel.getCurrentMapIndex());
+
+				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
+					ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
+					if (backPackItems.size() < 10) {
+						backPackItems.add(map.getMap_chest().getItem());
+						this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
+					}
+				}
 
 				updatePostion(tempPoint, oldPoint);
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);

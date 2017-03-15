@@ -161,6 +161,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setItems(ArrayList<ItemModel> items) {
 		this.items = items;
+		
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -176,6 +179,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setBackPackItems(ArrayList<ItemModel> backPackItems) {
 		this.backPackItems = backPackItems;
+		
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -191,6 +197,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setCharacter_level(int character_level) {
 		this.character_level = character_level;
+		
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
