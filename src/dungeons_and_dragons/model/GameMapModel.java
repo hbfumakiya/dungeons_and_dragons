@@ -13,6 +13,7 @@ import dungeons_and_dragons.exception.NotFoundException;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.helper.MapItem;
 
 /**
  * This class is created to manage map data,store all the points of map
@@ -68,7 +69,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @type Point
 	 */
 	@Expose
-	private Point map_chest;
+	private MapItem map_chest;
 
 	/**
 	 * Variable for walls and their locations stored in an array.
@@ -120,7 +121,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	public GameMapModel(int width, int height) {
 		this.map_size.setLocation(width, height);
 		this.map_walls = new ArrayList<Point>();
-		this.map_chest = new Point(-1, -1);
+		this.map_chest = new MapItem();
 		this.map_entry_door = new Point(-1, -1);
 		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
@@ -134,7 +135,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	public GameMapModel() {
 		this.map_size.setLocation(5, 5);
 		this.map_walls = new ArrayList<Point>();
-		this.map_chest = new Point(-1, -1);
+		this.map_chest = new MapItem();
 		this.map_entry_door = new Point(-1, -1);
 		this.map_exit_door = new Point(-1, -1);
 		this.map_id = 0;
@@ -192,7 +193,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	/**
 	 * @return the map_chest
 	 */
-	public Point getMap_chest() {
+	public MapItem getMap_chest() {
 		return map_chest;
 	}
 
@@ -202,7 +203,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @param map_chest
 	 *            the map_chest to set
 	 */
-	public void setMap_chest(Point map_chest) {
+	public void setMap_chest(MapItem map_chest) {
 		this.map_chest = map_chest;
 		setChanged();
 		notifyObservers(this);
@@ -436,7 +437,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 *            point to be removed for chest
 	 */
 	public void removeChest(Point position) {
-		this.map_chest = new Point(-1, -1);
+		this.map_chest = new MapItem();
 	}
 
 	/**
@@ -483,7 +484,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 */
 	public void resetAll() {
 		this.map_walls.removeAll(map_walls);
-		this.map_chest.setLocation(-1, -1);
+		this.map_chest = new MapItem();
 		this.map_entry_door.setLocation(-1, -1);
 		this.map_exit_door.setLocation(-1, -1);
 		// this.map_id = 0;
@@ -515,7 +516,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 
 	
 	private ArrayList<CharacterModel> input_character_list;
-	private ArrayList<CharacterModel> output_character_list;
+	
 	
 	public void removeNPCFromComboBox(CharacterModel m_char){
 			input_character_list.remove(m_char);
@@ -547,5 +548,38 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		notifyObservers(this);
 		}
 	}
+	
+	private ArrayList<ItemModel> input_item_list;
+	
+	public void removeItemFromComboBox(ItemModel m_item){
+		input_item_list.remove(m_item);
+		setChanged();
+		notifyObservers(this);
+}
+
+/**
+ * @return the input_item_list
+ */
+public ArrayList<ItemModel> getInput_item_list() {
+	return input_item_list;
+}
+
+
+
+/**
+ * @param input_item_list the input_item_list to set
+ */
+public void setInput_item_list(ArrayList<ItemModel> input_item_list) {
+	this.input_item_list = input_item_list;
+}
+
+public void addItemToComboBox(ItemModel mc) {
+	// TODO Auto-generated method stub
+	if(!input_item_list.contains(mc)){
+	input_item_list.add(mc);
+	setChanged();
+	notifyObservers(this);
+	}
+}
 
 }

@@ -44,8 +44,10 @@ import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CampaignView.CampaignViewRenderer;
 
 /**
@@ -153,18 +155,29 @@ public class MapGridView extends JFrame implements Observer {
 	public JButton submit;
 	private JLabel empty;
 	private JLabel map_enemy_friend;
+	private JLabel map_item_label;
 	
 	public JComboBox map_dropdown_enemy_friend;
+	public JComboBox map_dropdown_item;
 
 	private int index = 0;
 	
 	private ArrayList<CharacterModel> map_char;
+	
+	private ArrayList<ItemModel> map_item;
 	/**
-	 * this variable used to generate an object array for campaign arrays
+	 * this variable used to generate an object array for Character arrays
 	 * 
 	 * @type Object[]
 	 */
 	private Object[] map_char_array;
+	
+	/**
+	 * this variable used to generate an object array for Item arrays
+	 * 
+	 * @type Object[]
+	 */
+	private Object[] map_item_array;
 
 	private GameMapModel model;
 
@@ -174,6 +187,7 @@ public class MapGridView extends JFrame implements Observer {
 	 * @type MapViewRenderer
 	 */
 	private MapViewRenderer map_view_renderer;
+	private MapViewItemRenderer map_view_item_renderer;
 	private static int check = 0;
 
 	/**
@@ -243,7 +257,7 @@ public class MapGridView extends JFrame implements Observer {
 		// item_score = new JLabel("Point");
 		
         map_char = new ArrayList<CharacterModel>();
-        
+      
         try {
 			map_char = FileHelper.getCharcters();
 		} catch (JsonSyntaxException | IOException e) {
@@ -252,13 +266,33 @@ public class MapGridView extends JFrame implements Observer {
 		}
         map_view_renderer = new MapViewRenderer();
         
+        
         map_char_array = map_char.toArray();
 		map_dropdown_enemy_friend = new JComboBox(map_char_array);
 
 		if (map_char_array.length > 0) {
 			map_dropdown_enemy_friend.setRenderer(map_view_renderer);
 		}
+		
 
+		 map_item = new ArrayList<ItemModel>(); 
+		 try {
+			map_item = FileHelper.getItems();
+		} catch (JsonSyntaxException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		map_view_item_renderer = new MapViewItemRenderer();
+        
+        
+        map_item_array = map_item.toArray();
+		map_dropdown_item = new JComboBox(map_item_array);
+
+		if (map_item_array.length > 0) {
+			map_dropdown_item.setRenderer(map_view_item_renderer);
+		}
+		
 		// Initializing label text field,dropdown of map height and width
 		map_name_textfield = new JTextField(10);
 		map_height_textfield = new JTextField(2);
@@ -424,7 +458,8 @@ public class MapGridView extends JFrame implements Observer {
 		ArrayList<Point> map_walls = map.getMap_walls();
 		ArrayList<MapCharacter> map_character = map.getMap_enemy_loc();
 		ArrayList<CharacterModel> forComboBoxNPC = map.getInput_character_list();
-		Point Chest = map.getMap_chest();
+		ArrayList<ItemModel> forComboBoxItem = map.getInput_item_list();
+		MapItem Chest = map.getMap_chest();
 		Point EntryDoor = map.getMap_entry_door();
 		Point ExitDoor = map.getMap_exit_door();
 		this.model = map;
@@ -432,7 +467,7 @@ public class MapGridView extends JFrame implements Observer {
 		int exitFlag = 1;// map.exitFlag;
 
 		check = 1;
-		updateMap(width_height, map_walls, map_character, Chest, EntryDoor, ExitDoor, entryFlag, exitFlag, 1,forComboBoxNPC);
+		updateMap(width_height, map_walls, map_character, Chest, EntryDoor, ExitDoor, entryFlag, exitFlag, 1,forComboBoxNPC,forComboBoxItem);
 
 	}
 
@@ -447,8 +482,8 @@ public class MapGridView extends JFrame implements Observer {
 	 * @param exitDoor
 	 * @param exitFlag
 	 */
-	private void updateMap(Point width_height, ArrayList<Point> map_walls, ArrayList<MapCharacter> character, Point chest,
-			Point entryDoor, Point exitDoor, int entryFlag, int exitFlag, int t,ArrayList<CharacterModel> forComboBoxNPC) {
+	private void updateMap(Point width_height, ArrayList<Point> map_walls, ArrayList<MapCharacter> character, MapItem chest,
+			Point entryDoor, Point exitDoor, int entryFlag, int exitFlag, int t,ArrayList<CharacterModel> forComboBoxNPC,ArrayList<ItemModel> forComboBoxItem) {
 		// sub bottom panel consisting of map and info regarding map
 
 		main_panel.remove(sub_bottom_panel);
@@ -499,6 +534,7 @@ public class MapGridView extends JFrame implements Observer {
 						}
 					}
 				}
+				
 
 				if (map_walls != null && map_walls.contains(p)) {
 					maps[i][j].setBackground(Game_constants.WALLS);
@@ -506,7 +542,7 @@ public class MapGridView extends JFrame implements Observer {
 				} 
 					
 					
-			    else if (chest != null && chest.equals(p)) {
+			    else if (chest != null && chest.getX() == p.x && chest.getY() == p.y) {
 					maps[i][j].setBackground(Game_constants.CHEST);
 				} else if (entryFlag == 1 && entryDoor.equals(p)) { /* t,l,b,r */
 					borderSelection(entryDoor, i, j, width_height, "Entry_door");
@@ -543,7 +579,7 @@ public class MapGridView extends JFrame implements Observer {
 		// map embedded inside right info panel
 		JPanel RightInfoListPane = new JPanel();
 
-		RightInfoListPane.setLayout((new GridLayout(9, 2, 5, 5)));
+		RightInfoListPane.setLayout((new GridLayout(10, 2, 5, 5)));
 		RightInfoListPane.setMaximumSize(new Dimension(400, 450));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
@@ -558,6 +594,7 @@ public class MapGridView extends JFrame implements Observer {
 		
 		
 		map_enemy_friend = new JLabel("Select NPC");
+		map_item_label = new JLabel("Select Item");
 		Color color;
 		color = this.model.getMap_object_color_type();
 		if (color == null) {
@@ -589,6 +626,18 @@ public class MapGridView extends JFrame implements Observer {
 			map_dropdown_enemy_friend.setRenderer(map_view_renderer);
 		}
 		
+		map_item = new ArrayList<ItemModel>();
+		map_item = forComboBoxItem;
+		map_view_item_renderer = new MapViewItemRenderer();
+       
+       
+       map_item_array = map_item.toArray();
+		map_dropdown_item = new JComboBox(map_item_array);
+
+		if (map_item_array.length > 0) {
+			map_dropdown_item.setRenderer(map_view_item_renderer);
+		}
+		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(map_entry_door);
 		bg.add(map_exit_door);
@@ -614,6 +663,8 @@ public class MapGridView extends JFrame implements Observer {
 		RightInfoListPane.add(new JLabel());
 		RightInfoListPane.add(map_enemy_friend);
 		RightInfoListPane.add(map_dropdown_enemy_friend);
+		RightInfoListPane.add(map_item_label);
+		RightInfoListPane.add(map_dropdown_item);
 		// RightInfoListPane.add(empty);
 		if (t == 0) {
 			RightInfoListPane.add(save_button);
@@ -648,7 +699,8 @@ public class MapGridView extends JFrame implements Observer {
 			ArrayList<Point> map_walls = ((GameMapModel) obs).getMap_walls();
 			ArrayList<MapCharacter> map_character = ((GameMapModel) obs).getMap_enemy_loc();
 			ArrayList<CharacterModel> forComboBoxNPC = ((GameMapModel) obs).getInput_character_list();
-			Point Chest = ((GameMapModel) obs).getMap_chest();
+			ArrayList<ItemModel> forComboBoxItem = ((GameMapModel) obs).getInput_item_list();
+			MapItem Chest = ((GameMapModel) obs).getMap_chest();
 			Point EntryDoor = ((GameMapModel) obs).getMap_entry_door();
 			Point ExitDoor = ((GameMapModel) obs).getMap_exit_door();
 			this.model = (GameMapModel) obs;
@@ -657,7 +709,7 @@ public class MapGridView extends JFrame implements Observer {
 			check = 1;
 
 			updateMap(width_height, map_walls, map_character, Chest, EntryDoor, ExitDoor, entryFlag, exitFlag,
-					this.model.getFinder(),forComboBoxNPC);
+					this.model.getFinder(),forComboBoxNPC,forComboBoxItem);
 		} else {
 			JOptionPane.showMessageDialog(this, ((GameMapModel) obs).getErrorMessage());
 			((GameMapModel) obs).setErrorMessage(null);
@@ -696,6 +748,8 @@ public class MapGridView extends JFrame implements Observer {
 		this.map_enemy.addActionListener(mapGridController);
 		this.map_friend.addActionListener(mapGridController);
 		this.map_remove.addActionListener(mapGridController);
+		this.map_dropdown_enemy_friend.addActionListener(mapGridController);
+		this.map_dropdown_item.addActionListener(mapGridController);
 	}
 
 	/**
@@ -812,6 +866,35 @@ class MapCellRenderer extends JLabel implements ListCellRenderer<CharacterModel>
 
 		return this;
 	}
+	
+	
 }
+
+/*
+ * Inner Class Campaign View Renderer class that is used to generate a
+ * dynamic combobox
+ */
+public class MapViewItemRenderer extends BasicComboBoxRenderer {
+
+	/*
+	 * Getter method that provides us a map model corresponding to a map
+	 * name
+	 * 
+	 * @see javax.swing.plaf.basic.BasicComboBoxRenderer#
+	 * getListCellRendererComponent(javax.swing.JList, java.lang.Object,
+	 * int, boolean, boolean)
+	 */
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+			boolean cellHasFocus) {
+		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+		ItemModel map_model = (ItemModel) value;
+		if (map_model != null)
+			setText(map_model.getItem_name());
+
+		return this;
+	}
+}
+
 
 }

@@ -21,9 +21,9 @@ public class MapItem {
 	 *	 Default Constructor which set default values of each properties 
 	 */
 	public MapItem() {
-		this.x = 0;
+		this.x = -1;
 		
-		this.y = 0;
+		this.y = -1;
 		
 		this.item = null;
 	}
