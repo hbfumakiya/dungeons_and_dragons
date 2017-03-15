@@ -1,5 +1,6 @@
 package dungeons_and_dragons.model;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.util.Observable;
 
@@ -23,6 +24,13 @@ public class GamePlayModel extends Observable{
 	 */
 	@Expose
 	private int gamePlayId;
+	
+	/**
+	 * Sets the location of the player that is playing
+	 */
+	@Expose
+	private Point gameCharacterPosition;
+	
 	
 	/**
 	 * Creates an object of campaign
@@ -127,7 +135,14 @@ public class GamePlayModel extends Observable{
 		
 	}
 
+	public Point getGameCharacterPosition() {
+		return gameCharacterPosition;
+	}
 
-	
+	public void setGameCharacterPosition(Point gameCharacterPosition) {
+		this.gameCharacterPosition = gameCharacterPosition;
+		setChanged();
+		notifyObservers(this);
+	}
 	
 }

@@ -36,7 +36,8 @@ public class Game_constants {
 	public static final Color ENEMIES = Color.RED;
 	public static final Color FRIENDS = Color.ORANGE;
 	public static final Color CHEST = Color.BLUE;
-
+	public static final Color PLAYER = Color.PINK;
+	
 	/**
 	 * model for loading data into item ability based on selection of item type
 	 * helmet
