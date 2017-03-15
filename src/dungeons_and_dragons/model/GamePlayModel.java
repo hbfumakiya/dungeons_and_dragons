@@ -9,6 +9,7 @@ import com.google.gson.annotations.Expose;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapItem;
 
 /**
  * Once GamePlayModel gets a change state query request from any view they
@@ -141,6 +142,19 @@ public class GamePlayModel extends Observable{
 	 */
 	public void setCurrentMapIndex(int currentMapIndex) {
 		this.currentMapIndex = currentMapIndex;
+	}
+
+		/**
+		 * Method to remove Point in the map
+		 * @param tempPoint
+		 */
+	public void removeChest(Point tempPoint) {
+		int i = this.getCurrentMapIndex();
+		this.getCampaignModel().getOutput_map_list().get(i).setMap_chest(new MapItem());
+		setChanged();
+		notifyObservers();
+		
+		
 	}
 
 	

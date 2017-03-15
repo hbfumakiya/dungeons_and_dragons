@@ -109,6 +109,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.mapPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 		
 		this.showMap(this.currentMap, this.mapPanel);
+		displayPlayer(maps[(int)this.currentMap.getMap_entry_door().getX()][(int)this.currentMap.getMap_entry_door().getY()]);
 		
 		//yet to be constructed
 		this.infoPanel = new JPanel();
@@ -169,7 +170,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 					 maps[i][j].setPointValue(0);
 				}else if(showEntryDoor(tempPoint)){
 					borderSelection(this.currentMap.getMap_entry_door(), i, j, currentMap.getMap_size(), "Entry_door");
-					displayPlayer(maps[i][j]);
+					
 				}else if(showExitDoor(tempPoint)){
 					borderSelection(this.currentMap.getMap_exit_door(), i, j, currentMap.getMap_size(), "Exit_door");
 				}else if(showChest(tempPoint)){
@@ -309,7 +310,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	@Override
 	public void update(Observable obs, Object obj) {
-		
+		this.mapPanel.removeAll();
+		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list().get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
 		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel)obs).getGameCharacterPosition().y]);
 		eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
 		maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);

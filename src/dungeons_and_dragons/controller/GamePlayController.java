@@ -10,9 +10,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -171,19 +175,31 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 				GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 						.get(this.gamePlayModel.getCurrentMapIndex());
-
+				
+				String msg = "";
 				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
 					ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
-					if (backPackItems.size() < 10) {
+					if (backPackItems.size() < 2) {
 						backPackItems.add(map.getMap_chest().getItem());
 						this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
+						
+						ItemModel i =this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
+						
+						msg = "Item "+i.getItem_name()+" has been added in your backpack";
+						
+						this.gamePlayModel.removeChest(tempPoint);	
+					}
+					else
+					{
+						msg = "Sorry your backpack is full.So cannot add any new Item";
 					}
 				}
-
+				
 				updatePostion(tempPoint, oldPoint);
+				JOptionPane.showMessageDialog(new JFrame(), msg);
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 				this.gamePlayView.consoleTextArea.setText(
-						this.gamePlayView.consoleTextArea.getText() + "Found an item....lets see whats in there\n");
+						this.gamePlayView.consoleTextArea.getText() + "Found an item...."+msg);
 
 				// exchange item message on console and automatically traverse
 				// items in chest to the players backpack

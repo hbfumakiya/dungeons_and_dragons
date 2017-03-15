@@ -3,12 +3,27 @@
     "character_id": 1,
     "character_name": "Character5",
     "strength": 0,
-    "items": [
+    "items": [],
+    "backPackItems": [
+      {
+        "item_id": 8,
+        "item_name": "Range",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus"
+      },
       {
         "item_id": 3,
         "item_name": "Armor",
         "item_point": 5,
         "item_type": "Armor",
+        "item_ability": "Armor class"
+      },
+      {
+        "item_id": 4,
+        "item_name": "Shield",
+        "item_point": 4,
+        "item_type": "Shield",
         "item_ability": "Armor class"
       },
       {
@@ -19,34 +34,18 @@
         "item_ability": "Wisdom"
       },
       {
-        "item_id": 4,
-        "item_name": "Shield",
-        "item_point": 4,
-        "item_type": "Shield",
-        "item_ability": "Armor class"
-      }
-    ],
-    "backPackItems": [
-      {
         "item_id": 6,
         "item_name": "Ring2",
         "item_point": 3,
         "item_type": "Ring",
         "item_ability": "Constitution"
-      },
-      {
-        "item_id": 8,
-        "item_name": "Range",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
       }
     ],
     "character_level": 1,
     "abilityScores": {
       "strength": 10,
       "dexterity": 11,
-      "constitution": 11,
+      "constitution": 14,
       "intelligence": 11,
       "wisdom": 18,
       "charisma": 16
@@ -62,15 +61,15 @@
     "modifiers": {
       "strength": 0,
       "dexterity": 0,
-      "constitution": 0,
+      "constitution": 2,
       "intelligence": 0,
       "wisdom": 4,
       "charisma": 3
     },
-    "hitpoints": 10,
+    "hitpoints": 12,
     "attackBonus": 1,
-    "damageBonus": 6,
-    "armorClass": 19
+    "damageBonus": 4,
+    "armorClass": 10
   },
   {
     "character_id": 2,
