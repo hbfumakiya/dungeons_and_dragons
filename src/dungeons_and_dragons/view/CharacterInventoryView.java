@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -122,6 +123,17 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
+	
+	
+
+	/**
+	 * @return the character
+	 */
+	public CharacterModel getCharacter() {
+		return character;
+	}
+
+
 
 	/**
 	 * method to initialize inventory view
@@ -475,4 +487,13 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		updateList((CharacterModel) o);
 		
 	}
+	
+	/**
+	 * 
+	 * @param windowListener
+	 */
+	public void setWindowListener(WindowListener windowListener) {
+		this.addWindowListener(windowListener);
+	}
+	
 }

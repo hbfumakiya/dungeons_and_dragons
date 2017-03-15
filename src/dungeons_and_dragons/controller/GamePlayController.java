@@ -2,10 +2,21 @@ package dungeons_and_dragons.controller;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
+import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GamePlayModel;
+import dungeons_and_dragons.model.ItemModel;
+import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.GamePlayView;
 
 /**
@@ -13,23 +24,25 @@ import dungeons_and_dragons.view.GamePlayView;
  * GamePlayView into actions that the GamePlayModel will perform that may use
  * some additional/changed data gathered in a user-interactive view.
  * 
- * @author Tejas Sadrani & Urmil Kansara
+ * @author Tejas Sadrani & Urmil Kansara & Mihir Pujara
  */
-public class GamePlayController implements KeyListener {
+public class GamePlayController implements KeyListener, ActionListener, WindowListener {
 
 	/**
 	 * This creates new game play model which is being observed
 	 * 
 	 * @type GameMapModel
 	 */
-	GamePlayModel gamePlayModel;
+	public GamePlayModel gamePlayModel;
 
 	/**
 	 * This create game play view object which is an observer
 	 * 
 	 * @type MapGridView
 	 */
-	GamePlayView gamePlayView;
+	public GamePlayView gamePlayView;
+
+	private ArrayList<CharacterModel> shownInventories;
 
 	/**
 	 * Default constructor of Map Grid controller
@@ -45,11 +58,43 @@ public class GamePlayController implements KeyListener {
 		// GameMapModel currentMap =
 		// this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex());
 
-		this.gamePlayView = new GamePlayView(this.gamePlayModel);
+		this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
 
 		this.gamePlayModel.addObserver(gamePlayView);
 		this.gamePlayView.setListener(this);
 		this.gamePlayView.setVisible(true);
+
+		this.shownInventories = new ArrayList<CharacterModel>();
+
+		matchNPCToPlayer();
+
+	}
+
+	private void matchNPCToPlayer() {
+
+		ArrayList<MapCharacter> npc = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+				.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+
+		CharacterModel character;
+
+		for (int i = 0; i < npc.size(); i++) {
+			character = npc.get(i).getCharacter();
+			character.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level());
+			ArrayList<ItemModel> items = character.getItems();
+			for (int j = 0; j < items.size(); j++) {
+				//getItemScoreByLevel()
+			}
+			
+			ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+			for (int j = 0; j < backPackItems.size(); j++) {
+
+			}
+
+		}
+	}
+	
+	private int getItemScoreByLevel(int level) {
+		return 0;
 	}
 
 	@Override
@@ -94,7 +139,7 @@ public class GamePlayController implements KeyListener {
 
 			// check if the point is wall
 			if (this.gamePlayView.showWalls(tempPoint)) {
-				
+
 				tempPoint = oldPoint;
 				this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 				this.gamePlayView.consoleTextArea
@@ -102,7 +147,7 @@ public class GamePlayController implements KeyListener {
 				// print message that "Oops wall has been reached"
 
 			} else if (this.gamePlayView.showExitDoor(tempPoint)) {
-				
+
 				// check if mission is completed -- > if yes let him escape
 				updatePostion(tempPoint, oldPoint);
 
@@ -112,8 +157,7 @@ public class GamePlayController implements KeyListener {
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 				this.gamePlayView.consoleTextArea.setText(
 						this.gamePlayView.consoleTextArea.getText() + "Found an item....lets see whats in there\n");
-				
-				
+
 				// exchange item message on console and automatically traverse
 				// items in chest to the players backpack
 
@@ -122,23 +166,21 @@ public class GamePlayController implements KeyListener {
 
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
-					this.gamePlayView.consoleTextArea.setText(
-							this.gamePlayView.consoleTextArea.getText() + "You are sooo dead in my eyes..."+emoji+"\n");
+					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
+							+ "You are sooo dead in my eyes..." + emoji + "\n");
 					System.out.println("\u1F47F");
 					updatePostion(tempPoint, oldPoint);
-					
-					
+
 					// Enemy is dead message when it reaches here(hell lot of
 					// programming in build3 for this :P)
-					
-					
+
 				} else if (this.gamePlayView.enemyFlag == 0) {
 
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
 							+ "Hey bud wssup...I m here to take your items nothing else :P \n");
 					updatePostion(tempPoint, oldPoint);
-					
+
 					// friendly items traversal to backpack of character
 				}
 			} else {
@@ -196,6 +238,79 @@ public class GamePlayController implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		MapButton button = (MapButton) e.getSource();
+		if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
+			if (button.getCharacterType() == MapButton.ENEMY) {
+
+				if (!this.shownInventories.contains(button.getCharacter())) {
+					this.shownInventories.add(button.getCharacter());
+					new CharacterInventoryController(button.getCharacter(), this);
+				}
+
+			} else if (button.getCharacterType() == MapButton.FRIENDLY_PLAYER) {
+
+				if (!this.shownInventories.contains(button.getCharacter())) {
+					this.shownInventories.add(button.getCharacter());
+					new CharacterInventoryController(button.getCharacter(), this);
+				}
+
+			} else if (button.getCharacterType() == MapButton.PLAYER) {
+
+				if (!this.shownInventories.contains(button.getCharacter())) {
+					this.shownInventories.add(button.getCharacter());
+					new CharacterInventoryController(button.getCharacter(), this);
+				}
+
+			}
+		}
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+
+		CharacterModel character = ((CharacterInventoryView) e.getSource()).getCharacter();
+		if (this.shownInventories.contains(character)) {
+			this.shownInventories.remove(character);
+		}
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		CharacterModel character = ((CharacterInventoryView) e.getSource()).getCharacter();
+		if (this.shownInventories.contains(character)) {
+			this.shownInventories.remove(character);
+		}
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+
 	}
 
 }

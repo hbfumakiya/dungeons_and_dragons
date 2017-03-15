@@ -288,9 +288,6 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		notifyObservers(this);
 
 	}
-	
-	
-	
 
 	/**
 	 * @return the map_exit_door
@@ -514,14 +511,12 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		return this.finder;
 	}
 
-	
 	private ArrayList<CharacterModel> input_character_list;
-	
-	
-	public void removeNPCFromComboBox(CharacterModel m_char){
-			input_character_list.remove(m_char);
-			setChanged();
-			notifyObservers(this);
+
+	public void removeNPCFromComboBox(CharacterModel m_char) {
+		input_character_list.remove(m_char);
+		setChanged();
+		notifyObservers(this);
 	}
 
 	/**
@@ -531,55 +526,53 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		return input_character_list;
 	}
 
-	
-
 	/**
-	 * @param input_character_list the input_character_list to set
+	 * @param input_character_list
+	 *            the input_character_list to set
 	 */
 	public void setInput_character_list(ArrayList<CharacterModel> input_character_list) {
 		this.input_character_list = input_character_list;
 	}
-	
+
 	public void addNPCToComboBox(CharacterModel mc) {
 		// TODO Auto-generated method stub
-		if(!input_character_list.contains(mc)){
-		input_character_list.add(mc);
-		setChanged();
-		notifyObservers(this);
+		if (!input_character_list.contains(mc)) {
+			input_character_list.add(mc);
+			setChanged();
+			notifyObservers(this);
 		}
 	}
-	
+
 	private ArrayList<ItemModel> input_item_list;
-	
-	public void removeItemFromComboBox(ItemModel m_item){
+
+	public void removeItemFromComboBox(ItemModel m_item) {
 		input_item_list.remove(m_item);
 		setChanged();
 		notifyObservers(this);
-}
-
-/**
- * @return the input_item_list
- */
-public ArrayList<ItemModel> getInput_item_list() {
-	return input_item_list;
-}
-
-
-
-/**
- * @param input_item_list the input_item_list to set
- */
-public void setInput_item_list(ArrayList<ItemModel> input_item_list) {
-	this.input_item_list = input_item_list;
-}
-
-public void addItemToComboBox(ItemModel mc) {
-	// TODO Auto-generated method stub
-	if(!input_item_list.contains(mc)){
-	input_item_list.add(mc);
-	setChanged();
-	notifyObservers(this);
 	}
-}
+
+	/**
+	 * @return the input_item_list
+	 */
+	public ArrayList<ItemModel> getInput_item_list() {
+		return input_item_list;
+	}
+
+	/**
+	 * @param input_item_list
+	 *            the input_item_list to set
+	 */
+	public void setInput_item_list(ArrayList<ItemModel> input_item_list) {
+		this.input_item_list = input_item_list;
+	}
+
+	public void addItemToComboBox(ItemModel mc) {
+		// TODO Auto-generated method stub
+		if (!input_item_list.contains(mc)) {
+			input_item_list.add(mc);
+			setChanged();
+			notifyObservers(this);
+		}
+	}
 
 }

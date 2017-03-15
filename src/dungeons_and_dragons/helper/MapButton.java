@@ -5,10 +5,12 @@ package dungeons_and_dragons.helper;
 
 import javax.swing.JButton;
 
+import dungeons_and_dragons.model.CharacterModel;
+
 /**
  * this class is for creating buttons that are used in map
  * 
- * @author User
+ * @author Mihir Pujara
  *
  */
 public class MapButton extends JButton {
@@ -23,6 +25,16 @@ public class MapButton extends JButton {
 	private int pointValue = 1;
 
 	private int dirty_flag = 0;
+	
+	private int characterType;
+	
+	public static final int FRIENDLY_PLAYER = 2;
+	
+	public static final int ENEMY = 3;
+	
+	public static final int PLAYER = 1;
+	
+	private CharacterModel character;
 
 	/**
 	 * @return the xPos
@@ -101,4 +113,34 @@ public class MapButton extends JButton {
 	public void setDirty_flag(int dirty_flag) {
 		this.dirty_flag = dirty_flag;
 	}
+
+	/**
+	 * @return the characterType
+	 */
+	public int getCharacterType() {
+		return characterType;
+	}
+
+	/**
+	 * @param characterType the characterType to set
+	 */
+	public void setCharacterType(int characterType) {
+		this.characterType = characterType;
+	}
+
+	/**
+	 * @return the character
+	 */
+	public CharacterModel getCharacter() {
+		return character;
+	}
+
+	/**
+	 * @param character the character to set
+	 */
+	public void setCharacter(CharacterModel character) {
+		this.character = character;
+	}
+	
+	
 }

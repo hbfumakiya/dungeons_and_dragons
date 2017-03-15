@@ -69,7 +69,7 @@
     },
     "hitpoints": 10,
     "attackBonus": 1,
-    "damageBonus": 3,
+    "damageBonus": 6,
     "armorClass": 19
   },
   {

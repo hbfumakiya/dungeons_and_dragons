@@ -31,27 +31,11 @@ public class GamePlayModel extends Observable{
 	@Expose
 	private Point gameCharacterPosition;
 	
-	
 	/**
 	 * Creates an object of campaign
 	 */
 	@Expose
 	private CampaignModel campaignModel;
-	
-	/**
-	 * @return the currentMapIndex
-	 */
-	public int getCurrentMapIndex() {
-		return currentMapIndex;
-	}
-
-	/**
-	 * @param currentMapIndex the currentMapIndex to set
-	 */
-	public void setCurrentMapIndex(int currentMapIndex) {
-		this.currentMapIndex = currentMapIndex;
-	}
-
 
 	/**
 	 * Creates an object of character
@@ -144,5 +128,20 @@ public class GamePlayModel extends Observable{
 		setChanged();
 		notifyObservers(this);
 	}
+	
+	/**
+	 * @return the currentMapIndex
+	 */
+	public int getCurrentMapIndex() {
+		return currentMapIndex;
+	}
+
+	/**
+	 * @param currentMapIndex the currentMapIndex to set
+	 */
+	public void setCurrentMapIndex(int currentMapIndex) {
+		this.currentMapIndex = currentMapIndex;
+	}
+
 	
 }

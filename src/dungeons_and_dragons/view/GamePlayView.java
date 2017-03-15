@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +24,7 @@ import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 
@@ -44,6 +46,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	public GamePlayModel gamePlayModel;
 	public GameMapModel currentMap;
+	private GamePlayController gamePlayController;
 
 	public JPanel mapPanel;
 	public JPanel topPanel;
@@ -62,7 +65,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JLabel mapName;
 	public JTextArea consoleTextArea;
 
-	public GamePlayView(GamePlayModel gamePlayModel) {
+	public GamePlayView(GamePlayModel gamePlayModel, GamePlayController gamePlayController) {
 
 		this.setTitle(this.mapWindowTitle);
 
@@ -71,7 +74,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 				.get(this.gamePlayModel.getCurrentMapIndex());
 		//only set while playing this game for the first time
 		oldPosition = this.currentMap.getMap_entry_door();
-		this.gamePlayModel.setGameCharacterPosition(oldPosition);								
+		this.gamePlayModel.setGameCharacterPosition(oldPosition);	
+		
+		this.gamePlayController = gamePlayController;
 
 		// initialize game window
 		this.initializeWindow();
@@ -157,7 +162,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 				maps[i][j].setxPos(i);
 				maps[i][j].setyPos(j);
 				tempPoint = new Point(i, j);
-				
+				MapCharacter character = showCharacter(tempPoint);
 				//setting all objects on the map
 				if(showWalls(tempPoint)){
 					 maps[i][j].setBackground(Game_constants.WALLS);
@@ -169,17 +174,25 @@ public class GamePlayView extends JFrame implements Observer, View {
 					borderSelection(this.currentMap.getMap_exit_door(), i, j, currentMap.getMap_size(), "Exit_door");
 				}else if(showChest(tempPoint)){
 					maps[i][j].setBackground(Game_constants.CHEST);
-				}else if(showCharacter(tempPoint)!=null){
+				}else if(character != null){
 					if(enemyFlag == 1)
 					{
 						maps[i][j].setBackground(Game_constants.ENEMIES);
 						maps[i][j].setPointValue(2);
+						maps[i][j].setCharacterType(MapButton.ENEMY);
+						maps[i][j].setCharacter(character.getCharacter());
+						maps[i][j].addActionListener(this.gamePlayController);
 					}
 					else if(enemyFlag == 0)
 					{
 						maps[i][j].setBackground(Game_constants.FRIENDS);
+						maps[i][j].setCharacterType(MapButton.FRIENDLY_PLAYER);
+						maps[i][j].setCharacter(character.getCharacter());
+						maps[i][j].addActionListener(this.gamePlayController);
 						//maps[i][j].setPointValue(99);
 					}
+					
+							
 				}
 				
 				maps[i][j].setFocusable(false);
@@ -254,7 +267,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	 * @param p
 	 * @return
 	 */
-	public Point showCharacter(Point p) {
+	public MapCharacter showCharacter(Point p) {
 		if (!this.currentMap.getMap_enemy_loc().isEmpty()) {
 			for(int x = 0;x<this.currentMap.getMap_enemy_loc().size();x++){
 				MapCharacter c = this.currentMap.getMap_enemy_loc().get(x);
@@ -263,13 +276,13 @@ public class GamePlayView extends JFrame implements Observer, View {
 					if(c.getCharacterType().equals(MapCharacter.ENEMY))
 					{
 						enemyFlag = 1;
-						return new Point(c.getX(),c.getY());
+						
 					}
 					else if(c.getCharacterType().equals(MapCharacter.FRIENDLY))
 					{
 						enemyFlag = 0;
-						return new Point(c.getX(),c.getY());
 					}
+					return c;
 				}
 			}
 		}
@@ -349,5 +362,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
 		}
 	}
+	
+	
 	
 }

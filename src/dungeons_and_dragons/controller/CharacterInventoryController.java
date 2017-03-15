@@ -5,6 +5,7 @@ package dungeons_and_dragons.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,23 @@ public class CharacterInventoryController implements ActionListener {
 		
 		this.character.addObserver(this.characterInventoryView);
 	}
+	
+	public CharacterInventoryController(CharacterModel character, WindowListener windowListener) {
+
+		this.character = character;
+
+		characterInventoryView = new CharacterInventoryView(character);
+
+		characterInventoryView.setActionListener(this);
+
+		characterInventoryView.setVisible(true);
+		
+		this.character.addObserver(this.characterInventoryView);
+		
+		this.characterInventoryView.setWindowListener(windowListener);
+	}
+	
+	
 
 	/**
 	 * Action event of all events
