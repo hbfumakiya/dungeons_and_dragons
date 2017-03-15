@@ -179,6 +179,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 					if(enemyFlag == 1)
 					{
 						maps[i][j].setBackground(Game_constants.ENEMIES);
+						maps[i][j].setText("DEAD");
 						maps[i][j].setPointValue(2);
 						maps[i][j].setCharacterType(MapButton.ENEMY);
 						maps[i][j].setCharacter(character.getCharacter());
