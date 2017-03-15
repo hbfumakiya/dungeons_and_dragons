@@ -112,6 +112,7 @@ public class MapView extends JFrame implements ActionListener {
 	public JLabel map_exit_door;
 	public JLabel map_chest;
 	public JLabel map_enemy;
+	public JLabel map_friend;
 	public JLabel map_wall;
 	private JLabel map_entry_color;
 	private JLabel map_exit_color;
@@ -119,7 +120,8 @@ public class MapView extends JFrame implements ActionListener {
 	private JLabel map_enemy_color;
 	private JLabel map_wall_color;
 	private JLabel empty;
-
+	
+	private JLabel map_friend_color;
 	private int index = 0;
 
 	private GameMapModel model;
@@ -153,6 +155,9 @@ public class MapView extends JFrame implements ActionListener {
 
 			BufferedImage map_wall_color_image = ImageIO.read(new File("res/grey.jpg"));
 			map_wall_color = new JLabel(new ImageIcon(map_wall_color_image));
+			// map_wall_color.setMaximumSize(new Dimension(10,10));
+			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
+			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
 
 		} catch (IOException e) {
@@ -282,20 +287,46 @@ public class MapView extends JFrame implements ActionListener {
 				Point p = new Point();
 				p.x = i;
 				p.y = j;
+				int check =0;
+				if (!character.isEmpty()) {
+					for(int x = 0;x<character.size();x++){
+						MapCharacter c = character.get(x);
+						if(c.getX() == i && c.getY() == j)
+						{
+							if(c.getCharacterType().equals(MapCharacter.ENEMY))
+							check = 1;
+							else if(c.getCharacterType().equals(MapCharacter.FRIENDLY))
+							check = 2;
+							
+						}
+					}
+				}
+				
 
 				if (map_walls != null && map_walls.contains(p)) {
 					maps[i][j].setBackground(Game_constants.WALLS);
 					maps[i][j].setPointValue(0);
-				} else if (character != null && character.contains(p)) {
-					maps[i][j].setBackground(Game_constants.ENEMIES);
-					maps[i][j].setPointValue(2);
-				} else if (chest != null && chest.equals(p)) {
+				} 
+					
+					
+			    else if (chest != null && chest.getX() == p.x && chest.getY() == p.y) {
 					maps[i][j].setBackground(Game_constants.CHEST);
-				} else if (entryFlag == 1
-						&& entryDoor.equals(p)) { /* t,l,b,r */
+				} else if (entryFlag == 1 && entryDoor.equals(p)) { /* t,l,b,r */
 					borderSelection(entryDoor, i, j, width_height, "Entry_door");
 				} else if (exitFlag == 1 && exitDoor.equals(p)) {
 					borderSelection(exitDoor, i, j, width_height, "Exit_door");
+				}
+				else if(check == 1)
+				{
+					
+					maps[i][j].setBackground(Game_constants.ENEMIES);
+					maps[i][j].setPointValue(2);
+				}
+				else if(check == 2)
+				{
+					
+					maps[i][j].setBackground(Game_constants.FRIENDS);
+					maps[i][j].setPointValue(2);
 				}
 				LeftGridMapPane.add(maps[i][j]);
 			}
@@ -314,7 +345,7 @@ public class MapView extends JFrame implements ActionListener {
 		// map embedded inside right info panel
 		JPanel RightInfoListPane = new JPanel();
 
-		RightInfoListPane.setLayout((new GridLayout(5, 2, 5, 5)));
+		RightInfoListPane.setLayout((new GridLayout(6, 2, 5, 5)));
 		RightInfoListPane.setMaximumSize(new Dimension(250, 300));
 		RightInfoPanel.add(RightInfoListPane);
 		RightInfoListPane.setBorder(new BevelBorder(1));
@@ -323,6 +354,7 @@ public class MapView extends JFrame implements ActionListener {
 		map_exit_door = new JLabel("Exit Door");
 		map_chest = new JLabel("Chest");
 		map_enemy = new JLabel("Enemy");
+		map_friend = new JLabel("Friend");
 		map_wall = new JLabel("Wall");
 		// map_remove = new JLabel("Remove");
 
@@ -342,6 +374,8 @@ public class MapView extends JFrame implements ActionListener {
 		RightInfoListPane.add(map_chest_color);
 		RightInfoListPane.add(map_enemy);
 		RightInfoListPane.add(map_enemy_color);
+		RightInfoListPane.add(map_friend);
+		RightInfoListPane.add(map_friend_color);
 		RightInfoListPane.add(map_wall);
 		RightInfoListPane.add(map_wall_color);
 		// RightInfoListPane.add(map_remove);
