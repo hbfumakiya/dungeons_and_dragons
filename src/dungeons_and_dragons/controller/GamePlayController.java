@@ -10,8 +10,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
@@ -164,6 +166,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 				this.gamePlayView.consoleTextArea
 						.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...bumped into wall...\n");
+				
+				
+					
 				// print message that "Oops wall has been reached"
 
 			} else if (this.gamePlayView.showExitDoor(tempPoint)) {
@@ -273,6 +278,24 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			}
 
 		} else {
+			
+			if(this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_exit_door().equals(oldPoint)) {
+				
+				if(this.gamePlayModel.getCampaignModel().getOutput_map_list().size() <= this.gamePlayModel.getCurrentMapIndex()+2) {
+					
+					this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex()+1);
+					this.gamePlayView.dispose();
+					this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
+						
+					this.gamePlayModel.addObserver(gamePlayView);
+					this.gamePlayView.setListener(this);
+					this.gamePlayView.setVisible(true);
+				} else {
+					System.out.println("Game Over");
+				}
+				
+			}
+			
 			// revert the point as boundary reached
 			tempPoint = oldPoint;
 		}

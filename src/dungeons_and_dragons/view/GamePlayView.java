@@ -144,7 +144,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.setLocationRelativeTo(null);
 	}
 
-	private void showMap(GameMapModel currentMap, JPanel mapPanel) {
+	public void showMap(GameMapModel currentMap, JPanel mapPanel) {
+		mapPanel.removeAll();
 		int x = (int) currentMap.getMap_size().getX();
 		int y = (int) currentMap.getMap_size().getY();
 		Point tempPoint;
@@ -208,6 +209,14 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
 		mapButton.addActionListener(this.gamePlayController);
 		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
+	}
+	
+	public void displayPlayer(Point p) {
+		MapButton mapButton = maps[(int)p.getX()][(int)p.getY()];
+		mapButton.setText("P");
+		mapButton.setCharacterType(MapButton.PLAYER);
+		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
+		mapButton.addActionListener(this.gamePlayController);
 	}
 
 	/**
