@@ -169,7 +169,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			} else if (this.gamePlayView.showExitDoor(tempPoint)) {
 
 				// check if mission is completed -- > if yes let him escape
+				
 				updatePostion(tempPoint, oldPoint);
+				
+				
 
 			} else if (this.gamePlayView.showChest(tempPoint)) {
 
@@ -239,7 +242,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						new NPCItemController(this,allEnemyItems);
+						new NPCItemController(this,allEnemyItems,true);
 						
 					}
 
