@@ -228,11 +228,57 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					boolean enemyAlive = true;
 					if(enemy!=null)
 					enemyAlive = fightWithEnemy(enemy,player);
+					String msg = "";
 					if(enemyAlive == false)
 					{
 						
 						this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc()
-						.get(index).getCharacter().setAlive(false);;
+						.get(index).getCharacter().setAlive(false);
+						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
+						if(!enemy.getItems().isEmpty())
+						{
+							allEnemyItems = enemy.getItems();
+						}
+						if(!enemy.getBackPackItems().isEmpty())
+						{
+							for(int i =0;i<enemy.getBackPackItems().size();i++)
+							{
+									allEnemyItems.add(enemy.getBackPackItems().get(i));
+							}
+						}
+						ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
+						String itemsName= "";
+						if (backPackItems.size() < 10) {
+							
+							for(int i = 0;i<allEnemyItems.size();i++)
+							{	
+								if(backPackItems.size()<10)
+								{
+								backPackItems.add(allEnemyItems.get(i));
+								if(map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().contains(allEnemyItems.get(i)))
+								{
+									map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().remove(allEnemyItems.get(i));
+								}
+								else if(map.getMap_enemy_loc().get(index).getCharacter().getItems().contains(allEnemyItems.get(i)))
+								{
+									map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().remove(allEnemyItems.get(i));
+								}
+								itemsName = itemsName + allEnemyItems.get(i).getItem_name();
+								}
+							}
+							
+							this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
+							
+							//ItemModel i =this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
+							
+							msg = "Items "+itemsName+" has been added in your backpack";
+							
+							//this.gamePlayModel.removeChest(tempPoint);	
+						}
+						else
+						{
+							msg = "Sorry your backpack is full.So cannot add any new Item";
+						}
 					}
 					
 					
@@ -240,7 +286,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-							+ "You are sooo dead in my eyes..." + emoji + "\n");
+							+ " " + emoji + " "+ msg+ "\n");
 					System.out.println("\u1F47F");
 					updatePostion(tempPoint, oldPoint);
 
