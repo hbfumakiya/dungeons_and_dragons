@@ -201,8 +201,10 @@ public class MapGridController implements ActionListener {
 			/* validation needs to be done */
 			if (this.map_model.getMap_entry_door().x == -1 && this.map_model.getMap_entry_door().y == -1) {
 				this.map_model.setErrorMessage("It is an invalid map as there should be one entry door in the map");
+				this.map_view.setButtonListener(this);
 			} else if (this.map_model.getMap_exit_door().x == -1 && this.map_model.getMap_exit_door().y == -1) {
 				this.map_model.setErrorMessage("It is an invalid map as there should be one exit door in the map");
+				this.map_view.setButtonListener(this);
 			}
 
 			else {

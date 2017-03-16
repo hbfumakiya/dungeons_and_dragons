@@ -3,14 +3,13 @@ package dungeons_and_dragons.view;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.TextArea;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -24,7 +23,6 @@ import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
-import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 
@@ -51,10 +49,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JPanel mapPanel;
 	public JPanel topPanel;
 	public JPanel infoPanel;
-	public  JPanel consoleMainPanel;
+	public JPanel consoleMainPanel;
 	public JScrollPane consolePanel;
-	
-	
+
 	private Container contentPane;
 	private MapButton[][] maps;
 	public Point oldPosition;
@@ -72,15 +69,15 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.gamePlayModel = gamePlayModel;
 		this.currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 				.get(this.gamePlayModel.getCurrentMapIndex());
-		//only set while playing this game for the first time
+		// only set while playing this game for the first time
 		oldPosition = this.currentMap.getMap_entry_door();
-		this.gamePlayModel.setGameCharacterPosition(oldPosition);	
-		
+		this.gamePlayModel.setGameCharacterPosition(oldPosition);
+
 		this.gamePlayController = gamePlayController;
 
 		// initialize game window
 		this.initializeWindow();
-		
+
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -88,51 +85,50 @@ public class GamePlayView extends JFrame implements Observer, View {
 	private void initializeWindow() {
 
 		this.setLayout(null);
-		
+
 		this.topPanel = new JPanel();
-		this.topPanel.setBounds(500,5,300,40);
+		this.topPanel.setBounds(500, 5, 300, 40);
 		this.topPanel.setLayout(new GridLayout(2, 1));
-		
+
 		campaignNameLabel = new JLabel("Campaign -->");
 		campaignName = new JLabel(this.gamePlayModel.getCampaignModel().getCampaign_name());
 		mapNameLabel = new JLabel("Map -->");
 		mapName = new JLabel(this.currentMap.getMap_name());
-		
+
 		this.topPanel.add(campaignNameLabel);
 		this.topPanel.add(campaignName);
 		this.topPanel.add(mapNameLabel);
 		this.topPanel.add(mapName);
-		
-		
+
 		this.mapPanel = new JPanel();
 		this.mapPanel.setBounds(5, 50, 695, 445);
 		this.mapPanel.setBorder(BorderFactory.createRaisedBevelBorder());
-		
+
 		this.showMap(this.currentMap, this.mapPanel);
-		displayPlayer(maps[(int)this.currentMap.getMap_entry_door().getX()][(int)this.currentMap.getMap_entry_door().getY()]);
-		
-		//yet to be constructed
+		displayPlayer(maps[(int) this.currentMap.getMap_entry_door().getX()][(int) this.currentMap.getMap_entry_door()
+				.getY()]);
+
+		// yet to be constructed
 		this.infoPanel = new JPanel();
 		this.infoPanel.setBounds(710, 50, 280, 445);
 		this.infoPanel.setBorder(new BevelBorder(1));
 
-		
 		this.consoleMainPanel = new JPanel();
-		this.consoleMainPanel.setBounds(5,510,985,150);	
+		this.consoleMainPanel.setBounds(5, 510, 985, 150);
 		this.consoleMainPanel.setBorder(new BevelBorder(1));
-		
-		this.consoleTextArea = new JTextArea("Hello to this mighty world!!\n",10,500);
+
+		this.consoleTextArea = new JTextArea("Hello to this mighty world!!\n", 10, 500);
 		this.consoleTextArea.setEditable(false);
 		this.consoleTextArea.setFocusable(false);
 		this.consoleTextArea.setVisible(true);
 		this.consoleTextArea.setForeground(Color.WHITE);
 		this.consoleTextArea.setBackground(Color.BLACK);
-		
+
 		this.consolePanel = new JScrollPane(this.consoleTextArea);
 		this.consolePanel.setPreferredSize(new Dimension(950, 130));
-		
+
 		this.consoleMainPanel.add(this.consolePanel);
-		
+
 		contentPane = getContentPane();
 		contentPane.add(this.topPanel);
 		contentPane.add(this.mapPanel);
@@ -164,48 +160,46 @@ public class GamePlayView extends JFrame implements Observer, View {
 				maps[i][j].setyPos(j);
 				tempPoint = new Point(i, j);
 				MapCharacter character = showCharacter(tempPoint);
-				//setting all objects on the map
-				if(showWalls(tempPoint)){
-					 maps[i][j].setBackground(Game_constants.WALLS);
-					 maps[i][j].setPointValue(0);
-				}else if(showEntryDoor(tempPoint)){
+				// setting all objects on the map
+				if (showWalls(tempPoint)) {
+					maps[i][j].setBackground(Game_constants.WALLS);
+					maps[i][j].setPointValue(0);
+				} else if (showEntryDoor(tempPoint)) {
 					borderSelection(this.currentMap.getMap_entry_door(), i, j, currentMap.getMap_size(), "Entry_door");
-					
-				}else if(showExitDoor(tempPoint)){
+
+				} else if (showExitDoor(tempPoint)) {
 					borderSelection(this.currentMap.getMap_exit_door(), i, j, currentMap.getMap_size(), "Exit_door");
-				}else if(showChest(tempPoint)){
+				} else if (showChest(tempPoint)) {
 					maps[i][j].setBackground(Game_constants.CHEST);
-				}else if(character != null){
-					if(enemyFlag == 1)
-					{
+				} else if (character != null) {
+					if (enemyFlag == 1) {
 						maps[i][j].setBackground(Game_constants.ENEMIES);
-						if(!character.getCharacter().isAlive())
-						maps[i][j].setText("D");
+						if (!character.getCharacter().isAlive())
+							maps[i][j].setText("D");
 						maps[i][j].setPointValue(2);
 						maps[i][j].setCharacterType(MapButton.ENEMY);
 						maps[i][j].setCharacter(character.getCharacter());
 						maps[i][j].addActionListener(this.gamePlayController);
-					}
-					else if(enemyFlag == 0)
-					{
+					} else if (enemyFlag == 0) {
 						maps[i][j].setBackground(Game_constants.FRIENDS);
 						maps[i][j].setCharacterType(MapButton.FRIENDLY_PLAYER);
 						maps[i][j].setCharacter(character.getCharacter());
 						maps[i][j].addActionListener(this.gamePlayController);
-						//maps[i][j].setPointValue(99);
+						// maps[i][j].setPointValue(99);
 					}
-					
-							
+
 				}
-				
+
 				maps[i][j].setFocusable(false);
 				mapPanel.add(maps[i][j]);
 			}
-		}		
+		}
 	}
 
 	/**
-	 * This method is used to display player on the basis of the changing map conditions
+	 * This method is used to display player on the basis of the changing map
+	 * conditions
+	 * 
 	 * @param mapButton
 	 */
 	public void displayPlayer(MapButton mapButton) {
@@ -213,80 +207,85 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.setCharacterType(MapButton.PLAYER);
 		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
 		mapButton.addActionListener(this.gamePlayController);
-		//mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
-	}
-	
-	/**
-	 * This method is used to display player on the basis of the changing map conditions
-	 * @param mapButton
-	 */
-	public void eraseButtonBackground(MapButton mapButton) {
-		//mapButton.setBackground(null);
-		if(!mapButton.getText().equals("D"))
-		mapButton.setText(null);
+		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
 
 	/**
-	 * This function returns true if there is a chest in the corresponding point P that is passed as a parameter
+	 * This method is used to display player on the basis of the changing map
+	 * conditions
+	 * 
+	 * @param mapButton
+	 */
+	public void eraseButtonBackground(MapButton mapButton) {
+		// mapButton.setBackground(null);
+		if (!mapButton.getText().equals("D"))
+			mapButton.setText(null);
+	}
+
+	/**
+	 * This function returns true if there is a chest in the corresponding point
+	 * P that is passed as a parameter
+	 * 
 	 * @param p
 	 * @return
 	 */
 	public boolean showChest(Point p) {
-		if (this.currentMap.getMap_chest() != null && this.currentMap.getMap_chest().getX() == p.x && this.currentMap.getMap_chest().getY() == p.y) {
+		if (this.currentMap.getMap_chest() != null && this.currentMap.getMap_chest().getX() == p.x
+				&& this.currentMap.getMap_chest().getY() == p.y) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
-		
+
 	}
 
 	/**
-	 * This function returns true if there is a exit door in the corresponding point P that is passed as a parameter
+	 * This function returns true if there is a exit door in the corresponding
+	 * point P that is passed as a parameter
+	 * 
 	 * @param p
 	 * @return
 	 */
 	public boolean showExitDoor(Point p) {
-		if (this.currentMap.getMap_exit_door().equals(p)){
+		if (this.currentMap.getMap_exit_door().equals(p)) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
-		
+
 	}
 
 	/**
-	 * This function returns true if there is a entry door in the corresponding point P that is passed as a parameter
+	 * This function returns true if there is a entry door in the corresponding
+	 * point P that is passed as a parameter
+	 * 
 	 * @param p
 	 * @return
 	 */
 	public boolean showEntryDoor(Point p) {
-		if (this.currentMap.getMap_entry_door().equals(p)){
+		if (this.currentMap.getMap_entry_door().equals(p)) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
 
 	/**
-	 * This function returns true if there is an enemy or a friendly character in the corresponding point P that is passed as a parameter
+	 * This function returns true if there is an enemy or a friendly character
+	 * in the corresponding point P that is passed as a parameter
+	 * 
 	 * @param p
 	 * @return
 	 */
 	public MapCharacter showCharacter(Point p) {
 		if (!this.currentMap.getMap_enemy_loc().isEmpty()) {
-			for(int x = 0;x<this.currentMap.getMap_enemy_loc().size();x++){
+			for (int x = 0; x < this.currentMap.getMap_enemy_loc().size(); x++) {
 				MapCharacter c = this.currentMap.getMap_enemy_loc().get(x);
-				if(c.getX() == p.x && c.getY() == p.y)
-				{
-					if(c.getCharacterType().equals(MapCharacter.ENEMY))
-					{
+				if (c.getX() == p.x && c.getY() == p.y) {
+					if (c.getCharacterType().equals(MapCharacter.ENEMY)) {
 						enemyFlag = 1;
-						
-					}
-					else if(c.getCharacterType().equals(MapCharacter.FRIENDLY))
-					{
+
+					} else if (c.getCharacterType().equals(MapCharacter.FRIENDLY)) {
 						enemyFlag = 0;
 					}
 					return c;
@@ -295,18 +294,19 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * This function returns true if there is a wall in the corresponding point P that is passed as a parameter
+	 * This function returns true if there is a wall in the corresponding point
+	 * P that is passed as a parameter
+	 * 
 	 * @param p
 	 * @return
 	 */
 	public boolean showWalls(Point p) {
-		
+
 		if (this.currentMap.getMap_walls() != null && this.currentMap.getMap_walls().contains(p)) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -314,16 +314,32 @@ public class GamePlayView extends JFrame implements Observer, View {
 	@Override
 	public void update(Observable obs, Object obj) {
 		this.mapPanel.removeAll();
-		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list().get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
-		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel)obs).getGameCharacterPosition().y]);
-		if(this.maps[oldPosition.x][oldPosition.y].getCharacter().equals(null))
-		{
-		eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
-		maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
-		maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
+				.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
+		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel) obs)
+				.getGameCharacterPosition().y]);
+		if (this.maps[oldPosition.x][oldPosition.y] != null
+				&& this.maps[oldPosition.x][oldPosition.y].getCharacter() != null) {
+
+			eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
+
+			ArrayList<MapCharacter> enemies = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+					.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+
+			for (int i = 0; i < enemies.size(); i++) {
+
+				int x = enemies.get(i).getX();
+				int y = enemies.get(i).getY();
+
+				if (x != oldPosition.x & y != oldPosition.y) {
+					maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
+					maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+				}
+
+			}
+
 		}
-		
-		
+
 	}
 
 	public void setListener(GamePlayController gamePlayController) {
@@ -333,7 +349,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -376,7 +392,5 @@ public class GamePlayView extends JFrame implements Observer, View {
 					((door_type == "Entry_door") ? Game_constants.ENTRY_DOOR : Game_constants.EXIT_DOOR)));
 		}
 	}
-	
-	
-	
+
 }

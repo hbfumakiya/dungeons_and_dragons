@@ -175,118 +175,78 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 				GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 						.get(this.gamePlayModel.getCurrentMapIndex());
-				
+
 				String msg = "";
 				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
 					ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
 					if (backPackItems.size() < 2) {
 						backPackItems.add(map.getMap_chest().getItem());
 						this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
-						
-						ItemModel i =this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
-						
-						msg = "Item "+i.getItem_name()+" has been added in your backpack";
-						
-						this.gamePlayModel.removeChest(tempPoint);	
-					}
-					else
-					{
+
+						ItemModel i = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+								.get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
+
+						msg = "Item " + i.getItem_name() + " has been added in your backpack";
+
+						this.gamePlayModel.removeChest(tempPoint);
+					} else {
 						msg = "Sorry your backpack is full.So cannot add any new Item";
 					}
 				}
-				
+
 				updatePostion(tempPoint, oldPoint);
 				JOptionPane.showMessageDialog(new JFrame(), msg);
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-				this.gamePlayView.consoleTextArea.setText(
-						this.gamePlayView.consoleTextArea.getText() + "Found an item...."+msg);
+				this.gamePlayView.consoleTextArea
+						.setText(this.gamePlayView.consoleTextArea.getText() + "Found an item...." + msg);
 
 				// exchange item message on console and automatically traverse
 				// items in chest to the players backpack
 
 			} else if (this.gamePlayView.showCharacter(tempPoint) != null) {
 				if (this.gamePlayView.enemyFlag == 1) {
-					
+
 					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 							.get(this.gamePlayModel.getCurrentMapIndex());
 					int numOfCharacters = map.getMap_enemy_loc().size();
 					CharacterModel enemy = new CharacterModel();
 					MapCharacter enemyMap = new MapCharacter();
 					int index = -1;
-					for(int j = 0;j<numOfCharacters;j++)
-					{
-						
-						if(map.getMap_enemy_loc().get(j).getX() == tempPoint.x && map.getMap_enemy_loc().get(j).getY() == tempPoint.y)
-						{
+					for (int j = 0; j < numOfCharacters; j++) {
+
+						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
 							enemy = map.getMap_enemy_loc().get(j).getCharacter();
 							enemyMap = map.getMap_enemy_loc().get(j);
 							index = j;
 						}
 					}
-					
+
 					CharacterModel player = this.gamePlayModel.getCharacterModel();
 					boolean enemyAlive = true;
-					if(enemy!=null)
-					enemyAlive = fightWithEnemy(enemy,player);
+					if (enemy != null)
+						enemyAlive = fightWithEnemy(enemy, player);
 					String msg = "";
-					if(enemyAlive == false)
-					{
-						
-						this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc()
-						.get(index).getCharacter().setAlive(false);
+					if (enemyAlive == false) {
+
+						enemy.setAlive(false);
 						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
-						if(!enemy.getItems().isEmpty())
-						{
+						if (!enemy.getItems().isEmpty()) {
 							allEnemyItems = enemy.getItems();
 						}
-						if(!enemy.getBackPackItems().isEmpty())
-						{
-							for(int i =0;i<enemy.getBackPackItems().size();i++)
-							{
-									allEnemyItems.add(enemy.getBackPackItems().get(i));
+						if (!enemy.getBackPackItems().isEmpty()) {
+							for (int i = 0; i < enemy.getBackPackItems().size(); i++) {
+								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
-						String itemsName= "";
-						if (backPackItems.size() < 10) {
-							
-							for(int i = 0;i<allEnemyItems.size();i++)
-							{	
-								if(backPackItems.size()<10)
-								{
-								backPackItems.add(allEnemyItems.get(i));
-								if(map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().contains(allEnemyItems.get(i)))
-								{
-									map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().remove(allEnemyItems.get(i));
-								}
-								else if(map.getMap_enemy_loc().get(index).getCharacter().getItems().contains(allEnemyItems.get(i)))
-								{
-									map.getMap_enemy_loc().get(index).getCharacter().getBackPackItems().remove(allEnemyItems.get(i));
-								}
-								itemsName = itemsName + allEnemyItems.get(i).getItem_name();
-								}
-							}
-							
-							this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
-							
-							//ItemModel i =this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
-							
-							msg = "Items "+itemsName+" has been added in your backpack";
-							
-							//this.gamePlayModel.removeChest(tempPoint);	
-						}
-						else
-						{
-							msg = "Sorry your backpack is full.So cannot add any new Item";
-						}
+						new NPCItemController(this,allEnemyItems);
+						
 					}
-					
-					
-					
+
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
-					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-							+ " " + emoji + " "+ msg+ "\n");
+					this.gamePlayView.consoleTextArea
+							.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji + " " + msg + "\n");
 					System.out.println("\u1F47F");
 					updatePostion(tempPoint, oldPoint);
 
@@ -315,16 +275,17 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		}
 
 	}
+
 	/**
 	 * This method is created to have fight between enemy
+	 * 
 	 * @param enemy
 	 * @param player
 	 * @return boolean
 	 */
 	private boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
 		return false;
-		
-		
+
 	}
 
 	/**
