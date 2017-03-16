@@ -84,6 +84,11 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Expose
 	private int armorClass;
+	
+	@Expose
+	private boolean isAlive;
+
+	
 
 	/**
 	 * Default constructor used to initialize character features
@@ -101,6 +106,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.attackBonus = 0;
 		this.damageBonus = 0;
 		this.armorClass = 0;
+		this.isAlive = true;
 	}
 
 	/**
@@ -608,6 +614,22 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		
 		notifyObservers();
 
+	}
+	
+	/**
+	 * @return the isAlive
+	 */
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	/**
+	 * @param isAlive the isAlive to set
+	 */
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+		setChanged();
+		notifyObservers();
 	}
 
 	/**

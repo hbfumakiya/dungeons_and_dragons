@@ -327,7 +327,30 @@ public class MapGridController implements ActionListener {
 				return;
 			}
 			try {
-
+				ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
+				try {
+					m = FileHelper.getCharcters();
+					
+				} catch (JsonSyntaxException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//to check whether character is present in map or not if present then remove it from character file list.
+				this.map_model.setInput_character_list(m);
+				
+				
+				
+				ArrayList<ItemModel> im = new ArrayList<ItemModel>();
+				try {
+					im = FileHelper.getItems();
+				} catch (JsonSyntaxException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				this.map_model.setInput_item_list(im);
+				
 				if (Integer.parseInt(this.map_view.map_height_textfield.getText().trim()) < 3
 						|| Integer.parseInt(this.map_view.map_width_textfield.getText().trim()) < 3) {
 					throw new NumberFormatException();

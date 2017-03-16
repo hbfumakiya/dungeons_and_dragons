@@ -637,50 +637,32 @@
       {
         "map_id": 6,
         "map_name": "hello",
-        "map_size": "20,20",
+        "map_size": "15,15",
         "map_chest": {
-          "x": 11,
-          "y": 9,
+          "x": 6,
+          "y": 7,
           "item": {
-            "item_id": 2,
-            "item_name": "Helmet2",
-            "item_point": 5,
+            "item_id": 1,
+            "item_name": "Helmet6",
+            "item_point": 4,
             "item_type": "Helmet",
-            "item_ability": "Wisdom"
+            "item_ability": "Intelligence"
           }
         },
-        "map_walls": [],
-        "map_entry_door": "0,11",
+        "map_walls": [
+          "7,11"
+        ],
+        "map_entry_door": "0,13",
         "map_enemy_loc": [
           {
-            "x": 10,
-            "y": 9,
+            "x": 5,
+            "y": 6,
             "character": {
-              "character_id": 3,
-              "character_name": "Mihir",
+              "character_id": 1,
+              "character_name": "Character5",
               "strength": 0,
-              "items": [
-                {
-                  "item_id": 3,
-                  "item_name": "Armor",
-                  "item_point": 5,
-                  "item_type": "Armor",
-                  "item_ability": "Armor class"
-                },
-                {
-                  "item_id": 1,
-                  "item_name": "Helmet6",
-                  "item_point": 4,
-                  "item_type": "Helmet",
-                  "item_ability": "Intelligence"
-                },
-                {
-                  "item_id": 5,
-                  "item_name": "Ring1",
-                  "item_point": 4,
-                  "item_type": "Ring",
-                  "item_ability": "Strength"
-                },
+              "items": [],
+              "backPackItems": [
                 {
                   "item_id": 8,
                   "item_name": "Range",
@@ -689,15 +671,6 @@
                   "item_ability": "Attack bonus"
                 },
                 {
-                  "item_id": 4,
-                  "item_name": "Shield",
-                  "item_point": 4,
-                  "item_type": "Shield",
-                  "item_ability": "Armor class"
-                }
-              ],
-              "backPackItems": [
-                {
                   "item_id": 3,
                   "item_name": "Armor",
                   "item_point": 5,
@@ -712,11 +685,11 @@
                   "item_ability": "Armor class"
                 },
                 {
-                  "item_id": 5,
-                  "item_name": "Ring1",
-                  "item_point": 4,
-                  "item_type": "Ring",
-                  "item_ability": "Strength"
+                  "item_id": 2,
+                  "item_name": "Helmet2",
+                  "item_point": 5,
+                  "item_type": "Helmet",
+                  "item_ability": "Wisdom"
                 },
                 {
                   "item_id": 6,
@@ -724,44 +697,37 @@
                   "item_point": 3,
                   "item_type": "Ring",
                   "item_ability": "Constitution"
-                },
-                {
-                  "item_id": 7,
-                  "item_name": "Melee",
-                  "item_point": 5,
-                  "item_type": "Weapon Melee",
-                  "item_ability": "Attack bonus"
                 }
               ],
-              "character_level": 8,
+              "character_level": 1,
               "abilityScores": {
-                "strength": 13,
-                "dexterity": 14,
-                "constitution": 13,
-                "intelligence": 16,
-                "wisdom": 14,
-                "charisma": 12
+                "strength": 10,
+                "dexterity": 11,
+                "constitution": 14,
+                "intelligence": 11,
+                "wisdom": 18,
+                "charisma": 16
               },
               "rawAbilityScores": {
-                "strength": 9,
-                "dexterity": 14,
-                "constitution": 13,
-                "intelligence": 12,
-                "wisdom": 14,
-                "charisma": 12
+                "strength": 10,
+                "dexterity": 11,
+                "constitution": 11,
+                "intelligence": 10,
+                "wisdom": 13,
+                "charisma": 16
               },
               "modifiers": {
-                "strength": 1,
-                "dexterity": 2,
-                "constitution": 1,
-                "intelligence": 3,
-                "wisdom": 2,
-                "charisma": 1
+                "strength": 0,
+                "dexterity": 0,
+                "constitution": 2,
+                "intelligence": 0,
+                "wisdom": 4,
+                "charisma": 3
               },
-              "hitpoints": 57,
-              "attackBonus": 15,
-              "damageBonus": 6,
-              "armorClass": 21
+              "hitpoints": 12,
+              "attackBonus": 1,
+              "damageBonus": 4,
+              "armorClass": 10
             },
             "characterType": "Enemy"
           }

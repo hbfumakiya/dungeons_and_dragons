@@ -179,7 +179,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 					if(enemyFlag == 1)
 					{
 						maps[i][j].setBackground(Game_constants.ENEMIES);
-						maps[i][j].setText("DEAD");
+						if(!character.getCharacter().isAlive())
+						maps[i][j].setText("D");
 						maps[i][j].setPointValue(2);
 						maps[i][j].setCharacterType(MapButton.ENEMY);
 						maps[i][j].setCharacter(character.getCharacter());
@@ -221,6 +222,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	 */
 	public void eraseButtonBackground(MapButton mapButton) {
 		//mapButton.setBackground(null);
+		if(!mapButton.getText().equals("D"))
 		mapButton.setText(null);
 	}
 
@@ -314,9 +316,12 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.mapPanel.removeAll();
 		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list().get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
 		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel)obs).getGameCharacterPosition().y]);
+		if(this.maps[oldPosition.x][oldPosition.y].getCharacter().equals(null))
+		{
 		eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
 		maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
 		maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+		}
 		
 		
 	}

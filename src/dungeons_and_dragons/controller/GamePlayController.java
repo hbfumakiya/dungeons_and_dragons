@@ -206,7 +206,37 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 			} else if (this.gamePlayView.showCharacter(tempPoint) != null) {
 				if (this.gamePlayView.enemyFlag == 1) {
-
+					
+					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+							.get(this.gamePlayModel.getCurrentMapIndex());
+					int numOfCharacters = map.getMap_enemy_loc().size();
+					CharacterModel enemy = new CharacterModel();
+					MapCharacter enemyMap = new MapCharacter();
+					int index = -1;
+					for(int j = 0;j<numOfCharacters;j++)
+					{
+						
+						if(map.getMap_enemy_loc().get(j).getX() == tempPoint.x && map.getMap_enemy_loc().get(j).getY() == tempPoint.y)
+						{
+							enemy = map.getMap_enemy_loc().get(j).getCharacter();
+							enemyMap = map.getMap_enemy_loc().get(j);
+							index = j;
+						}
+					}
+					
+					CharacterModel player = this.gamePlayModel.getCharacterModel();
+					boolean enemyAlive = true;
+					if(enemy!=null)
+					enemyAlive = fightWithEnemy(enemy,player);
+					if(enemyAlive == false)
+					{
+						
+						this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc()
+						.get(index).getCharacter().setAlive(false);;
+					}
+					
+					
+					
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
@@ -238,6 +268,17 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			tempPoint = oldPoint;
 		}
 
+	}
+	/**
+	 * This method is created to have fight between enemy
+	 * @param enemy
+	 * @param player
+	 * @return boolean
+	 */
+	private boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
+		return false;
+		
+		
 	}
 
 	/**
