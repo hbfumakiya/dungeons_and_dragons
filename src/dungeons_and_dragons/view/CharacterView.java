@@ -97,6 +97,7 @@ public class CharacterView extends JFrame implements Observer, View {
 	public JComboBox boot_combobox;
 	public JComboBox ring_combobox;
 	public JComboBox weapon_combobox;
+	public JComboBox fighter_combobox;
 
 	/**
 	 * this variable used for backpack combobox
@@ -303,6 +304,26 @@ public class CharacterView extends JFrame implements Observer, View {
 		level_textfield.setBounds(150, 250, 150, 25);
 		this.add(level_textfield);
 
+		
+		
+		// fighter type
+
+				additem_label = new JLabel("Select Fighter");
+				additem_label.setBounds(10, 440, 100, 25);
+				this.add(additem_label);
+			//	Object[] ob1 = new Object[] { null };
+			//	Object[] helmetTemp = this.items.stream().filter(p -> p.getItem_type().equals(Game_constants.HELMET)).toArray();
+			//	Object[] helmet = Stream.of(ob1, helmetTemp).flatMap(Stream::of).toArray();
+				
+				String [] fighter=new String [] {"Bully","Nimble","Tank"};
+				fighter_combobox = new JComboBox(fighter);
+		//		if (helmet.length > 0)
+		//			helmet_combobox.setRenderer(new ItemRenderer());
+				fighter_combobox.setBounds(150, 440, 150, 25);
+				this.add(fighter_combobox);
+		
+				//backpack
+				
 		backpack_label = new JLabel("BackPack");
 		backpack_label.setBounds(10, 280, 100, 25);
 		this.add(backpack_label);
@@ -325,7 +346,7 @@ public class CharacterView extends JFrame implements Observer, View {
 
 		if (this.i == 0) {
 			rolldice_save = new JButton("Roll Dice & Save");
-			rolldice_save.setBounds(110, 445, 200, 25);
+			rolldice_save.setBounds(110, 500, 200, 25);
 			this.add(rolldice_save);
 		}
 
