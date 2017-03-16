@@ -284,10 +284,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				if(this.gamePlayModel.getCampaignModel().getOutput_map_list().size() <= this.gamePlayModel.getCurrentMapIndex()+2) {
 					
 					this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex()+1);
+					this.gamePlayModel.deleteObserver(this.gamePlayView);
 					this.gamePlayView.dispose();
+					this.gamePlayView = null;
 					this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
 						
-					this.gamePlayModel.addObserver(gamePlayView);
+					this.gamePlayModel.addObserver(this.gamePlayView);
 					this.gamePlayView.setListener(this);
 					this.gamePlayView.setVisible(true);
 				} else {
