@@ -1427,13 +1427,6 @@
         "item_point": 3,
         "item_type": "Ring",
         "item_ability": "Constitution"
-      },
-      {
-        "item_id": 9,
-        "item_name": "Melee",
-        "item_point": 4,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
       }
     ],
     "character_level": 8,
@@ -1461,9 +1454,9 @@
       "wisdom": 4,
       "charisma": 3
     },
-    "hitpoints": 49,
+    "hitpoints": 50,
     "attackBonus": 8,
-    "damageBonus": 1,
+    "damageBonus": 5,
     "armorClass": 10,
     "isAlive": true
   },
