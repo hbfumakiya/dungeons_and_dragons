@@ -6,8 +6,11 @@ package dungeons_and_dragons.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
+import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.NPCItemView;
 
 /**
@@ -37,8 +40,12 @@ public class NPCItemController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(view.okButton)){
+			
+			List<ItemModel> items = this.view.itemList.getSelectedValuesList();
+			if ((items == null) || (items.size() < 1))
+				return;
+			this.controller.gamePlayModel.getCharacterModel().getBackPackItems().addAll(items);
 			this.view.dispose();
-
 		}
 			
 	}
