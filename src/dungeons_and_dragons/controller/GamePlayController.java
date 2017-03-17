@@ -10,15 +10,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
-import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -166,18 +163,14 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 				this.gamePlayView.consoleTextArea
 						.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...bumped into wall...\n");
-				
-				
-					
+
 				// print message that "Oops wall has been reached"
 
 			} else if (this.gamePlayView.showExitDoor(tempPoint)) {
 
 				// check if mission is completed -- > if yes let him escape
-				
+
 				updatePostion(tempPoint, oldPoint);
-				
-				
 
 			} else if (this.gamePlayView.showChest(tempPoint)) {
 
@@ -247,8 +240,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						new NPCItemController(this,allEnemyItems,true);
-						
+						new NPCItemController(this, allEnemyItems, true);
+
 					}
 
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
@@ -278,31 +271,58 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			}
 
 		} else {
-			
-			if(this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex()).getMap_exit_door().equals(oldPoint)) {
-				
-				if(this.gamePlayModel.getCurrentMapIndex()+1 < this.gamePlayModel.getCampaignModel().getOutput_map_list().size()  ) {
-					
-					this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex()+1);
-					this.gamePlayModel.deleteObserver(this.gamePlayView);
-					this.gamePlayView.dispose();
-					this.gamePlayView = null;
-					this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
-						
-					this.gamePlayModel.addObserver(this.gamePlayView);
-					this.gamePlayView.setListener(this);
-					this.gamePlayView.setVisible(true);
-				} else {
-					
-					this.gamePlayView.dispose();
-					this.gamePlayModel.deleteObserver(this.gamePlayView);
-					JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
-					new GameController();
-					System.out.println("Game Over");
+
+			if (this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex())
+					.getMap_exit_door().equals(oldPoint)) {
+
+				ArrayList<MapCharacter> npcs = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+						.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+
+				int totalEnemy = 0;
+				int deadEnemy = 0;
+				for (int i = 0; i < npcs.size(); i++) {
+
+					if (npcs.get(i).getCharacterType().equals(MapCharacter.ENEMY)) {
+						totalEnemy++;
+						if (!npcs.get(i).getCharacter().isAlive()) {
+							deadEnemy++;
+						}
+					}
 				}
-				
+
+				if (totalEnemy == deadEnemy) {
+					if (this.gamePlayModel.getCurrentMapIndex() + 1 < this.gamePlayModel.getCampaignModel()
+							.getOutput_map_list().size()) {
+
+						this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
+						this.gamePlayModel.deleteObserver(this.gamePlayView);
+						this.gamePlayView.dispose();
+						this.gamePlayView = null;
+						this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
+
+						this.gamePlayModel.addObserver(this.gamePlayView);
+						this.gamePlayView.setListener(this);
+						this.gamePlayView.setVisible(true);
+						
+						this.gamePlayModel.getCharacterModel().setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level()+1);
+						
+						this.shownInventories = new ArrayList<CharacterModel>();
+
+						matchNPCToPlayer();
+					} else {
+
+						this.gamePlayView.dispose();
+						this.gamePlayModel.deleteObserver(this.gamePlayView);
+						JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
+						new GameController();
+						System.out.println("Game Over");
+					}
+				} else {
+					JOptionPane.showMessageDialog(new JFrame(), "You have to kill all enemies to go to next level");
+				}
+
 			}
-			
+
 			// revert the point as boundary reached
 			tempPoint = oldPoint;
 		}
