@@ -3,6 +3,8 @@
  */
 package dungeons_and_dragons.view;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,9 +12,12 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 
 import dungeons_and_dragons.model.ItemModel;
@@ -28,7 +33,7 @@ public class NPCItemView extends JFrame implements View {
 	public JButton okButton;
 	public ItemModel[] itemtodisp;
 	public DefaultListModel<String> fruitsName;
-	public JTextArea itemTextArea;
+	public JList<ItemModel> itemList;
 
 	/**
 	 * 
@@ -48,25 +53,24 @@ public class NPCItemView extends JFrame implements View {
 	private void initilizeView() {
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setPreferredSize(new Dimension(200, 420));
+		this.panel.setPreferredSize(new Dimension(300, 370));
 		fruitsName = new DefaultListModel<>();
 		this.itemtodisp = new ItemModel[items.size()];
-		this.itemTextArea = new JTextArea();
+		
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i) != null) {
 
-				itemtodisp[i] = items.get(i);
-				itemTextArea.append(itemtodisp[i].getItem_name() + "\n");
+				if(items.get(i) != null)
+					itemtodisp[i] = items.get(i);
 			}
 		}
-
-		this.itemTextArea.setBounds(10, 10, 120, 350);
-		JScrollPane plainScroll = new JScrollPane(itemTextArea);
-		plainScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		this.itemList = new JList<ItemModel>(itemtodisp);
+		this.itemList.setCellRenderer(new ItemCellRenderer());
+		JScrollPane plainScroll = new JScrollPane(this.itemList);
+		plainScroll.setBounds(10, 10, 280, 300);
 		this.panel.add(plainScroll);
-		this.panel.add(itemTextArea);
 		this.okButton = new JButton("OK");
-		this.okButton.setBounds(10, 360, 65, 30);
+		this.okButton.setBounds(10, 320, 280, 30);
 		this.panel.add(this.okButton);
 
 		this.getContentPane().add(this.panel);
@@ -76,6 +80,43 @@ public class NPCItemView extends JFrame implements View {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.okButton.addActionListener(actionListener);
+	}
+	
+	
+	/**
+	 * 
+	 * class for custom items in JList
+	 * 
+	 * @author Mihir Pujara
+	 *
+	 */
+	class ItemCellRenderer extends JLabel implements ListCellRenderer<ItemModel> {
+
+		private static final long serialVersionUID = 1L;
+
+		public ItemCellRenderer() {
+			setOpaque(true);
+		}
+
+		@Override
+		public Component getListCellRendererComponent(JList<? extends ItemModel> arg0, ItemModel arg1, int arg2,
+				boolean arg3, boolean arg4) {
+
+			if (arg1 != null) {
+				setText(arg1.getItem_name() + "("+arg1.getItem_type()+" - "+arg1.getItem_ability()+")");
+				setSize(200, 30);
+			}
+
+			if (arg3) {
+				setBackground(new Color(0, 0, 128));
+				setForeground(Color.white);
+			} else {
+				setBackground(Color.white);
+				setForeground(Color.black);
+			}
+
+			return this;
+		}
 	}
 
 }
