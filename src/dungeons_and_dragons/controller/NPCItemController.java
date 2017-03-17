@@ -38,7 +38,7 @@ public class NPCItemController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(view.okButton)){
 			this.view.dispose();
-			//this.view.itemtodisp=null;
+
 		}
 			
 	}

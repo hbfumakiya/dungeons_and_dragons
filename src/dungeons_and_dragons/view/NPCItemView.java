@@ -32,7 +32,6 @@ public class NPCItemView extends JFrame implements View {
 	public ArrayList<ItemModel> items;
 	public JButton okButton;
 	public ItemModel[] itemtodisp;
-	public DefaultListModel<String> fruitsName;
 	public JList<ItemModel> itemList;
 
 	/**
@@ -54,7 +53,6 @@ public class NPCItemView extends JFrame implements View {
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 		this.panel.setPreferredSize(new Dimension(300, 370));
-		fruitsName = new DefaultListModel<>();
 		this.itemtodisp = new ItemModel[items.size()];
 		
 		for (int i = 0; i < items.size(); i++) {

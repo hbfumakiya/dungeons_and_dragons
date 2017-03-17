@@ -90,50 +90,6 @@
         "item_point": 2,
         "item_type": "Helmet",
         "item_ability": "Wisdom"
-      }
-    ],
-    "backPackItems": [
-      {
-        "item_id": 1,
-        "item_name": "Helmet6",
-        "item_point": 4,
-        "item_type": "Helmet",
-        "item_ability": "Intelligence"
-      },
-      {
-        "item_id": 5,
-        "item_name": "Ring1",
-        "item_point": 2,
-        "item_type": "Ring",
-        "item_ability": "Strength"
-      },
-      {
-        "item_id": 7,
-        "item_name": "Melee",
-        "item_point": 5,
-        "item_type": "Weapon Melee",
-        "item_ability": "Attack bonus"
-      },
-      {
-        "item_id": 8,
-        "item_name": "Range",
-        "item_point": 5,
-        "item_type": "Weapon Range",
-        "item_ability": "Attack bonus"
-      },
-      {
-        "item_id": 9,
-        "item_name": "Melee",
-        "item_point": 4,
-        "item_type": "Weapon Melee",
-        "item_ability": "Damage bonus"
-      },
-      {
-        "item_id": 5,
-        "item_name": "Ring1",
-        "item_point": 4,
-        "item_type": "Ring",
-        "item_ability": "Strength"
       },
       {
         "item_id": 8,
@@ -155,7 +111,9 @@
         "item_point": 3,
         "item_type": "Ring",
         "item_ability": "Constitution"
-      },
+      }
+    ],
+    "backPackItems": [
       {
         "item_id": 1,
         "item_name": "Helmet6",
@@ -224,10 +182,10 @@
       "wisdom": 2,
       "charisma": 3
     },
-    "hitpoints": 55,
-    "attackBonus": 8,
-    "damageBonus": 5,
-    "armorClass": 15,
+    "hitpoints": 75,
+    "attackBonus": 13,
+    "damageBonus": 3,
+    "armorClass": 19,
     "isAlive": true
   },
   {

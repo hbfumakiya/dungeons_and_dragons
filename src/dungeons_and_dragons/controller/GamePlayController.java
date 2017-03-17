@@ -241,6 +241,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 							}
 						}
 						new NPCItemController(this, allEnemyItems, true);
+						enemy.getBackPackItems().removeAll(allEnemyItems);
 
 					}
 
@@ -255,7 +256,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					// programming in build3 for this :P)
 
 				} else if (this.gamePlayView.enemyFlag == 0) {
-
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
 							+ "Hey bud wssup...I m here to take your items nothing else :P \n");
