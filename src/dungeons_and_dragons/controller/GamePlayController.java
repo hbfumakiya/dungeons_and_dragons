@@ -293,6 +293,11 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					this.gamePlayView.setListener(this);
 					this.gamePlayView.setVisible(true);
 				} else {
+					
+					this.gamePlayView.dispose();
+					this.gamePlayModel.deleteObserver(this.gamePlayView);
+					JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
+					new GameController();
 					System.out.println("Game Over");
 				}
 				
