@@ -320,6 +320,7 @@ public class TestMap {
 						maps[i][j].setPointValue(2);
 					}
 				}
+				
 			}
 			
 			MapGridView mapGridView = new MapGridView(gameMapModel);
