@@ -1427,6 +1427,7 @@
         "item_point": 3,
         "item_type": "Ring",
         "item_ability": "Constitution"
+<<<<<<< HEAD
       },
       {
         "item_id": 9,
@@ -1448,6 +1449,8 @@
         "item_point": 4,
         "item_type": "Weapon Melee",
         "item_ability": "Damage bonus"
+=======
+>>>>>>> branch 'master' of https://github.com/pujaramihir/dungeons_and_dragons.git
       }
     ],
     "character_level": 8,
@@ -1475,9 +1478,13 @@
       "wisdom": 4,
       "charisma": 3
     },
+<<<<<<< HEAD
     "hitpoints": 62,
+=======
+    "hitpoints": 50,
+>>>>>>> branch 'master' of https://github.com/pujaramihir/dungeons_and_dragons.git
     "attackBonus": 8,
-    "damageBonus": 1,
+    "damageBonus": 5,
     "armorClass": 10,
     "isAlive": true
   },

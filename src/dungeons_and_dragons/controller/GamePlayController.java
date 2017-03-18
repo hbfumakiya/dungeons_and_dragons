@@ -240,8 +240,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						new NPCItemController(this, allEnemyItems, true);
-						enemy.getBackPackItems().removeAll(allEnemyItems);
+						new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
+						//enemy.getBackPackItems().removeAll(allEnemyItems);
+						//enemy.getItems().removeAll(allEnemyItems);
 
 					}
 
@@ -256,6 +257,20 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					// programming in build3 for this :P)
 
 				} else if (this.gamePlayView.enemyFlag == 0) {
+					
+					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+							.get(this.gamePlayModel.getCurrentMapIndex());
+					int numOfCharacters = map.getMap_enemy_loc().size();
+					CharacterModel friendly = new CharacterModel();
+					for (int j = 0; j < numOfCharacters; j++) {
+
+						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
+							friendly = map.getMap_enemy_loc().get(j).getCharacter();
+						}
+					}
+					
+					new NPCItemController(this.gamePlayModel, this.gamePlayModel.getCharacterModel().getBackPackItems(), false, friendly);
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
 							+ "Hey bud wssup...I m here to take your items nothing else :P \n");
@@ -386,6 +401,13 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(this.gamePlayView.backButton))
+		{
+			new NewGameController();
+			this.gamePlayView.dispose();
+		}
+		else
+		{
 		MapButton button = (MapButton) e.getSource();
 		if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
 			if (button.getCharacterType() == MapButton.ENEMY) {
@@ -411,7 +433,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 			}
 		}
-
+		}
 	}
 
 	@Override
