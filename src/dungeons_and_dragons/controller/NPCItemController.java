@@ -8,9 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
-import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.NPCItemView;
 
 /**

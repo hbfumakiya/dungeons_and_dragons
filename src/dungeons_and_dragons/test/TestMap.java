@@ -11,6 +11,7 @@ import org.junit.Test;
 import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.controller.MapGridController;
 import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapValidator;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
@@ -171,22 +172,23 @@ public class TestMap {
 		public void testSetMapEnemyLoc() {
 			// Given
 			GameMapModel setmap_enemy = new GameMapModel();
-			Point map_enemy_loc1 = new Point(3, 3);
+			ArrayList<MapCharacter> map_enemy_loc1 = new ArrayList<MapCharacter>() ;
+			//Point map_enemy_loc1 = new Point(3, 3);
 			Point map_enemy_loc2 = new Point(2, 3);
 			Point map_enemy_loc3 = new Point(4, 3);
 			Point map_enemy_loc4 = new Point(3, 3);
 
-			ArrayList<Point> p;
+			ArrayList<MapCharacter> p;
 			int c = 4;
 
 			// When
 			setmap_enemy.setMap_enemy_loc(map_enemy_loc1);
-			setmap_enemy.setMap_enemy_loc(map_enemy_loc2);
-			setmap_enemy.setMap_enemy_loc(map_enemy_loc3);
-			setmap_enemy.setMap_enemy_loc(map_enemy_loc4);
+			//setmap_enemy.setMap_enemy_loc(map_enemy_loc2);
+			//setmap_enemy.setMap_enemy_loc(map_enemy_loc3);
+			//setmap_enemy.setMap_enemy_loc(map_enemy_loc4);
 
 			p = setmap_enemy.getMap_enemy_loc();
-
+			
 			System.out.println(p.size());
 			// Then
 			assertNotSame(c, p.size());
@@ -200,7 +202,7 @@ public class TestMap {
 		public void testEntryToExitDoor() {
 			
 			
-			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
 			
@@ -268,7 +270,7 @@ public class TestMap {
 		public void testEnenmyExists() {
 			
 			
-			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
 			int count = 0;
@@ -288,7 +290,7 @@ public class TestMap {
 			Point map_size1 = new Point(5,5);
 			Point map_entry_door = new Point(1,0);
 			Point map_exit_door = new Point(4,0);			
-			map_enemy_loc.add(new Point(4,4));
+			map_enemy_loc.add(new MapCharacter());
 			map_walls.add(new Point(0,1));
 			map_walls.add(new Point(1,1));
 			map_walls.add(new Point(2,1));
@@ -347,7 +349,7 @@ public class TestMap {
 		@Test
 		public void testResetAll()
 		{
-			ArrayList<Point> map_enemy_loc = new ArrayList<Point>();
+			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
 			
