@@ -3,7 +3,6 @@ package dungeons_and_dragons.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Observable;
 
 import com.google.gson.JsonSyntaxException;
@@ -84,11 +83,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 	@Expose
 	private int armorClass;
-	
+
 	@Expose
 	private boolean isAlive;
-
-	
 
 	/**
 	 * Default constructor used to initialize character features
@@ -167,7 +164,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setItems(ArrayList<ItemModel> items) {
 		this.items = items;
-		
+
 		setChanged();
 		notifyObservers();
 	}
@@ -185,7 +182,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setBackPackItems(ArrayList<ItemModel> backPackItems) {
 		this.backPackItems = backPackItems;
-		
+
 		setChanged();
 		notifyObservers();
 	}
@@ -203,7 +200,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setCharacter_level(int character_level) {
 		this.character_level = character_level;
-		
+
 		setChanged();
 		notifyObservers();
 	}
@@ -382,9 +379,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.rawAbilityScores.setDexterity(this.abilityScores.getDexterity());
 		this.rawAbilityScores.setIntelligence(this.abilityScores.getIntelligence());
 		this.rawAbilityScores.setWisdom(this.abilityScores.getWisdom());
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 
 	}
@@ -465,9 +462,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		this.modifiers.setIntelligence(getModifiersFromScore(this.abilityScores.getIntelligence()));
 		this.modifiers.setWisdom(getModifiersFromScore(this.abilityScores.getWisdom()));
 		this.modifiers.setCharisma(getModifiersFromScore(this.abilityScores.getCharisma()));
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 
 	}
@@ -491,9 +488,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.hitpoints = hitPoints;
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 	}
 
@@ -543,9 +540,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			}
 		}
 		this.armorClass = armorClass;
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 	}
 
@@ -577,10 +574,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.attackBonus = attackBonus;
-		
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 	}
 
@@ -609,13 +605,13 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 		}
 
 		this.damageBonus = damageBonus;
-		
+
 		setChanged();
-		
+
 		notifyObservers();
 
 	}
-	
+
 	/**
 	 * @return the isAlive
 	 */
@@ -624,7 +620,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	}
 
 	/**
-	 * @param isAlive the isAlive to set
+	 * @param isAlive
+	 *            the isAlive to set
 	 */
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;

@@ -274,5 +274,42 @@
     "damageBonus": 6,
     "armorClass": 21,
     "isAlive": true
+  },
+  {
+    "character_id": 4,
+    "character_name": "g",
+    "strength": 0,
+    "items": [],
+    "backPackItems": [],
+    "character_level": 1,
+    "abilityScores": {
+      "strength": 7,
+      "dexterity": 17,
+      "constitution": 8,
+      "intelligence": 13,
+      "wisdom": 10,
+      "charisma": 13
+    },
+    "rawAbilityScores": {
+      "strength": 7,
+      "dexterity": 17,
+      "constitution": 8,
+      "intelligence": 13,
+      "wisdom": 10,
+      "charisma": 13
+    },
+    "modifiers": {
+      "strength": -2,
+      "dexterity": 3,
+      "constitution": -1,
+      "intelligence": 1,
+      "wisdom": 0,
+      "charisma": 1
+    },
+    "hitpoints": 9,
+    "attackBonus": 1,
+    "damageBonus": 6,
+    "armorClass": 13,
+    "isAlive": true
   }
 ]

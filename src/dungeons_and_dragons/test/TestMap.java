@@ -269,7 +269,6 @@ public class TestMap {
 		@Test
 		public void testEnenmyExists() {
 			
-			
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
@@ -342,9 +341,7 @@ public class TestMap {
 				expectedResult = true;
 			}			
 			//assertEquals(expectedResult, true);
-			assertNotEquals(expectedResult, true);
-			
-
+			assertNotEquals(expectedResult, true);			
 		}
 		
 		@Test

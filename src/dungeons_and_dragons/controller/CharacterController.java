@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.builder.BullyFighterBuilder;
+import dungeons_and_dragons.builder.Explorer;
+import dungeons_and_dragons.builder.FighterBuilder;
+import dungeons_and_dragons.builder.NimbleFighterBuilder;
+import dungeons_and_dragons.builder.TankFighterBuilder;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterView;
@@ -20,8 +25,9 @@ import dungeons_and_dragons.view.CharacterView;
  */
 public class CharacterController implements ActionListener {
 
-	private CharacterModel model;
+	private CharacterModel model, nimble, tank, bully;
 	private CharacterView view;
+	Explorer explorer;
 
 	/**
 	 * Default constructor of character controller
@@ -125,7 +131,26 @@ public class CharacterController implements ActionListener {
 
 		} else if (e.getSource().equals(view.rolldice_save)) {
 			String character_name = this.view.charactername_textfield.getText();
+			String fighter_type = this.view.fighter_combobox.getSelectedItem().toString();
+			explorer = new Explorer();
 			// model.setCharacter_name(character_name);
+			if (fighter_type == "Bully") {
+				FighterBuilder bullyFighterbuilder = new BullyFighterBuilder();
+				explorer.setBuilder(bullyFighterbuilder);
+				explorer.constructFighterType();
+				bully = explorer.getCharacter();
+			} else if (fighter_type == "Nimble") {
+				FighterBuilder nimbleFighterbuilder = new NimbleFighterBuilder();
+				explorer.setBuilder(nimbleFighterbuilder);
+				explorer.constructFighterType();
+				nimble = explorer.getCharacter();
+			} else {
+				FighterBuilder tankFighterbuilder = new TankFighterBuilder();
+				explorer.setBuilder(tankFighterbuilder);
+				explorer.constructFighterType();
+				tank = explorer.getCharacter();
+			}
+			
 			if (character_name.equals("")) {
 				JOptionPane.showMessageDialog(new JFrame(), "Please enter character name");
 				return;
