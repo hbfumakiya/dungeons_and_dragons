@@ -194,7 +194,7 @@ public class CharacterController implements ActionListener {
 
 				this.model.setBackPackItems(backPackList);
 
-				this.model.calculateAbilityScores();
+				//this.model.calculateAbilityScores();
 				this.model.calculateModifires();
 				this.model.calculateHitPoints(level);
 				this.model.calculateArmorClass();

@@ -365,20 +365,23 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	/**
 	 * method to calculate all 6 ability scores
 	 */
-	public void calculateAbilityScores() {
-		this.abilityScores.setstrength(this.calculate4D6());
-		this.abilityScores.setCharisma(this.calculate4D6());
-		this.abilityScores.setConstitution(this.calculate4D6());
-		this.abilityScores.setDexterity(this.calculate4D6());
-		this.abilityScores.setIntelligence(this.calculate4D6());
-		this.abilityScores.setWisdom(this.calculate4D6());
+	public void calculateAbilityScores(String s) {
+		System.out.println("calcabi");
+		if (s == "bully") {
+			this.abilityScores.setstrength(this.calculate4D6());
+			this.abilityScores.setCharisma(this.calculate4D6());
+			this.abilityScores.setConstitution(this.calculate4D6());
+			this.abilityScores.setDexterity(this.calculate4D6());
+			this.abilityScores.setIntelligence(this.calculate4D6());
+			this.abilityScores.setWisdom(this.calculate4D6());
 
-		this.rawAbilityScores.setstrength(this.abilityScores.getStraight());
-		this.rawAbilityScores.setCharisma(this.abilityScores.getCharisma());
-		this.rawAbilityScores.setConstitution(this.abilityScores.getConstitution());
-		this.rawAbilityScores.setDexterity(this.abilityScores.getDexterity());
-		this.rawAbilityScores.setIntelligence(this.abilityScores.getIntelligence());
-		this.rawAbilityScores.setWisdom(this.abilityScores.getWisdom());
+			this.rawAbilityScores.setstrength(this.abilityScores.getStraight());
+			this.rawAbilityScores.setCharisma(this.abilityScores.getCharisma());
+			this.rawAbilityScores.setConstitution(this.abilityScores.getConstitution());
+			this.rawAbilityScores.setDexterity(this.abilityScores.getDexterity());
+			this.rawAbilityScores.setIntelligence(this.abilityScores.getIntelligence());
+			this.rawAbilityScores.setWisdom(this.abilityScores.getWisdom());
+		}
 
 		setChanged();
 

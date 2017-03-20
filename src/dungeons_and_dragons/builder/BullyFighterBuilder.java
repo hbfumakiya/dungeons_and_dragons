@@ -1,16 +1,17 @@
 package dungeons_and_dragons.builder;
+
 import dungeons_and_dragons.model.CharacterModel;
 
+public class BullyFighterBuilder extends FighterBuilder {
 
-public class BullyFighterBuilder extends FighterBuilder{
-	
-	public void buildCalculateAbilityScores(){
-		
-		
-		
-		
-		
+	CharacterModel model;
+	public String s;
+
+	public void buildCalculateAbilityScores() {
+		model=new CharacterModel();
+		System.out.println("buildabi");
+		s = "bully";
+		this.model.calculateAbilityScores(s);
 	}
-	
 
 }
