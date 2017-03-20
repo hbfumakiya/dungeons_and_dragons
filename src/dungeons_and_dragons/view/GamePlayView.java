@@ -6,18 +6,25 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.stream.Collectors;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 
 import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.Game_constants;
@@ -30,7 +37,7 @@ import dungeons_and_dragons.model.GamePlayModel;
  * Renders the GamePlayModel into a form suitable for visualization or
  * interaction, typically a user interface element.
  * 
- * @author Mihir Pujara
+ * @author Mihir Pujara & Urmil Kansara
  *
  */
 public class GamePlayView extends JFrame implements Observer, View {
@@ -61,10 +68,51 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JLabel mapNameLabel;
 	public JLabel mapName;
 	public JTextArea consoleTextArea;
-
+	
+	public JLabel map_entry_door;
+	public JLabel map_exit_door;
+	public JLabel map_chest;
+	public JLabel map_enemy;
+	public JLabel map_friend;
+	public JLabel map_wall;
+	private JLabel map_entry_color;
+	private JLabel map_exit_color;
+	private JLabel map_chest_color;
+	private JLabel map_enemy_color;
+	private JLabel map_friend_color;
+	private JLabel map_wall_color;
+	private JLabel empty;
+	
+	public JButton backButton;
 	public GamePlayView(GamePlayModel gamePlayModel, GamePlayController gamePlayController) {
 
 		this.setTitle(this.mapWindowTitle);
+		try {
+			BufferedImage map_entry_color_image = ImageIO.read(new File("res/yelllow.jpg"));
+			map_entry_color = new JLabel(new ImageIcon(map_entry_color_image));
+			// map_entry_color.setMaximumSize(new Dimension(10,10));
+
+			BufferedImage map_exit_color_image = ImageIO.read(new File("res/green.png"));
+			map_exit_color = new JLabel(new ImageIcon(map_exit_color_image));
+			// map_exit_color.setMaximumSize(new Dimension(10,10));
+
+			BufferedImage map_chest_color_image = ImageIO.read(new File("res/blue.jpg"));
+			map_chest_color = new JLabel(new ImageIcon(map_chest_color_image));
+			// map_chest_color.setMaximumSize(new Dimension(10,10));
+
+			BufferedImage map_enemy_color_image = ImageIO.read(new File("res/red.jpg"));
+			map_enemy_color = new JLabel(new ImageIcon(map_enemy_color_image));
+			// map_enemy_color.setMaximumSize(new Dimension(10,10));
+
+			BufferedImage map_wall_color_image = ImageIO.read(new File("res/grey.jpg"));
+			map_wall_color = new JLabel(new ImageIcon(map_wall_color_image));
+			// map_wall_color.setMaximumSize(new Dimension(10,10));
+			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
+			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
+			// map_wall_color.setMaximumSize(new Dimension(10,10));
+			
+		} catch (IOException e) {
+		}
 
 		this.gamePlayModel = gamePlayModel;
 		this.currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
@@ -88,15 +136,17 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		this.topPanel = new JPanel();
 		this.topPanel.setBounds(500, 5, 300, 40);
-		this.topPanel.setLayout(new GridLayout(2, 1));
+		this.topPanel.setLayout(new GridLayout(2, 3));
 
 		campaignNameLabel = new JLabel("Campaign -->");
 		campaignName = new JLabel(this.gamePlayModel.getCampaignModel().getCampaign_name());
+		backButton = new JButton("back");
 		mapNameLabel = new JLabel("Map -->");
 		mapName = new JLabel(this.currentMap.getMap_name());
 
 		this.topPanel.add(campaignNameLabel);
 		this.topPanel.add(campaignName);
+		this.topPanel.add(backButton);
 		this.topPanel.add(mapNameLabel);
 		this.topPanel.add(mapName);
 
@@ -111,7 +161,31 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// yet to be constructed
 		this.infoPanel = new JPanel();
 		this.infoPanel.setBounds(710, 50, 280, 445);
+		this.infoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.infoPanel.setLayout(new GridLayout(6, 2,15,15));
 		this.infoPanel.setBorder(new BevelBorder(1));
+		
+		
+		
+		map_entry_door = new JLabel("Entry Door");
+		map_exit_door = new JLabel("Exit Door");
+		map_chest = new JLabel("Chest");
+		map_enemy = new JLabel("Enemy");
+		map_friend = new JLabel("Friend");
+		map_wall = new JLabel("Wall");
+		
+		this.infoPanel.add(map_entry_door);
+		this.infoPanel.add(map_entry_color);
+		this.infoPanel.add(map_exit_door);
+		this.infoPanel.add(map_exit_color);
+		this.infoPanel.add(map_chest);
+		this.infoPanel.add(map_chest_color);
+		this.infoPanel.add(map_enemy);
+		this.infoPanel.add(map_enemy_color);
+		this.infoPanel.add(map_friend);
+		this.infoPanel.add(map_friend_color);
+		this.infoPanel.add(map_wall);
+		this.infoPanel.add(map_wall_color);
 
 		this.consoleMainPanel = new JPanel();
 		this.consoleMainPanel.setBounds(5, 510, 985, 150);
@@ -138,10 +212,12 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// set minimum size of frame
 		this.setMinimumSize(new Dimension(1000, 700));
 		this.setResizable(false);
-
+		
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
+		
+		this.backButton.setFocusable(false);
 	}
 
 	public void showMap(GameMapModel currentMap, JPanel mapPanel) {
@@ -353,6 +429,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	public void setListener(GamePlayController gamePlayController) {
 		this.addKeyListener(gamePlayController);
+		this.backButton.addActionListener(gamePlayController);
 	}
 
 	@Override

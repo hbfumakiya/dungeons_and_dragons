@@ -77,7 +77,15 @@
     "character_name": "Character2",
     "strength": 0,
     "items": [],
-    "backPackItems": [],
+    "backPackItems": [
+      {
+        "item_id": 2,
+        "item_name": "Helmet2",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Wisdom"
+      }
+    ],
     "character_level": 8,
     "abilityScores": {
       "strength": 17,
@@ -103,9 +111,9 @@
       "wisdom": 2,
       "charisma": 3
     },
-    "hitpoints": 65,
+    "hitpoints": 53,
     "attackBonus": 8,
-    "damageBonus": 2,
+    "damageBonus": 3,
     "armorClass": 10,
     "isAlive": true
   },
