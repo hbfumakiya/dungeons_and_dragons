@@ -26,8 +26,6 @@ public class Explorer {
 	   public void constructFighterType() {
 	    builder.createNewFighterType();
 	    builder.buildCalculateAbilityScores();
-		
-	
 	  }
 	  
 	  /**

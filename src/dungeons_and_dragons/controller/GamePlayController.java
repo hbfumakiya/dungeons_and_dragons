@@ -405,9 +405,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		{
 			new NewGameController();
 			this.gamePlayView.dispose();
-		}
-		else
-		{
+		} else {
 		MapButton button = (MapButton) e.getSource();
 		if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
 			if (button.getCharacterType() == MapButton.ENEMY) {

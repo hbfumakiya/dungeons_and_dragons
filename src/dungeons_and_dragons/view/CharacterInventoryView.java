@@ -105,6 +105,10 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 	private JLabel itemLabel;
 	
 	private JLabel backPackLabel;
+	
+	public boolean showInventory;
+	
+	public JButton showInventoryButton;
 
 	/**
 	 * 
@@ -114,6 +118,8 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		this.character = character;
 
+		this.showInventory = true;
+		
 		this.setTitle("Character Inventory");
 
 		this.initilizeView();
@@ -124,6 +130,21 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		this.setLocationRelativeTo(null);
 	}
 	
+	public CharacterInventoryView(CharacterModel character, boolean showInventory) {
+
+		this.character = character;
+		
+		this.showInventory = showInventory;
+
+		this.setTitle("Character Inventory");
+
+		this.initilizeView();
+
+		this.setResizable(false);
+
+		this.pack();
+		this.setLocationRelativeTo(null);
+	}
 	
 
 	/**
@@ -142,9 +163,19 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setPreferredSize(new Dimension(500, 420));
+		if(showInventory)
+			this.panel.setPreferredSize(new Dimension(500, 420));
+		else 
+			this.panel.setPreferredSize(new Dimension(500, 220));
 
 		this.showDetails(this.character);
+		
+		this.showInventoryButton = new JButton("View Inventory");
+		this.showInventoryButton.setBounds(170, 180, 160, 30);
+		
+		if(!showInventory) {
+			this.panel.add(this.showInventoryButton);
+		}
 
 		// item list
 
@@ -176,12 +207,14 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		this.itemScrollPane = new JScrollPane(this.itemList);
 		this.itemScrollPane.setBounds(10, 160, 200, 200);
-		this.panel.add(this.itemScrollPane);
+		if(showInventory)
+			this.panel.add(this.itemScrollPane);
 		
 		// back pack Label 
 		this.itemLabel = new JLabel("Items");
 		this.itemLabel.setBounds(10, 140, 200, 20);
-		this.panel.add(this.itemLabel);
+		if(showInventory)
+			this.panel.add(this.itemLabel);
 
 		// backpack list
 
@@ -212,34 +245,36 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		this.backPackScrollPane = new JScrollPane(this.backPackList);
 		this.backPackScrollPane.setBounds(290, 160, 200, 200);
-		this.panel.add(this.backPackScrollPane);
+		if(showInventory)
+			this.panel.add(this.backPackScrollPane);
 		
 		
 		// back pack Label 
 		this.backPackLabel = new JLabel("Backpack Items");
 		this.backPackLabel.setBounds(290, 140, 200, 20);
-		this.panel.add(this.backPackLabel);
+		if(showInventory)
+			this.panel.add(this.backPackLabel);
 
 		// move to item to backpack >
 
 		this.moveFromItemToBack = new JButton(">");
 		this.moveFromItemToBack.setBounds(225, 170, 50, 50);
-
-		this.panel.add(this.moveFromItemToBack);
+		if(showInventory)
+			this.panel.add(this.moveFromItemToBack);
 
 		// move to backpack to item <
 
 		this.moveFromBackToItem = new JButton("<");
 		this.moveFromBackToItem.setBounds(225, 280, 50, 50);
-
-		this.panel.add(this.moveFromBackToItem);
+		if(showInventory)
+			this.panel.add(this.moveFromBackToItem);
 
 		// ok button
 
 		this.okButton = new JButton("OK");
 		this.okButton.setBounds(217, 360, 65, 30);
-
-		this.panel.add(this.okButton);
+		if(showInventory)
+			this.panel.add(this.okButton);
 
 		this.getContentPane().add(this.panel);
 	}
@@ -478,6 +513,10 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		this.moveFromBackToItem.addActionListener(actionListener);
 
 		this.okButton.addActionListener(actionListener);
+		
+		if(this.showInventoryButton != null) {
+			this.showInventoryButton.addActionListener(actionListener);
+		}
 	}
 
 	@Override

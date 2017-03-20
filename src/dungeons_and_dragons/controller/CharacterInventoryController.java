@@ -56,7 +56,7 @@ public class CharacterInventoryController implements ActionListener {
 
 		this.character = character;
 
-		characterInventoryView = new CharacterInventoryView(character);
+		characterInventoryView = new CharacterInventoryView(character,false);
 
 		characterInventoryView.setActionListener(this);
 
@@ -131,6 +131,8 @@ public class CharacterInventoryController implements ActionListener {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 
+		} else if() {
+			
 		}
 	}
 }

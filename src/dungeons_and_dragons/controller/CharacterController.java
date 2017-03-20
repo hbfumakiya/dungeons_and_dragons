@@ -25,7 +25,7 @@ import dungeons_and_dragons.view.CharacterView;
  */
 public class CharacterController implements ActionListener {
 
-	private CharacterModel model, nimble, tank, bully;
+	private CharacterModel model;
 	private CharacterView view;
 	Explorer explorer;
 
@@ -138,17 +138,17 @@ public class CharacterController implements ActionListener {
 				FighterBuilder bullyFighterbuilder = new BullyFighterBuilder();
 				explorer.setBuilder(bullyFighterbuilder);
 				explorer.constructFighterType();
-				bully = explorer.getCharacter();
+				this.model = explorer.getCharacter();
 			} else if (fighter_type == "Nimble") {
 				FighterBuilder nimbleFighterbuilder = new NimbleFighterBuilder();
 				explorer.setBuilder(nimbleFighterbuilder);
 				explorer.constructFighterType();
-				nimble = explorer.getCharacter();
+				this.model = explorer.getCharacter();
 			} else {
 				FighterBuilder tankFighterbuilder = new TankFighterBuilder();
 				explorer.setBuilder(tankFighterbuilder);
 				explorer.constructFighterType();
-				tank = explorer.getCharacter();
+				this.model = explorer.getCharacter();
 			}
 			
 			if (character_name.equals("")) {
