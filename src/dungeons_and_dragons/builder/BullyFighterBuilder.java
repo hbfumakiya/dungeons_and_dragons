@@ -10,5 +10,6 @@ public class BullyFighterBuilder extends FighterBuilder{
 		
 		
 	}
+	
 
 }
