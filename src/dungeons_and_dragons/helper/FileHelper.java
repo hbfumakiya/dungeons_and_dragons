@@ -215,7 +215,6 @@ public class FileHelper {
 									tempItem.setMap_object_color_type(map.getMap_object_color_type());
 									tempItem.setMap_size(map.getMap_size());
 									tempItem.setMap_walls(map.getMap_walls());
-
 								}
 							}
 						}
@@ -286,7 +285,10 @@ public class FileHelper {
 		Writer file_writer = new FileWriter(CHARACTER_FILE);
 
 		// store object to json
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		gson.toJson(item_list, file_writer);
 
 		// close file
@@ -310,7 +312,10 @@ public class FileHelper {
 		Reader reader = new FileReader(CHARACTER_FILE);
 
 		// read data from json file convert it into arraylist and return it
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
 		return gson.fromJson(reader, new TypeToken<ArrayList<CharacterModel>>() {
 		}.getType());
 	}
@@ -364,12 +369,109 @@ public class FileHelper {
 				Writer file_writer = new FileWriter(CHARACTER_FILE);
 
 				// store object to json
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+				Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+						.setPrettyPrinting().create();
 
 				gson.toJson(character_list, file_writer);
 
 				// close file
 				file_writer.close();
+
+				ArrayList<GameMapModel> maps = getMaps();
+
+				for (int i = 0; i < maps.size(); i++) {
+					GameMapModel map = maps.get(i);
+					ArrayList<MapCharacter> characters = map.getMap_enemy_loc();
+					for (int j = 0; j < characters.size(); j++) {
+						CharacterModel tempChatacter = characters.get(j).getCharacter();
+						if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
+
+							tempChatacter.setAbilityScores(character.getAbilityScores());
+							tempChatacter.setArmorClass(character.getArmorClass());
+							tempChatacter.setAttackBonus(character.getAttackBonus());
+							tempChatacter.setBackPackItems(character.getBackPackItems());
+							tempChatacter.setCharacter_level(character.getCharacter_level());
+							tempChatacter.setCharacter_name(character.getCharacter_name());
+							tempChatacter.setDamageBonus(character.getDamageBonus());
+							tempChatacter.setHitpoints(character.getHitpoints());
+							tempChatacter.setItems(character.getItems());
+							tempChatacter.setModifiers(character.getModifiers());
+							tempChatacter.setStrength(character.getStrength());
+							tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
+						}
+					}
+				}
+
+				file_writer = new FileWriter(MAP_FILE);
+
+				gson.toJson(maps, file_writer);
+
+				file_writer.close();
+
+				ArrayList<CampaignModel> campaigns = getCampaigns();
+
+				for (int k = 0; k < campaigns.size(); k++) {
+					CampaignModel campaign = campaigns.get(k);
+
+					maps = campaign.getInput_map_list();
+
+					for (int i = 0; i < maps.size(); i++) {
+						GameMapModel map = maps.get(i);
+						ArrayList<MapCharacter> characters = map.getMap_enemy_loc();
+						for (int j = 0; j < characters.size(); j++) {
+							CharacterModel tempChatacter = characters.get(j).getCharacter();
+							if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
+
+								tempChatacter.setAbilityScores(character.getAbilityScores());
+								tempChatacter.setArmorClass(character.getArmorClass());
+								tempChatacter.setAttackBonus(character.getAttackBonus());
+								tempChatacter.setBackPackItems(character.getBackPackItems());
+								tempChatacter.setCharacter_level(character.getCharacter_level());
+								tempChatacter.setCharacter_name(character.getCharacter_name());
+								tempChatacter.setDamageBonus(character.getDamageBonus());
+								tempChatacter.setHitpoints(character.getHitpoints());
+								tempChatacter.setItems(character.getItems());
+								tempChatacter.setModifiers(character.getModifiers());
+								tempChatacter.setStrength(character.getStrength());
+								tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
+							}
+						}
+					}
+
+					maps = campaign.getOutput_map_list();
+
+					for (int i = 0; i < maps.size(); i++) {
+						GameMapModel map = maps.get(i);
+						ArrayList<MapCharacter> characters = map.getMap_enemy_loc();
+						for (int j = 0; j < characters.size(); j++) {
+							CharacterModel tempChatacter = characters.get(j).getCharacter();
+							if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
+
+								tempChatacter.setAbilityScores(character.getAbilityScores());
+								tempChatacter.setArmorClass(character.getArmorClass());
+								tempChatacter.setAttackBonus(character.getAttackBonus());
+								tempChatacter.setBackPackItems(character.getBackPackItems());
+								tempChatacter.setCharacter_level(character.getCharacter_level());
+								tempChatacter.setCharacter_name(character.getCharacter_name());
+								tempChatacter.setDamageBonus(character.getDamageBonus());
+								tempChatacter.setHitpoints(character.getHitpoints());
+								tempChatacter.setItems(character.getItems());
+								tempChatacter.setModifiers(character.getModifiers());
+								tempChatacter.setStrength(character.getStrength());
+								tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
+							}
+						}
+					}
+				}
+
+				file_writer = new FileWriter(CAMPAIGN_FILE);
+
+				gson.toJson(campaigns, file_writer);
+
+				file_writer.close();
+
 			} else {
 				throw new NotFoundException();
 			}
@@ -536,6 +638,198 @@ public class FileHelper {
 
 				gson.toJson(characters, file_writer);
 
+				file_writer.close();
+
+				ArrayList<GameMapModel> maps = getMaps();
+
+				for (int i = 0; i < maps.size(); i++) {
+					GameMapModel map = maps.get(i);
+					ItemModel tempItem = map.getMap_chest().getItem();
+					if (tempItem.getItem_id() == item.getItem_id()) {
+						tempItem.setItem_name(item.getItem_name());
+						tempItem.setItem_type(item.getItem_type());
+						tempItem.setItem_ability(item.getItem_ability());
+						tempItem.setItem_point(item.getItem_point());
+					}
+
+					ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
+					for (int k = 0; k < characters1.size(); k++) {
+						CharacterModel character = characters1.get(k).getCharacter();
+						ArrayList<ItemModel> items = character.getItems();
+						if (items != null) {
+							while (items.remove(null)) {
+							}
+							for (int j = 0; j < items.size(); j++) {
+								tempItem = items.get(j);
+
+								if (tempItem.getItem_id() == item.getItem_id()) {
+
+									tempItem.setItem_name(item.getItem_name());
+									tempItem.setItem_type(item.getItem_type());
+									tempItem.setItem_ability(item.getItem_ability());
+									tempItem.setItem_point(item.getItem_point());
+
+									character.calculateModifires();
+									character.calculateHitPoints(character.getCharacter_level());
+									character.calculateArmorClass();
+									character.calculateAttackBonus(character.getCharacter_level());
+									character.calculateDamageBonus();
+								}
+							}
+						}
+
+						ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+
+						if (backPackItems != null) {
+							while (backPackItems.remove(null)) {
+							}
+							for (int j = 0; j < backPackItems.size(); j++) {
+								tempItem = backPackItems.get(j);
+
+								if (tempItem.getItem_id() == item.getItem_id()) {
+
+									tempItem.setItem_name(item.getItem_name());
+									tempItem.setItem_type(item.getItem_type());
+									tempItem.setItem_ability(item.getItem_ability());
+									tempItem.setItem_point(item.getItem_point());
+								}
+							}
+						}
+					}
+				}
+
+				file_writer = new FileWriter(MAP_FILE);
+
+				gson.toJson(maps, file_writer);
+
+				// close file
+				file_writer.close();
+
+				ArrayList<CampaignModel> campaigns = getCampaigns();
+
+				for (int m = 0; m < campaigns.size(); m++) {
+					CampaignModel campaign = campaigns.get(m);
+					maps = campaign.getInput_map_list();
+
+					for (int i = 0; i < maps.size(); i++) {
+						GameMapModel map = maps.get(i);
+						ItemModel tempItem = map.getMap_chest().getItem();
+						if (tempItem.getItem_id() == item.getItem_id()) {
+							tempItem.setItem_name(item.getItem_name());
+							tempItem.setItem_type(item.getItem_type());
+							tempItem.setItem_ability(item.getItem_ability());
+							tempItem.setItem_point(item.getItem_point());
+						}
+
+						ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
+						for (int k = 0; k < characters1.size(); k++) {
+							CharacterModel character = characters1.get(k).getCharacter();
+							ArrayList<ItemModel> items = character.getItems();
+							if (items != null) {
+								while (items.remove(null)) {
+								}
+								for (int j = 0; j < items.size(); j++) {
+									tempItem = items.get(j);
+
+									if (tempItem.getItem_id() == item.getItem_id()) {
+
+										tempItem.setItem_name(item.getItem_name());
+										tempItem.setItem_type(item.getItem_type());
+										tempItem.setItem_ability(item.getItem_ability());
+										tempItem.setItem_point(item.getItem_point());
+
+										character.calculateModifires();
+										character.calculateHitPoints(character.getCharacter_level());
+										character.calculateArmorClass();
+										character.calculateAttackBonus(character.getCharacter_level());
+										character.calculateDamageBonus();
+									}
+								}
+							}
+
+							ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+
+							if (backPackItems != null) {
+								while (backPackItems.remove(null)) {
+								}
+								for (int j = 0; j < backPackItems.size(); j++) {
+									tempItem = backPackItems.get(j);
+
+									if (tempItem.getItem_id() == item.getItem_id()) {
+
+										tempItem.setItem_name(item.getItem_name());
+										tempItem.setItem_type(item.getItem_type());
+										tempItem.setItem_ability(item.getItem_ability());
+										tempItem.setItem_point(item.getItem_point());
+									}
+								}
+							}
+						}
+					}
+
+					maps = campaign.getOutput_map_list();
+
+					for (int i = 0; i < maps.size(); i++) {
+						GameMapModel map = maps.get(i);
+						ItemModel tempItem = map.getMap_chest().getItem();
+						if (tempItem.getItem_id() == item.getItem_id()) {
+							tempItem.setItem_name(item.getItem_name());
+							tempItem.setItem_type(item.getItem_type());
+							tempItem.setItem_ability(item.getItem_ability());
+							tempItem.setItem_point(item.getItem_point());
+						}
+
+						ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
+						for (int k = 0; k < characters1.size(); k++) {
+							CharacterModel character = characters1.get(k).getCharacter();
+							ArrayList<ItemModel> items = character.getItems();
+							if (items != null) {
+								while (items.remove(null)) {
+								}
+								for (int j = 0; j < items.size(); j++) {
+									tempItem = items.get(j);
+
+									if (tempItem.getItem_id() == item.getItem_id()) {
+
+										tempItem.setItem_name(item.getItem_name());
+										tempItem.setItem_type(item.getItem_type());
+										tempItem.setItem_ability(item.getItem_ability());
+										tempItem.setItem_point(item.getItem_point());
+
+										character.calculateModifires();
+										character.calculateHitPoints(character.getCharacter_level());
+										character.calculateArmorClass();
+										character.calculateAttackBonus(character.getCharacter_level());
+										character.calculateDamageBonus();
+									}
+								}
+							}
+
+							ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+
+							if (backPackItems != null) {
+								while (backPackItems.remove(null)) {
+								}
+								for (int j = 0; j < backPackItems.size(); j++) {
+									tempItem = backPackItems.get(j);
+
+									if (tempItem.getItem_id() == item.getItem_id()) {
+
+										tempItem.setItem_name(item.getItem_name());
+										tempItem.setItem_type(item.getItem_type());
+										tempItem.setItem_ability(item.getItem_ability());
+										tempItem.setItem_point(item.getItem_point());
+									}
+								}
+							}
+						}
+					}
+				}
+
+				file_writer = new FileWriter(CAMPAIGN_FILE);
+
+				gson.toJson(campaigns, file_writer);
+
 				// close file
 				file_writer.close();
 
@@ -676,9 +970,7 @@ public class FileHelper {
 
 	}
 
-	
-	public static void saveGame(String path,GamePlayModel game) throws IOException
-	{		
+	public static void saveGame(String path, GamePlayModel game) throws IOException {
 		// create writer object for item file
 		Writer file_writer = new FileWriter(path);
 
@@ -692,8 +984,7 @@ public class FileHelper {
 		// close file
 		file_writer.close();
 	}
-	
-	
+
 	/**
 	 * Method to convert point to string
 	 * 

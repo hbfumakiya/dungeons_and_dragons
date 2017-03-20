@@ -109,6 +109,10 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 	 * @type Color
 	 */
 	private Color map_object_color_type;
+	
+	private ArrayList<CharacterModel> input_character_list;
+	
+	private ArrayList<ItemModel> input_item_list;
 
 	/**
 	 * constructor to initialize map object
@@ -511,7 +515,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		return this.finder;
 	}
 
-	private ArrayList<CharacterModel> input_character_list;
+	
 
 	public void removeNPCFromComboBox(CharacterModel m_char) {
 		input_character_list.remove(m_char);
@@ -543,7 +547,7 @@ public class GameMapModel extends Observable implements Model<GameMapModel> {
 		}
 	}
 
-	private ArrayList<ItemModel> input_item_list;
+	
 
 	public void removeItemFromComboBox(ItemModel m_item) {
 		input_item_list.remove(m_item);
