@@ -354,6 +354,7 @@ public class TestMap {
 		@Test
 		public void testResetAll()
 		{
+			
 
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
