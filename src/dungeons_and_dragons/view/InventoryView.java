@@ -219,4 +219,62 @@ public class InventoryView extends JFrame implements View {
 		
 		this.okButton.addActionListener(actionListener);
 	}
+	
+	
+	/**
+	 * method to update backpack and item
+	 * 
+	 * @param character
+	 */
+	public void updateList(CharacterModel character) {
+
+		this.itemList.removeAll();
+		ArrayList<ItemModel> temp = character.getItems();
+		ArrayList<ItemModel> item = new ArrayList<ItemModel>();
+
+		if ((temp != null) && (temp.size() > 0)) {
+
+			for (int i = 0; i < temp.size(); i++) {
+				if (temp.get(i) != null)
+					item.add(temp.get(i));
+			}
+		}
+
+		if ((item != null) || (item.size() > 0)) {
+
+			ItemModel[] items = new ItemModel[item.size()];
+
+			for (int i = 0; i < item.size(); i++) {
+				if (item.get(i) != null)
+					items[i] = item.get(i);
+			}
+
+			this.itemList.setListData(items);
+		}
+
+		this.backPackList.removeAll();
+
+		temp = character.getBackPackItems();
+
+		ArrayList<ItemModel> backPackItem = new ArrayList<ItemModel>();
+		if ((temp != null) && (temp.size() > 0)) {
+			for (int i = 0; i < temp.size(); i++) {
+				if (temp.get(i) != null)
+					backPackItem.add(temp.get(i));
+			}
+		}
+
+		if ((backPackItem != null) || (backPackItem.size() > 0)) {
+
+			ItemModel[] items = new ItemModel[backPackItem.size()];
+
+			for (int i = 0; i < backPackItem.size(); i++) {
+				if (backPackItem.get(i) != null)
+					items[i] = backPackItem.get(i);
+			}
+
+			this.backPackList.setListData(items);
+		}
+
+	}
 }

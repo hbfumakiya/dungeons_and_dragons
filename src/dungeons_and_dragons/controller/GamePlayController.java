@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.model.AbilityScoresModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -227,9 +228,11 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					boolean enemyAlive = true;
 					if (enemy != null)
 						enemyAlive = fightWithEnemy(enemy, player);
+					
+					enemy.updateView();
 					String msg = "";
 					if (enemyAlive == false) {
-
+						
 						enemy.setAlive(false);
 						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
 						if (!enemy.getItems().isEmpty()) {
@@ -352,6 +355,21 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * @return boolean
 	 */
 	private boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
+		AbilityScoresModel zeroAbilities = new AbilityScoresModel();
+		zeroAbilities.setCharisma(-10);
+		zeroAbilities.setConstitution(-10);
+		zeroAbilities.setDexterity(-10);
+		zeroAbilities.setIntelligence(-10);
+		zeroAbilities.setstrength(-10);
+		zeroAbilities.setWisdom(-10);
+		
+		enemy.setAbilityScores(zeroAbilities);
+		enemy.setAttackBonus(0);
+		enemy.setHitpoints(0);
+		enemy.setDamageBonus(0);
+		enemy.setArmorClass(0);
+		enemy.setRawAbilityScores(zeroAbilities);
+		enemy.calculateModifires();
 		return false;
 
 	}
