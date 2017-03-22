@@ -74,6 +74,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		matchNPCToPlayer();
 
 	}
+	/**
+	 * This function match character's level to NPC and calculate modifiers,armorclass,attackbonus,hitpoints and damage bonus.
+	 * 
+	 */
 
 	private void matchNPCToPlayer() {
 
@@ -101,6 +105,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			character.calculateDamageBonus();
 		}
 	}
+	/**
+	 * pass character level to get item points for NPC
+	 * 
+	 * @param level character level
+	 * @return item points based on character level
+	 */
 
 	private int getItemScoreByLevel(int level) {
 		if (level >= 1 && level <= 4) {
@@ -116,6 +126,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		}
 		return 1;
 	}
+	/**
+	 * key pressed events are handled here
+	 */
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -147,8 +160,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * This functions allows the Player to move from its position based on the
 	 * key pressed
 	 * 
-	 * @param tempPoint
-	 * @param oldPoint
+	 * @param tempPoint next point in the map
+	 * @param oldPoint old point in the map
 	 */
 	public void moveCharacter(Point tempPoint, Point oldPoint) {
 
@@ -350,9 +363,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	/**
 	 * This method is created to have fight between enemy
 	 * 
-	 * @param enemy
-	 * @param player
-	 * @return boolean
+	 * @param enemy Enemy to fight with
+	 * @param player main character player
+	 * @return boolean return true if enemy survives else false if enemy is dead
 	 */
 	private boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
 		AbilityScoresModel zeroAbilities = new AbilityScoresModel();
@@ -390,7 +403,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * This function checks if the boundary conditions are reached
 	 * 
 	 * @param tempPoint
-	 * @return
+	 * @return true if boundary else false
 	 */
 	private boolean checkBoundaries(Point tempPoint) {
 		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView.currentMap.getMap_size().x
@@ -416,6 +429,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
+	/**
+	 * This method handles event for back button,map buttons with enemy,friend or character.
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -456,6 +473,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void windowActivated(WindowEvent e) {
 
 	}
+	/**
+	 * window closed events are handles here
+	 */
 
 	@Override
 	public void windowClosed(WindowEvent e) {
@@ -465,6 +485,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			this.shownInventories.remove(character);
 		}
 	}
+	
+	/**
+	 * window closing events are handles here
+	 */
 
 	@Override
 	public void windowClosing(WindowEvent e) {
