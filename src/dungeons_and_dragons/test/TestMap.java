@@ -354,6 +354,7 @@ public class TestMap {
 		@Test
 		public void testResetAll()
 		{
+			
 
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
@@ -401,6 +402,8 @@ public class TestMap {
 			assertEquals(campaignmodel.getOutput_map_list().get(0).getMap_name(), "TestMap");
 		}
 
+		
+		
 	}
 
 
