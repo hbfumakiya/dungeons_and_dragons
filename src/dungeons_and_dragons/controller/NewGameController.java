@@ -29,7 +29,7 @@ public class NewGameController implements ActionListener {
 	private NewGameView newGameView;
 
 	/**
-	 * 
+	 * Constructor for new game
 	 */
 	public NewGameController() {
 
@@ -78,6 +78,9 @@ public class NewGameController implements ActionListener {
 		}
 
 	}
+	/**
+	 * ALl the events for back button,play button are handled here
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
