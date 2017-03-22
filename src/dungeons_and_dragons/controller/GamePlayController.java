@@ -256,7 +256,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
+						NPCItemController npc =new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
+					
+						
 						//enemy.getBackPackItems().removeAll(allEnemyItems);
 						//enemy.getItems().removeAll(allEnemyItems);
 
