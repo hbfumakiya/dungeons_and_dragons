@@ -401,6 +401,8 @@ public class TestMap {
 			assertEquals(campaignmodel.getOutput_map_list().get(0).getMap_name(), "TestMap");
 		}
 
+		
+		
 	}
 
 
