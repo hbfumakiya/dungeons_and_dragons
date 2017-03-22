@@ -144,6 +144,8 @@ public class CharacterInventoryController implements ActionListener {
 			
 			this.inventoryView = new InventoryView(this.character, false, this);
 			
+			this.inventoryView.setActionListener(this);
+			
 			inventoryView.setVisible(true);
 			
 		} else if(this.inventoryView != null && actionEvent.getSource().equals(this.inventoryView.okButton)) {
@@ -157,7 +159,7 @@ public class CharacterInventoryController implements ActionListener {
 
 				FileHelper.updateCharacter(this.character);
 
-				this.characterInventoryView.dispose();
+				this.inventoryView.dispose();
 			} catch (JsonSyntaxException | IOException | NotFoundException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
@@ -166,7 +168,7 @@ public class CharacterInventoryController implements ActionListener {
 			
 		} else if(this.inventoryView != null && actionEvent.getSource().equals(this.inventoryView.moveFromBackToItem)) {
 			
-			ItemModel item = this.characterInventoryView.backPackList.getSelectedValue();
+			ItemModel item = this.inventoryView.backPackList.getSelectedValue();
 			if (item == null)
 				return;
 
@@ -175,7 +177,7 @@ public class CharacterInventoryController implements ActionListener {
 				newItem.add(item);
 				this.character.getBackPackItems().remove(item);
 				this.character.setItems(newItem);
-				this.characterInventoryView.updateList(this.character);
+				this.inventoryView.updateList(this.character);
 			} else {
 
 				if (this.character.getItems().stream().anyMatch(p -> p.getItem_type().equals(item.getItem_type()))) {
@@ -186,7 +188,7 @@ public class CharacterInventoryController implements ActionListener {
 				} else {
 					this.character.getItems().add(item);
 					this.character.getBackPackItems().remove(item);
-					this.characterInventoryView.updateList(this.character);
+					this.inventoryView.updateList(this.character);
 				}
 				
 			}
@@ -195,7 +197,7 @@ public class CharacterInventoryController implements ActionListener {
 			
 		} else if(this.inventoryView != null && actionEvent.getSource().equals(this.inventoryView.moveFromItemToBack)) {
 			
-			List<ItemModel> items = this.characterInventoryView.itemList.getSelectedValuesList();
+			List<ItemModel> items = this.inventoryView.itemList.getSelectedValuesList();
 			if ((items == null) || (items.size() < 1))
 				return;
 
@@ -203,7 +205,7 @@ public class CharacterInventoryController implements ActionListener {
 			while (this.character.getItems().remove(null)) {
 			}
 			this.character.getBackPackItems().addAll(items);
-			this.characterInventoryView.updateList(this.character);
+			this.inventoryView.updateList(this.character);
 			
 			this.character.updateView();
 			

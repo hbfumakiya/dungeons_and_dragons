@@ -1539,9 +1539,9 @@
       "wisdom": 2,
       "charisma": 1
     },
-    "hitpoints": 64,
+    "hitpoints": 61,
     "attackBonus": 21,
-    "damageBonus": 6,
+    "damageBonus": 5,
     "armorClass": 21,
     "isAlive": true
   },
