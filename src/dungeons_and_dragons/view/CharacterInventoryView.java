@@ -285,7 +285,8 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 	 * @param character
 	 */
 	public void showDetails(CharacterModel character) {
-
+		
+		//this.panel.removeAll();
 		// name
 		
 		nameLabel = new JLabel("Name: " + character.getCharacter_name());
@@ -367,6 +368,10 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		charismaLabel.setBounds(210, 120, 100, 20);
 		this.panel.add(charismaLabel);
 
+		
+		
+		
+		
 		strengthASLabel = new JLabel(character.getAbilityScores().getStraight() + "");
 		strengthASLabel.setBounds(330, 20, 100, 20);
 		this.panel.add(strengthASLabel);
@@ -526,11 +531,48 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		
+		this.panel.remove(strengthASLabel);
+		this.panel.remove(dexterityASLabel);
+		this.panel.remove(constitutionASLabel);
+		this.panel.remove(charismaASLabel);
+		this.panel.remove(wisdomASLabel);
+		this.panel.remove(intelligenceASLabel);
+		
+		
+		this.panel.remove(strengthLabel);
+		this.panel.remove(dexterityLabel);
+		this.panel.remove(constitutionLabel);
+		this.panel.remove(charismaLabel);
+		this.panel.remove(wisdomLabel);
+		this.panel.remove(intelligenceLabel);
+		
+		this.panel.remove(hitPointsLabel);
+		this.panel.remove(nameLabel);
+		this.panel.remove(levelLabel);
+		this.panel.remove(armorClassLabel);
+		this.panel.remove(attackBonusLabel);
+		this.panel.remove(damageBonusLabel);
+		
+		this.panel.remove(abilityScoreLabel);
+		this.panel.remove(modifierLabel);
+		
+		
+		this.panel.remove(strengthMLabel);
+		this.panel.remove(dexterityMLabel);
+		this.panel.remove(constitutionMLabel);
+		this.panel.remove(charismaMLabel);
+		this.panel.remove(wisdomMLabel);
+		this.panel.remove(intelligenceMLabel);
+		
 		showDetails((CharacterModel) o);
 		updateList((CharacterModel) o);
 		
+		
 		this.validate();
 		this.repaint();
+		//this.panel.getComponent();
+		
+		//this.panel.updateUI();
 		this.revalidate();
 		this.pack();
 	}
