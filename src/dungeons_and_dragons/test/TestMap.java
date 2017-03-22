@@ -209,6 +209,13 @@ public class TestMap {
 			
 
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
+			MapCharacter E_L1 = new MapCharacter();
+			E_L1.setX(1);E_L1.setY(3);
+			MapCharacter E_L2 = new MapCharacter();
+			E_L2.setX(3); E_L2.setY(3);
+			map_enemy_loc.add(E_L1);
+			map_enemy_loc.add(E_L2);
+			
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
 			
@@ -216,7 +223,7 @@ public class TestMap {
 			Point map_size1 = new Point(4,4);
 			Point map_entry_door = new Point(0,0);
 			Point map_exit_door = new Point(2,4);
-			//map_enemy_loc.add(new Point(1,0));
+			
 			map_walls.add(new Point(0,1));
 			map_walls.add(new Point(1,1));
 			map_walls.add(new Point(2,1));
@@ -250,19 +257,16 @@ public class TestMap {
 					
 					if(gameMapModel.getMap_walls().contains(p)){
 						maps[i][j].setPointValue(0);
-					} else if(gameMapModel.getMap_enemy_loc().contains(p)){
-						maps[i][j].setPointValue(2);
 					}
 				}
 			}
 			
-			MapGridView mapGridView = new MapGridView(gameMapModel);
+			MapGridView mapGridView = new MapGridView(new Point(100, 100));
 			mapGridView.maps = maps;
+			
 			
 			MapValidator mapValidator = new  MapValidator(mapGridView, gameMapModel);
 			boolean expectedResult = mapValidator.findPath(gameMapModel.getMap_exit_door());
-			
-			
 			
 			assertEquals(expectedResult, true);
 			
@@ -329,7 +333,7 @@ public class TestMap {
 				
 			}
 			
-			MapGridView mapGridView = new MapGridView(gameMapModel);
+			MapGridView mapGridView = new MapGridView(new Point(100, 100));
 			mapGridView.maps = maps;
 			
 			MapValidator mapValidator = new  MapValidator(mapGridView, gameMapModel);
@@ -339,16 +343,21 @@ public class TestMap {
 			Iterator mapIterator = mapSet.iterator();
 			
 			while (mapIterator.hasNext()) {
-				Point x = (Point) mapIterator.next();
+
+				MapCharacter mapCharacter = (MapCharacter) mapIterator.next();
+				Point x = new Point(mapCharacter.getX(),mapCharacter.getY());
+				
 				if (new MapValidator(mapGridView, gameMapModel).findPath(x)) {
 					count++;
+
 				}
 			}
+			
 			if(count == gameMapModel.getMap_enemy_loc().size() && count > 0){
 				expectedResult = true;
 			}			
-			//assertEquals(expectedResult, true);
-			assertNotEquals(expectedResult, true);			
+			assertEquals(expectedResult, true);
+			//assertNotEquals(expectedResult, true);			
 		}
 		
 		@Test
