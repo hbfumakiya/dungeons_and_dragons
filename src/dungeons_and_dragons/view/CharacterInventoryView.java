@@ -287,15 +287,17 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 	public void showDetails(CharacterModel character) {
 
 		// name
-
+		
 		nameLabel = new JLabel("Name: " + character.getCharacter_name());
 		nameLabel.setBounds(10, 5, 120, 20);
+		this.panel.remove(nameLabel);
 		this.panel.add(nameLabel);
 
 		// level
-
+		
 		levelLabel = new JLabel("Level: " + character.getCharacter_level());
 		levelLabel.setBounds(10, 25, 120, 20);
+		this.panel.remove(levelLabel);
 		this.panel.add(levelLabel);
 
 		// hit points
@@ -323,6 +325,7 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		attackBonusLabel = new JLabel("Attack Bonus: " + attackBonus);
 		attackBonusLabel.setBounds(10, 85, 200, 20);
+		this.panel.remove(attackBonusLabel);
 		this.panel.add(attackBonusLabel);
 
 		// damage bonus
@@ -341,6 +344,7 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 
 		strengthLabel = new JLabel("Strength");
 		strengthLabel.setBounds(210, 20, 100, 20);
+		
 		this.panel.add(strengthLabel);
 
 		dexterityLabel = new JLabel("Dexterity");
@@ -366,7 +370,7 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		strengthASLabel = new JLabel(character.getAbilityScores().getStraight() + "");
 		strengthASLabel.setBounds(330, 20, 100, 20);
 		this.panel.add(strengthASLabel);
-
+		
 		dexterityASLabel = new JLabel(character.getAbilityScores().getDexterity() + "");
 		dexterityASLabel.setBounds(330, 40, 100, 20);
 		this.panel.add(dexterityASLabel);
@@ -525,6 +529,10 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		showDetails((CharacterModel) o);
 		updateList((CharacterModel) o);
 		
+		this.validate();
+		this.repaint();
+		this.revalidate();
+		this.pack();
 	}
 	
 	/**
