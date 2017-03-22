@@ -1,5 +1,6 @@
 package dungeons_and_dragons.test;
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -8,11 +9,14 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.gson.JsonSyntaxException;
+
 import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.controller.MapGridController;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapValidator;
+import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.view.MapGridView;
 
@@ -384,6 +388,17 @@ public class TestMap {
 			assertEquals(check_walls,gameMapModel.getMap_walls());
 			assertEquals(check_enemy,gameMapModel.getMap_walls());
 			
+		}
+		
+		@Test
+		public void testmaploading(){
+			GameMapModel mapmpdel=new GameMapModel(7,7);
+			mapmpdel.setMap_name("TestMap");
+			CampaignModel campaignmodel=new CampaignModel();
+			ArrayList<GameMapModel> map=new ArrayList<GameMapModel>();
+			map.add(mapmpdel);
+			campaignmodel.setOutput_map_list(map);
+			assertEquals(campaignmodel.getOutput_map_list().get(0).getMap_name(), "TestMap");
 		}
 
 	}
