@@ -29,7 +29,6 @@ public abstract class FighterBuilder {
 	    fighterType = new CharacterModel();
 	  }
 	  abstract void buildCalculateAbilityScores();
-	
 }
 
 
