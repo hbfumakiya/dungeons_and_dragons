@@ -6,6 +6,7 @@ package dungeons_and_dragons.view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -24,7 +25,7 @@ import dungeons_and_dragons.model.ItemModel;
  * @author Mihir Pujara
  *
  */
-public class InventoryView extends JFrame {
+public class InventoryView extends JFrame implements View {
 
 	
 	public CharacterModel character;
@@ -53,7 +54,7 @@ public class InventoryView extends JFrame {
 	/**
 	 * 
 	 */
-	public InventoryView(CharacterModel character,boolean isReadOnly) {
+	public InventoryView(CharacterModel character,boolean isReadOnly, ActionListener actionListener) {
 		this.character = character;
 		
 		this.isReadOnly = isReadOnly;
@@ -72,7 +73,7 @@ public class InventoryView extends JFrame {
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setPreferredSize(new Dimension(500, 420));
+		this.panel.setPreferredSize(new Dimension(500, 300));
 
 		// item list
 
@@ -103,12 +104,12 @@ public class InventoryView extends JFrame {
 		}
 
 		this.itemScrollPane = new JScrollPane(this.itemList);
-		this.itemScrollPane.setBounds(10, 160, 200, 200);
+		this.itemScrollPane.setBounds(10, 30, 200, 200);
 		this.panel.add(this.itemScrollPane);
 		
 		// back pack Label 
 		this.itemLabel = new JLabel("Items");
-		this.itemLabel.setBounds(10, 140, 200, 20);
+		this.itemLabel.setBounds(10, 10, 200, 20);
 		this.panel.add(this.itemLabel);
 
 		// backpack list
@@ -139,33 +140,33 @@ public class InventoryView extends JFrame {
 		}
 
 		this.backPackScrollPane = new JScrollPane(this.backPackList);
-		this.backPackScrollPane.setBounds(290, 160, 200, 200);
+		this.backPackScrollPane.setBounds(290, 30, 200, 200);
 		this.panel.add(this.backPackScrollPane);
 		
 		
 		// back pack Label 
 		this.backPackLabel = new JLabel("Backpack Items");
-		this.backPackLabel.setBounds(290, 140, 200, 20);
+		this.backPackLabel.setBounds(290, 10, 200, 20);
 		this.panel.add(this.backPackLabel);
 
 		// move to item to backpack >
 
 		this.moveFromItemToBack = new JButton(">");
-		this.moveFromItemToBack.setBounds(225, 170, 50, 50);
+		this.moveFromItemToBack.setBounds(225, 40, 50, 50);
 
 		this.panel.add(this.moveFromItemToBack);
 
 		// move to backpack to item <
 
 		this.moveFromBackToItem = new JButton("<");
-		this.moveFromBackToItem.setBounds(225, 280, 50, 50);
+		this.moveFromBackToItem.setBounds(225, 150, 50, 50);
 
 		this.panel.add(this.moveFromBackToItem);
 
 		// ok button
 
 		this.okButton = new JButton("OK");
-		this.okButton.setBounds(217, 360, 65, 30);
+		this.okButton.setBounds(217, 260, 65, 30);
 
 		this.panel.add(this.okButton);
 
@@ -207,5 +208,15 @@ public class InventoryView extends JFrame {
 
 			return this;
 		}
+	}
+
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		this.moveFromItemToBack.addActionListener(actionListener);
+		
+		this.moveFromBackToItem.addActionListener(actionListener);
+		
+		this.okButton.addActionListener(actionListener);
 	}
 }

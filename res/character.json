@@ -348,5 +348,134 @@
     "damageBonus": 2,
     "armorClass": 5,
     "isAlive": true
+  },
+  {
+    "character_id": 6,
+    "character_name": "Test",
+    "strength": 0,
+    "items": [],
+    "backPackItems": [
+      {
+        "item_id": 1,
+        "item_name": "Helmet6",
+        "item_point": 4,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      },
+      {
+        "item_id": 2,
+        "item_name": "Helmet2",
+        "item_point": 5,
+        "item_type": "Helmet",
+        "item_ability": "Wisdom"
+      },
+      {
+        "item_id": 3,
+        "item_name": "Armor",
+        "item_point": 5,
+        "item_type": "Armor",
+        "item_ability": "Armor class"
+      },
+      {
+        "item_id": 4,
+        "item_name": "Shield",
+        "item_point": 4,
+        "item_type": "Shield",
+        "item_ability": "Armor class"
+      },
+      {
+        "item_id": 5,
+        "item_name": "Ring1",
+        "item_point": 4,
+        "item_type": "Ring",
+        "item_ability": "Strength"
+      },
+      {
+        "item_id": 6,
+        "item_name": "Ring2",
+        "item_point": 3,
+        "item_type": "Ring",
+        "item_ability": "Constitution"
+      },
+      {
+        "item_id": 7,
+        "item_name": "Melee",
+        "item_point": 5,
+        "item_type": "Weapon Melee",
+        "item_ability": "Attack bonus"
+      },
+      {
+        "item_id": 8,
+        "item_name": "Range",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus"
+      },
+      {
+        "item_id": 3,
+        "item_name": "Armor",
+        "item_point": 5,
+        "item_type": "Armor",
+        "item_ability": "Armor class"
+      },
+      {
+        "item_id": 1,
+        "item_name": "Helmet6",
+        "item_point": 4,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      },
+      {
+        "item_id": 5,
+        "item_name": "Ring1",
+        "item_point": 4,
+        "item_type": "Ring",
+        "item_ability": "Strength"
+      },
+      {
+        "item_id": 8,
+        "item_name": "Range",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus"
+      },
+      {
+        "item_id": 4,
+        "item_name": "Shield",
+        "item_point": 4,
+        "item_type": "Shield",
+        "item_ability": "Armor class"
+      }
+    ],
+    "character_level": 1,
+    "abilityScores": {
+      "strength": 19,
+      "dexterity": 15,
+      "constitution": 18,
+      "intelligence": 18,
+      "wisdom": 6,
+      "charisma": 14
+    },
+    "rawAbilityScores": {
+      "strength": 19,
+      "dexterity": 15,
+      "constitution": 18,
+      "intelligence": 18,
+      "wisdom": 6,
+      "charisma": 14
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 2,
+      "constitution": 4,
+      "intelligence": 4,
+      "wisdom": -2,
+      "charisma": 2
+    },
+    "hitpoints": 14,
+    "attackBonus": 1,
+    "damageBonus": 4,
+    "armorClass": 12,
+    "isAlive": true
   }
 ]
