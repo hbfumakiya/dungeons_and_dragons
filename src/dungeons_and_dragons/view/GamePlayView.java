@@ -84,6 +84,11 @@ public class GamePlayView extends JFrame implements Observer, View {
 	private JLabel empty;
 	
 	public JButton backButton;
+	/**
+	 * Constructor to initialize variables and objects of gameplay model and controller
+	 * @param gamePlayModel
+	 * @param gamePlayController
+	 */
 	public GamePlayView(GamePlayModel gamePlayModel, GamePlayController gamePlayController) {
 
 		this.setTitle(this.mapWindowTitle);
@@ -129,6 +134,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	/**
+	 * initialize the window for game play
+	 */
 
 	private void initializeWindow() {
 
@@ -219,7 +227,12 @@ public class GamePlayView extends JFrame implements Observer, View {
 		
 		this.backButton.setFocusable(false);
 	}
-
+	
+	/**
+	 * show the map for current selected map
+	 * @param currentMap map of campaign
+	 * @param mapPanel panel of map
+	 */
 	public void showMap(GameMapModel currentMap, JPanel mapPanel) {
 		mapPanel.removeAll();
 		int x = (int) currentMap.getMap_size().getX();
@@ -286,7 +299,11 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.addActionListener(this.gamePlayController);
 		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
-	
+	/**
+	 *  This method is used to display player on the basis of the changing map
+	 * conditions
+	 * @param p point where it should display
+	 */
 	public void displayPlayer(Point p) {
 		MapButton mapButton = maps[(int)p.getX()][(int)p.getY()];
 		mapButton.setText("P");
@@ -395,7 +412,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * default update method implementing observer pattern
+	 */
 	@Override
 	public void update(Observable obs, Object obj) {
 		this.mapPanel.removeAll();
@@ -426,7 +446,11 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 
 	}
-
+	
+	/**
+	 * register events from view
+	 * @param gamePlayController
+	 */
 	public void setListener(GamePlayController gamePlayController) {
 		this.addKeyListener(gamePlayController);
 		this.backButton.addActionListener(gamePlayController);

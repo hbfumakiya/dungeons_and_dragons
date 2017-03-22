@@ -109,7 +109,10 @@ public class GamePlayModel extends Observable{
 		this.characterModel = characterModel;
 	}
 
-
+	/**
+	 * to save it to file
+	 * @param path location
+	 */
 	public void save(String path) {
 		
 		try {
@@ -119,11 +122,19 @@ public class GamePlayModel extends Observable{
 		}
 		
 	}
-
+	/**
+	 * returns character position
+	 * 
+	 * @return point of current position of character
+	 */
 	public Point getGameCharacterPosition() {
 		return gameCharacterPosition;
 	}
-
+	
+	/**
+	 * set the current position of player
+	 * @param gameCharacterPosition current point of player
+	 */
 	public void setGameCharacterPosition(Point gameCharacterPosition) {
 		this.gameCharacterPosition = gameCharacterPosition;
 		setChanged();

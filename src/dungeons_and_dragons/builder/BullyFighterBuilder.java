@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import dungeons_and_dragons.model.AbilityScoresModel;
-
+/**
+ * Bully fighter extending fighter builder
+ * 
+ * @author 
+ *
+ */
 public class BullyFighterBuilder extends FighterBuilder {
-	
+	/**
+	 * Generate ability scores and sort it to arrange it in ascending order
+	 */
 	public void buildCalculateAbilityScores() {
 
 		ArrayList<Integer> scores = new ArrayList<Integer>();

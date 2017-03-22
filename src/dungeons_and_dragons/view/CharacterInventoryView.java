@@ -111,7 +111,7 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 	public JButton showInventoryButton;
 
 	/**
-	 * 
+	 * Constructor for character inventory view to initialize objects
 	 * @param character
 	 */
 	public CharacterInventoryView(CharacterModel character) {
@@ -129,6 +129,11 @@ public class CharacterInventoryView extends JFrame implements View,Observer {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
+	/**
+	 * Constructor to show inventory
+	 * @param character
+	 * @param showInventory
+	 */
 	
 	public CharacterInventoryView(CharacterModel character, boolean showInventory) {
 

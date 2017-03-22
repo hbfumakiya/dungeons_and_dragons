@@ -52,7 +52,7 @@ public class InventoryView extends JFrame implements View {
 	
 	private JLabel backPackLabel;
 	/**
-	 * 
+	 * Constructor to initialize variables and objects
 	 */
 	public InventoryView(CharacterModel character,boolean isReadOnly, ActionListener actionListener) {
 		this.character = character;
@@ -68,7 +68,9 @@ public class InventoryView extends JFrame implements View {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+	/**
+	 * initialize view of inventory
+	 */
 	public void initilizeView() {
 
 		this.panel = new JPanel();

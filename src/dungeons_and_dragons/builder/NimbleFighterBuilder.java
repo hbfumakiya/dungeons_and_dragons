@@ -5,8 +5,15 @@ import java.util.Collections;
 
 import dungeons_and_dragons.model.AbilityScoresModel;
 
+/**
+ * Nimble fighter class to generate ability scores
+ * @author 
+ *
+ */
 public class NimbleFighterBuilder extends FighterBuilder {
-
+	/**
+	 * Generate ability scores and sort it to arrange it in ascending order
+	 */
 	public void buildCalculateAbilityScores() {
 		ArrayList<Integer> scores = new ArrayList<Integer>();
 
