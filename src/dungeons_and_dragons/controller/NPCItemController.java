@@ -27,7 +27,7 @@ public class NPCItemController implements ActionListener {
 	public ArrayList<ItemModel> items;
 	public boolean isEnemy;
 	private GamePlayModel model;
-
+	public ItemModel selectedItem;
 	private CharacterModel character;
 
 	/**
@@ -45,12 +45,14 @@ public class NPCItemController implements ActionListener {
 		view.setActionListener(this);
 		this.view.setVisible(true);
 	}
-
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(view.okButton)) {
 			if (isEnemy) {
 				List<ItemModel> items = this.view.itemList.getSelectedValuesList();
+				selectedItem = items.get(0);
 				if ((items == null) || (items.size() < 1))
 					return;
 				// this.controller.gamePlayModel.getCharacterModel().getBackPackItems().addAll(items);
@@ -60,6 +62,14 @@ public class NPCItemController implements ActionListener {
 							&& i < items.size(); i++) {
 						this.model.getCharacterModel().getBackPackItems().add(items.get(i));
 						this.items.remove(items.get(i));
+						if(this.character.getBackPackItems().contains(items.get(i)))
+						{
+							this.character.getBackPackItems().remove(items.get(i));
+						}
+						else if(this.character.getItems().contains(items.get(i)))
+						{
+							this.character.getItems().remove(items.get(i));
+						}
 					}
 
 					this.character.update();
