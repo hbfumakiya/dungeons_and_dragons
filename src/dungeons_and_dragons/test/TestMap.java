@@ -36,6 +36,7 @@ public class TestMap {
 
 		@Test
 		public void testSetMapEntryDoor() {
+			
 
 			// Given
 			Point map_entry_door1 = new Point(0, 0);
@@ -88,6 +89,7 @@ public class TestMap {
 		 */
 		@Test
 		public void testSetMapExitDoor() {
+
 			// Given
 			Point map_exit_door1 = new Point(0, 0);
 			Point map_exit_door2 = new Point(0, 4);
@@ -140,6 +142,7 @@ public class TestMap {
 		 */
 		@Test
 		public void testSetMapWall() {
+
 			// Given
 			GameMapModel setmap = new GameMapModel();
 			Point mapwall1 = new Point(3, 3);
@@ -158,7 +161,6 @@ public class TestMap {
 
 			p = setmap.getMap_walls();
 
-			System.out.println(p.size());
 			// Then
 			assertNotSame(c, p.size());
 
@@ -170,6 +172,7 @@ public class TestMap {
 
 		@Test
 		public void testSetMapEnemyLoc() {
+
 			// Given
 			GameMapModel setmap_enemy = new GameMapModel();
 			ArrayList<MapCharacter> map_enemy_loc1 = new ArrayList<MapCharacter>() ;
@@ -189,7 +192,6 @@ public class TestMap {
 
 			p = setmap_enemy.getMap_enemy_loc();
 			
-			System.out.println(p.size());
 			// Then
 			assertNotSame(c, p.size());
 
@@ -201,7 +203,7 @@ public class TestMap {
 		@Test
 		public void testEntryToExitDoor() {
 			
-			
+
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
@@ -269,6 +271,7 @@ public class TestMap {
 		@Test
 		public void testEnenmyExists() {
 			
+
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
@@ -347,6 +350,7 @@ public class TestMap {
 		@Test
 		public void testResetAll()
 		{
+
 			ArrayList<MapCharacter> map_enemy_loc = new ArrayList<MapCharacter>();
 			ArrayList<Point> map_walls = new ArrayList<Point>();
 			GameMapModel gameMapModel = new GameMapModel();
@@ -371,10 +375,10 @@ public class TestMap {
 			gameMapModel.resetAll();
 			
 			ArrayList<Point> check_walls = new ArrayList<Point>();
-			
 			ArrayList<Point> check_enemy = new ArrayList<Point>();
-			
-			assertEquals(p,gameMapModel.getMap_chest());
+
+			Point chest = new Point(gameMapModel.getMap_chest().getX(), gameMapModel.getMap_chest().getY());
+			assertEquals(p,chest);
 			assertEquals(p,gameMapModel.getMap_entry_door());
 			assertEquals(p,gameMapModel.getMap_exit_door());
 			assertEquals(check_walls,gameMapModel.getMap_walls());
