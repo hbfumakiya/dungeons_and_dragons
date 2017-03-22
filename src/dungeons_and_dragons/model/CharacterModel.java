@@ -711,4 +711,9 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 
 		return modifier;
 	}
+	
+	public void updateView() {
+		setChanged();
+		notifyObservers();
+	}
 }

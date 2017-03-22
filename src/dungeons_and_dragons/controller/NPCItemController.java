@@ -71,6 +71,7 @@ public class NPCItemController implements ActionListener {
 				if ((items == null) || (items.size() < 1))
 					return;
 				
+				// To-do
 				
 				
 			}
