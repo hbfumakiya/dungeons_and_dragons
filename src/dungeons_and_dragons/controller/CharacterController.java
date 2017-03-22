@@ -191,6 +191,22 @@ public class CharacterController implements ActionListener {
 
 					backPackList = (ArrayList<ItemModel>) this.view.backPackList.getSelectedValuesList();
 				}
+				ArrayList<ItemModel> backPackList1 = new ArrayList<ItemModel>();
+				if(!backPackList.isEmpty())
+				{
+					for(int i = 0;i<backPackList.size();i++)
+					{
+						for(int j = 0;j<items.size();j++)
+						{
+							if(backPackList.get(i).getItem_id() == items.get(j).getItem_id())
+							{
+								backPackList1.add(backPackList.get(i));
+								break;
+							}
+						}
+					}
+				}
+				backPackList.removeAll(backPackList1);
 
 				this.model.setBackPackItems(backPackList);
 
