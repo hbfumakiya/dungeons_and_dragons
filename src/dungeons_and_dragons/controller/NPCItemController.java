@@ -79,7 +79,7 @@ public class NPCItemController implements ActionListener {
 						}
 					}
 
-					this.character.update();
+					
 				} else {
 					JOptionPane.showMessageDialog(new JFrame(),
 							"Sorry your backpack is full.So cannot add any new Item");
@@ -107,7 +107,6 @@ public class NPCItemController implements ActionListener {
 
 					JOptionPane.showMessageDialog(new JFrame(), "You received this " + item.getItem_name() + "("
 							+ item.getItem_type() + ") item from friendly player which is added into your backpack");
-					this.character.update();
 
 				} else {
 					JOptionPane.showMessageDialog(new JFrame(), "Sorry " + this.character.getCharacter_name()

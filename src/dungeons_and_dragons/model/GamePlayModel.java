@@ -3,6 +3,7 @@ package dungeons_and_dragons.model;
 import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.JTextArea;
@@ -13,6 +14,7 @@ import com.google.gson.annotations.Expose;
 import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.view.GamePlayView;
 
@@ -296,6 +298,39 @@ public class GamePlayModel extends Observable{
 		} else {
 			// boundary not reached
 			return true;
+		}
+	}
+	
+	
+	/**
+	 * This function match character's level to NPC and calculate
+	 * modifiers,armorclass,attackbonus,hitpoints and damage bonus.
+	 * 
+	 */
+	public void matchNPCToPlayer() {
+
+		ArrayList<MapCharacter> npc = this.getCampaignModel().getOutput_map_list()
+				.get(this.getCurrentMapIndex()).getMap_enemy_loc();
+
+		CharacterModel character;
+
+		for (int i = 0; i < npc.size(); i++) {
+			character = npc.get(i).getCharacter();
+			character.setCharacter_level(this.getCharacterModel().getCharacter_level());
+			ArrayList<ItemModel> items = character.getItems();
+			for (int j = 0; j < items.size(); j++) {
+				items.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
+			}
+
+			ArrayList<ItemModel> backPackItems = character.getBackPackItems();
+			for (int j = 0; j < backPackItems.size(); j++) {
+				backPackItems.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
+			}
+			character.calculateModifires();
+			character.calculateArmorClass();
+			character.calculateAttackBonus(character.getCharacter_level());
+			character.calculateHitPoints(character.getCharacter_level());
+			character.calculateDamageBonus();
 		}
 	}
 }

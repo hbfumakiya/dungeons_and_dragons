@@ -253,7 +253,7 @@ public class TestMap {
 			}
 		}
 
-		MapGridView mapGridView = new MapGridView(new Point(100, 100));
+		MapGridView mapGridView = new MapGridView();
 		mapGridView.maps = maps;
 
 		MapValidator mapValidator = new MapValidator(mapGridView, gameMapModel);
@@ -320,7 +320,7 @@ public class TestMap {
 
 		}
 
-		MapGridView mapGridView = new MapGridView(new Point(100, 100));
+		MapGridView mapGridView = new MapGridView();
 		mapGridView.maps = maps;
 
 		MapValidator mapValidator = new MapValidator(mapGridView, gameMapModel);

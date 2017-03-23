@@ -447,6 +447,10 @@ public class MapGridView extends JFrame implements Observer {
 		edit(map);
 	}
 
+	public MapGridView() {
+		
+	}
+
 	/**
 	 * this function is used to set points during initializing of constructor
 	 * 

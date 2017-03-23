@@ -118,7 +118,7 @@ public class FileHelper {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<GameMapModel> getMaps() throws IOException,JsonSyntaxException {
+	public static ArrayList<GameMapModel> getMaps() throws IOException, JsonSyntaxException {
 
 		File mapFile = new File(MAP_FILE);
 
@@ -380,26 +380,27 @@ public class FileHelper {
 				file_writer.close();
 
 				ArrayList<GameMapModel> maps = getMaps();
+				if (maps != null && maps.size() > 0) {
+					for (int i = 0; i < maps.size(); i++) {
+						GameMapModel map = maps.get(i);
+						ArrayList<MapCharacter> characters = map.getMap_enemy_loc();
+						for (int j = 0; j < characters.size(); j++) {
+							CharacterModel tempChatacter = characters.get(j).getCharacter();
+							if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
 
-				for (int i = 0; i < maps.size(); i++) {
-					GameMapModel map = maps.get(i);
-					ArrayList<MapCharacter> characters = map.getMap_enemy_loc();
-					for (int j = 0; j < characters.size(); j++) {
-						CharacterModel tempChatacter = characters.get(j).getCharacter();
-						if (tempChatacter.getCharacter_id() == character.getCharacter_id()) {
-
-							tempChatacter.setAbilityScores(character.getAbilityScores());
-							tempChatacter.setArmorClass(character.getArmorClass());
-							tempChatacter.setAttackBonus(character.getAttackBonus());
-							tempChatacter.setBackPackItems(character.getBackPackItems());
-							tempChatacter.setCharacter_level(character.getCharacter_level());
-							tempChatacter.setCharacter_name(character.getCharacter_name());
-							tempChatacter.setDamageBonus(character.getDamageBonus());
-							tempChatacter.setHitpoints(character.getHitpoints());
-							tempChatacter.setItems(character.getItems());
-							tempChatacter.setModifiers(character.getModifiers());
-							tempChatacter.setStrength(character.getStrength());
-							tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
+								tempChatacter.setAbilityScores(character.getAbilityScores());
+								tempChatacter.setArmorClass(character.getArmorClass());
+								tempChatacter.setAttackBonus(character.getAttackBonus());
+								tempChatacter.setBackPackItems(character.getBackPackItems());
+								tempChatacter.setCharacter_level(character.getCharacter_level());
+								tempChatacter.setCharacter_name(character.getCharacter_name());
+								tempChatacter.setDamageBonus(character.getDamageBonus());
+								tempChatacter.setHitpoints(character.getHitpoints());
+								tempChatacter.setItems(character.getItems());
+								tempChatacter.setModifiers(character.getModifiers());
+								tempChatacter.setStrength(character.getStrength());
+								tempChatacter.setRawAbilityScores(character.getRawAbilityScores());
+							}
 						}
 					}
 				}
@@ -894,7 +895,7 @@ public class FileHelper {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<CampaignModel> getCampaigns() throws IOException,JsonSyntaxException {
+	public static ArrayList<CampaignModel> getCampaigns() throws IOException, JsonSyntaxException {
 
 		File campaignFile = new File(CAMPAIGN_FILE);
 
@@ -970,7 +971,6 @@ public class FileHelper {
 
 	}
 
-	
 	/**
 	 * Save the game into json file with given path
 	 * 

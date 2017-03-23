@@ -72,7 +72,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.shownInventories = new ArrayList<CharacterModel>();
 
 		matchNPCToPlayer();
-
 	}
 
 	/**
@@ -92,12 +91,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			character.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level());
 			ArrayList<ItemModel> items = character.getItems();
 			for (int j = 0; j < items.size(); j++) {
-				items.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
+				items.get(j).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
 			}
 
 			ArrayList<ItemModel> backPackItems = character.getBackPackItems();
 			for (int j = 0; j < backPackItems.size(); j++) {
-				backPackItems.get(i).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
+				backPackItems.get(j).setItem_point(getItemScoreByLevel(character.getCharacter_level()));
 			}
 			character.calculateModifires();
 			character.calculateArmorClass();
