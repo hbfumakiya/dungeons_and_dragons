@@ -167,10 +167,8 @@ public class CharacterInventoryController implements ActionListener {
 				this.character.calculateAttackBonus(this.character.getCharacter_level());
 				this.character.calculateDamageBonus();
 
-				FileHelper.updateCharacter(this.character);
-
 				this.inventoryView.dispose();
-			} catch (JsonSyntaxException | IOException | NotFoundException e) {
+			} catch (JsonSyntaxException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 			

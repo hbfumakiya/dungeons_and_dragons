@@ -19,7 +19,7 @@ import dungeons_and_dragons.helper.MapItem;
  * This class is created to manage map data,store all the points of map
  * walls,enemies,entry door, exit door and chest.
  * 
- * @author Mihir and Urmil Kansara
+ * @author Mihir Pujara and Urmil Kansara
  * 
  */
 
