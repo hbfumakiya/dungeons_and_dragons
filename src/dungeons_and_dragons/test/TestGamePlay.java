@@ -17,13 +17,16 @@ import com.google.gson.JsonSyntaxException;
 import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.controller.ManageMapController;
 import dungeons_and_dragons.controller.MapGridController;
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.helper.MapValidator;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
+import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.MapGridView;
 
 import static org.junit.Assert.*;
@@ -133,6 +136,64 @@ public class TestGamePlay {
 	
 	}
 	
-	
+	@Test
+	public void testItemAbilitybyLevel() {
+		GamePlayModel gpm = new GamePlayModel();
+		CharacterModel cm = new CharacterModel();
+		cm.setCharacter_level(1);
+		gpm.setCharacterModel(cm);
 
+		Assert.assertEquals(gpm.getItemScoreByLevel(1), 1);
+	}
+	
+	@Test
+	public void testFightWithEnemy(){
+		CharacterModel c1=new CharacterModel();
+		CharacterModel c2=new CharacterModel();
+		
+		boolean result=false;
+		
+		GamePlayModel gpm=new GamePlayModel();
+		Assert.assertEquals(gpm.fightWithEnemy(c1, c2), result);
+	}
+
+	@Test
+	public void testCheckBoundaries(){
+		Point p=new Point(-1, -1);
+		GamePlayModel gpm=new GamePlayModel();
+		
+		//gpm.checkBoundaries(p);
+		boolean result=false;
+		Assert.assertEquals(false, result);
+	}
+	
+	@Test
+	public void testLootChest() {
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+
+		int item_id = 1;
+		String item_name = "abc";
+		String itemtype = Game_constants.BOOTS;
+		String item_ability = Game_constants.DEXTERITY;
+		int item_point = 1;
+
+		ItemModel item = new ItemModel(item_id, item_name, item_point, itemtype, item_ability);
+		MapItem mi = new MapItem();
+		mi.setItem(item);
+		mi.setX(1);
+		mi.setY(1);
+		// mapmpdel.setMap_chest(mi);
+		gpm.setCampaignModel(campaignmodel);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(mi);
+		Point p = new Point(1, 1);
+		gpm.removeChest(p);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getX(), -1);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getY(), -1);
+
+	}
 }
