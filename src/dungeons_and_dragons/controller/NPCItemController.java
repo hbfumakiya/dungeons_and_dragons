@@ -31,7 +31,11 @@ public class NPCItemController implements ActionListener {
 	private CharacterModel character;
 
 	/**
-	 * 
+	 * parameterized constructor
+	 * @param gamePlayModel
+	 * @param items
+	 * @param isEnemy
+	 * @param character
 	 */
 	public NPCItemController(GamePlayModel gamePlayModel, ArrayList<ItemModel> items, boolean isEnemy,
 			CharacterModel character) {
@@ -46,7 +50,10 @@ public class NPCItemController implements ActionListener {
 		this.view.setVisible(true);
 	}
 	
-	
+	/**
+	 * Action event of all the events
+	 * @param e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(view.okButton)) {

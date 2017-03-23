@@ -9,17 +9,14 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneConstants;
 
 import dungeons_and_dragons.model.ItemModel;
 
@@ -36,7 +33,9 @@ public class NPCItemView extends JFrame implements View {
 	public JList<ItemModel> itemList;
 
 	/**
+	 * Parameterized constructor to create window
 	 * 
+	 * @param items
 	 */
 	public NPCItemView(ArrayList<ItemModel> items) {
 		this.items = items;
@@ -50,16 +49,19 @@ public class NPCItemView extends JFrame implements View {
 		this.setLocationRelativeTo(null);
 	}
 
+	/**
+	 * Method to initialize view
+	 */
 	private void initilizeView() {
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 		this.panel.setPreferredSize(new Dimension(300, 370));
 		this.itemtodisp = new ItemModel[items.size()];
-		
+
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i) != null) {
 
-				if(items.get(i) != null)
+				if (items.get(i) != null)
 					itemtodisp[i] = items.get(i);
 			}
 		}
@@ -76,13 +78,15 @@ public class NPCItemView extends JFrame implements View {
 		this.getContentPane().add(this.panel);
 
 	}
-
+	
+	/**
+	 * @param actionListener
+	 */
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.okButton.addActionListener(actionListener);
 	}
-	
-	
+
 	/**
 	 * 
 	 * class for custom items in JList
@@ -103,7 +107,7 @@ public class NPCItemView extends JFrame implements View {
 				boolean arg3, boolean arg4) {
 
 			if (arg1 != null) {
-				setText(arg1.getItem_name() + "("+arg1.getItem_type()+" - "+arg1.getItem_ability()+")");
+				setText(arg1.getItem_name() + "(" + arg1.getItem_type() + " - " + arg1.getItem_ability() + ")");
 				setSize(200, 30);
 			}
 
