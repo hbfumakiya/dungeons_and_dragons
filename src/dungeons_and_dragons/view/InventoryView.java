@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 
+import dungeons_and_dragons.helper.MapButton;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
@@ -50,15 +52,18 @@ public class InventoryView extends JFrame implements View {
 	
 	private JLabel itemLabel;
 	
+	private int characterType;
+	
 	private JLabel backPackLabel;
 	/**
 	 * Constructor to initialize variables and objects
 	 */
-	public InventoryView(CharacterModel character,boolean isReadOnly, ActionListener actionListener) {
+	public InventoryView(CharacterModel character,boolean isReadOnly, ActionListener actionListener,int characterType) {
 		this.character = character;
 		
 		this.isReadOnly = isReadOnly;
 		
+		this.characterType = characterType;
 		this.setTitle(this.character.getCharacter_name()+" Inventory");
 		
 		this.initilizeView();
@@ -109,6 +114,7 @@ public class InventoryView extends JFrame implements View {
 		this.itemScrollPane.setBounds(10, 30, 200, 200);
 		this.panel.add(this.itemScrollPane);
 		
+		
 		// back pack Label 
 		this.itemLabel = new JLabel("Items");
 		this.itemLabel.setBounds(10, 10, 200, 20);
@@ -119,6 +125,7 @@ public class InventoryView extends JFrame implements View {
 		this.backPackList = new JList<ItemModel>();
 		this.backPackList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		temp = this.character.getBackPackItems();
+		
 
 		ArrayList<ItemModel> backPackItem = new ArrayList<ItemModel>();
 		if ((temp != null) && (temp.size() > 0)) {
@@ -171,8 +178,16 @@ public class InventoryView extends JFrame implements View {
 		this.okButton.setBounds(217, 260, 65, 30);
 
 		this.panel.add(this.okButton);
-
+		
 		this.getContentPane().add(this.panel);
+		if(this.characterType == MapButton.ENEMY || this.characterType == MapButton.FRIENDLY_PLAYER)
+		{
+			this.okButton.setEnabled(false);
+			this.backPackList.setEnabled(false);
+			this.itemList.setEnabled(false);
+			this.moveFromBackToItem.setEnabled(false);
+			this.moveFromItemToBack.setEnabled(false);
+		}
 	}
 	
 	

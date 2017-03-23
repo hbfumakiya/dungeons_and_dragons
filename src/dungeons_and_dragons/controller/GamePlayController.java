@@ -46,6 +46,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * @type MapGridView
 	 */
 	public GamePlayView gamePlayView;
+	
+	
 
 	private ArrayList<CharacterModel> shownInventories;
 
@@ -176,7 +178,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				tempPoint = oldPoint;
 				this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 				this.gamePlayView.consoleTextArea
-						.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...bumped into wall...\n");
+						.setText(this.gamePlayView.consoleTextArea.getText() + "Bumped into wall...\n");
 
 				// print message that "Oops wall has been reached"
 
@@ -194,7 +196,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				String msg = "";
 				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
 					ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
-					if (backPackItems.size() < 2) {
+					if (backPackItems.size() < 10) {
 						backPackItems.add(map.getMap_chest().getItem());
 						this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
 
@@ -213,7 +215,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				JOptionPane.showMessageDialog(new JFrame(), msg);
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 				this.gamePlayView.consoleTextArea
-						.setText(this.gamePlayView.consoleTextArea.getText() + "Found an item...." + msg);
+						.setText(this.gamePlayView.consoleTextArea.getText() + "Found an item...." + msg + "\n");
 
 				// exchange item message on console and automatically traverse
 				// items in chest to the players backpack
@@ -245,7 +247,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					enemy.updateView();
 					String msg = "";
 					if (enemyAlive == false) {
-						
+						JOptionPane.showMessageDialog(new JFrame(), "Enemy "+enemy.getCharacter_name()+" is dead.You can loot its items");
 						enemy.setAlive(false);
 						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
 						if (!enemy.getItems().isEmpty()) {
@@ -256,8 +258,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 								allEnemyItems.add(enemy.getBackPackItems().get(i));
 							}
 						}
-						NPCItemController npc =new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
-					
+						new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
+						
+						msg = "is dead.You can loot its item";
 						
 						//enemy.getBackPackItems().removeAll(allEnemyItems);
 						//enemy.getItems().removeAll(allEnemyItems);
@@ -267,7 +270,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
 					this.gamePlayView.consoleTextArea
-							.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji + " " + msg + "\n");
+							.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji + " Enemy " +enemy.getCharacter_name()+" "+ msg + "\n");
 					System.out.println("\u1F47F");
 					updatePostion(tempPoint, oldPoint);
 
@@ -291,7 +294,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					new NPCItemController(this.gamePlayModel, this.gamePlayModel.getCharacterModel().getBackPackItems(), false, friendly);
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-							+ "Hey bud wssup...I m here to take your items nothing else :P \n");
+							+ "Friendly Non Player Character "+friendly.getCharacter_name() + " \n");
 					updatePostion(tempPoint, oldPoint);
 
 					// friendly items traversal to backpack of character
@@ -299,7 +302,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			} else {
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 				this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-						+ "Ohhh yeaaa...!! Time to move ahead in life....\n");
+						+ "Move ahead \n");
 				updatePostion(tempPoint, oldPoint);
 			}
 
@@ -449,21 +452,21 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 				if (!this.shownInventories.contains(button.getCharacter())) {
 					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this);
+					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
 				}
 
 			} else if (button.getCharacterType() == MapButton.FRIENDLY_PLAYER) {
 
 				if (!this.shownInventories.contains(button.getCharacter())) {
 					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this);
+					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
 				}
 
 			} else if (button.getCharacterType() == MapButton.PLAYER) {
 
 				if (!this.shownInventories.contains(button.getCharacter())) {
 					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this);
+					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
 				}
 
 			}

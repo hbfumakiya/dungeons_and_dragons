@@ -32,6 +32,7 @@ import dungeons_and_dragons.view.InventoryView;
 public class CharacterInventoryController implements ActionListener {
 
 	private CharacterModel character;
+	private int characterType;
 
 	private CharacterInventoryView characterInventoryView;
 	
@@ -55,9 +56,11 @@ public class CharacterInventoryController implements ActionListener {
 		this.character.addObserver(this.characterInventoryView);
 	}
 	
-	public CharacterInventoryController(CharacterModel character, WindowListener windowListener) {
+	public CharacterInventoryController(CharacterModel character, WindowListener windowListener,int characterType) {
 
 		this.character = character;
+		
+		this.characterType = characterType;
 
 		characterInventoryView = new CharacterInventoryView(character,false);
 
@@ -142,7 +145,7 @@ public class CharacterInventoryController implements ActionListener {
 
 		} else if(actionEvent.getSource().equals(characterInventoryView.showInventoryButton)) {
 			
-			this.inventoryView = new InventoryView(this.character, false, this);
+			this.inventoryView = new InventoryView(this.character, false, this,characterType);
 			
 			this.inventoryView.setActionListener(this);
 			
