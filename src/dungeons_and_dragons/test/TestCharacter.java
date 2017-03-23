@@ -1,12 +1,17 @@
 package dungeons_and_dragons.test;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.MapItem;
+import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.GameMapModel;
+import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
@@ -245,72 +250,35 @@ public class TestCharacter {
 
 	}
 
-	/**
-	 * ABILITY SCORE AND MODIFIER
-	 * 
-	 * 4D6 rolled 6times and set modifier according to score
-	 * 
-	 * [4D6 + modifier]*Level
-	 * 
-	 * Strength (Str) Dexterity (Dex) Constitution (Con) Intelligence (Int)
-	 * Wisdom (Wis) Charisma (Cha)
-	 */
 	@Test
+	public void lootChest(){
+		GamePlayModel gpm=new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		
+		int item_id = 1;
+		String item_name = "abc";
+		String itemtype = Game_constants.BOOTS;
+		String item_ability = Game_constants.DEXTERITY;
+		int item_point = 1;
 
-	public void testAbilityAndModifier() {
-		// Given
-		// When
-		// Then
+		ItemModel item = new ItemModel(item_id, item_name, item_point, itemtype, item_ability);	
+		MapItem mi=new MapItem();
+		mi.setItem(item);
+		mi.setX(1);
+		mi.setY(1);
+		//mapmpdel.setMap_chest(mi);
+		gpm.setCampaignModel(campaignmodel);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(mi);
+		Point p=new Point(1,1);
+		gpm.removeChest(p);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getX(), -1);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getY(), -1);
 
-	}
-
-	/**
-	 * HIT POINTS [10 + his Constitution modifier]*Level
-	 */
-	@Test
-	public void testHitPoints() {
-		// Given
-		// When
-		// Then
-
-	}
-
-	/**
-	 * ARMOR CLASS(DEX+WORN ARMOR)
-	 * 
-	 * [D10+ARMOR BONUS(RANGES FROM +1 TO +5)+DEXTIRITY]*Level
-	 */
-	@Test
-	public void testArmorClass() {
-		// Given
-		// When
-		// Then
-
-	}
-
-	/**
-	 * ATTACK BONUS(level+str/dex)
-	 * 
-	 * [+1/Level + str/dex]
-	 * 
-	 */
-	@Test
-	public void testAttackBonus() {
-		// Given
-		// When
-		// Then
-
-	}
-
-	/**
-	 * DAMAGE BONUS(STR ONLY FOR MELEE WEAPON) [str]*Level
-	 */
-	@Test
-	public void testDamageBonus() {
-		// Given
-		// When
-		// Then
-
+		
 	}
 
 }
