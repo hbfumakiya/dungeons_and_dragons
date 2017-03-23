@@ -167,6 +167,33 @@ public class GamePlayModel extends Observable{
 		
 		
 	}
-
+	/**
+	 * move character according to key listener
+	 * @param newPoint
+	 * @param oldPoint
+	 */
+	public void moveCharacter(Point newPoint,Point oldPoint)
+	{
+		this.setGameCharacterPosition(newPoint);
+	}
+	/**
+	 * 
+	 * @param level
+	 * @return
+	 */
+	public int getItemScoreByLevel(int level) {
+		if (level >= 1 && level <= 4) {
+			return 1;
+		} else if (level >= 5 && level <= 8) {
+			return 2;
+		} else if (level >= 9 && level <= 12) {
+			return 3;
+		} else if (level >= 13 && level <= 16) {
+			return 4;
+		} else if (level >= 17) {
+			return 5;
+		}
+		return 1;
+	}
 	
 }
