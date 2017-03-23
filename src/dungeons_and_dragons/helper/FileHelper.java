@@ -118,7 +118,7 @@ public class FileHelper {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<GameMapModel> getMaps() throws IOException {
+	public static ArrayList<GameMapModel> getMaps() throws IOException,JsonSyntaxException {
 
 		File mapFile = new File(MAP_FILE);
 
@@ -894,7 +894,7 @@ public class FileHelper {
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<CampaignModel> getCampaigns() throws IOException {
+	public static ArrayList<CampaignModel> getCampaigns() throws IOException,JsonSyntaxException {
 
 		File campaignFile = new File(CAMPAIGN_FILE);
 

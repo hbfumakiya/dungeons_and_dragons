@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.GameButton;

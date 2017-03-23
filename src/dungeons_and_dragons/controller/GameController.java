@@ -5,7 +5,14 @@ package dungeons_and_dragons.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import com.google.gson.JsonSyntaxException;
+
+import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.view.GameView;
 
 /**
@@ -36,6 +43,33 @@ public class GameController implements ActionListener {
 
 		// show game view
 		gameView.setVisible(true);
+		
+		
+		try {
+			FileHelper.getItems();
+		} catch (JsonSyntaxException | IOException e) {
+			JOptionPane.showMessageDialog(new JFrame(), "Invalid Item File.");
+		}
+		
+		try {
+			FileHelper.getCharcters();
+		} catch (JsonSyntaxException | IOException e) {
+			JOptionPane.showMessageDialog(new JFrame(), "Invalid Character File.");
+		}
+		
+		try {
+			FileHelper.getMaps();
+		} catch (JsonSyntaxException | IOException e1) {
+			JOptionPane.showMessageDialog(new JFrame(), "Invalid Map File.");
+		}
+		
+		
+		try {
+			FileHelper.getCampaigns();
+		} catch (JsonSyntaxException | IOException e) {
+			JOptionPane.showMessageDialog(new JFrame(), "Invalid Campaign File.");
+		}
+		
 	}
 
 	/**

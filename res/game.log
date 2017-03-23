@@ -38,3 +38,4 @@
 [ 13:39:56.071 14-03-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 31 column 12 path $[0].output_map_list[0].map_enemy_loc[0]
 [ 13:40:04.849 14-03-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 31 column 12 path $[0].output_map_list[0].map_enemy_loc[0]
 [ 13:40:13.225 14-03-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 31 column 12 path $[0].output_map_list[0].map_enemy_loc[0]
+[ 01:55:00.469 23-03-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 21 column 10 path $[0].map_enemy_loc[0]
