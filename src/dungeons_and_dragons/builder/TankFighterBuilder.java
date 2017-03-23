@@ -6,8 +6,7 @@ import java.util.Collections;
 import dungeons_and_dragons.model.AbilityScoresModel;
 /**
  * Tank fighter class to generate ability scores
- * @author 
- *
+ * @author Mihir Pujara
  */
 public class TankFighterBuilder extends FighterBuilder {
 	/**

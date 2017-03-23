@@ -78,10 +78,10 @@ public class NewGameController implements ActionListener {
 		}
 
 	}
+	
 	/**
 	 * ALl the events for back button,play button are handled here
 	 */
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

@@ -970,6 +970,14 @@ public class FileHelper {
 
 	}
 
+	
+	/**
+	 * Save the game into json file with given path
+	 * 
+	 * @param path
+	 * @param game
+	 * @throws IOException
+	 */
 	public static void saveGame(String path, GamePlayModel game) throws IOException {
 		// create writer object for item file
 		Writer file_writer = new FileWriter(path);

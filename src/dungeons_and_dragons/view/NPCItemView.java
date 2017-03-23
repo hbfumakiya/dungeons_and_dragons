@@ -78,7 +78,7 @@ public class NPCItemView extends JFrame implements View {
 		this.getContentPane().add(this.panel);
 
 	}
-	
+
 	/**
 	 * @param actionListener
 	 */

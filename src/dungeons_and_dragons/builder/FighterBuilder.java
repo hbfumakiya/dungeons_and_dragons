@@ -5,6 +5,7 @@ import dungeons_and_dragons.model.CharacterModel;
 /**
  * Abstract Builder class of the Builder pattern
  * 
+ * @author Shahida Chauhan
  */
 public abstract class FighterBuilder {
 	

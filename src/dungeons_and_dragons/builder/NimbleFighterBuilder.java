@@ -7,8 +7,8 @@ import dungeons_and_dragons.model.AbilityScoresModel;
 
 /**
  * Nimble fighter class to generate ability scores
- * @author 
- *
+ * 
+ * @author Mihir Pujara
  */
 public class NimbleFighterBuilder extends FighterBuilder {
 	/**

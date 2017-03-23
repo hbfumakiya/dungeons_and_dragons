@@ -18,7 +18,7 @@ import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.NPCItemView;
 
 /**
- * @author Hirangi Naik
+ * @author Hirangi Naik & Mihir Pujara
  *
  */
 public class NPCItemController implements ActionListener {

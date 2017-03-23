@@ -15,6 +15,7 @@ import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
@@ -65,7 +66,7 @@ public class MapGridController implements ActionListener {
 		this.map_view.setListener(this);
 		finder = 0;
 		this.map_model.setFinder(finder);
-		
+
 		ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
 		try {
 			m = FileHelper.getCharcters();
@@ -74,7 +75,7 @@ public class MapGridController implements ActionListener {
 			e.printStackTrace();
 		}
 		this.map_model.setInput_character_list(m);
-		
+
 		ArrayList<ItemModel> im = new ArrayList<ItemModel>();
 		try {
 			im = FileHelper.getItems();
@@ -102,74 +103,59 @@ public class MapGridController implements ActionListener {
 		ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
 		try {
 			m = FileHelper.getCharcters();
-			
+
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
-		//to check whether character is present in map or not if present then remove it from character file list.
-		ArrayList<CharacterModel> cm =new ArrayList<CharacterModel>();
+		// to check whether character is present in map or not if present then
+		// remove it from character file list.
+		ArrayList<CharacterModel> cm = new ArrayList<CharacterModel>();
 		ArrayList<CharacterModel> rm = new ArrayList<CharacterModel>();
-		
-		for(int i = 0; i<this.map_model.getMap_enemy_loc().size();i++){
+
+		for (int i = 0; i < this.map_model.getMap_enemy_loc().size(); i++) {
 			CharacterModel char_m = this.map_model.getMap_enemy_loc().get(i).getCharacter();
-			for(int j = 0;j<m.size();j++)
-			{
-				
-			if(char_m.getCharacter_id() == m.get(j).getCharacter_id()){
-				if(!rm.contains(m.get(j)))
-				{
-					rm.add(m.get(j));
-				}
+			for (int j = 0; j < m.size(); j++) {
+
+				if (char_m.getCharacter_id() == m.get(j).getCharacter_id()) {
+					if (!rm.contains(m.get(j))) {
+						rm.add(m.get(j));
+					}
+				} else if (!cm.contains(m.get(j)))
+					cm.add(m.get(j));
 			}
-			else
-				if(!cm.contains(m.get(j)))
-				cm.add(m.get(j));
-			}
-			
-//			this.map_model.removeNPCFromComboBox(char_m);
 		}
-		
+
 		cm.removeAll(rm);
 		this.map_model.setInput_character_list(cm);
-		
-		
-		
+
 		ArrayList<ItemModel> im = new ArrayList<ItemModel>();
 		try {
 			im = FileHelper.getItems();
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//list to check if items are present in map if there then remove it from dropdown.
-		ArrayList<ItemModel> check_items  = new ArrayList<ItemModel>();
-		for(int i = 0;i<1;i++)
-		{
-			
+
+		// list to check if items are present in map if there then remove it
+		// from dropdown.
+		ArrayList<ItemModel> check_items = new ArrayList<ItemModel>();
+		for (int i = 0; i < 1; i++) {
+
 			ItemModel item = this.map_model.getMap_chest().getItem();
-			
-			for(int j = 0;j<im.size();j++){
-				if(item!=null && item.getItem_id() == im.get(j).getItem_id()){
-					
-				}
-				else
-				{
-					if(!check_items.contains(im.get(j)))
-					{
+
+			for (int j = 0; j < im.size(); j++) {
+				if (item != null && item.getItem_id() == im.get(j).getItem_id()) {
+
+				} else {
+					if (!check_items.contains(im.get(j))) {
 						check_items.add(im.get(j));
 					}
 				}
-					
+
 			}
-			
-			
+
 		}
-			//ItemModel item_m = this.map_model.getMap_chest().getItem();
-			//if (map.getMap_enemy_loc().get(i).getCharacterType() == MapCharacter.ENEMY)
-			//if(item_m != null)
-			//im.remove(check_items);
-		
+
 		this.map_model.setInput_item_list(check_items);
 		this.map_view = new MapGridView(map);
 
@@ -181,8 +167,7 @@ public class MapGridController implements ActionListener {
 
 		finder = 1;
 		this.map_model.setFinder(finder);
-		
-		
+
 	}
 
 	/**
@@ -220,8 +205,8 @@ public class MapGridController implements ActionListener {
 					while (mapIterator.hasNext()) {
 
 						MapCharacter mapCharacter = (MapCharacter) mapIterator.next();
-						Point p = new Point(mapCharacter.getX(),mapCharacter.getY());
-						
+						Point p = new Point(mapCharacter.getX(), mapCharacter.getY());
+
 						if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 							count++;
 
@@ -238,12 +223,12 @@ public class MapGridController implements ActionListener {
 						JOptionPane.showOptionDialog(null, "It is an invalid map as there should be atleast one enemy",
 								"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null,
 								new Object[] {}, null);
+					} else if (count != this.map_model.getMap_enemy_loc().size()) {
+						JOptionPane.showOptionDialog(null,
+								"It is an invalid map as all the enemies that are defined should be in the defined path",
+								"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null,
+								new Object[] {}, null);
 					}
-					else if(count != this.map_model.getMap_enemy_loc().size())
-					{JOptionPane.showOptionDialog(null,
-							"It is an invalid map as all the enemies that are defined should be in the defined path",
-							"Invalid Map", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[] {},
-							null);}
 
 				}
 				// need to manipulate error message window
@@ -281,16 +266,15 @@ public class MapGridController implements ActionListener {
 					int enemyCounter = 0;
 					while (mapIterator.hasNext()) {
 						MapCharacter mapCharacter = (MapCharacter) mapIterator.next();
-						
-						if(mapCharacter.getCharacterType().equals(MapCharacter.ENEMY))
-						{
+
+						if (mapCharacter.getCharacterType().equals(MapCharacter.ENEMY)) {
 							enemyCounter++;
-							Point p = new Point(mapCharacter.getX(),mapCharacter.getY());
+							Point p = new Point(mapCharacter.getX(), mapCharacter.getY());
 							if (new MapValidator(this.map_view, this.map_model).findPath(p)) {
 								count++;
 							}
 						}
-						
+
 					}
 					if (count == enemyCounter && count > 0) {
 
@@ -332,16 +316,15 @@ public class MapGridController implements ActionListener {
 				ArrayList<CharacterModel> m = new ArrayList<CharacterModel>();
 				try {
 					m = FileHelper.getCharcters();
-					
+
 				} catch (JsonSyntaxException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				//to check whether character is present in map or not if present then remove it from character file list.
+				// to check whether character is present in map or not if
+				// present then remove it from character file list.
 				this.map_model.setInput_character_list(m);
-				
-				
-				
+
 				ArrayList<ItemModel> im = new ArrayList<ItemModel>();
 				try {
 					im = FileHelper.getItems();
@@ -349,10 +332,9 @@ public class MapGridController implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
+
 				this.map_model.setInput_item_list(im);
-				
+
 				if (Integer.parseInt(this.map_view.map_height_textfield.getText().trim()) < 3
 						|| Integer.parseInt(this.map_view.map_width_textfield.getText().trim()) < 3) {
 					throw new NumberFormatException();
@@ -408,37 +390,29 @@ public class MapGridController implements ActionListener {
 		} else if (e.getSource().equals(map_view.map_friend)) {
 			this.map_model.setMap_object_color_type(Game_constants.FRIENDS);
 
-		} 
-		else if(e.getSource().equals(map_view.map_dropdown_item)){
-			//this.map_model.setSelectedItem((ItemModel)this.map_view.map_dropdown_item.getSelectedItem());
-			
+		} else if (e.getSource().equals(map_view.map_dropdown_item)) {
+			// this.map_model.setSelectedItem((ItemModel)this.map_view.map_dropdown_item.getSelectedItem());
+
+		} else if (e.getSource().equals(map_view.map_dropdown_enemy_friend)) {
+
 		}
-		else if(e.getSource().equals(map_view.map_dropdown_enemy_friend))
-		{
-			
-		}
-		
+
 		else if (((MapButton) e.getSource()).getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
 			Point position = new Point();
 			position.x = ((MapButton) e.getSource()).getxPos();
 			position.y = ((MapButton) e.getSource()).getyPos();
 			String mes;
-			
+
 			ArrayList<MapCharacter> m = new ArrayList<MapCharacter>();
 			m = this.map_model.getMap_enemy_loc();
 			CharacterModel npc = new CharacterModel();
 			MapCharacter mc = new MapCharacter();
 			int t = 0;
-			for(int x =0;x<m.size();x++)
-			{
-				if(m.get(x).getX() == position.x && m.get(x).getY() == position.y)
-				{
-					if(m.get(x).getCharacterType().equals(MapCharacter.ENEMY))
-					{
+			for (int x = 0; x < m.size(); x++) {
+				if (m.get(x).getX() == position.x && m.get(x).getY() == position.y) {
+					if (m.get(x).getCharacterType().equals(MapCharacter.ENEMY)) {
 						t = 1;
-					}
-					else if(m.get(x).getCharacterType().equals(MapCharacter.FRIENDLY))
-					{
+					} else if (m.get(x).getCharacterType().equals(MapCharacter.FRIENDLY)) {
 						t = 2;
 					}
 					npc = m.get(x).getCharacter();
@@ -446,31 +420,31 @@ public class MapGridController implements ActionListener {
 				}
 			}
 			MapItem chest_item = this.map_model.getMap_chest();
-			
-			
-//			if(this.map_view.map_dropdown_item.getSelectedItem() == null)
-//			{
-//				JOptionPane.showOptionDialog(null, "No item present", "Invalid item",
-//						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
-//				return;
-//			}
-			//chest_item.setItem((ItemModel) this.map_view.map_dropdown_item.getSelectedItem());
-			
+
+			// if(this.map_view.map_dropdown_item.getSelectedItem() == null)
+			// {
+			// JOptionPane.showOptionDialog(null, "No item present", "Invalid
+			// item",
+			// JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+			// null, new Object[] {}, null);
+			// return;
+			// }
+			// chest_item.setItem((ItemModel)
+			// this.map_view.map_dropdown_item.getSelectedItem());
 
 			if (this.map_model.getMap_object_color_type() == Game_constants.WALLS) {
 
-				if (validateMapForExisting("wall", position,t)) {
-					if (t == 1 || t == 2){
+				if (validateMapForExisting("wall", position, t)) {
+					if (t == 1 || t == 2) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
 					}
-					
-					else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) 
-					{
+
+					else if (this.map_model.getMap_chest().getX() == position.x
+							&& this.map_model.getMap_chest().getY() == position.y) {
 						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 						this.map_model.removeChest(position);
-					}
-					else if (this.map_model.getMap_entry_door().equals(position))
+					} else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
@@ -481,106 +455,101 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.ENEMIES) {
 
-				if (validateMapForExisting("Enemy", position,t)) {
+				if (validateMapForExisting("Enemy", position, t)) {
 					MapCharacter mapCharacters = new MapCharacter();
 					mapCharacters.setX(position.x);
 					mapCharacters.setY(position.y);
-					if(this.map_view.map_dropdown_enemy_friend.getSelectedItem()==  null)
-					{
+					if (this.map_view.map_dropdown_enemy_friend.getSelectedItem() == null) {
 						JOptionPane.showOptionDialog(null, "No Character present in dropdown", "Invalid Character",
-								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+								null);
 						return;
 					}
-					mapCharacters.setCharacter((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					mapCharacters
+							.setCharacter((CharacterModel) this.map_view.map_dropdown_enemy_friend.getSelectedItem());
 					mapCharacters.setCharacterType(MapCharacter.ENEMY);
-					
-					if (t == 2){
+
+					if (t == 2) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
-					}
-					else if (this.map_model.getMap_walls().contains(position))
+					} else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
-					else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) 
-					{
+					else if (this.map_model.getMap_chest().getX() == position.x
+							&& this.map_model.getMap_chest().getY() == position.y) {
 						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 						this.map_model.removeChest(position);
-					}
-					else if (this.map_model.getMap_entry_door().equals(position))
+					} else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
-					
-					
-					this.map_model.removeNPCFromComboBox((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
-					
+
+					this.map_model.removeNPCFromComboBox(
+							(CharacterModel) this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+
 					this.map_model.setMap_enemy_loc(mapCharacters);
 					this.map_view.setButtonListener(this);
 				}
-				
 
-			}
-			else if (this.map_model.getMap_object_color_type() == Game_constants.FRIENDS) {
+			} else if (this.map_model.getMap_object_color_type() == Game_constants.FRIENDS) {
 
-				if (validateMapForExisting("Friend", position,t)) {
+				if (validateMapForExisting("Friend", position, t)) {
 					MapCharacter mapCharacters = new MapCharacter();
 					mapCharacters.setX(position.x);
 					mapCharacters.setY(position.y);
-					if(this.map_view.map_dropdown_enemy_friend.getSelectedItem()==  null)
-					{
+					if (this.map_view.map_dropdown_enemy_friend.getSelectedItem() == null) {
 						JOptionPane.showOptionDialog(null, "No Character present in dropdown", "Invalid Character",
-								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+								null);
 						return;
 					}
-					mapCharacters.setCharacter((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+					mapCharacters
+							.setCharacter((CharacterModel) this.map_view.map_dropdown_enemy_friend.getSelectedItem());
 					mapCharacters.setCharacterType(MapCharacter.FRIENDLY);
-					
-					if (t == 1){
+
+					if (t == 1) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
-					}
-					else if (this.map_model.getMap_walls().contains(position))
+					} else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
-					else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) 
-					{
+					else if (this.map_model.getMap_chest().getX() == position.x
+							&& this.map_model.getMap_chest().getY() == position.y) {
 						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 						this.map_model.removeChest(position);
-					}
-					else if (this.map_model.getMap_entry_door().equals(position))
+					} else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
-					
-					
-					this.map_model.removeNPCFromComboBox((CharacterModel)this.map_view.map_dropdown_enemy_friend.getSelectedItem());
-					
+
+					this.map_model.removeNPCFromComboBox(
+							(CharacterModel) this.map_view.map_dropdown_enemy_friend.getSelectedItem());
+
 					this.map_model.setMap_enemy_loc(mapCharacters);
 					this.map_view.setButtonListener(this);
 				}
-			
-			
-			}else if (this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR) {
 
-				if (validateMapForExisting("Entry Door", position,t)) {
-					
+			} else if (this.map_model.getMap_object_color_type() == Game_constants.ENTRY_DOOR) {
+
+				if (validateMapForExisting("Entry Door", position, t)) {
+
 					if (!((position.x == 0 && position.y != 0) || (position.x != 0 && position.y == 0)
-							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y != this.map_model.getMap_size().getY() - 1)
-							|| (position.x != this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1)
+							|| (position.x == this.map_model.getMap_size().getX() - 1
+									&& position.y != this.map_model.getMap_size().getY() - 1)
+							|| (position.x != this.map_model.getMap_size().getX() - 1
+									&& position.y == this.map_model.getMap_size().getY() - 1)
 							|| (position.x == 0 && position.y == 0)
-							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1))) {
+							|| (position.x == this.map_model.getMap_size().getX() - 1
+									&& position.y == this.map_model.getMap_size().getY() - 1))) {
 						return;
 					}
-					
-					if (t == 1 || t == 2)
-					{
+
+					if (t == 1 || t == 2) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
-					}
-					else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) 
-					{
+					} else if (this.map_model.getMap_chest().getX() == position.x
+							&& this.map_model.getMap_chest().getY() == position.y) {
 						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 						this.map_model.removeChest(position);
-					}
-					else if (this.map_model.getMap_walls().contains(position))
+					} else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
@@ -592,26 +561,27 @@ public class MapGridController implements ActionListener {
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.EXIT_DOOR) {
 
-				if (validateMapForExisting("Exit Door", position,t)) {
-					
+				if (validateMapForExisting("Exit Door", position, t)) {
+
 					if (!((position.x == 0 && position.y != 0) || (position.x != 0 && position.y == 0)
-							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y != this.map_model.getMap_size().getY() - 1)
-							|| (position.x != this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1)
+							|| (position.x == this.map_model.getMap_size().getX() - 1
+									&& position.y != this.map_model.getMap_size().getY() - 1)
+							|| (position.x != this.map_model.getMap_size().getX() - 1
+									&& position.y == this.map_model.getMap_size().getY() - 1)
 							|| (position.x == 0 && position.y == 0)
-							|| (position.x == this.map_model.getMap_size().getX() - 1 && position.y == this.map_model.getMap_size().getY() - 1))) {
+							|| (position.x == this.map_model.getMap_size().getX() - 1
+									&& position.y == this.map_model.getMap_size().getY() - 1))) {
 						return;
 					}
-					
-					if (t == 1 || t == 2 )
-					{
+
+					if (t == 1 || t == 2) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
-					}
-					else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) {
+					} else if (this.map_model.getMap_chest().getX() == position.x
+							&& this.map_model.getMap_chest().getY() == position.y) {
 						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 						this.map_model.removeChest(position);
-					}
-					else if (this.map_model.getMap_walls().contains(position))
+					} else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
 					else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
@@ -622,50 +592,46 @@ public class MapGridController implements ActionListener {
 				}
 
 			} else if (this.map_model.getMap_object_color_type() == Game_constants.CHEST) {
-				
-				
+
 				MapItem chest = new MapItem();
 				chest.setX(position.x);
 				chest.setY(position.y);
-				if(this.map_view.map_dropdown_item.getSelectedItem() == null)
-				{
-					JOptionPane.showOptionDialog(null, "No item present", "Invalid item",
-							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
+				if (this.map_view.map_dropdown_item.getSelectedItem() == null) {
+					JOptionPane.showOptionDialog(null, "No item present", "Invalid item", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.INFORMATION_MESSAGE, null, new Object[] {}, null);
 					return;
 				}
 				chest.setItem((ItemModel) this.map_view.map_dropdown_item.getSelectedItem());
-				
-				if (validateMapForExisting("Chest", position,t)) {
-					if (t == 1 || t == 2)
-					{
+
+				if (validateMapForExisting("Chest", position, t)) {
+					if (t == 1 || t == 2) {
 						this.map_model.removeNPC(mc);
 						this.map_model.addNPCToComboBox(npc);
-					}
-					else if (this.map_model.getMap_entry_door().equals(position))
+					} else if (this.map_model.getMap_entry_door().equals(position))
 						this.map_model.removeEntryDoor(position);
 					else if (this.map_model.getMap_walls().contains(position))
 						this.map_model.removeWall(position);
 					else if (this.map_model.getMap_exit_door().equals(position))
 						this.map_model.removeExitDoor(position);
-					
-					if(this.map_model.getMap_chest().getItem()!=null)
-					this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
+
+					if (this.map_model.getMap_chest().getItem() != null)
+						this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 					this.map_model.removeItemFromComboBox(chest.getItem());
 					this.map_model.setMap_chest(chest);
 					this.map_view.setButtonListener(this);
 				}
 
 			} else if (this.map_model.getMap_object_color_type() == null) {
-				
 
 				if (t == 1 || t == 2) {
-					
+
 					this.map_model.removeNPC(mc);
 					this.map_model.addNPCToComboBox(npc);
 					this.map_model.callObservers();
 					this.map_view.setButtonListener(this);
-				} else if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) {
-					
+				} else if (this.map_model.getMap_chest().getX() == position.x
+						&& this.map_model.getMap_chest().getY() == position.y) {
+
 					this.map_model.addItemToComboBox(this.map_model.getMap_chest().getItem());
 					this.map_model.removeChest(position);
 					this.map_model.callObservers();
@@ -694,14 +660,16 @@ public class MapGridController implements ActionListener {
 	 * Function used to check if the object is already present in the position
 	 * or not
 	 * 
-	 * @param object name of object
-	 * @param position position of object
+	 * @param object
+	 *            name of object
+	 * @param position
+	 *            position of object
 	 * @return String
 	 */
-	private boolean validateMapForExisting(String object, Point position,int check_npc) {
+	private boolean validateMapForExisting(String object, Point position, int check_npc) {
 
 		boolean validate = true;
-		if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y ) {
+		if (this.map_model.getMap_chest().getX() == position.x && this.map_model.getMap_chest().getY() == position.y) {
 			int confirm = JOptionPane.showConfirmDialog(this.map_view, "Do you want to replace chest with " + object);
 			if (confirm == 0)
 				validate = true;

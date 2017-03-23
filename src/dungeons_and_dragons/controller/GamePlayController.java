@@ -46,8 +46,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * @type MapGridView
 	 */
 	public GamePlayView gamePlayView;
-	
-	
 
 	private ArrayList<CharacterModel> shownInventories;
 
@@ -76,11 +74,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		matchNPCToPlayer();
 
 	}
+
 	/**
-	 * This function match character's level to NPC and calculate modifiers,armorclass,attackbonus,hitpoints and damage bonus.
+	 * This function match character's level to NPC and calculate
+	 * modifiers,armorclass,attackbonus,hitpoints and damage bonus.
 	 * 
 	 */
-
 	private void matchNPCToPlayer() {
 
 		ArrayList<MapCharacter> npc = this.gamePlayModel.getCampaignModel().getOutput_map_list()
@@ -107,13 +106,14 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			character.calculateDamageBonus();
 		}
 	}
+
 	/**
 	 * pass character level to get item points for NPC
 	 * 
-	 * @param level character level
+	 * @param level
+	 *            character level
 	 * @return item points based on character level
 	 */
-
 	private int getItemScoreByLevel(int level) {
 		if (level >= 1 && level <= 4) {
 			return 1;
@@ -128,10 +128,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		}
 		return 1;
 	}
+
 	/**
 	 * key pressed events are handled here
 	 */
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 
@@ -162,8 +162,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	 * This functions allows the Player to move from its position based on the
 	 * key pressed
 	 * 
-	 * @param tempPoint next point in the map
-	 * @param oldPoint old point in the map
+	 * @param tempPoint
+	 *            next point in the map
+	 * @param oldPoint
+	 *            old point in the map
 	 */
 	public void moveCharacter(Point tempPoint, Point oldPoint) {
 
@@ -243,11 +245,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					boolean enemyAlive = true;
 					if (enemy != null)
 						enemyAlive = fightWithEnemy(enemy, player);
-					
+
 					enemy.updateView();
 					String msg = "";
 					if (enemyAlive == false) {
-						JOptionPane.showMessageDialog(new JFrame(), "Enemy "+enemy.getCharacter_name()+" is dead.You can loot its items");
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Enemy " + enemy.getCharacter_name() + " is dead.You can loot its items");
 						enemy.setAlive(false);
 						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
 						if (!enemy.getItems().isEmpty()) {
@@ -259,18 +262,18 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 							}
 						}
 						new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
-						
+
 						msg = "is dead.You can loot its item";
-						
-						//enemy.getBackPackItems().removeAll(allEnemyItems);
-						//enemy.getItems().removeAll(allEnemyItems);
+
+						// enemy.getBackPackItems().removeAll(allEnemyItems);
+						// enemy.getItems().removeAll(allEnemyItems);
 
 					}
 
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					String emoji = String.valueOf(Character.toChars(0x263A));
-					this.gamePlayView.consoleTextArea
-							.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji + " Enemy " +enemy.getCharacter_name()+" "+ msg + "\n");
+					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji
+							+ " Enemy " + enemy.getCharacter_name() + " " + msg + "\n");
 					System.out.println("\u1F47F");
 					updatePostion(tempPoint, oldPoint);
 
@@ -278,7 +281,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					// programming in build3 for this :P)
 
 				} else if (this.gamePlayView.enemyFlag == 0) {
-					
+
 					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 							.get(this.gamePlayModel.getCurrentMapIndex());
 					int numOfCharacters = map.getMap_enemy_loc().size();
@@ -290,19 +293,20 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 							friendly = map.getMap_enemy_loc().get(j).getCharacter();
 						}
 					}
-					
-					new NPCItemController(this.gamePlayModel, this.gamePlayModel.getCharacterModel().getBackPackItems(), false, friendly);
+
+					new NPCItemController(this.gamePlayModel, this.gamePlayModel.getCharacterModel().getBackPackItems(),
+							false, friendly);
 					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
 					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-							+ "Friendly Non Player Character "+friendly.getCharacter_name() + " \n");
+							+ "Friendly Non Player Character " + friendly.getCharacter_name() + " \n");
 					updatePostion(tempPoint, oldPoint);
 
 					// friendly items traversal to backpack of character
 				}
 			} else {
 				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-				this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-						+ "Move ahead \n");
+				this.gamePlayView.consoleTextArea
+						.setText(this.gamePlayView.consoleTextArea.getText() + "Move ahead \n");
 				updatePostion(tempPoint, oldPoint);
 			}
 
@@ -339,9 +343,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						this.gamePlayModel.addObserver(this.gamePlayView);
 						this.gamePlayView.setListener(this);
 						this.gamePlayView.setVisible(true);
-						
-						this.gamePlayModel.getCharacterModel().setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level()+1);
-						
+
+						this.gamePlayModel.getCharacterModel()
+								.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level() + 1);
+
 						this.shownInventories = new ArrayList<CharacterModel>();
 
 						matchNPCToPlayer();
@@ -368,8 +373,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	/**
 	 * This method is created to have fight between enemy
 	 * 
-	 * @param enemy Enemy to fight with
-	 * @param player main character player
+	 * @param enemy
+	 *            Enemy to fight with
+	 * @param player
+	 *            main character player
 	 * @return boolean return true if enemy survives else false if enemy is dead
 	 */
 	private boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
@@ -380,7 +387,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		zeroAbilities.setIntelligence(-10);
 		zeroAbilities.setstrength(-10);
 		zeroAbilities.setWisdom(-10);
-		
+
 		enemy.setAbilityScores(zeroAbilities);
 		enemy.setAttackBonus(0);
 		enemy.setHitpoints(0);
@@ -434,43 +441,43 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
+
 	/**
-	 * This method handles event for back button,map buttons with enemy,friend or character.
+	 * This method handles event for back button,map buttons with enemy,friend
+	 * or character.
 	 * 
 	 */
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(this.gamePlayView.backButton))
-		{
+		if (e.getSource().equals(this.gamePlayView.backButton)) {
 			new NewGameController();
 			this.gamePlayView.dispose();
 		} else {
-		MapButton button = (MapButton) e.getSource();
-		if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
-			if (button.getCharacterType() == MapButton.ENEMY) {
+			MapButton button = (MapButton) e.getSource();
+			if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
+				if (button.getCharacterType() == MapButton.ENEMY) {
 
-				if (!this.shownInventories.contains(button.getCharacter())) {
-					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
+					if (!this.shownInventories.contains(button.getCharacter())) {
+						this.shownInventories.add(button.getCharacter());
+						new CharacterInventoryController(button.getCharacter(), this, button.getCharacterType());
+					}
+
+				} else if (button.getCharacterType() == MapButton.FRIENDLY_PLAYER) {
+
+					if (!this.shownInventories.contains(button.getCharacter())) {
+						this.shownInventories.add(button.getCharacter());
+						new CharacterInventoryController(button.getCharacter(), this, button.getCharacterType());
+					}
+
+				} else if (button.getCharacterType() == MapButton.PLAYER) {
+
+					if (!this.shownInventories.contains(button.getCharacter())) {
+						this.shownInventories.add(button.getCharacter());
+						new CharacterInventoryController(button.getCharacter(), this, button.getCharacterType());
+					}
+
 				}
-
-			} else if (button.getCharacterType() == MapButton.FRIENDLY_PLAYER) {
-
-				if (!this.shownInventories.contains(button.getCharacter())) {
-					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
-				}
-
-			} else if (button.getCharacterType() == MapButton.PLAYER) {
-
-				if (!this.shownInventories.contains(button.getCharacter())) {
-					this.shownInventories.add(button.getCharacter());
-					new CharacterInventoryController(button.getCharacter(), this,button.getCharacterType());
-				}
-
 			}
-		}
 		}
 	}
 
@@ -478,6 +485,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void windowActivated(WindowEvent e) {
 
 	}
+
 	/**
 	 * window closed events are handles here
 	 */
@@ -490,7 +498,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			this.shownInventories.remove(character);
 		}
 	}
-	
+
 	/**
 	 * window closing events are handles here
 	 */

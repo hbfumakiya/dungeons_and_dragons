@@ -4,7 +4,7 @@
 package dungeons_and_dragons.exception;
 
 /**
- * @author mihir
+ * @author Mihir Pujara
  *
  */
 public class NotFoundException extends Exception {

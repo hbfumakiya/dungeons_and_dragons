@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * this class is for creating logs during game playing time
  * 
- * @author Hirangi
+ * @author Mihir Pujara
  *
  */
 public class LogHelper {
@@ -67,7 +67,6 @@ public class LogHelper {
 				Files.write(path, details, charset, StandardOpenOption.CREATE_NEW);
 			}
 		} catch (IOException e) {
-
 		}
 
 	}

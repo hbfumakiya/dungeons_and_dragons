@@ -33,8 +33,8 @@ import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This class is for creating new game and display which campaign and character you want to select to play with.
+ * 
  * @author Mihir Pujara
- *
  */
 public class NewGameView extends JFrame implements View {
 

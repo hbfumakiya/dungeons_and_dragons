@@ -54,7 +54,6 @@ public class ItemController implements ActionListener {
 	 * @param itemModel
 	 *            Item object to update item
 	 */
-
 	public ItemController(ItemModel itemModel) {
 
 		this.item_model = itemModel;
@@ -71,7 +70,6 @@ public class ItemController implements ActionListener {
 	 * @param arg0
 	 *            actionevent argument to control event
 	 */
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 

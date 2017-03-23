@@ -26,7 +26,7 @@ import dungeons_and_dragons.view.InventoryView;
  * This class is to show all created characters, add new character, edit and
  * view character
  * 
- * @author mihir
+ * @author Mihir Pujara
  *
  */
 public class CharacterInventoryController implements ActionListener {
@@ -56,6 +56,13 @@ public class CharacterInventoryController implements ActionListener {
 		this.character.addObserver(this.characterInventoryView);
 	}
 	
+	/**
+	 * Constructor for show character inventory while playing game 
+	 * 
+	 * @param character
+	 * @param windowListener
+	 * @param characterType
+	 */
 	public CharacterInventoryController(CharacterModel character, WindowListener windowListener,int characterType) {
 
 		this.character = character;
@@ -213,6 +220,5 @@ public class CharacterInventoryController implements ActionListener {
 			this.character.updateView();
 			
 		}
-		//else if(actionEvent.getSource().equal))
 	}
 }

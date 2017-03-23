@@ -22,7 +22,6 @@ import dungeons_and_dragons.view.ManageCampaignView;
  * @author Urmil Kansara
  * 
  */
-
 public class ManageCampaignController implements ActionListener {
 
 	private CampaignModel campaignModel;
@@ -59,7 +58,6 @@ public class ManageCampaignController implements ActionListener {
 	 * @param actionevent
 	 *            Actionevent argument to control event
 	 */
-
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 
@@ -80,14 +78,8 @@ public class ManageCampaignController implements ActionListener {
 			int itemId = button.getId();
 			CampaignModel map = (CampaignModel) button.getSource();
 
-			// new MapView(map);
 			new CampaignController(map, "view");
 			manageCampaignView.dispose();
-			// StringBuilder sb = new StringBuilder("");
-			// sb.append(item.getMap_name());
-			// sb.append("\n");
-
-			// JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();

@@ -7,7 +7,7 @@ import dungeons_and_dragons.model.AbilityScoresModel;
 /**
  * Bully fighter extending fighter builder
  * 
- * @author 
+ * @author Mihir Pujara
  *
  */
 public class BullyFighterBuilder extends FighterBuilder {

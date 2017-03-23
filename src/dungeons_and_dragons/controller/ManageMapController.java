@@ -87,11 +87,6 @@ public class ManageMapController implements ActionListener {
 
 			new MapView(map);
 			manageMapView.dispose();
-			// StringBuilder sb = new StringBuilder("");
-			// sb.append(item.getMap_name());
-			// sb.append("\n");
-
-			// JOptionPane.showMessageDialog(this.manageMapView, sb.toString());
 
 		} else if (((GameButton) actionEvent.getSource()).getButtonType() == GameButton.BUTTON_TYPE_EDIT) {
 			GameButton button = (GameButton) actionEvent.getSource();
@@ -99,7 +94,6 @@ public class ManageMapController implements ActionListener {
 			GameMapModel map = (GameMapModel) button.getSource();
 
 			new MapGridController(map);
-			// x.setListener(this);
 			manageMapView.dispose();
 		}
 	}
