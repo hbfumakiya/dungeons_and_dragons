@@ -172,8 +172,50 @@ public class GamePlayModel extends Observable{
 	 * @param newPoint
 	 * @param oldPoint
 	 */
-	public void moveCharacter(Point newPoint,Point oldPoint)
+	public void moveCharacterUp(Point oldPoint)
 	{
+		Point newPoint = new Point();
+		newPoint.x = (int)oldPoint.getX();
+		newPoint.y = (int)oldPoint.getY()-1;
+		this.setGameCharacterPosition(newPoint);
+	}
+	
+	/**
+	 * move character according to key listener
+	 * @param newPoint
+	 * @param oldPoint
+	 */
+	public void moveCharacterDown(Point oldPoint)
+	{
+		Point newPoint = new Point();
+		newPoint.x = (int)oldPoint.getX();
+		newPoint.y = (int)oldPoint.getY()+1;
+		this.setGameCharacterPosition(newPoint);
+	}
+	
+	/**
+	 * move character according to key listener
+	 * @param newPoint
+	 * @param oldPoint
+	 */
+	public void moveCharacterRight(Point oldPoint)
+	{
+		Point newPoint = new Point();
+		newPoint.x = (int)oldPoint.getX()+1;
+		newPoint.y = (int)oldPoint.getY();
+		this.setGameCharacterPosition(newPoint);
+	}
+	
+	/**
+	 * move character according to key listener
+	 * @param newPoint
+	 * @param oldPoint
+	 */
+	public void moveCharacterLeft(Point oldPoint)
+	{
+		Point newPoint = new Point();
+		newPoint.x = (int)oldPoint.getX()-1;
+		newPoint.y = (int)oldPoint.getY();
 		this.setGameCharacterPosition(newPoint);
 	}
 	/**
