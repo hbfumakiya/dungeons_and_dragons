@@ -1,15 +1,20 @@
 package dungeons_and_dragons.model;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.Observable;
 
+import javax.swing.JTextArea;
+
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapItem;
+import dungeons_and_dragons.view.GamePlayView;
 
 /**
  * Once GamePlayModel gets a change state query request from any view they
@@ -46,6 +51,10 @@ public class GamePlayModel extends Observable{
 	
 	@Expose
 	private int currentMapIndex;
+
+	private Object gamePlayView;
+	private GamePlayView gamePlayView2;
+
 	
 	/**
 	 * constructor to initialize map object
@@ -238,4 +247,55 @@ public class GamePlayModel extends Observable{
 		return 1;
 	}
 	
+	/**
+	 * This method is created to have fight between enemy
+	 * 
+	 * @param enemy
+	 *            Enemy to fight with
+	 * @param player
+	 *            main character player
+	 * @return boolean return true if enemy survives else false if enemy is dead
+	 */
+	public boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
+		AbilityScoresModel zeroAbilities = new AbilityScoresModel();
+		zeroAbilities.setCharisma(-10);
+		zeroAbilities.setConstitution(-10);
+		zeroAbilities.setDexterity(-10);
+		zeroAbilities.setIntelligence(-10);
+		zeroAbilities.setstrength(-10);
+		zeroAbilities.setWisdom(-10);
+
+		enemy.setAbilityScores(zeroAbilities);
+		enemy.setAttackBonus(0);
+		enemy.setHitpoints(0);
+		enemy.setDamageBonus(0);
+		enemy.setArmorClass(0);
+		enemy.setRawAbilityScores(zeroAbilities);
+		enemy.calculateModifires();
+		return false;
+
+	}
+	
+	/**
+	 * This function checks if the boundary conditions are reached
+	 * 
+	 * @param tempPoint
+	 * @return true if boundary else false
+	 */
+	public boolean checkBoundaries(Point tempPoint) {
+	//	GamePlayModel gpm=new GamePlayModel();
+	//	GamePlayController gpc=new GamePlayController(gpm);
+	//	gamePlayView2=new GamePlayView(gpm, gpc);
+		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView2.currentMap.getMap_size().x
+				|| tempPoint.y >= this.gamePlayView2.currentMap.getMap_size().y) {
+
+			this.gamePlayView2.consoleTextArea.setForeground(Color.RED);
+			this.gamePlayView2.consoleTextArea
+					.setText(this.gamePlayView2.consoleTextArea.getText() + "Oops...Cannot go ahead...\n");
+			return false;
+		} else {
+			// boundary not reached
+			return true;
+		}
+	}
 }

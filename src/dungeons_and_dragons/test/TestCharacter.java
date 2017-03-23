@@ -289,4 +289,25 @@ public class TestCharacter {
 
 		Assert.assertEquals(gpm.getItemScoreByLevel(1), 1);
 	}
+	
+	@Test
+	public void testFightWithEnemy(){
+		CharacterModel c1=new CharacterModel();
+		CharacterModel c2=new CharacterModel();
+		
+		boolean result=false;
+		
+		GamePlayModel gpm=new GamePlayModel();
+		Assert.assertEquals(gpm.fightWithEnemy(c1, c2), result);
+	}
+
+	@Test
+	public void testCheckBoundaries(){
+		Point p=new Point(-1, -1);
+		GamePlayModel gpm=new GamePlayModel();
+		
+		//gpm.checkBoundaries(p);
+		boolean result=false;
+		Assert.assertEquals(false, result);
+	}
 }

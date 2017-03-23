@@ -9,7 +9,10 @@ import org.junit.Test;
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
+import junit.framework.Assert;
 
 /**
  * Check item values of character
@@ -62,6 +65,6 @@ public class TestItem {
 			assertEquals(check,var);
 		}
 
-	
+		
 
 }
