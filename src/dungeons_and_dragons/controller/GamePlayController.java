@@ -76,7 +76,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		
 		this.gamePlayModel.calculateTurn();
 		
-		
+		this.gamePlayModel.startGame();
 	}
 
 	/**

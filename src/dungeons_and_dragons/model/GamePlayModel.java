@@ -17,6 +17,11 @@ import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
+import dungeons_and_dragons.strategy.AggressiveNPC;
+import dungeons_and_dragons.strategy.CharacterStrategy;
+import dungeons_and_dragons.strategy.ComputerPlayer;
+import dungeons_and_dragons.strategy.FriendlyNPC;
+import dungeons_and_dragons.strategy.HumanPlayer;
 import dungeons_and_dragons.view.GamePlayView;
 
 /**
@@ -59,15 +64,27 @@ public class GamePlayModel extends Observable {
 	private GamePlayView gamePlayView2;
 
 	@Expose
-	public ArrayList<CharacterModel> turnList;
+	private ArrayList<MapCharacter> turnList;
+
+	@Expose
+	private int currentTurn;
+
+	@Expose
+	private boolean isGameRunning;
+
+	@Expose
+	private String playerStrategy;
 
 	/**
 	 * constructor to initialize map object
 	 */
 	public GamePlayModel() {
 		this.currentMapIndex = 0;
-		this.turnList = new ArrayList<CharacterModel>();
+		this.turnList = new ArrayList<MapCharacter>();
 		this.gamePlayId = 0;
+		this.currentTurn = 0;
+		this.isGameRunning = true;
+		this.playerStrategy = MapCharacter.NORMAL;
 	}
 
 	/**
@@ -281,30 +298,79 @@ public class GamePlayModel extends Observable {
 
 	}
 
+	/**
+	 * calculate turn of all players of the current map and store it sortedlist
+	 * in turnlist to determine turn of every players
+	 */
 	public void calculateTurn() {
-		Map<Integer, CharacterModel> tempValues = new HashMap<Integer, CharacterModel>();
+		Map<Integer, MapCharacter> tempValues = new HashMap<Integer, MapCharacter>();
 
 		// roll dice and calculate turn values for character
-		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), this.characterModel);
+		MapCharacter currentCharacter = new MapCharacter();
+		currentCharacter.setCharacter(this.characterModel);
+		currentCharacter.setCharacterType(this.playerStrategy);
+		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), currentCharacter);
 
 		// roll dice and calculate turn values for NPCs
 		ArrayList<MapCharacter> npcs = this.campaignModel.getOutput_map_list().get(this.getCurrentMapIndex())
 				.getMap_enemy_loc();
 		for (int i = 0; i < npcs.size(); i++) {
 			tempValues.put(DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity(),
-					npcs.get(i).getCharacter());
+					npcs.get(i));
 		}
 
-		Map<Integer, CharacterModel> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
+		Map<Integer, MapCharacter> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
 
 		treeMap.putAll(tempValues);
 
 		setValueToTurnList(treeMap);
 	}
 
-	private <K, V> void setValueToTurnList(Map<Integer, CharacterModel> map) {
-		for (Map.Entry<Integer, CharacterModel> entry : map.entrySet()) {
-			this.turnList.add((dungeons_and_dragons.model.CharacterModel) entry.getValue());
+	/**
+	 * these mathod start game and manage all game
+	 */
+	public void startGame() {
+		CharacterStrategy characterStrategy;
+		for (int i = 0; i < turnList.size(); i++) {
+			this.currentTurn = i;
+			switch (this.turnList.get(i).getCharacterType()) {
+			case MapCharacter.NORMAL:
+				characterStrategy = new CharacterStrategy();
+				characterStrategy.setStrategy(new HumanPlayer());
+				this.turnList.get(i).setCharacterStrategy(characterStrategy);
+				break;
+			case MapCharacter.COMPUTER:
+				characterStrategy = new CharacterStrategy();
+				characterStrategy.setStrategy(new ComputerPlayer());
+				this.turnList.get(i).setCharacterStrategy(characterStrategy);
+				break;
+			case MapCharacter.ENEMY:
+				characterStrategy = new CharacterStrategy();
+				characterStrategy.setStrategy(new AggressiveNPC());
+				this.turnList.get(i).setCharacterStrategy(characterStrategy);
+				break;
+			case MapCharacter.FRIENDLY:
+				characterStrategy = new CharacterStrategy();
+				characterStrategy.setStrategy(new FriendlyNPC());
+				this.turnList.get(i).setCharacterStrategy(characterStrategy);
+				break;
+			}
+		}
+		while (isGameRunning) {
+			for (int i = 0; i < turnList.size(); i++) {
+				this.currentTurn = i;
+				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
+			}
+		}
+	}
+
+	/**
+	 * @param map
+	 *            - Map<Integer, CharacterModel>
+	 */
+	private <K, V> void setValueToTurnList(Map<Integer, MapCharacter> map) {
+		for (Map.Entry<Integer, MapCharacter> entry : map.entrySet()) {
+			this.turnList.add(entry.getValue());
 		}
 	}
 

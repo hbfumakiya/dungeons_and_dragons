@@ -6,6 +6,7 @@ package dungeons_and_dragons.helper;
 import com.google.gson.annotations.Expose;
 
 import dungeons_and_dragons.model.CharacterModel;
+import dungeons_and_dragons.strategy.CharacterStrategy;
 
 /**
  * @author Mihir Pujara
@@ -14,6 +15,8 @@ import dungeons_and_dragons.model.CharacterModel;
 public class MapCharacter {
 
 	public static final String NORMAL = "Normal";
+	
+	public static final String COMPUTER = "Computer";
 	
 	public static final String FRIENDLY = "Friendly";
 	
@@ -31,6 +34,9 @@ public class MapCharacter {
 	@Expose
 	private String characterType;
 	
+	@Expose
+	private CharacterStrategy characterStrategy;
+	
 	/**
 	 *	 Default Constructor which set default values of each properties 
 	 */
@@ -42,6 +48,8 @@ public class MapCharacter {
 		this.character = null;
 		
 		this.characterType = MapCharacter.NORMAL;
+		
+		this.characterStrategy = new CharacterStrategy();
 	}
 
 	/**
@@ -99,4 +107,20 @@ public class MapCharacter {
 	public void setCharacterType(String characterType) {
 		this.characterType = characterType;
 	}
+
+	/**
+	 * @return the characterStrategy
+	 */
+	public CharacterStrategy getCharacterStrategy() {
+		return characterStrategy;
+	}
+
+	/**
+	 * @param characterStrategy the characterStrategy to set
+	 */
+	public void setCharacterStrategy(CharacterStrategy characterStrategy) {
+		this.characterStrategy = characterStrategy;
+	}
+	
+	
 }
