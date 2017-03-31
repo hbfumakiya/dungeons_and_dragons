@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ItemView;
 
@@ -93,11 +94,16 @@ public class ItemController implements ActionListener {
 				item_model.setItem_ability(item_ability);
 				int item_point = Integer.parseInt(item_view.item_score_field.getText());
 				item_model.setItem_point(item_point);
+				
 				if (item_point <= 0 || item_point >= 6) {
 
 					throw new NumberFormatException();
 				}
-				// item_model.itemTypeSelected(item_type);
+				if(item_view.item_weapon_enchantment_field.getSelectedItem()!=null)
+					item_model.setItem_weapon_enchantment(item_view.item_weapon_enchantment_field.getSelectedItem().toString());
+				else
+					item_model.setItem_weapon_enchantment("");
+				
 				item_model.save();
 				new ManageItemController();
 				item_view.dispose();
@@ -124,7 +130,13 @@ public class ItemController implements ActionListener {
 				item_model.setItem_ability(item_ability);
 				int item_point = Integer.parseInt(item_view.item_score_field.getText());
 				item_model.setItem_point(item_point);
+				if(item_type.equals(Game_constants.WEAPON_MELEE) || item_type.equals(Game_constants.WEAPON_RANGE) || item_view.item_weapon_enchantment_field.getSelectedItem()!=null)
+					
+					item_model.setItem_weapon_enchantment(item_view.item_weapon_enchantment_field.getSelectedItem().toString());
+				else
+					item_model.setItem_weapon_enchantment("");
 
+					
 				if (item_point <= 0 || item_point >= 6) {
 
 					throw new NumberFormatException();

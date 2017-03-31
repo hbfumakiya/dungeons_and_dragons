@@ -69,6 +69,9 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	 */
 	@Expose
 	private String item_ability;
+	
+	@Expose
+	private String item_weapon_enchantment;
 
 	/**
 	 * 
@@ -99,8 +102,11 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		this.item_point = item_point;
 		this.item_type = item_type;
 		this.item_ability = item_ability;
+		this.isWeaponSelected = false;
 
 	}
+
+	
 
 	/**
 	 * @param item_id
@@ -189,6 +195,22 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	public DefaultComboBoxModel getItemAbility() {
 		return set_item_ability;
 	}
+	
+	/**
+	 * @return the item_weapon_enchantment
+	 */
+	public String getItem_weapon_enchantment() {
+		return item_weapon_enchantment;
+	}
+
+	/**
+	 * @param item_weapon_enchantment the item_weapon_enchantment to set
+	 */
+	public void setItem_weapon_enchantment(String item_weapon_enchantment) {
+		this.item_weapon_enchantment = item_weapon_enchantment;
+	}
+	
+	public boolean isWeaponSelected;
 
 	/**
 	 * method to set item ability
@@ -201,27 +223,35 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 
 		if (item_type.equals(Game_constants.HELMET)) {
 			set_item_ability = Game_constants.HELMET_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.ARMOR)) {
 
 			set_item_ability = Game_constants.ARMOR_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.SHIELD)) {
 
 			set_item_ability = Game_constants.SHIELD_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.RING)) {
 
 			set_item_ability = Game_constants.RING_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.BELT)) {
 
 			set_item_ability = Game_constants.BELT_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.BOOTS)) {
 
 			set_item_ability = Game_constants.BOOTS_MODEL;
+			isWeaponSelected = false;
 		} else if (item_type.equals(Game_constants.WEAPON_MELEE)) {
 
 			set_item_ability = Game_constants.WEAPON_MODEL;
+			isWeaponSelected = true;
 		} else if (item_type.equals(Game_constants.WEAPON_RANGE)) {
 
 			set_item_ability = Game_constants.WEAPON_MODEL;
+			isWeaponSelected = true;
 		}
 		// String get_item_ability = null;
 		setChanged();
@@ -290,5 +320,7 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 		}
 
 	}
+	
+	
 
 }

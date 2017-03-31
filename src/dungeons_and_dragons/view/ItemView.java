@@ -88,6 +88,21 @@ public class ItemView extends JFrame implements Observer {
 	 * @type JTextField
 	 */
 	public JTextField item_score_field;
+	
+	/**
+	 * this variable used to give Item score
+	 * 
+	 * @type JLabel
+	 */
+	public JLabel item_weapon_enchantment_label;
+
+	/**
+	 * this variable used to get item Score
+	 * 
+	 * @type JTextField
+	 */
+	public JComboBox<String> item_weapon_enchantment_field;
+
 
 	/**
 	 * this variable used for going back to create game window
@@ -156,7 +171,7 @@ public class ItemView extends JFrame implements Observer {
 		// Lay out the label and scroll pane from top to bottom.
 		JPanel listPane = new JPanel();
 
-		listPane.setLayout((new GridLayout(5, 2, 5, 5)));
+		listPane.setLayout((new GridLayout(6, 2, 5, 5)));
 		listPane.setMaximumSize(new Dimension(300, 150));
 
 		sub_panel.add(listPane);
@@ -167,6 +182,7 @@ public class ItemView extends JFrame implements Observer {
 		item_ability = new JLabel("Ability");
 		item_type = new JLabel("Item Type");
 		item_score = new JLabel("Point");
+		item_weapon_enchantment_label = new JLabel("Enchantment");
 
 		// Initializing label text field,dropdown of item type,item ability and
 		// item score
@@ -174,7 +190,8 @@ public class ItemView extends JFrame implements Observer {
 		item_ability_field = new JComboBox<String>();
 		item_type_field = new JComboBox<String>();
 		item_score_field = new JTextField(1);
-
+		item_weapon_enchantment_field = new JComboBox<String>();
+		
 		// initializing back and save buttons
 		back_button = new JButton("Back");
 		save_item = new JButton("Save");
@@ -194,6 +211,10 @@ public class ItemView extends JFrame implements Observer {
 		item_ability_field.addItem(Game_constants.INTELLIGENCE);
 		item_ability_field.addItem(Game_constants.WISDOM);
 		item_ability_field.addItem(Game_constants.ARMOR_CLASS);
+		
+		//set visibility of weapon enchantment
+		item_weapon_enchantment_field.setVisible(false);
+		item_weapon_enchantment_label.setVisible(false);
 
 		// Adding necessary components into panel
 		listPane.add(item_name);
@@ -211,6 +232,10 @@ public class ItemView extends JFrame implements Observer {
 		listPane.add(item_score);
 
 		listPane.add(item_score_field);
+		
+		listPane.add(item_weapon_enchantment_label);
+
+		listPane.add(item_weapon_enchantment_field);
 
 		listPane.add(back_button);
 		listPane.add(save_item);
@@ -249,7 +274,7 @@ public class ItemView extends JFrame implements Observer {
 		// Lay out the label and scroll pane from top to bottom.
 		JPanel listPane = new JPanel();
 
-		listPane.setLayout((new GridLayout(5, 2, 5, 5)));
+		listPane.setLayout((new GridLayout(6, 2, 5, 5)));
 		listPane.setMaximumSize(new Dimension(300, 150));
 
 		sub_panel.add(listPane);
@@ -260,6 +285,8 @@ public class ItemView extends JFrame implements Observer {
 		item_ability = new JLabel("Ability");
 		item_type = new JLabel("Item Type");
 		item_score = new JLabel("Point");
+		item_weapon_enchantment_label = new JLabel("Enchantment");
+
 
 		// Initializing label text field,dropdown of item type,item ability and
 		// item score
@@ -267,6 +294,9 @@ public class ItemView extends JFrame implements Observer {
 		item_ability_field = new JComboBox<String>();
 		item_type_field = new JComboBox<String>();
 		item_score_field = new JTextField(1);
+		item_weapon_enchantment_field = new JComboBox<String>();
+
+		
 
 		// initializing back and save buttons
 		back_button = new JButton("Back");
@@ -286,31 +316,52 @@ public class ItemView extends JFrame implements Observer {
 		item_type_field.setSelectedItem(itemModel.getItem_type());
 		if (item_type_field.getSelectedItem().equals(Game_constants.HELMET)) {
 			item_ability_field.setModel(Game_constants.HELMET_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.ARMOR)) {
 			item_ability_field.setModel(Game_constants.ARMOR_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.SHIELD)) {
 			item_ability_field.setModel(Game_constants.SHIELD_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.RING)) {
 			item_ability_field.setModel(Game_constants.RING_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.BELT)) {
 			item_ability_field.setModel(Game_constants.BELT_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.BOOTS)) {
 			item_ability_field.setModel(Game_constants.BOOTS_MODEL);
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.WEAPON_MELEE)) {
 			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
+			item_weapon_enchantment_field.setModel(Game_constants.ENCHANTMENT_MODEL);
+			item_weapon_enchantment_field.setSelectedItem(itemModel.getItem_weapon_enchantment().toString());
+			item_weapon_enchantment_field.setVisible(true);
+			item_weapon_enchantment_label.setVisible(true);
 
 		} else if (item_type_field.getSelectedItem().equals(Game_constants.WEAPON_RANGE)) {
 			item_ability_field.setModel(Game_constants.WEAPON_MODEL);
+			item_weapon_enchantment_field.setModel(Game_constants.ENCHANTMENT_MODEL);
+			item_weapon_enchantment_field.setSelectedItem(itemModel.getItem_weapon_enchantment());
+			item_weapon_enchantment_field.setVisible(true);
+			item_weapon_enchantment_label.setVisible(true);
 
 		}
 		item_ability_field.setSelectedItem(itemModel.getItem_ability());
 		item_score_field.setText(String.valueOf(itemModel.getItem_point()));
+		
 
 		// Adding necessary components into panel
 		listPane.add(item_name);
@@ -328,6 +379,9 @@ public class ItemView extends JFrame implements Observer {
 		listPane.add(item_score);
 
 		listPane.add(item_score_field);
+		listPane.add(item_weapon_enchantment_label);
+
+		listPane.add(item_weapon_enchantment_field);
 
 		listPane.add(back_button);
 		listPane.add(update_item);
@@ -354,7 +408,18 @@ public class ItemView extends JFrame implements Observer {
 		DefaultComboBoxModel selected_model = ((ItemModel) o).getItemAbility();
 
 		item_ability_field.setModel(selected_model);
-
+		if(((ItemModel) o).isWeaponSelected)
+		{
+			item_weapon_enchantment_field.setVisible(true);
+			item_weapon_enchantment_label.setVisible(true);
+			item_weapon_enchantment_field.setModel(Game_constants.ENCHANTMENT_MODEL);
+			
+		}
+		else
+		{
+			item_weapon_enchantment_field.setVisible(false);
+			item_weapon_enchantment_label.setVisible(false);
+		}
 	}
 
 	/**

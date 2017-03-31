@@ -29,6 +29,13 @@ public class Game_constants {
 	public static final String BOOTS = "Boots";
 	public static final String WEAPON_MELEE = "Weapon Melee";
 	public static final String WEAPON_RANGE = "Weapon Range";
+	
+	
+	public static final String FREEZING = "Freezing";
+	public static final String BURNING = "Burning";
+	public static final String SLAYING = "Slaying";
+	public static final String FRIGHTENING = "Frightening";
+	public static final String PACIFYING = "Pacifying";
 
 	public static final Color ENTRY_DOOR = Color.YELLOW;
 	public static final Color EXIT_DOOR = Color.GREEN;
@@ -108,6 +115,10 @@ public class Game_constants {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static final DefaultComboBoxModel WEAPON_MODEL = new DefaultComboBoxModel(
 			new String[] { Game_constants.ATTACK_BONUS, Game_constants.DAMAGE_BONUS });
+	
+	
+	public static final DefaultComboBoxModel ENCHANTMENT_MODEL = new DefaultComboBoxModel(
+			new String[] { Game_constants.FREEZING, Game_constants.BURNING,Game_constants.FRIGHTENING, Game_constants.PACIFYING,Game_constants.SLAYING });
 
 	public static final String GRID_BUTTON_TYPE = "grid_button";
 

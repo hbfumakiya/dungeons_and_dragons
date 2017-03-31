@@ -133,7 +133,7 @@ public class CharacterController implements ActionListener {
 			String character_name = this.view.charactername_textfield.getText();
 			String fighter_type = this.view.fighter_combobox.getSelectedItem().toString();
 			explorer = new Explorer();
-			// model.setCharacter_name(character_name);
+			
 			if (fighter_type == "Bully") {
 				FighterBuilder bullyFighterbuilder = new BullyFighterBuilder();
 				explorer.setBuilder(bullyFighterbuilder);
