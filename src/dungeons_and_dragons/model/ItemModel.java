@@ -72,6 +72,9 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	
 	@Expose
 	private String item_weapon_enchantment;
+	
+	@Expose
+	private String item_weapon_enchantment_string;
 
 	/**
 	 * 
@@ -80,6 +83,10 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	public ItemModel() {
 
 	}
+	
+
+	
+
 
 	/**
 	 * This constructor sets id,name, point, type and ability;
@@ -208,6 +215,21 @@ public class ItemModel extends Observable implements Model<ItemModel> {
 	 */
 	public void setItem_weapon_enchantment(String item_weapon_enchantment) {
 		this.item_weapon_enchantment = item_weapon_enchantment;
+	}
+	
+	/**
+	 * @return the item_weapon_enchantment_string
+	 */
+	public String getItem_weapon_enchantment_string() {
+		return item_weapon_enchantment_string;
+	}
+
+
+	/**
+	 * @param item_weapon_enchantment_string the item_weapon_enchantment_string to set
+	 */
+	public void setItem_weapon_enchantment_string(String item_weapon_enchantment_string) {
+		this.item_weapon_enchantment_string = item_weapon_enchantment_string;
 	}
 	
 	public boolean isWeaponSelected;

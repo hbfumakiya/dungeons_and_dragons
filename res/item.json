@@ -1,93 +1,20 @@
 [
   {
     "item_id": 1,
-    "item_name": "Helmet1",
-    "item_point": 3,
-    "item_type": "Helmet",
-    "item_ability": "Intelligence"
+    "item_name": "UR",
+    "item_point": 4,
+    "item_type": "Armor",
+    "item_ability": "Armor class",
+    "item_weapon_enchantment": "Burning",
+    "item_weapon_enchantment_string": "Burning-20"
   },
   {
     "item_id": 2,
-    "item_name": "Helmet2",
+    "item_name": "ty",
     "item_point": 5,
-    "item_type": "Helmet",
-    "item_ability": "Wisdom"
-  },
-  {
-    "item_id": 3,
-    "item_name": "Helmet3",
-    "item_point": 1,
-    "item_type": "Helmet",
-    "item_ability": "Armor class"
-  },
-  {
-    "item_id": 4,
-    "item_name": "Armor",
-    "item_point": 4,
     "item_type": "Armor",
-    "item_ability": "Armor class"
-  },
-  {
-    "item_id": 5,
-    "item_name": "Shield",
-    "item_point": 3,
-    "item_type": "Shield",
-    "item_ability": "Armor class"
-  },
-  {
-    "item_id": 6,
-    "item_name": "Ring1",
-    "item_point": 5,
-    "item_type": "Ring",
-    "item_ability": "Strength"
-  },
-  {
-    "item_id": 7,
-    "item_name": "Ring2",
-    "item_point": 3,
-    "item_type": "Ring",
-    "item_ability": "Wisdom"
-  },
-  {
-    "item_id": 8,
-    "item_name": "Ring3",
-    "item_point": 5,
-    "item_type": "Ring",
-    "item_ability": "Constitution"
-  },
-  {
-    "item_id": 9,
-    "item_name": "Belt",
-    "item_point": 4,
-    "item_type": "Belt",
-    "item_ability": "Strength"
-  },
-  {
-    "item_id": 10,
-    "item_name": "Boots",
-    "item_point": 4,
-    "item_type": "Boots",
-    "item_ability": "Dexterity"
-  },
-  {
-    "item_id": 11,
-    "item_name": "Melee",
-    "item_point": 3,
-    "item_type": "Weapon Melee",
-    "item_ability": "Damage bonus"
-  },
-  {
-    "item_id": 12,
-    "item_name": "Range",
-    "item_point": 4,
-    "item_type": "Weapon Range",
-    "item_ability": "Attack bonus"
-  },
-  {
-    "item_id": 13,
-    "item_name": "Item Helmet",
-    "item_point": 5,
-    "item_type": "Helmet",
-    "item_ability": "Armor class"
+    "item_ability": "Armor class",
+    "item_weapon_enchantment": "",
+    "item_weapon_enchantment_string": ""
   }
 ]

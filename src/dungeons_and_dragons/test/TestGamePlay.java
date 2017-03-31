@@ -27,7 +27,7 @@ import dungeons_and_dragons.model.ItemModel;
 
 public class TestGamePlay {
 
-	// GameMapModel mapmodel=new GameMapModel(7,7);
+	
 	@Test
 	public void testMovementUp() {
 		GamePlayModel gamePlayModel = new GamePlayModel();

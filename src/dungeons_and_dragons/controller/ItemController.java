@@ -5,6 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.decorator.Burning;
+import dungeons_and_dragons.decorator.Freezing;
+import dungeons_and_dragons.decorator.Frightening;
+import dungeons_and_dragons.decorator.Pacifying;
+import dungeons_and_dragons.decorator.Slaying;
+import dungeons_and_dragons.decorator.WeaponType;
+import dungeons_and_dragons.decorator.Weapons;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.ItemView;
@@ -94,16 +101,49 @@ public class ItemController implements ActionListener {
 				item_model.setItem_ability(item_ability);
 				int item_point = Integer.parseInt(item_view.item_score_field.getText());
 				item_model.setItem_point(item_point);
-				
+
 				if (item_point <= 0 || item_point >= 6) {
 
 					throw new NumberFormatException();
 				}
-				if(item_view.item_weapon_enchantment_field.getSelectedItem()!=null)
-					item_model.setItem_weapon_enchantment(item_view.item_weapon_enchantment_field.getSelectedItem().toString());
-				else
-					item_model.setItem_weapon_enchantment("");
 				
+				Weapons item_weapon = new WeaponType(item_point);
+				if (item_view.item_weapon_enchantment_field.getSelectedItem() != null) {
+					item_model.setItem_weapon_enchantment(
+							item_view.item_weapon_enchantment_field.getSelectedItem().toString());
+					// code for weapon enchantment
+					
+					if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.FREEZING)) {
+						item_weapon = new Freezing(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.BURNING)) {
+						item_weapon = new Burning(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.SLAYING)) {
+						item_weapon = new Slaying(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.FRIGHTENING)) {
+						item_weapon = new Frightening(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.PACIFYING)) {
+						item_weapon = new Pacifying(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+				} else
+				{
+					item_model.setItem_weapon_enchantment("");
+					item_model.setItem_weapon_enchantment_string("");
+				}
+
 				item_model.save();
 				new ManageItemController();
 				item_view.dispose();
@@ -130,16 +170,53 @@ public class ItemController implements ActionListener {
 				item_model.setItem_ability(item_ability);
 				int item_point = Integer.parseInt(item_view.item_score_field.getText());
 				item_model.setItem_point(item_point);
-				if(item_type.equals(Game_constants.WEAPON_MELEE) || item_type.equals(Game_constants.WEAPON_RANGE) || item_view.item_weapon_enchantment_field.getSelectedItem()!=null)
-					
-					item_model.setItem_weapon_enchantment(item_view.item_weapon_enchantment_field.getSelectedItem().toString());
-				else
-					item_model.setItem_weapon_enchantment("");
+				
+				
 
-					
 				if (item_point <= 0 || item_point >= 6) {
 
 					throw new NumberFormatException();
+				}
+				
+				Weapons item_weapon = new WeaponType(item_point);
+				if ((item_type.equals(Game_constants.WEAPON_MELEE) || item_type.equals(Game_constants.WEAPON_RANGE))
+						&& item_view.item_weapon_enchantment_field.getSelectedItem() != null)
+				{
+					
+					item_model.setItem_weapon_enchantment(
+							item_view.item_weapon_enchantment_field.getSelectedItem().toString());
+					// code for weapon enchantment
+					
+					if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.FREEZING)) {
+						item_weapon = new Freezing(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.BURNING)) {
+						item_weapon = new Burning(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.SLAYING)) {
+						item_weapon = new Slaying(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.FRIGHTENING)) {
+						item_weapon = new Frightening(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+					else if (item_view.item_weapon_enchantment_field.getSelectedItem().toString()
+							.equals(Game_constants.PACIFYING)) {
+						item_weapon = new Pacifying(item_weapon);
+						item_model.setItem_weapon_enchantment_string(item_weapon.getEnchantment());
+					}
+				}
+				else
+				{
+					item_model.setItem_weapon_enchantment("");
+					item_model.setItem_weapon_enchantment_string("");
 				}
 				item_model.update();
 

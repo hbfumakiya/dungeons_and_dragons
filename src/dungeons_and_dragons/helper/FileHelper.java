@@ -574,6 +574,7 @@ public class FileHelper {
 					tempItem.setItem_ability(item.getItem_ability());
 					tempItem.setItem_point(item.getItem_point());
 					tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+					tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 					found = true;
 				}
 			}
@@ -611,6 +612,7 @@ public class FileHelper {
 								tempItem.setItem_ability(item.getItem_ability());
 								tempItem.setItem_point(item.getItem_point());
 								tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+								tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 
 								character.calculateModifires();
 								character.calculateHitPoints(character.getCharacter_level());
@@ -636,6 +638,7 @@ public class FileHelper {
 								tempItem.setItem_ability(item.getItem_ability());
 								tempItem.setItem_point(item.getItem_point());
 								tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+								tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 							}
 						}
 					}
@@ -658,6 +661,7 @@ public class FileHelper {
 						tempItem.setItem_ability(item.getItem_ability());
 						tempItem.setItem_point(item.getItem_point());
 						tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+						tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 					}
 
 					ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
@@ -677,6 +681,7 @@ public class FileHelper {
 									tempItem.setItem_ability(item.getItem_ability());
 									tempItem.setItem_point(item.getItem_point());
 									tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+									tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 
 									character.calculateModifires();
 									character.calculateHitPoints(character.getCharacter_level());
@@ -702,6 +707,7 @@ public class FileHelper {
 									tempItem.setItem_ability(item.getItem_ability());
 									tempItem.setItem_point(item.getItem_point());
 									tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+									tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 								}
 							}
 						}
@@ -730,6 +736,7 @@ public class FileHelper {
 							tempItem.setItem_ability(item.getItem_ability());
 							tempItem.setItem_point(item.getItem_point());
 							tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+							tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 						}
 
 						ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
@@ -749,6 +756,7 @@ public class FileHelper {
 										tempItem.setItem_ability(item.getItem_ability());
 										tempItem.setItem_point(item.getItem_point());
 										tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+										tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 
 										character.calculateModifires();
 										character.calculateHitPoints(character.getCharacter_level());
@@ -774,6 +782,7 @@ public class FileHelper {
 										tempItem.setItem_ability(item.getItem_ability());
 										tempItem.setItem_point(item.getItem_point());
 										tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+										tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 									}
 								}
 							}
@@ -791,6 +800,7 @@ public class FileHelper {
 							tempItem.setItem_ability(item.getItem_ability());
 							tempItem.setItem_point(item.getItem_point());
 							tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+							tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 						}
 
 						ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
@@ -810,6 +820,7 @@ public class FileHelper {
 										tempItem.setItem_ability(item.getItem_ability());
 										tempItem.setItem_point(item.getItem_point());
 										tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+										tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 
 										character.calculateModifires();
 										character.calculateHitPoints(character.getCharacter_level());
@@ -835,6 +846,7 @@ public class FileHelper {
 										tempItem.setItem_ability(item.getItem_ability());
 										tempItem.setItem_point(item.getItem_point());
 										tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+										tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
 									}
 								}
 							}
