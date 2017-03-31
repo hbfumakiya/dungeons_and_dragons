@@ -72,6 +72,11 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.shownInventories = new ArrayList<CharacterModel>();
 
 		matchNPCToPlayer();
+		
+		
+		this.gamePlayModel.calculateTurn();
+		
+		
 	}
 
 	/**

@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
+import java.util.TreeMap;
 
-import javax.swing.JTextArea;
-
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.Expose;
 
-import dungeons_and_dragons.controller.GamePlayController;
+import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapCharacter;
@@ -22,23 +23,22 @@ import dungeons_and_dragons.view.GamePlayView;
  * Once GamePlayModel gets a change state query request from any view they
  * respond to instructions to change the state from GamePlayController
  * 
- * @author Tejas Sadrani & Urmil Kansara
- * 
+ * @author Tejas Sadrani & Urmil Kansara & Mihir Pujara & Hirangi Naik
  */
-public class GamePlayModel extends Observable{
+public class GamePlayModel extends Observable {
 
 	/**
 	 * Sets id to the game play instance
 	 */
 	@Expose
 	private int gamePlayId;
-	
+
 	/**
 	 * Sets the location of the player that is playing
 	 */
 	@Expose
 	private Point gameCharacterPosition;
-	
+
 	/**
 	 * Creates an object of campaign
 	 */
@@ -50,31 +50,23 @@ public class GamePlayModel extends Observable{
 	 */
 	@Expose
 	private CharacterModel characterModel;
-	
+
 	@Expose
 	private int currentMapIndex;
 
 	private Object gamePlayView;
+
 	private GamePlayView gamePlayView2;
 
-	
+	@Expose
+	public ArrayList<CharacterModel> turnList;
+
 	/**
 	 * constructor to initialize map object
 	 */
-	public GamePlayModel(){
-		
+	public GamePlayModel() {
 		this.currentMapIndex = 0;
-		
-		/*
-		 * Hard-coded values need to be embedded with Hirangi's code
-		 */
-		try {
-			//this.campaignModel = new CampaignModel().getData().get(0);
-			//this.characterModel = new CharacterModel().getData().get(0);
-		} catch (JsonSyntaxException e) {
-			//need to be changed
-			e.printStackTrace();
-		}
+		this.turnList = new ArrayList<CharacterModel>();
 		this.gamePlayId = 0;
 	}
 
@@ -86,7 +78,8 @@ public class GamePlayModel extends Observable{
 	}
 
 	/**
-	 * @param gamePlayId the gamePlayId to set
+	 * @param gamePlayId
+	 *            the gamePlayId to set
 	 */
 	public void setGamePlayId(int gamePlayId) {
 		this.gamePlayId = gamePlayId;
@@ -100,7 +93,8 @@ public class GamePlayModel extends Observable{
 	}
 
 	/**
-	 * @param campaignModel the campaignModel to set
+	 * @param campaignModel
+	 *            the campaignModel to set
 	 */
 	public void setCampaignModel(CampaignModel campaignModel) {
 		this.campaignModel = campaignModel;
@@ -114,7 +108,8 @@ public class GamePlayModel extends Observable{
 	}
 
 	/**
-	 * @param characterModel the characterModel to set
+	 * @param characterModel
+	 *            the characterModel to set
 	 */
 	public void setCharacterModel(CharacterModel characterModel) {
 		this.characterModel = characterModel;
@@ -122,17 +117,20 @@ public class GamePlayModel extends Observable{
 
 	/**
 	 * to save it to file
-	 * @param path location
+	 * 
+	 * @param path
+	 *            location
 	 */
 	public void save(String path) {
-		
+
 		try {
 			FileHelper.saveGame(path, this);
 		} catch (IOException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
-		
+
 	}
+
 	/**
 	 * returns character position
 	 * 
@@ -141,17 +139,19 @@ public class GamePlayModel extends Observable{
 	public Point getGameCharacterPosition() {
 		return gameCharacterPosition;
 	}
-	
+
 	/**
 	 * set the current position of player
-	 * @param gameCharacterPosition current point of player
+	 * 
+	 * @param gameCharacterPosition
+	 *            current point of player
 	 */
 	public void setGameCharacterPosition(Point gameCharacterPosition) {
 		this.gameCharacterPosition = gameCharacterPosition;
 		setChanged();
 		notifyObservers(this);
 	}
-	
+
 	/**
 	 * @return the currentMapIndex
 	 */
@@ -160,75 +160,78 @@ public class GamePlayModel extends Observable{
 	}
 
 	/**
-	 * @param currentMapIndex the currentMapIndex to set
+	 * @param currentMapIndex
+	 *            the currentMapIndex to set
 	 */
 	public void setCurrentMapIndex(int currentMapIndex) {
 		this.currentMapIndex = currentMapIndex;
 	}
 
-		/**
-		 * Method to remove Point in the map
-		 * @param tempPoint
-		 */
+	/**
+	 * Method to remove Point in the map
+	 * 
+	 * @param tempPoint
+	 */
 	public void removeChest(Point tempPoint) {
 		int i = this.getCurrentMapIndex();
 		this.getCampaignModel().getOutput_map_list().get(i).setMap_chest(new MapItem());
 		setChanged();
 		notifyObservers();
-		
-		
+
 	}
+
 	/**
 	 * move character according to key listener
+	 * 
 	 * @param newPoint
 	 * @param oldPoint
 	 */
-	public void moveCharacterUp(Point oldPoint)
-	{
+	public void moveCharacterUp(Point oldPoint) {
 		Point newPoint = new Point();
-		newPoint.x = (int)oldPoint.getX();
-		newPoint.y = (int)oldPoint.getY()-1;
+		newPoint.x = (int) oldPoint.getX();
+		newPoint.y = (int) oldPoint.getY() - 1;
 		this.setGameCharacterPosition(newPoint);
 	}
-	
+
 	/**
 	 * move character according to key listener
+	 * 
 	 * @param newPoint
 	 * @param oldPoint
 	 */
-	public void moveCharacterDown(Point oldPoint)
-	{
+	public void moveCharacterDown(Point oldPoint) {
 		Point newPoint = new Point();
-		newPoint.x = (int)oldPoint.getX();
-		newPoint.y = (int)oldPoint.getY()+1;
+		newPoint.x = (int) oldPoint.getX();
+		newPoint.y = (int) oldPoint.getY() + 1;
 		this.setGameCharacterPosition(newPoint);
 	}
-	
+
 	/**
 	 * move character according to key listener
+	 * 
 	 * @param newPoint
 	 * @param oldPoint
 	 */
-	public void moveCharacterRight(Point oldPoint)
-	{
+	public void moveCharacterRight(Point oldPoint) {
 		Point newPoint = new Point();
-		newPoint.x = (int)oldPoint.getX()+1;
-		newPoint.y = (int)oldPoint.getY();
+		newPoint.x = (int) oldPoint.getX() + 1;
+		newPoint.y = (int) oldPoint.getY();
 		this.setGameCharacterPosition(newPoint);
 	}
-	
+
 	/**
 	 * move character according to key listener
+	 * 
 	 * @param newPoint
 	 * @param oldPoint
 	 */
-	public void moveCharacterLeft(Point oldPoint)
-	{
+	public void moveCharacterLeft(Point oldPoint) {
 		Point newPoint = new Point();
-		newPoint.x = (int)oldPoint.getX()-1;
-		newPoint.y = (int)oldPoint.getY();
+		newPoint.x = (int) oldPoint.getX() - 1;
+		newPoint.y = (int) oldPoint.getY();
 		this.setGameCharacterPosition(newPoint);
 	}
+
 	/**
 	 * 
 	 * @param level
@@ -248,7 +251,7 @@ public class GamePlayModel extends Observable{
 		}
 		return 1;
 	}
-	
+
 	/**
 	 * This method is created to have fight between enemy
 	 * 
@@ -277,7 +280,34 @@ public class GamePlayModel extends Observable{
 		return false;
 
 	}
-	
+
+	public void calculateTurn() {
+		Map<Integer, CharacterModel> tempValues = new HashMap<Integer, CharacterModel>();
+
+		// roll dice and calculate turn values for character
+		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), this.characterModel);
+
+		// roll dice and calculate turn values for NPCs
+		ArrayList<MapCharacter> npcs = this.campaignModel.getOutput_map_list().get(this.getCurrentMapIndex())
+				.getMap_enemy_loc();
+		for (int i = 0; i < npcs.size(); i++) {
+			tempValues.put(DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity(),
+					npcs.get(i).getCharacter());
+		}
+
+		Map<Integer, CharacterModel> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
+
+		treeMap.putAll(tempValues);
+
+		setValueToTurnList(treeMap);
+	}
+
+	private <K, V> void setValueToTurnList(Map<Integer, CharacterModel> map) {
+		for (Map.Entry<Integer, CharacterModel> entry : map.entrySet()) {
+			this.turnList.add((dungeons_and_dragons.model.CharacterModel) entry.getValue());
+		}
+	}
+
 	/**
 	 * This function checks if the boundary conditions are reached
 	 * 
@@ -285,9 +315,9 @@ public class GamePlayModel extends Observable{
 	 * @return true if boundary else false
 	 */
 	public boolean checkBoundaries(Point tempPoint) {
-	//	GamePlayModel gpm=new GamePlayModel();
-	//	GamePlayController gpc=new GamePlayController(gpm);
-	//	gamePlayView2=new GamePlayView(gpm, gpc);
+		// GamePlayModel gpm=new GamePlayModel();
+		// GamePlayController gpc=new GamePlayController(gpm);
+		// gamePlayView2=new GamePlayView(gpm, gpc);
 		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView2.currentMap.getMap_size().x
 				|| tempPoint.y >= this.gamePlayView2.currentMap.getMap_size().y) {
 
@@ -300,8 +330,7 @@ public class GamePlayModel extends Observable{
 			return true;
 		}
 	}
-	
-	
+
 	/**
 	 * This function match character's level to NPC and calculate
 	 * modifiers,armorclass,attackbonus,hitpoints and damage bonus.
@@ -309,8 +338,8 @@ public class GamePlayModel extends Observable{
 	 */
 	public void matchNPCToPlayer() {
 
-		ArrayList<MapCharacter> npc = this.getCampaignModel().getOutput_map_list()
-				.get(this.getCurrentMapIndex()).getMap_enemy_loc();
+		ArrayList<MapCharacter> npc = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+				.getMap_enemy_loc();
 
 		CharacterModel character;
 
@@ -333,4 +362,5 @@ public class GamePlayModel extends Observable{
 			character.calculateDamageBonus();
 		}
 	}
+
 }

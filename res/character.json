@@ -484,5 +484,94 @@
     "damageBonus": 5,
     "armorClass": 13,
     "isAlive": true
+  },
+  {
+    "character_id": 7,
+    "character_name": "Test",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "Helmet1",
+        "item_point": 3,
+        "item_type": "Helmet",
+        "item_ability": "Intelligence"
+      },
+      {
+        "item_id": 5,
+        "item_name": "Shield",
+        "item_point": 3,
+        "item_type": "Shield",
+        "item_ability": "Armor class"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 1,
+    "abilityScores": {
+      "strength": 14,
+      "dexterity": 12,
+      "constitution": 13,
+      "intelligence": 11,
+      "wisdom": 6,
+      "charisma": 8
+    },
+    "rawAbilityScores": {
+      "strength": 14,
+      "dexterity": 12,
+      "constitution": 13,
+      "intelligence": 11,
+      "wisdom": 6,
+      "charisma": 8
+    },
+    "modifiers": {
+      "strength": 2,
+      "dexterity": 1,
+      "constitution": 1,
+      "intelligence": 0,
+      "wisdom": -2,
+      "charisma": -1
+    },
+    "hitpoints": 11,
+    "attackBonus": 1,
+    "damageBonus": 5,
+    "armorClass": 14,
+    "isAlive": true
+  },
+  {
+    "character_id": 8,
+    "character_name": "test2",
+    "strength": 0,
+    "items": [],
+    "backPackItems": [],
+    "character_level": 10,
+    "abilityScores": {
+      "strength": 11,
+      "dexterity": 15,
+      "constitution": 13,
+      "intelligence": 10,
+      "wisdom": 9,
+      "charisma": 10
+    },
+    "rawAbilityScores": {
+      "strength": 11,
+      "dexterity": 15,
+      "constitution": 13,
+      "intelligence": 10,
+      "wisdom": 9,
+      "charisma": 10
+    },
+    "modifiers": {
+      "strength": 0,
+      "dexterity": 2,
+      "constitution": 1,
+      "intelligence": 0,
+      "wisdom": -1,
+      "charisma": 0
+    },
+    "hitpoints": 81,
+    "attackBonus": 10,
+    "damageBonus": 4,
+    "armorClass": 12,
+    "isAlive": true
   }
 ]

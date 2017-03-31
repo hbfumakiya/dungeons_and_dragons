@@ -28,6 +28,16 @@ public class DiceHelper {
 	public static int rollD10() {
 		return roll(10);
 	}
+	
+	/**
+	 * This method will generate random number from 1 to 20
+	 * 
+	 * @return value of dice 20
+	 */
+	public static int rollD20() {
+		return roll(20);
+	}
+	
 
 	/**
 	 * This method will generate random number from 1 to max

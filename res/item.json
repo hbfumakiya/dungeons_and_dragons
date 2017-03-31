@@ -82,5 +82,12 @@
     "item_point": 4,
     "item_type": "Weapon Range",
     "item_ability": "Attack bonus"
+  },
+  {
+    "item_id": 13,
+    "item_name": "Item Helmet",
+    "item_point": 5,
+    "item_type": "Helmet",
+    "item_ability": "Armor class"
   }
 ]
