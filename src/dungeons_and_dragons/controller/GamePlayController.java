@@ -454,8 +454,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(this.gamePlayView.backButton)) {
+			this.gamePlayModel.setGameRunning(false);
 			new NewGameController();
 			this.gamePlayView.dispose();
+			
 		} else {
 			MapButton button = (MapButton) e.getSource();
 			if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {

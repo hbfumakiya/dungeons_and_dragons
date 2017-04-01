@@ -13,19 +13,20 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println(gamePlayModel.getCharacterModel().getCharacter_name()+" name");
+		System.out.println("Human Player Move");
 		
 	}
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Human Player Attack");
 		
 	}
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Human Player Interact");
 		
 	}
 

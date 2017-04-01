@@ -13,20 +13,17 @@ public class FriendlyNPC implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Friendly NPC Move");
 		
 	}
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Friendly NPC Move");
 	}
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Friendly NPC Move");
 	}
-
 }

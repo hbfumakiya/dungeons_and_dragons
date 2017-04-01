@@ -30,7 +30,7 @@ import dungeons_and_dragons.view.GamePlayView;
  * 
  * @author Tejas Sadrani & Urmil Kansara & Mihir Pujara & Hirangi Naik
  */
-public class GamePlayModel extends Observable {
+public class GamePlayModel extends Observable implements Runnable {
 
 	/**
 	 * Sets id to the game play instance
@@ -167,6 +167,62 @@ public class GamePlayModel extends Observable {
 		this.gameCharacterPosition = gameCharacterPosition;
 		setChanged();
 		notifyObservers(this);
+	}
+	
+	/**
+	 * @return the turnList
+	 */
+	public ArrayList<MapCharacter> getTurnList() {
+		return turnList;
+	}
+
+	/**
+	 * @param turnList the turnList to set
+	 */
+	public void setTurnList(ArrayList<MapCharacter> turnList) {
+		this.turnList = turnList;
+	}
+
+	/**
+	 * @return the currentTurn
+	 */
+	public int getCurrentTurn() {
+		return currentTurn;
+	}
+
+	/**
+	 * @param currentTurn the currentTurn to set
+	 */
+	public void setCurrentTurn(int currentTurn) {
+		this.currentTurn = currentTurn;
+	}
+
+	/**
+	 * @return the isGameRunning
+	 */
+	public boolean isGameRunning() {
+		return isGameRunning;
+	}
+
+	/**
+	 * @param isGameRunning the isGameRunning to set
+	 */
+	public void setGameRunning(boolean isGameRunning) {
+		this.isGameRunning = isGameRunning;
+	}
+
+	/**
+	 * @return the playerStrategy
+	 */
+	public String getPlayerStrategy() {
+		return playerStrategy;
+	}
+
+	/**
+	 * @param playerStrategy the playerStrategy to set
+	 */
+	public void setPlayerStrategy(String playerStrategy) {
+		this.playerStrategy = playerStrategy;
 	}
 
 	/**
@@ -356,12 +412,8 @@ public class GamePlayModel extends Observable {
 				break;
 			}
 		}
-		while (isGameRunning) {
-			for (int i = 0; i < turnList.size(); i++) {
-				this.currentTurn = i;
-				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
-			}
-		}
+		Thread t = new Thread(this);
+		t.start();
 	}
 
 	/**
@@ -426,6 +478,21 @@ public class GamePlayModel extends Observable {
 			character.calculateAttackBonus(character.getCharacter_level());
 			character.calculateHitPoints(character.getCharacter_level());
 			character.calculateDamageBonus();
+		}
+	}
+
+	@Override
+	public void run() {
+		while (isGameRunning) {
+			for (int i = 0; i < turnList.size(); i++) {
+				this.currentTurn = i;
+				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

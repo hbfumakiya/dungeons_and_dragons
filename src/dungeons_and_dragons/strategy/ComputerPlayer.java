@@ -13,19 +13,19 @@ public class ComputerPlayer implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Computer Player Move");
 		
 	}
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Computer Player Attack");
 		
 	}
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Computer Player Interact");
 		
 	}
 

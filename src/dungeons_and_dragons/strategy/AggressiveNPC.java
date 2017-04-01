@@ -13,19 +13,19 @@ public class AggressiveNPC implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Agresive NPC Move");
 		
 	}
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Agresive NPC Attack");
 		
 	}
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		// TODO Auto-generated method stub
+		System.out.println("Agresive NPC Interact");
 		
 	}
 
