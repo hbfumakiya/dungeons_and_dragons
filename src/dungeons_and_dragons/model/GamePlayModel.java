@@ -75,6 +75,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Expose
 	private String playerStrategy;
 
+	public Thread gameThread;
+
 	/**
 	 * constructor to initialize map object
 	 */
@@ -168,7 +170,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		setChanged();
 		notifyObservers(this);
 	}
-	
+
 	/**
 	 * @return the turnList
 	 */
@@ -177,7 +179,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * @param turnList the turnList to set
+	 * @param turnList
+	 *            the turnList to set
 	 */
 	public void setTurnList(ArrayList<MapCharacter> turnList) {
 		this.turnList = turnList;
@@ -191,7 +194,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * @param currentTurn the currentTurn to set
+	 * @param currentTurn
+	 *            the currentTurn to set
 	 */
 	public void setCurrentTurn(int currentTurn) {
 		this.currentTurn = currentTurn;
@@ -205,7 +209,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * @param isGameRunning the isGameRunning to set
+	 * @param isGameRunning
+	 *            the isGameRunning to set
 	 */
 	public void setGameRunning(boolean isGameRunning) {
 		this.isGameRunning = isGameRunning;
@@ -219,7 +224,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * @param playerStrategy the playerStrategy to set
+	 * @param playerStrategy
+	 *            the playerStrategy to set
 	 */
 	public void setPlayerStrategy(String playerStrategy) {
 		this.playerStrategy = playerStrategy;
@@ -412,8 +418,9 @@ public class GamePlayModel extends Observable implements Runnable {
 				break;
 			}
 		}
-		Thread t = new Thread(this);
-		t.start();
+		this.gameThread = new Thread(this);
+		this.gameThread.start();
+
 	}
 
 	/**
@@ -487,11 +494,6 @@ public class GamePlayModel extends Observable implements Runnable {
 			for (int i = 0; i < turnList.size(); i++) {
 				this.currentTurn = i;
 				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
 		}
 	}

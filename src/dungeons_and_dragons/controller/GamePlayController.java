@@ -72,10 +72,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.shownInventories = new ArrayList<CharacterModel>();
 
 		matchNPCToPlayer();
-		
-		
+
 		this.gamePlayModel.calculateTurn();
-		
+
 		this.gamePlayModel.startGame();
 	}
 
@@ -154,6 +153,14 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		} else if (key == KeyEvent.VK_UP) {
 			tempPoint.x = tempPoint.x - 1;
 			moveCharacter(tempPoint, oldPoint);
+			try {
+				synchronized (this.gamePlayModel.gameThread) {
+					this.gamePlayModel.gameThread.notify();
+				}
+				
+			} catch (Exception e1) {
+				
+			}
 
 		} else if (key == KeyEvent.VK_DOWN) {
 			tempPoint.x = tempPoint.x + 1;
@@ -457,7 +464,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			this.gamePlayModel.setGameRunning(false);
 			new NewGameController();
 			this.gamePlayView.dispose();
-			
+
 		} else {
 			MapButton button = (MapButton) e.getSource();
 			if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
