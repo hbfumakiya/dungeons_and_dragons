@@ -19,12 +19,20 @@ public class HumanPlayer implements Strategy {
 		try {
 			synchronized (gamePlayModel.gameThread) {
 				gamePlayModel.gameThread.wait();
+				
+				//check if the move is valid when notified 
+				//gamePlayModel.checkBoundaries(tempPoint)
+				
+				gamePlayModel.moveCharacter(gamePlayModel.tempCurrentPoint, gamePlayModel.oldPoint);
+				
+				
+				
 				System.out.println("in sync");
 			}
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
-		System.out.println("after wait");
+		//System.out.println("after wait");
 	}
 
 	@Override

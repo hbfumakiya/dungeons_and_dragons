@@ -139,20 +139,26 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void keyPressed(KeyEvent e) {
 
 		int key = e.getKeyCode();
-		Point tempPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
-		Point oldPoint = (Point) tempPoint.clone();
+		
+		this.gamePlayModel.tempCurrentPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
+		
+		this.gamePlayModel.oldPoint = (Point) this.gamePlayModel.tempCurrentPoint.clone();
 
 		if (key == KeyEvent.VK_LEFT) {
-			tempPoint.y = tempPoint.y - 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.tempCurrentPoint.y = this.gamePlayModel.tempCurrentPoint.y - 1;
+			
+			//to be changed
+			moveCharacter(this.gamePlayModel.tempCurrentPoint, this.gamePlayModel.oldPoint);
 
 		} else if (key == KeyEvent.VK_RIGHT) {
-			tempPoint.y = tempPoint.y + 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.tempCurrentPoint.y = this.gamePlayModel.tempCurrentPoint.y + 1;
+			
+			//to be changed
+			moveCharacter(this.gamePlayModel.tempCurrentPoint, this.gamePlayModel.oldPoint);
 
 		} else if (key == KeyEvent.VK_UP) {
-			tempPoint.x = tempPoint.x - 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.tempCurrentPoint.x = this.gamePlayModel.tempCurrentPoint.x - 1;
+			
 			try {
 				synchronized (this.gamePlayModel.gameThread) {
 					this.gamePlayModel.gameThread.notify();
@@ -163,8 +169,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			}
 
 		} else if (key == KeyEvent.VK_DOWN) {
-			tempPoint.x = tempPoint.x + 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.tempCurrentPoint.x = this.gamePlayModel.tempCurrentPoint.x + 1;
+			
+			//to be changed
+			moveCharacter(this.gamePlayModel.tempCurrentPoint, this.gamePlayModel.oldPoint);
 
 		}
 	}
@@ -434,7 +442,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 			this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 			this.gamePlayView.consoleTextArea
-					.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...Cannot go ahead...\n");
+					.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...Cannot move ahead...\n");
 			return false;
 		} else {
 			// boundary not reached

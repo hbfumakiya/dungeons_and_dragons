@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.helper.ConsoleLog;
 import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
@@ -59,9 +60,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Expose
 	private int currentMapIndex;
 
-	private Object gamePlayView;
-
-	private GamePlayView gamePlayView2;
+	private GameMapModel currentMap;
 
 	@Expose
 	private ArrayList<MapCharacter> turnList;
@@ -76,6 +75,14 @@ public class GamePlayModel extends Observable implements Runnable {
 	private String playerStrategy;
 
 	public Thread gameThread;
+	
+	public ConsoleLog consoleLog;
+	
+	public boolean ConsoleLogChanged = false;
+	
+	public Point tempCurrentPoint;
+	
+	public Point oldPoint;
 
 	/**
 	 * constructor to initialize map object
@@ -433,29 +440,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		}
 	}
 
-	/**
-	 * This function checks if the boundary conditions are reached
-	 * 
-	 * @param tempPoint
-	 * @return true if boundary else false
-	 */
-	public boolean checkBoundaries(Point tempPoint) {
-		// GamePlayModel gpm=new GamePlayModel();
-		// GamePlayController gpc=new GamePlayController(gpm);
-		// gamePlayView2=new GamePlayView(gpm, gpc);
-		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView2.currentMap.getMap_size().x
-				|| tempPoint.y >= this.gamePlayView2.currentMap.getMap_size().y) {
-
-			this.gamePlayView2.consoleTextArea.setForeground(Color.RED);
-			this.gamePlayView2.consoleTextArea
-					.setText(this.gamePlayView2.consoleTextArea.getText() + "Oops...Cannot go ahead...\n");
-			return false;
-		} else {
-			// boundary not reached
-			return true;
-		}
-	}
-
+	
 	/**
 	 * This function match character's level to NPC and calculate
 	 * modifiers,armorclass,attackbonus,hitpoints and damage bonus.
@@ -498,4 +483,60 @@ public class GamePlayModel extends Observable implements Runnable {
 		}
 	}
 
+	
+	/*
+	 * Validation check functions for the map
+	 */
+	
+	/**
+	 * This function checks if the boundary conditions are reached if yes then observers are notified
+	 * 
+	 * @param tempPoint
+	 * @return true if boundary else false
+	 */
+	public boolean checkBoundaries(Point tempPoint) {
+		this.currentMap = this.getCampaignModel().getOutput_map_list()
+				.get(this.getCurrentMapIndex());
+		
+		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.currentMap.getMap_size().x
+				|| tempPoint.y >= this.currentMap.getMap_size().y) {
+
+			this.consoleLog.consoleTextAreaColor = Color.RED;
+			this.consoleLog.consoleTextAreaText = "Oops...Cannot go ahead...\n";
+			this.ConsoleLogChanged = true;
+			setChanged();
+			notifyObservers();
+			
+			return false;
+		} else {
+			// boundary not reached
+			return true;
+		}
+	}
+
+	/**
+	 * This functions allows the Player to move from its position based on the
+	 * key pressed
+	 * 
+	 * @param tempPoint
+	 *            next point in the map
+	 * @param oldPoint
+	 *            old point in the map
+	 */
+	public void moveCharacter(Point tempPoint, Point oldPoint) {
+		
+		if (checkBoundaries(tempPoint)) {
+			
+			
+		}else{
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
 }

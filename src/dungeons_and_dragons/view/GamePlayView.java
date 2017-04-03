@@ -68,7 +68,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JLabel mapNameLabel;
 	public JLabel mapName;
 	public JTextArea consoleTextArea;
-	
+
 	public JLabel map_entry_door;
 	public JLabel map_exit_door;
 	public JLabel map_chest;
@@ -82,10 +82,13 @@ public class GamePlayView extends JFrame implements Observer, View {
 	private JLabel map_friend_color;
 	private JLabel map_wall_color;
 	private JLabel empty;
-	
+
 	public JButton backButton;
+
 	/**
-	 * Constructor to initialize variables and objects of gameplay model and controller
+	 * Constructor to initialize variables and objects of gameplay model and
+	 * controller
+	 * 
 	 * @param gamePlayModel
 	 * @param gamePlayController
 	 */
@@ -115,7 +118,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
 			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
-			
+
 		} catch (IOException e) {
 		}
 
@@ -134,10 +137,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+
 	/**
 	 * initialize the window for game play
 	 */
-
 	private void initializeWindow() {
 
 		this.setLayout(null);
@@ -170,18 +173,16 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.infoPanel = new JPanel();
 		this.infoPanel.setBounds(710, 50, 280, 445);
 		this.infoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.infoPanel.setLayout(new GridLayout(6, 2,15,15));
+		this.infoPanel.setLayout(new GridLayout(6, 2, 15, 15));
 		this.infoPanel.setBorder(new BevelBorder(1));
-		
-		
-		
+
 		map_entry_door = new JLabel("Entry Door");
 		map_exit_door = new JLabel("Exit Door");
 		map_chest = new JLabel("Chest");
 		map_enemy = new JLabel("Enemy");
 		map_friend = new JLabel("Friend");
 		map_wall = new JLabel("Wall");
-		
+
 		this.infoPanel.add(map_entry_door);
 		this.infoPanel.add(map_entry_color);
 		this.infoPanel.add(map_exit_door);
@@ -220,18 +221,21 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// set minimum size of frame
 		this.setMinimumSize(new Dimension(1000, 700));
 		this.setResizable(false);
-		
+
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-		
+
 		this.backButton.setFocusable(false);
 	}
-	
+
 	/**
 	 * show the map for current selected map
-	 * @param currentMap map of campaign
-	 * @param mapPanel panel of map
+	 * 
+	 * @param currentMap
+	 *            map of campaign
+	 * @param mapPanel
+	 *            panel of map
 	 */
 	public void showMap(GameMapModel currentMap, JPanel mapPanel) {
 		mapPanel.removeAll();
@@ -299,13 +303,16 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.addActionListener(this.gamePlayController);
 		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
+
 	/**
-	 *  This method is used to display player on the basis of the changing map
+	 * This method is used to display player on the basis of the changing map
 	 * conditions
-	 * @param p point where it should display
+	 * 
+	 * @param p
+	 *            point where it should display
 	 */
 	public void displayPlayer(Point p) {
-		MapButton mapButton = maps[(int)p.getX()][(int)p.getY()];
+		MapButton mapButton = maps[(int) p.getX()][(int) p.getY()];
 		mapButton.setText("P");
 		mapButton.setCharacterType(MapButton.PLAYER);
 		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
@@ -412,43 +419,51 @@ public class GamePlayView extends JFrame implements Observer, View {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * default update method implementing observer pattern
 	 */
 	@Override
 	public void update(Observable obs, Object obj) {
-		this.mapPanel.removeAll();
-		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
-				.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
-		displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel) obs)
-				.getGameCharacterPosition().y]);
-		if (this.maps[oldPosition.x][oldPosition.y] != null
-				&& this.maps[oldPosition.x][oldPosition.y].getCharacter() != null) {
 
-			eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
+		if (((GamePlayModel) obs).ConsoleLogChanged != true) {
+			this.mapPanel.removeAll();
+			this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
+					.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
+			displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel) obs)
+					.getGameCharacterPosition().y]);
+			if (this.maps[oldPosition.x][oldPosition.y] != null
+					&& this.maps[oldPosition.x][oldPosition.y].getCharacter() != null) {
 
-			ArrayList<MapCharacter> enemies = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-					.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+				eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
 
-			for (int i = 0; i < enemies.size(); i++) {
+				ArrayList<MapCharacter> enemies = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+						.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
 
-				int x = enemies.get(i).getX();
-				int y = enemies.get(i).getY();
+				for (int i = 0; i < enemies.size(); i++) {
 
-				if (x != oldPosition.x & y != oldPosition.y) {
-					maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
-					maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+					int x = enemies.get(i).getX();
+					int y = enemies.get(i).getY();
+
+					if (x != oldPosition.x & y != oldPosition.y) {
+						maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
+						maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
+					}
+
 				}
 
 			}
-
 		}
-
+		else{
+			this.consoleTextArea.setForeground( ((GamePlayModel)obs).consoleLog.consoleTextAreaColor) ;
+			this.consoleTextArea
+					.setText(this.consoleTextArea.getText()+ ((GamePlayModel)obs).consoleLog.consoleTextAreaText);
+		}
 	}
-	
+
 	/**
 	 * register events from view
+	 * 
 	 * @param gamePlayController
 	 */
 	public void setListener(GamePlayController gamePlayController) {
