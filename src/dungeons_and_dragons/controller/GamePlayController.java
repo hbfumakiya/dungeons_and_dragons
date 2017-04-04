@@ -144,242 +144,32 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		if (key == KeyEvent.VK_LEFT) {
 			tempPoint.y = tempPoint.y - 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
 
 		} else if (key == KeyEvent.VK_RIGHT) {
 			tempPoint.y = tempPoint.y + 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
 
 		} else if (key == KeyEvent.VK_UP) {
 			tempPoint.x = tempPoint.x - 1;
-			moveCharacter(tempPoint, oldPoint);
-			try {
+			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			/*try {
 				synchronized (this.gamePlayModel.gameThread) {
 					this.gamePlayModel.gameThread.notify();
 				}
 				
 			} catch (Exception e1) {
 				
-			}
+			}*/
 
 		} else if (key == KeyEvent.VK_DOWN) {
 			tempPoint.x = tempPoint.x + 1;
-			moveCharacter(tempPoint, oldPoint);
+			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
 
 		}
 	}
 
-	/**
-	 * This functions allows the Player to move from its position based on the
-	 * key pressed
-	 * 
-	 * @param tempPoint
-	 *            next point in the map
-	 * @param oldPoint
-	 *            old point in the map
-	 */
-	public void moveCharacter(Point tempPoint, Point oldPoint) {
-
-		// first of all check if the boundaries have been reached
-		if (checkBoundaries(tempPoint)) {
-
-			// boundary not reached
-
-			// check if the point is wall
-			if (this.gamePlayView.showWalls(tempPoint)) {
-
-				tempPoint = oldPoint;
-				this.gamePlayView.consoleTextArea.setForeground(Color.RED);
-				this.gamePlayView.consoleTextArea
-						.setText(this.gamePlayView.consoleTextArea.getText() + "Bumped into wall...\n");
-
-				// print message that "Oops wall has been reached"
-
-			} else if (this.gamePlayView.showExitDoor(tempPoint)) {
-
-				// check if mission is completed -- > if yes let him escape
-
-				updatePostion(tempPoint, oldPoint);
-
-			} else if (this.gamePlayView.showChest(tempPoint)) {
-
-				GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-						.get(this.gamePlayModel.getCurrentMapIndex());
-
-				String msg = "";
-				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
-					ArrayList<ItemModel> backPackItems = this.gamePlayModel.getCharacterModel().getBackPackItems();
-					if (backPackItems.size() < 10) {
-						backPackItems.add(map.getMap_chest().getItem());
-						this.gamePlayModel.getCharacterModel().setBackPackItems(backPackItems);
-
-						ItemModel i = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-								.get(this.gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
-
-						msg = "Item " + i.getItem_name() + " has been added in your backpack";
-
-						this.gamePlayModel.removeChest(tempPoint);
-					} else {
-						msg = "Sorry your backpack is full.So cannot add any new Item";
-					}
-				}
-
-				updatePostion(tempPoint, oldPoint);
-				JOptionPane.showMessageDialog(new JFrame(), msg);
-				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-				this.gamePlayView.consoleTextArea
-						.setText(this.gamePlayView.consoleTextArea.getText() + "Found an item...." + msg + "\n");
-
-				// exchange item message on console and automatically traverse
-				// items in chest to the players backpack
-
-			} else if (this.gamePlayView.showCharacter(tempPoint) != null) {
-				if (this.gamePlayView.enemyFlag == 1) {
-
-					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-							.get(this.gamePlayModel.getCurrentMapIndex());
-					int numOfCharacters = map.getMap_enemy_loc().size();
-					CharacterModel enemy = new CharacterModel();
-					MapCharacter enemyMap = new MapCharacter();
-					int index = -1;
-					for (int j = 0; j < numOfCharacters; j++) {
-
-						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
-								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
-							enemy = map.getMap_enemy_loc().get(j).getCharacter();
-							enemyMap = map.getMap_enemy_loc().get(j);
-							index = j;
-						}
-					}
-
-					CharacterModel player = this.gamePlayModel.getCharacterModel();
-					boolean enemyAlive = true;
-					if (enemy != null)
-						enemyAlive = fightWithEnemy(enemy, player);
-
-					enemy.updateView();
-					String msg = "";
-					if (enemyAlive == false) {
-						JOptionPane.showMessageDialog(new JFrame(),
-								"Enemy " + enemy.getCharacter_name() + " is dead.You can loot its items");
-						enemy.setAlive(false);
-						ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
-						if (!enemy.getItems().isEmpty()) {
-							allEnemyItems = enemy.getItems();
-						}
-						if (!enemy.getBackPackItems().isEmpty()) {
-							for (int i = 0; i < enemy.getBackPackItems().size(); i++) {
-								allEnemyItems.add(enemy.getBackPackItems().get(i));
-							}
-						}
-						new NPCItemController(this.gamePlayModel, allEnemyItems, true, enemy);
-
-						msg = "is dead.You can loot its item";
-
-						// enemy.getBackPackItems().removeAll(allEnemyItems);
-						// enemy.getItems().removeAll(allEnemyItems);
-
-					}
-
-					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-					String emoji = String.valueOf(Character.toChars(0x263A));
-					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText() + " " + emoji
-							+ " Enemy " + enemy.getCharacter_name() + " " + msg + "\n");
-					System.out.println("\u1F47F");
-					updatePostion(tempPoint, oldPoint);
-
-					// Enemy is dead message when it reaches here(hell lot of
-					// programming in build3 for this :P)
-
-				} else if (this.gamePlayView.enemyFlag == 0) {
-
-					GameMapModel map = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-							.get(this.gamePlayModel.getCurrentMapIndex());
-					int numOfCharacters = map.getMap_enemy_loc().size();
-					CharacterModel friendly = new CharacterModel();
-					for (int j = 0; j < numOfCharacters; j++) {
-
-						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
-								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
-							friendly = map.getMap_enemy_loc().get(j).getCharacter();
-						}
-					}
-
-					new NPCItemController(this.gamePlayModel, this.gamePlayModel.getCharacterModel().getBackPackItems(),
-							false, friendly);
-					this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-					this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()
-							+ "Friendly Non Player Character " + friendly.getCharacter_name() + " \n");
-					updatePostion(tempPoint, oldPoint);
-
-					// friendly items traversal to backpack of character
-				}
-			} else {
-				this.gamePlayView.consoleTextArea.setForeground(Color.GREEN);
-				this.gamePlayView.consoleTextArea
-						.setText(this.gamePlayView.consoleTextArea.getText() + "Move ahead \n");
-				updatePostion(tempPoint, oldPoint);
-			}
-
-		} else {
-
-			if (this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex())
-					.getMap_exit_door().equals(oldPoint)) {
-
-				ArrayList<MapCharacter> npcs = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-						.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
-
-				int totalEnemy = 0;
-				int deadEnemy = 0;
-				for (int i = 0; i < npcs.size(); i++) {
-
-					if (npcs.get(i).getCharacterType().equals(MapCharacter.ENEMY)) {
-						totalEnemy++;
-						if (!npcs.get(i).getCharacter().isAlive()) {
-							deadEnemy++;
-						}
-					}
-				}
-
-				if (totalEnemy == deadEnemy) {
-					if (this.gamePlayModel.getCurrentMapIndex() + 1 < this.gamePlayModel.getCampaignModel()
-							.getOutput_map_list().size()) {
-
-						this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
-						this.gamePlayModel.deleteObserver(this.gamePlayView);
-						this.gamePlayView.dispose();
-						this.gamePlayView = null;
-						this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
-
-						this.gamePlayModel.addObserver(this.gamePlayView);
-						this.gamePlayView.setListener(this);
-						this.gamePlayView.setVisible(true);
-
-						this.gamePlayModel.getCharacterModel()
-								.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level() + 1);
-
-						this.shownInventories = new ArrayList<CharacterModel>();
-
-						matchNPCToPlayer();
-					} else {
-
-						this.gamePlayView.dispose();
-						this.gamePlayModel.deleteObserver(this.gamePlayView);
-						JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
-						new GameController();
-						System.out.println("Game Over");
-					}
-				} else {
-					JOptionPane.showMessageDialog(new JFrame(), "You have to kill all enemies to go to next level");
-				}
-
-			}
-
-			// revert the point as boundary reached
-			tempPoint = oldPoint;
-		}
-
-	}
+	
 
 	/**
 	 * This method is created to have fight between enemy
@@ -422,25 +212,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.gamePlayModel.setGameCharacterPosition(tempPoint);
 	}
 
-	/**
-	 * This function checks if the boundary conditions are reached
-	 * 
-	 * @param tempPoint
-	 * @return true if boundary else false
-	 */
-	private boolean checkBoundaries(Point tempPoint) {
-		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView.currentMap.getMap_size().x
-				|| tempPoint.y >= this.gamePlayView.currentMap.getMap_size().y) {
-
-			this.gamePlayView.consoleTextArea.setForeground(Color.RED);
-			this.gamePlayView.consoleTextArea
-					.setText(this.gamePlayView.consoleTextArea.getText() + "Oops...Cannot go ahead...\n");
-			return false;
-		} else {
-			// boundary not reached
-			return true;
-		}
-	}
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {

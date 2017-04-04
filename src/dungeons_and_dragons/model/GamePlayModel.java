@@ -10,8 +10,13 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.TreeMap;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import com.google.gson.annotations.Expose;
 
+import dungeons_and_dragons.controller.GameController;
+import dungeons_and_dragons.controller.NPCItemController;
 import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.LogHelper;
@@ -439,16 +444,19 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param tempPoint
 	 * @return true if boundary else false
 	 */
-	public boolean checkBoundaries(Point tempPoint) {
-		// GamePlayModel gpm=new GamePlayModel();
-		// GamePlayController gpc=new GamePlayController(gpm);
-		// gamePlayView2=new GamePlayView(gpm, gpc);
-		if (tempPoint.x < 0 || tempPoint.y < 0 || tempPoint.x >= this.gamePlayView2.currentMap.getMap_size().x
-				|| tempPoint.y >= this.gamePlayView2.currentMap.getMap_size().y) {
+	private boolean checkBoundaries(Point tempPoint) {
+		if (tempPoint.x < 0 || tempPoint.y < 0
+				|| tempPoint.x >= this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+						.getMap_size().getX()
+				|| tempPoint.y >= this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+						.getMap_size().getY()) {
 
-			this.gamePlayView2.consoleTextArea.setForeground(Color.RED);
-			this.gamePlayView2.consoleTextArea
-					.setText(this.gamePlayView2.consoleTextArea.getText() + "Oops...Cannot go ahead...\n");
+			/*
+			 * this.gamePlayView.consoleTextArea.setForeground(Color.RED);
+			 * this.gamePlayView.consoleTextArea
+			 * .setText(this.gamePlayView.consoleTextArea.getText() +
+			 * "Oops...Cannot go ahead...\n");
+			 */
 			return false;
 		} else {
 			// boundary not reached
@@ -496,6 +504,208 @@ public class GamePlayModel extends Observable implements Runnable {
 				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
 			}
 		}
+	}
+
+	public boolean checkWalls(Point point) {
+
+		ArrayList<Point> wallList = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+				.getMap_walls();
+
+		return wallList.contains(point);
+	}
+
+	/**
+	 * This functions allows the Player to move from its position based on the
+	 * key pressed
+	 * 
+	 * @param tempPoint
+	 *            next point in the map
+	 * @param oldPoint
+	 *            old point in the map
+	 */
+	public void moveCharacter(Point tempPoint, Point oldPoint) {
+
+		// first of all check if the boundaries have been reached
+		if (checkBoundaries(tempPoint)) {
+			if (this.checkWalls(tempPoint)) {
+
+			} else if (this.checkChest(tempPoint)) {
+
+				GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
+
+				String msg = "";
+				if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
+					ArrayList<ItemModel> backPackItems = this.getCharacterModel().getBackPackItems();
+					if (backPackItems.size() < 10) {
+						backPackItems.add(map.getMap_chest().getItem());
+						this.getCharacterModel().setBackPackItems(backPackItems);
+
+						ItemModel i = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+								.getMap_chest().getItem();
+
+						msg = "Item " + i.getItem_name() + " has been added in your backpack";
+
+						this.removeChest(tempPoint);
+					} else {
+						msg = "Sorry your backpack is full.So cannot add any new Item";
+					}
+					this.setGameCharacterPosition(tempPoint);
+					JOptionPane.showMessageDialog(new JFrame(), msg);
+				}
+
+			} else if (this.checkCharacter(tempPoint)) {
+
+				ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_enemy_loc();
+				
+				MapCharacter npcLocal = null;
+				
+				
+				for (int i = 0; i < chars.size(); i++) {
+					if ((tempPoint.getX() == chars.get(i).getX()) && (tempPoint.getY() == chars.get(i).getY())) {
+						npcLocal = chars.get(i);
+					}
+				}
+				
+				if(npcLocal != null) {
+					if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
+						System.out.println("Enemy");
+						GameMapModel map = this.getCampaignModel().getOutput_map_list()
+								.get(this.getCurrentMapIndex());
+						int numOfCharacters = map.getMap_enemy_loc().size();
+						CharacterModel enemy = new CharacterModel();
+						MapCharacter enemyMap = new MapCharacter();
+						int index = -1;
+						for (int j = 0; j < numOfCharacters; j++) {
+
+							if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+									&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
+								enemy = map.getMap_enemy_loc().get(j).getCharacter();
+								enemyMap = map.getMap_enemy_loc().get(j);
+								index = j;
+							}
+						}
+
+						CharacterModel player = this.getCharacterModel();
+						boolean enemyAlive = true;
+						if (enemy != null)
+							enemyAlive = fightWithEnemy(enemy, player);
+
+						enemy.updateView();
+						String msg = "";
+						if (enemyAlive == false) {
+							JOptionPane.showMessageDialog(new JFrame(),
+									"Enemy " + enemy.getCharacter_name() + " is dead.You can loot its items");
+							enemy.setAlive(false);
+							ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
+							if (!enemy.getItems().isEmpty()) {
+								allEnemyItems = enemy.getItems();
+							}
+							if (!enemy.getBackPackItems().isEmpty()) {
+								for (int i = 0; i < enemy.getBackPackItems().size(); i++) {
+									allEnemyItems.add(enemy.getBackPackItems().get(i));
+								}
+							}
+							new NPCItemController(this, allEnemyItems, true, enemy);
+
+							msg = "is dead.You can loot its item";
+						}
+					} else if (npcLocal.getCharacterType().equals(MapCharacter.FRIENDLY)) {
+						System.out.println("Friendly");
+						GameMapModel map = this.getCampaignModel().getOutput_map_list()
+								.get(this.getCurrentMapIndex());
+						int numOfCharacters = map.getMap_enemy_loc().size();
+						CharacterModel friendly = new CharacterModel();
+						for (int j = 0; j < numOfCharacters; j++) {
+
+							if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+									&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
+								friendly = map.getMap_enemy_loc().get(j).getCharacter();
+							}
+						}
+						new NPCItemController(this, this.getCharacterModel().getBackPackItems(),false, friendly);
+					}
+				}
+				this.setGameCharacterPosition(tempPoint);
+			} else {
+				this.setGameCharacterPosition(tempPoint);
+			}
+		} else {
+			/*
+			if (this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex())
+					.getMap_exit_door().equals(oldPoint)) {
+
+				ArrayList<MapCharacter> npcs = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+						.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+
+				int totalEnemy = 0;
+				int deadEnemy = 0;
+				for (int i = 0; i < npcs.size(); i++) {
+
+					if (npcs.get(i).getCharacterType().equals(MapCharacter.ENEMY)) {
+						totalEnemy++;
+						if (!npcs.get(i).getCharacter().isAlive()) {
+							deadEnemy++;
+						}
+					}
+				}
+
+				if (totalEnemy == deadEnemy) {
+					if (this.gamePlayModel.getCurrentMapIndex() + 1 < this.gamePlayModel.getCampaignModel()
+							.getOutput_map_list().size()) {
+
+						this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
+						this.gamePlayModel.deleteObserver(this.gamePlayView);
+						this.gamePlayView.dispose();
+						this.gamePlayView = null;
+						this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
+
+						this.gamePlayModel.addObserver(this.gamePlayView);
+						this.gamePlayView.setListener(this);
+						this.gamePlayView.setVisible(true);
+
+						this.gamePlayModel.getCharacterModel()
+								.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level() + 1);
+
+						this.shownInventories = new ArrayList<CharacterModel>();
+
+						matchNPCToPlayer();
+					} else {
+
+						this.gamePlayView.dispose();
+						this.gamePlayModel.deleteObserver(this.gamePlayView);
+						JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
+						new GameController();
+						System.out.println("Game Over");
+					}
+				} else {
+					JOptionPane.showMessageDialog(new JFrame(), "You have to kill all enemies to go to next level");
+				}
+
+			}
+
+			// revert the point as boundary reached
+			tempPoint = oldPoint;
+			*/
+		}
+		setChanged();
+		notifyObservers();
+	}
+
+	private boolean checkCharacter(Point point) {
+		ArrayList<MapCharacter> npcsLocal = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+				.getMap_enemy_loc();
+
+		for (int i = 0; i < npcsLocal.size(); i++) {
+			if ((point.getX() == npcsLocal.get(i).getX()) && (point.getY() == npcsLocal.get(i).getY())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkChest(Point point) {
+		MapItem chest = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_chest();
+		return ((point.getX() == chest.getX()) && (point.getY() == chest.getY()));
 	}
 
 }
