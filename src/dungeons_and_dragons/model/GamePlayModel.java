@@ -1,6 +1,5 @@
 package dungeons_and_dragons.model;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,10 +14,10 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.annotations.Expose;
 
-import dungeons_and_dragons.controller.GameController;
 import dungeons_and_dragons.controller.NPCItemController;
 import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
@@ -523,12 +522,13 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param oldPoint
 	 *            old point in the map
 	 */
-	public void moveCharacter(Point tempPoint, Point oldPoint) {
+	public GameStatus moveCharacter(Point tempPoint, Point oldPoint) {
 
+		GameStatus gameStatus = new GameStatus();
 		// first of all check if the boundaries have been reached
 		if (checkBoundaries(tempPoint)) {
 			if (this.checkWalls(tempPoint)) {
-
+				gameStatus.setGameStatus(GameStatus.RUNNING);
 			} else if (this.checkChest(tempPoint)) {
 
 				GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
@@ -553,24 +553,25 @@ public class GamePlayModel extends Observable implements Runnable {
 					JOptionPane.showMessageDialog(new JFrame(), msg);
 				}
 
+				gameStatus.setGameStatus(GameStatus.RUNNING);
+
 			} else if (this.checkCharacter(tempPoint)) {
 
-				ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_enemy_loc();
-				
+				ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list()
+						.get(this.getCurrentMapIndex()).getMap_enemy_loc();
+
 				MapCharacter npcLocal = null;
-				
-				
+
 				for (int i = 0; i < chars.size(); i++) {
 					if ((tempPoint.getX() == chars.get(i).getX()) && (tempPoint.getY() == chars.get(i).getY())) {
 						npcLocal = chars.get(i);
 					}
 				}
-				
-				if(npcLocal != null) {
+
+				if (npcLocal != null) {
 					if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
 						System.out.println("Enemy");
-						GameMapModel map = this.getCampaignModel().getOutput_map_list()
-								.get(this.getCurrentMapIndex());
+						GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
 						int numOfCharacters = map.getMap_enemy_loc().size();
 						CharacterModel enemy = new CharacterModel();
 						MapCharacter enemyMap = new MapCharacter();
@@ -611,8 +612,7 @@ public class GamePlayModel extends Observable implements Runnable {
 						}
 					} else if (npcLocal.getCharacterType().equals(MapCharacter.FRIENDLY)) {
 						System.out.println("Friendly");
-						GameMapModel map = this.getCampaignModel().getOutput_map_list()
-								.get(this.getCurrentMapIndex());
+						GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
 						int numOfCharacters = map.getMap_enemy_loc().size();
 						CharacterModel friendly = new CharacterModel();
 						for (int j = 0; j < numOfCharacters; j++) {
@@ -622,20 +622,25 @@ public class GamePlayModel extends Observable implements Runnable {
 								friendly = map.getMap_enemy_loc().get(j).getCharacter();
 							}
 						}
-						new NPCItemController(this, this.getCharacterModel().getBackPackItems(),false, friendly);
+						new NPCItemController(this, this.getCharacterModel().getBackPackItems(), false, friendly);
 					}
 				}
 				this.setGameCharacterPosition(tempPoint);
+
+				gameStatus.setGameStatus(GameStatus.RUNNING);
+
 			} else {
 				this.setGameCharacterPosition(tempPoint);
+
+				gameStatus.setGameStatus(GameStatus.RUNNING);
 			}
 		} else {
-			/*
-			if (this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex())
-					.getMap_exit_door().equals(oldPoint)) {
 
-				ArrayList<MapCharacter> npcs = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-						.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
+			if (this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door()
+					.equals(oldPoint)) {
+
+				ArrayList<MapCharacter> npcs = this.getCampaignModel().getOutput_map_list()
+						.get(this.getCurrentMapIndex()).getMap_enemy_loc();
 
 				int totalEnemy = 0;
 				int deadEnemy = 0;
@@ -650,45 +655,20 @@ public class GamePlayModel extends Observable implements Runnable {
 				}
 
 				if (totalEnemy == deadEnemy) {
-					if (this.gamePlayModel.getCurrentMapIndex() + 1 < this.gamePlayModel.getCampaignModel()
-							.getOutput_map_list().size()) {
-
-						this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
-						this.gamePlayModel.deleteObserver(this.gamePlayView);
-						this.gamePlayView.dispose();
-						this.gamePlayView = null;
-						this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
-
-						this.gamePlayModel.addObserver(this.gamePlayView);
-						this.gamePlayView.setListener(this);
-						this.gamePlayView.setVisible(true);
-
-						this.gamePlayModel.getCharacterModel()
-								.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level() + 1);
-
-						this.shownInventories = new ArrayList<CharacterModel>();
-
-						matchNPCToPlayer();
+					if (this.getCurrentMapIndex() + 1 < this.getCampaignModel().getOutput_map_list().size()) {
+						gameStatus.setGameStatus(GameStatus.NEXT_LEVEL);
 					} else {
-
-						this.gamePlayView.dispose();
-						this.gamePlayModel.deleteObserver(this.gamePlayView);
-						JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
-						new GameController();
-						System.out.println("Game Over");
+						gameStatus.setGameStatus(GameStatus.WON_GAME);
 					}
 				} else {
+					gameStatus.setGameStatus(GameStatus.KILL_ALL);
 					JOptionPane.showMessageDialog(new JFrame(), "You have to kill all enemies to go to next level");
 				}
-
 			}
-
-			// revert the point as boundary reached
-			tempPoint = oldPoint;
-			*/
 		}
 		setChanged();
 		notifyObservers();
+		return gameStatus;
 	}
 
 	private boolean checkCharacter(Point point) {

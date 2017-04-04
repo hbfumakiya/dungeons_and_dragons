@@ -1,6 +1,5 @@
 package dungeons_and_dragons.controller;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +12,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.AbilityScoresModel;
 import dungeons_and_dragons.model.CharacterModel;
-import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
@@ -144,32 +143,66 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		if (key == KeyEvent.VK_LEFT) {
 			tempPoint.y = tempPoint.y - 1;
-			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			this.postProcessing(status);
 
 		} else if (key == KeyEvent.VK_RIGHT) {
 			tempPoint.y = tempPoint.y + 1;
-			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			this.postProcessing(status);
 
 		} else if (key == KeyEvent.VK_UP) {
 			tempPoint.x = tempPoint.x - 1;
-			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-			/*try {
-				synchronized (this.gamePlayModel.gameThread) {
-					this.gamePlayModel.gameThread.notify();
-				}
-				
-			} catch (Exception e1) {
-				
-			}*/
+			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			/*
+			 * try { synchronized (this.gamePlayModel.gameThread) {
+			 * this.gamePlayModel.gameThread.notify(); }
+			 * 
+			 * } catch (Exception e1) {
+			 * 
+			 * }
+			 */
+			this.postProcessing(status);
 
 		} else if (key == KeyEvent.VK_DOWN) {
 			tempPoint.x = tempPoint.x + 1;
-			this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-
+			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+			this.postProcessing(status);
 		}
 	}
-
 	
+	/**
+	 * 
+	 * @param gameSatus
+	 */
+	public void postProcessing(GameStatus gameSatus) {
+		switch (gameSatus.getGameStatus()) {
+		case GameStatus.NEXT_LEVEL:
+			this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
+			this.gamePlayModel.deleteObserver(this.gamePlayView);
+			this.gamePlayView.dispose();
+			this.gamePlayView = null;
+			this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
+
+			this.gamePlayModel.addObserver(this.gamePlayView);
+			this.gamePlayView.setListener(this);
+			this.gamePlayView.setVisible(true);
+
+			this.gamePlayModel.getCharacterModel()
+					.setCharacter_level(this.gamePlayModel.getCharacterModel().getCharacter_level() + 1);
+
+			this.shownInventories = new ArrayList<CharacterModel>();
+
+			matchNPCToPlayer();
+			break;
+		case GameStatus.WON_GAME:
+			this.gamePlayView.dispose();
+			this.gamePlayModel.deleteObserver(this.gamePlayView);
+			JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
+			new GameController();
+			break;
+		}
+	}
 
 	/**
 	 * This method is created to have fight between enemy
@@ -211,8 +244,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.gamePlayView.oldPosition = oldPoint;
 		this.gamePlayModel.setGameCharacterPosition(tempPoint);
 	}
-
-	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
