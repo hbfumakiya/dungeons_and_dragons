@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.AbilityScoresModel;
@@ -142,35 +143,76 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		Point oldPoint = (Point) tempPoint.clone();
 
 		if (key == KeyEvent.VK_LEFT) {
-			tempPoint.y = tempPoint.y - 1;
-			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-			this.postProcessing(status);
+			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
+				tempPoint.y = tempPoint.y - 1;
+				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+
+				try {
+					synchronized (this.gamePlayModel.gameThread) {
+						this.gamePlayModel.gameThread.notify();
+					}
+
+				} catch (Exception e1) {
+					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
+				}
+
+				this.postProcessing(status);
+			}
 
 		} else if (key == KeyEvent.VK_RIGHT) {
-			tempPoint.y = tempPoint.y + 1;
-			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-			this.postProcessing(status);
+			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
+				tempPoint.y = tempPoint.y + 1;
+				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+
+				try {
+					synchronized (this.gamePlayModel.gameThread) {
+						this.gamePlayModel.gameThread.notify();
+					}
+
+				} catch (Exception e1) {
+					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
+				}
+
+				this.postProcessing(status);
+			}
 
 		} else if (key == KeyEvent.VK_UP) {
-			tempPoint.x = tempPoint.x - 1;
-			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-			/*
-			 * try { synchronized (this.gamePlayModel.gameThread) {
-			 * this.gamePlayModel.gameThread.notify(); }
-			 * 
-			 * } catch (Exception e1) {
-			 * 
-			 * }
-			 */
-			this.postProcessing(status);
+			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
+				tempPoint.x = tempPoint.x - 1;
+				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+
+				try {
+					synchronized (this.gamePlayModel.gameThread) {
+						this.gamePlayModel.gameThread.notify();
+					}
+
+				} catch (Exception e1) {
+					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
+				}
+
+				this.postProcessing(status);
+			}
 
 		} else if (key == KeyEvent.VK_DOWN) {
-			tempPoint.x = tempPoint.x + 1;
-			GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-			this.postProcessing(status);
+			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
+				tempPoint.x = tempPoint.x + 1;
+
+				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+
+				try {
+					synchronized (this.gamePlayModel.gameThread) {
+						this.gamePlayModel.gameThread.notify();
+					}
+
+				} catch (Exception e1) {
+					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
+				}
+
+				this.postProcessing(status);
+			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param gameSatus

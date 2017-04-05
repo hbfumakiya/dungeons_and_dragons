@@ -19,7 +19,20 @@ public class HumanPlayer implements Strategy {
 		try {
 			synchronized (gamePlayModel.gameThread) {
 				gamePlayModel.gameThread.wait();
-				System.out.println("in sync");
+			}
+		} catch (InterruptedException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+		try {
+			synchronized (gamePlayModel.gameThread) {
+				gamePlayModel.gameThread.wait();
+			}
+		} catch (InterruptedException e) {
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+		}
+		try {
+			synchronized (gamePlayModel.gameThread) {
+				gamePlayModel.gameThread.wait();
 			}
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
@@ -30,12 +43,24 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		System.out.println("Human Player Attack");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
 		System.out.println("Human Player Interact");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
