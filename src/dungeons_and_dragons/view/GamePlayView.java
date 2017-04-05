@@ -335,11 +335,11 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 
 		if (endPoint.x > mapSize.x) {
-			endPoint.x = startPoint.x;
+			endPoint.x = mapSize.x;
 		}
 
 		if (endPoint.y > mapSize.y) {
-			endPoint.y = startPoint.y;
+			endPoint.y = mapSize.y;
 		}
 
 		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
