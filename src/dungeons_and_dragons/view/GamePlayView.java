@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -30,8 +29,10 @@ import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
+import dungeons_and_dragons.model.ItemModel;
 
 /**
  * Renders the GamePlayModel into a form suitable for visualization or
@@ -68,7 +69,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public JLabel mapNameLabel;
 	public JLabel mapName;
 	public JTextArea consoleTextArea;
-	
+
 	public JLabel map_entry_door;
 	public JLabel map_exit_door;
 	public JLabel map_chest;
@@ -82,10 +83,13 @@ public class GamePlayView extends JFrame implements Observer, View {
 	private JLabel map_friend_color;
 	private JLabel map_wall_color;
 	private JLabel empty;
-	
+
 	public JButton backButton;
+
 	/**
-	 * Constructor to initialize variables and objects of gameplay model and controller
+	 * Constructor to initialize variables and objects of gameplay model and
+	 * controller
+	 * 
 	 * @param gamePlayModel
 	 * @param gamePlayController
 	 */
@@ -115,7 +119,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 			BufferedImage map_friend_color_image = ImageIO.read(new File("res/orange.jpg"));
 			map_friend_color = new JLabel(new ImageIcon(map_friend_color_image));
 			// map_wall_color.setMaximumSize(new Dimension(10,10));
-			
+
 		} catch (IOException e) {
 		}
 
@@ -133,7 +137,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		// close frame while user click on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
+
 	/**
 	 * initialize the window for game play
 	 */
@@ -170,18 +176,16 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.infoPanel = new JPanel();
 		this.infoPanel.setBounds(710, 50, 280, 445);
 		this.infoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.infoPanel.setLayout(new GridLayout(6, 2,15,15));
+		this.infoPanel.setLayout(new GridLayout(6, 2, 15, 15));
 		this.infoPanel.setBorder(new BevelBorder(1));
-		
-		
-		
+
 		map_entry_door = new JLabel("Entry Door");
 		map_exit_door = new JLabel("Exit Door");
 		map_chest = new JLabel("Chest");
 		map_enemy = new JLabel("Enemy");
 		map_friend = new JLabel("Friend");
 		map_wall = new JLabel("Wall");
-		
+
 		this.infoPanel.add(map_entry_door);
 		this.infoPanel.add(map_entry_color);
 		this.infoPanel.add(map_exit_door);
@@ -220,18 +224,21 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// set minimum size of frame
 		this.setMinimumSize(new Dimension(1000, 700));
 		this.setResizable(false);
-		
+
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
-		
+
 		this.backButton.setFocusable(false);
 	}
-	
+
 	/**
 	 * show the map for current selected map
-	 * @param currentMap map of campaign
-	 * @param mapPanel panel of map
+	 * 
+	 * @param currentMap
+	 *            map of campaign
+	 * @param mapPanel
+	 *            panel of map
 	 */
 	public void showMap(GameMapModel currentMap, JPanel mapPanel) {
 		mapPanel.removeAll();
@@ -249,6 +256,13 @@ public class GamePlayView extends JFrame implements Observer, View {
 				maps[i][j].setxPos(i);
 				maps[i][j].setyPos(j);
 				tempPoint = new Point(i, j);
+
+				Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
+				CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
+
+				this.showRangeWeaponArea(humanCharacter, humanCharacterPosition, maps[i][j], i, j);
+				this.showMeleWeaponArea(humanCharacter, humanCharacterPosition, maps[i][j], i, j);
+
 				MapCharacter character = showCharacter(tempPoint);
 				// setting all objects on the map
 				if (showWalls(tempPoint)) {
@@ -286,6 +300,59 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 	}
 
+	public void showRangeWeaponArea(CharacterModel humanCharacter, Point humanCharacterPosition, MapButton map, int i,
+			int j) {
+
+		ArrayList<ItemModel> items = humanCharacter.getItems();
+		boolean isRange = false;
+		for (int k = 0; k < items.size(); k++) {
+			if(items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+				isRange = true;
+			}
+		}
+		
+		if(!isRange) {
+			return;
+		}
+		
+		Point startPoint = new Point();
+		Point endPoint = new Point();
+		GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+				.get(this.gamePlayModel.getCurrentMapIndex());
+		startPoint.x = humanCharacterPosition.x - 2;
+		startPoint.y = humanCharacterPosition.y - 2;
+		endPoint.x = humanCharacterPosition.x + 2;
+		endPoint.y = humanCharacterPosition.y + 2;
+
+		Point mapSize = currentMap.getMap_size();
+
+		if (startPoint.x < 0) {
+			startPoint.x = 0;
+		}
+
+		if (startPoint.y < 0) {
+			startPoint.y = 0;
+		}
+
+		if (endPoint.x > mapSize.x) {
+			endPoint.x = startPoint.x;
+		}
+
+		if (endPoint.y > mapSize.y) {
+			endPoint.y = startPoint.y;
+		}
+
+		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
+			maps[i][j].setBackground(Color.LIGHT_GRAY);
+		}
+
+	}
+
+	public void showMeleWeaponArea(CharacterModel humanCharacter, Point humanCharacterPosition, MapButton map, int i,
+			int j) {
+
+	}
+
 	/**
 	 * This method is used to display player on the basis of the changing map
 	 * conditions
@@ -299,13 +366,16 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.addActionListener(this.gamePlayController);
 		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
+
 	/**
-	 *  This method is used to display player on the basis of the changing map
+	 * This method is used to display player on the basis of the changing map
 	 * conditions
-	 * @param p point where it should display
+	 * 
+	 * @param p
+	 *            point where it should display
 	 */
 	public void displayPlayer(Point p) {
-		MapButton mapButton = maps[(int)p.getX()][(int)p.getY()];
+		MapButton mapButton = maps[(int) p.getX()][(int) p.getY()];
 		mapButton.setText("P");
 		mapButton.setCharacterType(MapButton.PLAYER);
 		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
@@ -412,7 +482,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * default update method implementing observer pattern
 	 */
@@ -446,9 +516,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 
 	}
-	
+
 	/**
 	 * register events from view
+	 * 
 	 * @param gamePlayController
 	 */
 	public void setListener(GamePlayController gamePlayController) {

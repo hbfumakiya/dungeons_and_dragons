@@ -16,5 +16,14 @@
     "item_ability": "Armor class",
     "item_weapon_enchantment": "",
     "item_weapon_enchantment_string": ""
+  },
+  {
+    "item_id": 3,
+    "item_name": "Range",
+    "item_point": 5,
+    "item_type": "Weapon Range",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Freezing",
+    "item_weapon_enchantment_string": "Freezing-5"
   }
 ]
