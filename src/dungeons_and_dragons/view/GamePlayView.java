@@ -343,14 +343,55 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 
 		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
-			maps[i][j].setBackground(Color.LIGHT_GRAY);
+			maps[i][j].setBackground(new Color(255, 229, 226));
 		}
 
 	}
 
 	public void showMeleWeaponArea(CharacterModel humanCharacter, Point humanCharacterPosition, MapButton map, int i,
 			int j) {
+		ArrayList<ItemModel> items = humanCharacter.getItems();
+		boolean isRange = false;
+		for (int k = 0; k < items.size(); k++) {
+			if(items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+				isRange = true;
+			}
+		}
+		
+		if(!isRange) {
+			return;
+		}
+		
+		Point startPoint = new Point();
+		Point endPoint = new Point();
+		GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+				.get(this.gamePlayModel.getCurrentMapIndex());
+		startPoint.x = humanCharacterPosition.x - 1;
+		startPoint.y = humanCharacterPosition.y - 1;
+		endPoint.x = humanCharacterPosition.x + 1;
+		endPoint.y = humanCharacterPosition.y + 1;
 
+		Point mapSize = currentMap.getMap_size();
+
+		if (startPoint.x < 0) {
+			startPoint.x = 0;
+		}
+
+		if (startPoint.y < 0) {
+			startPoint.y = 0;
+		}
+
+		if (endPoint.x > mapSize.x) {
+			endPoint.x = mapSize.x;
+		}
+
+		if (endPoint.y > mapSize.y) {
+			endPoint.y = mapSize.y;
+		}
+
+		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
+			maps[i][j].setBackground(new Color(255, 246, 226));
+		}
 	}
 
 	/**
@@ -364,7 +405,6 @@ public class GamePlayView extends JFrame implements Observer, View {
 		mapButton.setCharacterType(MapButton.PLAYER);
 		mapButton.setCharacter(this.gamePlayModel.getCharacterModel());
 		mapButton.addActionListener(this.gamePlayController);
-		// mapButton.setFont(new Font("Comic", Font.BOLD, 40));;
 	}
 
 	/**
