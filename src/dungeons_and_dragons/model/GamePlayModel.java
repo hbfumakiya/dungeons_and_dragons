@@ -26,7 +26,6 @@ import dungeons_and_dragons.strategy.CharacterStrategy;
 import dungeons_and_dragons.strategy.ComputerPlayer;
 import dungeons_and_dragons.strategy.FriendlyNPC;
 import dungeons_and_dragons.strategy.HumanPlayer;
-import dungeons_and_dragons.view.GamePlayView;
 
 /**
  * Once GamePlayModel gets a change state query request from any view they
@@ -63,10 +62,6 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Expose
 	private int currentMapIndex;
 
-	private Object gamePlayView;
-
-	private GamePlayView gamePlayView2;
-
 	@Expose
 	private ArrayList<MapCharacter> turnList;
 
@@ -80,6 +75,18 @@ public class GamePlayModel extends Observable implements Runnable {
 	private String playerStrategy;
 
 	public Thread gameThread;
+
+	public Point charachterTempPoint;
+
+	public Point charachterOldPoint;
+
+	public GameStatus gameStatus = new GameStatus();
+
+	public Point attackStartPoint;
+
+	public Point attackEndPoint;
+
+	public Point enemyPoint;
 
 	/**
 	 * constructor to initialize map object
@@ -336,35 +343,6 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * This method is created to have fight between enemy
-	 * 
-	 * @param enemy
-	 *            Enemy to fight with
-	 * @param player
-	 *            main character player
-	 * @return boolean return true if enemy survives else false if enemy is dead
-	 */
-	public boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
-		AbilityScoresModel zeroAbilities = new AbilityScoresModel();
-		zeroAbilities.setCharisma(-10);
-		zeroAbilities.setConstitution(-10);
-		zeroAbilities.setDexterity(-10);
-		zeroAbilities.setIntelligence(-10);
-		zeroAbilities.setstrength(-10);
-		zeroAbilities.setWisdom(-10);
-
-		enemy.setAbilityScores(zeroAbilities);
-		enemy.setAttackBonus(0);
-		enemy.setHitpoints(0);
-		enemy.setDamageBonus(0);
-		enemy.setArmorClass(0);
-		enemy.setRawAbilityScores(zeroAbilities);
-		enemy.calculateModifires();
-		return false;
-
-	}
-
-	/**
 	 * calculate turn of all players of the current map and store it sortedlist
 	 * in turnlist to determine turn of every players
 	 */
@@ -441,7 +419,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * This function checks if the boundary conditions are reached
 	 * 
 	 * @param tempPoint
-	 * @return true if boundary else false
+	 * @return false if boundary else true
 	 */
 	private boolean checkBoundaries(Point tempPoint) {
 		if (tempPoint.x < 0 || tempPoint.y < 0
@@ -450,7 +428,7 @@ public class GamePlayModel extends Observable implements Runnable {
 				|| tempPoint.y >= this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
 						.getMap_size().getY()) {
 
-			/*
+			/* TODO
 			 * this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 			 * this.gamePlayView.consoleTextArea
 			 * .setText(this.gamePlayView.consoleTextArea.getText() +
@@ -686,6 +664,196 @@ public class GamePlayModel extends Observable implements Runnable {
 	public boolean checkChest(Point point) {
 		MapItem chest = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_chest();
 		return ((point.getX() == chest.getX()) && (point.getY() == chest.getY()));
+	}
+
+	/**
+	 * This function validates if any character can perform a move or not
+	 * 
+	 * @param tempPoint
+	 * @param oldPoint
+	 * @return status of the game after the move event
+	 */
+	public GameStatus validateMove(Point tempPoint, Point oldPoint) {
+
+		if (checkBoundaries(tempPoint) || !this.checkWalls(tempPoint)) {
+			this.setGameCharacterPosition(tempPoint);
+		} else {
+			// shouldn't allow the move and show type info error message
+			this.setGameCharacterPosition(oldPoint);
+			charachterTempPoint = charachterOldPoint;
+			LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
+		}
+		gameStatus.setGameStatus(GameStatus.RUNNING);
+		setChanged();
+		notifyObservers();
+		return gameStatus;
+	}
+
+	/**
+	 * This function checks if there is any valid NPC in range of the player
+	 * character or not
+	 * 
+	 * @param tempPoint
+	 * @return true if attack can be initiated on an enemy else it returns false
+	 */
+	public boolean validateAttack(Point tempPoint) {
+
+		// check if player is on enemies cell or not
+		if (this.checkCharacter(tempPoint)) {
+
+			ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+					.getMap_enemy_loc();
+
+			MapCharacter npcLocal = null;
+
+			for (int i = 0; i < chars.size(); i++) {
+				if ((tempPoint.getX() == chars.get(i).getX()) && (tempPoint.getY() == chars.get(i).getY())) {
+					npcLocal = chars.get(i);
+				}
+			}
+
+			if (npcLocal != null) {
+				if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+		}
+		// perform melle or range attack based on the weapon type if there
+		// exists an enemy within the specified range
+		else {
+			// check if there is an enemy in the range
+			for (int i = attackStartPoint.x; i < attackStartPoint.y; i++) {
+				for (int j = attackStartPoint.y; j < attackEndPoint.y; j++) {
+					if (this.checkCharacter(new Point(i, j))) {
+						this.enemyPoint = new Point(i, j);
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * This function performs an attack on a character using D20 rules. Checks
+	 * the status and returns the appropriate situation accordingly.
+	 * 
+	 * @return
+	 */
+	public GameStatus initiateAttack() {
+		// TODO Auto-generated method stub
+		//this.fightWithEnemy(enemy, player);
+		return null;
+	}
+
+	/**
+	 * This method is created to have fight between enemy
+	 * 
+	 * @param enemy
+	 *            Enemy to fight with
+	 * @param player
+	 *            main character player
+	 * @return boolean return true if enemy survives else false if enemy is dead
+	 */
+	public boolean fightWithEnemy(CharacterModel enemy, CharacterModel player) {
+		AbilityScoresModel zeroAbilities = new AbilityScoresModel();
+		zeroAbilities.setCharisma(-10);
+		zeroAbilities.setConstitution(-10);
+		zeroAbilities.setDexterity(-10);
+		zeroAbilities.setIntelligence(-10);
+		zeroAbilities.setstrength(-10);
+		zeroAbilities.setWisdom(-10);
+
+		enemy.setAbilityScores(zeroAbilities);
+		enemy.setAttackBonus(0);
+		enemy.setHitpoints(0);
+		enemy.setDamageBonus(0);
+		enemy.setArmorClass(0);
+		enemy.setRawAbilityScores(zeroAbilities);
+		enemy.calculateModifires();
+		return false;
+
+	}
+
+	/**
+	 * This function validates if there is a chest or a dead NPC or a friend to
+	 * share items and if it exists it interacts accordingly
+	 * 
+	 * @param tempPoint
+	 * @return true if yes
+	 */
+	public GameStatus initateInteract(Point tempPoint) {
+
+		if (this.checkChest(tempPoint)) {
+
+			GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
+
+			String msg = "";
+			if (map.getMap_chest() != null && map.getMap_chest().getX() != -1 && map.getMap_chest().getY() != -1) {
+				ArrayList<ItemModel> backPackItems = this.getCharacterModel().getBackPackItems();
+				if (backPackItems.size() < 10) {
+					backPackItems.add(map.getMap_chest().getItem());
+					this.getCharacterModel().setBackPackItems(backPackItems);
+
+					ItemModel i = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+							.getMap_chest().getItem();
+
+					msg = "Item " + i.getItem_name() + " has been added in your backpack";
+
+					this.removeChest(tempPoint);
+				} else {
+					msg = "Sorry your backpack is full.So cannot add any new Item";
+				}
+				this.setGameCharacterPosition(tempPoint);
+				JOptionPane.showMessageDialog(new JFrame(), msg);
+			}
+
+		}
+		// interact with friendly enemy
+		else if (this.checkCharacter(tempPoint)) {
+
+			ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+					.getMap_enemy_loc();
+
+			MapCharacter npcLocal = null;
+
+			for (int i = 0; i < chars.size(); i++) {
+				if ((tempPoint.getX() == chars.get(i).getX()) && (tempPoint.getY() == chars.get(i).getY())) {
+					npcLocal = chars.get(i);
+				}
+			}
+
+			if (npcLocal != null) {
+				if (npcLocal.getCharacterType().equals(MapCharacter.FRIENDLY)) {
+					System.out.println("Friendly");
+					GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
+					int numOfCharacters = map.getMap_enemy_loc().size();
+					CharacterModel friendly = new CharacterModel();
+					for (int j = 0; j < numOfCharacters; j++) {
+
+						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
+							friendly = map.getMap_enemy_loc().get(j).getCharacter();
+						}
+					}
+					new NPCItemController(this, this.getCharacterModel().getBackPackItems(), false, friendly);
+				} else if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
+					// TODO check if the enemy is dead and replace item code to be
+					// embedded here
+				}
+			}
+
+		} else {
+			LogHelper.Log(LogHelper.TYPE_INFO, "No item found");
+		}
+
+		gameStatus.setGameStatus(GameStatus.RUNNING);
+		return gameStatus;
+
 	}
 
 }

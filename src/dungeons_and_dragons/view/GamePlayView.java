@@ -249,6 +249,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		maps = new MapButton[x][y];
 
+		Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
+		CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
+		this.setRangeOfAttack(humanCharacter, humanCharacterPosition);
+
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				maps[i][j] = new MapButton();
@@ -257,11 +261,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 				maps[i][j].setyPos(j);
 				tempPoint = new Point(i, j);
 
-				Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
-				CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
-
-				this.showRangeWeaponArea(humanCharacter, humanCharacterPosition, maps[i][j], i, j);
-				this.showMeleWeaponArea(humanCharacter, humanCharacterPosition, maps[i][j], i, j);
+				this.showWeaponArea(maps[i][j], i, j);
 
 				MapCharacter character = showCharacter(tempPoint);
 				// setting all objects on the map
@@ -300,98 +300,78 @@ public class GamePlayView extends JFrame implements Observer, View {
 		}
 	}
 
-	public void showRangeWeaponArea(CharacterModel humanCharacter, Point humanCharacterPosition, MapButton map, int i,
-			int j) {
+	/**
+	 * This function sets the start point and end point of range area of a player character
+	 * 
+	 * @param humanCharacter
+	 * @param humanCharacterPosition
+	 */
+	private void setRangeOfAttack(CharacterModel humanCharacter, Point humanCharacterPosition) {
 
 		ArrayList<ItemModel> items = humanCharacter.getItems();
 		boolean isRange = false;
+		boolean isMelle = false;
+
 		for (int k = 0; k < items.size(); k++) {
-			if(items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+			if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+				isMelle = true;
+			} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
 				isRange = true;
 			}
 		}
-		
-		if(!isRange) {
+
+		if (!isRange && !isMelle) {
 			return;
+		} else {
+			Point startPoint = new Point();
+			Point endPoint = new Point();
+			GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
+					.get(this.gamePlayModel.getCurrentMapIndex());
+
+			if (isMelle) {
+				startPoint.x = humanCharacterPosition.x - 1;
+				startPoint.y = humanCharacterPosition.y - 1;
+				endPoint.x = humanCharacterPosition.x + 1;
+				endPoint.y = humanCharacterPosition.y + 1;
+			} else {
+				startPoint.x = humanCharacterPosition.x - 2;
+				startPoint.y = humanCharacterPosition.y - 2;
+				endPoint.x = humanCharacterPosition.x + 2;
+				endPoint.y = humanCharacterPosition.y + 2;
+			}
+
+			Point mapSize = currentMap.getMap_size();
+			if (startPoint.x < 0) {
+				startPoint.x = 0;
+			}
+			if (startPoint.y < 0) {
+				startPoint.y = 0;
+			}
+			if (endPoint.x > mapSize.x) {
+				endPoint.x = mapSize.x;
+			}
+			if (endPoint.y > mapSize.y) {
+				endPoint.y = mapSize.y;
+			}
+
+			this.gamePlayModel.attackStartPoint = startPoint;
+			this.gamePlayModel.attackEndPoint = endPoint;
 		}
-		
-		Point startPoint = new Point();
-		Point endPoint = new Point();
-		GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-				.get(this.gamePlayModel.getCurrentMapIndex());
-		startPoint.x = humanCharacterPosition.x - 2;
-		startPoint.y = humanCharacterPosition.y - 2;
-		endPoint.x = humanCharacterPosition.x + 2;
-		endPoint.y = humanCharacterPosition.y + 2;
+	}
 
-		Point mapSize = currentMap.getMap_size();
+	/**
+	 * This function is used to display the range to kill an enemy both with melle weapon and a range weapon
+	 * @param map
+	 * @param i
+	 * @param j
+	 */
+	public void showWeaponArea(MapButton map, int i, int j) {
 
-		if (startPoint.x < 0) {
-			startPoint.x = 0;
-		}
-
-		if (startPoint.y < 0) {
-			startPoint.y = 0;
-		}
-
-		if (endPoint.x > mapSize.x) {
-			endPoint.x = mapSize.x;
-		}
-
-		if (endPoint.y > mapSize.y) {
-			endPoint.y = mapSize.y;
-		}
-
-		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
+		if (i >= this.gamePlayModel.attackStartPoint.x && i <= this.gamePlayModel.attackEndPoint.x
+				&& j >= this.gamePlayModel.attackStartPoint.y && j <= this.gamePlayModel.attackEndPoint.y) {
 			maps[i][j].setBackground(new Color(255, 229, 226));
 		}
 
-	}
-
-	public void showMeleWeaponArea(CharacterModel humanCharacter, Point humanCharacterPosition, MapButton map, int i,
-			int j) {
-		ArrayList<ItemModel> items = humanCharacter.getItems();
-		boolean isRange = false;
-		for (int k = 0; k < items.size(); k++) {
-			if(items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
-				isRange = true;
-			}
-		}
-		
-		if(!isRange) {
-			return;
-		}
-		
-		Point startPoint = new Point();
-		Point endPoint = new Point();
-		GameMapModel currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-				.get(this.gamePlayModel.getCurrentMapIndex());
-		startPoint.x = humanCharacterPosition.x - 1;
-		startPoint.y = humanCharacterPosition.y - 1;
-		endPoint.x = humanCharacterPosition.x + 1;
-		endPoint.y = humanCharacterPosition.y + 1;
-
-		Point mapSize = currentMap.getMap_size();
-
-		if (startPoint.x < 0) {
-			startPoint.x = 0;
-		}
-
-		if (startPoint.y < 0) {
-			startPoint.y = 0;
-		}
-
-		if (endPoint.x > mapSize.x) {
-			endPoint.x = mapSize.x;
-		}
-
-		if (endPoint.y > mapSize.y) {
-			endPoint.y = mapSize.y;
-		}
-
-		if (i >= startPoint.x && i <= endPoint.x && j >= startPoint.y && j <= endPoint.y) {
-			maps[i][j].setBackground(new Color(255, 246, 226));
-		}
 	}
 
 	/**
@@ -569,8 +549,6 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

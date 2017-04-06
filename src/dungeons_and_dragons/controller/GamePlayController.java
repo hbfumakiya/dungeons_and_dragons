@@ -139,13 +139,13 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void keyPressed(KeyEvent e) {
 
 		int key = e.getKeyCode();
-		Point tempPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
-		Point oldPoint = (Point) tempPoint.clone();
+		this.gamePlayModel.charachterTempPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
+		this.gamePlayModel.charachterOldPoint = (Point) this.gamePlayModel.charachterTempPoint.clone();
 
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
-				tempPoint.y = tempPoint.y - 1;
-				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
+				//GameStatus status = this.gamePlayModel.moveCharacter(this.gamePlayModel.charachterTempPoint, this.gamePlayModel.charachterOldPoint);
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
@@ -156,13 +156,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 				}
 
-				this.postProcessing(status);
+				this.postProcessing(this.gamePlayModel.gameStatus);
 			}
 
 		} else if (key == KeyEvent.VK_RIGHT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
-				tempPoint.y = tempPoint.y + 1;
-				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
+				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y + 1;
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
@@ -173,14 +172,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 				}
 
-				this.postProcessing(status);
+				this.postProcessing(this.gamePlayModel.gameStatus);
 			}
 
 		} else if (key == KeyEvent.VK_UP) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
-				tempPoint.x = tempPoint.x - 1;
-				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-
+				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x - 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
 						this.gamePlayModel.gameThread.notify();
@@ -190,15 +187,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 				}
 
-				this.postProcessing(status);
+				this.postProcessing(this.gamePlayModel.gameStatus);
 			}
 
 		} else if (key == KeyEvent.VK_DOWN) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
-				tempPoint.x = tempPoint.x + 1;
-
-				GameStatus status = this.gamePlayModel.moveCharacter(tempPoint, oldPoint);
-
+				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x + 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
 						this.gamePlayModel.gameThread.notify();
@@ -208,7 +202,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					LogHelper.Log(LogHelper.TYPE_ERROR, e1.getMessage());
 				}
 
-				this.postProcessing(status);
+				this.postProcessing(this.gamePlayModel.gameStatus);
 			}
 		}
 	}
