@@ -21,9 +21,9 @@
     "item_id": 3,
     "item_name": "Range",
     "item_point": 5,
-    "item_type": "Weapon Melee",
-    "item_ability": "Damage bonus",
-    "item_weapon_enchantment": "Burning",
-    "item_weapon_enchantment_string": "Burning-25"
+    "item_type": "Weapon Range",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Frightening",
+    "item_weapon_enchantment_string": "Frightening-5"
   }
 ]

@@ -41,3 +41,29 @@
 [ 01:55:00.469 23-03-2017  ERROR ] java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 21 column 10 path $[0].map_enemy_loc[0]
 [ 12:13:37.638 31-03-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 10 column 22 path $[0].output_map_list[0].map_size
 [ 12:13:37.723 31-03-2017  ERROR ] java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 10 column 22 path $[0].output_map_list[0].map_size
+[ 14:36:05.374 07-04-2017  INFO ] Player not in range to attack...
+[ 14:36:07.477 07-04-2017  INFO ] No item found
+[ 14:36:23.805 07-04-2017  INFO ] Player not in range to attack...
+[ 14:36:25.824 07-04-2017  INFO ] No item found
+[ 16:20:04.783 07-04-2017  INFO ] Human Player move
+[ 16:20:04.792 07-04-2017  INFO ] Human Player attack
+[ 16:20:04.797 07-04-2017  INFO ] Player not in range to attack...
+[ 16:20:06.802 07-04-2017  INFO ] Human Player interact
+[ 16:20:06.807 07-04-2017  INFO ] No item found
+[ 16:20:08.812 07-04-2017  INFO ] Agressive NPC Move
+[ 16:20:10.826 07-04-2017  INFO ] Agressive NPC Attack
+[ 16:20:12.840 07-04-2017  INFO ] Agressive NPC interact
+[ 16:20:14.853 07-04-2017  INFO ] Agressive NPC Move
+[ 16:20:16.866 07-04-2017  INFO ] Agressive NPC Attack
+[ 16:20:18.879 07-04-2017  INFO ] Agressive NPC interact
+[ 16:20:27.792 07-04-2017  INFO ] Human Player move
+[ 16:20:27.806 07-04-2017  INFO ] Human Player attack
+[ 16:20:27.812 07-04-2017  INFO ] Player not in range to attack...
+[ 16:20:29.817 07-04-2017  INFO ] Human Player interact
+[ 16:20:29.831 07-04-2017  INFO ] No item found
+[ 16:20:31.843 07-04-2017  INFO ] Agressive NPC Move
+[ 16:20:33.856 07-04-2017  INFO ] Agressive NPC Attack
+[ 16:20:35.870 07-04-2017  INFO ] Agressive NPC interact
+[ 16:20:37.883 07-04-2017  INFO ] Agressive NPC Move
+[ 16:20:39.896 07-04-2017  INFO ] Agressive NPC Attack
+[ 16:20:41.906 07-04-2017  INFO ] Agressive NPC interact

@@ -39,6 +39,13 @@ public class LogHelper {
 	 * @type String
 	 */
 	public static final String TYPE_ERROR = "ERROR";
+	
+	/**
+	 * Constant for game error log
+	 * 
+	 * @type String
+	 */
+	public static final String TYPE_INFO_ERROR = "GAME_ERROR";
 
 	/**
 	 * this method used to store log

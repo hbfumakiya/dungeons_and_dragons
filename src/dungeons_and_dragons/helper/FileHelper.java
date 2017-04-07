@@ -655,13 +655,15 @@ public class FileHelper {
 				for (int i = 0; i < maps.size(); i++) {
 					GameMapModel map = maps.get(i);
 					ItemModel tempItem = map.getMap_chest().getItem();
-					if (tempItem.getItem_id() == item.getItem_id()) {
-						tempItem.setItem_name(item.getItem_name());
-						tempItem.setItem_type(item.getItem_type());
-						tempItem.setItem_ability(item.getItem_ability());
-						tempItem.setItem_point(item.getItem_point());
-						tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
-						tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
+					if(tempItem != null) {
+						if (tempItem.getItem_id() == item.getItem_id()) {
+							tempItem.setItem_name(item.getItem_name());
+							tempItem.setItem_type(item.getItem_type());
+							tempItem.setItem_ability(item.getItem_ability());
+							tempItem.setItem_point(item.getItem_point());
+							tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+							tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
+						}
 					}
 
 					ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();
@@ -794,13 +796,15 @@ public class FileHelper {
 					for (int i = 0; i < maps.size(); i++) {
 						GameMapModel map = maps.get(i);
 						ItemModel tempItem = map.getMap_chest().getItem();
-						if (tempItem.getItem_id() == item.getItem_id()) {
-							tempItem.setItem_name(item.getItem_name());
-							tempItem.setItem_type(item.getItem_type());
-							tempItem.setItem_ability(item.getItem_ability());
-							tempItem.setItem_point(item.getItem_point());
-							tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
-							tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
+						if(tempItem != null) {
+							if (tempItem.getItem_id() == item.getItem_id()) {
+								tempItem.setItem_name(item.getItem_name());
+								tempItem.setItem_type(item.getItem_type());
+								tempItem.setItem_ability(item.getItem_ability());
+								tempItem.setItem_point(item.getItem_point());
+								tempItem.setItem_weapon_enchantment(item.getItem_weapon_enchantment());
+								tempItem.setItem_weapon_enchantment_string(item.getItem_weapon_enchantment_string());
+							}
 						}
 
 						ArrayList<MapCharacter> characters1 = map.getMap_enemy_loc();

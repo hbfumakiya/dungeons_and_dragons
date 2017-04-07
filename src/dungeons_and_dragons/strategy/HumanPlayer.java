@@ -32,11 +32,12 @@ public class HumanPlayer implements Strategy {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 		}
-		System.out.println("after wait");
+		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player move");
 	}
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
+		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player attack");
 		System.out.println("Human Player Attack");
 		try {
 			if(gamePlayModel.validateAttack(gamePlayModel.charachterTempPoint)){
@@ -54,6 +55,7 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
+		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player interact");
 		System.out.println("Human Player Interact");
 		try {
 			gamePlayModel.gameStatus = gamePlayModel.initateInteract(gamePlayModel.charachterTempPoint);

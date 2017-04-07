@@ -16,6 +16,10 @@ public class CharacterStrategy {
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
+	
+	public Strategy getStrategy() {
+		return this.strategy;
+	}
 
 	public void executeStrategy(GamePlayModel gamePlayModel) {
 		

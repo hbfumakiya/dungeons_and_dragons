@@ -7,7 +7,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.WatchEvent;
 import java.util.ArrayList;
+
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,7 +41,7 @@ import dungeons_and_dragons.view.GamePlayView;
  * 
  * @author Tejas Sadrani & Urmil Kansara & Mihir Pujara
  */
-public class GamePlayController implements KeyListener, ActionListener, WindowListener {
+public class GamePlayController implements KeyListener, ActionListener, WindowListener, Runnable {
 
 	/**
 	 * This creates new game play model which is being observed
@@ -48,6 +58,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public GamePlayView gamePlayView;
 
 	private ArrayList<CharacterModel> shownInventories;
+
+	public Thread fileThread;
 
 	/**
 	 * Default constructor of Map Grid controller
@@ -73,9 +85,15 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		matchNPCToPlayer();
 
+		this.fileThread = new Thread(this);
+		this.fileThread.start();
+		
 		this.gamePlayModel.calculateTurn();
 
 		this.gamePlayModel.startGame();
+
+		
+
 	}
 
 	/**
@@ -145,7 +163,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
 				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
-				//GameStatus status = this.gamePlayModel.moveCharacter(this.gamePlayModel.charachterTempPoint, this.gamePlayModel.charachterOldPoint);
+				// GameStatus status =
+				// this.gamePlayModel.moveCharacter(this.gamePlayModel.charachterTempPoint,
+				// this.gamePlayModel.charachterOldPoint);
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
@@ -384,4 +404,43 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 	}
 
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				WatchService watcher = FileSystems.getDefault().newWatchService();
+				Path dir = Paths.get("res");
+				dir.register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
+
+				while (true) {
+					WatchKey key;
+					try {
+						key = watcher.take();
+					} catch (InterruptedException ex) {
+						return;
+					}
+					for (WatchEvent<?> event : key.pollEvents()) {
+						WatchEvent.Kind<?> kind = event.kind();
+						
+						@SuppressWarnings("unchecked")
+						WatchEvent<Path> ev = (WatchEvent<Path>) event;
+						Path fileName = ev.context();
+						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
+							System.out.println("Modify");
+						} else if(kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
+							System.out.println("Create");
+						}
+					}
+		
+					boolean valid = key.reset();
+					if (!valid) {
+						break;
+					}
+				}
+
+			} catch (IOException ex) {
+				System.err.println(ex);
+			}
+		}
+	}
 }
