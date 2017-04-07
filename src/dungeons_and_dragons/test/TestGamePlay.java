@@ -207,13 +207,15 @@ public class TestGamePlay {
 	@Test
 	public void testStartGame(){
 		MapCharacter character=new MapCharacter();
-		CharacterStrategy characterStrategy=new CharacterStrategy();
 		character.setCharacterType(MapCharacter.NORMAL);
-		//characterStrategy.setStrategy(new HumanPlayer());
+		GameMapModel gameMapModel=new GameMapModel(7, 7);
 		GamePlayModel gpm=new GamePlayModel();
+		gpm.calculateTurn();
 		gpm.startGame();
-		Strategy strategy;
-		
+		CharacterStrategy characterStrategy=new CharacterStrategy();
+		System.out.println(characterStrategy.getStrategy());
+		System.out.println(MapCharacter.NORMAL);
+		Assert.assertEquals(characterStrategy.getStrategy(), MapCharacter.NORMAL);
 		
 	}
 }
