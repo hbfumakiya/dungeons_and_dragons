@@ -4,6 +4,7 @@
 package dungeons_and_dragons.strategy;
 
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.GamePlayModel;
 
 /**
@@ -17,6 +18,9 @@ public class AggressiveNPC implements Strategy {
 		LogHelper.Log(LogHelper.TYPE_INFO_ERROR, "Agressive NPC Move");
 		System.out.println("Agresive NPC Move");
 		try {
+			
+			MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+			gamePlayModel.moveEnemy(enemy);
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, "");
