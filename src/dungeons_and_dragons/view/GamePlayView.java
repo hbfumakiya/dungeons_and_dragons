@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.Game_constants;
@@ -209,6 +210,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.consoleTextArea.setVisible(true);
 		this.consoleTextArea.setForeground(Color.WHITE);
 		this.consoleTextArea.setBackground(Color.BLACK);
+		DefaultCaret caret = (DefaultCaret)this.consoleTextArea.getCaret();
+	    caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
 
 		this.consolePanel = new JScrollPane(this.consoleTextArea);
 		this.consolePanel.setPreferredSize(new Dimension(950, 130));

@@ -14,11 +14,7 @@ public class HumanPlayer implements Strategy {
 	
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		
 		int i = 3;
-		System.out.println(gamePlayModel.getCharacterModel().getCharacter_name() + " name");
-		System.out.println("Human Player Move");
-		
 		while(i>0)
 		{
 			try {
@@ -26,13 +22,13 @@ public class HumanPlayer implements Strategy {
 					gamePlayModel.gameThread.wait();
 					//perform move checks 
 					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,gamePlayModel.charachterOldPoint);
+					LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moved");
 					i--;
 				}
 			} catch (InterruptedException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 		}
-		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player move");
 	}
 
 	@Override

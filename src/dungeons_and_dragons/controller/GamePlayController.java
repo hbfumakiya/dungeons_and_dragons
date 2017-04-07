@@ -164,12 +164,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
 				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
-				// GameStatus status =
-				// this.gamePlayModel.moveCharacter(this.gamePlayModel.charachterTempPoint,
-				// this.gamePlayModel.charachterOldPoint);
-
+				
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
+						LogHelper.Log(LogHelper.TYPE_INFO, "LEFT key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -186,6 +184,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
+						LogHelper.Log(LogHelper.TYPE_INFO, "RIGHT key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -201,6 +200,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x - 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
+						LogHelper.Log(LogHelper.TYPE_INFO, "UP key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -216,6 +216,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x + 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
+						LogHelper.Log(LogHelper.TYPE_INFO, "DOWN key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 

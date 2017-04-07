@@ -14,13 +14,12 @@ public class AggressiveNPC implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Agressive NPC Move");
+		LogHelper.Log(LogHelper.TYPE_INFO_ERROR, "Agressive NPC Move");
 		System.out.println("Agresive NPC Move");
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogHelper.Log(LogHelper.TYPE_ERROR, "");
 		}
 
 	}
