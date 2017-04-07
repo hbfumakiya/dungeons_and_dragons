@@ -865,81 +865,112 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public void moveEnemy(MapCharacter enemy) {
 		Point playerPosition = this.gameCharacterPosition;
-		int frightening = 0;//means frightening weapon is taken
-				
-				for(int i = 0;i<enemy.getCharacter().getItems().size();i++)
-				{
-					if(enemy.getCharacter().getItems().get(i).getItem_weapon_enchantment_string().contains("Frightening"))
-					{
-						frightening = 1;
-					}
-				}
-				if(frightening == 0)
+				if(enemy.Frightening == false)
 				{
 					moveAggresiveEnemy(enemy,playerPosition);
+					moveAggresiveEnemy(enemy, playerPosition);
+					moveAggresiveEnemy(enemy, playerPosition);
 				}
-				else if(frightening == 1)
+				else if(enemy.Frightening == true && enemy.frighteningTurn<=enemy.frighteningBonus-1)
 				{
+					++enemy.frighteningTurn;
 					moveFrightenedEnemy(enemy,playerPosition);
+					moveFrightenedEnemy(enemy, playerPosition);
+					moveFrightenedEnemy(enemy, playerPosition);
 				}
 		
 		setChanged();
 		notifyObservers();
 		
 	}
+	/**
+	 * Frightened enemy move towards walls
+	 * @param enemy  enemy
+	 * @param playerPosition player current position
+	 */
 	private void moveFrightenedEnemy(MapCharacter enemy, Point playerPosition) {
 		int mapSizeX = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().x-1;
 		int mapSizeY = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().y-1;
+		
+		int enemyX = enemy.getX();
+		int enemyY = enemy.getY();
 		//go down
-		if(playerPosition.x < enemy.getX() && enemy.getX()<mapSizeX)
-		{
+		if(playerPosition.x < enemy.getX() && enemy.getX()<mapSizeX && this.checkWalls(new Point(enemyX+1,enemyY)))
+		{	
+			
 			enemy.setX(enemy.getX()+1);
 			
 		}
 		//go up
-		else if(playerPosition.x > enemy.getX() && enemy.getX()>0)
+		else if(playerPosition.x > enemy.getX() && enemy.getX()>0 && this.checkWalls(new Point(enemyX-1,enemyY)))
 		{
 			enemy.setX(enemy.getX()-1);
 			
 		}
 		//go left
-		else if(playerPosition.y < enemy.getY() && enemy.getY()>0)
+		else if(playerPosition.y < enemy.getY() && enemy.getY()>0 && this.checkWalls(new Point(enemyX,enemyY+1)))
 		{
 			enemy.setY(enemy.getY()+1);
 			
 		}
 		//go right
-		else if(playerPosition.y > enemy.getY() && enemy.getY()<mapSizeY)
+		else if(playerPosition.y > enemy.getY() && enemy.getY()<mapSizeY && this.checkWalls(new Point(enemyX,enemyY-1)))
 		{
 			enemy.setY(enemy.getY()-1);
 			
 		}
 		
+		setChanged();
+		notifyObservers();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
-	//gamePlayModel.moveEnemy(enemy);
-
+	
+	/**
+	 * aggresive enemy move towards player
+	 * @param enemy enemy
+	 * @param playerPosition player current position
+	 */
 	private void moveAggresiveEnemy(MapCharacter enemy,Point playerPosition) {
-		//Point playerPosition = this.gameCharacterPosition;
-		if(playerPosition.x > enemy.getX())
+		int enemyX = enemy.getX();
+		int enemyY = enemy.getY();
+		//go down
+		if(playerPosition.x > enemy.getX() && this.checkWalls(new Point(enemyX+1,enemyY)))
 		{
 			enemy.setX(enemy.getX()+1);
 			
 		}
-		else if(playerPosition.x < enemy.getX())
+		//go up
+		else if(playerPosition.x < enemy.getX() && this.checkWalls(new Point(enemyX-1,enemyY)))
 		{
 			enemy.setX(enemy.getX()-1);
 			
 		}
-		else if(playerPosition.y > enemy.getY())
+		//go left
+		else if(playerPosition.y > enemy.getY() && this.checkWalls(new Point(enemyX,enemyY+1)))
 		{
 			enemy.setY(enemy.getY()+1);
 			
 		}
-		else if(playerPosition.y < enemy.getY())
+		//go right
+		else if(playerPosition.y < enemy.getY() && this.checkWalls(new Point(enemyX,enemyY-1)))
 		{
 			enemy.setY(enemy.getY()-1);
 			
+		}
+		
+		setChanged();
+		notifyObservers();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
 		}
 		
 	}

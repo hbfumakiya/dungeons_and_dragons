@@ -22,6 +22,22 @@ public class MapCharacter {
 	
 	public static final String ENEMY = "Enemy";
 	
+	public boolean Freezing = false;
+	public boolean Burning = false;
+	public boolean Slaying = false;
+	public boolean Frightening = false;
+	public boolean Pacifying  = false;
+	
+	public int frighteningBonus = 0;
+	
+	public int freezingBonus = 0;
+	
+	public int burningBonus = 0;
+	
+	public int frighteningTurn = 0;
+	public int freezingTurn = 0;
+	public int burningTurn = 0;
+	
 	@Expose
 	private int x;
 	

@@ -20,6 +20,7 @@ public class AggressiveNPC implements Strategy {
 		try {
 			
 			MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+			//if(enemy.frighteningTurn<=)
 			gamePlayModel.moveEnemy(enemy);
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

@@ -2,23 +2,35 @@
   "gamePlayId": 0,
   "campaignModel": {
     "campaign_id": 1,
-    "campaign_name": "df",
+    "campaign_name": "test",
     "input_map_list": [],
     "output_map_list": [
       {
-        "map_id": 2,
-        "map_name": "MIhi",
-        "map_size": "10,10",
+        "map_id": 1,
+        "map_name": "test",
+        "map_size": "9,9",
         "map_chest": {
-          "x": -1,
-          "y": -1
+          "x": 6,
+          "y": 6,
+          "item": {
+            "item_id": 1,
+            "item_name": "UR",
+            "item_point": 4,
+            "item_type": "Armor",
+            "item_ability": "Armor class",
+            "item_weapon_enchantment": "Burning",
+            "item_weapon_enchantment_string": "Burning-20"
+          }
         },
-        "map_walls": [],
-        "map_entry_door": "0,9",
+        "map_walls": [
+          "2,4",
+          "3,2"
+        ],
+        "map_entry_door": "0,8",
         "map_enemy_loc": [
           {
-            "x": 5,
-            "y": 5,
+            "x": 3,
+            "y": 4,
             "character": {
               "character_id": 1,
               "character_name": "Test",
@@ -62,7 +74,7 @@
               },
               "hitpoints": 11,
               "attackBonus": 8,
-              "damageBonus": 5,
+              "damageBonus": 1,
               "armorClass": 12,
               "isAlive": true
             },
@@ -70,8 +82,8 @@
             "characterStrategy": {}
           },
           {
-            "x": 7,
-            "y": 4,
+            "x": 4,
+            "y": 2,
             "character": {
               "character_id": 2,
               "character_name": "Test 1",
@@ -113,9 +125,9 @@
                 "wisdom": 0,
                 "charisma": 1
               },
-              "hitpoints": 88,
+              "hitpoints": 98,
               "attackBonus": 18,
-              "damageBonus": 1,
+              "damageBonus": 3,
               "armorClass": 13,
               "isAlive": true
             },
@@ -123,82 +135,24 @@
             "characterStrategy": {}
           }
         ],
-        "map_exit_door": "9,0"
-      },
-      {
-        "map_id": 1,
-        "map_name": "1",
-        "map_size": "7,7",
-        "map_chest": {
-          "x": -1,
-          "y": -1
-        },
-        "map_walls": [],
-        "map_entry_door": "0,6",
-        "map_enemy_loc": [
-          {
-            "x": 3,
-            "y": 3,
-            "character": {
-              "character_id": 1,
-              "character_name": "Test",
-              "strength": 0,
-              "items": [
-                {
-                  "item_id": 3,
-                  "item_name": "Range",
-                  "item_point": 5,
-                  "item_type": "Weapon Range",
-                  "item_ability": "Attack bonus",
-                  "item_weapon_enchantment": "Frightening",
-                  "item_weapon_enchantment_string": "Frightening-5"
-                }
-              ],
-              "backPackItems": [],
-              "character_level": 1,
-              "abilityScores": {
-                "strength": 12,
-                "dexterity": 14,
-                "constitution": 12,
-                "intelligence": 12,
-                "wisdom": 8,
-                "charisma": 10
-              },
-              "rawAbilityScores": {
-                "strength": 12,
-                "dexterity": 14,
-                "constitution": 12,
-                "intelligence": 12,
-                "wisdom": 8,
-                "charisma": 10
-              },
-              "modifiers": {
-                "strength": 1,
-                "dexterity": 2,
-                "constitution": 1,
-                "intelligence": 1,
-                "wisdom": -1,
-                "charisma": 0
-              },
-              "hitpoints": 11,
-              "attackBonus": 8,
-              "damageBonus": 3,
-              "armorClass": 12,
-              "isAlive": true
-            },
-            "characterType": "Enemy",
-            "characterStrategy": {}
-          }
-        ],
-        "map_exit_door": "6,0"
+        "map_exit_door": "8,0"
       }
     ]
   },
   "characterModel": {
-    "character_id": 1,
-    "character_name": "Test",
+    "character_id": 3,
+    "character_name": "char1",
     "strength": 0,
     "items": [
+      {
+        "item_id": 1,
+        "item_name": "UR",
+        "item_point": 4,
+        "item_type": "Armor",
+        "item_ability": "Armor class",
+        "item_weapon_enchantment": "Burning",
+        "item_weapon_enchantment_string": "Burning-20"
+      },
       {
         "item_id": 3,
         "item_name": "Range",
@@ -210,35 +164,35 @@
       }
     ],
     "backPackItems": [],
-    "character_level": 1,
+    "character_level": 2,
     "abilityScores": {
-      "strength": 12,
-      "dexterity": 14,
-      "constitution": 12,
-      "intelligence": 12,
+      "strength": 17,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 9,
       "wisdom": 8,
-      "charisma": 10
+      "charisma": 8
     },
     "rawAbilityScores": {
-      "strength": 12,
-      "dexterity": 14,
-      "constitution": 12,
-      "intelligence": 12,
+      "strength": 17,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 9,
       "wisdom": 8,
-      "charisma": 10
+      "charisma": 8
     },
     "modifiers": {
-      "strength": 1,
-      "dexterity": 2,
-      "constitution": 1,
-      "intelligence": 1,
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": -1,
       "wisdom": -1,
-      "charisma": 0
+      "charisma": -1
     },
-    "hitpoints": 11,
-    "attackBonus": 8,
+    "hitpoints": 21,
+    "attackBonus": 7,
     "damageBonus": 1,
-    "armorClass": 12,
+    "armorClass": 14,
     "isAlive": true
   },
   "currentMapIndex": 0,

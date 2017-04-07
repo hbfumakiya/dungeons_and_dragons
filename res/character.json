@@ -92,5 +92,61 @@
     "damageBonus": 3,
     "armorClass": 13,
     "isAlive": true
+  },
+  {
+    "character_id": 3,
+    "character_name": "char1",
+    "strength": 0,
+    "items": [
+      {
+        "item_id": 1,
+        "item_name": "UR",
+        "item_point": 4,
+        "item_type": "Armor",
+        "item_ability": "Armor class",
+        "item_weapon_enchantment": "Burning",
+        "item_weapon_enchantment_string": "Burning-20"
+      },
+      {
+        "item_id": 3,
+        "item_name": "Range",
+        "item_point": 5,
+        "item_type": "Weapon Range",
+        "item_ability": "Attack bonus",
+        "item_weapon_enchantment": "Frightening",
+        "item_weapon_enchantment_string": "Frightening-5"
+      }
+    ],
+    "backPackItems": [],
+    "character_level": 2,
+    "abilityScores": {
+      "strength": 17,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 9,
+      "wisdom": 8,
+      "charisma": 8
+    },
+    "rawAbilityScores": {
+      "strength": 17,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 9,
+      "wisdom": 8,
+      "charisma": 8
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": -1,
+      "wisdom": -1,
+      "charisma": -1
+    },
+    "hitpoints": 21,
+    "attackBonus": 7,
+    "damageBonus": 1,
+    "armorClass": 14,
+    "isAlive": true
   }
 ]
