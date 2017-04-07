@@ -7,17 +7,26 @@ import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.Game_constants;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
+import dungeons_and_dragons.strategy.CharacterStrategy;
+import dungeons_and_dragons.strategy.HumanPlayer;
+import dungeons_and_dragons.strategy.Strategy;
 
 /**
  * 
@@ -28,6 +37,8 @@ import dungeons_and_dragons.model.ItemModel;
 public class TestGamePlay {
 
 	
+
+
 	@Test
 	public void testMovementUp() {
 		GamePlayModel gamePlayModel = new GamePlayModel();
@@ -172,5 +183,37 @@ public class TestGamePlay {
 		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getX(), -1);
 		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getY(), -1);
 
+	}
+	
+	@Test
+	public void testCalculateTurn(){
+		CharacterModel characterModel=new CharacterModel();
+		Map<Integer, MapCharacter> tempValues = new HashMap<Integer, MapCharacter>();
+		// roll dice and calculate turn values for character
+		MapCharacter currentCharacter = new MapCharacter();
+		currentCharacter.setCharacter(characterModel);
+		currentCharacter.setCharacterType(MapCharacter.NORMAL);
+		Integer roll=5,dex=6;
+		
+		tempValues.put(roll + dex, currentCharacter);
+
+		Map<Integer, MapCharacter> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
+
+		treeMap.putAll(tempValues);
+		Assert.assertEquals(1,treeMap.size());
+
+	}
+	
+	@Test
+	public void testStartGame(){
+		MapCharacter character=new MapCharacter();
+		CharacterStrategy characterStrategy=new CharacterStrategy();
+		character.setCharacterType(MapCharacter.NORMAL);
+		//characterStrategy.setStrategy(new HumanPlayer());
+		GamePlayModel gpm=new GamePlayModel();
+		gpm.startGame();
+		Strategy strategy;
+		
+		
 	}
 }
