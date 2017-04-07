@@ -33,6 +33,7 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.GamePlayView;
+import sun.rmi.runtime.Log;
 
 /**
  * The GamePlayController translates the user's interactions with the
@@ -426,9 +427,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						WatchEvent<Path> ev = (WatchEvent<Path>) event;
 						Path fileName = ev.context();
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
-							System.out.println("Modify");
+							this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()+LogHelper.getLastLine()+"\n");
 						} else if(kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
-							System.out.println("Create");
+							this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()+LogHelper.getLastLine()+"\n");
 						}
 					}
 		

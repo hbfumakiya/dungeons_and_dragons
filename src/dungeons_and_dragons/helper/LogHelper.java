@@ -10,6 +10,8 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * this class is for creating logs during game playing time
@@ -76,5 +78,23 @@ public class LogHelper {
 		} catch (IOException e) {
 		}
 
+	}
+	
+	public static String getLastLine() {
+		Path path = Paths.get(LOG_FILE);
+		Charset charset = StandardCharsets.UTF_8;
+		ArrayList<String> details = new ArrayList<String>();
+		
+		String line = "";
+
+		try {
+			if (Files.exists(path)) {
+				List<String> lines = Files.readAllLines(path);
+				ArrayList<String> filteredLines= lines.stream().filter(s -> (s.contains(TYPE_INFO) || s.contains(TYPE_INFO_ERROR))).collect(Collectors.toCollection(ArrayList::new));
+				line = filteredLines.get(filteredLines.size()-1);
+			} 
+		} catch (IOException e) {
+		}
+		return line;
 	}
 }

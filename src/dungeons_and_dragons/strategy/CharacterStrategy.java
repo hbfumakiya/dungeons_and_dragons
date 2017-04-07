@@ -17,10 +17,12 @@ public class CharacterStrategy {
 		this.strategy = strategy;
 	}
 	
+	/**
+	 * @return the strategy
+	 */
 	public Strategy getStrategy() {
-		return this.strategy;
+		return strategy;
 	}
-
 
 	public void executeStrategy(GamePlayModel gamePlayModel) {
 		

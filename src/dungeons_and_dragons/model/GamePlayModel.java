@@ -396,6 +396,7 @@ public class GamePlayModel extends Observable implements Runnable {
 			case MapCharacter.FRIENDLY:
 				characterStrategy = new CharacterStrategy();
 				characterStrategy.setStrategy(new FriendlyNPC());
+				
 				this.turnList.get(i).setCharacterStrategy(characterStrategy);
 				break;
 			}
