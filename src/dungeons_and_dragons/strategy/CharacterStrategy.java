@@ -17,10 +17,6 @@ public class CharacterStrategy {
 		this.strategy = strategy;
 	}
 	
-	public Strategy getStrategy() {
-		return this.strategy;
-	}
-
 	/**
 	 * @return the strategy
 	 */
