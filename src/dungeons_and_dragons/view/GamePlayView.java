@@ -86,6 +86,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	private JLabel empty;
 
 	public JButton backButton;
+	public JButton saveButton;
 
 	/**
 	 * Constructor to initialize variables and objects of gameplay model and
@@ -155,15 +156,18 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		campaignNameLabel = new JLabel("Campaign -->");
 		campaignName = new JLabel(this.gamePlayModel.getCampaignModel().getCampaign_name());
-		backButton = new JButton("back");
+		backButton = new JButton("Back");
+		saveButton = new JButton("Save");
 		mapNameLabel = new JLabel("Map -->");
 		mapName = new JLabel(this.currentMap.getMap_name());
 
 		this.topPanel.add(campaignNameLabel);
 		this.topPanel.add(campaignName);
-		this.topPanel.add(backButton);
+		this.topPanel.add(saveButton);
+		
 		this.topPanel.add(mapNameLabel);
 		this.topPanel.add(mapName);
+		this.topPanel.add(backButton);
 
 		this.mapPanel = new JPanel();
 		this.mapPanel.setBounds(5, 50, 695, 445);
@@ -548,6 +552,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	public void setListener(GamePlayController gamePlayController) {
 		this.addKeyListener(gamePlayController);
 		this.backButton.addActionListener(gamePlayController);
+		this.saveButton.addActionListener(gamePlayController);
 	}
 
 	@Override

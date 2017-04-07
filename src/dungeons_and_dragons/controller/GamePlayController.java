@@ -1,5 +1,8 @@
 package dungeons_and_dragons.controller;
 
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,16 +14,15 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
-import java.nio.file.WatchEvent;
 import java.util.ArrayList;
 
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
@@ -33,7 +35,6 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 import dungeons_and_dragons.view.CharacterInventoryView;
 import dungeons_and_dragons.view.GamePlayView;
-import sun.rmi.runtime.Log;
 
 /**
  * The GamePlayController translates the user's interactions with the
@@ -88,12 +89,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
-		
+
 		this.gamePlayModel.calculateTurn();
 
 		this.gamePlayModel.startGame();
-
-		
 
 	}
 
@@ -164,7 +163,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
 				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
-				
+
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
 						LogHelper.Log(LogHelper.TYPE_INFO, "LEFT key pressed");
@@ -326,6 +325,14 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			new NewGameController();
 			this.gamePlayView.dispose();
 
+		} else if (e.getSource().equals(this.gamePlayView.saveButton)) {
+			JFileChooser c = new JFileChooser();
+			c.setFileFilter(new FileNameExtensionFilter("JSON File","json"));
+			// Demonstrate "Save" dialog:
+			int rVal = c.showSaveDialog(this.gamePlayView);
+			if (rVal == JFileChooser.APPROVE_OPTION) {
+				// save
+			}
 		} else {
 			MapButton button = (MapButton) e.getSource();
 			if (button != null && button.getButton_type().equals(Game_constants.GRID_BUTTON_TYPE)) {
@@ -423,17 +430,19 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 					}
 					for (WatchEvent<?> event : key.pollEvents()) {
 						WatchEvent.Kind<?> kind = event.kind();
-						
+
 						@SuppressWarnings("unchecked")
 						WatchEvent<Path> ev = (WatchEvent<Path>) event;
 						Path fileName = ev.context();
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
-							this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()+LogHelper.getLastLine()+"\n");
-						} else if(kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
-							this.gamePlayView.consoleTextArea.setText(this.gamePlayView.consoleTextArea.getText()+LogHelper.getLastLine()+"\n");
+							this.gamePlayView.consoleTextArea.setText(
+									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
+						} else if (kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
+							this.gamePlayView.consoleTextArea.setText(
+									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
 						}
 					}
-		
+
 					boolean valid = key.reset();
 					if (!valid) {
 						break;

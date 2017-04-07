@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.google.gson.JsonSyntaxException;
 
@@ -43,33 +46,31 @@ public class GameController implements ActionListener {
 
 		// show game view
 		gameView.setVisible(true);
-		
-		
+
 		try {
 			FileHelper.getItems();
 		} catch (JsonSyntaxException | IOException e) {
 			JOptionPane.showMessageDialog(new JFrame(), "Invalid Item File.");
 		}
-		
+
 		try {
 			FileHelper.getCharcters();
 		} catch (JsonSyntaxException | IOException e) {
 			JOptionPane.showMessageDialog(new JFrame(), "Invalid Character File.");
 		}
-		
+
 		try {
 			FileHelper.getMaps();
 		} catch (JsonSyntaxException | IOException e1) {
 			JOptionPane.showMessageDialog(new JFrame(), "Invalid Map File.");
 		}
-		
-		
+
 		try {
 			FileHelper.getCampaigns();
 		} catch (JsonSyntaxException | IOException e) {
 			JOptionPane.showMessageDialog(new JFrame(), "Invalid Campaign File.");
 		}
-		
+
 	}
 
 	/**
@@ -121,11 +122,17 @@ public class GameController implements ActionListener {
 	 */
 	private void showLoadGameWindow() {
 
-		// hide game window
-		// this.setVisible(false);
-
-		// show load game window....
-
+		JFileChooser c = new JFileChooser();
+		c.setFileFilter(new FileNameExtensionFilter("JSON File","json"));
+		// Demonstrate "Open" dialog:
+		int rVal = c.showOpenDialog(this.gameView);
+		if (rVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println(c.getSelectedFile().getName());
+			System.out.println(c.getCurrentDirectory().toString());
+			
+			
+			// do here to load map
+		}
 	}
 
 	/**
