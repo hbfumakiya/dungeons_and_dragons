@@ -50,6 +50,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 	 * @type String
 	 */
 	public String mapWindowTitle = "Play Game";
+	
 
 	public GamePlayModel gamePlayModel;
 	public GameMapModel currentMap;
@@ -231,12 +232,13 @@ public class GamePlayView extends JFrame implements Observer, View {
 		// set minimum size of frame
 		this.setMinimumSize(new Dimension(1000, 700));
 		this.setResizable(false);
-
+		
 		// Display the window.
 		this.pack();
 		this.setLocationRelativeTo(null);
 
 		this.backButton.setFocusable(false);
+		this.saveButton.setFocusable(false);
 	}
 
 	/**
@@ -287,6 +289,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 						maps[i][j].setBackground(Game_constants.ENEMIES);
 						if (!character.getCharacter().isAlive())
 							maps[i][j].setText("D");
+						
 						maps[i][j].setPointValue(2);
 						maps[i][j].setCharacterType(MapButton.ENEMY);
 						maps[i][j].setCharacter(character.getCharacter());

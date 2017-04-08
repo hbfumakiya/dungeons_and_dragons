@@ -14,7 +14,7 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
- * @author Mihir Pujara
+ * @author Mihir Pujara,Urmil Kansara
  *
  */
 public class AggressiveNPC implements Strategy {
