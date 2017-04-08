@@ -940,25 +940,25 @@ public class GamePlayModel extends Observable implements Runnable {
 		int enemyX = enemy.getX();
 		int enemyY = enemy.getY();
 		//go down
-		if(playerPosition.x > enemy.getX() && this.checkWalls(new Point(enemyX+1,enemyY)))
+		if(playerPosition.x > enemy.getX())// && this.checkWalls(new Point(enemyX+1,enemyY)))
 		{
 			enemy.setX(enemy.getX()+1);
 			
 		}
 		//go up
-		else if(playerPosition.x < enemy.getX() && this.checkWalls(new Point(enemyX-1,enemyY)))
+		else if(playerPosition.x < enemy.getX())// && this.checkWalls(new Point(enemyX-1,enemyY)))
 		{
 			enemy.setX(enemy.getX()-1);
 			
 		}
 		//go left
-		else if(playerPosition.y > enemy.getY() && this.checkWalls(new Point(enemyX,enemyY+1)))
+		else if(playerPosition.y > enemy.getY() )//&& this.checkWalls(new Point(enemyX,enemyY+1)))
 		{
 			enemy.setY(enemy.getY()+1);
 			
 		}
 		//go right
-		else if(playerPosition.y < enemy.getY() && this.checkWalls(new Point(enemyX,enemyY-1)))
+		else if(playerPosition.y < enemy.getY() )//&& this.checkWalls(new Point(enemyX,enemyY-1)))
 		{
 			enemy.setY(enemy.getY()-1);
 			

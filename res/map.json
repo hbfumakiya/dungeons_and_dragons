@@ -4,16 +4,16 @@
     "map_name": "test",
     "map_size": "9,9",
     "map_chest": {
-      "x": 6,
-      "y": 6,
+      "x": 0,
+      "y": 4,
       "item": {
-        "item_id": 1,
-        "item_name": "UR",
-        "item_point": 4,
+        "item_id": 2,
+        "item_name": "ty",
+        "item_point": 5,
         "item_type": "Armor",
         "item_ability": "Armor class",
-        "item_weapon_enchantment": "Burning",
-        "item_weapon_enchantment_string": "Burning-20"
+        "item_weapon_enchantment": "",
+        "item_weapon_enchantment_string": ""
       }
     },
     "map_walls": [
