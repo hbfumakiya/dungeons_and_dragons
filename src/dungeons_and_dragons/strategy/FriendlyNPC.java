@@ -60,7 +60,7 @@ public class FriendlyNPC implements Strategy {
 					ItemModel i = gamePlayModel.getCampaignModel().getOutput_map_list()
 							.get(gamePlayModel.getCurrentMapIndex()).getMap_chest().getItem();
 
-					msg = "Item " + i.getItem_name() + " has been added in your backpack";
+					msg = "Item " + i.getItem_name() + " has been added in friend's backpack";
 
 					gamePlayModel.removeChest(new Point(-1, -1));
 					LogHelper.Log(LogHelper.TYPE_INFO, msg);
