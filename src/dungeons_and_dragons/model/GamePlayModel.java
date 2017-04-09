@@ -1,5 +1,6 @@
 package dungeons_and_dragons.model;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import dungeons_and_dragons.controller.NPCItemController;
 import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.GameStatus;
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
@@ -697,46 +699,111 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param tempPoint
 	 * @return true if attack can be initiated on an enemy else it returns false
 	 */
-	public boolean validateAttack(Point tempPoint) {
+	public boolean validateAttack(MapCharacter characterFrom,MapCharacter characterTo) {
 
 		// check if player is on enemies cell or not
-		if (this.checkCharacter(tempPoint)) {
+		if(characterFrom.getX() == characterTo.getX() && characterFrom.getY() == characterTo.getY()) {
+			return true;
+		} else {
+			ArrayList<ItemModel> items = characterFrom.getCharacter().getItems();
+			if(items == null || items.size() < 1) {
+				return false;
+			}
+			boolean isRange = false;
+			boolean isMelle = false;
 
-			ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
-					.getMap_enemy_loc();
-
-			MapCharacter npcLocal = null;
-
-			for (int i = 0; i < chars.size(); i++) {
-				if ((tempPoint.getX() == chars.get(i).getX()) && (tempPoint.getY() == chars.get(i).getY())) {
-					npcLocal = chars.get(i);
+			for (int k = 0; k < items.size(); k++) {
+				if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+					isMelle = true;
+				} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+					isRange = true;
 				}
 			}
 
-			if (npcLocal != null) {
-				if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
-					return true;
+			if (!isRange && !isMelle) {
+				return false;
+			} else {
+				Point startPoint = new Point();
+				Point endPoint = new Point();
+				GameMapModel currentMap = this.getCampaignModel().getOutput_map_list()
+						.get(this.getCurrentMapIndex());
+
+				if (isMelle) {
+					startPoint.x = characterFrom.getX() - 1;
+					startPoint.y = characterFrom.getY() - 1;
+					endPoint.x = characterFrom.getX() + 1;
+					endPoint.y = characterFrom.getY() + 1;
 				} else {
-					return false;
+					startPoint.x = characterFrom.getX() - 2;
+					startPoint.y = characterFrom.getY() - 2;
+					endPoint.x = characterFrom.getX() + 2;
+					endPoint.y = characterFrom.getY() + 2;
 				}
-			}
 
-		}
-		// perform melle or range attack based on the weapon type if there
-		// exists an enemy within the specified range
-		else {
-			// check if there is an enemy in the range
-			for (int i = attackStartPoint.x; i < attackStartPoint.y; i++) {
-				for (int j = attackStartPoint.y; j < attackEndPoint.y; j++) {
-					if (this.checkCharacter(new Point(i, j))) {
-						this.enemyPoint = new Point(i, j);
-						return true;
-					}
+				Point mapSize = currentMap.getMap_size();
+				if (startPoint.x < 0) {
+					startPoint.x = 0;
+				}
+				if (startPoint.y < 0) {
+					startPoint.y = 0;
+				}
+				if (endPoint.x > mapSize.x) {
+					endPoint.x = mapSize.x;
+				}
+				if (endPoint.y > mapSize.y) {
+					endPoint.y = mapSize.y;
+				}
+
+				if (characterTo.getX() >= startPoint.x && characterTo.getX() <= endPoint.x
+						&& characterTo.getY() >= startPoint.y && characterTo.getY() <= endPoint.y) {
+					return true;
 				}
 			}
 		}
 
 		return false;
+	}
+
+	private void attackToPlayer(MapCharacter character) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void attackToEnemy(MapCharacter character) {
+		character.setX((int)this.getGameCharacterPosition().getX());
+		character.setY((int)this.getGameCharacterPosition().getY());
+		
+		for(MapCharacter turnChar:this.getTurnList()) {
+			if(turnChar.getCharacterType().equals(MapCharacter.ENEMY)) {
+				if(this.validateAttack(character, turnChar)) {
+					int temp = character.getCharacter().getAttackBonus();
+					int diceValue = DiceHelper.rollD20();
+					int stModi = character.getCharacter().getModifiers().getStraight();
+					for (int i = temp; i > 0; i -= 5) {
+						if((diceValue+stModi+i) >= turnChar.getCharacter().getArmorClass()) {
+							ArrayList<ItemModel> items = character.getCharacter().getItems();
+							if(items == null || items.size() < 1) {
+								break;
+							}
+							boolean isRange = false;
+							boolean isMelle = false;
+
+							for (int k = 0; k < items.size(); k++) {
+								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+									isMelle = true;
+								} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+									isRange = true;
+								}
+							}
+							
+							if(isMelle) {
+								
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -745,9 +812,16 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * 
 	 * @return
 	 */
-	public GameStatus initiateAttack() {
-		// TODO Auto-generated method stub
-		//this.fightWithEnemy(enemy, player);
+	public GameStatus initiateAttack(MapCharacter character) {
+		if(character.getCharacterType().equals(MapCharacter.COMPUTER) || character.getCharacterType().equals(MapCharacter.NORMAL)) {
+			
+			this.attackToEnemy(character);
+			
+			
+		} else if(character.getCharacterType().equals(MapCharacter.ENEMY)) {
+			
+			this.attackToPlayer(character);
+		}
 		return null;
 	}
 

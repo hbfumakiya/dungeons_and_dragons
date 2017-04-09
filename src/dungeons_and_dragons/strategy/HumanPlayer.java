@@ -11,17 +11,18 @@ import dungeons_and_dragons.model.GamePlayModel;
  *
  */
 public class HumanPlayer implements Strategy {
-	
+
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
+		LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 		int i = 3;
-		while(i>0)
-		{
+		while (i > 0) {
 			try {
 				synchronized (gamePlayModel.gameThread) {
 					gamePlayModel.gameThread.wait();
-					//perform move checks 
-					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,gamePlayModel.charachterOldPoint);
+					// perform move checks
+					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
+							gamePlayModel.charachterOldPoint);
 					LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moved");
 					i--;
 				}
@@ -34,14 +35,11 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player attack");
-		System.out.println("Human Player Attack");
 		try {
-			if(gamePlayModel.validateAttack(gamePlayModel.charachterTempPoint)){
-				gamePlayModel.gameStatus = gamePlayModel.initiateAttack();
-			}
-			else{
-				LogHelper.Log(LogHelper.TYPE_INFO,"Player not in range to attack...");
-			}
+
+			gamePlayModel.gameStatus = gamePlayModel
+					.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
+
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
