@@ -33,12 +33,13 @@ public class ComputerPlayer implements Strategy {
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player attack");
-		System.out.println("Computer Player attack");
 		try {
+
+			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
+			
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
 

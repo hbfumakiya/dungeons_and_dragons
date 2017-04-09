@@ -37,9 +37,8 @@ public class HumanPlayer implements Strategy {
 		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player attack");
 		try {
 
-			gamePlayModel.gameStatus = gamePlayModel
-					.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
-
+			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
+			
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());

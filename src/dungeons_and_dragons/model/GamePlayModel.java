@@ -398,7 +398,7 @@ public class GamePlayModel extends Observable implements Runnable {
 			case MapCharacter.FRIENDLY:
 				characterStrategy = new CharacterStrategy();
 				characterStrategy.setStrategy(new FriendlyNPC());
-				
+
 				this.turnList.get(i).setCharacterStrategy(characterStrategy);
 				break;
 			}
@@ -431,8 +431,8 @@ public class GamePlayModel extends Observable implements Runnable {
 				|| tempPoint.y >= this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
 						.getMap_size().getY()) {
 
-			/* TODO
-			 * this.gamePlayView.consoleTextArea.setForeground(Color.RED);
+			/*
+			 * TODO this.gamePlayView.consoleTextArea.setForeground(Color.RED);
 			 * this.gamePlayView.consoleTextArea
 			 * .setText(this.gamePlayView.consoleTextArea.getText() +
 			 * "Oops...Cannot go ahead...\n");
@@ -699,14 +699,14 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param tempPoint
 	 * @return true if attack can be initiated on an enemy else it returns false
 	 */
-	public boolean validateAttack(MapCharacter characterFrom,MapCharacter characterTo) {
+	public boolean validateAttack(MapCharacter characterFrom, MapCharacter characterTo) {
 
 		// check if player is on enemies cell or not
-		if(characterFrom.getX() == characterTo.getX() && characterFrom.getY() == characterTo.getY()) {
+		if (characterFrom.getX() == characterTo.getX() && characterFrom.getY() == characterTo.getY()) {
 			return true;
 		} else {
 			ArrayList<ItemModel> items = characterFrom.getCharacter().getItems();
-			if(items == null || items.size() < 1) {
+			if (items == null || items.size() < 1) {
 				return false;
 			}
 			boolean isRange = false;
@@ -725,8 +725,7 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				Point startPoint = new Point();
 				Point endPoint = new Point();
-				GameMapModel currentMap = this.getCampaignModel().getOutput_map_list()
-						.get(this.getCurrentMapIndex());
+				GameMapModel currentMap = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
 
 				if (isMelle) {
 					startPoint.x = characterFrom.getX() - 1;
@@ -766,23 +765,26 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	private void attackToPlayer(MapCharacter character) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void attackToEnemy(MapCharacter character) {
-		character.setX((int)this.getGameCharacterPosition().getX());
-		character.setY((int)this.getGameCharacterPosition().getY());
-		
-		for(MapCharacter turnChar:this.getTurnList()) {
-			if(turnChar.getCharacterType().equals(MapCharacter.ENEMY)) {
-				if(this.validateAttack(character, turnChar)) {
+		character.setX((int) this.getGameCharacterPosition().getX());
+		character.setY((int) this.getGameCharacterPosition().getY());
+
+		for (MapCharacter turnChar : this.getTurnList()) {
+			if (turnChar.getCharacterType().equals(MapCharacter.ENEMY) && turnChar.getCharacter().isAlive()) {
+				if (this.validateAttack(character, turnChar)) {
 					int temp = character.getCharacter().getAttackBonus();
 					int diceValue = DiceHelper.rollD20();
 					int stModi = character.getCharacter().getModifiers().getStraight();
 					for (int i = temp; i > 0; i -= 5) {
-						if((diceValue+stModi+i) >= turnChar.getCharacter().getArmorClass()) {
+						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
+
+							LogHelper.Log(LogHelper.TYPE_INFO, "Player can hit anemy");
+
 							ArrayList<ItemModel> items = character.getCharacter().getItems();
-							if(items == null || items.size() < 1) {
+							if (items == null || items.size() < 1) {
 								break;
 							}
 							boolean isRange = false;
@@ -795,12 +797,39 @@ public class GamePlayModel extends Observable implements Runnable {
 									isRange = true;
 								}
 							}
-							
-							if(isMelle) {
-								
+							int diceD8 = DiceHelper.rollD8();
+							if (isMelle) {
+								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
+								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								LogHelper.Log(LogHelper.TYPE_INFO, points+" hit point deducted from enemy");
+							} else if (isRange) {
+								int points = diceD8;
+								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								LogHelper.Log(LogHelper.TYPE_INFO, points+" hit point deducted from enemy");
 							}
 						}
 					}
+					if(turnChar.getCharacter().getHitpoints() <= -10) {
+						turnChar.getCharacter().setAlive(false);
+						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
+						zeroAbilities.setCharisma(-10);
+						zeroAbilities.setConstitution(-10);
+						zeroAbilities.setDexterity(-10);
+						zeroAbilities.setIntelligence(-10);
+						zeroAbilities.setstrength(-10);
+						zeroAbilities.setWisdom(-10);
+
+						turnChar.getCharacter().setAbilityScores(zeroAbilities);
+						turnChar.getCharacter().setAttackBonus(0);
+						turnChar.getCharacter().setHitpoints(0);
+						turnChar.getCharacter().setDamageBonus(0);
+						turnChar.getCharacter().setArmorClass(0);
+						turnChar.getCharacter().setRawAbilityScores(zeroAbilities);
+						turnChar.getCharacter().calculateModifires();
+						
+						this.turnList.remove(turnChar);
+					}
+					break;
 				}
 			}
 		}
@@ -813,13 +842,13 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @return
 	 */
 	public GameStatus initiateAttack(MapCharacter character) {
-		if(character.getCharacterType().equals(MapCharacter.COMPUTER) || character.getCharacterType().equals(MapCharacter.NORMAL)) {
-			
+		if (character.getCharacterType().equals(MapCharacter.COMPUTER)
+				|| character.getCharacterType().equals(MapCharacter.NORMAL)) {
+
 			this.attackToEnemy(character);
-			
-			
-		} else if(character.getCharacterType().equals(MapCharacter.ENEMY)) {
-			
+
+		} else if (character.getCharacterType().equals(MapCharacter.ENEMY)) {
+
 			this.attackToPlayer(character);
 		}
 		return null;
@@ -917,7 +946,8 @@ public class GamePlayModel extends Observable implements Runnable {
 					}
 					new NPCItemController(this, this.getCharacterModel().getBackPackItems(), false, friendly);
 				} else if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
-					// TODO check if the enemy is dead and replace item code to be
+					// TODO check if the enemy is dead and replace item code to
+					// be
 					// embedded here
 				}
 			}
@@ -930,123 +960,130 @@ public class GamePlayModel extends Observable implements Runnable {
 		return gameStatus;
 
 	}
-	
-	
+
 	/**
 	 * Method to move enemy
 	 * 
-	 * @param enemy current enemy being moved
+	 * @param enemy
+	 *            current enemy being moved
 	 */
 	public void moveEnemy(MapCharacter enemy) {
 		Point playerPosition = this.gameCharacterPosition;
-				if(enemy.Frightening == false)
-				{
-					moveAggresiveEnemy(enemy,playerPosition);
-					moveAggresiveEnemy(enemy, playerPosition);
-					moveAggresiveEnemy(enemy, playerPosition);
-				}
-				else if(enemy.Frightening == true && enemy.frighteningTurn<=enemy.frighteningBonus-1)
-				{
-					++enemy.frighteningTurn;
-					moveFrightenedEnemy(enemy,playerPosition);
-					moveFrightenedEnemy(enemy, playerPosition);
-					moveFrightenedEnemy(enemy, playerPosition);
-				}
-		
+		if (enemy.Frightening == false) {
+			moveAggresiveEnemy(enemy, playerPosition);
+			moveAggresiveEnemy(enemy, playerPosition);
+			moveAggresiveEnemy(enemy, playerPosition);
+		} else if (enemy.Frightening == true && enemy.frighteningTurn <= enemy.frighteningBonus - 1) {
+			++enemy.frighteningTurn;
+			moveFrightenedEnemy(enemy, playerPosition);
+			moveFrightenedEnemy(enemy, playerPosition);
+			moveFrightenedEnemy(enemy, playerPosition);
+		}
+
 		setChanged();
 		notifyObservers();
-		
-	}
-	/**
-	 * Frightened enemy move towards walls
-	 * @param enemy  enemy
-	 * @param playerPosition player current position
-	 */
-	private void moveFrightenedEnemy(MapCharacter enemy, Point playerPosition) {
-		int mapSizeX = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().x-1;
-		int mapSizeY = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().y-1;
-		
-		int enemyX = enemy.getX();
-		int enemyY = enemy.getY();
-		//go down
-		if(playerPosition.x < enemy.getX() && enemy.getX()<mapSizeX && this.checkWalls(new Point(enemyX+1,enemyY)))
-		{	
-			
-			enemy.setX(enemy.getX()+1);
-			
-		}
-		//go up
-		else if(playerPosition.x > enemy.getX() && enemy.getX()>0 && this.checkWalls(new Point(enemyX-1,enemyY)))
-		{
-			enemy.setX(enemy.getX()-1);
-			
-		}
-		//go left
-		else if(playerPosition.y < enemy.getY() && enemy.getY()>0 && this.checkWalls(new Point(enemyX,enemyY+1)))
-		{
-			enemy.setY(enemy.getY()+1);
-			
-		}
-		//go right
-		else if(playerPosition.y > enemy.getY() && enemy.getY()<mapSizeY && this.checkWalls(new Point(enemyX,enemyY-1)))
-		{
-			enemy.setY(enemy.getY()-1);
-			
-		}
-		
-		setChanged();
-		notifyObservers();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+
 	}
 
-	
 	/**
-	 * aggresive enemy move towards player
-	 * @param enemy enemy
-	 * @param playerPosition player current position
+	 * Frightened enemy move towards walls
+	 * 
+	 * @param enemy
+	 *            enemy
+	 * @param playerPosition
+	 *            player current position
 	 */
-	private void moveAggresiveEnemy(MapCharacter enemy,Point playerPosition) {
+	private void moveFrightenedEnemy(MapCharacter enemy, Point playerPosition) {
+		int mapSizeX = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().x - 1;
+		int mapSizeY = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().y - 1;
+
 		int enemyX = enemy.getX();
 		int enemyY = enemy.getY();
-		//go down
-		if(playerPosition.x > enemy.getX())// && this.checkWalls(new Point(enemyX+1,enemyY)))
-		{
-			enemy.setX(enemy.getX()+1);
-			
+		// go down
+		if (playerPosition.x < enemy.getX() && enemy.getX() < mapSizeX
+				&& this.checkWalls(new Point(enemyX + 1, enemyY))) {
+
+			enemy.setX(enemy.getX() + 1);
+
 		}
-		//go up
-		else if(playerPosition.x < enemy.getX())// && this.checkWalls(new Point(enemyX-1,enemyY)))
-		{
-			enemy.setX(enemy.getX()-1);
-			
+		// go up
+		else if (playerPosition.x > enemy.getX() && enemy.getX() > 0
+				&& this.checkWalls(new Point(enemyX - 1, enemyY))) {
+			enemy.setX(enemy.getX() - 1);
+
 		}
-		//go left
-		else if(playerPosition.y > enemy.getY() )//&& this.checkWalls(new Point(enemyX,enemyY+1)))
-		{
-			enemy.setY(enemy.getY()+1);
-			
+		// go left
+		else if (playerPosition.y < enemy.getY() && enemy.getY() > 0
+				&& this.checkWalls(new Point(enemyX, enemyY + 1))) {
+			enemy.setY(enemy.getY() + 1);
+
 		}
-		//go right
-		else if(playerPosition.y < enemy.getY() )//&& this.checkWalls(new Point(enemyX,enemyY-1)))
-		{
-			enemy.setY(enemy.getY()-1);
-			
+		// go right
+		else if (playerPosition.y > enemy.getY() && enemy.getY() < mapSizeY
+				&& this.checkWalls(new Point(enemyX, enemyY - 1))) {
+			enemy.setY(enemy.getY() - 1);
+
 		}
-		
+
 		setChanged();
 		notifyObservers();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	/**
+	 * aggresive enemy move towards player
+	 * 
+	 * @param enemy
+	 *            enemy
+	 * @param playerPosition
+	 *            player current position
+	 */
+	private void moveAggresiveEnemy(MapCharacter enemy, Point playerPosition) {
+		int enemyX = enemy.getX();
+		int enemyY = enemy.getY();
+		// go down
+		if (playerPosition.x > enemy.getX())// && this.checkWalls(new
+											// Point(enemyX+1,enemyY)))
+		{
+			enemy.setX(enemy.getX() + 1);
+
+		}
+		// go up
+		else if (playerPosition.x < enemy.getX())// && this.checkWalls(new
+													// Point(enemyX-1,enemyY)))
+		{
+			enemy.setX(enemy.getX() - 1);
+
+		}
+		// go left
+		else if (playerPosition.y > enemy.getY())// && this.checkWalls(new
+													// Point(enemyX,enemyY+1)))
+		{
+			enemy.setY(enemy.getY() + 1);
+
+		}
+		// go right
+		else if (playerPosition.y < enemy.getY())// && this.checkWalls(new
+													// Point(enemyX,enemyY-1)))
+		{
+			enemy.setY(enemy.getY() - 1);
+
+		}
+
+		setChanged();
+		notifyObservers();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 }
