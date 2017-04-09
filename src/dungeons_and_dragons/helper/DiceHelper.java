@@ -38,6 +38,15 @@ public class DiceHelper {
 		return roll(20);
 	}
 	
+	/**
+	 * This method will generate random number from 1 to 8
+	 * 
+	 * @return value of dice 8
+	 */
+	public static int rollD8() {
+		return roll(8);
+	}
+	
 
 	/**
 	 * This method will generate random number from 1 to max

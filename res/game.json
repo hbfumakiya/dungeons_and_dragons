@@ -10,16 +10,16 @@
         "map_name": "test",
         "map_size": "9,9",
         "map_chest": {
-          "x": 6,
-          "y": 6,
+          "x": 0,
+          "y": 4,
           "item": {
-            "item_id": 1,
-            "item_name": "UR",
-            "item_point": 4,
+            "item_id": 2,
+            "item_name": "ty",
+            "item_point": 5,
             "item_type": "Armor",
             "item_ability": "Armor class",
-            "item_weapon_enchantment": "Burning",
-            "item_weapon_enchantment_string": "Burning-20"
+            "item_weapon_enchantment": "",
+            "item_weapon_enchantment_string": ""
           }
         },
         "map_walls": [
@@ -140,19 +140,10 @@
     ]
   },
   "characterModel": {
-    "character_id": 3,
-    "character_name": "char1",
+    "character_id": 1,
+    "character_name": "Test",
     "strength": 0,
     "items": [
-      {
-        "item_id": 1,
-        "item_name": "UR",
-        "item_point": 4,
-        "item_type": "Armor",
-        "item_ability": "Armor class",
-        "item_weapon_enchantment": "Burning",
-        "item_weapon_enchantment_string": "Burning-20"
-      },
       {
         "item_id": 3,
         "item_name": "Range",
@@ -164,35 +155,35 @@
       }
     ],
     "backPackItems": [],
-    "character_level": 2,
+    "character_level": 1,
     "abilityScores": {
-      "strength": 17,
-      "dexterity": 10,
-      "constitution": 14,
-      "intelligence": 9,
+      "strength": 12,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 12,
       "wisdom": 8,
-      "charisma": 8
+      "charisma": 10
     },
     "rawAbilityScores": {
-      "strength": 17,
-      "dexterity": 10,
-      "constitution": 14,
-      "intelligence": 9,
+      "strength": 12,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 12,
       "wisdom": 8,
-      "charisma": 8
+      "charisma": 10
     },
     "modifiers": {
-      "strength": 3,
-      "dexterity": 0,
-      "constitution": 2,
-      "intelligence": -1,
+      "strength": 1,
+      "dexterity": 2,
+      "constitution": 1,
+      "intelligence": 1,
       "wisdom": -1,
-      "charisma": -1
+      "charisma": 0
     },
-    "hitpoints": 21,
-    "attackBonus": 7,
+    "hitpoints": 11,
+    "attackBonus": 8,
     "damageBonus": 1,
-    "armorClass": 14,
+    "armorClass": 12,
     "isAlive": true
   },
   "currentMapIndex": 0,

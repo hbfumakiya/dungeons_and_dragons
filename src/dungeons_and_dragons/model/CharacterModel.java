@@ -248,6 +248,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	 */
 	public void setHitpoints(int hitpoints) {
 		this.hitpoints = hitpoints;
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
