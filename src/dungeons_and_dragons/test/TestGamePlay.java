@@ -337,16 +337,6 @@ public class TestGamePlay {
 		Assert.assertEquals(true,gpm.ishit);
 	}
 	
-	@Test
-	public void testmoveAggresiveEnemy(){
-		GamePlayModel gpm = new GamePlayModel();
-		MapCharacter enemy=new MapCharacter();
-		Point p=new Point(6, 1);
-		enemy.setX(4);
-		enemy.setY(2);
-		gpm.moveAggresiveEnemy(enemy, p);
-		Assert.assertEquals(5, enemy.getX());
-	}
 	
 	@Test
 	public void testmoveFrightenedEnemy(){
@@ -366,5 +356,41 @@ public class TestGamePlay {
 		gpm.moveFrightenedEnemy(enemy, p);
 		Assert.assertEquals(5, enemy.getX());
 
+	}
+	
+	@Test
+	public void testmoveAggressiveEnemy(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		Point p = new Point(1, 1);
+		MapCharacter enemy=new MapCharacter();
+		enemy.setX(4);
+		enemy.setY(2);
+		Point p2=new Point(5, 2);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p2);
+		gpm.moveAggresiveEnemy(enemy, p);
+		Assert.assertEquals(3, enemy.getX());
+
+	}
+	
+	@Test
+	public void testremoveChest(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		MapItem map_chest=new MapItem();
+		Point p=new Point(-1, -1);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(map_chest);
+		gpm.removeChest(p);
+		Assert.assertEquals(null, gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getItem());
 	}
 }
