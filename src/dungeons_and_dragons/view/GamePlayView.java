@@ -305,6 +305,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 				mapPanel.add(maps[i][j]);
 			}
 		}
+		
+		gamePlayModel.currentMap = maps;
 	}
 
 	/**

@@ -19,6 +19,7 @@ import dungeons_and_dragons.helper.DiceHelper;
 import dungeons_and_dragons.helper.FileHelper;
 import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.helper.MapItem;
 import dungeons_and_dragons.strategy.AggressiveNPC;
@@ -87,6 +88,16 @@ public class GamePlayModel extends Observable implements Runnable {
 	public Point attackEndPoint;
 
 	public Point enemyPoint;
+	
+	public int currentEnemyIndex;
+	
+	public int currentFriendIndex;
+	
+	public ArrayList<MapCharacter> enemyList;
+	
+	public ArrayList<MapCharacter> friendList;
+	
+	public MapButton currentMap[][];
 
 	/**
 	 * constructor to initialize map object
@@ -94,6 +105,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	public GamePlayModel() {
 		this.currentMapIndex = 0;
 		this.turnList = new ArrayList<MapCharacter>();
+		this.enemyList = new ArrayList<MapCharacter>();
+		this.friendList = new ArrayList<MapCharacter>();
 		this.gamePlayId = 0;
 		this.currentTurn = 0;
 		this.isGameRunning = true;
@@ -975,4 +988,14 @@ public class GamePlayModel extends Observable implements Runnable {
 		
 	}
 
+	/**
+	 * Void method used to notify a change in state if anything gets changed
+	 */
+	public void notifyChange(){
+		setChanged();
+		notifyObservers(this);
+	}
+	
+	
+	
 }

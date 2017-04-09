@@ -24,7 +24,11 @@ public class MapButton extends JButton {
 	// 0 if it is wall and 2 if it is an enemy
 	private int pointValue = 1;
 
+	// 0 if the point is not yet traversed and 1 if the point is traversed already
 	private int dirty_flag = 0;
+	
+	// 0 if there is no path and 1 if there is a path 
+	public int path = 0;
 	
 	private int characterType;
 	
