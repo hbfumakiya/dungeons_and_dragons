@@ -44,6 +44,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Expose
 	private int gamePlayId;
 
+	public boolean ishit;
 	/**
 	 * Sets the location of the player that is playing
 	 */
@@ -665,7 +666,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		return gameStatus;
 	}
 
-	private boolean checkCharacter(Point point) {
+	public boolean checkCharacter(Point point) {
 		ArrayList<MapCharacter> npcsLocal = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
 				.getMap_enemy_loc();
 
@@ -781,7 +782,7 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	}
 
-	private void attackToEnemy(MapCharacter character) {
+	public void attackToEnemy(MapCharacter character) {
 		character.setX((int) this.getGameCharacterPosition().getX());
 		character.setY((int) this.getGameCharacterPosition().getY());
 
@@ -793,7 +794,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					int stModi = character.getCharacter().getModifiers().getStraight();
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
-
+							ishit=true;
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can hit anemy");
 
 							ArrayList<ItemModel> items = character.getCharacter().getItems();
@@ -1006,7 +1007,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param playerPosition
 	 *            player current position
 	 */
-	private void moveFrightenedEnemy(MapCharacter enemy, Point playerPosition) {
+	public void moveFrightenedEnemy(MapCharacter enemy, Point playerPosition) {
 		int mapSizeX = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().x - 1;
 		int mapSizeY = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().y - 1;
 
@@ -1015,7 +1016,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		// go down
 		if (playerPosition.x < enemy.getX() && enemy.getX() < mapSizeX
 				&& this.checkWalls(new Point(enemyX + 1, enemyY))) {
-
+			
 			enemy.setX(enemy.getX() + 1);
 
 		}
@@ -1056,7 +1057,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param playerPosition
 	 *            player current position
 	 */
-	private void moveAggresiveEnemy(MapCharacter enemy, Point playerPosition) {
+	public void moveAggresiveEnemy(MapCharacter enemy, Point playerPosition) {
 		int enemyX = enemy.getX();
 		int enemyY = enemy.getY();
 		// go down

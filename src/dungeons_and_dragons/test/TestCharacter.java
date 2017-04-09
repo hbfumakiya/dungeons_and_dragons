@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.MapItem;
+import dungeons_and_dragons.model.AbilityScoresModel;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GameMapModel;
@@ -250,7 +251,27 @@ public class TestCharacter {
 
 	}
 
-	
+	@Test
+	public void testcalculateDamageBonus(){
+		CharacterModel characterModel=new CharacterModel();
+		int item_id = 1;
+		String item_name = "abc";
+		String itemtype = Game_constants.BOOTS;
+		String item_ability = Game_constants.DEXTERITY;
+		int item_point = 1;
+		ItemModel item = new ItemModel(item_id, item_name, item_point, itemtype, item_ability);
+		item.setItem_type(Game_constants.WEAPON_MELEE);
+		ArrayList<ItemModel> items=new ArrayList<ItemModel>();
+		items.add(item);
+		characterModel.setItems(items);
+		characterModel.setStrength(5);
+		AbilityScoresModel modifiers=new AbilityScoresModel();
+		characterModel.setModifiers(modifiers);
+		modifiers.setstrength(5);
+		characterModel.calculateDamageBonus();
+		Assert.assertEquals(true,characterModel.isMeleeDamage);
+		characterModel.setDamageBonus(0);
+	}
 	
 
 	

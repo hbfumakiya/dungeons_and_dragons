@@ -33,6 +33,8 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 	@Expose
 	private int character_id;
 
+	public boolean isMeleeDamage;
+	
 	/**
 	 * Variable for character name.
 	 * 
@@ -595,6 +597,7 @@ public class CharacterModel extends Observable implements Model<CharacterModel> 
 			item = this.items.get(i);
 			if (item != null) {
 				if (item.getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+					isMeleeDamage=true;
 					damageBonus += this.modifiers.getStraight();
 					if (item.getItem_ability().equals(Game_constants.DAMAGE_BONUS)) {
 						damageBonus += item.getItem_point();
