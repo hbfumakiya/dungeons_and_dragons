@@ -41,7 +41,7 @@ public class AggressiveNPC implements Strategy {
 				LogHelper.Log(LogHelper.TYPE_INFO, "Aggressive Character Move" + 1);
 				MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
 				if(enemy.getCharacter().isAlive())
-				gamePlayModel.moveEnemy(enemy);
+				gamePlayModel.moveNPCOrComputer(enemy);
 				Thread.sleep(2000);
 				//i--;
 			} catch (InterruptedException e) {

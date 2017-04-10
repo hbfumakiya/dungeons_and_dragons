@@ -7,6 +7,7 @@ import java.util.Collections;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
@@ -22,12 +23,13 @@ import dungeons_and_dragons.model.ItemModel;
 public class FriendlyNPC implements Strategy {
 
 	GameMapModel mapModel;
+	GameStatus gameStatus;
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 
 		System.out.println("Friendly NPC Move");
-		mapModel = gamePlayModel.getCampaignModel().getOutput_map_list().get(gamePlayModel.getCurrentMapIndex());
+		/*mapModel = gamePlayModel.getCampaignModel().getOutput_map_list().get(gamePlayModel.getCurrentMapIndex());
 
 		if (mapModel.getMap_enemy_loc().contains(MapCharacter.FRIENDLY)) {
 
@@ -46,6 +48,26 @@ public class FriendlyNPC implements Strategy {
 				}
 			}
 
+		}*/
+		
+		/*System.out.println("Agresive NPC Move");
+		mapModel = gamePlayModel.getCampaignModel().getOutput_map_list().get(gamePlayModel.getCurrentMapIndex());
+		PathFinder p = new PathFinder(gamePlayModel);
+		MapButton path[][] = p.findPath("enemy");
+		int index = gamePlayModel.currentEnemyIndex;*/
+
+		int i = 0;
+		while (i < 3) {
+			try {
+				MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+				gameStatus = gamePlayModel.moveFriend(friend,i);
+				Thread.sleep(2000);
+				if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
+					i++;
+				}
+			} catch (InterruptedException e) {
+				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
+			}
 		}
 
 	}
@@ -55,7 +77,7 @@ public class FriendlyNPC implements Strategy {
 	 * @param path
 	 * @param gamePlayModel
 	 * @param index
-	 */
+	 *//*
 	private void findPath(MapButton[][] path, GamePlayModel gamePlayModel, int index) {
 
 		int mainIndex = 0;
@@ -84,7 +106,7 @@ public class FriendlyNPC implements Strategy {
 				}
 			}
 		}
-	}
+	}*/
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
