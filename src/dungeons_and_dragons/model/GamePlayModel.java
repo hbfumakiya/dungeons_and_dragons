@@ -716,6 +716,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public GameStatus validateMove(Point tempPoint, Point oldPoint) {
 
+		
 		if (checkBoundaries(tempPoint) && !this.checkWalls(tempPoint)) {
 			this.setGameCharacterPosition(tempPoint);
 			gameStatus.setGameStatus(GameStatus.RUNNING);
