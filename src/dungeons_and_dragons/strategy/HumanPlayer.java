@@ -3,6 +3,7 @@
  */
 package dungeons_and_dragons.strategy;
 
+import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.GamePlayModel;
 
@@ -21,9 +22,11 @@ public class HumanPlayer implements Strategy {
 				synchronized (gamePlayModel.gameThread) {
 					gamePlayModel.gameThread.wait();
 					// perform move checks
-					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
-							gamePlayModel.charachterOldPoint);
+					//gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
+					//		gamePlayModel.charachterOldPoint);
+					gamePlayModel.gameStatus = gamePlayModel.moveCharacter(gamePlayModel.charachterTempPoint, gamePlayModel.charachterOldPoint);
 					LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moved");
+					if(!gamePlayModel.iswallBumped())
 					i--;
 				}
 			} catch (InterruptedException e) {
