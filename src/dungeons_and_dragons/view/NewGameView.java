@@ -32,7 +32,8 @@ import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
- * This class is for creating new game and display which campaign and character you want to select to play with.
+ * This class is for creating new game and display which campaign and character
+ * you want to select to play with.
  * 
  * @author Mihir Pujara
  */
@@ -46,7 +47,11 @@ public class NewGameView extends JFrame implements View {
 
 	public JLabel campaignLabel;
 
+	public JLabel playerLabel;
+
 	public JComboBox<CampaignModel> campaignList;
+
+	public JComboBox<String> player;
 
 	public JButton playButton;
 
@@ -64,6 +69,7 @@ public class NewGameView extends JFrame implements View {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+
 	/**
 	 * initialize window of new game
 	 */
@@ -122,6 +128,28 @@ public class NewGameView extends JFrame implements View {
 		// put space between two components
 		listPane.add(Box.createVerticalStrut(5));
 
+		// create player Label
+		playerLabel = new JLabel("Select Player");
+		playerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		// add label to panel
+		listPane.add(playerLabel);
+
+		// put space between two components
+		listPane.add(Box.createVerticalStrut(5));
+
+		// create dropdown for player
+		player = new JComboBox<String>();
+		player.setAlignmentX(Component.LEFT_ALIGNMENT);
+		player.addItem("Human");
+		player.addItem("Computer");
+		
+		// add dropdowm to panel
+		listPane.add(player);
+
+		// put space between two components
+		listPane.add(Box.createVerticalStrut(5));
+
 		// create Play button
 		playButton = new JButton("Play");
 		playButton.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -152,9 +180,10 @@ public class NewGameView extends JFrame implements View {
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
-	
+
 	/**
 	 * function to fill campaigns in drop down
+	 * 
 	 * @param campaignList2
 	 */
 	private void fillCampaigns(JComboBox<CampaignModel> campaignList2) {
@@ -178,6 +207,7 @@ public class NewGameView extends JFrame implements View {
 
 	/**
 	 * function to fill characters in combobox
+	 * 
 	 * @param characterList2
 	 */
 	private void fillCharacters(JComboBox<CharacterModel> characterList2) {
@@ -199,11 +229,13 @@ public class NewGameView extends JFrame implements View {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-/**
- * renderer to add into combobox of character
- * @author urmil
- *
- */
+
+	/**
+	 * renderer to add into combobox of character
+	 * 
+	 * @author urmil
+	 *
+	 */
 	class CharacterRenderer extends BasicComboBoxRenderer {
 
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
@@ -220,8 +252,10 @@ public class NewGameView extends JFrame implements View {
 			return this;
 		}
 	}
+
 	/**
 	 * renderer to add into combobox of campaign
+	 * 
 	 * @author urmil
 	 *
 	 */

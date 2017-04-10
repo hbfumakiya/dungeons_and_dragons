@@ -19,7 +19,7 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.view.NewGameView;
 
 /**
- * @author Mihir Pujara
+ * @author Mihir Pujara & Hirangi Naik
  *
  */
 public class NewGameController implements ActionListener {
@@ -94,8 +94,6 @@ public class NewGameController implements ActionListener {
 			this.gamePlayModel.setCharacterModel((CharacterModel) this.newGameView.characterList.getSelectedItem());
 
 			this.gamePlayModel.setCampaignModel((CampaignModel) this.newGameView.campaignList.getSelectedItem());
-
-			this.gamePlayModel.save("res/game.json");
 
 			new GamePlayController(this.gamePlayModel);
 
