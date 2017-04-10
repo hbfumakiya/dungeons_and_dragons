@@ -8,7 +8,7 @@
         "item_id": 3,
         "item_name": "Range",
         "item_point": 5,
-        "item_type": "Weapon Range",
+        "item_type": "Weapon Melee",
         "item_ability": "Attack bonus",
         "item_weapon_enchantment": "Frightening",
         "item_weapon_enchantment_string": "Frightening-5"
@@ -41,8 +41,8 @@
       "charisma": 0
     },
     "hitpoints": 11,
-    "attackBonus": 8,
-    "damageBonus": 1,
+    "attackBonus": 7,
+    "damageBonus": 7,
     "armorClass": 12,
     "isAlive": true
   },
@@ -55,7 +55,7 @@
         "item_id": 3,
         "item_name": "Range",
         "item_point": 5,
-        "item_type": "Weapon Range",
+        "item_type": "Weapon Melee",
         "item_ability": "Attack bonus",
         "item_weapon_enchantment": "Frightening",
         "item_weapon_enchantment_string": "Frightening-5"
@@ -87,9 +87,9 @@
       "wisdom": 0,
       "charisma": 1
     },
-    "hitpoints": 98,
-    "attackBonus": 18,
-    "damageBonus": 3,
+    "hitpoints": 95,
+    "attackBonus": 17,
+    "damageBonus": 7,
     "armorClass": 13,
     "isAlive": true
   },
@@ -111,7 +111,7 @@
         "item_id": 3,
         "item_name": "Range",
         "item_point": 5,
-        "item_type": "Weapon Range",
+        "item_type": "Weapon Melee",
         "item_ability": "Attack bonus",
         "item_weapon_enchantment": "Frightening",
         "item_weapon_enchantment_string": "Frightening-5"
@@ -143,9 +143,9 @@
       "wisdom": -1,
       "charisma": -1
     },
-    "hitpoints": 21,
-    "attackBonus": 7,
-    "damageBonus": 1,
+    "hitpoints": 16,
+    "attackBonus": 10,
+    "damageBonus": 4,
     "armorClass": 14,
     "isAlive": true
   }

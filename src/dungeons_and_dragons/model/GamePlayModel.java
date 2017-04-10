@@ -91,15 +91,15 @@ public class GamePlayModel extends Observable implements Runnable {
 	public Point attackEndPoint;
 
 	public Point enemyPoint;
-	
+
 	public int currentEnemyIndex;
-	
+
 	public int currentFriendIndex;
-	
+
 	public ArrayList<MapCharacter> enemyList;
-	
+
 	public ArrayList<MapCharacter> friendList;
-	
+
 	public MapButton currentMap[][];
 
 	/**
@@ -794,7 +794,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					int stModi = character.getCharacter().getModifiers().getStraight();
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
-							ishit=true;
+							ishit = true;
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can hit anemy");
 
 							ArrayList<ItemModel> items = character.getCharacter().getItems();
@@ -815,15 +815,15 @@ public class GamePlayModel extends Observable implements Runnable {
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
-								LogHelper.Log(LogHelper.TYPE_INFO, points+" hit point deducted from enemy");
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							} else if (isRange) {
 								int points = diceD8;
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
-								LogHelper.Log(LogHelper.TYPE_INFO, points+" hit point deducted from enemy");
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							}
 						}
 					}
-					if(turnChar.getCharacter().getHitpoints() <= -10) {
+					if (turnChar.getCharacter().getHitpoints() <= -10) {
 						turnChar.getCharacter().setAlive(false);
 						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
 						zeroAbilities.setCharisma(-10);
@@ -840,7 +840,7 @@ public class GamePlayModel extends Observable implements Runnable {
 						turnChar.getCharacter().setArmorClass(0);
 						turnChar.getCharacter().setRawAbilityScores(zeroAbilities);
 						turnChar.getCharacter().calculateModifires();
-						
+
 						this.turnList.remove(turnChar);
 					}
 					break;
@@ -984,9 +984,10 @@ public class GamePlayModel extends Observable implements Runnable {
 	public void moveEnemy(MapCharacter enemy) {
 		Point playerPosition = this.gameCharacterPosition;
 		if (enemy.Frightening == false) {
-			moveAggresiveEnemy(enemy, playerPosition);
-			moveAggresiveEnemy(enemy, playerPosition);
-			moveAggresiveEnemy(enemy, playerPosition);
+			moveAggresiveEnemy(enemy, playerPosition, 1);
+			moveAggresiveEnemy(enemy, playerPosition, 2);
+			moveAggresiveEnemy(enemy, playerPosition, 3);
+
 		} else if (enemy.Frightening == true && enemy.frighteningTurn <= enemy.frighteningBonus - 1) {
 			++enemy.frighteningTurn;
 			moveFrightenedEnemy(enemy, playerPosition);
@@ -1016,7 +1017,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		// go down
 		if (playerPosition.x < enemy.getX() && enemy.getX() < mapSizeX
 				&& this.checkWalls(new Point(enemyX + 1, enemyY))) {
-			
+
 			enemy.setX(enemy.getX() + 1);
 
 		}
@@ -1049,6 +1050,17 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	}
 
+	private HashMap<CharacterModel, Point> prevEnemyPos = new HashMap<CharacterModel, Point>();
+
+	public void prevPosition(CharacterModel character, Point p) {
+		prevEnemyPos.remove(character);
+		prevEnemyPos.put(character, p);
+	}
+
+	public void removePostion() {
+		prevEnemyPos.clear();
+	}
+
 	/**
 	 * aggresive enemy move towards player
 	 * 
@@ -1057,38 +1069,141 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param playerPosition
 	 *            player current position
 	 */
-	public void moveAggresiveEnemy(MapCharacter enemy, Point playerPosition) {
+	public void moveAggresiveEnemy(MapCharacter enemy, Point playerPosition, int moveNumber) {
 		int enemyX = enemy.getX();
 		int enemyY = enemy.getY();
+		Point nextPos = prevEnemyPos.get(enemy.getCharacter());
+		if (nextPos == null) {
+			nextPos = new Point(-1, -1);
+		}
 		// go down
-		if (playerPosition.x > enemy.getX())// && this.checkWalls(new
-											// Point(enemyX+1,enemyY)))
+		if (playerPosition.x > enemy.getX() && !this.checkWalls(new Point(enemyX + 1, enemyY))
+				&& nextPos.x != enemyX + 1)// &&
+		// this.checkWalls(new
+		// Point(enemyX+1,enemyY)))
 		{
+			prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
 			enemy.setX(enemy.getX() + 1);
+			//check left right and dwon
+			if (!this.checkWalls(new Point(enemyX + 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+					&& !this.checkWalls(new Point(enemyX, enemyY - 1))) {
+				prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+			}
 
 		}
 		// go up
-		else if (playerPosition.x < enemy.getX())// && this.checkWalls(new
-													// Point(enemyX-1,enemyY)))
+		else if (playerPosition.x < enemy.getX() && !this.checkWalls(new Point(enemyX - 1, enemyY))
+				&& nextPos.x != enemyX - 1)// && this.checkWalls(new
+											// Point(enemyX-1,enemyY)))
 		{
+			prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
 			enemy.setX(enemy.getX() - 1);
+			//check left right and dwon
+			if (!this.checkWalls(new Point(enemyX - 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+					&& !this.checkWalls(new Point(enemyX, enemyY - 1))) {
+				prevPosition(enemy.getCharacter(), new Point(-1,-1));
 
-		}
-		// go left
-		else if (playerPosition.y > enemy.getY())// && this.checkWalls(new
-													// Point(enemyX,enemyY+1)))
-		{
-			enemy.setY(enemy.getY() + 1);
+			}
 
 		}
 		// go right
-		else if (playerPosition.y < enemy.getY())// && this.checkWalls(new
-													// Point(enemyX,enemyY-1)))
+		else if (playerPosition.y > enemy.getY() && !this.checkWalls(new Point(enemyX, enemyY + 1))
+				&& nextPos.y != enemyY + 1)// && this.checkWalls(new
+											// Point(enemyX,enemyY+1)))
 		{
-			enemy.setY(enemy.getY() - 1);
+			prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+			enemy.setY(enemy.getY() + 1);
+			//check  right and dwon and up
+			if (!this.checkWalls(new Point(enemyX+1 , enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+					&& !this.checkWalls(new Point(enemyX-1, enemyY))) {
+				prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+			}
 
 		}
+		// go left
+		else if (playerPosition.y < enemy.getY() && !this.checkWalls(new Point(enemyX, enemyY - 1))
+				&& nextPos.y != enemyY - 1)// && this.checkWalls(new
+											// Point(enemyX,enemyY-1)))
+		{
+			prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+			enemy.setY(enemy.getY() - 1);
+			//check left right and dwon
+			if (!this.checkWalls(new Point(enemyX + 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY - 1))
+					&& !this.checkWalls(new Point(enemyX-1, enemyY))) {
+				prevPosition(enemy.getCharacter(), new Point(-1,-1));
 
+			}
+
+		} else if (playerPosition.x == enemyX && playerPosition.y != enemyY) {
+			// go down
+			if (!this.checkWalls(new Point(enemyX + 1, enemyY)) && nextPos.x != enemyX + 1)// &&
+			// this.checkWalls(new
+			// Point(enemyX+1,enemyY)))
+			{
+				prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+				enemy.setX(enemy.getX() + 1);
+				//check left right and dwon
+				if (!this.checkWalls(new Point(enemyX + 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+						&& !this.checkWalls(new Point(enemyX, enemyY - 1))) {
+					prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+				}
+
+			}
+			// go up
+			else if (!this.checkWalls(new Point(enemyX - 1, enemyY)) && nextPos.x != enemyX - 1)// &&
+																								// this.checkWalls(new
+																								// Point(enemyX-1,enemyY)))
+			{
+				prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+				enemy.setX(enemy.getX() - 1);
+				//check left right and dwon
+				if (!this.checkWalls(new Point(enemyX - 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+						&& !this.checkWalls(new Point(enemyX, enemyY - 1))) {
+					prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+				}
+
+			}
+		} else if (playerPosition.y == enemyY && playerPosition.x != enemyX) {
+			// go right
+			 if (playerPosition.y > enemy.getY() && !this.checkWalls(new Point(enemyX, enemyY + 1))
+					&& nextPos.y != enemyY + 1)// && this.checkWalls(new
+												// Point(enemyX,enemyY+1)))
+			{
+				prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+				enemy.setY(enemy.getY() + 1);
+				//check  right and dwon and up
+				if (!this.checkWalls(new Point(enemyX+1 , enemyY)) && !this.checkWalls(new Point(enemyX, enemyY + 1))
+						&& !this.checkWalls(new Point(enemyX-1, enemyY))) {
+					prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+				}
+
+			}
+			// go left
+			else if (playerPosition.y < enemy.getY() && !this.checkWalls(new Point(enemyX, enemyY - 1))
+					&& nextPos.y != enemyY - 1)// && this.checkWalls(new
+												// Point(enemyX,enemyY-1)))
+			{
+				prevPosition(enemy.getCharacter(), new Point(enemy.getX(), enemy.getY()));
+				enemy.setY(enemy.getY() - 1);
+				//check left right and dwon
+				if (!this.checkWalls(new Point(enemyX + 1, enemyY)) && !this.checkWalls(new Point(enemyX, enemyY - 1))
+						&& !this.checkWalls(new Point(enemyX-1, enemyY))) {
+					prevPosition(enemy.getCharacter(), new Point(-1,-1));
+
+				}
+
+			}
+		}
+		
+
+		if (moveNumber == 3) {
+			prevPosition(enemy.getCharacter(), new Point(-1, -1));
+		}
 		setChanged();
 		notifyObservers();
 		try {
@@ -1103,11 +1218,9 @@ public class GamePlayModel extends Observable implements Runnable {
 	/**
 	 * Void method used to notify a change in state if anything gets changed
 	 */
-	public void notifyChange(){
+	public void notifyChange() {
 		setChanged();
 		notifyObservers(this);
 	}
-	
-	
-	
+
 }
