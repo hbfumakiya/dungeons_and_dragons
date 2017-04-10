@@ -34,19 +34,19 @@ public class AggressiveNPC implements Strategy {
 		MapButton path[][] = p.findPath("enemy");
 		int index = gamePlayModel.currentEnemyIndex;
 
-		int i = 3;
-		while (i > 0) {
+//		int i = 3;
+//		while (i > 0) {
 			try {
-				findPath(path, gamePlayModel, index);
+				//findPath(path, gamePlayModel, index);
 				LogHelper.Log(LogHelper.TYPE_INFO, "Aggressive Character Move" + 1);
-			//	MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
-//				if(enemy.getCharacter().isAlive())
-//				gamePlayModel.moveEnemy(enemy);
+				MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+				if(enemy.getCharacter().isAlive())
+				gamePlayModel.moveEnemy(enemy);
 				Thread.sleep(2000);
-				i--;
+				//i--;
 			} catch (InterruptedException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
-			}
+			//}
 		}
 	}
 
