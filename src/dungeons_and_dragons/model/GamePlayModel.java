@@ -801,9 +801,10 @@ public class GamePlayModel extends Observable implements Runnable {
 							for (int k = 0; k < items.size(); k++) {
 								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
 									isMelle = true;
-									//enchantment = items.get(k).get
+									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
 									isRange = true;
+									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								}
 							}
 							int diceD8 = DiceHelper.rollD8();
@@ -862,6 +863,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					int temp = character.getCharacter().getAttackBonus();
 					int diceValue = DiceHelper.rollD20();
 					int stModi = character.getCharacter().getModifiers().getStraight();
+					String enchantment = "";
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
@@ -873,12 +875,14 @@ public class GamePlayModel extends Observable implements Runnable {
 							}
 							boolean isRange = false;
 							boolean isMelle = false;
-
+							
 							for (int k = 0; k < items.size(); k++) {
 								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
 									isMelle = true;
+									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
 									isRange = true;
+									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								}
 							}
 							int diceD8 = DiceHelper.rollD8();
@@ -895,6 +899,7 @@ public class GamePlayModel extends Observable implements Runnable {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
 						}
 					}
+					
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
 						turnChar.getCharacter().setAlive(false);
 						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
