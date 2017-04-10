@@ -136,8 +136,9 @@ public class AggressiveNPC implements Strategy {
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		LogHelper.Log(LogHelper.TYPE_INFO, "Agressive NPC Attack");
-		System.out.println("Agresive NPC Attack");
 		try {
+			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
+			
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			

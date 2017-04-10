@@ -776,8 +776,79 @@ public class GamePlayModel extends Observable implements Runnable {
 		return false;
 	}
 
-	private void attackToPlayer(MapCharacter character) {
-		// TODO Auto-generated method stub
+	public void attackToPlayer(MapCharacter character) {
+		
+		for (MapCharacter turnChar : this.getTurnList()) {
+			if ((turnChar.getCharacterType().equals(MapCharacter.NORMAL) || turnChar.getCharacterType().equals(MapCharacter.COMPUTER)) && turnChar.getCharacter().isAlive()) {
+				turnChar.setX((int) this.getGameCharacterPosition().getX());
+				turnChar.setY((int) this.getGameCharacterPosition().getY());
+				if (this.validateAttack(character, turnChar)) {
+					int temp = character.getCharacter().getAttackBonus();
+					int diceValue = DiceHelper.rollD20();
+					int stModi = character.getCharacter().getModifiers().getStraight();
+					for (int i = temp; i > 0; i -= 5) {
+						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
+							ishit = true;
+							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can hit player");
+
+							ArrayList<ItemModel> items = character.getCharacter().getItems();
+							if (items == null || items.size() < 1) {
+								break;
+							}
+							boolean isRange = false;
+							boolean isMelle = false;
+							String enchantment = "";
+							for (int k = 0; k < items.size(); k++) {
+								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
+									isMelle = true;
+									//enchantment = items.get(k).get
+								} else if (items.get(k).getItem_type().equals(Game_constants.WEAPON_RANGE)) {
+									isRange = true;
+								}
+							}
+							int diceD8 = DiceHelper.rollD8();
+							if (isMelle) {
+								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
+								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+							} else if (isRange) {
+								int points = diceD8;
+								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+							} else {
+								LogHelper.Log(LogHelper.TYPE_INFO,"Enemy does not have any weapon");
+							}
+						} else {
+							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can not hit player");
+						}
+					}
+					if (turnChar.getCharacter().getHitpoints() <= -10) {
+						turnChar.getCharacter().setAlive(false);
+						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
+						zeroAbilities.setCharisma(-10);
+						zeroAbilities.setConstitution(-10);
+						zeroAbilities.setDexterity(-10);
+						zeroAbilities.setIntelligence(-10);
+						zeroAbilities.setstrength(-10);
+						zeroAbilities.setWisdom(-10);
+
+						turnChar.getCharacter().setAbilityScores(zeroAbilities);
+						turnChar.getCharacter().setAttackBonus(0);
+						turnChar.getCharacter().setHitpoints(0);
+						turnChar.getCharacter().setDamageBonus(0);
+						turnChar.getCharacter().setArmorClass(0);
+						turnChar.getCharacter().setRawAbilityScores(zeroAbilities);
+						turnChar.getCharacter().calculateModifires();
+
+						this.turnList.remove(turnChar);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Player dead! Game over");
+						setChanged();
+						notifyObservers();
+					}
+					break;
+				}
+			}
+		}
 
 	}
 
@@ -820,6 +891,8 @@ public class GamePlayModel extends Observable implements Runnable {
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							}
+						} else {
+							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
 						}
 					}
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
@@ -841,6 +914,9 @@ public class GamePlayModel extends Observable implements Runnable {
 						turnChar.getCharacter().calculateModifires();
 
 						this.turnList.remove(turnChar);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Enemy dead");
+						setChanged();
+						notifyObservers();
 					}
 					break;
 				}
