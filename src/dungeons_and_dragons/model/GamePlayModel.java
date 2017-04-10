@@ -412,7 +412,6 @@ public class GamePlayModel extends Observable implements Runnable {
 			case MapCharacter.FRIENDLY:
 				characterStrategy = new CharacterStrategy();
 				characterStrategy.setStrategy(new FriendlyNPC());
-
 				this.turnList.get(i).setCharacterStrategy(characterStrategy);
 				break;
 			}
@@ -927,13 +926,13 @@ public class GamePlayModel extends Observable implements Runnable {
 					msg = "Sorry your backpack is full.So cannot add any new Item";
 				}
 				this.setGameCharacterPosition(tempPoint);
-				JOptionPane.showMessageDialog(new JFrame(), msg);
+				LogHelper.Log(LogHelper.TYPE_INFO, msg);
 			}
 
 		}
-		// interact with friendly enemy
+		// interact with friend & enemy
 		else if (this.checkCharacter(tempPoint)) {
-
+			String msg = "";
 			ArrayList<MapCharacter> chars = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
 					.getMap_enemy_loc();
 
@@ -960,14 +959,40 @@ public class GamePlayModel extends Observable implements Runnable {
 					}
 					new NPCItemController(this, this.getCharacterModel().getBackPackItems(), false, friendly);
 				} else if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
-					// TODO check if the enemy is dead and replace item code to
-					// be
-					// embedded here
+					
+					System.out.println("Enemy");
+					GameMapModel map = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
+					int numOfCharacters = map.getMap_enemy_loc().size();
+					CharacterModel enemy = new CharacterModel();
+					MapCharacter enemyMap = new MapCharacter();
+					int index = -1;
+					for (int j = 0; j < numOfCharacters; j++) {
+
+						if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
+								&& map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
+							enemy = map.getMap_enemy_loc().get(j).getCharacter();
+							enemyMap = map.getMap_enemy_loc().get(j);
+							index = j;
+						}
+					}
+					
+					ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
+					if (!enemy.getItems().isEmpty()) {
+						for(int i = 0;i<enemy.getItems().size();i++)
+						allEnemyItems.add( enemy.getItems().get(i));
+					}
+					if (!enemy.getBackPackItems().isEmpty()) {
+						for (int i = 0; i < enemy.getBackPackItems().size(); i++) {
+							allEnemyItems.add(enemy.getBackPackItems().get(i));
+						}
+					}
+					new NPCItemController(this, allEnemyItems, true, enemy);
+					
 				}
 			}
 
 		} else {
-			LogHelper.Log(LogHelper.TYPE_INFO, "No item found");
+			LogHelper.Log(LogHelper.TYPE_INFO, "No interaction to any player so no item found");
 		}
 
 		gameStatus.setGameStatus(GameStatus.RUNNING);

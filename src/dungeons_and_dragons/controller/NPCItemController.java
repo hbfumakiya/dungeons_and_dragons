@@ -92,7 +92,7 @@ public class NPCItemController implements ActionListener {
 					return;
 
 				if (this.character.getBackPackItems().size() < 10) {
-
+					//if(this.)
 					Collections.shuffle(this.character.getBackPackItems());
 
 					ItemModel item = this.character.getBackPackItems().get(0);

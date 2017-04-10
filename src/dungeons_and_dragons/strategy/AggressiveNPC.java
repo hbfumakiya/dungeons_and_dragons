@@ -140,7 +140,7 @@ public class AggressiveNPC implements Strategy {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -181,7 +181,7 @@ public class AggressiveNPC implements Strategy {
 			else {
 				for (int i = 0; i < map.getMap_enemy_loc().size(); i++) {
 					//check enemy dead or alive
-					if (!map.getMap_enemy_loc().get(i).getCharacter().isAlive()) {
+					if (!map.getMap_enemy_loc().get(i).getCharacter().isAlive() ) {
 						// check enemy location with dead enemy
 						if (enemy.getX() == map.getMap_enemy_loc().get(i).getX()
 								&& enemy.getY() == map.getMap_enemy_loc().get(i).getY()) {
@@ -201,17 +201,21 @@ public class AggressiveNPC implements Strategy {
 
 									enemy.getCharacter().getBackPackItems().add(item);
 
-									map.getMap_enemy_loc().get(i).getCharacter().getItems().remove(item);
-
-									//this.items.add(item);
 									gamePlayModel.notifyChange();
-									JOptionPane.showMessageDialog(new JFrame(), "You received this " + item.getItem_name() + "("
-											+ item.getItem_type() + ") item from friendly player which is added into your backpack");
+									LogHelper.Log(LogHelper.TYPE_INFO,  enemy.getCharacter().getCharacter_name()+" received this " + item.getItem_name() + "("
+											+ item.getItem_type() + ") item from other player which is added into "+enemy.getCharacter().getCharacter_name()+"'s backpack");
+									
+									}
+									else
+									{
+										LogHelper.Log(LogHelper.TYPE_INFO,  "Sorry " + map.getMap_enemy_loc().get(i).getCharacter().getCharacter_name()
+												+ "'s backpack does not have any item.So cannot add any Item" );
 									}
 
 								} else {
-									JOptionPane.showMessageDialog(new JFrame(), "Sorry " + enemy.getCharacter().getCharacter_name()
-											+ "'s (Friendly Player) backpack is full.So cannot exchange any Item");
+									LogHelper.Log(LogHelper.TYPE_INFO,  "Sorry " + enemy.getCharacter().getCharacter_name()
+											+ "'s backpack is full.So cannot add any Item" );
+									
 								}
 							}
 						}

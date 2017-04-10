@@ -2545,3 +2545,799 @@
 [ 21:20:37.388 09-04-2017  INFO ] Agressive NPC interact
 [ 21:20:39.389 09-04-2017  INFO ] Aggressive Character Move1
 [ 21:20:47.410 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:22:08.622 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:22:11.608 09-04-2017  INFO ] LEFT key pressed
+[ 21:22:11.647 09-04-2017  INFO ] Human Player Moved
+[ 21:22:11.787 09-04-2017  INFO ] DOWN key pressed
+[ 21:22:11.798 09-04-2017  INFO ] Human Player Moved
+[ 21:22:13.381 09-04-2017  INFO ] LEFT key pressed
+[ 21:22:13.400 09-04-2017  INFO ] Human Player Moved
+[ 21:22:13.400 09-04-2017  INFO ] Human Player attack
+[ 21:22:15.401 09-04-2017  INFO ] Human Player interact
+[ 21:22:15.403 09-04-2017  INFO ] No item found
+[ 21:22:17.406 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:22:25.443 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:22:27.444 09-04-2017  INFO ] Agressive NPC interact
+[ 21:22:33.445 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:22:41.481 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:22:43.482 09-04-2017  INFO ] Agressive NPC interact
+[ 21:22:45.483 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:25:34.423 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:26:16.914 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:26:25.033 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:26:27.034 09-04-2017  INFO ] Agressive NPC interact
+[ 21:26:29.035 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:26:37.088 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:26:39.089 09-04-2017  INFO ] Agressive NPC interact
+[ 21:26:39.100 09-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:26:45.102 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:26:53.132 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:26:55.133 09-04-2017  INFO ] Agressive NPC interact
+[ 21:26:57.134 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:27:05.161 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:27:07.162 09-04-2017  INFO ] Agressive NPC interact
+[ 21:27:13.163 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:27:18.923 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:27:26.997 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:27:28.998 09-04-2017  INFO ] Agressive NPC interact
+[ 21:27:48.787 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:29:51.582 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:30:37.049 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:30:41.894 09-04-2017  INFO ] LEFT key pressed
+[ 21:30:41.921 09-04-2017  INFO ] Human Player Moved
+[ 21:30:42.044 09-04-2017  INFO ] DOWN key pressed
+[ 21:30:42.058 09-04-2017  INFO ] Human Player Moved
+[ 21:30:42.358 09-04-2017  INFO ] LEFT key pressed
+[ 21:30:42.378 09-04-2017  INFO ] Human Player Moved
+[ 21:30:42.378 09-04-2017  INFO ] Human Player attack
+[ 21:30:44.379 09-04-2017  INFO ] Human Player interact
+[ 21:30:44.380 09-04-2017  INFO ] No item found
+[ 21:30:50.382 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:31:09.643 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:31:11.644 09-04-2017  INFO ] Agressive NPC interact
+[ 21:31:13.644 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:31:41.041 09-04-2017  INFO ] RIGHT key pressed
+[ 21:31:41.052 09-04-2017  INFO ] Human Player Moved
+[ 21:31:41.501 09-04-2017  INFO ] DOWN key pressed
+[ 21:31:41.515 09-04-2017  INFO ] Human Player Moved
+[ 21:31:44.550 09-04-2017  INFO ] RIGHT key pressed
+[ 21:31:44.571 09-04-2017  INFO ] Human Player Moved
+[ 21:31:44.571 09-04-2017  INFO ] Human Player attack
+[ 21:31:46.572 09-04-2017  INFO ] Human Player interact
+[ 21:31:46.572 09-04-2017  INFO ] No item found
+[ 21:31:52.573 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:33:04.511 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:33:06.512 09-04-2017  INFO ] Agressive NPC interact
+[ 21:33:08.512 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:34:32.606 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:34:47.523 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:34:49.523 09-04-2017  INFO ] Agressive NPC interact
+[ 21:34:51.524 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:34:54.570 09-04-2017  INFO ] DOWN key pressed
+[ 21:34:54.600 09-04-2017  INFO ] Human Player Moved
+[ 21:34:54.744 09-04-2017  INFO ] LEFT key pressed
+[ 21:34:54.755 09-04-2017  INFO ] Human Player Moved
+[ 21:34:55.183 09-04-2017  INFO ] LEFT key pressed
+[ 21:34:55.196 09-04-2017  INFO ] Human Player Moved
+[ 21:34:55.196 09-04-2017  INFO ] Human Player attack
+[ 21:34:57.197 09-04-2017  INFO ] Human Player interact
+[ 21:34:57.197 09-04-2017  INFO ] No item found
+[ 21:34:59.198 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:35:11.910 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:35:13.911 09-04-2017  INFO ] Agressive NPC interact
+[ 21:35:19.913 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:40:21.955 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:39.019 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:41.020 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:43.020 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:45.021 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:47.021 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:49.022 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:51.023 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:53.023 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:55.024 09-04-2017  INFO ] Friend Character Move4
+[ 21:40:57.024 09-04-2017  INFO ] Friend Character Move4
+[ 21:44:11.446 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:54:36.531 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:54:44.611 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:54:46.611 09-04-2017  INFO ] Agressive NPC interact
+[ 21:54:48.612 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:54:51.026 09-04-2017  INFO ] DOWN key pressed
+[ 21:54:51.064 09-04-2017  INFO ] Human Player Moved
+[ 21:54:51.411 09-04-2017  INFO ] LEFT key pressed
+[ 21:54:51.426 09-04-2017  INFO ] Human Player Moved
+[ 21:54:51.632 09-04-2017  INFO ] LEFT key pressed
+[ 21:54:51.655 09-04-2017  INFO ] Human Player Moved
+[ 21:54:51.656 09-04-2017  INFO ] Human Player attack
+[ 21:54:53.657 09-04-2017  INFO ] Human Player interact
+[ 21:54:53.657 09-04-2017  INFO ] No item found
+[ 21:54:55.659 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:55:03.692 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:55:05.693 09-04-2017  INFO ] Agressive NPC interact
+[ 21:55:11.694 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:55:19.708 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:55:21.708 09-04-2017  INFO ] Agressive NPC interact
+[ 21:55:23.709 09-04-2017  INFO ] Waiting for user input to move human player
+[ 21:55:56.069 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:56:04.191 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:56:06.192 09-04-2017  INFO ] Agressive NPC interact
+[ 21:56:12.195 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:56:20.259 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:56:22.260 09-04-2017  INFO ] Agressive NPC interact
+[ 21:56:22.270 09-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:56:24.271 09-04-2017  INFO ] Aggressive Character Move1
+[ 21:56:32.294 09-04-2017  INFO ] Agressive NPC Attack
+[ 21:56:34.294 09-04-2017  INFO ] Agressive NPC interact
+[ 21:58:52.427 09-04-2017  INFO ] Waiting for user input to move human player
+[ 22:01:59.253 09-04-2017  INFO ] Aggressive Character Move1
+[ 22:02:16.311 09-04-2017  INFO ] Agressive NPC Attack
+[ 22:02:18.312 09-04-2017  INFO ] Agressive NPC interact
+[ 22:02:18.327 09-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 22:02:31.243 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:48:03.933 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:48:12.030 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:48:14.031 09-04-2017  INFO ] Agressive NPC interact
+[ 23:48:16.033 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:48:17.521 09-04-2017  INFO ] LEFT key pressed
+[ 23:48:17.536 09-04-2017  INFO ] Human Player Moved
+[ 23:48:18.017 09-04-2017  INFO ] DOWN key pressed
+[ 23:48:18.036 09-04-2017  INFO ] Human Player Moved
+[ 23:48:18.216 09-04-2017  INFO ] LEFT key pressed
+[ 23:48:18.230 09-04-2017  INFO ] Human Player Moved
+[ 23:48:18.231 09-04-2017  INFO ] Human Player attack
+[ 23:48:20.231 09-04-2017  INFO ] Human Player interact
+[ 23:48:20.232 09-04-2017  INFO ] No interaction to any player so no item found
+[ 23:50:01.015 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:50:09.092 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:50:11.092 09-04-2017  INFO ] Agressive NPC interact
+[ 23:50:13.094 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:50:21.120 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:50:23.121 09-04-2017  INFO ] Agressive NPC interact
+[ 23:50:29.124 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:50:37.153 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:50:39.154 09-04-2017  INFO ] Agressive NPC interact
+[ 23:50:41.155 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:50:49.190 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:50:51.191 09-04-2017  INFO ] Agressive NPC interact
+[ 23:50:57.193 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:51:10.400 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:51:18.464 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:51:20.466 09-04-2017  INFO ] Agressive NPC interact
+[ 23:51:22.467 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:51:30.492 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:51:32.493 09-04-2017  INFO ] Agressive NPC interact
+[ 23:51:38.494 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:51:41.008 09-04-2017  INFO ] LEFT key pressed
+[ 23:51:41.022 09-04-2017  INFO ] Human Player Moved
+[ 23:51:42.239 09-04-2017  INFO ] LEFT key pressed
+[ 23:51:42.251 09-04-2017  INFO ] Human Player Moved
+[ 23:51:43.269 09-04-2017  INFO ] LEFT key pressed
+[ 23:51:43.277 09-04-2017  INFO ] Human Player Moved
+[ 23:51:43.277 09-04-2017  INFO ] Human Player attack
+[ 23:51:45.278 09-04-2017  INFO ] Human Player interact
+[ 23:51:45.288 09-04-2017  INFO ] Item UR has been added in your backpack
+[ 23:51:47.289 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:51:55.305 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:51:57.306 09-04-2017  INFO ] Agressive NPC interact
+[ 23:51:59.307 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:52:07.331 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:52:09.332 09-04-2017  INFO ] Agressive NPC interact
+[ 23:52:15.333 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:52:32.112 09-04-2017  INFO ] RIGHT key pressed
+[ 23:52:32.145 09-04-2017  INFO ] Human Player Moved
+[ 23:52:32.471 09-04-2017  INFO ] DOWN key pressed
+[ 23:52:32.479 09-04-2017  INFO ] Human Player Moved
+[ 23:52:32.814 09-04-2017  INFO ] DOWN key pressed
+[ 23:52:32.820 09-04-2017  INFO ] Human Player Moved
+[ 23:52:32.821 09-04-2017  INFO ] Human Player attack
+[ 23:52:34.822 09-04-2017  INFO ] Human Player interact
+[ 23:52:34.823 09-04-2017  INFO ] No interaction to any player so no item found
+[ 23:52:36.824 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:52:44.852 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:52:46.853 09-04-2017  INFO ] Agressive NPC interact
+[ 23:52:48.854 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:52:56.883 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:52:58.884 09-04-2017  INFO ] Agressive NPC interact
+[ 23:53:04.886 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:53:05.888 09-04-2017  INFO ] LEFT key pressed
+[ 23:53:05.899 09-04-2017  INFO ] Human Player Moved
+[ 23:53:06.381 09-04-2017  INFO ] LEFT key pressed
+[ 23:53:06.388 09-04-2017  INFO ] Human Player Moved
+[ 23:53:08.229 09-04-2017  INFO ] UP key pressed
+[ 23:53:08.248 09-04-2017  INFO ] Human Player Moved
+[ 23:53:08.249 09-04-2017  INFO ] Human Player attack
+[ 23:53:10.250 09-04-2017  INFO ] Human Player interact
+[ 23:53:12.269 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:53:20.283 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:53:22.284 09-04-2017  INFO ] Agressive NPC interact
+[ 23:53:24.285 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:53:32.293 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:53:34.293 09-04-2017  INFO ] Agressive NPC interact
+[ 23:53:40.295 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:56:31.007 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:56:37.008 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:57:49.931 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:57:57.982 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:57:59.982 09-04-2017  INFO ] Agressive NPC interact
+[ 23:58:01.983 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:58:10.012 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:58:12.013 09-04-2017  INFO ] Agressive NPC interact
+[ 23:58:14.014 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:58:15.063 09-04-2017  INFO ] LEFT key pressed
+[ 23:58:15.071 09-04-2017  INFO ] Human Player Moved
+[ 23:59:03.474 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:59:11.730 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:59:19.838 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:59:21.839 09-04-2017  INFO ] Agressive NPC interact
+[ 23:59:23.839 09-04-2017  INFO ] Waiting for user input to move human player
+[ 23:59:25.696 09-04-2017  INFO ] LEFT key pressed
+[ 23:59:25.710 09-04-2017  INFO ] Human Player Moved
+[ 23:59:31.868 09-04-2017  INFO ] LEFT key pressed
+[ 23:59:31.880 09-04-2017  INFO ] Human Player Moved
+[ 23:59:32.696 09-04-2017  INFO ] LEFT key pressed
+[ 23:59:32.704 09-04-2017  INFO ] Human Player Moved
+[ 23:59:32.704 09-04-2017  INFO ] Human Player attack
+[ 23:59:32.705 09-04-2017  INFO ] Player can hit anemy
+[ 23:59:32.706 09-04-2017  INFO ] 2 hit point deducted from enemy
+[ 23:59:32.706 09-04-2017  INFO ] Player can hit anemy
+[ 23:59:32.707 09-04-2017  INFO ] 6 hit point deducted from enemy
+[ 23:59:34.707 09-04-2017  INFO ] Human Player interact
+[ 23:59:34.747 09-04-2017  INFO ] Item UR has been added in your backpack
+[ 23:59:36.747 09-04-2017  INFO ] Aggressive Character Move1
+[ 23:59:44.762 09-04-2017  INFO ] Agressive NPC Attack
+[ 23:59:46.763 09-04-2017  INFO ] Agressive NPC interact
+[ 23:59:52.765 09-04-2017  INFO ] Aggressive Character Move1
+[ 00:00:00.797 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:00:02.797 10-04-2017  INFO ] Agressive NPC interact
+[ 00:00:04.798 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:00:11.296 10-04-2017  INFO ] DOWN key pressed
+[ 00:00:11.315 10-04-2017  INFO ] Human Player Moved
+[ 00:00:12.561 10-04-2017  INFO ] RIGHT key pressed
+[ 00:00:12.572 10-04-2017  INFO ] Human Player Moved
+[ 00:00:13.574 10-04-2017  INFO ] DOWN key pressed
+[ 00:00:13.580 10-04-2017  INFO ] Human Player Moved
+[ 00:00:13.581 10-04-2017  INFO ] Human Player attack
+[ 00:00:15.582 10-04-2017  INFO ] Human Player interact
+[ 00:00:15.583 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:00:17.584 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:00:25.597 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:00:27.598 10-04-2017  INFO ] Agressive NPC interact
+[ 00:00:33.600 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:00:41.625 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:00:43.626 10-04-2017  INFO ] Agressive NPC interact
+[ 00:00:45.627 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:00:47.188 10-04-2017  INFO ] LEFT key pressed
+[ 00:00:47.206 10-04-2017  INFO ] Human Player Moved
+[ 00:00:47.549 10-04-2017  INFO ] LEFT key pressed
+[ 00:00:47.560 10-04-2017  INFO ] Human Player Moved
+[ 00:00:48.261 10-04-2017  INFO ] UP key pressed
+[ 00:00:48.268 10-04-2017  INFO ] Human Player Moved
+[ 00:00:48.268 10-04-2017  INFO ] Human Player attack
+[ 00:00:50.269 10-04-2017  INFO ] Human Player interact
+[ 00:00:52.282 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:01:00.292 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:01:02.293 10-04-2017  INFO ] Agressive NPC interact
+[ 00:01:08.294 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:01:38.125 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:01:46.172 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:01:48.173 10-04-2017  INFO ] Agressive NPC interact
+[ 00:01:50.174 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:01:57.559 10-04-2017  INFO ] LEFT key pressed
+[ 00:01:57.588 10-04-2017  INFO ] Human Player Moved
+[ 00:01:59.731 10-04-2017  INFO ] LEFT key pressed
+[ 00:01:59.756 10-04-2017  INFO ] Human Player Moved
+[ 00:02:00.994 10-04-2017  INFO ] LEFT key pressed
+[ 00:02:01.002 10-04-2017  INFO ] Human Player Moved
+[ 00:02:01.002 10-04-2017  INFO ] Human Player attack
+[ 00:02:03.003 10-04-2017  INFO ] Human Player interact
+[ 00:02:03.023 10-04-2017  INFO ] Item UR has been added in your backpack
+[ 00:02:05.024 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:02:13.048 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:02:15.049 10-04-2017  INFO ] Agressive NPC interact
+[ 00:02:21.051 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:02:29.068 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:02:31.069 10-04-2017  INFO ] Agressive NPC interact
+[ 00:02:33.070 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:02:34.305 10-04-2017  INFO ] RIGHT key pressed
+[ 00:02:34.318 10-04-2017  INFO ] Human Player Moved
+[ 00:02:34.675 10-04-2017  INFO ] DOWN key pressed
+[ 00:02:34.682 10-04-2017  INFO ] Human Player Moved
+[ 00:02:35.222 10-04-2017  INFO ] DOWN key pressed
+[ 00:02:35.228 10-04-2017  INFO ] Human Player Moved
+[ 00:02:35.228 10-04-2017  INFO ] Human Player attack
+[ 00:02:37.229 10-04-2017  INFO ] Human Player interact
+[ 00:02:37.229 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:02:39.230 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:02:47.254 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:02:49.255 10-04-2017  INFO ] Agressive NPC interact
+[ 00:02:55.257 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:03:03.282 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:03:05.282 10-04-2017  INFO ] Agressive NPC interact
+[ 00:03:07.284 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:03:09.350 10-04-2017  INFO ] LEFT key pressed
+[ 00:03:09.362 10-04-2017  INFO ] Human Player Moved
+[ 00:03:09.720 10-04-2017  INFO ] LEFT key pressed
+[ 00:03:09.729 10-04-2017  INFO ] Human Player Moved
+[ 00:03:10.087 10-04-2017  INFO ] UP key pressed
+[ 00:03:10.092 10-04-2017  INFO ] Human Player Moved
+[ 00:03:10.093 10-04-2017  INFO ] Human Player attack
+[ 00:03:12.093 10-04-2017  INFO ] Human Player interact
+[ 00:03:14.105 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:03:22.126 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:03:24.127 10-04-2017  INFO ] Agressive NPC interact
+[ 00:03:30.128 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:03:38.139 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:03:40.140 10-04-2017  INFO ] Agressive NPC interact
+[ 00:03:42.141 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:03:55.350 10-04-2017  INFO ] DOWN key pressed
+[ 00:03:55.355 10-04-2017  INFO ] Human Player Moved
+[ 00:03:55.648 10-04-2017  INFO ] DOWN key pressed
+[ 00:03:55.653 10-04-2017  INFO ] Human Player Moved
+[ 00:03:56.024 10-04-2017  INFO ] DOWN key pressed
+[ 00:03:56.030 10-04-2017  INFO ] Human Player Moved
+[ 00:03:56.030 10-04-2017  INFO ] Human Player attack
+[ 00:03:58.031 10-04-2017  INFO ] Human Player interact
+[ 00:03:58.031 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:04:00.032 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:04:08.043 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:04:10.043 10-04-2017  INFO ] Agressive NPC interact
+[ 00:04:16.044 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:04:24.060 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:04:26.060 10-04-2017  INFO ] Agressive NPC interact
+[ 00:04:28.061 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:04:28.754 10-04-2017  INFO ] UP key pressed
+[ 00:04:28.758 10-04-2017  INFO ] Human Player Moved
+[ 00:04:29.042 10-04-2017  INFO ] UP key pressed
+[ 00:04:29.046 10-04-2017  INFO ] Human Player Moved
+[ 00:04:29.356 10-04-2017  INFO ] UP key pressed
+[ 00:04:29.361 10-04-2017  INFO ] Human Player Moved
+[ 00:04:29.361 10-04-2017  INFO ] Human Player attack
+[ 00:04:31.362 10-04-2017  INFO ] Human Player interact
+[ 00:04:33.380 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:04:41.391 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:04:43.391 10-04-2017  INFO ] Agressive NPC interact
+[ 00:04:49.393 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:07:44.443 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:07:52.509 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:07:54.510 10-04-2017  INFO ] Agressive NPC interact
+[ 00:08:00.511 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:08:08.547 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:08:10.548 10-04-2017  INFO ] Agressive NPC interact
+[ 00:08:16.550 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:08:24.576 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:08:26.577 10-04-2017  INFO ] Agressive NPC interact
+[ 00:08:32.578 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:08:43.251 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:08:51.333 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:08:53.334 10-04-2017  INFO ] Agressive NPC interact
+[ 00:08:58.374 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:09:06.437 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:09:08.438 10-04-2017  INFO ] Agressive NPC interact
+[ 00:09:10.438 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:09:18.465 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:09:20.466 10-04-2017  INFO ] Agressive NPC interact
+[ 00:09:26.467 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:09:35.456 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:09:43.515 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:09:45.516 10-04-2017  INFO ] Agressive NPC interact
+[ 00:09:47.517 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:09:55.560 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:09:57.561 10-04-2017  INFO ] Agressive NPC interact
+[ 00:10:03.562 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:10:06.135 10-04-2017  INFO ] DOWN key pressed
+[ 00:10:06.153 10-04-2017  INFO ] Human Player Moved
+[ 00:10:06.757 10-04-2017  INFO ] RIGHT key pressed
+[ 00:10:06.771 10-04-2017  INFO ] Human Player Moved
+[ 00:10:08.500 10-04-2017  INFO ] LEFT key pressed
+[ 00:10:08.509 10-04-2017  INFO ] Human Player Moved
+[ 00:10:08.510 10-04-2017  INFO ] Human Player attack
+[ 00:12:08.079 10-04-2017  INFO ] Player can hit anemy
+[ 00:12:19.854 10-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:12:39.661 10-04-2017  INFO ] Player can hit anemy
+[ 00:12:57.969 10-04-2017  INFO ] 7 hit point deducted from enemy
+[ 00:14:17.883 10-04-2017  INFO ] Human Player interact
+[ 00:14:17.883 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:14:19.884 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:14:27.900 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:14:29.901 10-04-2017  INFO ] Agressive NPC interact
+[ 00:14:31.902 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:14:39.944 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:14:41.946 10-04-2017  INFO ] Agressive NPC interact
+[ 00:14:47.947 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:14:48.977 10-04-2017  INFO ] DOWN key pressed
+[ 00:14:48.983 10-04-2017  INFO ] Human Player Moved
+[ 00:14:51.161 10-04-2017  INFO ] DOWN key pressed
+[ 00:14:51.177 10-04-2017  INFO ] Human Player Moved
+[ 00:15:02.363 10-04-2017  INFO ] UP key pressed
+[ 00:15:02.374 10-04-2017  INFO ] Human Player Moved
+[ 00:15:02.375 10-04-2017  INFO ] Human Player attack
+[ 00:15:04.286 10-04-2017  INFO ] Player can hit anemy
+[ 00:15:04.295 10-04-2017  INFO ] 5 hit point deducted from enemy
+[ 00:15:04.296 10-04-2017  INFO ] Player can hit anemy
+[ 00:15:04.304 10-04-2017  INFO ] 3 hit point deducted from enemy
+[ 00:15:06.315 10-04-2017  INFO ] Human Player interact
+[ 00:15:06.315 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:15:08.316 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:15:16.332 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:15:18.333 10-04-2017  INFO ] Agressive NPC interact
+[ 00:15:24.334 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:15:39.400 10-04-2017  INFO ] LEFT key pressed
+[ 00:15:39.410 10-04-2017  INFO ] Human Player Moved
+[ 00:15:39.924 10-04-2017  INFO ] LEFT key pressed
+[ 00:15:39.937 10-04-2017  INFO ] Human Player Moved
+[ 00:15:41.015 10-04-2017  INFO ] RIGHT key pressed
+[ 00:15:41.032 10-04-2017  INFO ] Human Player Moved
+[ 00:15:41.038 10-04-2017  INFO ] Human Player attack
+[ 00:15:42.741 10-04-2017  INFO ] Player can hit anemy
+[ 00:15:42.741 10-04-2017  INFO ] 2 hit point deducted from enemy
+[ 00:15:42.741 10-04-2017  INFO ] Player can hit anemy
+[ 00:15:42.742 10-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:15:44.742 10-04-2017  INFO ] Human Player interact
+[ 00:15:44.743 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:15:46.743 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:15:54.803 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:15:56.804 10-04-2017  INFO ] Agressive NPC interact
+[ 00:16:02.805 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:16:06.093 10-04-2017  INFO ] RIGHT key pressed
+[ 00:16:06.097 10-04-2017  INFO ] Human Player Moved
+[ 00:16:06.878 10-04-2017  INFO ] DOWN key pressed
+[ 00:16:06.884 10-04-2017  INFO ] Human Player Moved
+[ 00:16:09.236 10-04-2017  INFO ] UP key pressed
+[ 00:16:09.241 10-04-2017  INFO ] Human Player Moved
+[ 00:16:09.241 10-04-2017  INFO ] Human Player attack
+[ 00:16:10.879 10-04-2017  INFO ] Player can hit anemy
+[ 00:16:10.883 10-04-2017  INFO ] 7 hit point deducted from enemy
+[ 00:16:10.883 10-04-2017  INFO ] Player can hit anemy
+[ 00:16:10.885 10-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:16:12.885 10-04-2017  INFO ] Human Player interact
+[ 00:16:12.886 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:16:14.886 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:16:22.894 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:16:24.895 10-04-2017  INFO ] Agressive NPC interact
+[ 00:16:30.896 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:16:37.649 10-04-2017  INFO ] LEFT key pressed
+[ 00:16:37.654 10-04-2017  INFO ] Human Player Moved
+[ 00:16:40.001 10-04-2017  INFO ] UP key pressed
+[ 00:16:40.008 10-04-2017  INFO ] Human Player Moved
+[ 00:16:40.949 10-04-2017  INFO ] RIGHT key pressed
+[ 00:16:40.962 10-04-2017  INFO ] Human Player Moved
+[ 00:16:40.963 10-04-2017  INFO ] Human Player attack
+[ 00:16:44.754 10-04-2017  INFO ] Player can hit anemy
+[ 00:16:44.762 10-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:16:44.762 10-04-2017  INFO ] Player can hit anemy
+[ 00:16:44.767 10-04-2017  INFO ] 2 hit point deducted from enemy
+[ 00:16:46.776 10-04-2017  INFO ] Human Player interact
+[ 00:16:52.798 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:17:26.997 10-04-2017  INFO ] RIGHT key pressed
+[ 00:17:27.001 10-04-2017  INFO ] Human Player Moved
+[ 00:17:28.343 10-04-2017  INFO ] DOWN key pressed
+[ 00:17:28.348 10-04-2017  INFO ] Human Player Moved
+[ 00:17:29.594 10-04-2017  INFO ] DOWN key pressed
+[ 00:17:29.599 10-04-2017  INFO ] Human Player Moved
+[ 00:17:29.599 10-04-2017  INFO ] Human Player attack
+[ 00:17:33.475 10-04-2017  INFO ] Human Player interact
+[ 00:17:33.475 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:17:39.476 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:18:01.766 10-04-2017  INFO ] UP key pressed
+[ 00:18:01.771 10-04-2017  INFO ] Human Player Moved
+[ 00:18:02.546 10-04-2017  INFO ] UP key pressed
+[ 00:18:02.550 10-04-2017  INFO ] Human Player Moved
+[ 00:18:27.081 10-04-2017  INFO ] LEFT key pressed
+[ 00:18:27.086 10-04-2017  INFO ] Human Player Moved
+[ 00:18:27.087 10-04-2017  INFO ] Human Player attack
+[ 00:18:29.087 10-04-2017  INFO ] Human Player interact
+[ 00:18:35.095 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:20:50.394 10-04-2017  INFO ] RIGHT key pressed
+[ 00:20:50.400 10-04-2017  INFO ] Human Player Moved
+[ 00:42:40.409 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:42:48.441 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:42:50.441 10-04-2017  INFO ] Agressive NPC interact
+[ 00:42:52.442 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:43:00.464 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:43:02.465 10-04-2017  INFO ] Agressive NPC interact
+[ 00:43:04.465 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:43:08.169 10-04-2017  INFO ] RIGHT key pressed
+[ 00:43:08.179 10-04-2017  INFO ] Human Player Moved
+[ 00:43:09.056 10-04-2017  INFO ] DOWN key pressed
+[ 00:43:09.067 10-04-2017  INFO ] Human Player Moved
+[ 00:43:10.714 10-04-2017  INFO ] DOWN key pressed
+[ 00:43:10.721 10-04-2017  INFO ] Human Player Moved
+[ 00:43:10.721 10-04-2017  INFO ] Human Player attack
+[ 00:43:10.721 10-04-2017  INFO ] Player can hit anemy
+[ 00:43:10.722 10-04-2017  INFO ] 9 hit point deducted from enemy
+[ 00:43:12.722 10-04-2017  INFO ] Human Player interact
+[ 00:43:12.723 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:43:18.726 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:43:26.739 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:43:28.740 10-04-2017  INFO ] Agressive NPC interact
+[ 00:43:30.740 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:43:38.751 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:43:40.751 10-04-2017  INFO ] Agressive NPC interact
+[ 00:43:42.752 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:43:43.649 10-04-2017  INFO ] DOWN key pressed
+[ 00:43:43.663 10-04-2017  INFO ] Human Player Moved
+[ 00:43:44.350 10-04-2017  INFO ] DOWN key pressed
+[ 00:43:44.358 10-04-2017  INFO ] Human Player Moved
+[ 00:43:45.418 10-04-2017  INFO ] UP key pressed
+[ 00:43:45.425 10-04-2017  INFO ] Human Player Moved
+[ 00:43:45.425 10-04-2017  INFO ] Human Player attack
+[ 00:43:47.427 10-04-2017  INFO ] Human Player interact
+[ 00:43:47.427 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:43:53.428 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:44:01.436 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:44:03.436 10-04-2017  INFO ] Agressive NPC interact
+[ 00:44:05.437 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:44:13.447 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:44:15.448 10-04-2017  INFO ] Agressive NPC interact
+[ 00:44:17.448 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:44:34.894 10-04-2017  INFO ] LEFT key pressed
+[ 00:44:34.900 10-04-2017  INFO ] Human Player Moved
+[ 00:44:36.878 10-04-2017  INFO ] DOWN key pressed
+[ 00:44:36.884 10-04-2017  INFO ] Human Player Moved
+[ 00:44:37.677 10-04-2017  INFO ] UP key pressed
+[ 00:44:37.681 10-04-2017  INFO ] Human Player Moved
+[ 00:44:37.682 10-04-2017  INFO ] Human Player attack
+[ 00:44:39.682 10-04-2017  INFO ] Human Player interact
+[ 00:44:39.682 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:44:45.683 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:44:53.691 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:44:55.692 10-04-2017  INFO ] Agressive NPC interact
+[ 00:44:57.692 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:45:05.711 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:45:07.712 10-04-2017  INFO ] Agressive NPC interact
+[ 00:45:09.713 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:11.737 10-04-2017  INFO ] RIGHT key pressed
+[ 00:45:11.742 10-04-2017  INFO ] Human Player Moved
+[ 00:45:12.491 10-04-2017  INFO ] DOWN key pressed
+[ 00:45:12.496 10-04-2017  INFO ] Human Player Moved
+[ 00:45:14.432 10-04-2017  INFO ] UP key pressed
+[ 00:45:14.439 10-04-2017  INFO ] Human Player Moved
+[ 00:45:14.439 10-04-2017  INFO ] Human Player attack
+[ 00:45:16.440 10-04-2017  INFO ] Human Player interact
+[ 00:45:16.440 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:45:22.441 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:45:30.450 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:45:32.450 10-04-2017  INFO ] Agressive NPC interact
+[ 00:45:34.451 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:45:42.462 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:45:44.463 10-04-2017  INFO ] Agressive NPC interact
+[ 00:45:46.463 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:47.526 10-04-2017  INFO ] UP key pressed
+[ 00:45:47.532 10-04-2017  INFO ] Human Player Moved
+[ 00:45:48.008 10-04-2017  INFO ] LEFT key pressed
+[ 00:45:48.014 10-04-2017  INFO ] Human Player Moved
+[ 00:45:48.639 10-04-2017  INFO ] DOWN key pressed
+[ 00:45:48.644 10-04-2017  INFO ] Human Player Moved
+[ 00:45:48.646 10-04-2017  INFO ] Human Player attack
+[ 00:45:50.647 10-04-2017  INFO ] Human Player interact
+[ 00:45:50.647 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:45:56.648 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:46:04.660 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:46:06.661 10-04-2017  INFO ] Agressive NPC interact
+[ 00:46:08.661 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:46:16.669 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:46:18.670 10-04-2017  INFO ] Agressive NPC interact
+[ 00:46:20.670 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:46:21.686 10-04-2017  INFO ] DOWN key pressed
+[ 00:46:21.690 10-04-2017  INFO ] Human Player Moved
+[ 00:46:22.081 10-04-2017  INFO ] DOWN key pressed
+[ 00:46:22.085 10-04-2017  INFO ] Human Player Moved
+[ 00:46:22.510 10-04-2017  INFO ] UP key pressed
+[ 00:46:22.517 10-04-2017  INFO ] Human Player Moved
+[ 00:46:22.517 10-04-2017  INFO ] Human Player attack
+[ 00:46:22.517 10-04-2017  INFO ] Player can hit anemy
+[ 00:46:22.518 10-04-2017  INFO ] 2 hit point deducted from enemy
+[ 00:46:22.518 10-04-2017  INFO ] Player can hit anemy
+[ 00:46:22.518 10-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:46:24.518 10-04-2017  INFO ] Human Player interact
+[ 00:46:24.519 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:46:30.520 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:46:38.528 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:46:40.529 10-04-2017  INFO ] Agressive NPC interact
+[ 00:46:42.529 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:46:50.536 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:46:52.537 10-04-2017  INFO ] Agressive NPC interact
+[ 00:46:54.537 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:46:55.864 10-04-2017  INFO ] RIGHT key pressed
+[ 00:46:55.867 10-04-2017  INFO ] Human Player Moved
+[ 00:46:58.183 10-04-2017  INFO ] DOWN key pressed
+[ 00:46:58.190 10-04-2017  INFO ] Human Player Moved
+[ 00:46:59.101 10-04-2017  INFO ] LEFT key pressed
+[ 00:46:59.105 10-04-2017  INFO ] Human Player Moved
+[ 00:46:59.105 10-04-2017  INFO ] Human Player attack
+[ 00:46:59.105 10-04-2017  INFO ] Player can hit anemy
+[ 00:46:59.105 10-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:47:01.106 10-04-2017  INFO ] Human Player interact
+[ 00:47:01.106 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:47:07.107 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:47:15.117 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:47:17.117 10-04-2017  INFO ] Agressive NPC interact
+[ 00:47:19.118 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:47:27.122 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:47:29.123 10-04-2017  INFO ] Agressive NPC interact
+[ 00:47:31.123 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:31.986 10-04-2017  INFO ] RIGHT key pressed
+[ 00:47:31.989 10-04-2017  INFO ] Human Player Moved
+[ 00:47:35.599 10-04-2017  INFO ] DOWN key pressed
+[ 00:47:35.602 10-04-2017  INFO ] Human Player Moved
+[ 00:47:36.652 10-04-2017  INFO ] LEFT key pressed
+[ 00:47:36.656 10-04-2017  INFO ] Human Player Moved
+[ 00:47:36.656 10-04-2017  INFO ] Human Player attack
+[ 00:47:38.657 10-04-2017  INFO ] Human Player interact
+[ 00:47:38.657 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:47:44.658 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:47:52.664 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:47:54.665 10-04-2017  INFO ] Agressive NPC interact
+[ 00:47:56.665 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:48:04.670 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:48:06.670 10-04-2017  INFO ] Agressive NPC interact
+[ 00:48:08.671 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:48:09.397 10-04-2017  INFO ] UP key pressed
+[ 00:48:09.400 10-04-2017  INFO ] Human Player Moved
+[ 00:48:10.263 10-04-2017  INFO ] UP key pressed
+[ 00:48:10.265 10-04-2017  INFO ] Human Player Moved
+[ 00:48:11.054 10-04-2017  INFO ] DOWN key pressed
+[ 00:48:11.058 10-04-2017  INFO ] Human Player Moved
+[ 00:48:11.058 10-04-2017  INFO ] Human Player attack
+[ 00:48:11.058 10-04-2017  INFO ] Player can hit anemy
+[ 00:48:11.058 10-04-2017  INFO ] 7 hit point deducted from enemy
+[ 00:48:11.058 10-04-2017  INFO ] Player can hit anemy
+[ 00:48:11.058 10-04-2017  INFO ] 4 hit point deducted from enemy
+[ 00:48:13.059 10-04-2017  INFO ] Human Player interact
+[ 00:48:13.059 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:48:19.062 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:48:27.067 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:48:29.068 10-04-2017  INFO ] Agressive NPC interact
+[ 00:48:31.068 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:48:36.439 10-04-2017  INFO ] RIGHT key pressed
+[ 00:48:36.441 10-04-2017  INFO ] Human Player Moved
+[ 00:48:37.426 10-04-2017  INFO ] UP key pressed
+[ 00:48:37.428 10-04-2017  INFO ] Human Player Moved
+[ 00:48:37.933 10-04-2017  INFO ] LEFT key pressed
+[ 00:48:37.935 10-04-2017  INFO ] Human Player Moved
+[ 00:48:37.936 10-04-2017  INFO ] Human Player attack
+[ 00:48:37.936 10-04-2017  INFO ] Player can hit anemy
+[ 00:48:37.942 10-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:48:39.942 10-04-2017  INFO ] Human Player interact
+[ 00:48:39.942 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:48:45.943 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:48:53.950 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:48:55.950 10-04-2017  INFO ] Agressive NPC interact
+[ 00:48:57.951 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:49:02.428 10-04-2017  INFO ] LEFT key pressed
+[ 00:49:02.432 10-04-2017  INFO ] Human Player Moved
+[ 00:49:02.779 10-04-2017  INFO ] RIGHT key pressed
+[ 00:49:02.781 10-04-2017  INFO ] Human Player Moved
+[ 00:49:03.131 10-04-2017  INFO ] UP key pressed
+[ 00:49:03.134 10-04-2017  INFO ] Human Player Moved
+[ 00:49:03.135 10-04-2017  INFO ] Human Player attack
+[ 00:49:03.135 10-04-2017  INFO ] Player can hit anemy
+[ 00:49:03.141 10-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:49:03.141 10-04-2017  INFO ] Player can hit anemy
+[ 00:49:03.144 10-04-2017  INFO ] 7 hit point deducted from enemy
+[ 00:49:05.151 10-04-2017  INFO ] Human Player interact
+[ 00:49:05.152 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:49:11.154 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:49:14.290 10-04-2017  INFO ] DOWN key pressed
+[ 00:49:14.295 10-04-2017  INFO ] Human Player Moved
+[ 00:49:14.672 10-04-2017  INFO ] UP key pressed
+[ 00:49:14.674 10-04-2017  INFO ] Human Player Moved
+[ 00:49:21.871 10-04-2017  INFO ] DOWN key pressed
+[ 00:49:21.873 10-04-2017  INFO ] Human Player Moved
+[ 00:49:21.873 10-04-2017  INFO ] Human Player attack
+[ 00:49:23.874 10-04-2017  INFO ] Human Player interact
+[ 00:49:29.884 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:49:33.247 10-04-2017  INFO ] RIGHT key pressed
+[ 00:49:33.254 10-04-2017  INFO ] Human Player Moved
+[ 00:50:27.577 10-04-2017  INFO ] UP key pressed
+[ 00:50:27.580 10-04-2017  INFO ] Human Player Moved
+[ 00:50:28.066 10-04-2017  INFO ] LEFT key pressed
+[ 00:50:28.069 10-04-2017  INFO ] Human Player Moved
+[ 00:50:28.069 10-04-2017  INFO ] Human Player attack
+[ 00:50:30.070 10-04-2017  INFO ] Human Player interact
+[ 00:50:30.070 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:50:36.071 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:50:46.892 10-04-2017  INFO ] LEFT key pressed
+[ 00:50:46.897 10-04-2017  INFO ] Human Player Moved
+[ 00:50:47.018 10-04-2017  INFO ] DOWN key pressed
+[ 00:50:47.021 10-04-2017  INFO ] Human Player Moved
+[ 00:50:47.228 10-04-2017  INFO ] DOWN key pressed
+[ 00:50:47.231 10-04-2017  INFO ] Human Player Moved
+[ 00:50:47.231 10-04-2017  INFO ] Human Player attack
+[ 00:50:49.231 10-04-2017  INFO ] Human Player interact
+[ 00:50:49.232 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:50:55.232 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:51:01.458 10-04-2017  INFO ] DOWN key pressed
+[ 00:51:01.462 10-04-2017  INFO ] Human Player Moved
+[ 00:51:13.108 10-04-2017  INFO ] LEFT key pressed
+[ 00:51:13.111 10-04-2017  INFO ] Human Player Moved
+[ 00:51:15.735 10-04-2017  INFO ] UP key pressed
+[ 00:51:15.738 10-04-2017  INFO ] Human Player Moved
+[ 00:51:15.738 10-04-2017  INFO ] Human Player attack
+[ 00:51:17.739 10-04-2017  INFO ] Human Player interact
+[ 00:51:17.739 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:51:23.740 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:51:26.828 10-04-2017  INFO ] RIGHT key pressed
+[ 00:51:26.830 10-04-2017  INFO ] Human Player Moved
+[ 00:51:27.212 10-04-2017  INFO ] RIGHT key pressed
+[ 00:51:27.215 10-04-2017  INFO ] Human Player Moved
+[ 00:51:31.413 10-04-2017  INFO ] DOWN key pressed
+[ 00:51:31.422 10-04-2017  INFO ] Human Player Moved
+[ 00:51:31.423 10-04-2017  INFO ] Human Player attack
+[ 00:51:33.423 10-04-2017  INFO ] Human Player interact
+[ 00:51:39.428 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:51:43.756 10-04-2017  INFO ] LEFT key pressed
+[ 00:51:43.759 10-04-2017  INFO ] Human Player Moved
+[ 00:52:00.285 10-04-2017  INFO ] UP key pressed
+[ 00:52:00.289 10-04-2017  INFO ] Human Player Moved
+[ 00:52:00.623 10-04-2017  INFO ] UP key pressed
+[ 00:52:00.627 10-04-2017  INFO ] Human Player Moved
+[ 00:52:00.627 10-04-2017  INFO ] Human Player attack
+[ 00:52:02.627 10-04-2017  INFO ] Human Player interact
+[ 00:52:02.627 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:52:08.628 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:09.240 10-04-2017  INFO ] LEFT key pressed
+[ 00:52:09.243 10-04-2017  INFO ] Human Player Moved
+[ 00:52:09.535 10-04-2017  INFO ] LEFT key pressed
+[ 00:52:09.538 10-04-2017  INFO ] Human Player Moved
+[ 00:52:09.894 10-04-2017  INFO ] LEFT key pressed
+[ 00:52:09.897 10-04-2017  INFO ] Human Player Moved
+[ 00:52:09.897 10-04-2017  INFO ] Human Player attack
+[ 00:52:11.898 10-04-2017  INFO ] Human Player interact
+[ 00:52:11.898 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:52:17.899 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:22.080 10-04-2017  INFO ] UP key pressed
+[ 00:52:22.082 10-04-2017  INFO ] Human Player Moved
+[ 00:52:22.519 10-04-2017  INFO ] UP key pressed
+[ 00:52:22.522 10-04-2017  INFO ] Human Player Moved
+[ 00:52:23.700 10-04-2017  INFO ] UP key pressed
+[ 00:52:23.703 10-04-2017  INFO ] Human Player Moved
+[ 00:52:23.703 10-04-2017  INFO ] Human Player attack
+[ 00:52:25.703 10-04-2017  INFO ] Human Player interact
+[ 00:52:31.708 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:43.076 10-04-2017  INFO ] DOWN key pressed
+[ 00:52:43.089 10-04-2017  INFO ] Human Player Moved
+[ 00:52:44.380 10-04-2017  INFO ] RIGHT key pressed
+[ 00:52:44.383 10-04-2017  INFO ] Human Player Moved
+[ 00:52:46.180 10-04-2017  INFO ] DOWN key pressed
+[ 00:52:46.186 10-04-2017  INFO ] Human Player Moved
+[ 00:52:46.186 10-04-2017  INFO ] Human Player attack
+[ 00:52:48.187 10-04-2017  INFO ] Human Player interact
+[ 00:52:48.187 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:52:54.188 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:55.520 10-04-2017  INFO ] LEFT key pressed
+[ 00:52:55.523 10-04-2017  INFO ] Human Player Moved
+[ 00:52:56.016 10-04-2017  INFO ] UP key pressed
+[ 00:52:56.023 10-04-2017  INFO ] Human Player Moved
+[ 00:52:56.489 10-04-2017  INFO ] UP key pressed
+[ 00:52:56.493 10-04-2017  INFO ] Human Player Moved
+[ 00:52:56.493 10-04-2017  INFO ] Human Player attack
+[ 00:52:58.494 10-04-2017  INFO ] Human Player interact
+[ 00:53:04.498 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:07.858 10-04-2017  INFO ] DOWN key pressed
+[ 00:53:07.861 10-04-2017  INFO ] Human Player Moved
+[ 00:53:09.701 10-04-2017  INFO ] DOWN key pressed
+[ 00:53:09.706 10-04-2017  INFO ] Human Player Moved
+[ 00:53:10.335 10-04-2017  INFO ] RIGHT key pressed
+[ 00:53:10.337 10-04-2017  INFO ] Human Player Moved
+[ 00:53:10.338 10-04-2017  INFO ] Human Player attack
+[ 00:53:12.338 10-04-2017  INFO ] Human Player interact
+[ 00:53:12.339 10-04-2017  INFO ] No interaction to any player so no item found
+[ 00:53:18.339 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:18.771 10-04-2017  INFO ] UP key pressed
+[ 00:53:18.774 10-04-2017  INFO ] Human Player Moved
+[ 00:53:20.424 10-04-2017  INFO ] UP key pressed
+[ 00:53:20.428 10-04-2017  INFO ] Human Player Moved
+[ 00:53:21.136 10-04-2017  INFO ] UP key pressed
+[ 00:53:21.140 10-04-2017  INFO ] Human Player Moved
+[ 00:53:21.140 10-04-2017  INFO ] Human Player attack
+[ 00:53:23.140 10-04-2017  INFO ] Human Player interact
+[ 00:53:23.149 10-04-2017  INFO ] Item UR has been added in your backpack
+[ 00:53:29.150 10-04-2017  INFO ] Waiting for user input to move human player
+[ 00:54:45.343 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:54:53.428 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:54:55.429 10-04-2017  INFO ] Agressive NPC interact
+[ 00:55:01.430 10-04-2017  INFO ] Aggressive Character Move1
+[ 00:55:09.441 10-04-2017  INFO ] Agressive NPC Attack
+[ 00:55:11.441 10-04-2017  INFO ] Agressive NPC interact
+[ 00:55:17.443 10-04-2017  INFO ] Aggressive Character Move1

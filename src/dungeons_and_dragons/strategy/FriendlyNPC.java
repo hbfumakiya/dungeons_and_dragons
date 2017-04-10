@@ -2,6 +2,10 @@ package dungeons_and_dragons.strategy;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
@@ -121,6 +125,47 @@ public class FriendlyNPC implements Strategy {
 					msg = "Sorry your backpack is full.So cannot add any new Item";
 					LogHelper.Log(LogHelper.TYPE_INFO, msg);
 					System.out.println("" + msg);
+				}
+			}
+			else {
+				for (int i = 0; i < map.getMap_enemy_loc().size(); i++) {
+					//check enemy dead or alive
+					if (!map.getMap_enemy_loc().get(i).getCharacter().isAlive()) {
+						// check enemy location with dead enemy
+						if (friendly.getX() == map.getMap_enemy_loc().get(i).getX()
+								&& friendly.getY() == map.getMap_enemy_loc().get(i).getY()) {
+							//check if it is not checking same enemy
+							if (friendly.getCharacter().getCharacter_id() != map.getMap_enemy_loc().get(i).getCharacter()
+									.getCharacter_id()) {
+								ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
+								
+								if (friendly.getCharacter().getBackPackItems().size() < 10) {
+									if(!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty())
+									{
+									Collections.shuffle(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems());
+
+									ItemModel item = map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().get(0);
+
+									map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().remove(item);
+
+									friendly.getCharacter().getBackPackItems().add(item);
+
+									map.getMap_enemy_loc().get(i).getCharacter().getItems().remove(item);
+
+									//this.items.add(item);
+									gamePlayModel.notifyChange();
+									JOptionPane.showMessageDialog(new JFrame(), "You received this " + item.getItem_name() + "("
+											+ item.getItem_type() + ") item from friendly player which is added into your backpack");
+									}
+
+								} else {
+									JOptionPane.showMessageDialog(new JFrame(), "Sorry " + friendly.getCharacter().getCharacter_name()
+											+ "'s (Friendly Player) backpack is full.So cannot exchange any Item");
+								}
+							}
+						}
+
+					}
 				}
 			}
 			Thread.sleep(2000);

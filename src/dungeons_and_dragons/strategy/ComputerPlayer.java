@@ -5,6 +5,10 @@ package dungeons_and_dragons.strategy;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
@@ -135,6 +139,75 @@ public class ComputerPlayer implements Strategy {
 					msg = "Sorry your backpack is full.So cannot add any new Item";
 					LogHelper.Log(LogHelper.TYPE_INFO, msg);
 					System.out.println("" + msg);
+				}
+			}
+			else {
+				for (int i = 0; i < map.getMap_enemy_loc().size(); i++) {
+					//check enemy dead or alive
+					if (!map.getMap_enemy_loc().get(i).getCharacter().isAlive()) {
+						// check enemy location with dead enemy
+						if (playerOrNPC.getX() == map.getMap_enemy_loc().get(i).getX()
+								&& playerOrNPC.getY() == map.getMap_enemy_loc().get(i).getY()) {
+							//check if it is not checking same enemy
+							if (playerOrNPC.getCharacter().getCharacter_id() != map.getMap_enemy_loc().get(i).getCharacter()
+									.getCharacter_id()) {
+								ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
+								
+								if (playerOrNPC.getCharacter().getBackPackItems().size() < 10) {
+									if(!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty())
+									{
+									Collections.shuffle(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems());
+
+									ItemModel item = map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().get(0);
+
+									map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().remove(item);
+
+									playerOrNPC.getCharacter().getBackPackItems().add(item);
+
+									gamePlayModel.notifyChange();
+									LogHelper.Log(LogHelper.TYPE_INFO,  playerOrNPC.getCharacter().getCharacter_name()+" received this " + item.getItem_name() + "("
+											+ item.getItem_type() + ") item from other player which is added into "+playerOrNPC.getCharacter().getCharacter_name()+"'s backpack");
+									}
+									else
+									{
+										LogHelper.Log(LogHelper.TYPE_INFO,  "Sorry " + map.getMap_enemy_loc().get(i).getCharacter().getCharacter_name()
+												+ "'s backpack does not have any item.So cannot add any Item" );
+									}
+
+								} else {
+									LogHelper.Log(LogHelper.TYPE_INFO,  "Sorry " + playerOrNPC.getCharacter().getCharacter_name()
+											+ "'s backpack is full.So cannot add any Item" );
+								}
+							}
+						}
+
+					}
+					else if( map.getMap_enemy_loc().get(i).getCharacterType().equals(MapCharacter.FRIENDLY))
+					{
+						if (playerOrNPC.getCharacter().getBackPackItems().size() < 10) {
+							if(!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty())
+							{
+							Collections.shuffle(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems());
+
+							ItemModel item = playerOrNPC.getCharacter().getBackPackItems().get(0);
+
+							playerOrNPC.getCharacter().getBackPackItems().remove(item);
+
+							playerOrNPC.getCharacter().getBackPackItems().add(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().get(0));
+
+							map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().remove(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().get(0));
+
+							map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().add(item);
+
+							LogHelper.Log(LogHelper.TYPE_INFO, "You received this " + item.getItem_name() + "("
+									+ item.getItem_type() + ") item from friendly player which is added into your backpack");
+							}
+
+						} else {
+							LogHelper.Log(LogHelper.TYPE_INFO, "Sorry " + playerOrNPC.getCharacter().getCharacter_name()
+									+ "'s (Friendly Player) backpack is full.So cannot exchange any Item");
+						}
+					}
 				}
 			}
 			
