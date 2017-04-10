@@ -4058,3 +4058,72 @@
 [ 14:50:27.672 10-04-2017  INFO ] 8 hit point deducted from enemy
 [ 14:50:27.682 10-04-2017  INFO ] Player dead! Game over
 [ 14:50:29.685 10-04-2017  INFO ] Agressive NPC interact
+[ 15:59:43.046 10-04-2017  INFO ] Aggressive Character Move1
+[ 15:59:51.175 10-04-2017  INFO ] Agressive NPC Attack
+[ 15:59:53.180 10-04-2017  INFO ] Agressive NPC interact
+[ 15:59:55.181 10-04-2017  INFO ] Aggressive Character Move1
+[ 16:00:03.302 10-04-2017  INFO ] Agressive NPC Attack
+[ 16:00:05.302 10-04-2017  INFO ] Agressive NPC interact
+[ 16:00:05.337 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 16:00:07.338 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:16.051 10-04-2017  INFO ] LEFT key pressed
+[ 16:00:16.097 10-04-2017  INFO ] Human Player Moved
+[ 16:00:16.113 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:16.614 10-04-2017  INFO ] LEFT key pressed
+[ 16:00:16.645 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:16.645 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:18.317 10-04-2017  INFO ] LEFT key pressed
+[ 16:00:18.348 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:18.379 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:19.958 10-04-2017  INFO ] UP key pressed
+[ 16:00:19.989 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:20.005 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:21.404 10-04-2017  INFO ] UP key pressed
+[ 16:00:21.420 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:21.420 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:24.447 10-04-2017  INFO ] UP key pressed
+[ 16:00:24.478 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:24.494 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:25.268 10-04-2017  INFO ] UP key pressed
+[ 16:00:25.300 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:25.315 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:25.956 10-04-2017  INFO ] UP key pressed
+[ 16:00:25.987 10-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 16:00:26.003 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:27.488 10-04-2017  INFO ] RIGHT key pressed
+[ 16:00:27.535 10-04-2017  INFO ] Human Player Moved
+[ 16:00:27.550 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:00:29.644 10-04-2017  INFO ] DOWN key pressed
+[ 16:00:29.675 10-04-2017  INFO ] Human Player Moved
+[ 16:00:29.691 10-04-2017  INFO ] Human Player attack
+[ 16:00:31.707 10-04-2017  INFO ] Human Player interact
+[ 16:00:31.722 10-04-2017  INFO ] No interaction to any player so no item found
+[ 16:00:37.735 10-04-2017  INFO ] Aggressive Character Move1
+[ 16:00:45.770 10-04-2017  INFO ] Agressive NPC Attack
+[ 16:00:47.786 10-04-2017  INFO ] Agressive NPC interact
+[ 16:00:49.805 10-04-2017  INFO ] Aggressive Character Move1
+[ 16:00:57.833 10-04-2017  INFO ] Agressive NPC Attack
+[ 16:00:59.838 10-04-2017  INFO ] Agressive NPC interact
+[ 16:01:01.840 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:02:03.412 10-04-2017  INFO ] DOWN key pressed
+[ 16:02:03.474 10-04-2017  INFO ] Human Player Moved
+[ 16:02:03.474 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:02:03.818 10-04-2017  INFO ] LEFT key pressed
+[ 16:02:03.865 10-04-2017  INFO ] Human Player Moved
+[ 16:02:03.865 10-04-2017  INFO ] Waiting for user input to move human player
+[ 16:02:04.172 10-04-2017  INFO ] DOWN key pressed
+[ 16:02:04.218 10-04-2017  INFO ] Human Player Moved
+[ 16:02:04.218 10-04-2017  INFO ] Human Player attack
+[ 16:02:06.234 10-04-2017  INFO ] Human Player interact
+[ 16:02:06.250 10-04-2017  INFO ] No interaction to any player so no item found
+[ 16:02:12.257 10-04-2017  INFO ] Aggressive Character Move1
+[ 16:02:20.286 10-04-2017  INFO ] Agressive NPC Attack
+[ 16:02:20.286 10-04-2017  INFO ] Enemy can hit player
+[ 16:02:20.302 10-04-2017  INFO ] 8 hit point deducted from enemy
+[ 16:02:22.334 10-04-2017  INFO ] Agressive NPC interact
+[ 16:02:24.337 10-04-2017  INFO ] Aggressive Character Move1
+[ 16:02:32.378 10-04-2017  INFO ] Agressive NPC Attack
+[ 16:02:32.378 10-04-2017  INFO ] Enemy can hit player
+[ 16:02:32.393 10-04-2017  INFO ] 7 hit point deducted from enemy
+[ 16:02:32.409 10-04-2017  INFO ] Player dead! Game over
+[ 16:02:34.425 10-04-2017  INFO ] Agressive NPC interact

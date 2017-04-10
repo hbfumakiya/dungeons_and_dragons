@@ -19,6 +19,8 @@ public class GameStatus {
 	
 	public static final int GAME_OVER = 4;
 	
+	public static final int CANT_MOVE = 5;
+	
 	private int gameStatus;
 
 	/**

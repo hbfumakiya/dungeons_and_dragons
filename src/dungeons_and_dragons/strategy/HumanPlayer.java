@@ -15,19 +15,19 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 		int i = 3;
 		while (i > 0) {
 			try {
 				synchronized (gamePlayModel.gameThread) {
+					LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 					gamePlayModel.gameThread.wait();
 					// perform move checks
-					//gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
-					//		gamePlayModel.charachterOldPoint);
-					gamePlayModel.gameStatus = gamePlayModel.moveCharacter(gamePlayModel.charachterTempPoint, gamePlayModel.charachterOldPoint);
-					LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moved");
-					if(!gamePlayModel.iswallBumped())
-					i--;
+					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
+							gamePlayModel.charachterOldPoint);
+					if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
+						LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moved");
+						i--;
+					}
 				}
 			} catch (InterruptedException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());

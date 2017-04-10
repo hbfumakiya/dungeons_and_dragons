@@ -705,17 +705,51 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public GameStatus validateMove(Point tempPoint, Point oldPoint) {
 
-		if (checkBoundaries(tempPoint) || !this.checkWalls(tempPoint)) {
+		if (checkBoundaries(tempPoint) && !this.checkWalls(tempPoint)) {
 			this.setGameCharacterPosition(tempPoint);
+			gameStatus.setGameStatus(GameStatus.RUNNING);
+
+			setChanged();
+			notifyObservers();
 		} else {
-			// shouldn't allow the move and show type info error message
-			this.setGameCharacterPosition(oldPoint);
-			charachterTempPoint = charachterOldPoint;
-			LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
+
+			if (this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door()
+					.equals(oldPoint)) {
+
+				ArrayList<MapCharacter> npcs = this.getCampaignModel().getOutput_map_list()
+						.get(this.getCurrentMapIndex()).getMap_enemy_loc();
+
+				int totalEnemy = 0;
+				int deadEnemy = 0;
+				for (int i = 0; i < npcs.size(); i++) {
+
+					if (npcs.get(i).getCharacterType().equals(MapCharacter.ENEMY)) {
+						totalEnemy++;
+						if (!npcs.get(i).getCharacter().isAlive()) {
+							deadEnemy++;
+						}
+					}
+				}
+
+				if (totalEnemy == deadEnemy) {
+					if (this.getCurrentMapIndex() + 1 < this.getCampaignModel().getOutput_map_list().size()) {
+						gameStatus.setGameStatus(GameStatus.NEXT_LEVEL);
+					} else {
+						gameStatus.setGameStatus(GameStatus.WON_GAME);
+					}
+				} else {
+					gameStatus.setGameStatus(GameStatus.KILL_ALL);
+					JOptionPane.showMessageDialog(new JFrame(), "You have to kill all enemies to go to next level");
+				}
+			} else {
+				// shouldn't allow the move and show type info error message
+				this.setGameCharacterPosition(oldPoint);
+				charachterTempPoint = charachterOldPoint;
+				LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
+				gameStatus.setGameStatus(GameStatus.CANT_MOVE);
+			}
+
 		}
-		gameStatus.setGameStatus(GameStatus.RUNNING);
-		setChanged();
-		notifyObservers();
 		return gameStatus;
 	}
 
