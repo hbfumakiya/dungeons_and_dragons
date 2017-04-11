@@ -32,15 +32,20 @@ public class ComputerPlayer implements Strategy {
 		PathFinder p = new PathFinder(gamePlayModel);
 		MapButton path[][] = p.findPath("computer");
 
-		int i = 3;
-		while (i > 0) {
+//		int i = 3;
+//		while (i > 0) {
 			try {
-				findPath(path, gamePlayModel);
-				LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player Move" + (i + 1));
+				//findPath(path, gamePlayModel);
+				LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player Move");
+				
+				MapCharacter computer = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+				if(computer.getCharacter().isAlive())
+				gamePlayModel.moveNPCOrComputer(computer);
+				
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
-			}
+		//	}
 		}
 	}
 

@@ -4379,3 +4379,120 @@
 [ 19:31:11.463 10-04-2017  INFO ] Friend Moves 2
 [ 19:31:13.492 10-04-2017  INFO ] Friend Moves 3
 [ 19:31:19.522 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:06:20.326 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:06:28.441 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:06:30.442 10-04-2017  INFO ] Agressive NPC interact
+[ 21:06:30.453 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:06:32.454 10-04-2017  INFO ] Friend Moves 1
+[ 21:06:34.459 10-04-2017  INFO ] Friend Moves 2
+[ 21:06:36.475 10-04-2017  INFO ] Friend Moves 3
+[ 21:06:42.482 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:06:50.512 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:06:52.513 10-04-2017  INFO ] Agressive NPC interact
+[ 21:06:54.514 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:06:57.774 10-04-2017  INFO ] LEFT key pressed
+[ 21:06:57.782 10-04-2017  INFO ] Human Player Moves 1
+[ 21:06:57.782 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:17:06.911 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:17:15.004 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:17:17.005 10-04-2017  INFO ] Agressive NPC interact
+[ 21:17:17.029 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:17:19.031 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:17:27.063 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:17:29.063 10-04-2017  INFO ] Agressive NPC interact
+[ 21:17:31.064 10-04-2017  INFO ] Friend Moves 1
+[ 21:17:33.071 10-04-2017  INFO ] Friend Moves 2
+[ 21:17:35.076 10-04-2017  INFO ] Friend Moves 3
+[ 21:17:41.085 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:17:46.778 10-04-2017  INFO ] LEFT key pressed
+[ 21:17:46.795 10-04-2017  INFO ] Human Player Moves 1
+[ 21:17:46.795 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:22:05.020 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:22:13.066 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:22:15.067 10-04-2017  INFO ] Agressive NPC interact
+[ 21:22:15.076 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:22:17.077 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:22:25.098 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:22:27.099 10-04-2017  INFO ] Agressive NPC interact
+[ 21:22:29.100 10-04-2017  INFO ] Waiting for user input to move human player
+[ 21:33:12.123 10-04-2017  INFO ] Computer Player Move
+[ 21:33:12.126 10-04-2017  INFO ] Computer Player Move4
+[ 21:33:14.127 10-04-2017  INFO ] Computer Player Move4
+[ 21:33:16.127 10-04-2017  INFO ] Computer Player Move4
+[ 21:33:18.128 10-04-2017  INFO ] Computer Player Move4
+[ 21:38:38.070 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:38:46.220 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:38:48.221 10-04-2017  INFO ] Agressive NPC interact
+[ 21:38:48.231 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:38:50.232 10-04-2017  INFO ] Friend Moves 1
+[ 21:38:52.238 10-04-2017  INFO ] Friend Moves 2
+[ 21:38:54.244 10-04-2017  INFO ] Friend Moves 3
+[ 21:39:00.251 10-04-2017  INFO ] Computer Player Move
+[ 21:39:00.251 10-04-2017  INFO ] Computer Player Move
+[ 21:39:08.277 10-04-2017  INFO ] Computer Player attack
+[ 21:39:10.277 10-04-2017  INFO ] Computer Player interact
+[ 21:39:10.278 10-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 21:39:12.279 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:39:20.310 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:39:22.311 10-04-2017  INFO ] Agressive NPC interact
+[ 21:39:54.381 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:40:02.502 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:40:04.503 10-04-2017  INFO ] Agressive NPC interact
+[ 21:40:04.515 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:40:06.516 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:40:14.557 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:40:16.559 10-04-2017  INFO ] Agressive NPC interact
+[ 21:40:18.560 10-04-2017  INFO ] Computer Player Move
+[ 21:40:18.561 10-04-2017  INFO ] Computer Player Move
+[ 21:40:26.596 10-04-2017  INFO ] Computer Player attack
+[ 21:40:28.597 10-04-2017  INFO ] Computer Player interact
+[ 21:40:28.598 10-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 21:40:30.599 10-04-2017  INFO ] Friend Moves 1
+[ 21:40:32.613 10-04-2017  INFO ] Friend Moves 2
+[ 21:41:29.634 10-04-2017  INFO ] Aggressive Character Move1
+[ 21:41:55.683 10-04-2017  INFO ] Agressive NPC Attack
+[ 21:41:57.683 10-04-2017  INFO ] Agressive NPC interact
+[ 21:41:57.691 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 21:41:59.691 10-04-2017  INFO ] Friend Moves 1
+[ 21:42:01.699 10-04-2017  INFO ] Friend Moves 2
+[ 21:42:03.706 10-04-2017  INFO ] Friend Moves 3
+[ 21:42:09.713 10-04-2017  INFO ] Computer Player Move
+[ 21:42:09.714 10-04-2017  INFO ] Computer Player Move
+[ 22:09:17.210 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:09:19.327 10-04-2017  INFO ] DOWN key pressed
+[ 22:09:19.357 10-04-2017  INFO ] Human Player Moves 1
+[ 22:09:19.360 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:09:21.309 10-04-2017  INFO ] LEFT key pressed
+[ 22:09:21.348 10-04-2017  INFO ] Human Player Moves 2
+[ 22:09:21.350 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:09:22.357 10-04-2017  INFO ] DOWN key pressed
+[ 22:09:22.386 10-04-2017  INFO ] Human Player Moves 3
+[ 22:09:22.387 10-04-2017  INFO ] Human Player attack
+[ 22:09:24.388 10-04-2017  INFO ] Human Player interact
+[ 22:09:24.389 10-04-2017  INFO ] No interaction to any player so no item found
+[ 22:09:26.392 10-04-2017  INFO ] Aggressive Character Move1
+[ 22:09:34.441 10-04-2017  INFO ] Agressive NPC Attack
+[ 22:09:36.442 10-04-2017  INFO ] Agressive NPC interact
+[ 22:09:38.443 10-04-2017  INFO ] Aggressive Character Move1
+[ 22:09:46.461 10-04-2017  INFO ] Agressive NPC Attack
+[ 22:09:48.462 10-04-2017  INFO ] Agressive NPC interact
+[ 22:09:50.464 10-04-2017  INFO ] Friend Moves 1
+[ 22:09:52.475 10-04-2017  INFO ] Friend Moves 2
+[ 22:09:54.493 10-04-2017  INFO ] Friend Moves 3
+[ 22:10:00.499 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:10:16.115 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:10:18.916 10-04-2017  INFO ] DOWN key pressed
+[ 22:10:18.934 10-04-2017  INFO ] Human Player Moves 1
+[ 22:10:18.935 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:10:19.430 10-04-2017  INFO ] LEFT key pressed
+[ 22:10:19.457 10-04-2017  INFO ] Human Player Moves 2
+[ 22:10:19.458 10-04-2017  INFO ] Waiting for user input to move human player
+[ 22:10:19.629 10-04-2017  INFO ] DOWN key pressed
+[ 22:10:19.645 10-04-2017  INFO ] Human Player Moves 3
+[ 22:10:19.645 10-04-2017  INFO ] Human Player attack
+[ 22:10:21.646 10-04-2017  INFO ] Human Player interact
+[ 22:10:21.646 10-04-2017  INFO ] No interaction to any player so no item found
+[ 22:10:23.647 10-04-2017  INFO ] Friend Moves 1
+[ 22:10:25.658 10-04-2017  INFO ] Friend Moves 2
+[ 22:10:27.665 10-04-2017  INFO ] Friend Moves 3
+[ 22:10:33.683 10-04-2017  INFO ] Aggressive Character Move1

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.CampaignModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -94,8 +95,15 @@ public class NewGameController implements ActionListener {
 			this.gamePlayModel.setCharacterModel((CharacterModel) this.newGameView.characterList.getSelectedItem());
 
 			this.gamePlayModel.setCampaignModel((CampaignModel) this.newGameView.campaignList.getSelectedItem());
-
+			if(this.newGameView.player.getSelectedItem().equals("Computer"))
+				this.gamePlayModel.setPlayerStrategy(MapCharacter.COMPUTER);
+			else
+			{
+				
+					this.gamePlayModel.setPlayerStrategy(MapCharacter.NORMAL);
+			}
 			new GamePlayController(this.gamePlayModel);
+			
 
 			this.newGameView.dispose();
 		}
