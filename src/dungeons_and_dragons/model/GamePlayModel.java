@@ -501,7 +501,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		while (isGameRunning) {
 			for (int i = 0; i < turnList.size(); i++) {
 				this.currentTurn = i;
-				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.COMPUTER)){
+				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.FRIENDLY)){
 					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);		
 				}
 			}
@@ -1479,7 +1479,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	public GameStatus moveFriend(MapCharacter friend, Point friendPoint, Point oldPoint, int number) {
 
 		Random randomGenerator = new Random();
-
+		oldPoint = friendPoint;
 		boolean pathExists = false;
 		while (pathExists != true) {
 			int i = randomGenerator.nextInt(4);
