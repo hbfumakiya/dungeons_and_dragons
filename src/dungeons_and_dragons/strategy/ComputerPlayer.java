@@ -26,11 +26,11 @@ public class ComputerPlayer implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player Move");
+		/*LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player Move");
 		System.out.println("Computer Player Move");
 
 		PathFinder p = new PathFinder(gamePlayModel);
-		MapButton path[][] = p.findPath("computer");
+		MapButton path[][] = p.findPath("computer");*/
 
 //		int i = 3;
 //		while (i > 0) {
@@ -56,7 +56,7 @@ public class ComputerPlayer implements Strategy {
 	 * @param path
 	 * @param gamePlayModel
 	 */
-	private void findPath(MapButton[][] path, GamePlayModel gamePlayModel) {
+	/*private void findPath(MapButton[][] path, GamePlayModel gamePlayModel) {
 
 		boolean flag = false;
 
@@ -85,7 +85,7 @@ public class ComputerPlayer implements Strategy {
 						(int) gamePlayModel.getGameCharacterPosition().getY() - 1));
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * This function is used to see if a path exists for x and y point
@@ -95,12 +95,12 @@ public class ComputerPlayer implements Strategy {
 	 * @param path
 	 * @return true if there is a path
 	 */
-	private boolean func(double x, double y, MapButton[][] path) {
+	/*private boolean func(double x, double y, MapButton[][] path) {
 		if (path[(int) x][(int) y].path == 1) {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {

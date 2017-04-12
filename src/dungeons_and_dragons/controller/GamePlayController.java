@@ -159,7 +159,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		int key = e.getKeyCode();
 		this.gamePlayModel.charachterTempPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
 		this.gamePlayModel.charachterOldPoint = (Point) this.gamePlayModel.charachterTempPoint.clone();
-
+		
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
 				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
@@ -437,9 +437,11 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
 							this.gamePlayView.consoleTextArea.setText(
 									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
+							System.out.println(LogHelper.getLastLine());
 						} else if (kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
 							this.gamePlayView.consoleTextArea.setText(
 									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
+							System.out.println(LogHelper.getLastLine()+"2");
 						}
 					}
 

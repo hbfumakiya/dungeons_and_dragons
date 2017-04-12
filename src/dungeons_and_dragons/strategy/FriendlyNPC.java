@@ -56,11 +56,15 @@ public class FriendlyNPC implements Strategy {
 		MapButton path[][] = p.findPath("enemy");
 		int index = gamePlayModel.currentEnemyIndex;*/
 
+		MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+
+		Point friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
+		Point oldPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
+		
 		int i = 0;
 		while (i < 3) {
 			try {
-				MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
-				gameStatus = gamePlayModel.moveFriend(friend,i);
+				gameStatus = gamePlayModel.moveFriend(friend,friendPoint,oldPoint,i);
 				Thread.sleep(2000);
 				if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
 					i++;

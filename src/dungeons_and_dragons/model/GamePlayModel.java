@@ -103,6 +103,8 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	public MapButton currentMap[][];
 
+	public MapCharacter currentCharacter;
+	
 	/**
 	 * constructor to initialize map object
 	 */
@@ -365,9 +367,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public void calculateTurn() {
 		Map<Integer, MapCharacter> tempValues = new HashMap<Integer, MapCharacter>();
-
 		// roll dice and calculate turn values for character
-		MapCharacter currentCharacter = new MapCharacter();
+		currentCharacter = new MapCharacter();
 		currentCharacter.setCharacter(this.characterModel);
 		currentCharacter.setCharacterType(this.playerStrategy);
 		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), currentCharacter);
@@ -388,7 +389,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * these mathod start game and manage all game
+	 * these method sets strategy of each and every charachter that is in the turn list or say in the map
 	 */
 	public void startGame() {
 		CharacterStrategy characterStrategy;
@@ -497,7 +498,9 @@ public class GamePlayModel extends Observable implements Runnable {
 		while (isGameRunning) {
 			for (int i = 0; i < turnList.size(); i++) {
 				this.currentTurn = i;
-				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
+				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.NORMAL)){
+					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);		
+				}
 			}
 		}
 	}
@@ -720,9 +723,6 @@ public class GamePlayModel extends Observable implements Runnable {
 		if (checkBoundaries(tempPoint) && !this.checkWalls(tempPoint)) {
 			this.setGameCharacterPosition(tempPoint);
 			gameStatus.setGameStatus(GameStatus.RUNNING);
-
-			setChanged();
-			notifyObservers();
 		} else {
 
 			if (this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door()
@@ -1273,7 +1273,13 @@ public class GamePlayModel extends Observable implements Runnable {
 		// Point(enemyX+1,enemyY)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			movingCharacter.setX(movingCharacter.getX() + 1);
+			
+			/*asd
+			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				
+			}else{*/
+				movingCharacter.setX(movingCharacter.getX() + 1);
+			//}
 			//check left right and dwon
 			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
@@ -1413,12 +1419,9 @@ public class GamePlayModel extends Observable implements Runnable {
 		notifyObservers(this);
 	}
 
-	public GameStatus moveFriend(MapCharacter friend,int number) {
+	public GameStatus moveFriend(MapCharacter friend, Point friendPoint, Point oldPoint, int number) {
 
 		Random randomGenerator = new Random();
-
-		Point friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
-		Point oldPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
 
 		boolean pathExists = false;
 		while (pathExists != true) {

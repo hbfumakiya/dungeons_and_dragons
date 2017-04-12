@@ -17,9 +17,10 @@ public class HumanPlayer implements Strategy {
 	public void move(GamePlayModel gamePlayModel) {
 		int i = 0;
 		while (i < 3) {
+			LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 			try {
+				
 				synchronized (gamePlayModel.gameThread) {
-					LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 					gamePlayModel.gameThread.wait();
 					// perform move checks
 					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
@@ -37,11 +38,11 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player attack");
+		
 		try {
-
-			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
 			
+			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
+			LogHelper.Log(LogHelper.TYPE_INFO, "Human Player has attacked");
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());

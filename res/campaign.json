@@ -117,59 +117,6 @@
             "characterStrategy": {}
           },
           {
-            "x": 4,
-            "y": 2,
-            "character": {
-              "character_id": 2,
-              "character_name": "Test 1",
-              "strength": 0,
-              "items": [
-                {
-                  "item_id": 3,
-                  "item_name": "Range",
-                  "item_point": 5,
-                  "item_type": "Weapon Melee",
-                  "item_ability": "Attack bonus",
-                  "item_weapon_enchantment": "Frightening",
-                  "item_weapon_enchantment_string": "Frightening-5"
-                }
-              ],
-              "backPackItems": [],
-              "character_level": 10,
-              "abilityScores": {
-                "strength": 15,
-                "dexterity": 16,
-                "constitution": 18,
-                "intelligence": 13,
-                "wisdom": 10,
-                "charisma": 12
-              },
-              "rawAbilityScores": {
-                "strength": 15,
-                "dexterity": 16,
-                "constitution": 18,
-                "intelligence": 13,
-                "wisdom": 10,
-                "charisma": 12
-              },
-              "modifiers": {
-                "strength": 2,
-                "dexterity": 3,
-                "constitution": 4,
-                "intelligence": 1,
-                "wisdom": 0,
-                "charisma": 1
-              },
-              "hitpoints": 85,
-              "attackBonus": 17,
-              "damageBonus": 8,
-              "armorClass": 13,
-              "isAlive": true
-            },
-            "characterType": "Enemy",
-            "characterStrategy": {}
-          },
-          {
             "x": 7,
             "y": 4,
             "character": {
@@ -357,59 +304,6 @@
               "attackBonus": 6,
               "damageBonus": 3,
               "armorClass": 12,
-              "isAlive": true
-            },
-            "characterType": "Enemy",
-            "characterStrategy": {}
-          },
-          {
-            "x": 4,
-            "y": 2,
-            "character": {
-              "character_id": 2,
-              "character_name": "Test 1",
-              "strength": 0,
-              "items": [
-                {
-                  "item_id": 3,
-                  "item_name": "Range",
-                  "item_point": 5,
-                  "item_type": "Weapon Melee",
-                  "item_ability": "Attack bonus",
-                  "item_weapon_enchantment": "Frightening",
-                  "item_weapon_enchantment_string": "Frightening-5"
-                }
-              ],
-              "backPackItems": [],
-              "character_level": 10,
-              "abilityScores": {
-                "strength": 15,
-                "dexterity": 16,
-                "constitution": 18,
-                "intelligence": 13,
-                "wisdom": 10,
-                "charisma": 12
-              },
-              "rawAbilityScores": {
-                "strength": 15,
-                "dexterity": 16,
-                "constitution": 18,
-                "intelligence": 13,
-                "wisdom": 10,
-                "charisma": 12
-              },
-              "modifiers": {
-                "strength": 2,
-                "dexterity": 3,
-                "constitution": 4,
-                "intelligence": 1,
-                "wisdom": 0,
-                "charisma": 1
-              },
-              "hitpoints": 85,
-              "attackBonus": 17,
-              "damageBonus": 8,
-              "armorClass": 13,
               "isAlive": true
             },
             "characterType": "Enemy",

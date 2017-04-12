@@ -4496,3 +4496,1065 @@
 [ 22:10:25.658 10-04-2017  INFO ] Friend Moves 2
 [ 22:10:27.665 10-04-2017  INFO ] Friend Moves 3
 [ 22:10:33.683 10-04-2017  INFO ] Aggressive Character Move1
+[ 23:25:09.162 10-04-2017  INFO ] Aggressive Character Move1
+[ 23:25:50.761 10-04-2017  INFO ] Agressive NPC Attack
+[ 23:25:52.778 10-04-2017  INFO ] Agressive NPC interact
+[ 23:25:54.794 10-04-2017  INFO ] Aggressive Character Move1
+[ 23:26:02.878 10-04-2017  INFO ] Agressive NPC Attack
+[ 23:26:04.893 10-04-2017  INFO ] Agressive NPC interact
+[ 23:26:04.936 10-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 23:26:06.957 10-04-2017  INFO ] Friend Moves 1
+[ 23:26:08.993 10-04-2017  INFO ] Friend Moves 2
+[ 23:26:11.036 10-04-2017  INFO ] Friend Moves 3
+[ 23:26:17.081 10-04-2017  INFO ] Computer Player Move
+[ 23:26:17.098 10-04-2017  INFO ] Computer Player Move
+[ 23:28:04.351 10-04-2017  INFO ] Computer Player Move
+[ 23:28:19.261 10-04-2017  INFO ] Computer Player Move
+[ 00:04:17.360 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:04:32.624 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:07:28.943 11-04-2017  INFO ] Waiting for user input to move human player
+[ 00:11:39.908 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:11:48.055 11-04-2017  INFO ] Agressive NPC Attack
+[ 00:11:50.056 11-04-2017  INFO ] Agressive NPC interact
+[ 00:11:52.057 11-04-2017  INFO ] Friend Moves 1
+[ 00:11:54.091 11-04-2017  INFO ] Friend Moves 2
+[ 00:11:56.126 11-04-2017  INFO ] Friend Moves 3
+[ 00:12:02.162 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:12:10.212 11-04-2017  INFO ] Agressive NPC Attack
+[ 00:12:12.229 11-04-2017  INFO ] Agressive NPC interact
+[ 00:12:12.264 11-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 00:12:14.280 11-04-2017  INFO ] Computer Player Move
+[ 00:12:14.295 11-04-2017  INFO ] Computer Player Move
+[ 00:12:22.344 11-04-2017  INFO ] Computer Player attack
+[ 00:12:24.344 11-04-2017  INFO ] Computer Player interact
+[ 00:12:24.360 11-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 00:12:26.364 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:12:34.399 11-04-2017  INFO ] Agressive NPC Attack
+[ 00:12:36.399 11-04-2017  INFO ] Agressive NPC interact
+[ 00:12:38.402 11-04-2017  INFO ] Friend Moves 1
+[ 00:12:40.435 11-04-2017  INFO ] Friend Moves 2
+[ 00:12:42.460 11-04-2017  INFO ] Friend Moves 3
+[ 00:12:48.492 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:13:02.681 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:16:39.467 11-04-2017  INFO ] Aggressive Character Move1
+[ 00:18:54.204 11-04-2017  INFO ] Waiting for user input to move human player
+[ 00:19:12.793 11-04-2017  INFO ] Friend Moves 1
+[ 00:19:14.825 11-04-2017  INFO ] Friend Moves 2
+[ 00:19:16.888 11-04-2017  INFO ] Friend Moves 3
+[ 01:30:20.447 11-04-2017  INFO ] Friend Moves 1
+[ 01:30:22.510 11-04-2017  INFO ] Friend Moves 2
+[ 01:30:24.559 11-04-2017  INFO ] Friend Moves 3
+[ 01:30:30.597 11-04-2017  INFO ] Aggressive Character Move1
+[ 01:30:38.716 11-04-2017  INFO ] Agressive NPC Attack
+[ 01:30:40.729 11-04-2017  INFO ] Agressive NPC interact
+[ 01:30:40.762 11-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 01:30:42.779 11-04-2017  INFO ] Aggressive Character Move1
+[ 01:30:50.819 11-04-2017  INFO ] Agressive NPC Attack
+[ 01:30:52.825 11-04-2017  INFO ] Agressive NPC interact
+[ 01:30:54.826 11-04-2017  INFO ] Computer Player Move
+[ 01:31:02.859 11-04-2017  INFO ] Computer Player attack
+[ 01:31:04.860 11-04-2017  INFO ] Computer Player interact
+[ 01:31:04.875 11-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 01:55:03.193 11-04-2017  INFO ] Friend Moves 1
+[ 01:55:05.216 11-04-2017  INFO ] Friend Moves 2
+[ 01:55:07.282 11-04-2017  INFO ] Friend Moves 3
+[ 02:06:38.691 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:11:51.847 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:11:53.884 11-04-2017  INFO ] Agressive NPC interact
+[ 02:11:55.897 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:11:58.155 11-04-2017  INFO ] DOWN key pressed
+[ 02:11:58.235 11-04-2017  INFO ] Human Player Moves 1
+[ 02:11:58.267 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:12:00.604 11-04-2017  INFO ] DOWN key pressed
+[ 02:12:00.656 11-04-2017  INFO ] Human Player Moves 2
+[ 02:12:00.668 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:12:00.945 11-04-2017  INFO ] LEFT key pressed
+[ 02:12:01.005 11-04-2017  INFO ] Human Player Moves 3
+[ 02:12:01.029 11-04-2017  INFO ] Human Player attack
+[ 02:12:03.060 11-04-2017  INFO ] Human Player interact
+[ 02:12:03.076 11-04-2017  INFO ] No interaction to any player so no item found
+[ 02:12:05.098 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:12:13.163 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:12:15.180 11-04-2017  INFO ] Agressive NPC interact
+[ 02:12:17.197 11-04-2017  INFO ] Friend Moves 1
+[ 02:12:19.235 11-04-2017  INFO ] Friend Moves 2
+[ 02:12:21.268 11-04-2017  INFO ] Friend Moves 3
+[ 02:12:27.338 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:12:35.409 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:12:37.425 11-04-2017  INFO ] Agressive NPC interact
+[ 02:12:39.444 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:12:41.369 11-04-2017  INFO ] DOWN key pressed
+[ 02:12:41.417 11-04-2017  INFO ] Human Player Moves 1
+[ 02:12:41.433 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:12:41.489 11-04-2017  INFO ] LEFT key pressed
+[ 02:12:41.525 11-04-2017  INFO ] Human Player Moves 2
+[ 02:12:41.541 11-04-2017  INFO ] Waiting for user input to move human player
+[ 02:12:42.637 11-04-2017  INFO ] DOWN key pressed
+[ 02:12:42.677 11-04-2017  INFO ] Human Player Moves 3
+[ 02:12:42.693 11-04-2017  INFO ] Human Player attack
+[ 02:12:42.709 11-04-2017  INFO ] Player can hit anemy
+[ 02:12:42.733 11-04-2017  INFO ] 3 hit point deducted from enemy
+[ 02:12:42.749 11-04-2017  INFO ] Player can hit anemy
+[ 02:12:42.773 11-04-2017  INFO ] 7 hit point deducted from enemy
+[ 02:12:44.787 11-04-2017  INFO ] Human Player interact
+[ 02:12:44.803 11-04-2017  INFO ] No interaction to any player so no item found
+[ 02:12:46.822 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:20:07.123 11-04-2017  INFO ] Friend Moves 1
+[ 02:20:09.153 11-04-2017  INFO ] Friend Moves 2
+[ 02:20:11.225 11-04-2017  INFO ] Friend Moves 3
+[ 02:20:17.295 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:20:25.436 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:20:27.453 11-04-2017  INFO ] Agressive NPC interact
+[ 02:20:29.465 11-04-2017  INFO ] Computer Player Move
+[ 02:20:37.551 11-04-2017  INFO ] Computer Player attack
+[ 02:20:39.567 11-04-2017  INFO ] Computer Player interact
+[ 02:20:39.586 11-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 02:20:41.606 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:20:49.683 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:20:51.701 11-04-2017  INFO ] Agressive NPC interact
+[ 02:20:51.744 11-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 02:20:53.763 11-04-2017  INFO ] Friend Moves 1
+[ 02:20:55.803 11-04-2017  INFO ] Friend Moves 2
+[ 02:20:57.845 11-04-2017  INFO ] Friend Moves 3
+[ 02:21:03.883 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:21:11.963 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:21:13.983 11-04-2017  INFO ] Agressive NPC interact
+[ 02:21:15.998 11-04-2017  INFO ] Computer Player Move
+[ 02:21:24.064 11-04-2017  INFO ] Computer Player attack
+[ 02:21:26.079 11-04-2017  INFO ] Computer Player interact
+[ 02:21:26.091 11-04-2017  INFO ] You received this ty(Armor) item from friendly player which is added into your backpack
+[ 02:21:28.116 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:21:36.177 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:21:38.191 11-04-2017  INFO ] Agressive NPC interact
+[ 02:21:40.206 11-04-2017  INFO ] Friend Moves 1
+[ 02:21:42.239 11-04-2017  INFO ] Friend Moves 2
+[ 02:21:44.275 11-04-2017  INFO ] Friend Moves 3
+[ 02:21:50.324 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:21:58.373 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:22:00.389 11-04-2017  INFO ] Agressive NPC interact
+[ 02:22:02.401 11-04-2017  INFO ] Computer Player Move
+[ 02:22:10.463 11-04-2017  INFO ] Computer Player attack
+[ 02:22:12.479 11-04-2017  INFO ] Computer Player interact
+[ 02:22:12.495 11-04-2017  INFO ] You received this ty(Armor) item from friendly player which is added into your backpack
+[ 02:22:14.514 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:22:22.569 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:22:22.585 11-04-2017  INFO ] Enemy can hit player
+[ 02:22:22.601 11-04-2017  INFO ] 2 hit point deducted from enemy
+[ 02:22:24.621 11-04-2017  INFO ] Agressive NPC interact
+[ 02:22:26.634 11-04-2017  INFO ] Friend Moves 1
+[ 02:22:28.690 11-04-2017  INFO ] Friend Moves 2
+[ 02:22:30.726 11-04-2017  INFO ] Friend Moves 3
+[ 02:22:36.763 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:22:44.815 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:22:44.831 11-04-2017  INFO ] Enemy can hit player
+[ 02:22:44.851 11-04-2017  INFO ] 4 hit point deducted from enemy
+[ 02:22:46.871 11-04-2017  INFO ] Agressive NPC interact
+[ 02:22:48.885 11-04-2017  INFO ] Computer Player Move
+[ 02:22:56.939 11-04-2017  INFO ] Computer Player attack
+[ 02:22:56.951 11-04-2017  INFO ] Player can hit anemy
+[ 02:22:56.971 11-04-2017  INFO ] 6 hit point deducted from enemy
+[ 02:22:56.987 11-04-2017  INFO ] Player can hit anemy
+[ 02:22:57.003 11-04-2017  INFO ] 6 hit point deducted from enemy
+[ 02:22:59.024 11-04-2017  INFO ] Computer Player interact
+[ 02:22:59.040 11-04-2017  INFO ] You received this UR(Armor) item from friendly player which is added into your backpack
+[ 02:23:01.058 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:23:09.111 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:23:09.127 11-04-2017  INFO ] Enemy can hit player
+[ 02:23:09.143 11-04-2017  INFO ] 2 hit point deducted from enemy
+[ 02:23:11.175 11-04-2017  INFO ] Agressive NPC interact
+[ 02:23:13.195 11-04-2017  INFO ] Friend Moves 1
+[ 02:23:15.210 11-04-2017  INFO ] Friend Moves 2
+[ 02:23:17.256 11-04-2017  INFO ] Friend Moves 3
+[ 02:23:23.295 11-04-2017  INFO ] Aggressive Character Move1
+[ 02:23:31.370 11-04-2017  INFO ] Agressive NPC Attack
+[ 02:23:31.386 11-04-2017  INFO ] Enemy can hit player
+[ 02:23:31.402 11-04-2017  INFO ] 3 hit point deducted from enemy
+[ 02:23:31.422 11-04-2017  INFO ] Player dead! Game over
+[ 02:23:33.447 11-04-2017  INFO ] Agressive NPC interact
+[ 02:23:35.465 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:12:18.360 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:12:26.544 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:12:28.559 11-04-2017  INFO ] Agressive NPC interact
+[ 17:12:28.617 11-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 17:12:30.647 11-04-2017  INFO ] Friend Moves 1
+[ 17:12:32.691 11-04-2017  INFO ] Friend Moves 2
+[ 17:12:34.737 11-04-2017  INFO ] Friend Moves 3
+[ 17:12:40.777 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:12:41.968 11-04-2017  INFO ] DOWN key pressed
+[ 17:12:42.011 11-04-2017  INFO ] Human Player Moves 1
+[ 17:12:42.023 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:12:42.987 11-04-2017  INFO ] LEFT key pressed
+[ 17:12:43.037 11-04-2017  INFO ] Human Player Moves 2
+[ 17:12:43.048 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:12:43.325 11-04-2017  INFO ] LEFT key pressed
+[ 17:12:43.341 11-04-2017  INFO ] Human Player Moves 3
+[ 17:12:43.348 11-04-2017  INFO ] Human Player attack
+[ 17:12:45.356 11-04-2017  INFO ] Human Player interact
+[ 17:12:45.372 11-04-2017  INFO ] No interaction to any player so no item found
+[ 17:12:47.388 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:12:55.448 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:12:57.463 11-04-2017  INFO ] Agressive NPC interact
+[ 17:12:59.471 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:13:07.523 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:13:07.539 11-04-2017  INFO ] Enemy can hit player
+[ 17:13:07.556 11-04-2017  INFO ] 8 hit point deducted from enemy
+[ 17:13:09.574 11-04-2017  INFO ] Agressive NPC interact
+[ 17:13:11.590 11-04-2017  INFO ] Friend Moves 1
+[ 17:16:42.939 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:16:51.039 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:16:53.054 11-04-2017  INFO ] Agressive NPC interact
+[ 17:16:55.069 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:16:56.509 11-04-2017  INFO ] DOWN key pressed
+[ 17:16:56.561 11-04-2017  INFO ] Human Player Moves 1
+[ 17:16:56.571 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:16:57.719 11-04-2017  INFO ] DOWN key pressed
+[ 17:16:57.768 11-04-2017  INFO ] Human Player Moves 2
+[ 17:16:57.775 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:16:58.796 11-04-2017  INFO ] LEFT key pressed
+[ 17:16:58.845 11-04-2017  INFO ] Human Player Moves 3
+[ 17:16:58.856 11-04-2017  INFO ] Human Player attack
+[ 17:17:00.866 11-04-2017  INFO ] Human Player interact
+[ 17:17:00.881 11-04-2017  INFO ] No interaction to any player so no item found
+[ 17:17:02.899 11-04-2017  INFO ] Friend Moves 1
+[ 17:17:04.935 11-04-2017  INFO ] Friend Moves 2
+[ 17:17:06.953 11-04-2017  INFO ] Friend Moves 3
+[ 17:24:18.953 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:24:27.083 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:24:29.098 11-04-2017  INFO ] Agressive NPC interact
+[ 17:24:29.145 11-04-2017  INFO ] Item ty has been added in enemy's backpack
+[ 17:24:31.178 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:24:39.270 11-04-2017  INFO ] Agressive NPC Attack
+[ 17:24:41.285 11-04-2017  INFO ] Agressive NPC interact
+[ 17:24:43.300 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:24:44.545 11-04-2017  INFO ] DOWN key pressed
+[ 17:24:44.590 11-04-2017  INFO ] Human Player Moves 1
+[ 17:24:44.597 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:24:47.173 11-04-2017  INFO ] LEFT key pressed
+[ 17:24:47.212 11-04-2017  INFO ] Human Player Moves 2
+[ 17:24:47.221 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:37:29.550 11-04-2017  INFO ] Friend Moves 1
+[ 17:37:31.599 11-04-2017  INFO ] Friend Moves 2
+[ 17:37:33.640 11-04-2017  INFO ] Friend Moves 3
+[ 17:37:55.999 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:38:58.264 11-04-2017  INFO ] Aggressive Character Move1
+[ 17:48:20.180 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:48:23.468 11-04-2017  INFO ] DOWN key pressed
+[ 17:48:23.541 11-04-2017  INFO ] Human Player Moves 1
+[ 17:48:23.548 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:48:23.808 11-04-2017  INFO ] LEFT key pressed
+[ 17:48:23.878 11-04-2017  INFO ] Human Player Moves 2
+[ 17:48:23.886 11-04-2017  INFO ] Waiting for user input to move human player
+[ 17:48:24.354 11-04-2017  INFO ] DOWN key pressed
+[ 17:48:24.415 11-04-2017  INFO ] Human Player Moves 3
+[ 17:48:24.426 11-04-2017  INFO ] Human Player attack
+[ 17:48:26.433 11-04-2017  INFO ] Human Player interact
+[ 17:48:26.449 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:04:46.372 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:04:51.328 11-04-2017  INFO ] DOWN key pressed
+[ 18:07:52.426 11-04-2017  INFO ] Human Player Moves 1
+[ 18:07:55.973 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:08:03.647 11-04-2017  INFO ] DOWN key pressed
+[ 18:09:00.627 11-04-2017  INFO ] Human Player Moves 2
+[ 18:09:01.316 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:09:09.833 11-04-2017  INFO ] LEFT key pressed
+[ 18:12:45.674 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:12:50.019 11-04-2017  INFO ] DOWN key pressed
+[ 18:17:21.131 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:17:21.718 11-04-2017  INFO ] DOWN key pressed
+[ 18:17:21.796 11-04-2017  INFO ] Human Player Moves 1
+[ 18:17:21.796 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:17:23.159 11-04-2017  INFO ] DOWN key pressed
+[ 18:17:23.222 11-04-2017  INFO ] Human Player Moves 2
+[ 18:17:23.222 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:17:23.878 11-04-2017  INFO ] LEFT key pressed
+[ 18:17:23.941 11-04-2017  INFO ] Human Player Moves 3
+[ 18:17:23.956 11-04-2017  INFO ] Human Player attack
+[ 18:17:25.957 11-04-2017  INFO ] Human Player interact
+[ 18:17:25.973 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:17:46.698 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:17:52.453 11-04-2017  INFO ] LEFT key pressed
+[ 18:19:03.475 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:19:06.366 11-04-2017  INFO ] LEFT key pressed
+[ 18:22:19.913 11-04-2017  INFO ] Human Player Moves 1
+[ 18:22:39.970 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:22:51.144 11-04-2017  INFO ] DOWN key pressed
+[ 18:23:04.874 11-04-2017  INFO ] Human Player Moves 2
+[ 18:23:04.874 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:05.463 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:06.119 11-04-2017  INFO ] DOWN key pressed
+[ 18:24:06.197 11-04-2017  INFO ] Human Player Moves 1
+[ 18:24:06.197 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:07.189 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:07.237 11-04-2017  INFO ] Human Player Moves 2
+[ 18:24:07.253 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:07.784 11-04-2017  INFO ] DOWN key pressed
+[ 18:24:07.862 11-04-2017  INFO ] Human Player Moves 3
+[ 18:24:07.862 11-04-2017  INFO ] Human Player attack
+[ 18:24:09.878 11-04-2017  INFO ] Human Player interact
+[ 18:24:09.894 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:24:11.900 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:12.651 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:12.698 11-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 18:24:12.698 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:12.932 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:12.963 11-04-2017  INFO ] Human Player Moves 1
+[ 18:24:12.979 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:13.682 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:13.713 11-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 18:24:13.713 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:13.917 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:13.963 11-04-2017  INFO ] Human Player Moves 2
+[ 18:24:13.963 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:14.088 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:14.135 11-04-2017  INFO ] Human Player Moves 3
+[ 18:24:14.135 11-04-2017  INFO ] Human Player attack
+[ 18:24:16.151 11-04-2017  INFO ] Human Player interact
+[ 18:24:16.184 11-04-2017  INFO ] Item ty has been added in your backpack
+[ 18:24:18.184 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:18.450 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:18.497 11-04-2017  INFO ] Human Player Moves 1
+[ 18:24:18.497 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:18.763 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:18.794 11-04-2017  INFO ] Human Player Moves 2
+[ 18:24:18.794 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:19.075 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:19.106 11-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 18:24:19.122 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:24:19.388 11-04-2017  INFO ] LEFT key pressed
+[ 18:24:19.435 11-04-2017  INFO ] Human Player Moves 3
+[ 18:24:19.450 11-04-2017  INFO ] Human Player attack
+[ 18:24:21.451 11-04-2017  INFO ] Human Player interact
+[ 18:24:21.466 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:29:05.649 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:29:06.509 11-04-2017  INFO ] DOWN key pressed
+[ 18:29:06.587 11-04-2017  INFO ] Human Player Moves 1
+[ 18:29:06.587 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:29:07.259 11-04-2017  INFO ] LEFT key pressed
+[ 18:29:07.321 11-04-2017  INFO ] Human Player Moves 2
+[ 18:29:07.337 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:29:07.728 11-04-2017  INFO ] DOWN key pressed
+[ 18:29:07.775 11-04-2017  INFO ] Human Player Moves 3
+[ 18:29:07.790 11-04-2017  INFO ] Human Player attack
+[ 18:29:09.791 11-04-2017  INFO ] Human Player interact
+[ 18:29:09.806 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:32:47.403 11-04-2017  INFO ] Friend Moves 1
+[ 18:32:49.434 11-04-2017  INFO ] Friend Moves 2
+[ 18:32:51.497 11-04-2017  INFO ] Friend Moves 3
+[ 18:32:57.534 11-04-2017  INFO ] Friend Moves 1
+[ 18:32:59.568 11-04-2017  INFO ] Friend Moves 2
+[ 18:33:01.615 11-04-2017  INFO ] Friend Moves 3
+[ 18:33:07.636 11-04-2017  INFO ] Friend Moves 1
+[ 18:41:05.023 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:41:05.461 11-04-2017  INFO ] DOWN key pressed
+[ 18:41:05.539 11-04-2017  INFO ] Human Player Moves 1
+[ 18:41:05.554 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:41:06.945 11-04-2017  INFO ] DOWN key pressed
+[ 18:41:07.023 11-04-2017  INFO ] Human Player Moves 2
+[ 18:41:07.039 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:41:07.258 11-04-2017  INFO ] LEFT key pressed
+[ 18:41:07.320 11-04-2017  INFO ] Human Player Moves 3
+[ 18:41:07.336 11-04-2017  INFO ] Human Player attack
+[ 18:41:09.336 11-04-2017  INFO ] Human Player interact
+[ 18:41:09.352 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:42:13.638 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:42:14.138 11-04-2017  INFO ] DOWN key pressed
+[ 18:42:14.185 11-04-2017  INFO ] Human Player Moves 1
+[ 18:42:14.201 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:42:15.076 11-04-2017  INFO ] LEFT key pressed
+[ 18:42:15.138 11-04-2017  INFO ] Human Player Moves 2
+[ 18:42:15.154 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:42:15.310 11-04-2017  INFO ] DOWN key pressed
+[ 18:42:15.357 11-04-2017  INFO ] Human Player Moves 3
+[ 18:42:15.357 11-04-2017  INFO ] Human Player attack
+[ 18:42:17.373 11-04-2017  INFO ] Human Player interact
+[ 18:42:17.389 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:42:19.407 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:45:58.718 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:46:09.263 11-04-2017  INFO ] DOWN key pressed
+[ 18:51:44.164 11-04-2017  INFO ] Human Player Moves 1
+[ 18:51:44.180 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:51:53.103 11-04-2017  INFO ] DOWN key pressed
+[ 18:51:53.150 11-04-2017  INFO ] Human Player Moves 2
+[ 18:51:53.166 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:51:53.635 11-04-2017  INFO ] LEFT key pressed
+[ 18:51:53.698 11-04-2017  INFO ] Human Player Moves 3
+[ 18:51:53.698 11-04-2017  INFO ] Human Player attack
+[ 18:51:55.713 11-04-2017  INFO ] Human Player interact
+[ 18:51:55.729 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:51:57.731 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:02.404 11-04-2017  INFO ] UP key pressed
+[ 18:52:02.450 11-04-2017  INFO ] Human Player Moves 1
+[ 18:52:02.466 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:02.669 11-04-2017  INFO ] LEFT key pressed
+[ 18:52:02.716 11-04-2017  INFO ] Human Player Moves 2
+[ 18:52:02.732 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:03.606 11-04-2017  INFO ] LEFT key pressed
+[ 18:52:03.653 11-04-2017  INFO ] Human Player Moves 3
+[ 18:52:03.668 11-04-2017  INFO ] Human Player attack
+[ 18:52:05.684 11-04-2017  INFO ] Human Player interact
+[ 18:52:05.684 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:52:07.724 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:09.177 11-04-2017  INFO ] LEFT key pressed
+[ 18:52:09.224 11-04-2017  INFO ] Human Player Moves 1
+[ 18:52:09.240 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:09.771 11-04-2017  INFO ] DOWN key pressed
+[ 18:52:09.818 11-04-2017  INFO ] Human Player Moves 2
+[ 18:52:09.834 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:12.881 11-04-2017  INFO ] DOWN key pressed
+[ 18:52:12.928 11-04-2017  INFO ] Human Player Moves 3
+[ 18:52:12.928 11-04-2017  INFO ] Human Player attack
+[ 18:52:12.959 11-04-2017  INFO ] Player can hit anemy
+[ 18:52:12.959 11-04-2017  INFO ] 8 hit point deducted from enemy
+[ 18:52:12.975 11-04-2017  INFO ] Player can hit anemy
+[ 18:52:12.975 11-04-2017  INFO ] 7 hit point deducted from enemy
+[ 18:52:14.976 11-04-2017  INFO ] Human Player interact
+[ 18:52:16.977 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:17.977 11-04-2017  INFO ] DOWN key pressed
+[ 18:52:18.024 11-04-2017  INFO ] Human Player Moves 1
+[ 18:52:18.024 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:18.258 11-04-2017  INFO ] LEFT key pressed
+[ 18:52:18.289 11-04-2017  INFO ] Human Player Moves 2
+[ 18:52:18.289 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:18.540 11-04-2017  INFO ] LEFT key pressed
+[ 18:52:18.587 11-04-2017  INFO ] Human Player Moves 3
+[ 18:52:18.603 11-04-2017  INFO ] Human Player attack
+[ 18:52:18.603 11-04-2017  INFO ] Player can hit anemy
+[ 18:52:18.618 11-04-2017  INFO ] 2 hit point deducted from enemy
+[ 18:52:18.618 11-04-2017  INFO ] Player can not hit enemy
+[ 18:52:20.634 11-04-2017  INFO ] Human Player interact
+[ 18:52:22.635 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:23.604 11-04-2017  INFO ] RIGHT key pressed
+[ 18:52:23.635 11-04-2017  INFO ] Human Player Moves 1
+[ 18:52:23.635 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:24.182 11-04-2017  INFO ] UP key pressed
+[ 18:52:24.213 11-04-2017  INFO ] Human Player Moves 2
+[ 18:52:24.229 11-04-2017  INFO ] Waiting for user input to move human player
+[ 18:52:24.401 11-04-2017  INFO ] UP key pressed
+[ 18:52:24.417 11-04-2017  INFO ] Human Player Moves 3
+[ 18:52:24.417 11-04-2017  INFO ] Human Player attack
+[ 18:52:24.432 11-04-2017  INFO ] Player can hit anemy
+[ 18:52:24.432 11-04-2017  INFO ] 8 hit point deducted from enemy
+[ 18:52:24.448 11-04-2017  INFO ] Player can hit anemy
+[ 18:52:24.464 11-04-2017  INFO ] 5 hit point deducted from enemy
+[ 18:52:24.479 11-04-2017  INFO ] Enemy dead
+[ 18:52:26.495 11-04-2017  INFO ] Human Player interact
+[ 18:52:26.510 11-04-2017  INFO ] No interaction to any player so no item found
+[ 18:52:28.511 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:12.519 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:12.535 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:12.535 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:12.894 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:12.910 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:12.925 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:13.097 11-04-2017  INFO ] LEFT key pressed
+[ 19:50:13.113 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:13.129 11-04-2017  INFO ] Human Player attack
+[ 19:50:13.129 11-04-2017  INFO ] Player can hit anemy
+[ 19:50:13.144 11-04-2017  INFO ] 2 hit point deducted from enemy
+[ 19:50:13.144 11-04-2017  INFO ] Player can not hit enemy
+[ 19:50:15.147 11-04-2017  INFO ] Human Player interact
+[ 19:50:17.148 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:17.898 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:17.898 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:17.914 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:18.461 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:18.461 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:18.476 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:18.898 11-04-2017  INFO ] LEFT key pressed
+[ 19:50:18.914 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:18.914 11-04-2017  INFO ] Human Player attack
+[ 19:50:18.914 11-04-2017  INFO ] Player can not hit enemy
+[ 19:50:18.929 11-04-2017  INFO ] Player can not hit enemy
+[ 19:50:20.930 11-04-2017  INFO ] Human Player interact
+[ 19:50:20.930 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:50:22.937 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:23.016 11-04-2017  INFO ] UP key pressed
+[ 19:50:23.031 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:23.031 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:23.484 11-04-2017  INFO ] UP key pressed
+[ 19:50:23.484 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:23.500 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:23.922 11-04-2017  INFO ] UP key pressed
+[ 19:50:23.937 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:23.953 11-04-2017  INFO ] Human Player attack
+[ 19:50:25.953 11-04-2017  INFO ] Human Player interact
+[ 19:50:25.953 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:50:27.959 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:29.038 11-04-2017  INFO ] UP key pressed
+[ 19:50:29.053 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:29.053 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:29.381 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:29.397 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:29.397 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:30.256 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:30.272 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:30.272 11-04-2017  INFO ] Human Player attack
+[ 19:50:32.288 11-04-2017  INFO ] Human Player interact
+[ 19:50:32.288 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:50:34.295 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:36.357 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:36.357 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:36.373 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:36.654 11-04-2017  INFO ] UP key pressed
+[ 19:50:36.654 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:36.670 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:36.904 11-04-2017  INFO ] LEFT key pressed
+[ 19:50:36.920 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:36.936 11-04-2017  INFO ] Human Player attack
+[ 19:50:38.936 11-04-2017  INFO ] Human Player interact
+[ 19:50:38.945 11-04-2017  INFO ] Item ty has been added in your backpack
+[ 19:50:40.964 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:42.949 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:42.964 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:42.964 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:43.293 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:43.433 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:43.433 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:43.871 11-04-2017  INFO ] LEFT key pressed
+[ 19:50:43.886 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:43.902 11-04-2017  INFO ] Human Player attack
+[ 19:50:45.912 11-04-2017  INFO ] Human Player interact
+[ 19:50:45.912 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:50:47.938 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:48.016 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:48.032 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:48.032 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:48.376 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:48.376 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:48.391 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:51.282 11-04-2017  INFO ] UP key pressed
+[ 19:50:51.298 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:51.313 11-04-2017  INFO ] Human Player attack
+[ 19:50:53.314 11-04-2017  INFO ] Human Player interact
+[ 19:50:53.314 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:50:55.321 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:55.774 11-04-2017  INFO ] LEFT key pressed
+[ 19:50:55.790 11-04-2017  INFO ] Human Player Moves 1
+[ 19:50:55.790 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:56.055 11-04-2017  INFO ] DOWN key pressed
+[ 19:50:56.055 11-04-2017  INFO ] Human Player Moves 2
+[ 19:50:56.071 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:50:56.274 11-04-2017  INFO ] RIGHT key pressed
+[ 19:50:56.290 11-04-2017  INFO ] Human Player Moves 3
+[ 19:50:56.290 11-04-2017  INFO ] Human Player attack
+[ 19:50:58.304 11-04-2017  INFO ] Human Player interact
+[ 19:51:00.328 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:08.047 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:08.063 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:08.078 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:08.188 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:08.188 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:08.203 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:08.657 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:08.657 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:08.672 11-04-2017  INFO ] Human Player attack
+[ 19:51:08.672 11-04-2017  INFO ] Player can hit anemy
+[ 19:51:08.688 11-04-2017  INFO ] 8 hit point deducted from enemy
+[ 19:51:08.688 11-04-2017  INFO ] Player can hit anemy
+[ 19:51:08.703 11-04-2017  INFO ] 7 hit point deducted from enemy
+[ 19:51:10.704 11-04-2017  INFO ] Human Player interact
+[ 19:51:12.710 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:13.538 11-04-2017  INFO ] RIGHT key pressed
+[ 19:51:13.554 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:13.569 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:13.897 11-04-2017  INFO ] RIGHT key pressed
+[ 19:51:13.913 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:13.913 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:14.085 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:14.100 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:14.100 11-04-2017  INFO ] Human Player attack
+[ 19:51:14.100 11-04-2017  INFO ] Player can hit anemy
+[ 19:51:14.116 11-04-2017  INFO ] 7 hit point deducted from enemy
+[ 19:51:14.116 11-04-2017  INFO ] Player can hit anemy
+[ 19:51:14.132 11-04-2017  INFO ] 7 hit point deducted from enemy
+[ 19:51:14.132 11-04-2017  INFO ] Enemy dead
+[ 19:51:16.161 11-04-2017  INFO ] Human Player interact
+[ 19:51:16.161 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:51:18.180 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:19.180 11-04-2017  INFO ] RIGHT key pressed
+[ 19:51:19.211 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:19.243 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:19.540 11-04-2017  INFO ] RIGHT key pressed
+[ 19:51:19.571 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:19.586 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:19.946 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:19.977 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:19.993 11-04-2017  INFO ] Human Player attack
+[ 19:51:22.009 11-04-2017  INFO ] Human Player interact
+[ 19:51:22.025 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:51:24.027 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:24.105 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:24.136 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:24.167 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:24.496 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:24.511 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:24.527 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:24.839 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:24.870 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:24.902 11-04-2017  INFO ] Human Player attack
+[ 19:51:26.902 11-04-2017  INFO ] Human Player interact
+[ 19:51:26.902 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:51:28.929 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:29.586 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:29.602 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:29.602 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:29.977 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:30.008 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:30.039 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:30.320 11-04-2017  INFO ] LEFT key pressed
+[ 19:51:30.367 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:30.367 11-04-2017  INFO ] Human Player attack
+[ 19:51:32.383 11-04-2017  INFO ] Human Player interact
+[ 19:51:32.383 11-04-2017  INFO ] No interaction to any player so no item found
+[ 19:51:34.391 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:34.969 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:35.000 11-04-2017  INFO ] Human Player Moves 1
+[ 19:51:35.016 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:35.328 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:35.375 11-04-2017  INFO ] Human Player Moves 2
+[ 19:51:35.391 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:36.704 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:36.735 11-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 19:51:36.751 11-04-2017  INFO ] Waiting for user input to move human player
+[ 19:51:38.548 11-04-2017  INFO ] DOWN key pressed
+[ 19:51:38.563 11-04-2017  INFO ] Human Player Moves 3
+[ 19:51:38.579 11-04-2017  INFO ] Human Player attack
+[ 19:51:40.595 11-04-2017  INFO ] Human Player interact
+[ 19:51:40.595 11-04-2017  INFO ] No interaction to any player so no item found
+[ 00:24:46.796 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:49.534 12-04-2017  INFO ] DOWN key pressed
+[ 00:24:49.585 12-04-2017  INFO ] Human Player Moves 1
+[ 00:24:49.603 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:50.254 12-04-2017  INFO ] LEFT key pressed
+[ 00:24:50.280 12-04-2017  INFO ] Human Player Moves 2
+[ 00:24:50.292 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:50.861 12-04-2017  INFO ] LEFT key pressed
+[ 00:24:50.905 12-04-2017  INFO ] Human Player Moves 3
+[ 00:24:50.917 12-04-2017  INFO ] Human Player attack
+[ 00:24:52.927 12-04-2017  INFO ] Human Player interact
+[ 00:24:52.943 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:24:54.957 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:55.144 12-04-2017  INFO ] LEFT key pressed
+[ 00:24:55.184 12-04-2017  INFO ] Human Player Moves 1
+[ 00:24:55.198 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:55.751 12-04-2017  INFO ] LEFT key pressed
+[ 00:24:55.802 12-04-2017  INFO ] Human Player Moves 2
+[ 00:24:55.826 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:24:56.328 12-04-2017  INFO ] UP key pressed
+[ 00:24:56.380 12-04-2017  INFO ] Human Player Moves 3
+[ 00:24:56.396 12-04-2017  INFO ] Human Player attack
+[ 00:24:58.403 12-04-2017  INFO ] Human Player interact
+[ 00:24:58.518 12-04-2017  INFO ] Item ty has been added in your backpack
+[ 00:25:00.539 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:02.035 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:02.058 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:02.072 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:02.588 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:02.619 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:02.631 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:03.155 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:03.176 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:03.186 12-04-2017  INFO ] Human Player attack
+[ 00:25:03.195 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:03.205 12-04-2017  INFO ] 5 hit point deducted from enemy
+[ 00:25:03.214 12-04-2017  INFO ] Player can not hit enemy
+[ 00:25:05.219 12-04-2017  INFO ] Human Player interact
+[ 00:25:07.229 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:08.388 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:08.427 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:08.444 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:08.776 12-04-2017  INFO ] RIGHT key pressed
+[ 00:25:08.792 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:08.799 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:09.619 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:09.633 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:09.640 12-04-2017  INFO ] Human Player attack
+[ 00:25:11.648 12-04-2017  INFO ] Human Player interact
+[ 00:25:11.663 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:25:13.677 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:15.284 12-04-2017  INFO ] UP key pressed
+[ 00:25:15.295 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:15.304 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:15.928 12-04-2017  INFO ] UP key pressed
+[ 00:25:15.963 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:15.972 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:19.381 12-04-2017  INFO ] LEFT key pressed
+[ 00:25:19.415 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:19.426 12-04-2017  INFO ] Human Player attack
+[ 00:25:19.440 12-04-2017  INFO ] Player can not hit enemy
+[ 00:25:19.449 12-04-2017  INFO ] Player can not hit enemy
+[ 00:25:21.460 12-04-2017  INFO ] Human Player interact
+[ 00:25:23.475 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:24.280 12-04-2017  INFO ] LEFT key pressed
+[ 00:25:24.308 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:24.320 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:24.830 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:24.857 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:24.867 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:25.218 12-04-2017  INFO ] LEFT key pressed
+[ 00:25:25.253 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:25.267 12-04-2017  INFO ] Human Player attack
+[ 00:25:25.274 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:25.283 12-04-2017  INFO ] 5 hit point deducted from enemy
+[ 00:25:25.290 12-04-2017  INFO ] Player can not hit enemy
+[ 00:25:27.298 12-04-2017  INFO ] Human Player interact
+[ 00:25:29.312 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:32.176 12-04-2017  INFO ] RIGHT key pressed
+[ 00:25:32.194 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:32.215 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:34.369 12-04-2017  INFO ] UP key pressed
+[ 00:25:34.382 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:34.391 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:34.581 12-04-2017  INFO ] DOWN key pressed
+[ 00:25:34.594 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:34.602 12-04-2017  INFO ] Human Player attack
+[ 00:25:34.607 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:34.613 12-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:25:34.620 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:34.626 12-04-2017  INFO ] 2 hit point deducted from enemy
+[ 00:25:36.632 12-04-2017  INFO ] Human Player interact
+[ 00:25:36.637 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:25:38.644 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:53.086 12-04-2017  INFO ] RIGHT key pressed
+[ 00:25:53.096 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:53.102 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:53.393 12-04-2017  INFO ] LEFT key pressed
+[ 00:25:53.433 12-04-2017  INFO ] Human Player Moves 2
+[ 00:25:53.442 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:54.026 12-04-2017  INFO ] UP key pressed
+[ 00:25:54.057 12-04-2017  INFO ] Human Player Moves 3
+[ 00:25:54.070 12-04-2017  INFO ] Human Player attack
+[ 00:25:54.077 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:54.085 12-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:25:54.093 12-04-2017  INFO ] Player can hit anemy
+[ 00:25:54.098 12-04-2017  INFO ] 3 hit point deducted from enemy
+[ 00:25:54.104 12-04-2017  INFO ] Enemy dead
+[ 00:25:56.119 12-04-2017  INFO ] Human Player interact
+[ 00:25:56.134 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:25:58.152 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:25:59.581 12-04-2017  INFO ] RIGHT key pressed
+[ 00:25:59.614 12-04-2017  INFO ] Human Player Moves 1
+[ 00:25:59.624 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:00.131 12-04-2017  INFO ] DOWN key pressed
+[ 00:26:00.142 12-04-2017  INFO ] Human Player Moves 2
+[ 00:26:00.152 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:00.606 12-04-2017  INFO ] UP key pressed
+[ 00:26:00.635 12-04-2017  INFO ] Human Player Moves 3
+[ 00:26:00.647 12-04-2017  INFO ] Human Player attack
+[ 00:26:00.659 12-04-2017  INFO ] Player can hit anemy
+[ 00:26:00.665 12-04-2017  INFO ] 6 hit point deducted from enemy
+[ 00:26:00.671 12-04-2017  INFO ] Player can hit anemy
+[ 00:26:00.677 12-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:26:02.683 12-04-2017  INFO ] Human Player interact
+[ 00:26:04.697 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:05.624 12-04-2017  INFO ] RIGHT key pressed
+[ 00:26:05.651 12-04-2017  INFO ] Human Player Moves 1
+[ 00:26:05.664 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:06.008 12-04-2017  INFO ] DOWN key pressed
+[ 00:26:06.024 12-04-2017  INFO ] Human Player Moves 2
+[ 00:26:06.038 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:06.876 12-04-2017  INFO ] UP key pressed
+[ 00:26:06.891 12-04-2017  INFO ] Human Player Moves 3
+[ 00:26:06.902 12-04-2017  INFO ] Human Player attack
+[ 00:26:06.911 12-04-2017  INFO ] Player can not hit enemy
+[ 00:26:06.916 12-04-2017  INFO ] Player can not hit enemy
+[ 00:26:08.922 12-04-2017  INFO ] Human Player interact
+[ 00:26:08.928 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:26:10.935 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:14.874 12-04-2017  INFO ] DOWN key pressed
+[ 00:26:14.906 12-04-2017  INFO ] Human Player Moves 1
+[ 00:26:14.917 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:15.237 12-04-2017  INFO ] LEFT key pressed
+[ 00:26:15.273 12-04-2017  INFO ] Human Player Moves 2
+[ 00:26:15.283 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:15.405 12-04-2017  INFO ] UP key pressed
+[ 00:26:15.435 12-04-2017  INFO ] Human Player Moves 3
+[ 00:26:15.452 12-04-2017  INFO ] Human Player attack
+[ 00:26:15.587 12-04-2017  INFO ] Player can hit anemy
+[ 00:26:15.603 12-04-2017  INFO ] 2 hit point deducted from enemy
+[ 00:26:15.619 12-04-2017  INFO ] Player can hit anemy
+[ 00:26:15.634 12-04-2017  INFO ] 8 hit point deducted from enemy
+[ 00:26:15.642 12-04-2017  INFO ] Enemy dead
+[ 00:26:17.659 12-04-2017  INFO ] Human Player interact
+[ 00:26:19.967 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:23.146 12-04-2017  INFO ] DOWN key pressed
+[ 00:26:23.155 12-04-2017  INFO ] Human Player Moves 1
+[ 00:26:23.167 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:23.455 12-04-2017  INFO ] RIGHT key pressed
+[ 00:26:23.485 12-04-2017  INFO ] Human Player Moves 2
+[ 00:26:23.496 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:26:23.691 12-04-2017  INFO ] DOWN key pressed
+[ 00:26:23.704 12-04-2017  INFO ] Human Player Moves 3
+[ 00:26:23.714 12-04-2017  INFO ] Human Player attack
+[ 00:26:25.722 12-04-2017  INFO ] Human Player interact
+[ 00:26:25.727 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:30:02.223 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:30:03.560 12-04-2017  INFO ] DOWN key pressed
+[ 00:30:03.618 12-04-2017  INFO ] Human Player Moves 1
+[ 00:30:03.643 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:30:04.281 12-04-2017  INFO ] LEFT key pressed
+[ 00:30:04.328 12-04-2017  INFO ] Human Player Moves 2
+[ 00:30:04.346 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:30:04.773 12-04-2017  INFO ] LEFT key pressed
+[ 00:30:04.804 12-04-2017  INFO ] Human Player Moves 3
+[ 00:30:04.814 12-04-2017  INFO ] Human Player attack
+[ 00:30:06.822 12-04-2017  INFO ] Human Player interact
+[ 00:30:06.837 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:30:08.849 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:33:37.187 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:33:39.257 12-04-2017  INFO ] DOWN key pressed
+[ 00:33:39.313 12-04-2017  INFO ] Human Player Moves 1
+[ 00:33:39.354 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:33:39.587 12-04-2017  INFO ] LEFT key pressed
+[ 00:33:39.636 12-04-2017  INFO ] Human Player Moves 2
+[ 00:33:39.654 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:33:40.025 12-04-2017  INFO ] LEFT key pressed
+[ 00:33:40.064 12-04-2017  INFO ] Human Player Moves 3
+[ 00:34:00.997 12-04-2017  INFO ] Human Player has attacked
+[ 00:35:31.831 12-04-2017  INFO ] Human Player interact
+[ 00:35:31.856 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:35:48.192 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:36:17.695 12-04-2017  INFO ] DOWN key pressed
+[ 00:36:17.812 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:36:17.821 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:36:18.764 12-04-2017  INFO ] LEFT key pressed
+[ 00:36:18.839 12-04-2017  INFO ] Human Player Moves 1
+[ 00:36:18.848 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:36:19.510 12-04-2017  INFO ] DOWN key pressed
+[ 00:36:19.610 12-04-2017  INFO ] Human Player Moves 2
+[ 00:36:19.632 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:36:20.544 12-04-2017  INFO ] LEFT key pressed
+[ 00:36:20.652 12-04-2017  INFO ] Human Player Moves 3
+[ 00:36:26.625 12-04-2017  INFO ] Human Player has attacked
+[ 00:36:37.461 12-04-2017  INFO ] Human Player interact
+[ 00:36:37.483 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:36:50.829 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:37:28.205 12-04-2017  INFO ] LEFT key pressed
+[ 00:37:28.251 12-04-2017  INFO ] Human Player Moves 1
+[ 00:37:28.279 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:37:28.737 12-04-2017  INFO ] LEFT key pressed
+[ 00:37:28.782 12-04-2017  INFO ] Human Player Moves 2
+[ 00:37:28.797 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:37:31.069 12-04-2017  INFO ] UP key pressed
+[ 00:37:31.114 12-04-2017  INFO ] Human Player Moves 3
+[ 00:42:08.472 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:42:14.225 12-04-2017  INFO ] DOWN key pressed
+[ 00:42:14.291 12-04-2017  INFO ] Human Player Moves 1
+[ 00:42:14.303 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:42:14.614 12-04-2017  INFO ] LEFT key pressed
+[ 00:42:14.681 12-04-2017  INFO ] Human Player Moves 2
+[ 00:42:14.688 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:42:15.129 12-04-2017  INFO ] LEFT key pressed
+[ 00:42:15.178 12-04-2017  INFO ] Human Player Moves 3
+[ 00:42:15.190 12-04-2017  INFO ] Human Player has attacked
+[ 00:42:17.200 12-04-2017  INFO ] Human Player interact
+[ 00:42:17.216 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:42:19.237 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:43:07.517 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:43:08.479 12-04-2017  INFO ] DOWN key pressed
+[ 00:43:08.542 12-04-2017  INFO ] Human Player Moves 1
+[ 00:43:08.554 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:14.284 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:15.078 12-04-2017  INFO ] DOWN key pressed
+[ 00:45:15.128 12-04-2017  INFO ] Human Player Moves 1
+[ 00:45:15.144 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:15.397 12-04-2017  INFO ] LEFT key pressed
+[ 00:45:15.458 12-04-2017  INFO ] Human Player Moves 2
+[ 00:45:15.469 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:45:15.695 12-04-2017  INFO ] LEFT key pressed
+[ 00:45:15.747 12-04-2017  INFO ] Human Player Moves 3
+[ 00:45:15.758 12-04-2017  INFO ] Human Player has attacked
+[ 00:45:17.771 12-04-2017  INFO ] Human Player interact
+[ 00:45:17.790 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:47:08.122 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:09.049 12-04-2017  INFO ] DOWN key pressed
+[ 00:47:09.087 12-04-2017  INFO ] Human Player Moves 1
+[ 00:47:09.110 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:09.340 12-04-2017  INFO ] LEFT key pressed
+[ 00:47:09.404 12-04-2017  INFO ] Human Player Moves 2
+[ 00:47:09.413 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:09.575 12-04-2017  INFO ] LEFT key pressed
+[ 00:47:09.626 12-04-2017  INFO ] Human Player Moves 3
+[ 00:47:09.637 12-04-2017  INFO ] Human Player has attacked
+[ 00:47:11.648 12-04-2017  INFO ] Human Player interact
+[ 00:47:11.663 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:47:13.679 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:59.219 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:47:59.892 12-04-2017  INFO ] LEFT key pressed
+[ 00:47:59.947 12-04-2017  INFO ] Human Player Moves 1
+[ 00:47:59.966 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:51:13.654 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:51:14.450 12-04-2017  INFO ] DOWN key pressed
+[ 00:51:14.489 12-04-2017  INFO ] Human Player Moves 
+[ 00:51:14.499 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:13.707 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:14.173 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:14.213 12-04-2017  INFO ] Human Player Moves 1
+[ 00:52:14.237 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:34.981 12-04-2017  INFO ] LEFT key pressed
+[ 00:52:35.041 12-04-2017  INFO ] Human Player Moves 2
+[ 00:52:35.059 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:42.151 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:42.201 12-04-2017  INFO ] Human Player Moves 3
+[ 00:52:42.232 12-04-2017  INFO ] Human Player has attacked
+[ 00:52:44.233 12-04-2017  INFO ] Human Player interact
+[ 00:52:44.248 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:52:46.263 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:47.771 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:47.831 12-04-2017  INFO ] Human Player Moves 1
+[ 00:52:47.845 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:49.785 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:49.828 12-04-2017  INFO ] Human Player Moves 2
+[ 00:52:49.844 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:50.527 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:50.601 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:52:50.616 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:50.836 12-04-2017  INFO ] LEFT key pressed
+[ 00:52:50.876 12-04-2017  INFO ] Human Player Moves 3
+[ 00:52:50.891 12-04-2017  INFO ] Human Player has attacked
+[ 00:52:52.899 12-04-2017  INFO ] Human Player interact
+[ 00:52:52.904 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:52:54.909 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:56.305 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:56.330 12-04-2017  INFO ] Human Player Moves 1
+[ 00:52:56.343 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:56.729 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:56.769 12-04-2017  INFO ] Human Player Moves 2
+[ 00:52:56.795 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:52:56.952 12-04-2017  INFO ] DOWN key pressed
+[ 00:52:56.990 12-04-2017  INFO ] Human Player Moves 3
+[ 00:52:57.001 12-04-2017  INFO ] Human Player has attacked
+[ 00:52:59.012 12-04-2017  INFO ] Human Player interact
+[ 00:52:59.026 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:53:01.043 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:01.731 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:01.763 12-04-2017  INFO ] Human Player Moves 1
+[ 00:53:01.778 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:02.202 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:02.239 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:53:02.253 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:02.938 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:02.978 12-04-2017  INFO ] Human Player Moves 2
+[ 00:53:02.994 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:03.460 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:03.498 12-04-2017  INFO ] Human Player Moves 3
+[ 00:53:03.508 12-04-2017  INFO ] Human Player has attacked
+[ 00:53:05.516 12-04-2017  INFO ] Human Player interact
+[ 00:53:05.530 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:53:07.543 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:07.702 12-04-2017  INFO ] LEFT key pressed
+[ 00:53:07.742 12-04-2017  INFO ] Human Player Moves 1
+[ 00:53:07.771 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:08.307 12-04-2017  INFO ] UP key pressed
+[ 00:53:08.340 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:53:08.369 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:08.951 12-04-2017  INFO ] UP key pressed
+[ 00:53:08.995 12-04-2017  INFO ] Human Player Moves 2
+[ 00:53:09.027 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:09.168 12-04-2017  INFO ] LEFT key pressed
+[ 00:53:09.190 12-04-2017  INFO ] Human Player Moves 3
+[ 00:53:09.214 12-04-2017  INFO ] Human Player has attacked
+[ 00:53:11.222 12-04-2017  INFO ] Human Player interact
+[ 00:53:11.236 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:53:13.252 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:24.326 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:24.958 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:25.022 12-04-2017  INFO ] Human Player Moves 1
+[ 00:53:25.044 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:26.385 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:26.436 12-04-2017  INFO ] Human Player Moves 2
+[ 00:53:26.450 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:27.152 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:27.207 12-04-2017  INFO ] Human Player Moves 3
+[ 00:53:27.221 12-04-2017  INFO ] Human Player has attacked
+[ 00:53:29.233 12-04-2017  INFO ] Human Player interact
+[ 00:53:29.248 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:53:31.267 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:53:32.073 12-04-2017  INFO ] DOWN key pressed
+[ 00:53:32.121 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:53:32.133 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:54:10.623 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:54:11.372 12-04-2017  INFO ] DOWN key pressed
+[ 00:54:11.420 12-04-2017  INFO ] Human Player Moves 1
+[ 00:54:11.443 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:55:59.515 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:02.055 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:02.123 12-04-2017  INFO ] Human Player Moves 1
+[ 00:56:02.145 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:02.927 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:02.985 12-04-2017  INFO ] Human Player Moves 2
+[ 00:56:02.991 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:03.677 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:03.720 12-04-2017  INFO ] Human Player Moves 3
+[ 00:56:03.733 12-04-2017  INFO ] Human Player has attacked
+[ 00:56:05.744 12-04-2017  INFO ] Human Player interact
+[ 00:56:05.759 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:56:07.775 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:08.974 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:08.991 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:56:08.999 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:12.099 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:12.139 12-04-2017  INFO ] Human Player Moves 1
+[ 00:56:12.163 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:57.488 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:57.998 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:58.051 12-04-2017  INFO ] Human Player Moves 1
+[ 00:56:58.068 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:58.624 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:58.674 12-04-2017  INFO ] Human Player Moves 2
+[ 00:56:58.690 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:56:58.981 12-04-2017  INFO ] DOWN key pressed
+[ 00:56:59.032 12-04-2017  INFO ] Human Player Moves 3
+[ 00:56:59.041 12-04-2017  INFO ] Human Player has attacked
+[ 00:57:01.053 12-04-2017  INFO ] Human Player interact
+[ 00:57:01.067 12-04-2017  INFO ] No interaction to any player so no item found
+[ 00:57:03.083 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:03.759 12-04-2017  INFO ] DOWN key pressed
+[ 00:57:03.805 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:03.814 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:07.367 12-04-2017  INFO ] RIGHT key pressed
+[ 00:57:07.424 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:07.437 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:09.376 12-04-2017  INFO ] RIGHT key pressed
+[ 00:57:09.418 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:09.441 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:10.158 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:10.198 12-04-2017  INFO ] Human Player Moves 1
+[ 00:57:10.213 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:14.058 12-04-2017  INFO ] UP key pressed
+[ 00:57:14.097 12-04-2017  INFO ] Human Player Moves 2
+[ 00:57:14.107 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:14.381 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:14.421 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:14.437 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:15.307 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:15.348 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:15.359 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:15.699 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:15.741 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:15.755 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:15.959 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:15.986 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:15.995 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:16.169 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:16.218 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:16.226 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:16.345 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:16.385 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:16.397 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:16.529 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:16.574 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:16.591 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:16.708 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:16.741 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:16.754 12-04-2017  INFO ] Waiting for user input to move human player
+[ 00:57:16.886 12-04-2017  INFO ] LEFT key pressed
+[ 00:57:16.921 12-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 00:57:16.940 12-04-2017  INFO ] Waiting for user input to move human player
+[ 01:00:09.754 12-04-2017  INFO ] Waiting for user input to move human player
+[ 01:00:10.299 12-04-2017  INFO ] DOWN key pressed
+[ 01:00:10.355 12-04-2017  INFO ] Human Player Moves 1
+[ 01:00:10.367 12-04-2017  INFO ] Waiting for user input to move human player
+[ 01:00:11.102 12-04-2017  INFO ] DOWN key pressed
+[ 01:00:11.153 12-04-2017  INFO ] Human Player Moves 2
+[ 01:00:11.159 12-04-2017  INFO ] Waiting for user input to move human player
