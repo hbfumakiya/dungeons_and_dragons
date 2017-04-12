@@ -29,44 +29,17 @@ public class FriendlyNPC implements Strategy {
 	public void move(GamePlayModel gamePlayModel) {
 
 		System.out.println("Friendly NPC Move");
-		/*mapModel = gamePlayModel.getCampaignModel().getOutput_map_list().get(gamePlayModel.getCurrentMapIndex());
-
-		if (mapModel.getMap_enemy_loc().contains(MapCharacter.FRIENDLY)) {
-
-			PathFinder p = new PathFinder(gamePlayModel);
-			MapButton path[][] = p.findPath("friend");
-			int index = gamePlayModel.currentFriendIndex;
-
-			int i = 3;
-			while (i > 0) {
-				try {
-					findPath(path, gamePlayModel, index);
-					LogHelper.Log(LogHelper.TYPE_INFO, "Friend Character Move" + (i + 1));
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
-				}
-			}
-
-		}*/
-		
-		/*System.out.println("Agresive NPC Move");
-		mapModel = gamePlayModel.getCampaignModel().getOutput_map_list().get(gamePlayModel.getCurrentMapIndex());
-		PathFinder p = new PathFinder(gamePlayModel);
-		MapButton path[][] = p.findPath("enemy");
-		int index = gamePlayModel.currentEnemyIndex;*/
-
 		MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
-
 		Point friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
-		Point oldPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
-		
+		Point oldPoint = (Point) friendPoint.clone();
 		int i = 0;
 		while (i < 3) {
 			try {
 				gameStatus = gamePlayModel.moveFriend(friend,friendPoint,oldPoint,i);
 				Thread.sleep(2000);
 				if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
+					friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
+					oldPoint = (Point) friendPoint.clone();
 					i++;
 				}
 			} catch (InterruptedException e) {
@@ -75,43 +48,7 @@ public class FriendlyNPC implements Strategy {
 		}
 
 	}
-
-	/**
-	 * This function defines a path for the friendly player and correctly displays on the map
-	 * @param path
-	 * @param gamePlayModel
-	 * @param index
-	 *//*
-	private void findPath(MapButton[][] path, GamePlayModel gamePlayModel, int index) {
-
-		int mainIndex = 0;
-
-		for (int j = 0; j < mapModel.getMap_enemy_loc().size(); j++) {
-			if (mapModel.getMap_enemy_loc().get(j).getCharacter().getCharacter_id() == gamePlayModel.enemyList
-					.get(index).getCharacter().getCharacter_id()) {
-				mainIndex = j;
-			}
-		}
-
-		if (path != null) {
-			for (int i = 0; i < path.length; i++) {
-				for (int j = 0; j < path[0].length; j++) {
-					if (path[i][j].path == 1 && path[i][j].getDirty_flag() != 2) {
-						path[i][j].setDirty_flag(2);
-						
-						gamePlayModel.friendList.get(index).setX(path[i][j].getX());
-						gamePlayModel.friendList.get(index).setY(path[i][j].getY());
-						
-						mapModel.getMap_enemy_loc().get(mainIndex).setX(path[i][j].getX());
-						mapModel.getMap_enemy_loc().get(mainIndex).setY(path[i][j].getY());
-						
-						gamePlayModel.notifyChange();
-					}
-				}
-			}
-		}
-	}*/
-
+	
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		System.out.println("Friendly NPC Move");

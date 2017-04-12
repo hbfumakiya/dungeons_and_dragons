@@ -103,7 +103,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	public MapButton currentMap[][];
 
 	public MapCharacter currentCharacter;
-	
+
 	/**
 	 * constructor to initialize map object
 	 */
@@ -115,7 +115,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		this.gamePlayId = 0;
 		this.currentTurn = 0;
 		this.isGameRunning = true;
-	//	this.playerStrategy = MapCharacter.NORMAL;
+		// this.playerStrategy = MapCharacter.NORMAL;
 	}
 
 	/**
@@ -370,10 +370,10 @@ public class GamePlayModel extends Observable implements Runnable {
 		currentCharacter = new MapCharacter();
 		currentCharacter.setCharacter(this.characterModel);
 		currentCharacter.setCharacterType(this.playerStrategy);
-		
+
 		currentCharacter.setX(this.getGameCharacterPosition().x);
 		currentCharacter.setY(this.getGameCharacterPosition().y);
-		
+
 		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), currentCharacter);
 
 		// roll dice and calculate turn values for NPCs
@@ -392,7 +392,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	}
 
 	/**
-	 * these method sets strategy of each and every charachter that is in the turn list or say in the map
+	 * these method sets strategy of each and every charachter that is in the
+	 * turn list or say in the map
 	 */
 	public void startGame() {
 		CharacterStrategy characterStrategy;
@@ -501,8 +502,8 @@ public class GamePlayModel extends Observable implements Runnable {
 		while (isGameRunning) {
 			for (int i = 0; i < turnList.size(); i++) {
 				this.currentTurn = i;
-				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.FRIENDLY)){
-					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);		
+				if (this.turnList.get(i).getCharacterType().equals(MapCharacter.FRIENDLY)) {
+					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
 				}
 			}
 		}
@@ -722,7 +723,6 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public GameStatus validateMove(Point tempPoint, Point oldPoint) {
 
-		
 		if (checkBoundaries(tempPoint) && !this.checkWalls(tempPoint)) {
 			this.setGameCharacterPosition(tempPoint);
 			gameStatus.setGameStatus(GameStatus.RUNNING);
@@ -1154,34 +1154,31 @@ public class GamePlayModel extends Observable implements Runnable {
 	 */
 	public void moveNPCOrComputer(MapCharacter EnemyOrComputer) {
 		Point playerOrEnemyPosition = new Point();
-		if(EnemyOrComputer.getCharacterType().equals(MapCharacter.ENEMY))
-		{
-		playerOrEnemyPosition = this.gameCharacterPosition;
-		}
-		else if(EnemyOrComputer.getCharacterType().equals(MapCharacter.COMPUTER))
-		{
-			ArrayList<MapCharacter> list = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_enemy_loc();
-			for(int i =0;i<list.size();i++)
-			{
-				if(!list.get(i).getCharacterType().equals(MapCharacter.FRIENDLY) && list.get(i).getCharacter().isAlive())
-				{
-					playerOrEnemyPosition = new Point( list.get(i).getX(),list.get(i).getY());
+		if (EnemyOrComputer.getCharacterType().equals(MapCharacter.ENEMY)) {
+			playerOrEnemyPosition = this.gameCharacterPosition;
+		} else if (EnemyOrComputer.getCharacterType().equals(MapCharacter.COMPUTER)) {
+			ArrayList<MapCharacter> list = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+					.getMap_enemy_loc();
+			for (int i = 0; i < list.size(); i++) {
+				if (!list.get(i).getCharacterType().equals(MapCharacter.FRIENDLY)
+						&& list.get(i).getCharacter().isAlive()) {
+					playerOrEnemyPosition = new Point(list.get(i).getX(), list.get(i).getY());
 					break;
+				} else {
+					playerOrEnemyPosition = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex())
+							.getMap_exit_door();
 				}
-				else 
-				{
-					playerOrEnemyPosition = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door();
-				}
-				
+
 			}
-		//playerOrEnemyPosition = this.gameCharacterPosition;
+			// playerOrEnemyPosition = this.gameCharacterPosition;
 		}
 		if (EnemyOrComputer.Frightening == false) {
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 
-		} else if (EnemyOrComputer.Frightening == true && EnemyOrComputer.frighteningTurn <= EnemyOrComputer.frighteningBonus - 1) {
+		} else if (EnemyOrComputer.Frightening == true
+				&& EnemyOrComputer.frighteningTurn <= EnemyOrComputer.frighteningBonus - 1) {
 			++EnemyOrComputer.frighteningTurn;
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition);
@@ -1270,194 +1267,209 @@ public class GamePlayModel extends Observable implements Runnable {
 			nextPos = new Point(-1, -1);
 		}
 		// go down
-		if (movingToPosition.x > movingCharacter.getX() && !this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+		if (movingToPosition.x > movingCharacter.getX()
+				&& !this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
 				&& nextPos.x != movingCharacterX + 1)// &&
 		// this.checkWalls(new
 		// Point(enemyX+1,enemyY)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			
-			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-			}else{
+			} else {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 			}
-			//check left right and down -- only one case 
-			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+			// check left right and down -- only one case
+			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 			}
 
 		}
 		// go up
-		else if (movingToPosition.x < movingCharacter.getX() && !this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+		else if (movingToPosition.x < movingCharacter.getX()
+				&& !this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
 				&& nextPos.x != movingCharacterX - 1)// && this.checkWalls(new
-											// Point(enemyX-1,enemyY)))
+		// Point(enemyX-1,enemyY)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			
-			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-			}else{
+			} else {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 			}
-			//check left right and dwon
-			if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+			// check left right and dwon
+			if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 			}
 
 		}
 		// go right
-		else if (movingToPosition.y > movingCharacter.getY() && !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+		else if (movingToPosition.y > movingCharacter.getY()
+				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 				&& nextPos.y != movingCharacterY + 1)// && this.checkWalls(new
-											// Point(enemyX,enemyY+1)))
+		// Point(enemyX,enemyY+1)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-			}else{
+			} else {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 			}
-			
-			
-			//check  right and dwon and up
-			if (this.checkWalls(new Point(movingCharacterX+1 , movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+
+			// check right and dwon and up
+			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
+				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 			}
 
 		}
 		// go left
-		else if (movingToPosition.y < movingCharacter.getY() && !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+		else if (movingToPosition.y < movingCharacter.getY()
+				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
 				&& nextPos.y != movingCharacterY - 1)// && this.checkWalls(new
-											// Point(enemyX,enemyY-1)))
+		// Point(enemyX,enemyY-1)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 				movingCharacter.setY(movingCharacter.getY() - 1);
 				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-			}else{
+			} else {
 				movingCharacter.setY(movingCharacter.getY() - 1);
-			}			
-			
-			//check left right and dwon
-			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+			}
+
+			// check left right and dwon
+			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+					&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
+				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 			}
 
 		} else if (movingToPosition.x == movingCharacterX && movingToPosition.y != movingCharacterY) {
 			// go down
-			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && nextPos.x != movingCharacterX + 1)// &&
+			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& nextPos.x != movingCharacterX + 1)// &&
 			// this.checkWalls(new
 			// Point(enemyX+1,enemyY)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-				
-				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 					movingCharacter.setX(movingCharacter.getX() + 1);
 					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-				}else{
+				} else {
 					movingCharacter.setX(movingCharacter.getX() + 1);
 				}
-				
-				//check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+
+				// check left right and dwon
+				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 				}
 
 			}
 			// go up
-			else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY)) && nextPos.x != movingCharacterX - 1)// &&
-																								// this.checkWalls(new
-																								// Point(enemyX-1,enemyY)))
+			else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					&& nextPos.x != movingCharacterX - 1)// &&
+			// this.checkWalls(new
+			// Point(enemyX-1,enemyY)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 					movingCharacter.setX(movingCharacter.getX() - 1);
 					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-				}else{
+				} else {
 					movingCharacter.setX(movingCharacter.getX() - 1);
 				}
-								
-				//check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+
+				// check left right and dwon
+				if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 				}
 
 			}
 		} else if (movingToPosition.y == movingCharacterY && movingToPosition.x != movingCharacterX) {
 			// go right
-			 if (movingToPosition.y > movingCharacter.getY() && !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					&& nextPos.y != movingCharacterY + 1)// && this.checkWalls(new
-												// Point(enemyX,enemyY+1)))
+			if (movingToPosition.y > movingCharacter.getY()
+					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					&& nextPos.y != movingCharacterY + 1)// &&
+															// this.checkWalls(new
+			// Point(enemyX,enemyY+1)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 					movingCharacter.setY(movingCharacter.getY() + 1);
 					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-				}else{
+				} else {
 					movingCharacter.setY(movingCharacter.getY() + 1);
 				}
-				
-				
-				//check  right and dwon and up
-				if (this.checkWalls(new Point(movingCharacterX+1 , movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-						&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+
+				// check right and dwon and up
+				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+						&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
+					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 				}
 
 			}
 			// go left
-			else if (movingToPosition.y < movingCharacter.getY() && !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					&& nextPos.y != movingCharacterY - 1)// && this.checkWalls(new
-												// Point(enemyX,enemyY-1)))
+			else if (movingToPosition.y < movingCharacter.getY()
+					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+					&& nextPos.y != movingCharacterY - 1)// &&
+															// this.checkWalls(new
+			// Point(enemyX,enemyY-1)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 					movingCharacter.setY(movingCharacter.getY() - 1);
 					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
-				}else{
+				} else {
 					movingCharacter.setY(movingCharacter.getY() - 1);
 				}
-				
-				
-				//check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-						&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
+
+				// check left right and dwon
+				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+						&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
+					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 
 				}
 
 			}
 		}
-		
-		//clean previous postion hash map after 3rd move
+
+		// clean previous postion hash map after 3rd move
 		if (moveNumber == 3) {
 			prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 		}
-		if(movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)){
+		if (movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)) {
 			setChanged();
 			notifyObservers();
-			
+
 		}
 		try {
 			Thread.sleep(2000);
@@ -1476,10 +1488,18 @@ public class GamePlayModel extends Observable implements Runnable {
 		notifyObservers(this);
 	}
 
+	/**
+	 * This function moves a friend
+	 * 
+	 * @param friend
+	 * @param friendPoint
+	 * @param oldPoint
+	 * @param number
+	 * @return
+	 */
 	public GameStatus moveFriend(MapCharacter friend, Point friendPoint, Point oldPoint, int number) {
 
 		Random randomGenerator = new Random();
-		oldPoint = friendPoint;
 		boolean pathExists = false;
 		while (pathExists != true) {
 			int i = randomGenerator.nextInt(4);
@@ -1502,26 +1522,23 @@ public class GamePlayModel extends Observable implements Runnable {
 				break;
 			}
 			}
-			if (checkBoundaries(friendPoint) && !this.checkWalls(friendPoint)) {
-				
+			if (checkBoundaries(friendPoint) && !this.checkWalls(friendPoint) && !this.getCampaignModel()
+					.getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door().equals(friendPoint)) {
+
 				pathExists = true;
 				friend.setX(friendPoint.x);
 				friend.setY(friendPoint.y);
-				
+
 				gameStatus.setGameStatus(GameStatus.RUNNING);
-				LogHelper.Log(LogHelper.TYPE_INFO, "Friend Moves "+(number+1));
-				
+				LogHelper.Log(LogHelper.TYPE_INFO, "Friend Moves " + (number + 1));
+
 				setChanged();
 				notifyObservers();
 			} else {
 				// shouldn't allow the move and show type info error message
-				friendPoint = oldPoint;/*
-				LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
-				gameStatus.setGameStatus(GameStatus.CANT_MOVE);*/
+				friendPoint = (Point) oldPoint.clone();
 			}
-
 		}
-
 		return gameStatus;
 	}
 
