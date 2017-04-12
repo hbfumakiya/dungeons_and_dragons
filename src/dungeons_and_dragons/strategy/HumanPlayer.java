@@ -3,6 +3,7 @@
  */
 package dungeons_and_dragons.strategy;
 
+import dungeons_and_dragons.controller.GamePlayController;
 import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -28,6 +29,8 @@ public class HumanPlayer implements Strategy {
 					if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
 						LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moves "+(i+1));
 						i++;
+					}else if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.RUNNING)){
+						
 					}
 				}
 			} catch (InterruptedException e) {

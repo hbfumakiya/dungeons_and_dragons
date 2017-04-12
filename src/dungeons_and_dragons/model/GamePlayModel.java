@@ -500,11 +500,11 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Override
 	public void run() {
 		while (isGameRunning) {
-			for (int i = 0; i < turnList.size(); i++) {
-				this.currentTurn = i;
-				if (this.turnList.get(i).getCharacterType().equals(MapCharacter.FRIENDLY)) {
+			for (int i = 0; i < turnList.size(); i++) {/*
+				if (this.turnList.get(i).getCharacterType().equals(MapCharacter.COMPUTER)) {*/
+					this.currentTurn = i;
 					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
-				}
+//				/}
 			}
 		}
 	}
@@ -1269,6 +1269,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		// go down
 		if (movingToPosition.x > movingCharacter.getX()
 				&& !this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+				&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
 				&& nextPos.x != movingCharacterX + 1)// &&
 		// this.checkWalls(new
 		// Point(enemyX+1,enemyY)))
@@ -1282,17 +1283,21 @@ public class GamePlayModel extends Observable implements Runnable {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 			}
 			// check left right and down -- only one case
-			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-			}
+			/*
+			 * if (this.checkWalls(new Point(movingCharacterX + 1,
+			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY + 1)) && this.checkWalls(new
+			 * Point(movingCharacterX, movingCharacterY - 1))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
 		// go up
 		else if (movingToPosition.x < movingCharacter.getX()
 				&& !this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+				&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
 				&& nextPos.x != movingCharacterX - 1)// && this.checkWalls(new
 		// Point(enemyX-1,enemyY)))
 		{
@@ -1304,18 +1309,22 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 			}
-			// check left right and dwon
-			if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-			}
+			/*
+			 * // check left right and dwon if (this.checkWalls(new
+			 * Point(movingCharacterX - 1, movingCharacterY)) &&
+			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
+			 * 1)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY - 1))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
 		// go right
 		else if (movingToPosition.y > movingCharacter.getY()
 				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
 				&& nextPos.y != movingCharacterY + 1)// && this.checkWalls(new
 		// Point(enemyX,enemyY+1)))
 		{
@@ -1328,18 +1337,22 @@ public class GamePlayModel extends Observable implements Runnable {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 			}
 
-			// check right and dwon and up
-			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-			}
+			/*
+			 * // check right and dwon and up if (this.checkWalls(new
+			 * Point(movingCharacterX + 1, movingCharacterY)) &&
+			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
+			 * 1)) && this.checkWalls(new Point(movingCharacterX - 1,
+			 * movingCharacterY))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
 		// go left
 		else if (movingToPosition.y < movingCharacter.getY()
 				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
 				&& nextPos.y != movingCharacterY - 1)// && this.checkWalls(new
 		// Point(enemyX,enemyY-1)))
 		{
@@ -1353,16 +1366,20 @@ public class GamePlayModel extends Observable implements Runnable {
 			}
 
 			// check left right and dwon
-			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
-				prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-			}
+			/*
+			 * if (this.checkWalls(new Point(movingCharacterX + 1,
+			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY - 1)) && this.checkWalls(new
+			 * Point(movingCharacterX - 1, movingCharacterY))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		} else if (movingToPosition.x == movingCharacterX && movingToPosition.y != movingCharacterY) {
 			// go down
 			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
 					&& nextPos.x != movingCharacterX + 1)// &&
 			// this.checkWalls(new
 			// Point(enemyX+1,enemyY)))
@@ -1377,16 +1394,21 @@ public class GamePlayModel extends Observable implements Runnable {
 				}
 
 				// check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-				}
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
+				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
+				 * Point(-1, -1));
+				 * 
+				 * }
+				 */
 
 			}
 			// go up
 			else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
 					&& nextPos.x != movingCharacterX - 1)// &&
 			// this.checkWalls(new
 			// Point(enemyX-1,enemyY)))
@@ -1401,18 +1423,22 @@ public class GamePlayModel extends Observable implements Runnable {
 				}
 
 				// check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-				}
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
+				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
+				 * Point(-1, -1));
+				 * 
+				 * }
+				 */
 
 			}
 		} else if (movingToPosition.y == movingCharacterY && movingToPosition.x != movingCharacterX) {
 			// go right
-			if (movingToPosition.y > movingCharacter.getY()
-					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+			if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
 					&& nextPos.y != movingCharacterY + 1)// &&
 															// this.checkWalls(new
 			// Point(enemyX,enemyY+1)))
@@ -1427,16 +1453,21 @@ public class GamePlayModel extends Observable implements Runnable {
 				}
 
 				// check right and dwon and up
-				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-						&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-
-				}
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY))) {
+				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
+				 * -1));
+				 * 
+				 * }
+				 */
 
 			}
 			// go left
-			else if (movingToPosition.y < movingCharacter.getY()
+			else if (this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
 					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
 					&& nextPos.y != movingCharacterY - 1)// &&
 															// this.checkWalls(new
@@ -1452,13 +1483,36 @@ public class GamePlayModel extends Observable implements Runnable {
 				}
 
 				// check left right and dwon
-				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-						&& this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))) {
-					prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY - 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY))) {
+				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
+				 * -1));
+				 * 
+				 * }
+				 */
 
-				}
-
+			}
+		} else {
+			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					|| this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
+				movingCharacter.setX(movingCharacter.getX() + 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					|| this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
+				movingCharacter.setX(movingCharacter.getX() - 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
+				movingCharacter.setY(movingCharacter.getY() + 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
+				movingCharacter.setY(movingCharacter.getY() - 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			}
 		}
 
