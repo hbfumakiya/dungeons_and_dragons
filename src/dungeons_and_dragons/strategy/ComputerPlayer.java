@@ -188,7 +188,9 @@ public class ComputerPlayer implements Strategy {
 						}
 
 					}
-					else if( map.getMap_enemy_loc().get(i).getCharacterType().equals(MapCharacter.FRIENDLY))
+					else if( map.getMap_enemy_loc().get(i).getCharacterType().equals(MapCharacter.FRIENDLY) &&
+							playerOrNPC.getX() == map.getMap_enemy_loc().get(i).getX()
+							&& playerOrNPC.getY() == map.getMap_enemy_loc().get(i).getY())
 					{
 						if (playerOrNPC.getCharacter().getBackPackItems().size() < 10) {
 							if(!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty())
