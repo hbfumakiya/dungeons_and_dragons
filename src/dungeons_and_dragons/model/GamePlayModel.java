@@ -1,6 +1,5 @@
 package dungeons_and_dragons.model;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -371,6 +370,10 @@ public class GamePlayModel extends Observable implements Runnable {
 		currentCharacter = new MapCharacter();
 		currentCharacter.setCharacter(this.characterModel);
 		currentCharacter.setCharacterType(this.playerStrategy);
+		
+		currentCharacter.setX(this.getGameCharacterPosition().x);
+		currentCharacter.setY(this.getGameCharacterPosition().y);
+		
 		tempValues.put(DiceHelper.rollD20() + this.characterModel.getModifiers().getDexterity(), currentCharacter);
 
 		// roll dice and calculate turn values for NPCs
@@ -498,7 +501,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		while (isGameRunning) {
 			for (int i = 0; i < turnList.size(); i++) {
 				this.currentTurn = i;
-				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.NORMAL)){
+				if(this.turnList.get(i).getCharacterType().equals(MapCharacter.COMPUTER)){
 					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);		
 				}
 			}
@@ -1274,13 +1277,13 @@ public class GamePlayModel extends Observable implements Runnable {
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			
-			/*asd
 			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
-				
-			}else{*/
 				movingCharacter.setX(movingCharacter.getX() + 1);
-			//}
-			//check left right and dwon
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			}else{
+				movingCharacter.setX(movingCharacter.getX() + 1);
+			}
+			//check left right and down -- only one case 
 			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
 				prevPosition(movingCharacter.getCharacter(), new Point(-1,-1));
@@ -1294,7 +1297,13 @@ public class GamePlayModel extends Observable implements Runnable {
 											// Point(enemyX-1,enemyY)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			movingCharacter.setX(movingCharacter.getX() - 1);
+			
+			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				movingCharacter.setX(movingCharacter.getX() - 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			}else{
+				movingCharacter.setX(movingCharacter.getX() - 1);
+			}
 			//check left right and dwon
 			if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
@@ -1309,7 +1318,15 @@ public class GamePlayModel extends Observable implements Runnable {
 											// Point(enemyX,enemyY+1)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			movingCharacter.setY(movingCharacter.getY() + 1);
+
+			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				movingCharacter.setY(movingCharacter.getY() + 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			}else{
+				movingCharacter.setY(movingCharacter.getY() + 1);
+			}
+			
+			
 			//check  right and dwon and up
 			if (this.checkWalls(new Point(movingCharacterX+1 , movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
@@ -1324,7 +1341,14 @@ public class GamePlayModel extends Observable implements Runnable {
 											// Point(enemyX,enemyY-1)))
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-			movingCharacter.setY(movingCharacter.getY() - 1);
+
+			if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+				movingCharacter.setY(movingCharacter.getY() - 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			}else{
+				movingCharacter.setY(movingCharacter.getY() - 1);
+			}			
+			
 			//check left right and dwon
 			if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
 					&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
@@ -1339,7 +1363,14 @@ public class GamePlayModel extends Observable implements Runnable {
 			// Point(enemyX+1,enemyY)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-				movingCharacter.setX(movingCharacter.getX() + 1);
+				
+				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+					movingCharacter.setX(movingCharacter.getX() + 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				}else{
+					movingCharacter.setX(movingCharacter.getX() + 1);
+				}
+				
 				//check left right and dwon
 				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
@@ -1354,7 +1385,14 @@ public class GamePlayModel extends Observable implements Runnable {
 																								// Point(enemyX-1,enemyY)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-				movingCharacter.setX(movingCharacter.getX() - 1);
+
+				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+					movingCharacter.setX(movingCharacter.getX() - 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				}else{
+					movingCharacter.setX(movingCharacter.getX() - 1);
+				}
+								
 				//check left right and dwon
 				if (this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 						&& this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))) {
@@ -1370,7 +1408,15 @@ public class GamePlayModel extends Observable implements Runnable {
 												// Point(enemyX,enemyY+1)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-				movingCharacter.setY(movingCharacter.getY() + 1);
+
+				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+					movingCharacter.setY(movingCharacter.getY() + 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				}else{
+					movingCharacter.setY(movingCharacter.getY() + 1);
+				}
+				
+				
 				//check  right and dwon and up
 				if (this.checkWalls(new Point(movingCharacterX+1 , movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 						&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
@@ -1385,7 +1431,15 @@ public class GamePlayModel extends Observable implements Runnable {
 												// Point(enemyX,enemyY-1)))
 			{
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
-				movingCharacter.setY(movingCharacter.getY() - 1);
+
+				if(movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)){
+					movingCharacter.setY(movingCharacter.getY() - 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				}else{
+					movingCharacter.setY(movingCharacter.getY() - 1);
+				}
+				
+				
 				//check left right and dwon
 				if (this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY)) && this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
 						&& this.checkWalls(new Point(movingCharacterX-1, movingCharacterY))) {
@@ -1396,12 +1450,15 @@ public class GamePlayModel extends Observable implements Runnable {
 			}
 		}
 		
-
+		//clean previous postion hash map after 3rd move
 		if (moveNumber == 3) {
 			prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 		}
-		setChanged();
-		notifyObservers();
+		if(movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)){
+			setChanged();
+			notifyObservers();
+			
+		}
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

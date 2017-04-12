@@ -308,9 +308,14 @@ public class GamePlayView extends JFrame implements Observer, View {
 				}
 				
 				
-				/*if ((this.gamePlayModel.currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER))){
-					
+				/*if (this.gamePlayModel.currentCharacter != null && (this.gamePlayModel.currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER))){
+					if(tempPoint.equals(new Point(this.gamePlayModel.currentCharacter.getX(), this.gamePlayModel.currentCharacter.getY()))){
+						displayPlayer(maps[tempPoint.x][tempPoint.y]);
+					}
 				}*/
+				/*else{*/
+					
+				//}
 				/*
 				 * if (gamePlayModel.currentCharacter != null &&
 				 * tempPoint.equals( new
@@ -543,10 +548,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
 				.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
 
-		if (((GamePlayModel) obs).currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+		/*if (((GamePlayModel) obs).currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
 			displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel) obs)
 					.getGameCharacterPosition().y]);
-		}
+		}*/
 
 		if (this.maps[oldPosition.x][oldPosition.y] != null
 				&& this.maps[oldPosition.x][oldPosition.y].getCharacter() != null) {
