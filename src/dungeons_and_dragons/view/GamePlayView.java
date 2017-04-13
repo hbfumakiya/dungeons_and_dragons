@@ -258,6 +258,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		maps = new MapButton[x][y];
 
 		Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
+		System.out.println(humanCharacterPosition);
 		CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
 		this.setRangeOfAttack(humanCharacter, humanCharacterPosition);
 		for (int i = 0; i < x; i++) {
@@ -272,10 +273,6 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 				MapCharacter character = showCharacter(tempPoint);
 
-				if(tempPoint.equals(humanCharacterPosition)) {
-					displayPlayer(maps[tempPoint.x][tempPoint.y]);
-				}
-				
 				// setting all objects on the map
 				if (showWalls(tempPoint)) {
 					maps[i][j].setBackground(Game_constants.WALLS);
@@ -302,31 +299,17 @@ public class GamePlayView extends JFrame implements Observer, View {
 						maps[i][j].setCharacterType(MapButton.FRIENDLY_PLAYER);
 						maps[i][j].setCharacter(character.getCharacter());
 						maps[i][j].addActionListener(this.gamePlayController);
-						// maps[i][j].setPointValue(99);
 					}
 
 				}
-				
-				
-				/*if (this.gamePlayModel.currentCharacter != null && (this.gamePlayModel.currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER))){
-					if(tempPoint.equals(new Point(this.gamePlayModel.currentCharacter.getX(), this.gamePlayModel.currentCharacter.getY()))){
-						displayPlayer(maps[tempPoint.x][tempPoint.y]);
-					}
-				}*/
-				/*else{*/
-					
-				//}
-				/*
-				 * if (gamePlayModel.currentCharacter != null &&
-				 * tempPoint.equals( new
-				 * Point(gamePlayModel.currentCharacter.getX(),
-				 * gamePlayModel.currentCharacter.getY()))) {
-				 * displayPlayer(maps[tempPoint.x][tempPoint.y]); }
-				 */
+				if (tempPoint.equals(humanCharacterPosition)) {
+					displayPlayer(maps[tempPoint.x][tempPoint.y]);
+				}
 				maps[i][j].setFocusable(false);
 				mapPanel.add(maps[i][j]);
 			}
 		}
+
 		gamePlayModel.currentMap = maps;
 	}
 
@@ -542,40 +525,12 @@ public class GamePlayView extends JFrame implements Observer, View {
 	@Override
 	public void update(Observable obs, Object obj) {
 		this.mapPanel.removeAll();
-		this.gamePlayModel = (GamePlayModel)obs;
-		
-		
+		this.gamePlayModel = (GamePlayModel) obs;
+
 		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
 				.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
-
-		/*if (((GamePlayModel) obs).currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
-			displayPlayer(maps[((GamePlayModel) obs).getGameCharacterPosition().x][((GamePlayModel) obs)
-					.getGameCharacterPosition().y]);
-		}*/
-
-		if (this.maps[oldPosition.x][oldPosition.y] != null
-				&& this.maps[oldPosition.x][oldPosition.y].getCharacter() != null) {
-
-			eraseButtonBackground(maps[oldPosition.x][oldPosition.y]);
-
-			ArrayList<MapCharacter> enemies = this.gamePlayModel.getCampaignModel().getOutput_map_list()
-					.get(this.gamePlayModel.getCurrentMapIndex()).getMap_enemy_loc();
-
-			for (int i = 0; i < enemies.size(); i++) {
-
-				int x = enemies.get(i).getX();
-				int y = enemies.get(i).getY();
-
-				if (x != oldPosition.x & y != oldPosition.y) {
-					maps[oldPosition.x][oldPosition.y].removeActionListener(this.gamePlayController);
-					maps[oldPosition.x][oldPosition.y].setCharacterType(-1);
-				}
-
-			}
-
-		}
-this.mapPanel.repaint();
-this.mapPanel.revalidate();
+		this.mapPanel.repaint();
+		this.mapPanel.revalidate();
 	}
 
 	/**

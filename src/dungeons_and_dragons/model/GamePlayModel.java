@@ -1498,19 +1498,19 @@ public class GamePlayModel extends Observable implements Runnable {
 			}
 		} else {
 			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-					|| this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
+					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
-					|| this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
+					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
 				movingCharacter.setY(movingCharacter.getY() - 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			}
