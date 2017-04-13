@@ -10,7 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +20,7 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -87,6 +90,11 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		matchNPCToPlayer();
 
+		try {
+			PrintWriter pw = new PrintWriter(LogHelper.LOG_FILE);
+			pw.close();
+		} catch (FileNotFoundException e) {}
+		
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
@@ -435,13 +443,19 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						WatchEvent<Path> ev = (WatchEvent<Path>) event;
 						Path fileName = ev.context();
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
-							this.gamePlayView.consoleTextArea.setText(
-									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
-							System.out.println(LogHelper.getLastLine());
+							List<String> lines = LogHelper.getLastLine();
+							this.gamePlayView.consoleTextArea.setText("");
+							for(int i=0;i<lines.size();i++) {
+								this.gamePlayView.consoleTextArea.setText(
+										this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
+							}						
 						} else if (kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
-							this.gamePlayView.consoleTextArea.setText(
-									this.gamePlayView.consoleTextArea.getText() + LogHelper.getLastLine() + "\n");
-							System.out.println(LogHelper.getLastLine()+"2");
+							List<String> lines = LogHelper.getLastLine();
+							this.gamePlayView.consoleTextArea.setText("");
+							for(int i=0;i<lines.size();i++) {
+								this.gamePlayView.consoleTextArea.setText(
+										this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
+							}
 						}
 					}
 

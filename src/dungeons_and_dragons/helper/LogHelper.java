@@ -26,7 +26,7 @@ public class LogHelper {
 	 * 
 	 * @type String
 	 */
-	private static final String LOG_FILE = "res/game.log";
+	public static final String LOG_FILE = "res/game.log";
 
 	/**
 	 * Constant for information log
@@ -80,21 +80,18 @@ public class LogHelper {
 
 	}
 	
-	public static String getLastLine() {
+	public static List<String> getLastLine() {
 		Path path = Paths.get(LOG_FILE);
 		Charset charset = StandardCharsets.UTF_8;
 		ArrayList<String> details = new ArrayList<String>();
 		
-		String line = "";
-
+		List<String> lines = null;
+		
 		try {
 			if (Files.exists(path)) {
-				List<String> lines = Files.readAllLines(path);
-				ArrayList<String> filteredLines= lines.stream().filter(s -> (s.contains(TYPE_INFO) || s.contains(TYPE_INFO_ERROR))).collect(Collectors.toCollection(ArrayList::new));
-				line = filteredLines.get(filteredLines.size()-1);
+				lines = Files.readAllLines(path);
 			} 
-		} catch (IOException e) {
-		}
-		return line;
+		} catch (IOException e) {}
+		return lines;
 	}
 }

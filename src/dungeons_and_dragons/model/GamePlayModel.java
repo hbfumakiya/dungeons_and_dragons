@@ -504,6 +504,9 @@ public class GamePlayModel extends Observable implements Runnable {
 				if (this.turnList.get(i).getCharacterType().equals(MapCharacter.COMPUTER)) {*/
 					this.currentTurn = i;
 					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
+					if(!isGameRunning) {
+						break;
+					}
 //				/}
 			}
 		}
@@ -851,6 +854,8 @@ public class GamePlayModel extends Observable implements Runnable {
 					int temp = character.getCharacter().getAttackBonus();
 					int diceValue = DiceHelper.rollD20();
 					int stModi = character.getCharacter().getModifiers().getStraight();
+					String enchantment = "";
+					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
@@ -862,7 +867,7 @@ public class GamePlayModel extends Observable implements Runnable {
 							}
 							boolean isRange = false;
 							boolean isMelle = false;
-							String enchantment = "";
+							
 							for (int k = 0; k < items.size(); k++) {
 								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
 									isMelle = true;
@@ -876,11 +881,13 @@ public class GamePlayModel extends Observable implements Runnable {
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
-								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+								isAttack = true;
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else if (isRange) {
 								int points = diceD8;
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
-								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+								isAttack = true;
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else {
 								LogHelper.Log(LogHelper.TYPE_INFO, "Enemy does not have any weapon");
 							}
@@ -888,6 +895,34 @@ public class GamePlayModel extends Observable implements Runnable {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can not hit player");
 						}
 					}
+					
+					if(isAttack && (!enchantment.equals(""))) {
+						
+						String[] enchantmentArr = enchantment.split("-");
+						switch(enchantmentArr[0]) {
+						case "Burning":
+							turnChar.Burning = true;
+							turnChar.burningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Freezing":
+							turnChar.Freezing = true;
+							turnChar.freezingBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Frightening":
+							turnChar.Frightening = true;
+							turnChar.frighteningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Slaying":
+							turnChar.Slaying = true;
+							break;
+						case "Pacifying":
+							turnChar.Pacifying = true;
+							break;
+						}
+						
+					}
+					
+					
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
 						turnChar.getCharacter().setAlive(false);
 						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
@@ -929,6 +964,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					int diceValue = DiceHelper.rollD20();
 					int stModi = character.getCharacter().getModifiers().getStraight();
 					String enchantment = "";
+					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
@@ -954,15 +990,44 @@ public class GamePlayModel extends Observable implements Runnable {
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							} else if (isRange) {
 								int points = diceD8;
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							}
 						} else {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
 						}
+					}
+					
+					
+					if(isAttack && (!enchantment.equals(""))) {
+						
+						String[] enchantmentArr = enchantment.split("-");
+						switch(enchantmentArr[0]) {
+						case "Burning":
+							turnChar.Burning = true;
+							turnChar.burningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Freezing":
+							turnChar.Freezing = true;
+							turnChar.freezingBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Frightening":
+							turnChar.Frightening = true;
+							turnChar.frighteningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Slaying":
+							turnChar.Slaying = true;
+							break;
+						case "Pacifying":
+							turnChar.Pacifying = true;
+							break;
+						}
+						
 					}
 
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
@@ -1498,19 +1563,19 @@ public class GamePlayModel extends Observable implements Runnable {
 			}
 		} else {
 			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
-					|| this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
+					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
-					|| this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
+					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
-					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					|| this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
 				movingCharacter.setY(movingCharacter.getY() - 1);
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 			}
