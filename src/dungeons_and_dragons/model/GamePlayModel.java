@@ -79,7 +79,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	private String playerStrategy;
 
 	public Thread gameThread;
-	
+
 	public Thread postProcessingThread;
 
 	@Expose
@@ -796,7 +796,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					String enchantment = "";
 					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
-						
+
 						LogHelper.Log(LogHelper.TYPE_INFO, "Enemy tries to attack and rolls the dice");
 						LogHelper.Log(LogHelper.TYPE_INFO, "Dice rolled number(D20) -- > " + diceValue);
 						LogHelper.Log(LogHelper.TYPE_INFO, "Attack Bonus -- > " + temp);
@@ -955,13 +955,15 @@ public class GamePlayModel extends Observable implements Runnable {
 					}
 					break;
 				}
-			} else if(turnChar.getCharacterType().equals(MapCharacter.FRIENDLY)) {
-				CharacterStrategy strategy = new CharacterStrategy();
-				strategy.setStrategy(new AggressiveNPC());
-				turnChar.setCharacterStrategy(strategy);
-				turnChar.setCharacterType(MapCharacter.ENEMY);
-				setChanged();
-				notifyObservers();
+			} else if (turnChar.getCharacterType().equals(MapCharacter.FRIENDLY)) {
+				if (this.validateAttack(character, turnChar)) {
+					CharacterStrategy strategy = new CharacterStrategy();
+					strategy.setStrategy(new AggressiveNPC());
+					turnChar.setCharacterStrategy(strategy);
+					turnChar.setCharacterType(MapCharacter.ENEMY);
+					setChanged();
+					notifyObservers();
+				}
 			}
 		}
 
@@ -1320,21 +1322,24 @@ public class GamePlayModel extends Observable implements Runnable {
 			// playerOrEnemyPosition = this.gameCharacterPosition;
 		}
 		if (EnemyOrComputer.Frightening == false) {
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 1);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType() + " move" + 1);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 2);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType() + " move" + 2);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 3);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType() + " move" + 3);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 
 		} else if (EnemyOrComputer.Frightening == true
 				&& EnemyOrComputer.frighteningTurn <= EnemyOrComputer.frighteningBonus - 1) {
 			++EnemyOrComputer.frighteningTurn;
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 1);
+			LogHelper.Log(LogHelper.TYPE_INFO,
+					EnemyOrComputer.getCharacterType() + " move away as he is frightened" + 1);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 2);
+			LogHelper.Log(LogHelper.TYPE_INFO,
+					EnemyOrComputer.getCharacterType() + " move away as he is frightened" + 2);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
-			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 3);
+			LogHelper.Log(LogHelper.TYPE_INFO,
+					EnemyOrComputer.getCharacterType() + " move away as he is frightened" + 3);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 		}
 
