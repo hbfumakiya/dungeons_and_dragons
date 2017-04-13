@@ -23,7 +23,6 @@
         },
         "map_walls": [
           "7,2",
-          "8,2",
           "3,1",
           "3,2",
           "3,3",
@@ -35,11 +34,23 @@
           "8,6",
           "3,0",
           "6,7",
-          "6,8"
+          "6,8",
+          "6,2"
         ],
         "map_entry_door": "0,8",
         "map_enemy_loc": [
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 5,
             "y": 0,
             "character": {
@@ -139,6 +150,17 @@
             "characterStrategy": {}
           },
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 5,
             "character": {
@@ -275,6 +297,17 @@
         "map_entry_door": "0,4",
         "map_enemy_loc": [
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 1,
             "character": {
@@ -374,6 +407,17 @@
             "characterStrategy": {}
           },
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 7,
             "character": {
@@ -518,7 +562,6 @@
         },
         "map_walls": [
           "7,2",
-          "8,2",
           "3,1",
           "3,2",
           "3,3",
@@ -530,11 +573,23 @@
           "8,6",
           "3,0",
           "6,7",
-          "6,8"
+          "6,8",
+          "6,2"
         ],
         "map_entry_door": "0,8",
         "map_enemy_loc": [
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 5,
             "y": 0,
             "character": {
@@ -634,6 +689,17 @@
             "characterStrategy": {}
           },
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 5,
             "character": {
@@ -772,6 +838,17 @@
         "map_entry_door": "0,4",
         "map_enemy_loc": [
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 1,
             "character": {
@@ -871,6 +948,17 @@
             "characterStrategy": {}
           },
           {
+            "Freezing": false,
+            "Burning": false,
+            "Slaying": false,
+            "Frightening": false,
+            "Pacifying": false,
+            "frighteningBonus": 0,
+            "freezingBonus": 0,
+            "burningBonus": 0,
+            "frighteningTurn": 0,
+            "freezingTurn": 0,
+            "burningTurn": 0,
             "x": 3,
             "y": 7,
             "character": {
