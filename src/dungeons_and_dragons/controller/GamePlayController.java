@@ -32,6 +32,7 @@ import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
+import dungeons_and_dragons.helper.PostProcessingClass;
 import dungeons_and_dragons.model.AbilityScoresModel;
 import dungeons_and_dragons.model.CharacterModel;
 import dungeons_and_dragons.model.GamePlayModel;
@@ -99,6 +100,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
+		this.gamePlayModel.postProcessingThread = new Thread(new PostProcessingClass(this.gamePlayModel,this.gamePlayView,this));
+		this.gamePlayModel.postProcessingThread.start();
+		
 		this.gamePlayModel.calculateTurn();
 
 		this.gamePlayModel.startGame();
@@ -292,8 +296,17 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			this.gamePlayModel.deleteObserver(this.gamePlayView);
 			JOptionPane.showMessageDialog(new JFrame(), "Congratulations!You won the game");
 			new GameController();
+			this.gamePlayModel.setGameRunning(false);
+			break;
+		case GameStatus.GAME_OVER:
+			this.gamePlayView.dispose();
+			this.gamePlayModel.deleteObserver(this.gamePlayView);
+			JOptionPane.showMessageDialog(new JFrame(), "Oops game is over!");
+			this.gamePlayModel.setGameRunning(false);
+			new GameController();
 			break;
 		}
+		
 	}
 
 	/**

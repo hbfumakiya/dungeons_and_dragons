@@ -79,6 +79,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	private String playerStrategy;
 
 	public Thread gameThread;
+	
+	public Thread postProcessingThread;
 
 	@Expose
 	public Point charachterTempPoint;
@@ -1026,7 +1028,8 @@ public class GamePlayModel extends Observable implements Runnable {
 						turnChar.getCharacter().calculateModifires();
 
 						this.turnList.remove(turnChar);
-						LogHelper.Log(LogHelper.TYPE_INFO, "Player dead! Game over");
+						gameStatus.setGameStatus(GameStatus.GAME_OVER);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Oops! Player dead! Game over");
 						setChanged();
 						notifyObservers();
 					}
@@ -1153,9 +1156,7 @@ public class GamePlayModel extends Observable implements Runnable {
 							break;
 						case "Slaying":
 							turnChar.Slaying = true;
-
-							gameStatus.setGameStatus(GameStatus.GAME_OVER);
-							LogHelper.Log(LogHelper.TYPE_INFO, "Player is dead! Game over!");
+							turnChar.getCharacter().setAlive(false);
 
 							turnChar.Freezing = false;
 							turnChar.Frightening = false;
@@ -1201,6 +1202,7 @@ public class GamePlayModel extends Observable implements Runnable {
 						turnChar.getCharacter().calculateModifires();
 
 						this.turnList.remove(turnChar);
+						this.currentTurn = 0;
 						LogHelper.Log(LogHelper.TYPE_INFO, "Enemy dead");
 						setChanged();
 						notifyObservers();
