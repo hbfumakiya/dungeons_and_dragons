@@ -964,6 +964,7 @@ public class GamePlayModel extends Observable implements Runnable {
 					int diceValue = DiceHelper.rollD20();
 					int stModi = character.getCharacter().getModifiers().getStraight();
 					String enchantment = "";
+					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
@@ -989,15 +990,44 @@ public class GamePlayModel extends Observable implements Runnable {
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							} else if (isRange) {
 								int points = diceD8;
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							}
 						} else {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
 						}
+					}
+					
+					
+					if(isAttack && (!enchantment.equals(""))) {
+						
+						String[] enchantmentArr = enchantment.split("-");
+						switch(enchantmentArr[0]) {
+						case "Burning":
+							turnChar.Burning = true;
+							turnChar.burningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Freezing":
+							turnChar.Freezing = true;
+							turnChar.freezingBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Frightening":
+							turnChar.Frightening = true;
+							turnChar.frighteningBonus = Integer.parseInt(enchantmentArr[1]);
+							break;
+						case "Slaying":
+							turnChar.Slaying = true;
+							break;
+						case "Pacifying":
+							turnChar.Pacifying = true;
+							break;
+						}
+						
 					}
 
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
