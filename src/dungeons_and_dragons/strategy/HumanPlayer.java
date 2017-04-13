@@ -4,7 +4,9 @@
 package dungeons_and_dragons.strategy;
 
 import dungeons_and_dragons.helper.GameStatus;
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
+import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.GamePlayModel;
 
 /**
@@ -15,8 +17,16 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
-		int i = 0;
-		while (i < 3) {
+		int i = 0; 
+		int j = 0;
+		
+		MapCharacter human = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+		if(human.Freezing){
+				j = human.freezingBonus;
+		}
+		
+		while (i < 3 && j == 0) {
+			human.Freezing = false;
 			LogHelper.Log(LogHelper.TYPE_INFO, "Waiting for user input to move human player");
 			try {
 				
@@ -36,6 +46,11 @@ public class HumanPlayer implements Strategy {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 		}
+		
+		if(j>0){
+			LogHelper.Log(LogHelper.TYPE_INFO, "Human Player freezed for "+j+ " moves");
+			human.freezingBonus--;
+		}
 	}
 
 	@Override
@@ -45,7 +60,7 @@ public class HumanPlayer implements Strategy {
 			
 			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
 			LogHelper.Log(LogHelper.TYPE_INFO, "Human Player has attacked");
-			Thread.sleep(2000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
@@ -58,7 +73,7 @@ public class HumanPlayer implements Strategy {
 		System.out.println("Human Player Interact");
 		try {
 			gamePlayModel.gameStatus = gamePlayModel.initateInteract(gamePlayModel.charachterTempPoint);
-			Thread.sleep(2000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}

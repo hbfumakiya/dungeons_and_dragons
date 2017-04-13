@@ -25,5 +25,50 @@
     "item_ability": "Attack bonus",
     "item_weapon_enchantment": "Frightening",
     "item_weapon_enchantment_string": "Frightening-5"
+  },
+  {
+    "item_id": 4,
+    "item_name": "Frightening",
+    "item_point": 2,
+    "item_type": "Weapon Melee",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Frightening",
+    "item_weapon_enchantment_string": "Frightening-2"
+  },
+  {
+    "item_id": 5,
+    "item_name": "Burning",
+    "item_point": 2,
+    "item_type": "Weapon Melee",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Burning",
+    "item_weapon_enchantment_string": "Burning-10"
+  },
+  {
+    "item_id": 6,
+    "item_name": "Slaying",
+    "item_point": 2,
+    "item_type": "Weapon Melee",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Slaying",
+    "item_weapon_enchantment_string": "Slaying-2"
+  },
+  {
+    "item_id": 7,
+    "item_name": "Freezing",
+    "item_point": 2,
+    "item_type": "Weapon Melee",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Freezing",
+    "item_weapon_enchantment_string": "Freezing-2"
+  },
+  {
+    "item_id": 8,
+    "item_name": "Pacifying",
+    "item_point": 2,
+    "item_type": "Weapon Melee",
+    "item_ability": "Attack bonus",
+    "item_weapon_enchantment": "Pacifying",
+    "item_weapon_enchantment_string": "Pacifying-2"
   }
 ]

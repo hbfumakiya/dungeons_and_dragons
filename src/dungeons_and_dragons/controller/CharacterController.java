@@ -80,8 +80,8 @@ public class CharacterController implements ActionListener {
 			}
 			int level = 0;
 			try {
-				int i = Integer.parseInt(this.view.level_textfield.getText());
-				model.setCharacter_level(i);
+				level = Integer.parseInt(this.view.level_textfield.getText());
+				model.setCharacter_level(level);
 				ItemModel armer = (ItemModel) this.view.armer_combobox.getSelectedItem();
 				ItemModel belt = (ItemModel) this.view.belt_combobox.getSelectedItem();
 				ItemModel boot = (ItemModel) this.view.boot_combobox.getSelectedItem();

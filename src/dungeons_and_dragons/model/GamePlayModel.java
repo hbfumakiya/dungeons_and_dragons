@@ -500,14 +500,18 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Override
 	public void run() {
 		while (isGameRunning) {
-			for (int i = 0; i < turnList.size(); i++) {/*
-				if (this.turnList.get(i).getCharacterType().equals(MapCharacter.COMPUTER)) {*/
-					this.currentTurn = i;
-					this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
-					if(!isGameRunning) {
-						break;
-					}
-//				/}
+			for (int i = 0; i < turnList
+					.size(); i++) {/*
+									 * if
+									 * (this.turnList.get(i).getCharacterType().
+									 * equals(MapCharacter.COMPUTER)) {
+									 */
+				this.currentTurn = i;
+				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
+				if (!isGameRunning) {
+					break;
+				}
+				// /}
 			}
 		}
 	}
@@ -867,7 +871,7 @@ public class GamePlayModel extends Observable implements Runnable {
 							}
 							boolean isRange = false;
 							boolean isMelle = false;
-							
+
 							for (int k = 0; k < items.size(); k++) {
 								if (items.get(k).getItem_type().equals(Game_constants.WEAPON_MELEE)) {
 									isMelle = true;
@@ -880,49 +884,99 @@ public class GamePlayModel extends Observable implements Runnable {
 							int diceD8 = DiceHelper.rollD8();
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
+								LogHelper.Log(LogHelper.TYPE_INFO,"" +points);
+								
+								if (turnChar.Burning) {
+									points += turnChar.burningBonus;
+									turnChar.burningTurn--;
+								}
+								LogHelper.Log(LogHelper.TYPE_INFO, turnChar.getCharacter().getHitpoints() + " hit point deducted from player");
+								
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
+								
 								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else if (isRange) {
 								int points = diceD8;
+								if (turnChar.Burning) {
+									points += turnChar.burningBonus;
+									turnChar.burningTurn--;
+								}
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else {
 								LogHelper.Log(LogHelper.TYPE_INFO, "Enemy does not have any weapon");
 							}
+
+							if (turnChar.burningTurn == 0) {
+								turnChar.Burning = false;
+							}
+
 						} else {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can not hit player");
 						}
 					}
-					
-					if(isAttack && (!enchantment.equals(""))) {
-						
+
+					if (isAttack && (!enchantment.equals(""))) {
+
 						String[] enchantmentArr = enchantment.split("-");
-						switch(enchantmentArr[0]) {
+						switch (enchantmentArr[0]) {
 						case "Burning":
 							turnChar.Burning = true;
+							turnChar.burningTurn = 3;
 							turnChar.burningBonus = Integer.parseInt(enchantmentArr[1]);
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
 							break;
 						case "Freezing":
 							turnChar.Freezing = true;
 							turnChar.freezingBonus = Integer.parseInt(enchantmentArr[1]);
+
+							turnChar.Burning = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Frightening":
 							turnChar.Frightening = true;
 							turnChar.frighteningBonus = Integer.parseInt(enchantmentArr[1]);
+
+							turnChar.Freezing = false;
+							turnChar.Burning = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Slaying":
 							turnChar.Slaying = true;
+
+							gameStatus.setGameStatus(GameStatus.GAME_OVER);
+							LogHelper.Log(LogHelper.TYPE_INFO, "Player is dead! Game over!");
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Burning = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Pacifying":
 							turnChar.Pacifying = true;
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Burning = false;
+
 							break;
 						}
-						
+
 					}
-					
-					
+
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
 						turnChar.getCharacter().setAlive(false);
 						AbilityScoresModel zeroAbilities = new AbilityScoresModel();
@@ -989,45 +1043,94 @@ public class GamePlayModel extends Observable implements Runnable {
 							int diceD8 = DiceHelper.rollD8();
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
+								if (turnChar.Burning) {
+									points += turnChar.burningBonus;
+									turnChar.burningTurn--;
+								}
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							} else if (isRange) {
 								int points = diceD8;
+								if (turnChar.Burning) {
+									points += turnChar.burningBonus;
+									turnChar.burningTurn--;
+								}
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
 							}
+
+							if (turnChar.burningTurn == 0) {
+								turnChar.Burning = false;
+							}
+
 						} else {
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
 						}
 					}
-					
-					
-					if(isAttack && (!enchantment.equals(""))) {
-						
+
+					if (isAttack && (!enchantment.equals(""))) {
+
 						String[] enchantmentArr = enchantment.split("-");
-						switch(enchantmentArr[0]) {
+						switch (enchantmentArr[0]) {
 						case "Burning":
 							turnChar.Burning = true;
 							turnChar.burningBonus = Integer.parseInt(enchantmentArr[1]);
+							turnChar.burningTurn = 3;
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
 							break;
 						case "Freezing":
 							turnChar.Freezing = true;
 							turnChar.freezingBonus = Integer.parseInt(enchantmentArr[1]);
+
+							turnChar.Burning = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Frightening":
 							turnChar.Frightening = true;
 							turnChar.frighteningBonus = Integer.parseInt(enchantmentArr[1]);
+
+							turnChar.Freezing = false;
+							turnChar.Burning = false;
+							turnChar.Slaying = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Slaying":
 							turnChar.Slaying = true;
+
+							gameStatus.setGameStatus(GameStatus.GAME_OVER);
+							LogHelper.Log(LogHelper.TYPE_INFO, "Player is dead! Game over!");
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Burning = false;
+							turnChar.Pacifying = false;
+
 							break;
 						case "Pacifying":
-							turnChar.Pacifying = true;
+
+							turnChar.Freezing = false;
+							turnChar.Frightening = false;
+							turnChar.Slaying = false;
+							turnChar.Burning = false;
+
+							CharacterStrategy characterStrategy = new CharacterStrategy();
+							characterStrategy.setStrategy(new FriendlyNPC());
+							turnChar.setCharacterStrategy(characterStrategy);
+							turnChar.setCharacterType(MapCharacter.FRIENDLY);
+							notifyChange();
 							break;
 						}
-						
+
 					}
 
 					if (turnChar.getCharacter().getHitpoints() <= -10) {
@@ -1245,11 +1348,14 @@ public class GamePlayModel extends Observable implements Runnable {
 		} else if (EnemyOrComputer.Frightening == true
 				&& EnemyOrComputer.frighteningTurn <= EnemyOrComputer.frighteningBonus - 1) {
 			++EnemyOrComputer.frighteningTurn;
-			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition);
-			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition);
-			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition);
+			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
+			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
+			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 		}
 
+		if (EnemyOrComputer.frighteningTurn == EnemyOrComputer.freezingBonus) {
+			EnemyOrComputer.Frightening = false;
+		}
 		setChanged();
 		notifyObservers();
 
@@ -1263,43 +1369,277 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @param playerPosition
 	 *            player current position
 	 */
-	public void moveFrightenedComputerOrEnemy(MapCharacter enemy, Point playerPosition) {
-		int mapSizeX = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().x - 1;
-		int mapSizeY = this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_size().y - 1;
+	public void moveFrightenedComputerOrEnemy(MapCharacter movingCharacter, Point movingToPosition, int moveNumber) {
 
-		int enemyX = enemy.getX();
-		int enemyY = enemy.getY();
+		int movingCharacterX = movingCharacter.getX();
+		int movingCharacterY = movingCharacter.getY();
+		Point nextPos = prevEnemyPos.get(movingCharacter.getCharacter());
+		if (nextPos == null) {
+			nextPos = new Point(-1, -1);
+		}
 		// go down
-		if (playerPosition.x < enemy.getX() && enemy.getX() < mapSizeX
-				&& this.checkWalls(new Point(enemyX + 1, enemyY))) {
+		if (movingToPosition.x < movingCharacter.getX()
+				&& !this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+				&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
+				&& nextPos.x != movingCharacterX + 1)// &&
+		// this.checkWalls(new
+		// Point(enemyX+1,enemyY)))
+		{
+			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-			enemy.setX(enemy.getX() + 1);
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+				movingCharacter.setX(movingCharacter.getX() + 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else {
+				movingCharacter.setX(movingCharacter.getX() + 1);
+			}
+			// check left right and down -- only one case
+			/*
+			 * if (this.checkWalls(new Point(movingCharacterX + 1,
+			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY + 1)) && this.checkWalls(new
+			 * Point(movingCharacterX, movingCharacterY - 1))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
 		// go up
-		else if (playerPosition.x > enemy.getX() && enemy.getX() > 0
-				&& this.checkWalls(new Point(enemyX - 1, enemyY))) {
-			enemy.setX(enemy.getX() - 1);
+		else if (movingToPosition.x > movingCharacter.getX()
+				&& !this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+				&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
+				&& nextPos.x != movingCharacterX - 1)// && this.checkWalls(new
+		// Point(enemyX-1,enemyY)))
+		{
+			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-		}
-		// go left
-		else if (playerPosition.y < enemy.getY() && enemy.getY() > 0
-				&& this.checkWalls(new Point(enemyX, enemyY + 1))) {
-			enemy.setY(enemy.getY() + 1);
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+				movingCharacter.setX(movingCharacter.getX() - 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else {
+				movingCharacter.setX(movingCharacter.getX() - 1);
+			}
+			/*
+			 * // check left right and dwon if (this.checkWalls(new
+			 * Point(movingCharacterX - 1, movingCharacterY)) &&
+			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
+			 * 1)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY - 1))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
 		// go right
-		else if (playerPosition.y > enemy.getY() && enemy.getY() < mapSizeY
-				&& this.checkWalls(new Point(enemyX, enemyY - 1))) {
-			enemy.setY(enemy.getY() - 1);
+		else if (movingToPosition.y < movingCharacter.getY()
+				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
+				&& nextPos.y != movingCharacterY + 1)// && this.checkWalls(new
+		// Point(enemyX,enemyY+1)))
+		{
+			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+				movingCharacter.setY(movingCharacter.getY() + 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else {
+				movingCharacter.setY(movingCharacter.getY() + 1);
+			}
+
+			/*
+			 * // check right and dwon and up if (this.checkWalls(new
+			 * Point(movingCharacterX + 1, movingCharacterY)) &&
+			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
+			 * 1)) && this.checkWalls(new Point(movingCharacterX - 1,
+			 * movingCharacterY))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
 
 		}
+		// go left
+		else if (movingToPosition.y > movingCharacter.getY()
+				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
+				&& nextPos.y != movingCharacterY - 1)// && this.checkWalls(new
+		// Point(enemyX,enemyY-1)))
+		{
+			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
-		setChanged();
-		notifyObservers();
+			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+				movingCharacter.setY(movingCharacter.getY() - 1);
+				this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else {
+				movingCharacter.setY(movingCharacter.getY() - 1);
+			}
+
+			// check left right and dwon
+			/*
+			 * if (this.checkWalls(new Point(movingCharacterX + 1,
+			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
+			 * movingCharacterY - 1)) && this.checkWalls(new
+			 * Point(movingCharacterX - 1, movingCharacterY))) {
+			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+			 * 
+			 * }
+			 */
+
+		} else if (movingToPosition.x == movingCharacterX && movingToPosition.y != movingCharacterY) {
+			// go down
+			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
+					&& nextPos.x != movingCharacterX + 1)// &&
+			// this.checkWalls(new
+			// Point(enemyX+1,enemyY)))
+			{
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+					movingCharacter.setX(movingCharacter.getX() + 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				} else {
+					movingCharacter.setX(movingCharacter.getX() + 1);
+				}
+
+				// check left right and dwon
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
+				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
+				 * Point(-1, -1));
+				 * 
+				 * }
+				 */
+
+			}
+			// go up
+			else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
+					&& nextPos.x != movingCharacterX - 1)// &&
+			// this.checkWalls(new
+			// Point(enemyX-1,enemyY)))
+			{
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+					movingCharacter.setX(movingCharacter.getX() - 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				} else {
+					movingCharacter.setX(movingCharacter.getX() - 1);
+				}
+
+				// check left right and dwon
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
+				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
+				 * Point(-1, -1));
+				 * 
+				 * }
+				 */
+
+			}
+		} else if (movingToPosition.y == movingCharacterY && movingToPosition.x != movingCharacterX) {
+			// go right
+			if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
+					&& nextPos.y != movingCharacterY + 1)// &&
+															// this.checkWalls(new
+			// Point(enemyX,enemyY+1)))
+			{
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+					movingCharacter.setY(movingCharacter.getY() + 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				} else {
+					movingCharacter.setY(movingCharacter.getY() + 1);
+				}
+
+				// check right and dwon and up
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY + 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY))) {
+				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
+				 * -1));
+				 * 
+				 * }
+				 */
+
+			}
+			// go left
+			else if (this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
+					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+					&& nextPos.y != movingCharacterY - 1)// &&
+															// this.checkWalls(new
+			// Point(enemyX,enemyY-1)))
+			{
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+
+				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
+					movingCharacter.setY(movingCharacter.getY() - 1);
+					this.setGameCharacterPosition(new Point(movingCharacter.getX(), movingCharacter.getY()));
+				} else {
+					movingCharacter.setY(movingCharacter.getY() - 1);
+				}
+
+				// check left right and dwon
+				/*
+				 * if (this.checkWalls(new Point(movingCharacterX + 1,
+				 * movingCharacterY)) && this.checkWalls(new
+				 * Point(movingCharacterX, movingCharacterY - 1)) &&
+				 * this.checkWalls(new Point(movingCharacterX - 1,
+				 * movingCharacterY))) {
+				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
+				 * -1));
+				 * 
+				 * }
+				 */
+
+			}
+		} else {
+			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))) {
+				movingCharacter.setX(movingCharacter.getX() + 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
+					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))) {
+				movingCharacter.setX(movingCharacter.getX() - 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))) {
+				movingCharacter.setY(movingCharacter.getY() + 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			} else if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
+					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))) {
+				movingCharacter.setY(movingCharacter.getY() - 1);
+				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
+			}
+		}
+
+		// clean previous postion hash map after 3rd move
+		if (moveNumber == 3) {
+			prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
+		}
+		if (movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)) {
+			setChanged();
+			notifyObservers();
+
+		}
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
+
 			e.printStackTrace();
 		}
 
@@ -1591,7 +1931,7 @@ public class GamePlayModel extends Observable implements Runnable {
 
 		}
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
@@ -1641,8 +1981,11 @@ public class GamePlayModel extends Observable implements Runnable {
 				break;
 			}
 			}
-			if (checkBoundaries(friendPoint) && !this.checkWalls(friendPoint) && !this.getCampaignModel()
-					.getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door().equals(friendPoint)) {
+			if (checkBoundaries(friendPoint) && !this.checkWalls(friendPoint)
+					&& !this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_exit_door()
+							.equals(friendPoint)
+					&& !this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex()).getMap_entry_door()
+							.equals(friendPoint)) {
 
 				pathExists = true;
 				friend.setX(friendPoint.x);

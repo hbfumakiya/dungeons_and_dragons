@@ -45,6 +45,8 @@ public class Game_constants {
 	public static final Color CHEST = Color.BLUE;
 	public static final Color PLAYER = Color.PINK;
 	
+	public static final int TIME_CONSTANT = 1000;
+	
 	/**
 	 * model for loading data into item ability based on selection of item type
 	 * helmet

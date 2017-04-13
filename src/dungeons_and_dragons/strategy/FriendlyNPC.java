@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import dungeons_and_dragons.helper.GameStatus;
+import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
 import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
@@ -30,13 +31,22 @@ public class FriendlyNPC implements Strategy {
 
 		System.out.println("Friendly NPC Move");
 		MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
+		
+		int j = 0;
+		
+		if(friend.Freezing){
+				j = friend.freezingBonus;
+		}
+		
 		Point friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
 		Point oldPoint = (Point) friendPoint.clone();
+		
 		int i = 0;
-		while (i < 3) {
+		while (i < 3 && j==0) {
 			try {
+				friend.Freezing = false;
 				gameStatus = gamePlayModel.moveFriend(friend,friendPoint,oldPoint,i);
-				Thread.sleep(2000);
+				Thread.sleep(Game_constants.TIME_CONSTANT);
 				if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
 					friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
 					oldPoint = (Point) friendPoint.clone();
@@ -46,6 +56,11 @@ public class FriendlyNPC implements Strategy {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 		}
+		
+		if(j>0){
+			LogHelper.Log(LogHelper.TYPE_INFO, "Friend Player freezed for "+j+ " moves");
+			friend.freezingBonus--;
+		}
 
 	}
 	
@@ -53,7 +68,7 @@ public class FriendlyNPC implements Strategy {
 	public void attack(GamePlayModel gamePlayModel) {
 		System.out.println("Friendly NPC Move");
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,7 +146,7 @@ public class FriendlyNPC implements Strategy {
 					}
 				}
 			}
-			Thread.sleep(2000);
+			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

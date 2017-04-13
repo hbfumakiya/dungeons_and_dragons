@@ -93,8 +93,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		try {
 			PrintWriter pw = new PrintWriter(LogHelper.LOG_FILE);
 			pw.close();
-		} catch (FileNotFoundException e) {}
-		
+		} catch (FileNotFoundException e) {
+		}
+
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
@@ -167,14 +168,13 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		int key = e.getKeyCode();
 		this.gamePlayModel.charachterTempPoint = (Point) this.gamePlayModel.getGameCharacterPosition().clone();
 		this.gamePlayModel.charachterOldPoint = (Point) this.gamePlayModel.charachterTempPoint.clone();
-		
+
 		if (key == KeyEvent.VK_LEFT) {
 			if (this.gamePlayModel.gameThread.getState().equals(Thread.State.WAITING)) {
 				this.gamePlayModel.charachterTempPoint.y = this.gamePlayModel.charachterTempPoint.y - 1;
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
-						LogHelper.Log(LogHelper.TYPE_INFO, "LEFT key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -191,7 +191,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
-						LogHelper.Log(LogHelper.TYPE_INFO, "RIGHT key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -207,7 +206,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x - 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
-						LogHelper.Log(LogHelper.TYPE_INFO, "UP key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -223,7 +221,6 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				this.gamePlayModel.charachterTempPoint.x = this.gamePlayModel.charachterTempPoint.x + 1;
 				try {
 					synchronized (this.gamePlayModel.gameThread) {
-						LogHelper.Log(LogHelper.TYPE_INFO, "DOWN key pressed");
 						this.gamePlayModel.gameThread.notify();
 					}
 
@@ -335,7 +332,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 		} else if (e.getSource().equals(this.gamePlayView.saveButton)) {
 			JFileChooser c = new JFileChooser();
-			c.setFileFilter(new FileNameExtensionFilter("JSON File","json"));
+			c.setFileFilter(new FileNameExtensionFilter("JSON File", "json"));
 			// Demonstrate "Save" dialog:
 			int rVal = c.showSaveDialog(this.gamePlayView);
 			if (rVal == JFileChooser.APPROVE_OPTION) {
@@ -445,16 +442,16 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
 							List<String> lines = LogHelper.getLastLine();
 							this.gamePlayView.consoleTextArea.setText("");
-							for(int i=0;i<lines.size();i++) {
-								this.gamePlayView.consoleTextArea.setText(
-										this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
-							}						
+							for (int i = 0; i < lines.size(); i++) {
+								this.gamePlayView.consoleTextArea
+										.setText(this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
+							}
 						} else if (kind == ENTRY_CREATE && fileName.toString().equals("game.log")) {
 							List<String> lines = LogHelper.getLastLine();
 							this.gamePlayView.consoleTextArea.setText("");
-							for(int i=0;i<lines.size();i++) {
-								this.gamePlayView.consoleTextArea.setText(
-										this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
+							for (int i = 0; i < lines.size(); i++) {
+								this.gamePlayView.consoleTextArea
+										.setText(this.gamePlayView.consoleTextArea.getText() + lines.get(i) + "\n");
 							}
 						}
 					}
