@@ -1024,6 +1024,25 @@ public class FileHelper {
 		file_writer.close();
 	}
 
+	public static GamePlayModel loadGame(String file) throws IOException, JsonSyntaxException {
+		File campaignFile = new File(file);
+
+		if (!campaignFile.exists()) {
+			campaignFile.createNewFile();
+		}
+
+		// create reader object to read data from item file
+		Reader reader = new FileReader(file);
+
+		// read data from json file convert it into arraylist and return it
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+		Gson gson = gsonBuilder.enableComplexMapKeySerialization().excludeFieldsWithoutExposeAnnotation()
+				.setPrettyPrinting().create();
+		return gson.fromJson(reader, GamePlayModel.class);
+	}
+	
 	/**
 	 * Method to convert point to string
 	 * 

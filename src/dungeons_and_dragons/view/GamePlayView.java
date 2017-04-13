@@ -129,8 +129,10 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.currentMap = this.gamePlayModel.getCampaignModel().getOutput_map_list()
 				.get(this.gamePlayModel.getCurrentMapIndex());
 		// only set while playing this game for the first time
-		oldPosition = this.currentMap.getMap_entry_door();
-		this.gamePlayModel.setGameCharacterPosition(oldPosition);
+		if(this.gamePlayModel.getGameCharacterPosition() == null) {
+			oldPosition = this.currentMap.getMap_entry_door();
+			this.gamePlayModel.setGameCharacterPosition(oldPosition);
+		}
 
 		this.gamePlayController = gamePlayController;
 
@@ -174,8 +176,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.mapPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 
 		this.showMap(this.currentMap, this.mapPanel);
-		displayPlayer(maps[(int) this.currentMap.getMap_entry_door().getX()][(int) this.currentMap.getMap_entry_door()
-				.getY()]);
+		displayPlayer(maps[(int) this.gamePlayModel.getGameCharacterPosition().getX()][(int) this.gamePlayModel.getGameCharacterPosition().getY()]);
 
 		// yet to be constructed
 		this.infoPanel = new JPanel();
