@@ -16,6 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import com.google.gson.JsonSyntaxException;
 
 import dungeons_and_dragons.helper.FileHelper;
+import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.view.GameView;
 
 /**
@@ -127,7 +128,18 @@ public class GameController implements ActionListener {
 		// Demonstrate "Open" dialog:
 		int rVal = c.showOpenDialog(this.gameView);
 		if (rVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println(c.getSelectedFile().toString());
+			String file = c.getSelectedFile().toString();
+			
+			if(!file.equals("")) {
+				try {
+					GamePlayModel game = FileHelper.loadGame(file);
+					this.gameView.dispose();
+					new GamePlayController(game, true);
+				} catch (JsonSyntaxException | IOException e) {
+					JOptionPane.showMessageDialog(new JFrame(), "Invalid file..!");
+				}
+			}
+			
 		}
 	}
 
