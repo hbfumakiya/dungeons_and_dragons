@@ -127,11 +127,7 @@ public class GameController implements ActionListener {
 		// Demonstrate "Open" dialog:
 		int rVal = c.showOpenDialog(this.gameView);
 		if (rVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println(c.getSelectedFile().getName());
-			System.out.println(c.getCurrentDirectory().toString());
-			
-			
-			// do here to load map
+			System.out.println(c.getSelectedFile().toString());
 		}
 	}
 

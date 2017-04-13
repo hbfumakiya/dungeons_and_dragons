@@ -104,6 +104,36 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.gamePlayModel.startGame();
 
 	}
+	
+	public GamePlayController(GamePlayModel gamePlayModel, boolean loadgame) {
+
+		this.gamePlayModel = gamePlayModel;
+
+		// GameMapModel currentMap =
+		// this.gamePlayModel.getCampaignModel().getOutput_map_list().get(this.gamePlayModel.getCurrentMapIndex());
+
+		this.gamePlayView = new GamePlayView(this.gamePlayModel, this);
+
+		this.gamePlayModel.addObserver(gamePlayView);
+		this.gamePlayView.setListener(this);
+		this.gamePlayView.setVisible(true);
+
+		this.shownInventories = new ArrayList<CharacterModel>();
+
+		matchNPCToPlayer();
+
+		try {
+			PrintWriter pw = new PrintWriter(LogHelper.LOG_FILE);
+			pw.close();
+		} catch (FileNotFoundException e) {
+		}
+
+		this.fileThread = new Thread(this);
+		this.fileThread.start();
+
+		this.gamePlayModel.startGame();
+
+	}
 
 	/**
 	 * This function match character's level to NPC and calculate
@@ -336,7 +366,16 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			// Demonstrate "Save" dialog:
 			int rVal = c.showSaveDialog(this.gamePlayView);
 			if (rVal == JFileChooser.APPROVE_OPTION) {
-				// save
+				String file = c.getSelectedFile().toString();
+				if(file.length() > 5) {
+					if(!(file.substring(file.length() - 5).equalsIgnoreCase(".json"))) {
+						file = file+".json";
+					} 
+				} else {
+					file = file+".json";
+				}
+				this.gamePlayModel.save(file);
+				this.gamePlayModel.setGameRunning(false);
 			}
 		} else {
 			MapButton button = (MapButton) e.getSource();

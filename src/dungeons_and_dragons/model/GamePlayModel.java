@@ -80,28 +80,40 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	public Thread gameThread;
 
+	@Expose
 	public Point charachterTempPoint;
 
+	@Expose
 	public Point charachterOldPoint;
 
+	@Expose
 	public GameStatus gameStatus = new GameStatus();
 
+	@Expose
 	public Point attackStartPoint;
 
+	@Expose
 	public Point attackEndPoint;
 
+	@Expose
 	public Point enemyPoint;
 
+	@Expose
 	public int currentEnemyIndex;
 
+	@Expose
 	public int currentFriendIndex;
 
+	@Expose
 	public ArrayList<MapCharacter> enemyList;
 
+	@Expose
 	public ArrayList<MapCharacter> friendList;
 
+	@Expose
 	public MapButton currentMap[][];
 
+	@Expose
 	public MapCharacter currentCharacter;
 
 	/**
@@ -380,8 +392,12 @@ public class GamePlayModel extends Observable implements Runnable {
 		ArrayList<MapCharacter> npcs = this.campaignModel.getOutput_map_list().get(this.getCurrentMapIndex())
 				.getMap_enemy_loc();
 		for (int i = 0; i < npcs.size(); i++) {
-			tempValues.put(DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity(),
-					npcs.get(i));
+			int value = DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity();
+			
+			while(tempValues.containsKey(value)) {
+				value = DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity();
+			}
+			tempValues.put(value,npcs.get(i));
 		}
 
 		Map<Integer, MapCharacter> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
@@ -500,18 +516,12 @@ public class GamePlayModel extends Observable implements Runnable {
 	@Override
 	public void run() {
 		while (isGameRunning) {
-			for (int i = 0; i < turnList
-					.size(); i++) {/*
-									 * if
-									 * (this.turnList.get(i).getCharacterType().
-									 * equals(MapCharacter.COMPUTER)) {
-									 */
-				this.currentTurn = i;
-				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
-				if (!isGameRunning) {
+			for (int i = 0; i < turnList.size(); i++) {
+				if(!isGameRunning) {
 					break;
 				}
-				// /}
+				this.currentTurn = i;
+				this.turnList.get(i).getCharacterStrategy().executeStrategy(this);
 			}
 		}
 	}
