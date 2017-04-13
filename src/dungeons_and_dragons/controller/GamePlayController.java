@@ -297,7 +297,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 			matchNPCToPlayer();
 			this.fileThreadVal = true;
-			this.fileThread.start();
+			synchronized (this.fileThread) {
+				this.fileThread.start();
+			}
+			
 			break;
 		case GameStatus.WON_GAME:
 			this.gamePlayView.dispose();
@@ -505,6 +508,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						Path fileName = ev.context();
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
 							List<String> lines = LogHelper.getLastLine();
+							if(!fileThreadVal) {
+								break;
+							}
 							this.gamePlayView.consoleTextArea.setText("");
 							for (int i = 0; i < lines.size(); i++) {
 								this.gamePlayView.consoleTextArea
@@ -528,6 +534,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 			} catch (IOException ex) {
 				System.err.println(ex);
+			}
+			
+			if(!fileThreadVal) {
+				break;
 			}
 		}
 	}

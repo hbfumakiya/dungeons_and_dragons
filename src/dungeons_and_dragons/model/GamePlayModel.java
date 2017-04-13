@@ -687,7 +687,12 @@ public class GamePlayModel extends Observable implements Runnable {
 
 				if (totalEnemy == deadEnemy) {
 					if (this.getCurrentMapIndex() + 1 < this.getCampaignModel().getOutput_map_list().size()) {
+						// shouldn't allow the move and show type info error message
+						this.setGameCharacterPosition(oldPoint);
+						human.setX((int) oldPoint.getX());
+						human.setY((int) oldPoint.getY());
 						gameStatus.setGameStatus(GameStatus.NEXT_LEVEL);
+						
 					} else {
 						gameStatus.setGameStatus(GameStatus.WON_GAME);
 					}

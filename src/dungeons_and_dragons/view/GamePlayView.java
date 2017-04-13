@@ -176,7 +176,7 @@ public class GamePlayView extends JFrame implements Observer, View {
 		this.mapPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 
 		this.showMap(this.currentMap, this.mapPanel);
-		displayPlayer(maps[(int) this.gamePlayModel.getGameCharacterPosition().getX()][(int) this.gamePlayModel.getGameCharacterPosition().getY()]);
+		//displayPlayer(maps[(int) this.gamePlayModel.getGameCharacterPosition().getX()][(int) this.gamePlayModel.getGameCharacterPosition().getY()]);
 
 		// yet to be constructed
 		this.infoPanel = new JPanel();
