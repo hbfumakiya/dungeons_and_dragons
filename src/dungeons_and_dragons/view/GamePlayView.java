@@ -529,8 +529,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		this.showMap(((GamePlayModel) obs).getCampaignModel().getOutput_map_list()
 				.get(((GamePlayModel) obs).getCurrentMapIndex()), this.mapPanel);
-		this.mapPanel.repaint();
+		
 		this.mapPanel.revalidate();
+		this.mapPanel.repaint();
 	}
 
 	/**

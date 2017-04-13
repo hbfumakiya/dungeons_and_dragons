@@ -882,12 +882,12 @@ public class GamePlayModel extends Observable implements Runnable {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								isAttack = true;
-								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else if (isRange) {
 								int points = diceD8;
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
 								isAttack = true;
-								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from enemy");
+								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else {
 								LogHelper.Log(LogHelper.TYPE_INFO, "Enemy does not have any weapon");
 							}
