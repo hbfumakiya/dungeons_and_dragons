@@ -376,6 +376,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 				}
 				this.gamePlayModel.save(file);
 				this.gamePlayModel.setGameRunning(false);
+				this.gamePlayView.dispose();
+				new GameController();
 			}
 		} else {
 			MapButton button = (MapButton) e.getSource();
