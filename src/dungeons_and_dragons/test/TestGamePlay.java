@@ -353,7 +353,7 @@ public class TestGamePlay {
 		enemy.setY(2);
 		Point p2=new Point(5, 2);
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p2);
-		gpm.moveFrightenedEnemy(enemy, p);
+		gpm.moveFrightenedComputerOrEnemy(enemy, p);
 		Assert.assertEquals(5, enemy.getX());
 
 	}
@@ -373,7 +373,7 @@ public class TestGamePlay {
 		enemy.setY(2);
 		Point p2=new Point(5, 2);
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p2);
-		gpm.moveAggresiveEnemy(enemy, p);
+		gpm.moveAggresiveComputerOrEnemy(enemy, p,1);
 		Assert.assertEquals(3, enemy.getX());
 
 	}
