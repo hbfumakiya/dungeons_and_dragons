@@ -726,12 +726,16 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * 
 	 * @param tempPoint
 	 * @param oldPoint
+	 * @param human 
 	 * @return status of the game after the move event
 	 */
-	public GameStatus validateMove(Point tempPoint, Point oldPoint) {
+	public GameStatus validateMove(Point tempPoint, Point oldPoint, MapCharacter human) {
 
 		if (checkBoundaries(tempPoint) && !this.checkWalls(tempPoint)) {
 			this.setGameCharacterPosition(tempPoint);
+			human.setX((int) tempPoint.getX());
+			human.setY((int) tempPoint.getY());
+			
 			gameStatus.setGameStatus(GameStatus.RUNNING);
 		} else {
 
@@ -766,6 +770,9 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				// shouldn't allow the move and show type info error message
 				this.setGameCharacterPosition(oldPoint);
+				human.setX((int) oldPoint.getX());
+				human.setY((int) oldPoint.getY());
+				
 				charachterTempPoint = charachterOldPoint;
 				LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
 				gameStatus.setGameStatus(GameStatus.CANT_MOVE);

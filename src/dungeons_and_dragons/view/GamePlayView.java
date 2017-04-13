@@ -259,7 +259,18 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
 		CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
-		this.setRangeOfAttack(humanCharacter, humanCharacterPosition);
+		
+		if(this.gamePlayModel.getTurnList()!=null && !this.gamePlayModel.getTurnList().isEmpty()){
+			MapCharacter currentCharacter  = this.gamePlayModel.getTurnList().get(this.gamePlayModel.getCurrentTurn());	
+			if(!(currentCharacter.getCharacterType().equals(MapCharacter.COMPUTER) || currentCharacter.getCharacterType().equals(MapCharacter.NORMAL))){
+				this.setRangeOfAttack(currentCharacter.getCharacter(), new Point(currentCharacter.getX(), currentCharacter.getY()));
+			}else{
+				this.setRangeOfAttack(humanCharacter, humanCharacterPosition);	
+			}
+		}else{
+			this.setRangeOfAttack(humanCharacter, humanCharacterPosition);	
+		}
+		
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				maps[i][j] = new MapButton();

@@ -34,7 +34,7 @@ public class HumanPlayer implements Strategy {
 					gamePlayModel.gameThread.wait();
 					// perform move checks
 					gamePlayModel.gameStatus = gamePlayModel.validateMove(gamePlayModel.charachterTempPoint,
-							gamePlayModel.charachterOldPoint);
+							gamePlayModel.charachterOldPoint,human);
 					if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
 						LogHelper.Log(LogHelper.TYPE_INFO, "Human Player Moves "+(i+1));
 						i++;
