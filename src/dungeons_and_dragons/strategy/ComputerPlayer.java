@@ -30,7 +30,6 @@ public class ComputerPlayer implements Strategy {
 	public void move(GamePlayModel gamePlayModel) {
 		try {
 			int j = 0;
-			LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player Move");
 			MapCharacter computer = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
 
 			if (computer.Freezing) {
@@ -55,7 +54,6 @@ public class ComputerPlayer implements Strategy {
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player attack");
 		try {
 
 			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
@@ -68,7 +66,6 @@ public class ComputerPlayer implements Strategy {
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player interact");
 		System.out.println("Computer Player attack");
 		try {
 			MapCharacter playerOrNPC = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());

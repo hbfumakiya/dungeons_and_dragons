@@ -56,10 +56,8 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		
-		try {
-			
+		try {			
 			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
-			LogHelper.Log(LogHelper.TYPE_INFO, "Human Player has attacked");
 			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
@@ -69,7 +67,6 @@ public class HumanPlayer implements Strategy {
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Human Player interact");
 		System.out.println("Human Player Interact");
 		try {
 			gamePlayModel.gameStatus = gamePlayModel.initateInteract(gamePlayModel.charachterTempPoint);

@@ -1,4 +1,123 @@
-[ 03:51:25.112 13-04-2017  INFO ] Friend Moves 1
-[ 03:51:26.161 13-04-2017  INFO ] Friend Moves 2
-[ 03:51:27.180 13-04-2017  INFO ] Friend Moves 3
-[ 03:51:30.232 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:19.641 13-04-2017  INFO ] Enemy move1
+[ 06:12:20.696 13-04-2017  INFO ] Enemy move2
+[ 06:12:21.744 13-04-2017  INFO ] Enemy move3
+[ 06:12:25.824 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:27.192 13-04-2017  INFO ] Human Player Moves 1
+[ 06:12:27.213 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:31.608 13-04-2017  INFO ] Human Player Moves 2
+[ 06:12:31.626 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:34.319 13-04-2017  INFO ] Human Player Moves 3
+[ 06:12:35.331 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 06:12:36.373 13-04-2017  INFO ] Friend Moves 1
+[ 06:12:37.410 13-04-2017  INFO ] Friend Moves 2
+[ 06:12:38.454 13-04-2017  INFO ] Friend Moves 3
+[ 06:12:41.499 13-04-2017  INFO ] Enemy move1
+[ 06:12:42.580 13-04-2017  INFO ] Enemy move2
+[ 06:12:43.618 13-04-2017  INFO ] Enemy move3
+[ 06:12:47.671 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:48.937 13-04-2017  INFO ] Human Player Moves 1
+[ 06:12:48.952 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:49.330 13-04-2017  INFO ] Human Player Moves 2
+[ 06:12:49.370 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:12:50.127 13-04-2017  INFO ] Human Player Moves 3
+[ 06:12:51.141 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 06:12:52.153 13-04-2017  INFO ] Friend Moves 1
+[ 06:12:53.188 13-04-2017  INFO ] Friend Moves 2
+[ 06:12:54.225 13-04-2017  INFO ] Friend Moves 3
+[ 06:12:57.286 13-04-2017  INFO ] Enemy move1
+[ 06:12:58.329 13-04-2017  INFO ] Enemy move2
+[ 06:12:59.367 13-04-2017  INFO ] Enemy move3
+[ 06:13:01.412 13-04-2017  INFO ] Dice rolled number(D20) -- > 3
+[ 06:13:01.425 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:13:01.440 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:13:01.451 13-04-2017  INFO ] Armor class of defending character -- > 12
+[ 06:13:01.461 13-04-2017  INFO ] Enemy can not hit player as [d20(3) + strength modifier(2) + Attack Bonus(5)] < ArmorClass(12+
+[ 06:13:03.472 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:15:22.723 13-04-2017  INFO ] Human Player Moves 1
+[ 06:15:22.736 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:15:23.416 13-04-2017  INFO ] Human Player Moves 2
+[ 06:15:23.433 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:15:23.939 13-04-2017  INFO ] Human Player Moves 3
+[ 06:15:23.951 13-04-2017  INFO ] Dice rolled number(D20) -- > 19
+[ 06:15:23.963 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:15:23.976 13-04-2017  INFO ] Strength Modifier -- > 1
+[ 06:15:23.991 13-04-2017  INFO ] Armor class of defending character -- > 13
+[ 06:15:24.004 13-04-2017  INFO ] Human Player has attacked with a Freezing-2 weapon enchantment
+[ 06:15:24.019 13-04-2017  INFO ] Dice rolled number(D8) -- > 2
+[ 06:15:24.023 13-04-2017  INFO ] Strength Modifier -- > 1
+[ 06:15:24.087 13-04-2017  INFO ] 3 hit point deducted from enemy
+[ 06:15:25.106 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 06:15:26.119 13-04-2017  INFO ] Friend Moves 1
+[ 06:15:27.170 13-04-2017  INFO ] Friend Moves 2
+[ 06:15:28.228 13-04-2017  INFO ] Friend Moves 3
+[ 06:15:31.272 13-04-2017  INFO ] Enemy -- Enemy freezed for 2 moves
+[ 06:15:32.286 13-04-2017  INFO ] Dice rolled number(D20) -- > 7
+[ 06:15:32.299 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:15:32.314 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:15:32.326 13-04-2017  INFO ] Armor class of defending character -- > 12
+[ 06:15:32.328 13-04-2017  INFO ] Human Player has attacked with a Burning-10 weapon enchantment
+[ 06:15:32.340 13-04-2017  INFO ] Dice rolled number(D8) -- > 8
+[ 06:15:32.351 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:15:32.423 13-04-2017  INFO ] 10
+[ 06:15:32.470 13-04-2017  INFO ] 10 hit point deducted from player
+[ 06:15:34.478 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:20:43.092 13-04-2017  INFO ] Human Player Moves 1
+[ 06:20:43.123 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:20:45.936 13-04-2017  INFO ] Human Player Moves 2
+[ 06:20:45.936 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:20:46.248 13-04-2017  INFO ] Human Player Moves 3
+[ 06:20:46.264 13-04-2017  INFO ] Dice rolled number(D20) -- > 15
+[ 06:20:46.264 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:20:46.279 13-04-2017  INFO ] Strength Modifier -- > 1
+[ 06:20:46.295 13-04-2017  INFO ] Armor class of defending character -- > 13
+[ 06:20:46.295 13-04-2017  INFO ] Human Player has attacked with a Freezing-2 weapon enchantment
+[ 06:20:46.311 13-04-2017  INFO ] Dice rolled number(D8) -- > 1
+[ 06:20:46.326 13-04-2017  INFO ] Strength Modifier -- > 1
+[ 06:20:46.342 13-04-2017  INFO ] 2 hit point deducted from enemy
+[ 06:20:47.343 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 06:20:48.346 13-04-2017  INFO ] Friend Moves 1
+[ 06:20:49.386 13-04-2017  INFO ] Friend Moves 2
+[ 06:20:50.449 13-04-2017  INFO ] Friend Moves 3
+[ 06:20:53.500 13-04-2017  INFO ] Enemy -- Enemy freezed for 2 moves
+[ 06:20:54.501 13-04-2017  INFO ] Dice rolled number(D20) -- > 4
+[ 06:20:54.501 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:20:54.517 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:20:54.548 13-04-2017  INFO ] Armor class of defending character -- > 12
+[ 06:20:54.564 13-04-2017  INFO ] Enemy can not hit player as [d20(4) + strength modifier(2) + Attack Bonus(5)] < ArmorClass(12+
+[ 06:20:56.582 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:06.249 13-04-2017  INFO ] Human Player Moves 1
+[ 06:21:06.264 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:06.811 13-04-2017  INFO ] Human Player Moves 2
+[ 06:21:06.827 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:08.639 13-04-2017  INFO ] Human Player Moves 3
+[ 06:21:09.656 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 06:21:10.657 13-04-2017  INFO ] Friend Moves 1
+[ 06:21:11.705 13-04-2017  INFO ] Friend Moves 2
+[ 06:21:12.752 13-04-2017  INFO ] Friend Moves 3
+[ 06:21:15.819 13-04-2017  INFO ] Enemy -- Enemy freezed for 1 moves
+[ 06:21:18.822 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:23.793 13-04-2017  INFO ] Human Player Moves 1
+[ 06:21:23.808 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:24.043 13-04-2017  INFO ] Human Player Moves 2
+[ 06:21:24.058 13-04-2017  INFO ] Waiting for user input to move human player
+[ 06:21:24.324 13-04-2017  INFO ] Human Player Moves 3
+[ 06:21:25.388 13-04-2017  INFO ] Item Freezing has been added in your backpack
+[ 06:21:26.389 13-04-2017  INFO ] Friend Moves 1
+[ 06:21:27.422 13-04-2017  INFO ] Friend Moves 2
+[ 06:21:28.500 13-04-2017  INFO ] Friend Moves 3
+[ 06:21:31.582 13-04-2017  INFO ] Enemy move1
+[ 06:21:32.656 13-04-2017  INFO ] Enemy move2
+[ 06:21:33.750 13-04-2017  INFO ] Enemy move3
+[ 06:21:35.844 13-04-2017  INFO ] Dice rolled number(D20) -- > 11
+[ 06:21:35.844 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 06:21:35.859 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:21:35.890 13-04-2017  INFO ] Armor class of defending character -- > 12
+[ 06:21:35.906 13-04-2017  INFO ] Human Player has attacked with a Burning-10 weapon enchantment
+[ 06:21:35.922 13-04-2017  INFO ] Dice rolled number(D8) -- > 8
+[ 06:21:35.922 13-04-2017  INFO ] Strength Modifier -- > 2
+[ 06:21:35.937 13-04-2017  INFO ] 10
+[ 06:21:35.984 13-04-2017  INFO ] 20 hit point deducted from player
+[ 06:21:36.047 13-04-2017  INFO ] Player dead! Game over
+[ 06:21:38.080 13-04-2017  INFO ] Friend Moves 1
+[ 06:21:39.128 13-04-2017  INFO ] Friend Moves 2
+[ 06:21:40.191 13-04-2017  INFO ] Friend Moves 3

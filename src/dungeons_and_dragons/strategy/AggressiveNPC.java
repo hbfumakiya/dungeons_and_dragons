@@ -31,7 +31,7 @@ public class AggressiveNPC implements Strategy {
 		System.out.println("Agresive NPC Move");
 		try {
 			int j = 0;
-			LogHelper.Log(LogHelper.TYPE_INFO, "Aggressive Character Move" + 1);
+			
 			MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
 
 			if (enemy.Freezing) {
@@ -57,7 +57,6 @@ public class AggressiveNPC implements Strategy {
 
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Agressive NPC Attack");
 		try {
 			gamePlayModel.initiateAttack(gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn()));
 
@@ -70,7 +69,6 @@ public class AggressiveNPC implements Strategy {
 
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
-		LogHelper.Log(LogHelper.TYPE_INFO, "Agressive NPC interact");
 		System.out.println("Agresive NPC Interact");
 		GameMapModel map = gamePlayModel.getCampaignModel().getOutput_map_list()
 				.get(gamePlayModel.getCurrentMapIndex());

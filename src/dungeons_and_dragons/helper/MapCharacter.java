@@ -15,56 +15,62 @@ import dungeons_and_dragons.strategy.CharacterStrategy;
 public class MapCharacter {
 
 	public static final String NORMAL = "Normal";
-	
+
 	public static final String COMPUTER = "Computer";
-	
+
 	public static final String FRIENDLY = "Friendly";
-	
+
 	public static final String ENEMY = "Enemy";
-	
+	@Expose
 	public boolean Freezing = false;
+	@Expose
 	public boolean Burning = false;
+	@Expose
 	public boolean Slaying = false;
+	@Expose
 	public boolean Frightening = false;
-	public boolean Pacifying  = false;
-	
+	@Expose
+	public boolean Pacifying = false;
+	@Expose
 	public int frighteningBonus = 0;
-	
+	@Expose
 	public int freezingBonus = 0;
-	
+	@Expose
 	public int burningBonus = 0;
-	
+	@Expose
 	public int frighteningTurn = 0;
+	@Expose
 	public int freezingTurn = 0;
+	@Expose
 	public int burningTurn = 0;
-	
+
 	@Expose
 	private int x;
-	
+
 	@Expose
 	private int y;
-	
+
 	@Expose
 	private CharacterModel character;
-	
+
 	@Expose
 	private String characterType;
-	
+
 	@Expose
 	private CharacterStrategy characterStrategy;
-	
+
 	/**
-	 *	 Default Constructor which set default values of each properties 
+	 * Default Constructor which set default values of each properties
 	 */
 	public MapCharacter() {
 		this.x = 0;
-		
+
 		this.y = 0;
-		
+
 		this.character = null;
-		
+
 		this.characterType = MapCharacter.NORMAL;
-		
+
 		this.characterStrategy = new CharacterStrategy();
 	}
 
@@ -76,7 +82,8 @@ public class MapCharacter {
 	}
 
 	/**
-	 * @param x the x to set
+	 * @param x
+	 *            the x to set
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -90,7 +97,8 @@ public class MapCharacter {
 	}
 
 	/**
-	 * @param y the y to set
+	 * @param y
+	 *            the y to set
 	 */
 	public void setY(int y) {
 		this.y = y;
@@ -104,7 +112,8 @@ public class MapCharacter {
 	}
 
 	/**
-	 * @param character the character to set
+	 * @param character
+	 *            the character to set
 	 */
 	public void setCharacter(CharacterModel character) {
 		this.character = character;
@@ -118,7 +127,8 @@ public class MapCharacter {
 	}
 
 	/**
-	 * @param characterType the characterType to set
+	 * @param characterType
+	 *            the characterType to set
 	 */
 	public void setCharacterType(String characterType) {
 		this.characterType = characterType;
@@ -132,11 +142,11 @@ public class MapCharacter {
 	}
 
 	/**
-	 * @param characterStrategy the characterStrategy to set
+	 * @param characterStrategy
+	 *            the characterStrategy to set
 	 */
 	public void setCharacterStrategy(CharacterStrategy characterStrategy) {
 		this.characterStrategy = characterStrategy;
 	}
-	
-	
+
 }

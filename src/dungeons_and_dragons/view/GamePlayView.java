@@ -258,6 +258,9 @@ public class GamePlayView extends JFrame implements Observer, View {
 
 		maps = new MapButton[x][y];
 
+		this.gamePlayModel.currentMap = new MapButton[x][y];
+		
+		
 		Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
 		CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
 		
@@ -503,7 +506,6 @@ public class GamePlayView extends JFrame implements Observer, View {
 				if (c.getX() == p.x && c.getY() == p.y) {
 					if (c.getCharacterType().equals(MapCharacter.ENEMY)) {
 						enemyFlag = 1;
-
 					} else if (c.getCharacterType().equals(MapCharacter.FRIENDLY)) {
 						enemyFlag = 0;
 					}
@@ -511,6 +513,8 @@ public class GamePlayView extends JFrame implements Observer, View {
 				}
 			}
 		}
+		
+		
 		return null;
 	}
 

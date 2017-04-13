@@ -393,11 +393,11 @@ public class GamePlayModel extends Observable implements Runnable {
 				.getMap_enemy_loc();
 		for (int i = 0; i < npcs.size(); i++) {
 			int value = DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity();
-			
-			while(tempValues.containsKey(value)) {
+
+			while (tempValues.containsKey(value)) {
 				value = DiceHelper.rollD20() + npcs.get(i).getCharacter().getModifiers().getDexterity();
 			}
-			tempValues.put(value,npcs.get(i));
+			tempValues.put(value, npcs.get(i));
 		}
 
 		Map<Integer, MapCharacter> treeMap = new TreeMap<>((Comparator<Integer>) (o1, o2) -> o2.compareTo(o1));
@@ -517,7 +517,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	public void run() {
 		while (isGameRunning) {
 			for (int i = 0; i < turnList.size(); i++) {
-				if(!isGameRunning) {
+				if (!isGameRunning) {
 					break;
 				}
 				this.currentTurn = i;
@@ -736,7 +736,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * 
 	 * @param tempPoint
 	 * @param oldPoint
-	 * @param human 
+	 * @param human
 	 * @return status of the game after the move event
 	 */
 	public GameStatus validateMove(Point tempPoint, Point oldPoint, MapCharacter human) {
@@ -745,7 +745,7 @@ public class GamePlayModel extends Observable implements Runnable {
 			this.setGameCharacterPosition(tempPoint);
 			human.setX((int) tempPoint.getX());
 			human.setY((int) tempPoint.getY());
-			
+
 			gameStatus.setGameStatus(GameStatus.RUNNING);
 		} else {
 
@@ -782,7 +782,7 @@ public class GamePlayModel extends Observable implements Runnable {
 				this.setGameCharacterPosition(oldPoint);
 				human.setX((int) oldPoint.getX());
 				human.setY((int) oldPoint.getY());
-				
+
 				charachterTempPoint = charachterOldPoint;
 				LogHelper.Log(LogHelper.TYPE_INFO, "Oops bumped into a wall can't move ahead");
 				gameStatus.setGameStatus(GameStatus.CANT_MOVE);
@@ -878,9 +878,16 @@ public class GamePlayModel extends Observable implements Runnable {
 					String enchantment = "";
 					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
+						
+						LogHelper.Log(LogHelper.TYPE_INFO, "Enemy tries to attack and rolls the dice");
+						LogHelper.Log(LogHelper.TYPE_INFO, "Dice rolled number(D20) -- > " + diceValue);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Attack Bonus -- > " + temp);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Strength Modifier -- > " + stModi);
+						LogHelper.Log(LogHelper.TYPE_INFO,
+								"Armor class of defending character -- > " + turnChar.getCharacter().getArmorClass());
+
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
-							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can hit player");
 
 							ArrayList<ItemModel> items = character.getCharacter().getItems();
 							if (items == null || items.size() < 1) {
@@ -898,19 +905,22 @@ public class GamePlayModel extends Observable implements Runnable {
 									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								}
 							}
+
+							LogHelper.Log(LogHelper.TYPE_INFO,
+									"Enemy has attacked with a " + enchantment + " weapon enchantment");
+
 							int diceD8 = DiceHelper.rollD8();
+							LogHelper.Log(LogHelper.TYPE_INFO, "Dice rolled number(D8) -- > " + diceD8);
+							LogHelper.Log(LogHelper.TYPE_INFO, "Strength Modifier -- > " + stModi);
+
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
-								LogHelper.Log(LogHelper.TYPE_INFO,"" +points);
-								
+
 								if (turnChar.Burning) {
 									points += turnChar.burningBonus;
 									turnChar.burningTurn--;
 								}
-								LogHelper.Log(LogHelper.TYPE_INFO, turnChar.getCharacter().getHitpoints() + " hit point deducted from player");
-								
 								turnChar.getCharacter().setHitpoints(turnChar.getCharacter().getHitpoints() - points);
-								
 								isAttack = true;
 								LogHelper.Log(LogHelper.TYPE_INFO, points + " hit point deducted from player");
 							} else if (isRange) {
@@ -931,7 +941,10 @@ public class GamePlayModel extends Observable implements Runnable {
 							}
 
 						} else {
-							LogHelper.Log(LogHelper.TYPE_INFO, "Enemy can not hit player");
+							LogHelper.Log(LogHelper.TYPE_INFO,
+									"Enemy can not hit player as [d20(" + diceValue + ") + strength modifier(" + stModi
+											+ ") + Attack Bonus(" + i + ")] < ArmorClass("
+											+ turnChar.getCharacter().getArmorClass() + ")");
 						}
 					}
 
@@ -1037,9 +1050,16 @@ public class GamePlayModel extends Observable implements Runnable {
 					String enchantment = "";
 					boolean isAttack = false;
 					for (int i = temp; i > 0; i -= 5) {
+
+						LogHelper.Log(LogHelper.TYPE_INFO, "Player tries to attack and rolls the dice");
+						LogHelper.Log(LogHelper.TYPE_INFO, "Dice rolled number(D20) -- > " + diceValue);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Attack Bonus -- > " + temp);
+						LogHelper.Log(LogHelper.TYPE_INFO, "Strength Modifier -- > " + stModi);
+						LogHelper.Log(LogHelper.TYPE_INFO,
+								"Armor class of defending character -- > " + turnChar.getCharacter().getArmorClass());
+
 						if ((diceValue + stModi + i) >= turnChar.getCharacter().getArmorClass()) {
 							ishit = true;
-							LogHelper.Log(LogHelper.TYPE_INFO, "Player can hit anemy");
 
 							ArrayList<ItemModel> items = character.getCharacter().getItems();
 							if (items == null || items.size() < 1) {
@@ -1057,7 +1077,14 @@ public class GamePlayModel extends Observable implements Runnable {
 									enchantment = items.get(k).getItem_weapon_enchantment_string();
 								}
 							}
+
+							LogHelper.Log(LogHelper.TYPE_INFO,
+									"Human Player has attacked with a " + enchantment + " weapon enchantment");
+
 							int diceD8 = DiceHelper.rollD8();
+							LogHelper.Log(LogHelper.TYPE_INFO, "Dice rolled number(D8) -- > " + diceD8);
+							LogHelper.Log(LogHelper.TYPE_INFO, "Strength Modifier -- > " + stModi);
+
 							if (isMelle) {
 								int points = (diceD8 + character.getCharacter().getModifiers().getStraight());
 								if (turnChar.Burning) {
@@ -1083,7 +1110,10 @@ public class GamePlayModel extends Observable implements Runnable {
 							}
 
 						} else {
-							LogHelper.Log(LogHelper.TYPE_INFO, "Player can not hit enemy");
+							LogHelper.Log(LogHelper.TYPE_INFO,
+									"Player can not hit enemy as [d20(" + diceValue + ") + strength modifier(" + stModi
+											+ ") + Attack Bonus(" + i + ")] < ArmorClass("
+											+ turnChar.getCharacter().getArmorClass() + ")");
 						}
 					}
 
@@ -1144,6 +1174,8 @@ public class GamePlayModel extends Observable implements Runnable {
 							characterStrategy.setStrategy(new FriendlyNPC());
 							turnChar.setCharacterStrategy(characterStrategy);
 							turnChar.setCharacterType(MapCharacter.FRIENDLY);
+							LogHelper.Log(LogHelper.TYPE_INFO,
+									"Enemy attacked with Pacifying weapon and turned to a friend");
 							notifyChange();
 							break;
 						}
@@ -1323,7 +1355,7 @@ public class GamePlayModel extends Observable implements Runnable {
 			}
 
 		} else {
-			LogHelper.Log(LogHelper.TYPE_INFO, "No interaction to any player so no item found");
+			LogHelper.Log(LogHelper.TYPE_INFO, "No interaction to any player or a chest so no item found");
 		}
 
 		gameStatus.setGameStatus(GameStatus.RUNNING);
@@ -1358,19 +1390,25 @@ public class GamePlayModel extends Observable implements Runnable {
 			// playerOrEnemyPosition = this.gameCharacterPosition;
 		}
 		if (EnemyOrComputer.Frightening == false) {
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 1);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 2);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move" + 3);
 			moveAggresiveComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 
 		} else if (EnemyOrComputer.Frightening == true
 				&& EnemyOrComputer.frighteningTurn <= EnemyOrComputer.frighteningBonus - 1) {
 			++EnemyOrComputer.frighteningTurn;
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 1);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 1);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 2);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 2);
+			LogHelper.Log(LogHelper.TYPE_INFO, EnemyOrComputer.getCharacterType()+ " move away as he is frightened" + 3);
 			moveFrightenedComputerOrEnemy(EnemyOrComputer, playerOrEnemyPosition, 3);
 		}
 
-		if (EnemyOrComputer.frighteningTurn == EnemyOrComputer.freezingBonus) {
+		if (EnemyOrComputer.frighteningTurn == EnemyOrComputer.frighteningBonus) {
 			EnemyOrComputer.Frightening = false;
 		}
 		setChanged();
@@ -1387,6 +1425,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	 *            player current position
 	 */
 	public void moveFrightenedComputerOrEnemy(MapCharacter movingCharacter, Point movingToPosition, int moveNumber) {
+
+		GameMapModel gameMapModel = this.getCampaignModel().getOutput_map_list().get(this.currentMapIndex);
 
 		int movingCharacterX = movingCharacter.getX();
 		int movingCharacterY = movingCharacter.getY();
@@ -1649,6 +1689,14 @@ public class GamePlayModel extends Observable implements Runnable {
 			prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 		}
 		if (movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)) {
+
+			for (int i = 0; i < gameMapModel.getMap_enemy_loc().size(); i++) {
+				if (gameMapModel.getMap_enemy_loc().get(i).getCharacter().getCharacter_id() == movingCharacter
+						.getCharacter().getCharacter_id()) {
+					gameMapModel.getMap_enemy_loc().get(i).setX(movingCharacter.getX());
+					gameMapModel.getMap_enemy_loc().get(i).setY(movingCharacter.getY());
+				}
+			}
 			setChanged();
 			notifyObservers();
 
@@ -1682,6 +1730,7 @@ public class GamePlayModel extends Observable implements Runnable {
 	 *            player current position
 	 */
 	public void moveAggresiveComputerOrEnemy(MapCharacter movingCharacter, Point movingToPosition, int moveNumber) {
+		GameMapModel gameMapModel = this.getCampaignModel().getOutput_map_list().get(this.currentMapIndex);
 		int movingCharacterX = movingCharacter.getX();
 		int movingCharacterY = movingCharacter.getY();
 		Point nextPos = prevEnemyPos.get(movingCharacter.getCharacter());
@@ -1692,10 +1741,7 @@ public class GamePlayModel extends Observable implements Runnable {
 		if (movingToPosition.x > movingCharacter.getX()
 				&& !this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
 				&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
-				&& nextPos.x != movingCharacterX + 1)// &&
-		// this.checkWalls(new
-		// Point(enemyX+1,enemyY)))
-		{
+				&& nextPos.x != movingCharacterX + 1) {
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1704,25 +1750,12 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				movingCharacter.setX(movingCharacter.getX() + 1);
 			}
-			// check left right and down -- only one case
-			/*
-			 * if (this.checkWalls(new Point(movingCharacterX + 1,
-			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
-			 * movingCharacterY + 1)) && this.checkWalls(new
-			 * Point(movingCharacterX, movingCharacterY - 1))) {
-			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-			 * 
-			 * }
-			 */
-
 		}
 		// go up
 		else if (movingToPosition.x < movingCharacter.getX()
 				&& !this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
 				&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
-				&& nextPos.x != movingCharacterX - 1)// && this.checkWalls(new
-		// Point(enemyX-1,enemyY)))
-		{
+				&& nextPos.x != movingCharacterX - 1) {
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1731,25 +1764,13 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				movingCharacter.setX(movingCharacter.getX() - 1);
 			}
-			/*
-			 * // check left right and dwon if (this.checkWalls(new
-			 * Point(movingCharacterX - 1, movingCharacterY)) &&
-			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
-			 * 1)) && this.checkWalls(new Point(movingCharacterX,
-			 * movingCharacterY - 1))) {
-			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-			 * 
-			 * }
-			 */
 
 		}
 		// go right
 		else if (movingToPosition.y > movingCharacter.getY()
 				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
-				&& nextPos.y != movingCharacterY + 1)// && this.checkWalls(new
-		// Point(enemyX,enemyY+1)))
-		{
+				&& nextPos.y != movingCharacterY + 1) {
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 			if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1758,25 +1779,14 @@ public class GamePlayModel extends Observable implements Runnable {
 			} else {
 				movingCharacter.setY(movingCharacter.getY() + 1);
 			}
-
-			/*
-			 * // check right and dwon and up if (this.checkWalls(new
-			 * Point(movingCharacterX + 1, movingCharacterY)) &&
-			 * this.checkWalls(new Point(movingCharacterX, movingCharacterY +
-			 * 1)) && this.checkWalls(new Point(movingCharacterX - 1,
-			 * movingCharacterY))) {
-			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-			 * 
-			 * }
-			 */
 
 		}
 		// go left
 		else if (movingToPosition.y < movingCharacter.getY()
 				&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
 				&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
-				&& nextPos.y != movingCharacterY - 1)// && this.checkWalls(new
-		// Point(enemyX,enemyY-1)))
+				&& nextPos.y != movingCharacterY - 1)
+
 		{
 			prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
@@ -1787,25 +1797,11 @@ public class GamePlayModel extends Observable implements Runnable {
 				movingCharacter.setY(movingCharacter.getY() - 1);
 			}
 
-			// check left right and dwon
-			/*
-			 * if (this.checkWalls(new Point(movingCharacterX + 1,
-			 * movingCharacterY)) && this.checkWalls(new Point(movingCharacterX,
-			 * movingCharacterY - 1)) && this.checkWalls(new
-			 * Point(movingCharacterX - 1, movingCharacterY))) {
-			 * prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
-			 * 
-			 * }
-			 */
-
 		} else if (movingToPosition.x == movingCharacterX && movingToPosition.y != movingCharacterY) {
 			// go down
 			if (!this.checkWalls(new Point(movingCharacterX + 1, movingCharacterY))
 					&& this.checkBoundaries(new Point(movingCharacterX + 1, movingCharacterY))
-					&& nextPos.x != movingCharacterX + 1)// &&
-			// this.checkWalls(new
-			// Point(enemyX+1,enemyY)))
-			{
+					&& nextPos.x != movingCharacterX + 1) {
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1814,27 +1810,12 @@ public class GamePlayModel extends Observable implements Runnable {
 				} else {
 					movingCharacter.setX(movingCharacter.getX() + 1);
 				}
-
-				// check left right and dwon
-				/*
-				 * if (this.checkWalls(new Point(movingCharacterX + 1,
-				 * movingCharacterY)) && this.checkWalls(new
-				 * Point(movingCharacterX, movingCharacterY + 1)) &&
-				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
-				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
-				 * Point(-1, -1));
-				 * 
-				 * }
-				 */
 
 			}
 			// go up
 			else if (!this.checkWalls(new Point(movingCharacterX - 1, movingCharacterY))
 					&& this.checkBoundaries(new Point(movingCharacterX - 1, movingCharacterY))
-					&& nextPos.x != movingCharacterX - 1)// &&
-			// this.checkWalls(new
-			// Point(enemyX-1,enemyY)))
-			{
+					&& nextPos.x != movingCharacterX - 1) {
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1843,28 +1824,13 @@ public class GamePlayModel extends Observable implements Runnable {
 				} else {
 					movingCharacter.setX(movingCharacter.getX() - 1);
 				}
-
-				// check left right and dwon
-				/*
-				 * if (this.checkWalls(new Point(movingCharacterX - 1,
-				 * movingCharacterY)) && this.checkWalls(new
-				 * Point(movingCharacterX, movingCharacterY + 1)) &&
-				 * this.checkWalls(new Point(movingCharacterX, movingCharacterY
-				 * - 1))) { prevPosition(movingCharacter.getCharacter(), new
-				 * Point(-1, -1));
-				 * 
-				 * }
-				 */
 
 			}
 		} else if (movingToPosition.y == movingCharacterY && movingToPosition.x != movingCharacterX) {
 			// go right
 			if (!this.checkWalls(new Point(movingCharacterX, movingCharacterY + 1))
 					&& this.checkBoundaries(new Point(movingCharacterX, movingCharacterY + 1))
-					&& nextPos.y != movingCharacterY + 1)// &&
-															// this.checkWalls(new
-			// Point(enemyX,enemyY+1)))
-			{
+					&& nextPos.y != movingCharacterY + 1) {
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1873,28 +1839,12 @@ public class GamePlayModel extends Observable implements Runnable {
 				} else {
 					movingCharacter.setY(movingCharacter.getY() + 1);
 				}
-
-				// check right and dwon and up
-				/*
-				 * if (this.checkWalls(new Point(movingCharacterX + 1,
-				 * movingCharacterY)) && this.checkWalls(new
-				 * Point(movingCharacterX, movingCharacterY + 1)) &&
-				 * this.checkWalls(new Point(movingCharacterX - 1,
-				 * movingCharacterY))) {
-				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
-				 * -1));
-				 * 
-				 * }
-				 */
 
 			}
 			// go left
 			else if (this.checkBoundaries(new Point(movingCharacterX, movingCharacterY - 1))
 					&& !this.checkWalls(new Point(movingCharacterX, movingCharacterY - 1))
-					&& nextPos.y != movingCharacterY - 1)// &&
-															// this.checkWalls(new
-			// Point(enemyX,enemyY-1)))
-			{
+					&& nextPos.y != movingCharacterY - 1) {
 				prevPosition(movingCharacter.getCharacter(), new Point(movingCharacter.getX(), movingCharacter.getY()));
 
 				if (movingCharacter.getCharacterType().equals(MapCharacter.COMPUTER)) {
@@ -1903,19 +1853,6 @@ public class GamePlayModel extends Observable implements Runnable {
 				} else {
 					movingCharacter.setY(movingCharacter.getY() - 1);
 				}
-
-				// check left right and dwon
-				/*
-				 * if (this.checkWalls(new Point(movingCharacterX + 1,
-				 * movingCharacterY)) && this.checkWalls(new
-				 * Point(movingCharacterX, movingCharacterY - 1)) &&
-				 * this.checkWalls(new Point(movingCharacterX - 1,
-				 * movingCharacterY))) {
-				 * prevPosition(movingCharacter.getCharacter(), new Point(-1,
-				 * -1));
-				 * 
-				 * }
-				 */
 
 			}
 		} else {
@@ -1943,6 +1880,14 @@ public class GamePlayModel extends Observable implements Runnable {
 			prevPosition(movingCharacter.getCharacter(), new Point(-1, -1));
 		}
 		if (movingCharacter.getCharacterType().equals(MapCharacter.ENEMY)) {
+
+			for (int k = 0; k < gameMapModel.getMap_enemy_loc().size(); k++) {
+				if (gameMapModel.getMap_enemy_loc().get(k).getCharacter().getCharacter_id() == movingCharacter
+						.getCharacter().getCharacter_id()) {
+					gameMapModel.getMap_enemy_loc().get(k).setX(movingCharacter.getX());
+					gameMapModel.getMap_enemy_loc().get(k).setY(movingCharacter.getY());
+				}
+			}
 			setChanged();
 			notifyObservers();
 
@@ -1974,6 +1919,8 @@ public class GamePlayModel extends Observable implements Runnable {
 	 * @return
 	 */
 	public GameStatus moveFriend(MapCharacter friend, Point friendPoint, Point oldPoint, int number) {
+
+		GameMapModel gameMapModel = this.getCampaignModel().getOutput_map_list().get(this.currentMapIndex);
 
 		Random randomGenerator = new Random();
 		boolean pathExists = false;
@@ -2011,6 +1958,13 @@ public class GamePlayModel extends Observable implements Runnable {
 				gameStatus.setGameStatus(GameStatus.RUNNING);
 				LogHelper.Log(LogHelper.TYPE_INFO, "Friend Moves " + (number + 1));
 
+				for (int k = 0; k < gameMapModel.getMap_enemy_loc().size(); k++) {
+					if (gameMapModel.getMap_enemy_loc().get(k).getCharacter().getCharacter_id() == friend.getCharacter()
+							.getCharacter_id()) {
+						gameMapModel.getMap_enemy_loc().get(k).setX(friend.getX());
+						gameMapModel.getMap_enemy_loc().get(k).setY(friend.getY());
+					}
+				}
 				setChanged();
 				notifyObservers();
 			} else {

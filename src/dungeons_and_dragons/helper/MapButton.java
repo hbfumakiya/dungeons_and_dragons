@@ -5,6 +5,8 @@ package dungeons_and_dragons.helper;
 
 import javax.swing.JButton;
 
+import com.google.gson.annotations.Expose;
+
 import dungeons_and_dragons.model.CharacterModel;
 
 /**
@@ -17,19 +19,25 @@ public class MapButton extends JButton {
 
 	private String button_type = Game_constants.GRID_BUTTON_TYPE;
 
+	@Expose
 	private int xPos;
-
+	
+	@Expose
 	private int yPos;
 
 	// 0 if it is wall and 2 if it is an enemy
+	@Expose
 	private int pointValue = 1;
 
 	// 0 if the point is not yet traversed and 1 if the point is traversed already
+	@Expose
 	private int dirty_flag = 0;
 	
 	// 0 if there is no path and 1 if there is a path 
+	@Expose
 	public int path = 0;
 	
+	@Expose
 	private int characterType;
 	
 	public static final int FRIENDLY_PLAYER = 2;
@@ -38,6 +46,7 @@ public class MapButton extends JButton {
 	
 	public static final int PLAYER = 1;
 	
+	@Expose
 	private CharacterModel character;
 
 	/**
