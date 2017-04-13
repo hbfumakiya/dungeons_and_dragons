@@ -87,6 +87,8 @@ public class ManageItemController implements ActionListener {
 			sb.append(item.getItem_ability());
 			sb.append("\n");
 			sb.append(item.getItem_point());
+			sb.append("\n");
+			sb.append(item.getItem_weapon_enchantment_string());
 
 			JOptionPane.showMessageDialog(this.manageItemView, sb.toString());
 
