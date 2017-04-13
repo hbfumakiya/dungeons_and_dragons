@@ -1,7 +1,9 @@
 dungeons_and_dragons.builder
 dungeons_and_dragons.controller
+dungeons_and_dragons.decorator
 dungeons_and_dragons.exception
 dungeons_and_dragons.helper
 dungeons_and_dragons.model
+dungeons_and_dragons.strategy
 dungeons_and_dragons.test
 dungeons_and_dragons.view
