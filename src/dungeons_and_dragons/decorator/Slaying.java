@@ -4,6 +4,7 @@
 package dungeons_and_dragons.decorator;
 
 /**
+ * This is concrete decorator class
  * @author urmil
  *
  */
@@ -17,7 +18,10 @@ public class Slaying extends WeaponsDecorator{
 		super(weapon);
 		
 	}
-	
+	/**
+	 * return the Slaying weapn and its point
+	 * @return String slaying
+	 */
 	public String getEnchantment()
 	{
 		return "Slaying-"+super.getEnhancment();

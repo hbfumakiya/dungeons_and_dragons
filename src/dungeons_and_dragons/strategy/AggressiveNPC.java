@@ -21,10 +21,14 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This class is for aggresive enemy
  * @author Mihir Pujara & Tejas Sadrani & Urmil Kansara
  */
 public class AggressiveNPC implements Strategy {
-
+	
+	/**
+	 * This method is to move aggresive enemy
+	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 
@@ -54,7 +58,10 @@ public class AggressiveNPC implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * This method id to attack
+	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		try {
@@ -66,7 +73,10 @@ public class AggressiveNPC implements Strategy {
 		}
 
 	}
-
+	
+	/**
+	 * interact method of aggresive npc
+	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
 		System.out.println("Agresive NPC Interact");

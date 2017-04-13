@@ -6,6 +6,7 @@ package dungeons_and_dragons.strategy;
 import dungeons_and_dragons.model.GamePlayModel;
 
 /**
+ * interface to be implemented in other classes.
  * @author Mihir Pujara
  *
  */

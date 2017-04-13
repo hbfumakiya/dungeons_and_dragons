@@ -21,11 +21,14 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This is concrete class for computer
  * @author Mihir & Tejas & kansara
  *
  */
 public class ComputerPlayer implements Strategy {
-
+	/**
+	 * moving of computer character
+	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 		try {
@@ -51,7 +54,9 @@ public class ComputerPlayer implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-
+	/**
+	 * attack of computer character
+	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		try {
@@ -63,7 +68,9 @@ public class ComputerPlayer implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-
+	/**
+	 * interact of computer character
+	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
 		System.out.println("Computer Player attack");

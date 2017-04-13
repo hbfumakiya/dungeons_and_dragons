@@ -2,8 +2,8 @@
  * 
  */
 package dungeons_and_dragons.decorator;
-
 /**
+ * This is concrete decorator class
  * @author urmil
  *
  */
@@ -17,7 +17,10 @@ public class Pacifying extends WeaponsDecorator{
 		super(weapon);
 		
 	}
-	
+	/**
+	 * return the pacifying weapon and its point
+	 * @return String pacifying
+	 */
 	public String getEnchantment()
 	{
 		return "Pacifying-"+super.getEnhancment();

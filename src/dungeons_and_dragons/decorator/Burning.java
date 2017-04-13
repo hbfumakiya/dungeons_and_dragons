@@ -4,6 +4,7 @@
 package dungeons_and_dragons.decorator;
 
 /**
+ * This is concrete decorator class
  * @author urmil
  *
  */
@@ -17,7 +18,10 @@ public class Burning extends WeaponsDecorator{
 		super(weapon);
 		
 	}
-	
+	/**
+	 * return the burning weapn and its point
+	 * @return String burning
+	 */
 	public String getEnchantment()
 	{
 		return "Burning-"+super.getEnhancment()*5;

@@ -10,11 +10,14 @@ import dungeons_and_dragons.helper.MapCharacter;
 import dungeons_and_dragons.model.GamePlayModel;
 
 /**
+ * This is concrete class for human player
  * @author Mihir Pujara & Tejas Sadrani
  *
  */
 public class HumanPlayer implements Strategy {
-
+	/**
+	 * move of human character
+	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 		int i = 0; 
@@ -52,7 +55,9 @@ public class HumanPlayer implements Strategy {
 			human.freezingBonus--;
 		}
 	}
-
+	/**
+	 * attack of human character
+	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		
@@ -64,7 +69,10 @@ public class HumanPlayer implements Strategy {
 		}
 
 	}
-
+	
+	/**
+	 * interact of human character
+	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
 		System.out.println("Human Player Interact");

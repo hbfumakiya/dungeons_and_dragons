@@ -4,6 +4,7 @@
 package dungeons_and_dragons.decorator;
 
 /**
+ * This is concrete decorator class
  * @author urmil
  *
  */
@@ -17,7 +18,10 @@ public class Frightening extends WeaponsDecorator{
 		super(weapon);
 		
 	}
-	
+	/**
+	 * return the frightening weapn and its point
+	 * @return String frightening
+	 */
 	public String getEnchantment()
 	{
 		return "Frightening-"+super.getEnhancment();

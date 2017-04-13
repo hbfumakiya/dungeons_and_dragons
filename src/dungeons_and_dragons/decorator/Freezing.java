@@ -4,6 +4,7 @@
 package dungeons_and_dragons.decorator;
 
 /**
+ * This is concrete decorator class
  * @author urmil
  *
  */
@@ -17,7 +18,10 @@ public class Freezing extends WeaponsDecorator{
 		super(weapon);
 		
 	}
-	
+	/**
+	 * return the freezing weapn and its point
+	 * @return String freezing
+	 */
 	public String getEnchantment()
 	{
 		return "Freezing-"+super.getEnhancment();

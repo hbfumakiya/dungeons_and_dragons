@@ -18,6 +18,7 @@ import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
+ * This is concrete class of friend
  * @author Mihir Pujara & Tejas Sadrani & Urmil Kansara
  *
  */
@@ -25,7 +26,9 @@ public class FriendlyNPC implements Strategy {
 
 	GameMapModel mapModel;
 	GameStatus gameStatus;
-
+	/**
+	 * move of freindly character
+	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 
@@ -63,7 +66,9 @@ public class FriendlyNPC implements Strategy {
 		}
 
 	}
-	
+	/**
+	 * attack of friendly character
+	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
 		System.out.println("Friendly NPC Move");
@@ -74,7 +79,9 @@ public class FriendlyNPC implements Strategy {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * interact of friendly character
+	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
 		System.out.println("Friendly NPC Move");

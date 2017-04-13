@@ -43,13 +43,13 @@
           "strength": 0,
           "items": [
             {
-              "item_id": 5,
-              "item_name": "Burning",
+              "item_id": 4,
+              "item_name": "Frightening",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Burning",
-              "item_weapon_enchantment_string": "Burning-10"
+              "item_weapon_enchantment": "Frightening",
+              "item_weapon_enchantment_string": "Frightening-2"
             }
           ],
           "backPackItems": [
@@ -63,13 +63,13 @@
               "item_weapon_enchantment_string": "Frightening-5"
             },
             {
-              "item_id": 4,
-              "item_name": "Frightening",
+              "item_id": 8,
+              "item_name": "Pacifying",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Frightening",
-              "item_weapon_enchantment_string": "Frightening-2"
+              "item_weapon_enchantment": "Pacifying",
+              "item_weapon_enchantment_string": "Pacifying-2"
             },
             {
               "item_id": 5,
@@ -81,15 +81,6 @@
               "item_weapon_enchantment_string": "Burning-10"
             },
             {
-              "item_id": 6,
-              "item_name": "Slaying",
-              "item_point": 2,
-              "item_type": "Weapon Melee",
-              "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Slaying",
-              "item_weapon_enchantment_string": "Slaying-2"
-            },
-            {
               "item_id": 7,
               "item_name": "Freezing",
               "item_point": 2,
@@ -99,13 +90,13 @@
               "item_weapon_enchantment_string": "Freezing-2"
             },
             {
-              "item_id": 8,
-              "item_name": "Pacifying",
+              "item_id": 6,
+              "item_name": "Slaying",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Pacifying",
-              "item_weapon_enchantment_string": "Pacifying-2"
+              "item_weapon_enchantment": "Slaying",
+              "item_weapon_enchantment_string": "Slaying-2"
             }
           ],
           "character_level": 5,
@@ -133,9 +124,9 @@
             "wisdom": 0,
             "charisma": 1
           },
-          "hitpoints": 59,
+          "hitpoints": 54,
           "attackBonus": 9,
-          "damageBonus": 6,
+          "damageBonus": 3,
           "armorClass": 13,
           "isAlive": true
         },
@@ -151,13 +142,13 @@
           "strength": 0,
           "items": [
             {
-              "item_id": 4,
-              "item_name": "Frightening",
+              "item_id": 7,
+              "item_name": "Freezing",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Frightening",
-              "item_weapon_enchantment_string": "Frightening-2"
+              "item_weapon_enchantment": "Freezing",
+              "item_weapon_enchantment_string": "Freezing-2"
             }
           ],
           "backPackItems": [
@@ -207,15 +198,6 @@
               "item_weapon_enchantment_string": "Slaying-2"
             },
             {
-              "item_id": 7,
-              "item_name": "Freezing",
-              "item_point": 2,
-              "item_type": "Weapon Melee",
-              "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Freezing",
-              "item_weapon_enchantment_string": "Freezing-2"
-            },
-            {
               "item_id": 8,
               "item_name": "Pacifying",
               "item_point": 2,
@@ -223,6 +205,15 @@
               "item_ability": "Attack bonus",
               "item_weapon_enchantment": "Pacifying",
               "item_weapon_enchantment_string": "Pacifying-2"
+            },
+            {
+              "item_id": 4,
+              "item_name": "Frightening",
+              "item_point": 2,
+              "item_type": "Weapon Melee",
+              "item_ability": "Attack bonus",
+              "item_weapon_enchantment": "Frightening",
+              "item_weapon_enchantment_string": "Frightening-2"
             }
           ],
           "character_level": 2,
@@ -250,9 +241,9 @@
             "wisdom": -1,
             "charisma": -1
           },
-          "hitpoints": 22,
+          "hitpoints": 21,
           "attackBonus": 7,
-          "damageBonus": 8,
+          "damageBonus": 9,
           "armorClass": 10,
           "isAlive": true
         },
@@ -287,13 +278,13 @@
           "strength": 0,
           "items": [
             {
-              "item_id": 5,
-              "item_name": "Burning",
+              "item_id": 4,
+              "item_name": "Frightening",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Burning",
-              "item_weapon_enchantment_string": "Burning-10"
+              "item_weapon_enchantment": "Frightening",
+              "item_weapon_enchantment_string": "Frightening-2"
             }
           ],
           "backPackItems": [
@@ -307,13 +298,13 @@
               "item_weapon_enchantment_string": "Frightening-5"
             },
             {
-              "item_id": 4,
-              "item_name": "Frightening",
+              "item_id": 8,
+              "item_name": "Pacifying",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Frightening",
-              "item_weapon_enchantment_string": "Frightening-2"
+              "item_weapon_enchantment": "Pacifying",
+              "item_weapon_enchantment_string": "Pacifying-2"
             },
             {
               "item_id": 5,
@@ -325,15 +316,6 @@
               "item_weapon_enchantment_string": "Burning-10"
             },
             {
-              "item_id": 6,
-              "item_name": "Slaying",
-              "item_point": 2,
-              "item_type": "Weapon Melee",
-              "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Slaying",
-              "item_weapon_enchantment_string": "Slaying-2"
-            },
-            {
               "item_id": 7,
               "item_name": "Freezing",
               "item_point": 2,
@@ -343,13 +325,13 @@
               "item_weapon_enchantment_string": "Freezing-2"
             },
             {
-              "item_id": 8,
-              "item_name": "Pacifying",
+              "item_id": 6,
+              "item_name": "Slaying",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Pacifying",
-              "item_weapon_enchantment_string": "Pacifying-2"
+              "item_weapon_enchantment": "Slaying",
+              "item_weapon_enchantment_string": "Slaying-2"
             }
           ],
           "character_level": 5,
@@ -377,9 +359,9 @@
             "wisdom": 0,
             "charisma": 1
           },
-          "hitpoints": 59,
+          "hitpoints": 54,
           "attackBonus": 9,
-          "damageBonus": 6,
+          "damageBonus": 3,
           "armorClass": 13,
           "isAlive": true
         },
@@ -395,13 +377,13 @@
           "strength": 0,
           "items": [
             {
-              "item_id": 4,
-              "item_name": "Frightening",
+              "item_id": 7,
+              "item_name": "Freezing",
               "item_point": 2,
               "item_type": "Weapon Melee",
               "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Frightening",
-              "item_weapon_enchantment_string": "Frightening-2"
+              "item_weapon_enchantment": "Freezing",
+              "item_weapon_enchantment_string": "Freezing-2"
             }
           ],
           "backPackItems": [
@@ -451,15 +433,6 @@
               "item_weapon_enchantment_string": "Slaying-2"
             },
             {
-              "item_id": 7,
-              "item_name": "Freezing",
-              "item_point": 2,
-              "item_type": "Weapon Melee",
-              "item_ability": "Attack bonus",
-              "item_weapon_enchantment": "Freezing",
-              "item_weapon_enchantment_string": "Freezing-2"
-            },
-            {
               "item_id": 8,
               "item_name": "Pacifying",
               "item_point": 2,
@@ -467,6 +440,15 @@
               "item_ability": "Attack bonus",
               "item_weapon_enchantment": "Pacifying",
               "item_weapon_enchantment_string": "Pacifying-2"
+            },
+            {
+              "item_id": 4,
+              "item_name": "Frightening",
+              "item_point": 2,
+              "item_type": "Weapon Melee",
+              "item_ability": "Attack bonus",
+              "item_weapon_enchantment": "Frightening",
+              "item_weapon_enchantment_string": "Frightening-2"
             }
           ],
           "character_level": 2,
@@ -494,9 +476,9 @@
             "wisdom": -1,
             "charisma": -1
           },
-          "hitpoints": 22,
+          "hitpoints": 21,
           "attackBonus": 7,
-          "damageBonus": 8,
+          "damageBonus": 9,
           "armorClass": 10,
           "isAlive": true
         },
