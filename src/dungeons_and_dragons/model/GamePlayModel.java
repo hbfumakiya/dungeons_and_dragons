@@ -1242,6 +1242,20 @@ public class GamePlayModel extends Observable implements Runnable {
 
 	private HashMap<CharacterModel, Point> prevEnemyPos = new HashMap<CharacterModel, Point>();
 
+	/**
+	 * @return the prevEnemyPos
+	 */
+	public HashMap<CharacterModel, Point> getPrevEnemyPos() {
+		return prevEnemyPos;
+	}
+
+	/**
+	 * @param prevEnemyPos the prevEnemyPos to set
+	 */
+	public void setPrevEnemyPos(HashMap<CharacterModel, Point> prevEnemyPos) {
+		this.prevEnemyPos = prevEnemyPos;
+	}
+
 	public void prevPosition(CharacterModel character, Point p) {
 		prevEnemyPos.remove(character);
 		prevEnemyPos.put(character, p);
