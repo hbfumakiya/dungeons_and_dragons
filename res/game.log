@@ -121,3 +121,63 @@
 [ 06:21:38.080 13-04-2017  INFO ] Friend Moves 1
 [ 06:21:39.128 13-04-2017  INFO ] Friend Moves 2
 [ 06:21:40.191 13-04-2017  INFO ] Friend Moves 3
+[ 11:15:30.282 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:15:30.298 13-04-2017  INFO ] Dice rolled number(D20) -- > 5
+[ 11:15:30.314 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:15:30.329 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:15:30.329 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:15:30.345 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:15:30.361 13-04-2017  INFO ] Dice rolled number(D8) -- > 6
+[ 11:15:30.361 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:15:31.376 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:15:32.564 13-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 11:16:12.925 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:16:12.988 13-04-2017  INFO ] Dice rolled number(D20) -- > 8
+[ 11:16:13.003 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:16:13.003 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:13.019 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:16:13.019 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:16:13.035 13-04-2017  INFO ] Dice rolled number(D8) -- > 1
+[ 11:16:13.050 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:14.081 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:16:15.257 13-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 11:16:19.667 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:16:19.698 13-04-2017  INFO ] Dice rolled number(D20) -- > 4
+[ 11:16:19.698 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:16:19.714 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:19.729 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:16:19.729 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:16:19.745 13-04-2017  INFO ] Dice rolled number(D8) -- > 5
+[ 11:16:19.761 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:20.776 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:16:21.919 13-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 11:16:45.654 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:16:45.701 13-04-2017  INFO ] Dice rolled number(D20) -- > 6
+[ 11:16:45.717 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:16:45.732 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:45.732 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:16:45.748 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:16:45.748 13-04-2017  INFO ] Dice rolled number(D8) -- > 2
+[ 11:16:45.764 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:16:46.779 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:16:47.920 13-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 11:17:42.921 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:17:42.952 13-04-2017  INFO ] Dice rolled number(D20) -- > 17
+[ 11:17:42.968 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:17:42.984 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:17:42.999 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:17:43.015 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:17:43.015 13-04-2017  INFO ] Dice rolled number(D8) -- > 7
+[ 11:17:43.031 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:17:44.046 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:17:45.046 13-04-2017  INFO ] Oops bumped into a wall can't move ahead
+[ 11:19:30.775 13-04-2017  INFO ] Player tries to attack and rolls the dice
+[ 11:19:30.822 13-04-2017  INFO ] Dice rolled number(D20) -- > 8
+[ 11:19:30.837 13-04-2017  INFO ] Attack Bonus -- > 5
+[ 11:19:30.853 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:19:30.869 13-04-2017  INFO ] Armor class of defending character -- > 0
+[ 11:19:30.869 13-04-2017  INFO ] Human Player has attacked with a  weapon enchantment
+[ 11:19:30.884 13-04-2017  INFO ] Dice rolled number(D8) -- > 5
+[ 11:19:30.900 13-04-2017  INFO ] Strength Modifier -- > 0
+[ 11:19:31.916 13-04-2017  INFO ] No interaction to any player or a chest so no item found
+[ 11:19:33.056 13-04-2017  INFO ] Oops bumped into a wall can't move ahead

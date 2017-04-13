@@ -187,6 +187,36 @@ public class TestGamePlay {
 	}
 	
 	@Test
+	public void testchestLooting() {
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+
+		int item_id = 1;
+		String item_name = "abc";
+		String itemtype = Game_constants.BELT;
+		String item_ability = Game_constants.DEXTERITY;
+		int item_point = 1;
+
+		ItemModel item = new ItemModel(item_id, item_name, item_point, itemtype, item_ability);
+		MapItem mi = new MapItem();
+		mi.setItem(item);
+		mi.setX(1);
+		mi.setY(1);
+		// mapmpdel.setMap_chest(mi);
+		gpm.setCampaignModel(campaignmodel);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(mi);
+		Point p = new Point(1, 1);
+		gpm.removeChest(p);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getX(), -1);
+		Assert.assertEquals(gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getY(), -1);
+
+	}
+	
+	@Test
 	public void testCalculateTurn(){
 		CharacterModel characterModel=new CharacterModel();
 		Map<Integer, MapCharacter> tempValues = new HashMap<Integer, MapCharacter>();
@@ -205,20 +235,6 @@ public class TestGamePlay {
 
 	}
 	
-	@Test
-	public void testStartGame(){
-		MapCharacter character=new MapCharacter();
-		character.setCharacterType(MapCharacter.NORMAL);
-		GameMapModel gameMapModel=new GameMapModel(7, 7);
-		GamePlayModel gpm=new GamePlayModel();
-		gpm.calculateTurn();
-		gpm.startGame();
-		CharacterStrategy characterStrategy=new CharacterStrategy();
-		System.out.println(characterStrategy.getStrategy());
-		System.out.println(MapCharacter.NORMAL);
-		Assert.assertEquals(characterStrategy.getStrategy(), MapCharacter.NORMAL);
-		
-	}
 	
 	@Test
 	public void testCheckWalls(){
@@ -250,6 +266,21 @@ public class TestGamePlay {
 	}
 	
 	@Test
+	public void testCheckEnemy(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		Point p = new Point(1, 1);
+		MapCharacter pos_char=new MapCharacter();
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_enemy_loc(pos_char);
+		Assert.assertEquals(false, gpm.checkCharacter(p));
+	}
+	
+	@Test
 	public void testCheckChest(){
 		GamePlayModel gpm = new GamePlayModel();
 		CampaignModel campaignmodel = new CampaignModel();
@@ -266,6 +297,7 @@ public class TestGamePlay {
 	
 	@Test
 	public void testValidateMove(){
+		MapCharacter mapCharacter=new MapCharacter();
 		GamePlayModel gpm = new GamePlayModel();
 		CampaignModel campaignmodel = new CampaignModel();
 		GameMapModel mapmpdel = new GameMapModel(7, 7);
@@ -276,7 +308,7 @@ public class TestGamePlay {
 		Point p1=new Point(1, 1);
 		Point p2=new Point(2, 2);
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p1);
-		Assert.assertEquals(0, gpm.validateMove(p1, p2).getGameStatus());
+		Assert.assertEquals(5, gpm.validateMove(p1, p2,mapCharacter).getGameStatus());
 	}
 	
 	@Test
@@ -327,16 +359,24 @@ public class TestGamePlay {
 		String itemtype = Game_constants.BOOTS;
 		String item_ability = Game_constants.DEXTERITY;
 		int item_point = 1;
+		int item_id1 = 1;
+		String item_name1 = "abc";
+		String itemtype1 = Game_constants.BOOTS;
+		String item_ability1 = Game_constants.DEXTERITY;
+		int item_point1 = 1;
 		character.setCharacter(characterModel);
 		character.getCharacter().setAttackBonus(5);
 		character.getCharacter().setStrength(5);
 		ItemModel item = new ItemModel(item_id, item_name, item_point, itemtype, item_ability);
+		ItemModel item1 = new ItemModel(item_id1, item_name1, item_point1, itemtype1, item_ability1);
 		ArrayList<ItemModel> items=new ArrayList<ItemModel>();
 		items.add(item);
+		character.setCharacter(characterModel);
+		characterModel.setItems(items);
 		gpm.attackToEnemy(character);
 		Assert.assertEquals(true,gpm.ishit);
 	}
-	
+
 	
 	@Test
 	public void testmoveFrightenedEnemy(){
@@ -353,9 +393,27 @@ public class TestGamePlay {
 		enemy.setY(2);
 		Point p2=new Point(5, 2);
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p2);
-		gpm.moveFrightenedComputerOrEnemy(enemy, p);
-		Assert.assertEquals(5, enemy.getX());
-
+		gpm.moveFrightenedComputerOrEnemy(enemy, p,1);
+		Assert.assertEquals(4, enemy.getX());
+	}
+	
+	@Test
+	public void testmoveEnemy(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		Point p = new Point(1, 1);
+		MapCharacter enemy=new MapCharacter();
+		enemy.setX(4);
+		enemy.setY(2);
+		Point p2=new Point(5, 2);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p2);
+		gpm.moveFrightenedComputerOrEnemy(enemy, p,1);
+		Assert.assertEquals(4, enemy.getX());
 	}
 	
 	@Test
@@ -380,6 +438,51 @@ public class TestGamePlay {
 	
 	@Test
 	public void testremoveChest(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		MapItem map_chest=new MapItem();
+		Point p=new Point(-1, -1);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(map_chest);
+		gpm.removeChest(p);
+		Assert.assertEquals(null, gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getItem());
+	}
+	
+	@Test
+	public void testChestRemove(){
+		GamePlayModel gpm = new GamePlayModel();
+		CampaignModel campaignmodel = new CampaignModel();
+		GameMapModel mapmpdel = new GameMapModel(7, 7);
+		ArrayList<GameMapModel> map = new ArrayList<GameMapModel>();
+		map.add(mapmpdel);
+		campaignmodel.setOutput_map_list(map);
+		gpm.setCampaignModel(campaignmodel);
+		MapItem map_chest=new MapItem();
+		Point p=new Point(2, -1);
+		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(map_chest);
+		gpm.removeChest(p);
+		Assert.assertEquals(null, gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getItem());
+	}
+	
+	@Test
+	public void testmoveFriend(){
+		MapCharacter mapCharacter=new MapCharacter();
+		Point p1=new Point(1, 1);
+		Point p2=new Point(2, 2);
+		GameStatus gs=new GameStatus();
+		gs.setGameStatus(GameStatus.RUNNING);
+		GamePlayModel gpm=new GamePlayModel();
+		gpm.gameStatus.setGameStatus(GameStatus.RUNNING);
+		//gpm.moveFriend(mapCharacter, p1, p2, 1);
+		Assert.assertEquals(0, gs.getGameStatus());
+	}
+	
+	@Test
+	public void testChestremoving(){
 		GamePlayModel gpm = new GamePlayModel();
 		CampaignModel campaignmodel = new CampaignModel();
 		GameMapModel mapmpdel = new GameMapModel(7, 7);
