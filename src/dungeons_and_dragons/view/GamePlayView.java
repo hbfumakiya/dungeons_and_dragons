@@ -258,7 +258,6 @@ public class GamePlayView extends JFrame implements Observer, View {
 		maps = new MapButton[x][y];
 
 		Point humanCharacterPosition = this.gamePlayModel.getGameCharacterPosition();
-		System.out.println(humanCharacterPosition);
 		CharacterModel humanCharacter = this.gamePlayModel.getCharacterModel();
 		this.setRangeOfAttack(humanCharacter, humanCharacterPosition);
 		for (int i = 0; i < x; i++) {
