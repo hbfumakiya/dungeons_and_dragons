@@ -66,6 +66,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	private ArrayList<CharacterModel> shownInventories;
 
 	public Thread fileThread;
+	
+	public boolean fileThreadVal = true;
 
 	/**
 	 * Default constructor of Map Grid controller
@@ -96,7 +98,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			pw.close();
 		} catch (FileNotFoundException e) {
 		}
-
+		
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
@@ -277,6 +279,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	public void postProcessing(GameStatus gameSatus) {
 		switch (gameSatus.getGameStatus()) {
 		case GameStatus.NEXT_LEVEL:
+			this.fileThreadVal = false;
 			this.gamePlayModel.setCurrentMapIndex(this.gamePlayModel.getCurrentMapIndex() + 1);
 			this.gamePlayModel.deleteObserver(this.gamePlayView);
 			this.gamePlayView.dispose();
@@ -293,6 +296,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			this.shownInventories = new ArrayList<CharacterModel>();
 
 			matchNPCToPlayer();
+			this.fileThreadVal = true;
+			this.fileThread.start();
 			break;
 		case GameStatus.WON_GAME:
 			this.gamePlayView.dispose();
@@ -479,13 +484,13 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 	@Override
 	public void run() {
-		while (true) {
+		while (fileThreadVal) {
 			try {
 				WatchService watcher = FileSystems.getDefault().newWatchService();
 				Path dir = Paths.get("res");
 				dir.register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
 
-				while (true) {
+				while (fileThreadVal) {
 					WatchKey key;
 					try {
 						key = watcher.take();

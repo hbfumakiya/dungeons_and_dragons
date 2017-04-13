@@ -955,6 +955,13 @@ public class GamePlayModel extends Observable implements Runnable {
 					}
 					break;
 				}
+			} else if(turnChar.getCharacterType().equals(MapCharacter.FRIENDLY)) {
+				CharacterStrategy strategy = new CharacterStrategy();
+				strategy.setStrategy(new AggressiveNPC());
+				turnChar.setCharacterStrategy(strategy);
+				turnChar.setCharacterType(MapCharacter.ENEMY);
+				setChanged();
+				notifyObservers();
 			}
 		}
 
