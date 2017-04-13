@@ -276,7 +276,8 @@ public class TestGamePlay {
 		Point p1=new Point(1, 1);
 		Point p2=new Point(2, 2);
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_wall(p1);
-		Assert.assertEquals(0, gpm.validateMove(p1, p2).getGameStatus());
+		//System.out.println(gpm.validateMove(p1, p2).getGameStatus());
+		Assert.assertEquals(5, gpm.validateMove(p1, p2).getGameStatus());
 	}
 	
 	@Test
@@ -392,5 +393,16 @@ public class TestGamePlay {
 		gpm.getCampaignModel().getOutput_map_list().get(0).setMap_chest(map_chest);
 		gpm.removeChest(p);
 		Assert.assertEquals(null, gpm.getCampaignModel().getOutput_map_list().get(0).getMap_chest().getItem());
+	}
+	
+	@Test
+	public void testprevPosition(){
+		GamePlayModel gpm = new GamePlayModel();
+		CharacterModel characterModel=new CharacterModel();
+		Point p=new Point(1, 1);
+		HashMap<CharacterModel, Point> prevEnemyPos = new HashMap<CharacterModel, Point>();
+		gpm.setPrevEnemyPos(prevEnemyPos);
+		gpm.prevPosition(characterModel, p);
+		Assert.assertEquals(1, gpm.getPrevEnemyPos().size());
 	}
 }
