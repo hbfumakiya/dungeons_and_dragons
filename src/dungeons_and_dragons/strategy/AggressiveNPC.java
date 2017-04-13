@@ -7,27 +7,22 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
-import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
-import dungeons_and_dragons.helper.PathFinder;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This class is for aggresive enemy
+ * 
  * @author Mihir Pujara & Tejas Sadrani & Urmil Kansara
  */
 public class AggressiveNPC implements Strategy {
-	
+
 	/**
-	 * This method is to move aggresive enemy
+	 * Implementation of method is to move aggresive enemy
 	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
@@ -35,13 +30,13 @@ public class AggressiveNPC implements Strategy {
 		System.out.println("Agresive NPC Move");
 		try {
 			int j = 0;
-			
+
 			MapCharacter enemy = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
 
 			if (enemy.Freezing) {
 				j = enemy.freezingBonus;
-			} 
-			
+			}
+
 			if (enemy.getCharacter().isAlive()) {
 				if (j == 0) {
 					gamePlayModel.moveNPCOrComputer(enemy);
@@ -58,9 +53,9 @@ public class AggressiveNPC implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
-	
+
 	/**
-	 * This method id to attack
+	 * Implementation for attack of aggressive player
 	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
@@ -73,9 +68,9 @@ public class AggressiveNPC implements Strategy {
 		}
 
 	}
-	
+
 	/**
-	 * interact method of aggresive npc
+	 * Implementation of interact for aggressive NPC
 	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
@@ -160,7 +155,6 @@ public class AggressiveNPC implements Strategy {
 			}
 			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

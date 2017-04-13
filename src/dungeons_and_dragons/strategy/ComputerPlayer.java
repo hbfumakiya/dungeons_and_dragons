@@ -7,27 +7,22 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
-import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
-import dungeons_and_dragons.helper.PathFinder;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This is concrete class for computer
+ * 
  * @author Mihir & Tejas & kansara
  *
  */
 public class ComputerPlayer implements Strategy {
 	/**
-	 * moving of computer character
+	 * Implementation moving of computer character
 	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
@@ -38,13 +33,13 @@ public class ComputerPlayer implements Strategy {
 			if (computer.Freezing) {
 				j = computer.freezingBonus;
 			}
-			
+
 			if (computer.getCharacter().isAlive()) {
 				if (j == 0) {
 					gamePlayModel.moveNPCOrComputer(computer);
 					computer.Freezing = false;
 				} else {
-					LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player freezed for "+j+ " moves");
+					LogHelper.Log(LogHelper.TYPE_INFO, "Computer Player freezed for " + j + " moves");
 					computer.freezingBonus--;
 				}
 			}
@@ -54,8 +49,9 @@ public class ComputerPlayer implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
+
 	/**
-	 * attack of computer character
+	 * Implementation of attack of computer character
 	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
@@ -68,8 +64,9 @@ public class ComputerPlayer implements Strategy {
 			LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 		}
 	}
+
 	/**
-	 * interact of computer character
+	 * Implementation of interact of computer character
 	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
@@ -182,7 +179,6 @@ public class ComputerPlayer implements Strategy {
 
 			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

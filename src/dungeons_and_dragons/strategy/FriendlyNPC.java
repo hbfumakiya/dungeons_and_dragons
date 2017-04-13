@@ -10,15 +10,14 @@ import javax.swing.JOptionPane;
 import dungeons_and_dragons.helper.GameStatus;
 import dungeons_and_dragons.helper.Game_constants;
 import dungeons_and_dragons.helper.LogHelper;
-import dungeons_and_dragons.helper.MapButton;
 import dungeons_and_dragons.helper.MapCharacter;
-import dungeons_and_dragons.helper.PathFinder;
 import dungeons_and_dragons.model.GameMapModel;
 import dungeons_and_dragons.model.GamePlayModel;
 import dungeons_and_dragons.model.ItemModel;
 
 /**
  * This is concrete class of friend
+ * 
  * @author Mihir Pujara & Tejas Sadrani & Urmil Kansara
  *
  */
@@ -26,31 +25,32 @@ public class FriendlyNPC implements Strategy {
 
 	GameMapModel mapModel;
 	GameStatus gameStatus;
+
 	/**
-	 * move of freindly character
+	 * Implementation for move method of friend
 	 */
 	@Override
 	public void move(GamePlayModel gamePlayModel) {
 
 		System.out.println("Friendly NPC Move");
 		MapCharacter friend = gamePlayModel.getTurnList().get(gamePlayModel.getCurrentTurn());
-		
+
 		int j = 0;
-		
-		if(friend.Freezing){
-				j = friend.freezingBonus;
+
+		if (friend.Freezing) {
+			j = friend.freezingBonus;
 		}
-		
+
 		Point friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
 		Point oldPoint = (Point) friendPoint.clone();
-		
+
 		int i = 0;
-		while (i < 3 && j==0) {
+		while (i < 3 && j == 0) {
 			try {
 				friend.Freezing = false;
-				gameStatus = gamePlayModel.moveFriend(friend,friendPoint,oldPoint,i);
+				gameStatus = gamePlayModel.moveFriend(friend, friendPoint, oldPoint, i);
 				Thread.sleep(Game_constants.TIME_CONSTANT);
-				if(!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)){
+				if (!(gamePlayModel.gameStatus.getGameStatus() == GameStatus.CANT_MOVE)) {
 					friendPoint = (Point) new Point(friend.getX(), friend.getY()).clone();
 					oldPoint = (Point) friendPoint.clone();
 					i++;
@@ -59,15 +59,16 @@ public class FriendlyNPC implements Strategy {
 				LogHelper.Log(LogHelper.TYPE_ERROR, e.getMessage());
 			}
 		}
-		
-		if(j>0){
-			LogHelper.Log(LogHelper.TYPE_INFO, "Friend Player freezed for "+j+ " moves");
+
+		if (j > 0) {
+			LogHelper.Log(LogHelper.TYPE_INFO, "Friend Player freezed for " + j + " moves");
 			friend.freezingBonus--;
 		}
 
 	}
+
 	/**
-	 * attack of friendly character
+	 * Implementation of attack of friend
 	 */
 	@Override
 	public void attack(GamePlayModel gamePlayModel) {
@@ -75,12 +76,12 @@ public class FriendlyNPC implements Strategy {
 		try {
 			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	/**
-	 * interact of friendly character
+	 * Implementation of interact of friendly character
 	 */
 	@Override
 	public void interact(GamePlayModel gamePlayModel) {
@@ -111,40 +112,42 @@ public class FriendlyNPC implements Strategy {
 					LogHelper.Log(LogHelper.TYPE_INFO, msg);
 					System.out.println("" + msg);
 				}
-			}
-			else {
+			} else {
 				for (int i = 0; i < map.getMap_enemy_loc().size(); i++) {
-					//check enemy dead or alive
+					// check enemy dead or alive
 					if (!map.getMap_enemy_loc().get(i).getCharacter().isAlive()) {
 						// check enemy location with dead enemy
 						if (friendly.getX() == map.getMap_enemy_loc().get(i).getX()
 								&& friendly.getY() == map.getMap_enemy_loc().get(i).getY()) {
-							//check if it is not checking same enemy
-							if (friendly.getCharacter().getCharacter_id() != map.getMap_enemy_loc().get(i).getCharacter()
-									.getCharacter_id()) {
+							// check if it is not checking same enemy
+							if (friendly.getCharacter().getCharacter_id() != map.getMap_enemy_loc().get(i)
+									.getCharacter().getCharacter_id()) {
 								ArrayList<ItemModel> allEnemyItems = new ArrayList<ItemModel>();
-								
+
 								if (friendly.getCharacter().getBackPackItems().size() < 10) {
-									if(!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty())
-									{
-									Collections.shuffle(map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems());
+									if (!map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().isEmpty()) {
+										Collections.shuffle(
+												map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems());
 
-									ItemModel item = map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().get(0);
+										ItemModel item = map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems()
+												.get(0);
 
-									map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().remove(item);
+										map.getMap_enemy_loc().get(i).getCharacter().getBackPackItems().remove(item);
 
-									friendly.getCharacter().getBackPackItems().add(item);
+										friendly.getCharacter().getBackPackItems().add(item);
 
-									map.getMap_enemy_loc().get(i).getCharacter().getItems().remove(item);
+										map.getMap_enemy_loc().get(i).getCharacter().getItems().remove(item);
 
-									//this.items.add(item);
-									gamePlayModel.notifyChange();
-									JOptionPane.showMessageDialog(new JFrame(), "You received this " + item.getItem_name() + "("
-											+ item.getItem_type() + ") item from friendly player which is added into your backpack");
+										// this.items.add(item);
+										gamePlayModel.notifyChange();
+										JOptionPane.showMessageDialog(new JFrame(), "You received this "
+												+ item.getItem_name() + "(" + item.getItem_type()
+												+ ") item from friendly player which is added into your backpack");
 									}
 
 								} else {
-									JOptionPane.showMessageDialog(new JFrame(), "Sorry " + friendly.getCharacter().getCharacter_name()
+									JOptionPane.showMessageDialog(new JFrame(), "Sorry "
+											+ friendly.getCharacter().getCharacter_name()
 											+ "'s (Friendly Player) backpack is full.So cannot exchange any Item");
 								}
 							}
@@ -155,7 +158,6 @@ public class FriendlyNPC implements Strategy {
 			}
 			Thread.sleep(Game_constants.TIME_CONSTANT);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

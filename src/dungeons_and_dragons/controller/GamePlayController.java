@@ -66,7 +66,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 	private ArrayList<CharacterModel> shownInventories;
 
 	public Thread fileThread;
-	
+
 	public boolean fileThreadVal = true;
 
 	/**
@@ -98,19 +98,20 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			pw.close();
 		} catch (FileNotFoundException e) {
 		}
-		
+
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
-		this.gamePlayModel.postProcessingThread = new Thread(new PostProcessingClass(this.gamePlayModel,this.gamePlayView,this));
+		this.gamePlayModel.postProcessingThread = new Thread(
+				new PostProcessingClass(this.gamePlayModel, this.gamePlayView, this));
 		this.gamePlayModel.postProcessingThread.start();
-		
+
 		this.gamePlayModel.calculateTurn();
 
 		this.gamePlayModel.startGame();
 
 	}
-	
+
 	public GamePlayController(GamePlayModel gamePlayModel, boolean loadgame) {
 
 		this.gamePlayModel = gamePlayModel;
@@ -137,9 +138,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
-		this.gamePlayModel.postProcessingThread = new Thread(new PostProcessingClass(this.gamePlayModel,this.gamePlayView,this));
+		this.gamePlayModel.postProcessingThread = new Thread(
+				new PostProcessingClass(this.gamePlayModel, this.gamePlayView, this));
 		this.gamePlayModel.postProcessingThread.start();
-		
+
 		this.gamePlayModel.startGame();
 
 	}
@@ -300,7 +302,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			synchronized (this.fileThread) {
 				this.fileThread.start();
 			}
-			
+
 			break;
 		case GameStatus.WON_GAME:
 			this.gamePlayView.dispose();
@@ -317,7 +319,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			new GameController();
 			break;
 		}
-		
+
 	}
 
 	/**
@@ -363,13 +365,10 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -391,12 +390,12 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			int rVal = c.showSaveDialog(this.gamePlayView);
 			if (rVal == JFileChooser.APPROVE_OPTION) {
 				String file = c.getSelectedFile().toString();
-				if(file.length() > 5) {
-					if(!(file.substring(file.length() - 5).equalsIgnoreCase(".json"))) {
-						file = file+".json";
-					} 
+				if (file.length() > 5) {
+					if (!(file.substring(file.length() - 5).equalsIgnoreCase(".json"))) {
+						file = file + ".json";
+					}
 				} else {
-					file = file+".json";
+					file = file + ".json";
 				}
 				this.gamePlayModel.save(file);
 				this.gamePlayModel.setGameRunning(false);
@@ -508,7 +507,7 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 						Path fileName = ev.context();
 						if (kind == ENTRY_MODIFY && fileName.toString().equals("game.log")) {
 							List<String> lines = LogHelper.getLastLine();
-							if(!fileThreadVal) {
+							if (!fileThreadVal) {
 								break;
 							}
 							this.gamePlayView.consoleTextArea.setText("");
@@ -535,8 +534,8 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 			} catch (IOException ex) {
 				System.err.println(ex);
 			}
-			
-			if(!fileThreadVal) {
+
+			if (!fileThreadVal) {
 				break;
 			}
 		}
