@@ -135,6 +135,9 @@ public class GamePlayController implements KeyListener, ActionListener, WindowLi
 		this.fileThread = new Thread(this);
 		this.fileThread.start();
 
+		this.gamePlayModel.postProcessingThread = new Thread(new PostProcessingClass(this.gamePlayModel,this.gamePlayView,this));
+		this.gamePlayModel.postProcessingThread.start();
+		
 		this.gamePlayModel.startGame();
 
 	}

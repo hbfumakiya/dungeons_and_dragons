@@ -589,90 +589,6 @@ public class GamePlayModel extends Observable implements Runnable {
 
 				gameStatus.setGameStatus(GameStatus.RUNNING);
 
-				// }
-				// else if (this.checkCharacter(tempPoint)) {
-				//
-				// ArrayList<MapCharacter> chars =
-				// this.getCampaignModel().getOutput_map_list()
-				// .get(this.getCurrentMapIndex()).getMap_enemy_loc();
-				//
-				// MapCharacter npcLocal = null;
-				//
-				// for (int i = 0; i < chars.size(); i++) {
-				// if ((tempPoint.getX() == chars.get(i).getX()) &&
-				// (tempPoint.getY() == chars.get(i).getY())) {
-				// npcLocal = chars.get(i);
-				// }
-				// }
-				//
-				// if (npcLocal != null) {
-				// if (npcLocal.getCharacterType().equals(MapCharacter.ENEMY)) {
-				// System.out.println("Enemy");
-				// GameMapModel map =
-				// this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
-				// int numOfCharacters = map.getMap_enemy_loc().size();
-				// CharacterModel enemy = new CharacterModel();
-				// MapCharacter enemyMap = new MapCharacter();
-				// int index = -1;
-				// for (int j = 0; j < numOfCharacters; j++) {
-				//
-				// if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
-				// && map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
-				// enemy = map.getMap_enemy_loc().get(j).getCharacter();
-				// enemyMap = map.getMap_enemy_loc().get(j);
-				// index = j;
-				// }
-				// }
-				//
-				// CharacterModel player = this.getCharacterModel();
-				// boolean enemyAlive = true;
-				// if (enemy != null)
-				// enemyAlive = fightWithEnemy(enemy, player);
-				//
-				// enemy.updateView();
-				// String msg = "";
-				// if (enemyAlive == false) {
-				// JOptionPane.showMessageDialog(new JFrame(),
-				// "Enemy " + enemy.getCharacter_name() + " is dead.You can loot
-				// its items");
-				// enemy.setAlive(false);
-				// ArrayList<ItemModel> allEnemyItems = new
-				// ArrayList<ItemModel>();
-				// if (!enemy.getItems().isEmpty()) {
-				// allEnemyItems = enemy.getItems();
-				// }
-				// if (!enemy.getBackPackItems().isEmpty()) {
-				// for (int i = 0; i < enemy.getBackPackItems().size(); i++) {
-				// allEnemyItems.add(enemy.getBackPackItems().get(i));
-				// }
-				// }
-				// new NPCItemController(this, allEnemyItems, true, enemy);
-				//
-				// msg = "is dead.You can loot its item";
-				// }
-				// } else if
-				// (npcLocal.getCharacterType().equals(MapCharacter.FRIENDLY)) {
-				// System.out.println("Friendly");
-				// GameMapModel map =
-				// this.getCampaignModel().getOutput_map_list().get(this.getCurrentMapIndex());
-				// int numOfCharacters = map.getMap_enemy_loc().size();
-				// CharacterModel friendly = new CharacterModel();
-				// for (int j = 0; j < numOfCharacters; j++) {
-				//
-				// if (map.getMap_enemy_loc().get(j).getX() == tempPoint.x
-				// && map.getMap_enemy_loc().get(j).getY() == tempPoint.y) {
-				// friendly = map.getMap_enemy_loc().get(j).getCharacter();
-				// }
-				// }
-				// new NPCItemController(this,
-				// this.getCharacterModel().getBackPackItems(), false,
-				// friendly);
-				// }
-				// }
-				// this.setGameCharacterPosition(tempPoint);
-				//
-				// gameStatus.setGameStatus(GameStatus.RUNNING);
-
 			} else {
 				WallBumped(false);
 				this.setGameCharacterPosition(tempPoint);
@@ -989,7 +905,9 @@ public class GamePlayModel extends Observable implements Runnable {
 
 							gameStatus.setGameStatus(GameStatus.GAME_OVER);
 							LogHelper.Log(LogHelper.TYPE_INFO, "Player is dead! Game over!");
-
+							this.setGameRunning(false);
+							this.turnList.remove(turnChar);
+							this.currentTurn = 0;
 							turnChar.Freezing = false;
 							turnChar.Frightening = false;
 							turnChar.Burning = false;
@@ -1028,7 +946,9 @@ public class GamePlayModel extends Observable implements Runnable {
 						turnChar.getCharacter().calculateModifires();
 
 						this.turnList.remove(turnChar);
+						this.currentTurn = 0;
 						gameStatus.setGameStatus(GameStatus.GAME_OVER);
+						this.setGameRunning(false);
 						LogHelper.Log(LogHelper.TYPE_INFO, "Oops! Player dead! Game over");
 						setChanged();
 						notifyObservers();
@@ -1157,7 +1077,8 @@ public class GamePlayModel extends Observable implements Runnable {
 						case "Slaying":
 							turnChar.Slaying = true;
 							turnChar.getCharacter().setAlive(false);
-
+							this.turnList.remove(turnChar);
+							this.currentTurn = 0;
 							turnChar.Freezing = false;
 							turnChar.Frightening = false;
 							turnChar.Burning = false;
